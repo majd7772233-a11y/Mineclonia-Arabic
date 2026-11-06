@@ -1,0 +1,35 @@
+# Arabic translation of Mineclonia component: mcl_experience
+# Source strings copied verbatim from the official Mineclonia template:
+# https://github.com/mineclonia-mirror/mineclonia/blob/main/mods/HUD/mcl_experience/locale/template.pot
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Bottle o' Enchanting"
+msgstr "زجاجة الخبرة"
+
+msgid "[[<player>] <xp>]"
+msgstr "[[<اللاعب>] <XP>]"
+
+msgid "Gives a player some XP"
+msgstr "يمنح لاعباً بعض نقاط الخبرة"
+
+msgid "Error: Too many parameters!"
+msgstr "خطأ: عدد الوسيطات أكبر من اللازم!"
+
+msgid "Error: Incorrect value of XP"
+msgstr "خطأ: قيمة نقاط الخبرة غير صحيحة"
+
+msgid "Error: Player not found"
+msgstr "خطأ: لم يتم العثور على اللاعب"
+
+msgid "Added @1 XP to @2, total: @3, experience level: @4"
+msgstr "تمت إضافة @1 من نقاط الخبرة إلى @2؛ المجموع: @3، مستوى الخبرة: @4"
+
