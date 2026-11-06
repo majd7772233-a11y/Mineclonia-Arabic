@@ -54,6 +54,12 @@
 | `mods/ITEMS/mcl_crafting_table/locale/template.pot` | `09b69f4d8138d08b4fab8877e78606bf56b529c6` |
 | `mods/ITEMS/mcl_compass/locale/template.pot` | `fb1bfd2d84b246cef430c9a97c3fb9fa9103c461` |
 
+## قالب مكوّن mcl_core المضاف في 2026-11-07
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/ITEMS/mcl_core/locale/template.pot` | `439198c1e836bd7966f9a224378bf67776a3960d` |
+
 ## مبدأ التتبع
 
 - نص `msgid` في كل PO يُنسخ من القالب المقابل دون إعادة صياغة.
