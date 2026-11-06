@@ -45,6 +45,15 @@
 | `mods/ITEMS/mcl_tools/locale/template.pot` | `617d449b7fbc3a734b9447689d2c0a7ee7259e3d` |
 | `mods/ITEMS/mcl_armor/locale/template.pot` | `c8c370bea1a82160b45bfbcbb733bbcddb824ed0` |
 
+## قوالب أضيفت في استكمال دفعة 2026-11-07
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/ITEMS/mcl_doors/locale/template.pot` | `4ce72e4ddaa8f8d0f1d1ba55f3ba7f5122ebf66d` |
+| `mods/ITEMS/mcl_furnaces/locale/template.pot` | `451fbd890735690c525006bd838c6aea5491b443` |
+| `mods/ITEMS/mcl_crafting_table/locale/template.pot` | `09b69f4d8138d08b4fab8877e78606bf56b529c6` |
+| `mods/ITEMS/mcl_compass/locale/template.pot` | `fb1bfd2d84b246cef430c9a97c3fb9fa9103c461` |
+
 ## مبدأ التتبع
 
 - نص `msgid` في كل PO يُنسخ من القالب المقابل دون إعادة صياغة.
