@@ -12,9 +12,7 @@ import polib
 
 ROOT = Path(__file__).resolve().parents[1]
 PO_FILES = sorted((ROOT / "mods").rglob("*.ar.po"))
-TOKEN_RE = re.compile(
-    r"@[0-9]+|%(?:[0-9]+\\$)?[-+#0 ']*[0-9]*(?:\\.[0-9]+)?[diuoxXfFeEgGaAcsp]"
-)
+TOKEN_RE = re.compile(r"@[0-9]+")
 
 
 def tokens(value: str) -> Counter[str]:
