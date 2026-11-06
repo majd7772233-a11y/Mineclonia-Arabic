@@ -1,0 +1,32 @@
+# Arabic translation of Mineclonia component: mcl_gamemode
+# Source strings copied verbatim from the official Mineclonia template:
+# https://github.com/mineclonia-mirror/mineclonia/blob/main/mods/PLAYER/mcl_gamemode/locale/template.pot
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "[<gamemode>] [<player>]"
+msgstr "[<نمط_اللعب>] [<اللاعب>]"
+
+msgid "Change gamemode (survival/creative/0/1/s/c) for yourself or player"
+msgstr "تغيير نمط اللعب (survival/creative/0/1/s/c) لنفسك أو للاعب"
+
+msgid "Player not online"
+msgstr "اللاعب غير متصل"
+
+msgid "Failed to set gamemode @1 for player @2"
+msgstr "تعذّر تعيين نمط اللعب @1 للاعب @2"
+
+msgid "Player @1 is still in creative mode because world is in creative mode"
+msgstr "لا يزال اللاعب @1 في النمط الإبداعي لأن العالم مضبوط على النمط الإبداعي"
+
+msgid "Gamemode for player @1: @2"
+msgstr "نمط اللعب للاعب @1: @2"
+
