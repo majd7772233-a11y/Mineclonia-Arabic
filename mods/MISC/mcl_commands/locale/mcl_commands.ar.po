@@ -1,0 +1,89 @@
+# Arabic translation of Mineclonia component: mcl_commands
+# Source strings copied verbatim from the official Mineclonia template:
+# https://github.com/mineclonia-mirror/mineclonia/blob/main/mods/MISC/mcl_commands/locale/template.pot
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "List bans"
+msgstr "عرض قائمة الحظر"
+
+msgid "Ban list: @1"
+msgstr "قائمة المحظورين: @1"
+
+msgid "Players can't be killed right now, damage has been disabled."
+msgstr "لا يمكن قتل اللاعبين الآن؛ فقد تم تعطيل الضرر."
+
+msgid "Player @1 does not exist."
+msgstr "اللاعب @1 غير موجود."
+
+msgid "You are already dead"
+msgstr "أنت ميت بالفعل"
+
+msgid "@1 is already dead"
+msgstr "@1 ميت بالفعل"
+
+msgid "[<name>]"
+msgstr "[<الاسم>]"
+
+msgid "Kill player or yourself"
+msgstr "قتل لاعب أو قتل نفسك"
+
+msgid "Show who is logged on"
+msgstr "عرض اللاعبين المتصلين"
+
+msgid "Can use /say"
+msgstr "يمكنه استخدام الأمر /say"
+
+msgid "<message>"
+msgstr "<رسالة>"
+
+msgid "Send a message to every player"
+msgstr "إرسال رسالة إلى جميع اللاعبين"
+
+msgid "Invalid usage, see /help say."
+msgstr "استخدام غير صحيح؛ راجع /help say."
+
+msgid "Displays the world seed"
+msgstr "عرض بذرة العالم"
+
+msgid "<X>,<Y>,<Z> <NodeString>"
+msgstr "<X>,<Y>,<Z> <معرّف_الكتلة>"
+
+msgid "Set node at given position"
+msgstr "تعيين كتلة عند الموقع المحدد"
+
+msgid "Invalid node"
+msgstr "كتلة غير صالحة"
+
+msgid "@1 spawned."
+msgstr "تم إنشاء @1."
+
+msgid "Invalid parameters (see /help setblock)"
+msgstr "معاملات غير صالحة (راجع /help setblock)"
+
+msgid "<sound> <target>"
+msgstr "<الصوت> <الهدف>"
+
+msgid "Play a sound. Arguments: <sound>: name of the sound. <target>: Target."
+msgstr "تشغيل صوت. الوسيطات: <الصوت>: اسم الصوت. <الهدف>: الجهة المستهدفة."
+
+msgid "Sound name is invalid!"
+msgstr "اسم الصوت غير صالح!"
+
+msgid "Target is invalid!!"
+msgstr "الجهة المستهدفة غير صالحة!"
+
+msgid "Only peaceful mobs allowed!"
+msgstr "يُسمح بالكائنات المسالمة فقط!"
+
+msgid "Displays the Mineclonia version"
+msgstr "عرض إصدار Mineclonia"
+
