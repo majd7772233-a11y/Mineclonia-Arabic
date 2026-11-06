@@ -12,7 +12,7 @@ msgstr ""
 
 #: mods/CORE/mcl_init/init.lua:515
 msgid "[<difficulty>]"
-msgstr "[<مستوى_الصعوبة>]"
+msgstr "[<الصعوبة>]"
 
 #: mods/CORE/mcl_init/init.lua:516
 msgid "Set or query the gameplay difficulty"
