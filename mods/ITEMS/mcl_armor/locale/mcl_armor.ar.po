@@ -146,19 +146,19 @@ msgstr "حذاء ذهبي"
 
 #: mods/ITEMS/mcl_armor/register.lua:29
 msgid "Chainmail Helmet"
-msgstr "خوذة من chainmail"
+msgstr "خوذة زردية"
 
 #: mods/ITEMS/mcl_armor/register.lua:30
 msgid "Chainmail Chestplate"
-msgstr "درع صدري من chainmail"
+msgstr "درع صدري زردي"
 
 #: mods/ITEMS/mcl_armor/register.lua:31
 msgid "Chainmail Leggings"
-msgstr "سروال من chainmail"
+msgstr "سروال زردي"
 
 #: mods/ITEMS/mcl_armor/register.lua:32
 msgid "Chainmail Boots"
-msgstr "حذاء من chainmail"
+msgstr "حذاء زردي"
 
 #: mods/ITEMS/mcl_armor/register.lua:52
 msgid "Copper Helmet"
