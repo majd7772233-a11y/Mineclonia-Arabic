@@ -1,0 +1,65 @@
+# Arabic translation for Mineclonia component mcl_furnaces
+# Source template commit: 24521bf6c99ddfc82bf52a60420a23902282c2a0
+# Source template: https://github.com/mineclonia-mirror/mineclonia/blob/24521bf6c99ddfc82bf52a60420a23902282c2a0/mods/ITEMS/mcl_furnaces/locale/template.pot
+# Source template blob SHA: 451fbd890735690c525006bd838c6aea5491b443
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_furnaces/init.lua:32 mods/ITEMS/mcl_furnaces/init.lua:71
+msgid "Inventory"
+msgstr "المخزون"
+
+#: mods/ITEMS/mcl_furnaces/init.lua:40 mods/ITEMS/mcl_furnaces/init.lua:79
+msgid "Recipe book"
+msgstr "كتاب الوصفات"
+
+#: mods/ITEMS/mcl_furnaces/init.lua:424 mods/ITEMS/mcl_furnaces/init.lua:585
+#: mods/ITEMS/mcl_furnaces/init.lua:615 mods/ITEMS/mcl_furnaces/init.lua:664
+msgid "Furnace"
+msgstr "فرن"
+
+#: mods/ITEMS/mcl_furnaces/init.lua:616
+msgid "Uses fuel to smelt or cook items"
+msgstr "يستخدم الوقود لصهر العناصر أو طهيها"
+
+#: mods/ITEMS/mcl_furnaces/init.lua:617
+msgid ""
+"Furnaces cook or smelt several items, using a furnace fuel, into something "
+"else."
+msgstr "تستخدم الأفران وقوداً لصهر العناصر أو طهيها وتحويلها إلى عناصر أخرى."
+
+#: mods/ITEMS/mcl_furnaces/init.lua:619
+msgid "Use the furnace to open the furnace menu."
+msgstr "استخدم الفرن لفتح قائمة الفرن."
+
+#: mods/ITEMS/mcl_furnaces/init.lua:620
+msgid ""
+"Place a furnace fuel in the lower slot and the source material in the upper "
+"slot."
+msgstr "ضع وقود الفرن في الخانة السفلية والمادة المراد معالجتها في الخانة العلوية."
+
+#: mods/ITEMS/mcl_furnaces/init.lua:621
+msgid "The furnace will slowly use its fuel to smelt the item."
+msgstr "سيستهلك الفرن وقوده تدريجياً لصهر العنصر."
+
+#: mods/ITEMS/mcl_furnaces/init.lua:622
+msgid "The result will be placed into the output slot at the right side."
+msgstr "ستظهر النتيجة في خانة الإخراج الموجودة على الجانب الأيمن."
+
+#: mods/ITEMS/mcl_furnaces/init.lua:623
+msgid ""
+"Use the recipe book to see what you can smelt, what you can use as fuel and "
+"how long it will burn."
+msgstr "استخدم كتاب الوصفات لمعرفة العناصر التي يمكنك صهرها، والمواد التي تصلح وقوداً، ومدة احتراق كل منها."
+
+#: mods/ITEMS/mcl_furnaces/init.lua:631
+msgid "Burning Furnace"
+msgstr "فرن مشتعل"
