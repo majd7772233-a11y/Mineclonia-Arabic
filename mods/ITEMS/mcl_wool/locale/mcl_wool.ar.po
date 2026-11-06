@@ -1,0 +1,158 @@
+# Arabic translation for Mineclonia component mcl_wool
+# Source template commit: 24521bf6c99ddfc82bf52a60420a23902282c2a0
+# Source template: https://github.com/mineclonia-mirror/mineclonia/blob/24521bf6c99ddfc82bf52a60420a23902282c2a0/mods/ITEMS/mcl_wool/locale/template.pot
+# Source template blob SHA: 87c8de07249867297496b4a025753a0ced1a6904
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_wool/init.lua:25
+msgid "Carpet"
+msgstr "سجادة"
+
+#: mods/ITEMS/mcl_wool/init.lua:26
+msgid "Wool"
+msgstr "صوف"
+
+#: mods/ITEMS/mcl_wool/init.lua:27
+msgid "Wool is a decorative block which comes in many different colors."
+msgstr "الصوف كتلة زخرفية تتوفر بألوان عديدة."
+
+#: mods/ITEMS/mcl_wool/init.lua:28
+msgid "Carpets are thin floor covers which come in many different colors."
+msgstr "السجاد أغطية أرضية رقيقة تتوفر بألوان عديدة."
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:1
+msgid "Black Carpet"
+msgstr "سجادة سوداء"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:2
+msgid "Black Wool"
+msgstr "صوف أسود"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:3
+msgid "Blue Carpet"
+msgstr "سجادة زرقاء"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:4
+msgid "Blue Wool"
+msgstr "صوف أزرق"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:5
+msgid "Brown Carpet"
+msgstr "سجادة بنية"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:6
+msgid "Brown Wool"
+msgstr "صوف بني"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:7
+msgid "Cyan Carpet"
+msgstr "سجادة سماوية"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:8
+msgid "Cyan Wool"
+msgstr "صوف سماوي"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:9
+msgid "Green Carpet"
+msgstr "سجادة خضراء"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:10
+msgid "Green Wool"
+msgstr "صوف أخضر"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:11
+msgid "Grey Carpet"
+msgstr "سجادة رمادية"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:12
+msgid "Grey Wool"
+msgstr "صوف رمادي"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:13
+msgid "Light Blue Carpet"
+msgstr "سجادة زرقاء فاتحة"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:14
+msgid "Light Blue Wool"
+msgstr "صوف أزرق فاتح"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:15
+msgid "Light Grey Carpet"
+msgstr "سجادة رمادية فاتحة"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:16
+msgid "Light Grey Wool"
+msgstr "صوف رمادي فاتح"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:17
+msgid "Lime Carpet"
+msgstr "سجادة خضراء ليمونية"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:18
+msgid "Lime Wool"
+msgstr "صوف أخضر ليموني"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:19
+msgid "Magenta Carpet"
+msgstr "سجادة أرجوانية"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:20
+msgid "Magenta Wool"
+msgstr "صوف أرجواني"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:21
+msgid "Orange Carpet"
+msgstr "سجادة برتقالية"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:22
+msgid "Orange Wool"
+msgstr "صوف برتقالي"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:23
+msgid "Pink Carpet"
+msgstr "سجادة وردية"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:24
+msgid "Pink Wool"
+msgstr "صوف وردي"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:25
+msgid "Purple Carpet"
+msgstr "سجادة بنفسجية"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:26
+msgid "Purple Wool"
+msgstr "صوف بنفسجي"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:27
+msgid "Red Carpet"
+msgstr "سجادة حمراء"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:28
+msgid "Red Wool"
+msgstr "صوف أحمر"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:29
+msgid "White Carpet"
+msgstr "سجادة بيضاء"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:30
+msgid "White Wool"
+msgstr "صوف أبيض"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:31
+msgid "Yellow Carpet"
+msgstr "سجادة صفراء"
+
+#: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:32
+msgid "Yellow Wool"
+msgstr "صوف أصفر"
