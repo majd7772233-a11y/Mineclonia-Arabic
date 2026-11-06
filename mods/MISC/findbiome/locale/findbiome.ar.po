@@ -1,0 +1,41 @@
+# Arabic translation of Mineclonia component: findbiome
+# Source strings copied verbatim from the official Mineclonia template:
+# https://github.com/mineclonia-mirror/mineclonia/blob/main/mods/MISC/findbiome/locale/template.pot
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Wait until all mods have loaded!"
+msgstr "انتظر حتى يتم تحميل جميع الإضافات!"
+
+msgid "Find and teleport to biome"
+msgstr "البحث عن منطقة أحيائية والانتقال إليها"
+
+msgid "<biome>"
+msgstr "<المنطقة_الأحيائية>"
+
+msgid "No player."
+msgstr "لا يوجد لاعب."
+
+msgid "Biome found at @1."
+msgstr "عُثر على المنطقة الأحيائية عند @1."
+
+msgid "No biome found!"
+msgstr "لم يتم العثور على أي منطقة أحيائية!"
+
+msgid "Biome does not exist!"
+msgstr "المنطقة الأحيائية غير موجودة!"
+
+msgid "List all biomes"
+msgstr "عرض قائمة بجميع المناطق الأحيائية"
+
+msgid "No biomes."
+msgstr "لا توجد مناطق أحيائية."
+
