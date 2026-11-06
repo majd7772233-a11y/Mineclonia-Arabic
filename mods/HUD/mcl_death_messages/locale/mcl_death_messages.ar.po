@@ -1,0 +1,200 @@
+# Arabic translation of Mineclonia component: mcl_death_messages
+# Source strings copied verbatim from the official Mineclonia template:
+# https://github.com/mineclonia-mirror/mineclonia/blob/main/mods/HUD/mcl_death_messages/locale/template.pot
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "@1 went up in flames"
+msgstr "اشتعلت النيران في @1"
+
+msgid "@1 walked into fire whilst fighting @2"
+msgstr "دخل @1 في النار أثناء قتاله لـ@2"
+
+msgid "@1 was struck by lightning"
+msgstr "ضرب البرق @1"
+
+msgid "@1 was struck by lightning whilst fighting @2"
+msgstr "ضرب البرق @1 أثناء قتاله لـ@2"
+
+msgid "@1 burned to death"
+msgstr "احترق @1 حتى الموت"
+
+msgid "@1 was burnt to a crisp whilst fighting @2"
+msgstr "احترق @1 حتى تفحّم أثناء قتاله لـ@2"
+
+msgid "@1 tried to swim in lava"
+msgstr "حاول @1 السباحة في الحمم البركانية"
+
+msgid "@1 tried to swim in lava to escape @2"
+msgstr "حاول @1 السباحة في الحمم البركانية هرباً من @2"
+
+msgid "@1 discovered the floor was lava"
+msgstr "اكتشف @1 أن الأرضية مغطاة بالحمم البركانية"
+
+msgid "@1 walked into danger zone due to @2"
+msgstr "دخل @1 منطقة الخطر بسبب @2"
+
+msgid "@1 suffocated in a wall"
+msgstr "اختنق @1 داخل جدار"
+
+msgid "@1 suffocated in a wall whilst fighting @2"
+msgstr "اختنق @1 داخل جدار أثناء قتاله لـ@2"
+
+msgid "@1 drowned"
+msgstr "غرق @1"
+
+msgid "@1 drowned whilst trying to escape @2"
+msgstr "غرق @1 أثناء محاولته الهرب من @2"
+
+msgid "@1 starved to death"
+msgstr "مات @1 جوعاً"
+
+msgid "@1 starved to death whilst fighting @2"
+msgstr "مات @1 جوعاً أثناء قتاله لـ@2"
+
+msgid "@1 was pricked to death"
+msgstr "وُخز @1 حتى الموت"
+
+msgid "@1 walked into a cactus whilst trying to escape @2"
+msgstr "اصطدم @1 بصبّار أثناء محاولته الهرب من @2"
+
+msgid "@1 hit the ground too hard"
+msgstr "ارتطم @1 بالأرض بقوة شديدة"
+
+msgid "@1 hit the ground too hard whilst trying to escape @2"
+msgstr "ارتطم @1 بالأرض بقوة شديدة أثناء محاولته الهرب من @2"
+
+msgid "@1 experienced kinetic energy"
+msgstr "مات @1 بسبب طاقة حركية"
+
+msgid "@1 experienced kinetic energy whilst trying to escape @2"
+msgstr "مات @1 بسبب طاقة حركية أثناء محاولته الهرب من @2"
+
+msgid "@1 fell out of the world"
+msgstr "سقط @1 خارج العالم"
+
+msgid "@1 didn't want to live in the same world as @2"
+msgstr "لم يرغب @1 في العيش في العالم نفسه مع @2"
+
+msgid "@1 died"
+msgstr "مات @1"
+
+msgid "@1 died because of @2"
+msgstr "مات @1 بسبب @2"
+
+msgid "@1 was killed by magic"
+msgstr "قُتل @1 بالسحر"
+
+msgid "@1 was killed by magic whilst trying to escape @2"
+msgstr "قُتل @1 بالسحر أثناء محاولته الهرب من @2"
+
+msgid "@1 was killed by @2 using magic"
+msgstr "قتل @2 اللاعب @1 باستخدام السحر"
+
+msgid "@1 was killed by @2 using @3"
+msgstr "قُتل @1 على يد @2 باستخدام @3"
+
+msgid "@1 was roasted in dragon breath"
+msgstr "احترق @1 بنفَس التنين"
+
+msgid "@1 was roasted in dragon breath by @2"
+msgstr "أحرق @2 اللاعب @1 بنفَس التنين"
+
+msgid "@1 withered away"
+msgstr "ذبل @1 حتى الموت"
+
+msgid "@1 withered away whilst fighting @2"
+msgstr "ذبل @1 حتى الموت أثناء قتاله لـ@2"
+
+msgid "@1 was shot by a skull from @2"
+msgstr "أصاب مقذوف على شكل جمجمة أطلقه @2 اللاعب @1"
+
+msgid "@1 was squashed by a falling anvil"
+msgstr "سُحق @1 بسندان ساقط"
+
+msgid "@1 was squashed by a falling anvil whilst fighting @2"
+msgstr "سُحق @1 بسندان ساقط أثناء قتاله لـ@2"
+
+msgid "@1 was squashed by a falling block"
+msgstr "سُحق @1 بكتلة ساقطة"
+
+msgid "@1 was squashed by a falling block whilst fighting @2"
+msgstr "سُحق @1 بكتلة ساقطة أثناء قتاله لـ@2"
+
+msgid "@1 was slain by @2"
+msgstr "قُتل @1 على يد @2"
+
+msgid "@1 was slain by @2 using @3"
+msgstr "قُتل @1 على يد @2 باستخدام @3"
+
+msgid "@1 was shot by @2"
+msgstr "أصاب @2 اللاعب @1 بمقذوف"
+
+msgid "@1 was shot by @2 using @3"
+msgstr "أصاب @2 اللاعب @1 بمقذوف باستخدام @3"
+
+msgid "@1 was spitballed by @2"
+msgstr "تلقى @1 بصقة قاتلة من @2"
+
+msgid "@1 was spitballed by @2 using @3"
+msgstr "تلقى @1 بصقة قاتلة من @2 باستخدام @3"
+
+msgid "@1 was fireballed by @2"
+msgstr "قُتل @1 بكرة نارية أطلقها @2"
+
+msgid "@1 was fireballed by @2 using @3"
+msgstr "قُتل @1 بكرة نارية أطلقها @2 باستخدام @3"
+
+msgid "@1 was killed trying to hurt @2"
+msgstr "مات @1 أثناء محاولته إيذاء @2"
+
+msgid "@1 tried to hurt @2 and died by @3"
+msgstr "حاول @1 إيذاء @2، فقُتل على يد @3"
+
+msgid "@1 blew up"
+msgstr "انفجر @1"
+
+msgid "@1 was blown up by @2"
+msgstr "فجّر @2 اللاعب @1"
+
+msgid "@1 was blown up by @2 using @3"
+msgstr "فجّر @2 اللاعب @1 باستخدام @3"
+
+msgid "@1 was squished too much"
+msgstr "سُحق @1 حتى الموت"
+
+msgid "@1 was squashed by @2"
+msgstr "سحق @2 اللاعب @1"
+
+msgid "@1 went off with a bang"
+msgstr "انفجر @1 محدثاً دوياً هائلاً"
+
+msgid "@1 went off with a bang due to a firework fired by @2 from @3"
+msgstr "انفجر @1 بسبب صاروخ ألعاب نارية أطلقه @2 من @3"
+
+msgid "@1 was poked to death by a sweet berry bush"
+msgstr "مات @1 من وخز شجيرة التوت الحلو"
+
+msgid "@1 was poked to death by a sweet berry bush whilst trying to escape @2"
+msgstr "مات @1 من وخز شجيرة التوت الحلو أثناء محاولته الهرب من @2"
+
+msgid "@1 froze to death"
+msgstr "تجمّد @1 حتى الموت"
+
+msgid "@1 was frozen to death by @2"
+msgstr "جمّد @2 اللاعب @1 حتى الموت"
+
+msgid "@1 was impaled by @2"
+msgstr "طعن @2 اللاعب @1"
+
+msgid "@1 was impaled by @2 with @3"
+msgstr "طعن @2 اللاعب @1 باستخدام @3"
+
