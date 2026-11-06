@@ -45,3 +45,8 @@
 - نص `msgid` في كل PO يُنسخ من القالب المقابل دون إعادة صياغة.
 - الترجمة العربية وحدها توضع في `msgstr`.
 - عند تحديث القوالب، لا نستبدل هذه الملفات آلياً؛ نراجع الفروقات أولاً ثم نحدّث الترجمات.
+
+| `mods/HUD/awards/locale/template.pot` | `31c2fa41ff63717e82a9db30f3982f99820bc448` |
+| `mods/HUD/mcl_achievements/locale/template.pot` | `628bafd5f821d6eb2f6cda6909fbf119ae5fec3d` |
+| `mods/ITEMS/mcl_tools/locale/template.pot` | `617d449b7fbc3a734b9447689d2c0a7ee7259e3d` |
+| `mods/ITEMS/mcl_armor/locale/template.pot` | `c8c370bea1a82160b45bfbcbb733bbcddb824ed0` |
