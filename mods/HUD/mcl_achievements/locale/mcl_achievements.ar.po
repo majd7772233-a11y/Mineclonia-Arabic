@@ -332,7 +332,7 @@ msgstr "يا حجر المغناطيس، خذني إلى وطني"
 
 #: mods/HUD/mcl_achievements/init.lua:378
 msgid "Use a compass on a Lodestone."
-msgstr "استخدم بوصلة على حجر مغناطيس."
+msgstr "استخدم بوصلة على حجر المغناطيس."
 
 #: mods/HUD/mcl_achievements/init.lua:386
 msgid "Serious Dedication"
