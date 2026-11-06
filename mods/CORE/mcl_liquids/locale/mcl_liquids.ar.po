@@ -1,0 +1,26 @@
+# Arabic translation of Mineclonia component: mcl_liquids
+# Source strings copied verbatim from the official Mineclonia template:
+# https://github.com/mineclonia-mirror/mineclonia/blob/main/mods/CORE/mcl_liquids/locale/template.pot
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Allows to change the runtime behaviour of liquids"
+msgstr "يتيح تغيير سلوك السوائل أثناء التشغيل"
+
+msgid "This command is used to debug liquid transformation"
+msgstr "يُستخدم هذا الأمر لتصحيح أخطاء تحوّل السوائل"
+
+msgid "This command sets the time passed between Luanti ticks."
+msgstr "يحدد هذا الأمر الزمن الفاصل بين نبضات Luanti."
+
+msgid "If this value is larger than the actual tick, liquids become faster than specified."
+msgstr "إذا كانت هذه القيمة أكبر من مدة النبضة الفعلية، فستتحرك السوائل بسرعة أكبر من المحددة."
+
