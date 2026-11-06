@@ -22,7 +22,7 @@
 
 - المكوّن: `mcl_init`
 - ملف المصدر: `mods/CORE/mcl_init/locale/template.pot`
-- عدد رسائل القالب: 11 رسالة بما فيها رأس الملف.
+- عدد رسائل القالب: 11 رسالة قابلة للترجمة، إضافةً إلى رأس ملف PO.
 - ملف العربية: `mods/CORE/mcl_init/locale/mcl_init.ar.po`
 - التحقق داخل Luanti: لم يُنفذ بعد.
 
