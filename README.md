@@ -8,7 +8,7 @@
 - اللعبة المرجعية التي أبلغ عنها صاحب المشروع: `Mineclonia release=39603`.
 - مصدر القوالب الأولي: [mineclonia-mirror/mineclonia](https://github.com/mineclonia-mirror/mineclonia).
 - لقطة المصدر المستخدمة عند بدء المشروع: `24521bf6c99ddfc82bf52a60420a23902282c2a0`.
-- بدأ العمل بملف `mcl_init`، وستضاف بقية المكونات تدريجياً.
+- بدأ العمل بملف `mcl_init`، وتُضاف بقية المكونات تدريجياً.\n- سجل القوالب وGit blob SHA لكل مصدر: [SOURCE_TEMPLATES.md](SOURCE_TEMPLATES.md).
 - لم يُعلن عن اكتمال التعريب أو اختباره داخل اللعبة بعد.
 
 ## تنظيم المستودع
