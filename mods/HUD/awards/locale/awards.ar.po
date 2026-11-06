@@ -1,5 +1,7 @@
-# Arabic translation of Mineclonia component: awards
-# Source: mineclonia-mirror/mineclonia/mods/HUD/awards/locale/template.pot at 24521bf6c99ddfc82bf52a60420a23902282c2a0
+# Arabic translation for Mineclonia component awards
+# Source template commit: 24521bf6c99ddfc82bf52a60420a23902282c2a0
+# Source template: https://github.com/mineclonia-mirror/mineclonia/blob/24521bf6c99ddfc82bf52a60420a23902282c2a0/mods/HUD/awards/locale/template.pot
+# Source template blob SHA: 31c2fa41ff63717e82a9db30f3982f99820bc448
 msgid ""
 msgstr ""
 "Project-Id-Version: Mineclonia Arabic\n"
@@ -10,11 +12,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
-"X-Source-Commit: 24521bf6c99ddfc82bf52a60420a23902282c2a0\n"
-"X-Generator: Mineclonia-Arabic project\n"
 
 msgid "@1 has made the advancement @2"
-msgstr "حقق @1 الإنجاز @2"
+msgstr "@1 أحرز الإنجاز @2"
 
 msgid "Hidden Advancement Unlocked: @1"
 msgstr "تم فتح إنجاز مخفي: @1"
@@ -32,13 +32,13 @@ msgid "Challenge Complete!"
 msgstr "اكتمل التحدي!"
 
 msgid "Advancement Made!"
-msgstr "تم تحقيق إنجاز!"
+msgstr "تم إحراز إنجاز!"
 
 msgid "Show, clear, disable or enable your advancements"
 msgstr "اعرض إنجازاتك أو امسحها أو عطّلها أو فعّلها"
 
 msgid "All your advancements and statistics have been cleared. You can now start again."
-msgstr "تم مسح جميع إنجازاتك وإحصاءاتك. يمكنك الآن البدء من جديد."
+msgstr "تم مسح جميع إنجازاتك وإحصاءاتك. يمكنك البدء من جديد الآن."
 
 msgid "You have disabled advancements."
 msgstr "لقد عطّلت الإنجازات."
@@ -50,22 +50,22 @@ msgid "<advancement ID>"
 msgstr "<معرّف الإنجاز>"
 
 msgid "Show details of an advancement"
-msgstr "اعرض تفاصيل أحد الإنجازات"
+msgstr "عرض تفاصيل أحد الإنجازات"
 
 msgid "Advancement not found."
-msgstr "لم يتم العثور على الإنجاز."
+msgstr "لم يُعثر على الإنجاز."
 
 msgid "<name>"
-msgstr "<اسم اللاعب>"
+msgstr "<الاسم>"
 
 msgid "Get the advancement statistics for the given player or yourself"
-msgstr "اعرض إحصاءات إنجازات اللاعب المحدد أو إحصاءاتك."
+msgstr "عرض إحصاءات إنجازات اللاعب المحدد أو إنجازاتك"
 
 msgid "Error: No advancements available."
 msgstr "خطأ: لا توجد إنجازات متاحة."
 
 msgid "OK"
-msgstr "حسناً"
+msgstr "موافق"
 
 msgid "(Hidden Advancement)"
 msgstr "(إنجاز مخفي)"
@@ -74,13 +74,13 @@ msgid "Unlock this advancement to find out what it is."
 msgstr "افتح هذا الإنجاز لمعرفة ماهيته."
 
 msgid "@1 (unlocked)"
-msgstr "@1 (تم فتحه)"
+msgstr "@1 (مفتوح)"
 
 msgid "You've disabled advancements. Type /awards enable to reenable."
 msgstr "لقد عطّلت الإنجازات. اكتب /awards enable لإعادة تفعيلها."
 
 msgid "Error: No advancement available."
-msgstr "خطأ: لا يوجد إنجاز متاح."
+msgstr "خطأ: لا يوجد أي إنجاز متاح."
 
 msgid "You have not unlocked any advancement."
 msgstr "لم تفتح أي إنجاز بعد."
@@ -95,7 +95,7 @@ msgid "Send a chat message"
 msgstr "أرسل رسالة في الدردشة"
 
 msgid "Chat @1 times"
-msgstr "أرسل رسائل في الدردشة @1 مرة"
+msgstr "أرسل @1 رسالة في الدردشة"
 
 msgid "@1/@2 joins"
 msgstr "@1/@2 مرة انضمام"
@@ -110,19 +110,19 @@ msgid "@1/@2 deaths"
 msgstr "@1/@2 حالة وفاة"
 
 msgid "Die once of @1"
-msgstr "مت مرة واحدة على يد @1"
+msgstr "مت بسبب @1 مرة واحدة"
 
 msgid "Die @1 times of @2"
-msgstr "مت @1 مرات على يد @2"
+msgstr "مت بسبب @2 عدد @1 مرات"
 
 msgid "Die @1 times."
-msgstr "مت @1 مرة."
+msgstr "مت @1 مرات."
 
 msgid "Mine @1 times"
-msgstr "عدّن @1 مرة"
+msgstr "استخرج @1 مرة"
 
 msgid "@1/@2 dug"
-msgstr "تم تعدين @1/@2"
+msgstr "@1/@2 عملية حفر"
 
 msgid "Mine: @1"
 msgstr "التعدين: @1"
@@ -131,13 +131,13 @@ msgid "Mine: @1×@2"
 msgstr "التعدين: @1×@2"
 
 msgid "Mine @1 block."
-msgstr "عدّن كتلة واحدة من @1."
+msgstr "استخرج @1 كتلة."
 
 msgid "Mine @1 blocks."
-msgstr "عدّن @1 كتلة."
+msgstr "استخرج @1 كتل."
 
 msgid "@1/@2 placed"
-msgstr "تم وضع @1/@2"
+msgstr "@1/@2 عملية وضع"
 
 msgid "Place: @1"
 msgstr "الوضع: @1"
@@ -146,13 +146,13 @@ msgid "Place: @1×@2"
 msgstr "الوضع: @1×@2"
 
 msgid "Place @1 block."
-msgstr "ضع كتلة واحدة من @1."
-
-msgid "Place @1 blocks."
 msgstr "ضع @1 كتلة."
 
+msgid "Place @1 blocks."
+msgstr "ضع @1 كتل."
+
 msgid "@1/@2 crafted"
-msgstr "تم تصنيع @1/@2"
+msgstr "@1/@2 عملية تصنيع"
 
 msgid "Craft: @1"
 msgstr "التصنيع: @1"
@@ -161,13 +161,13 @@ msgid "Craft: @1×@2"
 msgstr "التصنيع: @1×@2"
 
 msgid "Craft @1 item"
-msgstr "اصنع عنصراً واحداً من @1"
+msgstr "اصنع @1 عنصر"
 
 msgid "Craft @1 items."
-msgstr "اصنع @1 عنصراً."
+msgstr "اصنع @1 عناصر."
 
 msgid "@1/@2 eaten"
-msgstr "تم تناول @1/@2"
+msgstr "@1/@2 عنصر مأكول"
 
 msgid "Eat @1"
 msgstr "تناول @1"
@@ -176,10 +176,10 @@ msgid "Eat @1×@2"
 msgstr "تناول @1×@2"
 
 msgid "Eat @1 item"
-msgstr "تناول عنصراً واحداً من @1"
+msgstr "تناول @1 عنصر"
 
 msgid "Eat @1 items."
-msgstr "تناول @1 عنصراً."
+msgstr "تناول @1 عناصر."
 
 msgid "Enter one of the titular structures"
-msgstr "ادخل إحدى المنشآت المذكورة في عنوان الإنجاز"
+msgstr "ادخل إلى أحد الهياكل المذكورة في اسم الإنجاز"
