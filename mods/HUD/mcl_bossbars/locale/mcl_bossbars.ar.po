@@ -1,0 +1,26 @@
+# Arabic translation of Mineclonia component: mcl_bossbars
+# Source strings copied verbatim from the official Mineclonia template:
+# https://github.com/mineclonia-mirror/mineclonia/blob/main/mods/HUD/mcl_bossbars/locale/template.pot
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "None"
+msgstr "لا شيء"
+
+msgid "Unlimited"
+msgstr "غير محدود"
+
+msgid "Maximum number of boss bars to display simultaneously"
+msgstr "الحد الأقصى لعدد أشرطة الزعماء التي يمكن عرضها في الوقت نفسه"
+
+msgid "Multiple bosses can be active at the same time. To not clutter your screen, you may limit the number of simultaneously displayed boss bars."
+msgstr "قد يكون هناك عدة زعماء نشطين في الوقت نفسه. لتجنب ازدحام الشاشة، يمكنك تحديد عدد أشرطة الزعماء التي تظهر معاً."
+
