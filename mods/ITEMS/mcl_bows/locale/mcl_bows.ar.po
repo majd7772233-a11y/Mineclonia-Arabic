@@ -1,0 +1,108 @@
+# Arabic translation for Mineclonia component mcl_bows
+# Source template commit: 24521bf6c99ddfc82bf52a60420a23902282c2a0
+# Source template: https://github.com/mineclonia-mirror/mineclonia/blob/24521bf6c99ddfc82bf52a60420a23902282c2a0/mods/ITEMS/mcl_bows/locale/template.pot
+# Source template blob SHA: 0160342707bcd1dca0782f836bacffd4e94c8959
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_bows/arrow.lua:50
+msgid "Arrow"
+msgstr "سهم"
+
+#: mods/ITEMS/mcl_bows/arrow.lua:51
+msgid "Ammunition"
+msgstr "ذخيرة"
+
+#: mods/ITEMS/mcl_bows/arrow.lua:51
+msgid "Damage from bow: 1-10"
+msgstr "الضرر الناتج عن القوس: 1-10"
+
+#: mods/ITEMS/mcl_bows/arrow.lua:51
+msgid "Damage from dispenser: 3"
+msgstr "الضرر الناتج عن الموزّع: 3"
+
+#: mods/ITEMS/mcl_bows/arrow.lua:52
+msgid "Arrows are ammunition for bows and dispensers."
+msgstr "الأسهم ذخيرة للأقواس والموزّعات."
+
+#: mods/ITEMS/mcl_bows/arrow.lua:53
+msgid ""
+"An arrow fired from a bow has a regular damage of 1-9. At full charge, "
+"there's a 20% chance of a critical hit dealing 10 damage instead. An arrow "
+"fired from a dispenser always deals 3 damage."
+msgstr "يسبب السهم المطلق من القوس ضرراً عادياً يتراوح بين 1 و9. وعند الشحن الكامل، توجد فرصة بنسبة 20% لإصابة حرجة تسبب 10 نقاط ضرر بدلاً من ذلك. أما السهم الذي يطلقه الموزّع فيسبب دائماً 3 نقاط ضرر."
+
+#: mods/ITEMS/mcl_bows/arrow.lua:54
+msgid ""
+"Arrows might get stuck on solid blocks and can be retrieved again. They are "
+"also capable of pushing wooden buttons."
+msgstr "قد تنغرس الأسهم في الكتل الصلبة ويمكن استعادتها لاحقاً. كما يمكنها الضغط على الأزرار الخشبية."
+
+#: mods/ITEMS/mcl_bows/arrow.lua:55
+msgid ""
+"To use arrows as ammunition for a bow, just put them anywhere in your "
+"inventory, they will be used up automatically. To use arrows as ammunition "
+"for a dispenser, place them in the dispenser's inventory. To retrieve an "
+"arrow that sticks in a block, simply walk close to it."
+msgstr "لاستخدام الأسهم ذخيرةً للقوس، ضعها في أي مكان داخل مخزونك وستُستهلك تلقائياً. ولاستخدامها ذخيرةً للموزّع، ضعها في مخزون الموزّع. لاستعادة سهم انغرس في كتلة، اقترب منه فحسب."
+
+#: mods/ITEMS/mcl_bows/bow.lua:158 mods/ITEMS/mcl_bows/bow.lua:224
+msgid "Bow"
+msgstr "قوس"
+
+#: mods/ITEMS/mcl_bows/bow.lua:159 mods/ITEMS/mcl_bows/crossbow.lua:143
+#: mods/ITEMS/mcl_bows/crossbow.lua:173
+msgid "Launches arrows"
+msgstr "يطلق الأسهم"
+
+#: mods/ITEMS/mcl_bows/bow.lua:160
+msgid "Bows are ranged weapons to shoot arrows at your foes."
+msgstr "الأقواس أسلحة بعيدة المدى تُستخدم لإطلاق الأسهم على أعدائك."
+
+#: mods/ITEMS/mcl_bows/bow.lua:161 mods/ITEMS/mcl_bows/crossbow.lua:145
+#: mods/ITEMS/mcl_bows/crossbow.lua:175
+msgid ""
+"The speed and damage of the arrow increases the longer you charge. The "
+"regular damage of the arrow is between 1 and 9. At full charge, there's also "
+"a 20% of a critical hit, dealing 10 damage instead."
+msgstr "تزداد سرعة السهم وضرره كلما طالت مدة الشحن. يتراوح الضرر العادي للسهم بين 1 و9. وعند الشحن الكامل، توجد أيضاً فرصة بنسبة 20% لإصابة حرجة تسبب 10 نقاط ضرر بدلاً من ذلك."
+
+#: mods/ITEMS/mcl_bows/bow.lua:162
+msgid ""
+"To use the bow, you first need to have at least one arrow anywhere in your "
+"inventory (unless in Creative Mode). Hold down the right mouse button (or "
+"the zoom key) to charge, release to shoot."
+msgstr "لاستخدام القوس، يجب أن يكون في مخزونك سهم واحد على الأقل (إلا في النمط الإبداعي). اضغط باستمرار على زر الفأرة الأيمن (أو مفتاح التكبير) لشحن القوس، ثم أفلت الزر لإطلاق السهم."
+
+#: mods/ITEMS/mcl_bows/crossbow.lua:142 mods/ITEMS/mcl_bows/crossbow.lua:172
+#: mods/ITEMS/mcl_bows/crossbow.lua:235
+msgid "Crossbow"
+msgstr "قوس نشّاب"
+
+#: mods/ITEMS/mcl_bows/crossbow.lua:144 mods/ITEMS/mcl_bows/crossbow.lua:174
+msgid "Crossbows are ranged weapons to shoot arrows at your foes."
+msgstr "الأقواس النشّابة أسلحة بعيدة المدى لإطلاق الأسهم على أعدائك."
+
+#: mods/ITEMS/mcl_bows/crossbow.lua:146
+msgid ""
+"To use the crossbow, you first need to have at least one arrow anywhere in "
+"your inventory (unless in Creative Mode). Hold down the right mouse button "
+"(or zoom key) to charge, release to load an arrow into the chamber, then to "
+"shoot press left mouse."
+msgstr "لاستخدام القوس النشّاب، يجب أن يكون في مخزونك سهم واحد على الأقل (إلا في النمط الإبداعي). اضغط باستمرار على زر الفأرة الأيمن (أو مفتاح التكبير) لشحنه، ثم أفلت الزر لتحميل سهم في بيت النار، واضغط زر الفأرة الأيسر لإطلاقه."
+
+#: mods/ITEMS/mcl_bows/crossbow.lua:176
+msgid ""
+"To use the crossbow, you first need to have at least one arrow anywhere in "
+"your inventory (unless in Creative Mode). Hold down the right mouse button "
+"to charge, release to load an arrow into the chamber, then to shoot press "
+"left mouse."
+msgstr "لاستخدام القوس النشّاب، يجب أن يكون في مخزونك سهم واحد على الأقل (إلا في النمط الإبداعي). اضغط باستمرار على زر الفأرة الأيمن لشحنه، ثم أفلت الزر لتحميل سهم في بيت النار، واضغط زر الفأرة الأيسر لإطلاقه."
