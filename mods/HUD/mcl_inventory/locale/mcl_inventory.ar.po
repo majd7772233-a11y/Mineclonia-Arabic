@@ -1,0 +1,95 @@
+# Arabic translation of Mineclonia component: mcl_inventory
+# Source strings copied verbatim from the official Mineclonia template:
+# https://github.com/mineclonia-mirror/mineclonia/blob/main/mods/HUD/mcl_inventory/locale/template.pot
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Scrollbar"
+msgstr "شريط التمرير"
+
+msgid "Pagination buttons"
+msgstr "أزرار تقليب الصفحات"
+
+msgid "Creative inventory scrolling"
+msgstr "تمرير المخزون في النمط الإبداعي"
+
+msgid "Building Blocks"
+msgstr "كتل البناء"
+
+msgid "Decoration Blocks"
+msgstr "كتل الزينة"
+
+msgid "Redstone"
+msgstr "ريدستون"
+
+msgid "Transportation"
+msgstr "وسائل النقل"
+
+msgid "Miscellaneous"
+msgstr "متفرقات"
+
+msgid "Search Items"
+msgstr "البحث عن العناصر"
+
+msgid "Foodstuffs"
+msgstr "الأطعمة"
+
+msgid "Tools"
+msgstr "الأدوات"
+
+msgid "Combat"
+msgstr "القتال"
+
+msgid "Mobs"
+msgstr "الكائنات"
+
+msgid "Brewing"
+msgstr "تحضير الجرعات"
+
+msgid "Materials"
+msgstr "المواد"
+
+msgid "Survival Inventory"
+msgstr "مخزون نمط البقاء"
+
+msgid "Not in Creative Inventory"
+msgstr "غير موجود في مخزون النمط الإبداعي"
+
+msgid "Recipe book"
+msgstr "كتاب الوصفات"
+
+msgid "Help"
+msgstr "المساعدة"
+
+msgid "Advancements"
+msgstr "الإنجازات"
+
+msgid "Switch stack size"
+msgstr "تبديل حجم الرزمة"
+
+msgid "Player settings"
+msgstr "إعدادات اللاعب"
+
+msgid "@1 / @2"
+msgstr "@1 / @2"
+
+msgid "Return to player inventory"
+msgstr "العودة إلى مخزون اللاعب"
+
+msgid "Crafting table out of range!"
+msgstr "طاولة التصنيع خارج النطاق!"
+
+msgid "Crafting"
+msgstr "التصنيع"
+
+msgid "Fill Craft Grid"
+msgstr "ملء شبكة التصنيع"
+
