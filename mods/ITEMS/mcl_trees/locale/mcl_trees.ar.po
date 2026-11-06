@@ -1,0 +1,67 @@
+# Arabic translation for Mineclonia component mcl_trees
+# Source template commit: 24521bf6c99ddfc82bf52a60420a23902282c2a0
+# Source template: https://github.com/mineclonia-mirror/mineclonia/blob/24521bf6c99ddfc82bf52a60420a23902282c2a0/mods/ITEMS/mcl_trees/locale/template.pot
+# Source template blob SHA: 0e02d046b3686bbe3b02baf4f2ee369b29df6027
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_trees/api.lua:207
+msgid ""
+"When placed on soil (such as dirt) and exposed to light, a sapling will grow "
+"into a tree after some time."
+msgstr "عند وضع الشتلة على التربة (مثل التراب) وتعريضها للضوء، ستنمو لتصبح شجرة بعد مرور بعض الوقت."
+
+#: mods/ITEMS/mcl_trees/api.lua:208
+msgid "Needs soil and light to grow"
+msgstr "تحتاج إلى تربة وضوء لتنمو"
+
+#: mods/ITEMS/mcl_trees/api.lua:246
+msgid ""
+"Wooden doors are 2-block high barriers which can be opened or closed by hand "
+"and by a redstone signal."
+msgstr "الأبواب الخشبية حواجز بارتفاع كتلتين، ويمكن فتحها وإغلاقها يدوياً أو بإشارة ريدستون."
+
+#: mods/ITEMS/mcl_trees/api.lua:247
+msgid ""
+"To open or close a wooden door, rightclick it or supply its lower half with "
+"a redstone signal."
+msgstr "لفتح باب خشبي أو إغلاقه، انقر عليه بزر الفأرة الأيمن أو أرسل إشارة ريدستون إلى نصفه السفلي."
+
+#: mods/ITEMS/mcl_trees/api.lua:254
+msgid ""
+"Wooden trapdoors are horizontal barriers which can be opened and closed by "
+"hand or a redstone signal. They occupy the upper or lower part of a block, "
+"depending on how they have been placed. When open, they can be climbed like "
+"a ladder."
+msgstr "الأبواب الخشبية المصيدة حواجز أفقية يمكن فتحها وإغلاقها يدوياً أو بإشارة ريدستون. وتشغل الجزء العلوي أو السفلي من الكتلة بحسب طريقة وضعها. وعند فتحها، يمكن تسلقها مثل السلم."
+
+#: mods/ITEMS/mcl_trees/api.lua:255
+msgid ""
+"To open or close the trapdoor, rightclick it or send a redstone signal to it."
+msgstr "لفتح الباب المصيدة أو إغلاقه، انقر عليه بزر الفأرة الأيمن أو أرسل إليه إشارة ريدستون."
+
+#: mods/ITEMS/mcl_trees/api.lua:413
+msgid "This is a decorative block surrounded by the bark of a tree trunk."
+msgstr "هذه كتلة زخرفية يحيط بها لحاء جذع شجرة."
+
+#: mods/ITEMS/mcl_trees/api.lua:647
+msgid ""
+"A wooden pressure plate is a redstone component which supplies its "
+"surrounding blocks with redstone power while any movable object (including "
+"dropped items, players and mobs) rests on top of it."
+msgstr "لوحة الضغط الخشبية مكوّن من مكونات ريدستون يزوّد الكتل المحيطة بطاقة ريدستون ما دام أي جسم قابل للحركة (بما في ذلك العناصر المسقطة واللاعبون والكائنات) فوقها."
+
+#: mods/ITEMS/mcl_trees/api.lua:661
+msgid ""
+"A wooden button is a redstone component made out of wood which can be pushed "
+"to provide redstone power. When pushed, it powers adjacent redstone "
+"components for 1.5 seconds. Wooden buttons may also be pushed by arrows."
+msgstr "الزر الخشبي مكوّن من مكونات ريدستون مصنوع من الخشب، ويمكن ضغطه لتوفير طاقة ريدستون. وعند ضغطه، يزوّد مكونات ريدستون المجاورة بالطاقة لمدة 1.5 ثانية. ويمكن للأسهم أيضاً الضغط على الأزرار الخشبية."
