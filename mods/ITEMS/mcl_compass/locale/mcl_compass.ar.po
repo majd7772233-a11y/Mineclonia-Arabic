@@ -35,17 +35,17 @@ msgstr "تشير البوصلة دائماً إلى نقطة ظهور العال
 
 #: mods/ITEMS/mcl_compass/init.lua:193
 msgid "Lodestone Compass"
-msgstr "بوصلة الحجر المغناطيسي"
+msgstr "بوصلة حجر المغناطيس"
 
 #: mods/ITEMS/mcl_compass/init.lua:194
 msgid "Points to a lodestone"
-msgstr "تشير إلى حجر مغناطيسي"
+msgstr "تشير إلى حجر المغناطيس"
 
 #: mods/ITEMS/mcl_compass/init.lua:195
 msgid ""
 "Lodestone compasses resemble regular compasses, but they point to a specific "
 "lodestone."
-msgstr "تشبه بوصلات الحجر المغناطيسي البوصلات العادية، لكنها تشير إلى حجر مغناطيسي محدد."
+msgstr "تشبه بوصلات حجر المغناطيس البوصلات العادية، لكنها تشير إلى حجر مغناطيس محدد."
 
 #: mods/ITEMS/mcl_compass/init.lua:196
 msgid ""
@@ -55,7 +55,7 @@ msgid ""
 "the same dimension, the lodestone compass spins randomly, similarly to a "
 "regular compass when outside the overworld.  A lodestone compass can be "
 "relinked with another lodestone."
-msgstr "يمكن تحويل بوصلة عادية إلى بوصلة حجر مغناطيسي باستخدامها على حجر مغناطيسي. بعد ذلك، ستشير البوصلة دائماً إلى حجر المغناطيس المرتبط بها، بشرط أن يكونا في البُعد نفسه. وإذا لم يكونا في البعد نفسه، فستدور البوصلة عشوائياً، كما يحدث للبوصلة العادية خارج العالم العلوي. ويمكن ربط بوصلة الحجر المغناطيسي بحجر مغناطيسي آخر."
+msgstr "يمكن تحويل بوصلة عادية إلى بوصلة حجر مغناطيس باستخدامها على حجر مغناطيسي. بعد ذلك، ستشير البوصلة دائماً إلى حجر المغناطيس المرتبط بها، بشرط أن يكونا في البُعد نفسه. وإذا لم يكونا في البعد نفسه، فستدور البوصلة عشوائياً، كما يحدث للبوصلة العادية خارج العالم العلوي. ويمكن ربط بوصلة الحجر المغناطيسي بحجر مغناطيسي آخر."
 
 #: mods/ITEMS/mcl_compass/init.lua:209
 msgid "Recovery Compass"
