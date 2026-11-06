@@ -1,0 +1,26 @@
+# Arabic translation of Mineclonia component: mcl_spawn
+# Source strings copied verbatim from the official Mineclonia template:
+# https://github.com/mineclonia-mirror/mineclonia/blob/main/mods/PLAYER/mcl_spawn/locale/template.pot
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 00:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Respawn position cleared!"
+msgstr "تم مسح موضع إعادة الظهور!"
+
+msgid "New respawn position set!"
+msgstr "تم تعيين موضع جديد لإعادة الظهور!"
+
+msgid "Couldn't get level of your respawn anchor!"
+msgstr "تعذّر تحديد مستوى شحن مرساة إعادة الظهور الخاصة بك!"
+
+msgid "Your spawn bed was missing or blocked, and you had no charged respawn anchor!"
+msgstr "سرير إعادة الظهور الخاص بك مفقود أو محجوب، وليس لديك مرساة إعادة ظهور مشحونة!"
+
