@@ -13,6 +13,7 @@
 #include "os.h"
 #include "Keycodes.h"
 #include <cwctype> // std::iswspace, std::iswpunct, std::iswalnum
+#include <cstdlib> // std::abs
 
 /*
 	todo:
