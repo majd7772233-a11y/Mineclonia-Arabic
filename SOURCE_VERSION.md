@@ -94,3 +94,11 @@
 - GitHub Pre-release: [mineclonia-arabic-source-4ba113d1](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/tag/mineclonia-arabic-source-4ba113d1).
 - SHA-256 لملف ZIP: `66dcbb679d36913575782362e07a9f0d06578b62d9d27908735df27383767982`.
 - المستخدم أبلغ عن `release=39603` وLuanti `5.17.0`، لكن لم تُقارن شجرة نسخته المحلية مباشرةً بلقطة المصدر، ولم يُجر اختبار واجهة داخل عميل فعلي. لذلك الحزمة مرشح تثبيت/اختبار وليست إصداراً upstream معتمداً أو Weblate merge.
+
+
+## معالجة عدم ظهور العربية في قائمة اللغة — 2026-11-07
+
+- وفق Luanti 5.17.0، قائمة اللغة مصدرها `builtin/settingtypes.txt` مع تسميات العرض في `builtin/common/settings/dlg_settings.lua`. تم حجب `ar` افتراضياً ومذكور في `src/unsupported_language_list.txt` بسبب دعم RTL غير المكتمل.
+- أُضيف مشغّل Windows إلى حزمة التعريب لتعديل الملفين المثبتين فقط بعد أخذ نسخة احتياطية، حتى يستطيع المستخدم تحديد `العربية [ar]` من Settings > Accessibility > Language.
+- حُسّنت أسماء ملفات TR المولّدة إلى النمط القياسي `<textdomain>.ar.tr`، مع إبقاء PO الأصلي للوحدة ذات صيغ الجمع.
+- قوالب الإنجليزية الاحتياطية موجودة في https://github.com/majd7772233-a11y/gpts/tree/main/mineclonia-en/mcl_core/mods.

@@ -268,6 +268,7 @@ def main() -> None:
     seen_domains: dict[str, str] = {}
     expected_catalogs: dict[str, dict[str, str]] = {}
     module_locale_paths: dict[str, Path] = {}
+    module_domains: dict[str, str] = {}
 
     for po_path in po_files:
         rel = po_path.relative_to(repo_root)
@@ -359,6 +360,7 @@ def main() -> None:
         if module in module_locale_paths:
             fail(f"duplicate module directory name in package staging: {module}")
         module_locale_paths[module] = rel.parent
+        module_domains[module] = domain
         stage_module = stage_mods / module
         locale_stage = stage_module / "locale"
         locale_stage.mkdir(parents=True, exist_ok=True)
@@ -468,6 +470,28 @@ def main() -> None:
         description=f"{'ltt_tr_compat.py' if using_local_fallback else 'ltt_check.py'} <mods>",
     )
 
+    # Normalize LTT's doubled prefix to the canonical <textdomain>.ar.tr filename.
+    generated_tr_files = sorted(stage_mods.rglob("*.ar.tr"))
+    for generated_path in generated_tr_files:
+        module = generated_path.parent.parent.name
+        domain = module_domains.get(module)
+        if not domain:
+            fail(f"generated TR has unknown module directory: {generated_path}")
+        canonical_name = f"{domain}.ar.tr"
+        if generated_path.name == canonical_name:
+            continue
+        duplicated_name = f"{domain}.{canonical_name}"
+        if generated_path.name != duplicated_name:
+            fail(
+                f"{generated_path}: unexpected generated filename; "
+                f"expected {canonical_name!r} or {duplicated_name!r}"
+            )
+        canonical_path = generated_path.with_name(canonical_name)
+        if canonical_path.exists():
+            fail(f"cannot normalize {generated_path}: {canonical_path} already exists")
+        generated_path.rename(canonical_path)
+        print(f"NORMALIZED TR filename: {generated_path.name} -> {canonical_name}", flush=True)
+
     tr_files = sorted(stage_mods.rglob("*.ar.tr"))
     expected_tr_count = len(expected_catalogs)
     if len(tr_files) != expected_tr_count:
@@ -482,6 +506,12 @@ def main() -> None:
     if package_root.exists():
         shutil.rmtree(package_root)
     package_root.mkdir(parents=True, exist_ok=True)
+
+    for helper_name in ("ENABLE_ARABIC_LANGUAGE.ps1", "ENABLE_ARABIC_LANGUAGE.bat"):
+        helper_source = repo_root / "tools" / helper_name
+        if not helper_source.is_file():
+            fail(f"missing Windows language-menu helper: {helper_source}")
+        shutil.copy2(helper_source, package_root / helper_name)
 
     installed_messages = 0
     tr_manifest: list[dict[str, object]] = []
@@ -580,9 +610,9 @@ def main() -> None:
 2. افتح مجلد لعبة Mineclonia الذي يحتوي على game.conf.
 3. استخرج محتويات هذا الأرشيف إلى ذلك المجلد، واسمح بدمج مجلد mods.
 4. لا تستبدل مجلد mods بالكامل؛ اسمح بدمج ملفات locale فقط.
-   مفاتيح التنسيق التي تتكون من مسافة فقط لا تحتاج ملف ترجمة، ويستخدم المحرك نص المصدر الأصلي لها.
-5. تحتوي الحزمة على ملف PO أصلي للوحدات ذات صيغ الجمع، لأن TR لا يمثل صيغ gettext الست. يتطلب تحميل PO في اللعبة Luanti 5.10.0 أو أحدث؛ إصدارك المبلغ عنه 5.17.0 يفي بهذا الشرط.
-6. افتح Luanti، واختر العربية من إعدادات اللغة، ثم أعد تشغيل اللعبة.
+5. تحتوي الحزمة على ملف PO أصلي للوحدة ذات صيغ الجمع الست؛ يتطلب تحميله Luanti 5.10.0 أو أحدث، وإصدارك المبلغ عنه 5.17.0 يفي بذلك.
+6. لتظهر العربية في قائمة اللغة، شغّل ENABLE_ARABIC_LANGUAGE.bat الموجود بجانب مجلد mods. اختر مجلد تثبيت Luanti الذي يحتوي على builtin، واسمح بصلاحية المسؤول إذا طلبها Windows. سيأخذ البرنامج نسخة احتياطية ويعدّل ملفي builtin/settingtypes.txt وbuiltin/common/settings/dlg_settings.lua فقط.
+7. افتح Luanti ثم Settings > Accessibility > Language واختر العربية [ar]، وبعدها أعد تشغيل Luanti.
 
 إزالة التعريب
 -------------
@@ -597,7 +627,7 @@ def main() -> None:
 
 لم تتم مطابقة شجرة ملفات اللعبة المحلية مع لقطة المصدر بصورة مباشرة، ولذلك
 لا يمكن ضمان التطابق التام مع release=39603 حتى تُفحص نسخة اللعبة نفسها.
-ولم يتم اختبار العرض داخل عميل Luanti فعلياً ضمن عملية البناء هذه.
+ولم يتم اختبار العرض داخل عميل Luanti فعلياً ضمن عملية البناء هذه. Luanti 5.17.0 يحجب العربية افتراضياً بسبب محدودية دعم RTL؛ مشغّل التثبيت يضيفها إلى القائمتين الظاهرتين فقط ولا يضيف تشكيل الحروف أو تخطيط RTL.
 """
     (package_root / "INSTALL_ARABIC.txt").write_text(install_text, encoding="utf-8")
 
@@ -629,6 +659,16 @@ def main() -> None:
         "validation": validator_description,
         "runtime_tested": False,
         "official_weblate_merged": False,
+        "language_menu_patch": {
+            "included_script": "ENABLE_ARABIC_LANGUAGE.ps1",
+            "launcher": "ENABLE_ARABIC_LANGUAGE.bat",
+            "targets": [
+                "builtin/settingtypes.txt",
+                "builtin/common/settings/dlg_settings.lua",
+            ],
+            "purpose": "Expose ar in Luanti 5.17.0 language setting; no RTL engine support is added.",
+        },
+        "tr_filename_normalization": "textdomain.ar.tr",
         "modules": per_module,
         "files": tr_manifest + po_manifest,
     }

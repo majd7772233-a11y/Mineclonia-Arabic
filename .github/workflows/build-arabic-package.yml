@@ -6,6 +6,8 @@ on:
     paths:
       - "mods/**/*.ar.po"
       - "tools/build_tr_package.py"
+      - "tools/ENABLE_ARABIC_LANGUAGE.ps1"
+      - "tools/ENABLE_ARABIC_LANGUAGE.bat"
       - ".github/workflows/build-arabic-package.yml"
   workflow_dispatch:
 
@@ -181,17 +183,18 @@ jobs:
         working-directory: workbench
         run: |
           set -euo pipefail
-          TAG="mineclonia-arabic-source-4ba113d1"
+          TAG="mineclonia-arabic-source-4ba113d1-language-menu-fix"
           NOTES="$RUNNER_TEMP/release-notes.md"
           cat > "$NOTES" <<EOF
           ## Mineclonia Arabic runtime translation package
 
-          - 163 translation modules are covered: 162 generated Arabic TR files and one native Arabic PO catalog for gettext plural forms.
+          - 163 translation modules are covered: 162 canonical <textdomain>.ar.tr files and one native Arabic PO catalog for gettext plural forms.
           - 5,018 translated non-whitespace PO entries are included. One whitespace-only formatting key is intentionally left for the engine.
           - All runtime strings extracted from the pinned Mineclonia snapshot are checked for coverage; every generated TR catalog is round-trip compared with its PO source.
           - Converter: $CONVERTER_MODE. This run uses the pinned Wuzzy Luanti Translation Tools revision $LTT_COMMIT.
           - Mineclonia source mirror commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da (source README version 0.123.0).
           - Target reported by the owner: Mineclonia release 39603 and Luanti 5.17.0. Exact equivalence between that local game tree and the pinned source snapshot has not been independently verified.
+          - The package includes a Windows helper that adds ar to the Luanti 5.17.0 language enum and visible menu labels, with backups. Luanti still lacks full RTL layout/shaping for Arabic; the helper does not change engine rendering.
           - The package has not been tested in a running Luanti client. This is a pre-release candidate for installation testing, not an upstream-approved Mineclonia release or a Weblate merge.
           EOF
           if gh release view "$TAG" >/dev/null 2>&1; then

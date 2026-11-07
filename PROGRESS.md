@@ -426,3 +426,11 @@
 - ملف التثبيت: [Mineclonia-Arabic-TR-4ba113d1.zip](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/download/mineclonia-arabic-source-4ba113d1/Mineclonia-Arabic-TR-4ba113d1.zip).
 - SHA-256: `66dcbb679d36913575782362e07a9f0d06578b62d9d27908735df27383767982`.
 - لم يُختبر عرض العربية داخل عميل Luanti فعلياً. كما لم تُطابق شجرة اللعبة المحلية `release=39603` مباشرة مع لقطة المصدر؛ لذلك الإصدار Pre-release مرشح للتجربة وليس إصداراً مستقراً معتمداً أو مدمجاً في Weblate.
+
+
+## إصلاح ظهور العربية في قائمة Luanti — 2026-11-07
+
+- أظهرت شجرة اللعبة المثبتة أن 162 ملف ترجمة تنتهي بـ`.ar.tr`، لكن أسماءها كانت تتضمن نطاق النص مكرراً (مثال: `mcl_init.mcl_init.ar.tr`). حدّث مولّد الحزمة لتطبيع الأسماء إلى `mcl_init.ar.tr` قبل التوزيع.
+- في مصدر Luanti 5.17.0، اللغة `ar` موجودة في `src/unsupported_language_list.txt`، وخيارها معلّق في `builtin/common/settings/dlg_settings.lua`، كما أنها غائبة من enum اللغة في `builtin/settingtypes.txt`. لذلك لم تكن تظهر في شاشة إعدادات اللغة حتى مع وجود ترجمات Mineclonia.
+- أضيف `ENABLE_ARABIC_LANGUAGE.ps1` و`ENABLE_ARABIC_LANGUAGE.bat` إلى الحزمة؛ يضيفان `ar` إلى enum ويظهران تسمية `العربية [ar]` مع نسخ احتياطية قبل التعديل. الرقعة لا تضيف دعماً كاملاً لـRTL لمحرك Luanti.
+- حُفظت قوالب اللغة الإنجليزية الاحتياطية في مستودع `gpts` تحت `mineclonia-en/mcl_core/mods` للمقارنة واختبار التغطية.

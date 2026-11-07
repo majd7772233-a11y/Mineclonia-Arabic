@@ -34,11 +34,11 @@ mods/<CATEGORY>/<MOD>/locale/<MOD>.ar.po
 
 الحالة: **Pre-release للتجربة**.
 
-- [تنزيل حزمة ملفات التشغيل](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/download/mineclonia-arabic-source-4ba113d1/Mineclonia-Arabic-TR-4ba113d1.zip)
-- [صفحة الإصدار وملاحظاته](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/tag/mineclonia-arabic-source-4ba113d1)
-- [ملف SHA-256](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/download/mineclonia-arabic-source-4ba113d1/Mineclonia-Arabic-TR-4ba113d1.zip.sha256)
+- [تنزيل حزمة ملفات التشغيل](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/download/mineclonia-arabic-source-4ba113d1-language-menu-fix/Mineclonia-Arabic-TR-4ba113d1.zip)
+- [صفحة الإصدار وملاحظاته](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/tag/mineclonia-arabic-source-4ba113d1-language-menu-fix)
+- [ملف SHA-256](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/download/mineclonia-arabic-source-4ba113d1-language-menu-fix/Mineclonia-Arabic-TR-4ba113d1.zip.sha256)
 
-الحزمة تحتوي 162 ملف تشغيل .ar.tr وملف PO واحداً لصيغ الجمع، مع دليل تثبيت وManifest. أغلق Luanti، ثم فك الأرشيف في مجلد Mineclonia الذي يحتوي على game.conf وادمج مجلد mods؛ لا تستبدل مجلد mods بالكامل ولا تستبدل ملفات Lua.
+الحزمة تحتوي 162 ملف تشغيل بأسماء textdomain.ar.tr الصحيحة وملف PO واحداً لصيغ الجمع، إضافة إلى مشغّل Windows لإظهار العربية في قائمة اللغة. بعد دمج مجلد mods داخل Mineclonia، شغّل ENABLE_ARABIC_LANGUAGE.bat واختر مجلد تثبيت Luanti الذي يحتوي على builtin؛ سيأخذ نسخة احتياطية ويعدّل ملفي واجهة فقط. بعد ذلك اختر العربية [ar] من Settings > Accessibility > Language ثم أعد تشغيل Luanti.
 
 الحزمة بُنيت من لقطة مصدر Mineclonia 0.123.0 المثبتة في SOURCE_VERSION.md. رقم release=39603 الذي أبلغت عنه لم يُطابق بعد مع شجرة المصدر، كما أن عرض العربية لم يُختبر داخل عميل Luanti فعلي. لذلك هذا Pre-release مرشح للتثبيت والاختبار، وليس اعتماداً upstream أو دمجاً في Weblate. راجع [SOURCE_VERSION.md](SOURCE_VERSION.md) و[PROGRESS.md](PROGRESS.md).
 
@@ -48,3 +48,10 @@ mods/<CATEGORY>/<MOD>/locale/<MOD>.ar.po
 - [دليل الترجمة الخاص بـ Mineclonia](https://github.com/mineclonia-mirror/mineclonia/blob/main/DEV_TRANSLATION_WORKFLOW.md)
 - [توثيق Luanti لترجمة الألعاب والإضافات](https://docs.luanti.org/for-creators/translation/mods-and-games/)
 - [توثيق Luanti لملفات الترجمة](https://api.luanti.org/translations/)
+
+
+### ملاحظة عن قائمة لغة Luanti
+
+في Luanti 5.17.0 كانت `ar` محجوبة من قائمة اللغات في `builtin/settingtypes.txt` و`builtin/common/settings/dlg_settings.lua`، كما كانت ضمن `src/unsupported_language_list.txt` بسبب محدودية دعم اتجاه الكتابة RTL. لذلك لا يكفي وضع ملفات Mineclonia `.tr` داخل اللعبة. يتضمن الإصدار الجديد مشغّل `ENABLE_ARABIC_LANGUAGE.bat` لإظهار الخيار في الواجهة مع نسخ احتياطية. هذا لا يضيف دعم RTL كاملاً لمحرك Luanti؛ وقد تبقى بعض قوائم المحرك باللغة الإنجليزية أو يظهر ترتيب العربية غير مثالي.
+
+مرجع قوالب الإنجليزية الاحتياطي: [mineclonia-en/mcl_core/mods](https://github.com/majd7772233-a11y/gpts/tree/main/mineclonia-en/mcl_core/mods).
