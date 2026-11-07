@@ -78,11 +78,20 @@ function Assert-ArabicIsSecondOption($Fixture) {
     }
 
     $dialog = [IO.File]::ReadAllText($Fixture.DialogPath)
-    $activeArabicCount = [regex]::Matches($dialog, '(?m)^[ \t]*ar[ \t]*=[ \t]*"العربية \[ar\]"[ \t]*,[ \t]*$').Count
-    if ($activeArabicCount -ne 1) {
-        throw "Expected exactly one active Arabic label, found $activeArabicCount."
+    $activeArabicLines = @(
+        $dialog -split "\r?\n" |
+            ForEach-Object { $_.Trim() } |
+            Where-Object { $_ -ceq 'ar = "العربية [ar]",' }
+    )
+    if ($activeArabicLines.Count -ne 1) {
+        throw "Expected exactly one active Arabic label, found $($activeArabicLines.Count). Dialog contains: $dialog"
     }
-    if ($dialog -match '(?m)^[ \t]*--[ \t]*ar[ \t]*=') {
+    $commentedArabicLines = @(
+        $dialog -split "\r?\n" |
+            ForEach-Object { $_.TrimStart() } |
+            Where-Object { $_ -match '^--[ \t]*ar[ \t]*=' }
+    )
+    if ($commentedArabicLines.Count -gt 0) {
         throw "The Arabic language label is still commented out."
     }
 }
