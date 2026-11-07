@@ -142,11 +142,10 @@ namespace gui
 		virtual void updateAbsolutePosition();
 
 		//! Set whether the string should be interpreted as right-to-left (RTL) text
-		/** \note This component does not implement the Unicode bidi standard, the
-		text of the component should be already RTL if you call this. The
-		main difference when RTL is enabled is that the linebreaks for multiline
-		elements are performed starting from the end.
-		*/
+		/** Force the paragraph direction for line wrapping and alignment.
+		 * By default, the paragraph direction is detected automatically using
+		 * the Unicode Bidirectional Algorithm in the font layout engine.
+		 */
 		virtual void setRightToLeft(bool rtl);
 
 		//! Checks if the text should be interpreted as right-to-left text
@@ -169,6 +168,7 @@ namespace gui
 		bool Background;
 		bool RestrainTextInside;
 		bool RightToLeft;
+		bool RightToLeftOverride;
 
 		gui::IGUIFont* OverrideFont;
 		gui::IGUIFont* LastBreakFont; // stored because: if skin changes, line break must be recalculated.
