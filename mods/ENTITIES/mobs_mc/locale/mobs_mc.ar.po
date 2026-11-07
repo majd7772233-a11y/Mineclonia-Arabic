@@ -135,6 +135,9 @@ msgstr "الحارس الأكبر"
 msgid "Hoglin"
 msgstr "هوغلين"
 
+msgid "Baby Hoglin"
+msgstr "هوغلين صغير"
+
 #: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:561
 msgid "Hoglins do not spawn above Nether Wart blocks."
 msgstr "لا تظهر الهوغلينات فوق كتل ثؤلول العالم السفلي."
