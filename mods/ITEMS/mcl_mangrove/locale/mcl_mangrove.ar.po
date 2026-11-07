@@ -1,0 +1,190 @@
+# Arabic translation draft for Mineclonia component: mcl_mangrove
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_mangrove/locale/template.pot
+# Source template blob SHA: 88b7276e42f328bd4b1648275d1f41450d7c83c0
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 13:45+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:99
+msgid "Mangrove Roots"
+msgstr "جذور القرم"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:100 mods/ITEMS/mcl_mangrove/init.lua:281
+msgid ""
+"Mangrove roots are decorative blocks that form as part of mangrove trees."
+msgstr "جذور القرم كتل زخرفية تتكوّن كجزء من أشجار القرم."
+
+#: mods/ITEMS/mcl_mangrove/init.lua:141 mods/ITEMS/mcl_mangrove/init.lua:274
+msgid "Mangrove Propagule"
+msgstr "غرسة القرم"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:142
+msgid "Needs soil and light to grow"
+msgstr "تحتاج إلى تربة وضوء لتنمو"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:143
+msgid ""
+"When placed on soil (such as dirt) and exposed to light, an propagule will "
+"grow into an mangrove after some time."
+msgstr "عند وضع الغرسة على التربة (مثل التراب) وتعريضها للضوء، ستنمو لتصبح شجرة قرم بعد مرور بعض الوقت."
+
+#: mods/ITEMS/mcl_mangrove/init.lua:210
+msgid "Suspended mague propagules grow on the underside of mangrove leaves.\n"
+msgstr "تنمو غرسات القرم المعلّقة على الجانب السفلي من أوراق القرم.\n"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:211
+msgid ""
+"They grow in four stages. Using bone meal on a suspended propagule advances "
+"it to the next growth stage.\n"
+msgstr "تمر بأربع مراحل نمو. يؤدي استخدام مسحوق العظام على غرسة معلّقة إلى نقلها إلى مرحلة النمو التالية.\n"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:212
+msgid ""
+"When the propagule reaches the final stage, it drops as an item when broken."
+msgstr "عندما تصل الغرسة إلى المرحلة الأخيرة، تسقط كعنصر عند كسرها."
+
+#: mods/ITEMS/mcl_mangrove/init.lua:222
+msgid "Hanging Mangrove Propagule"
+msgstr "غرسة قرم معلّقة"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:225
+msgid "Hanging Propagule (Stage @1)"
+msgstr "غرسة معلّقة (المرحلة @1)"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:279
+msgid "Water logged mangrove roots"
+msgstr "جذور القرم المغمورة بالماء"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:282
+msgid ""
+"Mangrove roots, despite being a full block, can be waterlogged and do not "
+"flow water out"
+msgstr "يمكن ملء جذور القرم بالماء رغم كونها كتلة كاملة، ولا يتدفق الماء منها إلى الخارج."
+
+#: mods/ITEMS/mcl_mangrove/init.lua:283
+msgid "These cannot be crafted yet only occure when get in contact of water."
+msgstr "لا يمكن تصنيع هذه الكتل بعد؛ فهي لا تظهر إلا عند ملامستها للماء."
+
+#: mods/ITEMS/mcl_mangrove/init.lua:346
+msgid "River water logged mangrove roots"
+msgstr "جذور قرم مغمورة بماء النهر"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:365
+msgid "Muddy Mangrove Roots"
+msgstr "جذور قرم موحلة"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:366
+msgid "Crafted with Mud and Mangrove roots"
+msgstr "تُصنع باستخدام الطين وجذور القرم"
+
+#: mods/ITEMS/mcl_mangrove/init.lua:367
+msgid ""
+"Muddy Mangrove Roots is a block from mangrove swamp.It drowns player a bit "
+"inside it."
+msgstr "جذور القرم الموحلة كتلة من مستنقعات القرم. تُغرق اللاعب جزئياً عند دخوله فيها."
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:1
+msgid "Mangrove Bark"
+msgstr "لحاء القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:2
+msgid "Mangrove Bark Slab"
+msgstr "بلاطة لحاء القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:3
+msgid "Mangrove Bark Stairs"
+msgstr "درج لحاء القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:4
+msgid "Mangrove Boat"
+msgstr "قارب القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:5
+msgid "Mangrove Button"
+msgstr "زر القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:6
+msgid "Mangrove Chest Boat"
+msgstr "قارب صندوقي من القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:7
+msgid "Mangrove Door"
+msgstr "باب القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:8
+msgid "Mangrove Fence"
+msgstr "سياج القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:9
+msgid "Mangrove Fence Gate"
+msgstr "بوابة سياج القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:10
+msgid "Mangrove Hanging Sign"
+msgstr "لافتة معلّقة من القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:11
+msgid "Mangrove Leaves"
+msgstr "أوراق القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:12
+msgid "Mangrove Log"
+msgstr "جذع القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:13
+msgid "Mangrove Planks"
+msgstr "ألواح القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:14
+msgid "Mangrove Pressure Plate"
+msgstr "لوحة ضغط من القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:15
+msgid "Mangrove Sign"
+msgstr "لافتة من القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:16
+msgid "Mangrove Slab"
+msgstr "بلاطة القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:17
+msgid "Mangrove Stairs"
+msgstr "درج القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:18
+msgid "Mangrove Trapdoor"
+msgstr "باب مصيدة من القرم"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:19
+msgid "Mangrove leaves are grown from Mangrove trees."
+msgstr "تنمو أوراق القرم على أشجار القرم."
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:20
+msgid "Stripped Mangrove Bark"
+msgstr "لحاء قرم منزوع القشرة"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:21
+msgid "Stripped Mangrove Log"
+msgstr "جذع قرم منزوع القشرة"
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:22
+msgid "The stripped trunk of an Mangrove tree."
+msgstr "الجذع منزوع اللحاء لشجرة قرم."
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:23
+msgid "The stripped wood of an Mangrove tree."
+msgstr "الخشب منزوع اللحاء لشجرة قرم."
+
+#: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:24
+msgid "The trunk of a Mangrove tree."
+msgstr "جذع شجرة قرم."

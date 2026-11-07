@@ -1,0 +1,194 @@
+# Arabic translation draft for Mineclonia component: mcl_end
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_end/locale/template.pot
+# Source template blob SHA: b69ed5ebfd7594d141450f9608715f31cb8b0c7c
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 13:45+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_end/building.lua:5
+msgid "End Stone"
+msgstr "حجر النهاية"
+
+#: mods/ITEMS/mcl_end/building.lua:17
+msgid "End Stone Bricks"
+msgstr "طوب حجر النهاية"
+
+#: mods/ITEMS/mcl_end/building.lua:29
+msgid "Purpur Block"
+msgstr "كتلة بوربور"
+
+#: mods/ITEMS/mcl_end/building.lua:40
+msgid "Purpur Pillar"
+msgstr "عمود بوربور"
+
+#: mods/ITEMS/mcl_end/building.lua:55
+msgid "End Rod"
+msgstr "قضيب النهاية"
+
+#: mods/ITEMS/mcl_end/building.lua:56
+msgid "End rods are decorative light sources."
+msgstr "قضبان النهاية مصادر إضاءة زخرفية."
+
+#: mods/ITEMS/mcl_end/building.lua:130
+msgid "Dragon Egg"
+msgstr "بيضة التنين"
+
+#: mods/ITEMS/mcl_end/building.lua:131
+msgid "A dragon egg is a decorative item which can be placed."
+msgstr "بيضة التنين عنصر زخرفي يمكن وضعه."
+
+#: mods/ITEMS/mcl_end/building.lua:181
+msgid "End Stone Brick Stairs"
+msgstr "درج طوب حجر النهاية"
+
+#: mods/ITEMS/mcl_end/building.lua:182
+msgid "End Stone Brick Slab"
+msgstr "بلاطة طوب حجر النهاية"
+
+#: mods/ITEMS/mcl_end/building.lua:188
+msgid "Purpur Stairs"
+msgstr "درج بوربور"
+
+#: mods/ITEMS/mcl_end/building.lua:189
+msgid "Purpur Slab"
+msgstr "بلاطة بوربور"
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:114
+msgid "Chorus Flower"
+msgstr "زهرة الكورس"
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:115
+msgid "Grows on end stone"
+msgstr "ينمو على حجر النهاية"
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:116
+msgid ""
+"A chorus flower is the living part of a chorus plant. It can grow into a "
+"tall chorus plant, step by step. When it grows, it may die on old age "
+"eventually. It also dies when it is unable to grow."
+msgstr "زهرة الكورس هي الجزء الحي من نبات الكورس. يمكنها أن تنمو لتصبح نبات كورس طويلاً، خطوة تلو الأخرى. وقد تموت في النهاية بسبب تقدمها في العمر، كما تموت إذا لم تعد قادرة على النمو."
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:117
+msgid ""
+"Place it and wait for it to grow. It can only be placed on top of end stone, "
+"on top of a chorus plant stem, or at the side of exactly one chorus plant "
+"stem."
+msgstr "ضعها وانتظر نموها. لا يمكن وضعها إلا فوق حجر النهاية، أو فوق ساق نبات كورس، أو على جانب ساق واحدة فقط من نبات الكورس."
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:208
+msgid "Dead Chorus Flower"
+msgstr "زهرة كورس ذابلة"
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:209
+msgid ""
+"This is a part of a chorus plant. It doesn't grow. Chorus flowers die of old "
+"age or when they are unable to grow. A dead chorus flower can be harvested "
+"to obtain a fresh chorus flower which is able to grow again."
+msgstr "هذا جزء من نبات الكورس ولا ينمو. تموت أزهار الكورس بسبب تقدمها في العمر أو عندما تعجز عن النمو. يمكن حصاد زهرة الكورس الذابلة للحصول على زهرة كورس جديدة قادرة على النمو مجدداً."
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:243
+msgid "Chorus Plant Stem"
+msgstr "ساق نبات الكورس"
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:244
+msgid ""
+"A chorus plant stem is the part of a chorus plant which holds the whole "
+"plant together. It needs end stone as its soil. Stems are grown from chorus "
+"flowers."
+msgstr "ساق نبات الكورس جزء من نبات الكورس يحافظ على تماسكه كله. يحتاج إلى حجر النهاية كتربة له. تنمو السيقان من أزهار الكورس."
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:245
+msgid "The stem attaches itself to end stone and other chorus blocks."
+msgstr "تلتصق الساق بحجر النهاية وكتل الكورس الأخرى."
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:544
+msgid "Chorus Fruit"
+msgstr "ثمرة الكورس"
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:545
+msgid "Randomly teleports you when eaten"
+msgstr "تنقلك عشوائياً عند تناولها"
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:546
+msgid ""
+"A chorus fruit is an edible fruit from the chorus plant which is home to the "
+"End. Eating it teleports you to the top of a random solid block nearby, "
+"provided you won't end up inside a liquid, solid or harmful blocks. "
+"Teleportation might fail if there are very few or no places to teleport to."
+msgstr "ثمرة الكورس فاكهة صالحة للأكل من نبات الكورس الذي ينمو في بُعد النهاية. يؤدي تناولها إلى نقلك إلى أعلى كتلة صلبة عشوائية قريبة، بشرط ألا تنتهي داخل سائل أو كتلة صلبة أو كتلة مؤذية. وقد يفشل الانتقال إذا كانت المواضع المتاحة قليلة جداً أو غير موجودة."
+
+#: mods/ITEMS/mcl_end/chorus_plant.lua:559
+msgid "Popped Chorus Fruit"
+msgstr "ثمرة كورس منبثقة"
+
+#: mods/ITEMS/mcl_end/end_crystal.lua:199
+msgid "End Crystal"
+msgstr "بلورة إندر"
+
+#: mods/ITEMS/mcl_end/end_crystal.lua:219
+msgid "Ignited by a punch or a hit with an arrow"
+msgstr "تُشعل بلكمة أو إصابة بسهم"
+
+#: mods/ITEMS/mcl_end/end_crystal.lua:219
+msgid "Explosion power: @1"
+msgstr "قوة الانفجار: @1"
+
+#: mods/ITEMS/mcl_end/end_crystal.lua:220
+msgid ""
+"End Crystals are explosive devices. They can be placed on Obsidian or "
+"Bedrock. Ignite them by a punch or a hit with an arrow. End Crystals can "
+"also be used the spawn the Ender Dragon by placing one at each side of the "
+"End Exit Portal."
+msgstr "بلورات إندر أجهزة متفجرة. يمكن وضعها على السبج أو حجر الأساس. أشعلها بلكمة أو إصابة بسهم. ويمكن أيضاً استخدامها لاستدعاء تنين إندر بوضع واحدة عند كل جانب من بوابة الخروج من بُعد النهاية."
+
+#: mods/ITEMS/mcl_end/end_crystal.lua:221
+msgid ""
+"Place the End Crystal on Obsidian or Bedrock, then punch it or hit it with "
+"an arrow to cause an huge and probably deadly explosion. To Spawn the Ender "
+"Dragon, place one at each side of the End Exit Portal."
+msgstr "ضع بلورة إندر على السبج أو حجر الأساس، ثم لكمها أو أصبها بسهم لإحداث انفجار ضخم قد يكون مميتاً. لاستدعاء تنين إندر، ضع بلورة عند كل جانب من بوابة الخروج من بُعد النهاية."
+
+#: mods/ITEMS/mcl_end/eye_of_ender.lua:145
+msgid "Eye of Ender"
+msgstr "عين إندر"
+
+#: mods/ITEMS/mcl_end/eye_of_ender.lua:146
+msgid "Guides the way to the mysterious End dimension"
+msgstr "ترشدك إلى طريق بُعد النهاية الغامض"
+
+#: mods/ITEMS/mcl_end/eye_of_ender.lua:147
+msgid ""
+"This item is used to locate End portal shrines in the Overworld and to "
+"activate End portals."
+msgstr "يُستخدم هذا العنصر للعثور على أضرحة بوابات إندر في العالم العلوي ولتفعيل بوابات إندر."
+
+#: mods/ITEMS/mcl_end/eye_of_ender.lua:147
+msgid ""
+"NOTE: The End dimension is currently incomplete and might change in future "
+"versions."
+msgstr "ملاحظة: بُعد النهاية غير مكتمل حالياً وقد يتغير في الإصدارات المستقبلية."
+
+#: mods/ITEMS/mcl_end/eye_of_ender.lua:148
+msgid ""
+"Use the attack key to release the eye of ender. It will rise and fly in the "
+"horizontal direction of the closest end portal shrine. If you're very close, "
+"the eye of ender will take the direct path to the End portal shrine instead. "
+"After a few seconds, it stops. It may drop as an item, but there's a 20% "
+"chance it shatters."
+msgstr "استخدم زر الهجوم لإطلاق عين إندر. سترتفع وتطير أفقياً باتجاه أقرب ضريح لبوابة إندر. وإذا كنت قريباً جداً، فستسلك العين الطريق المباشر إلى الضريح. بعد بضع ثوانٍ، تتوقف. وقد تسقط كعنصر، لكن هناك احتمالاً نسبته 20% بأن تتحطم."
+
+#: mods/ITEMS/mcl_end/eye_of_ender.lua:148
+msgid ""
+"To activate an End portal, eyes of ender need to be placed into each block "
+"of an intact End portal frame."
+msgstr "لتفعيل بوابة إندر، يجب وضع عيون إندر في كل كتلة من إطار بوابة إندر سليم."

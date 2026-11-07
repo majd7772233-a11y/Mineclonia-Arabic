@@ -1,0 +1,93 @@
+# Arabic translation draft for Mineclonia component: mcl_anvils
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_anvils/locale/template.pot
+# Source template blob SHA: 0f003b72e69dd2a03acb02963d6eb873f546598f
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 13:45+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_anvils/init.lua:21
+msgid "Enchantment Cost: "
+msgstr "تكلفة التعويذة: "
+
+#: mods/ITEMS/mcl_anvils/init.lua:32 mods/ITEMS/mcl_anvils/init.lua:35
+msgid "Repair and Name"
+msgstr "إصلاح وتسمية"
+
+#: mods/ITEMS/mcl_anvils/init.lua:388
+msgid "Repair and rename items"
+msgstr "إصلاح العناصر وإعادة تسميتها"
+
+#: mods/ITEMS/mcl_anvils/init.lua:583
+msgid "Anvil"
+msgstr "سندان"
+
+#: mods/ITEMS/mcl_anvils/init.lua:584
+msgid ""
+"The anvil allows you to repair tools and armor, and to give names to items. "
+"It has a limited durability, however. Don't let it fall on your head, it "
+"could be quite painful!"
+msgstr "يتيح لك السندان إصلاح الأدوات والدروع وإعطاء العناصر أسماءً. لكن متانته محدودة. احذر من سقوطه على رأسك، فقد يكون ذلك مؤلماً للغاية!"
+
+#: mods/ITEMS/mcl_anvils/init.lua:585
+msgid ""
+"To use an anvil, rightclick it. An anvil has 2 input slots (on the left) and "
+"one output slot."
+msgstr "لاستخدام السندان، انقر عليه بزر الفأرة الأيمن. يحتوي السندان على خانتي إدخال (على اليسار) وخانة إخراج واحدة."
+
+#: mods/ITEMS/mcl_anvils/init.lua:586
+msgid ""
+"To rename items, put an item stack in one of the item slots while keeping "
+"the other input slot empty. Type in a name, hit enter or “Set Name”, then "
+"take the renamed item from the output slot."
+msgstr "لإعادة تسمية العناصر، ضع رزمة عناصر في إحدى خانات العناصر واترك خانة الإدخال الأخرى فارغة. اكتب الاسم، ثم اضغط Enter أو اختر «تعيين الاسم»، وبعدها خذ العنصر الذي أُعيدت تسميته من خانة الإخراج."
+
+#: mods/ITEMS/mcl_anvils/init.lua:588
+msgid "There are two possibilities to repair tools (and armor):"
+msgstr "هناك طريقتان لإصلاح الأدوات (والدروع):"
+
+#: mods/ITEMS/mcl_anvils/init.lua:589
+msgid ""
+"• Tool + Tool: Place two tools of the same type in the input slots. The "
+"“health” of the repaired tool is the sum of the “health” of both input "
+"tools, plus a 12% bonus."
+msgstr "• أداة + أداة: ضع أداتين من النوع نفسه في خانتي الإدخال. تساوي «سلامة» الأداة بعد الإصلاح مجموع «سلامة» الأداتين المدخلتين، مع مكافأة إضافية قدرها 12%."
+
+#: mods/ITEMS/mcl_anvils/init.lua:591
+msgid ""
+"• Tool + Material: Some tools can also be repaired by combining them with an "
+"item that it's made of. For example, iron pickaxes can be repaired with iron "
+"ingots. This repairs the tool by 25%."
+msgstr "• أداة + مادة: يمكن أيضاً إصلاح بعض الأدوات بدمجها مع مادة صنعها. فعلى سبيل المثال، يمكن إصلاح معاول الحديد بسبائك الحديد. تصلح هذه الطريقة 25% من متانة الأداة."
+
+#: mods/ITEMS/mcl_anvils/init.lua:593
+msgid ""
+"Armor counts as a tool. It is possible to repair and rename a tool in a "
+"single step."
+msgstr "تُعامل الدروع كالأدوات. ويمكنك إصلاح أداة وإعادة تسميتها في خطوة واحدة."
+
+#: mods/ITEMS/mcl_anvils/init.lua:594
+msgid ""
+"The anvil has limited durability and 3 damage levels: undamaged, slightly "
+"damaged and very damaged. Each time you repair or rename something, there is "
+"a 12% chance the anvil gets damaged. Anvils also have a chance of being "
+"damaged when they fall by more than 1 block. If a very damaged anvil is "
+"damaged again, it is destroyed."
+msgstr "للسندان متانة محدودة وثلاث حالات من الضرر: غير متضرر، ومتضرر قليلاً، ومتضرر بشدة. في كل مرة تصلح فيها شيئاً أو تعيد تسميته، هناك احتمال بنسبة 12% لتضرر السندان. وقد يتضرر السندان أيضاً عند سقوطه من ارتفاع يزيد على كتلة واحدة. وإذا تضرر السندان بشدة مرة أخرى، فإنه يتحطم."
+
+#: mods/ITEMS/mcl_anvils/init.lua:598
+msgid "Slightly Damaged Anvil"
+msgstr "سندان متضرر قليلاً"
+
+#: mods/ITEMS/mcl_anvils/init.lua:606
+msgid "Very Damaged Anvil"
+msgstr "سندان متضرر بشدة"
