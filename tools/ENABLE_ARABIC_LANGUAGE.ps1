@@ -476,15 +476,7 @@ try {
             Where-Object { $_ -match '^[ \t]*language[ \t]*=' }
     )
     if ($configLanguageRows.Count -eq 0 -or
-        @($configLanguageRows | Where-Object { $_ -notmatch '^[ \t]*language[ \t]*=[ \t]*ar[ \t]*(?:#.*)?    Write-ExitPrompt
-}
-catch {
-    Write-Host $_.Exception.Message -ForegroundColor Red
-    Write-Host "لم تُحذف ملفات اللعبة أو ملفات العالم."
-    Write-ExitPrompt
-    exit 1
-}
- }).Count -gt 0) {
+        @($configLanguageRows | Where-Object { $_ -notmatch '^[ \t]*language[ \t]*=[ \t]*ar[ \t]*(?:#.*)?$' }).Count -gt 0) {
         throw "فشل التحقق: ملف minetest.conf لا يحفظ language = ar."
     }
 
