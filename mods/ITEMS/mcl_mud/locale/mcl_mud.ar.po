@@ -1,0 +1,50 @@
+# Arabic translation draft for Mineclonia component: mcl_mud
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_mud/locale/template.pot
+# Source template blob SHA: fbbc50f6710c9b2e612f2d07a9ad0c5f17231bf5
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_mud/init.lua:4
+msgid "Mud"
+msgstr "الطين"
+
+#: mods/ITEMS/mcl_mud/init.lua:5
+msgid ""
+"Mud is a decorative block that generates in mangrove swamps. Mud can also be "
+"obtained by using water bottles on dirt or coarse dirt."
+msgstr "الطين كتلة زخرفية تتولد في مستنقعات القرم. ويمكنك أيضاً الحصول عليه باستخدام قوارير الماء على التراب أو التراب الخشن."
+
+#: mods/ITEMS/mcl_mud/init.lua:24
+msgid "Packed Mud"
+msgstr "الطين المضغوط"
+
+#: mods/ITEMS/mcl_mud/init.lua:25
+msgid "Packed mud is a decorative block used to craft mud bricks."
+msgstr "الطين المضغوط كتلة زخرفية تُستخدم لصناعة طوب الطين."
+
+#: mods/ITEMS/mcl_mud/init.lua:37
+msgid "Mud Bricks"
+msgstr "طوب الطين"
+
+#: mods/ITEMS/mcl_mud/init.lua:38
+msgid "Decorative block crafted from packed mud."
+msgstr "كتلة زخرفية تُصنع من الطين المضغوط."
+
+#: mods/ITEMS/mcl_mud/init.lua:50
+msgid "Mud Brick Stair"
+msgstr "درج طوب الطين"
+
+#: mods/ITEMS/mcl_mud/init.lua:51
+msgid "Mud Brick Slab"
+msgstr "بلاطة طوب الطين"
