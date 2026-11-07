@@ -1,0 +1,38 @@
+# Arabic translation draft for Mineclonia component: mcl_beehives
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_beehives/locale/template.pot
+# Source template blob SHA: 4664b47a7d093dd8e98e8325d03eb50a5b3effd8
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_beehives/init.lua:97 mods/ITEMS/mcl_beehives/init.lua:117
+#: mods/ITEMS/mcl_beehives/init.lua:135
+msgid "Beehive"
+msgstr "خلية نحل"
+
+#: mods/ITEMS/mcl_beehives/init.lua:98 mods/ITEMS/mcl_beehives/init.lua:118
+#: mods/ITEMS/mcl_beehives/init.lua:136
+msgid "Artificial bee nest."
+msgstr "عش نحل اصطناعي."
+
+#: mods/ITEMS/mcl_beehives/init.lua:154 mods/ITEMS/mcl_beehives/init.lua:174
+#: mods/ITEMS/mcl_beehives/init.lua:192
+msgid "Bee Nest"
+msgstr "عش النحل"
+
+#: mods/ITEMS/mcl_beehives/init.lua:155 mods/ITEMS/mcl_beehives/init.lua:175
+#: mods/ITEMS/mcl_beehives/init.lua:193
+msgid ""
+"A naturally generating block that houses bees and a tasty treat...if you can "
+"get it."
+msgstr "كتلة تتولد طبيعياً وتأوي النحل، وتحتوي على مكافأة لذيذة... إن استطعت الحصول عليها."
