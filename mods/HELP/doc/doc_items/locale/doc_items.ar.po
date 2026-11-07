@@ -398,3 +398,12 @@ msgstr "كتلة شفافة تمثل مساحة فارغة في الأساس. ع
 
 msgid "Whenever you are not wielding any item, you use the hand which acts as a tool with its own capabilities. When you are wielding an item which is not a mining tool or a weapon it will behave as if it would be the hand."
 msgstr "عندما لا تحمل أي عنصر، تستخدم يدك التي تعمل كأداة لها قدراتها الخاصة. وعندما تحمل عنصرًا ليس أداة تعدين أو سلاحًا، فإنه يتصرف كما لو كنت تستخدم يدك."
+
+
+# Rating used for digging times
+msgid "Rating @1"
+msgstr "تقييم التعدين @1"
+
+# @1 is minimal rating, @2 is maximum rating
+msgid "Rating @1-@2"
+msgstr "تقييم التعدين @1-@2"
