@@ -223,6 +223,10 @@ msgstr "درج البريسمارين"
 msgid "Prismarine Slab"
 msgstr "بلاطة بريسمارين"
 
+#: mods/ITEMS/mcl_ocean/prismarine.lua:72
+msgid "Prismarine Wall"
+msgstr "جدار البريسمارين"
+
 #: mods/ITEMS/mcl_ocean/prismarine.lua:73
 msgid "Prismarine Brick Stairs"
 msgstr "درج طوب البريسمارين"
