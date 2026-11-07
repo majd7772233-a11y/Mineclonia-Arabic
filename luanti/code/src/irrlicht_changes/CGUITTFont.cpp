@@ -680,8 +680,10 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 						max_pen = std::max(max_pen, pen);
 					}
 					const s32 line_width = static_cast<s32>((max_pen - min_pen + 32) / 64);
-					const s32 line_x = base.X + (hcenter
-							? (position.getWidth() - line_width) / 2 : 0);
+					const bool line_rtl = raqm_get_par_resolved_direction(layout) == RAQM_DIRECTION_RTL;
+					const s32 line_x = hcenter
+							? base.X + (position.getWidth() - line_width) / 2
+							: (line_rtl ? position.LowerRightCorner.X - line_width : base.X);
 					int pen_x = line_x * 64 - min_pen;
 					const s32 baseline = base.Y + font_metrics.ascender / 64;
 
@@ -704,8 +706,7 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 
 						const s32 glyph_x = static_cast<s32>((glyph_pen_x + shaped.x_offset + 32) / 64)
 								+ glyph->offset.X;
-						const s32 owner_baseline = base.Y + owner->font_metrics.ascender / 64;
-						const s32 glyph_y = owner_baseline - static_cast<s32>((shaped.y_offset + 32) / 64)
+						const s32 glyph_y = baseline - static_cast<s32>((shaped.y_offset + 32) / 64)
 								- glyph->offset.Y;
 						const core::recti glyph_rect(
 							core::position2di(glyph_x, glyph_y),
