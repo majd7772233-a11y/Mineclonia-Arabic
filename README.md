@@ -4,13 +4,13 @@
 
 ## حالة المشروع
 
-- اللغة المستهدفة: العربية (`ar`).
-- اللعبة المرجعية التي أبلغ عنها صاحب المشروع: `Mineclonia release=39603`.
-- مصدر القوالب الأولي: [mineclonia-mirror/mineclonia](https://github.com/mineclonia-mirror/mineclonia).
-- لقطة المصدر المستخدمة عند بدء المشروع: `24521bf6c99ddfc82bf52a60420a23902282c2a0`.
-- بدأ العمل بملف `mcl_init`، وتُضاف بقية المكونات تدريجياً.\n- سجل القوالب وGit blob SHA لكل مصدر: [SOURCE_TEMPLATES.md](SOURCE_TEMPLATES.md).
-- لم يُعلن عن اكتمال التعريب أو اختباره داخل اللعبة بعد.
-
+- اللغة المستهدفة: العربية (ar).
+- ملفات الترجمة المصدرية: 163 ملف PO، تحتوي على 5,018 ترجمة غير فارغة ومفتاح تنسيقي واحد من مسافة فقط.
+- التغطية: جميع وحدات لقطة المصدر المثبتة، مع فحص كتالوجات runtime التي استُخرجت بتشغيل Mineclonia على Luanti server.
+- لقطة المصدر: ZenonSeth/mineclonia-mirror عند commit 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da (إصدار README للمصدر: 0.123.0).
+- الحزمة المولّدة: 162 ملف تشغيل .ar.tr وملف PO واحد لصيغ الجمع الست في mcl_biome_dispatch.
+- إصدار اللعبة المحلي الذي أبلغ عنه صاحب المشروع: release=39603؛ لم تتم مطابقة شجرته مع لقطة المصدر بصورة مباشرة.
+- نُشر إصدار تجريبي قابل للتثبيت، لكنه لم يُختبر بعد داخل عميل Luanti فعلياً ولم يُدمج في Weblate الرسمي.
 ## تنظيم المستودع
 
 تُحفظ ملفات الترجمة تحت مسارات المكونات المطابقة لمسارات Mineclonia، حتى يمكن دمجها أو نسخها دون تخمين:
@@ -32,7 +32,7 @@ mods/<CATEGORY>/<MOD>/locale/<MOD>.ar.po
 
 ## حزمة التثبيت
 
-<badge>Pre-release للتجربة</badge>
+الحالة: **Pre-release للتجربة**.
 
 - [تنزيل حزمة ملفات التشغيل](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/download/mineclonia-arabic-source-4ba113d1/Mineclonia-Arabic-TR-4ba113d1.zip)
 - [صفحة الإصدار وملاحظاته](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/tag/mineclonia-arabic-source-4ba113d1)
