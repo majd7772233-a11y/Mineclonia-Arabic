@@ -88,6 +88,14 @@ msgstr "عرق سكالك."
 msgid "Sculk Catalyst"
 msgstr "مُحفّز السكالك"
 
+#: mods/ITEMS/mcl_sculk/init.lua:254
+msgid "Sculk Sensor"
+msgstr "مستشعر السكالك"
+
+#: mods/ITEMS/mcl_sculk/init.lua:271
+msgid "Sculk Shrieker"
+msgstr "صرّاخ السكالك"
+
 #: mods/ITEMS/mcl_sculk/init.lua:290
 msgid "Echo Shard"
 msgstr "شظية الصدى"
