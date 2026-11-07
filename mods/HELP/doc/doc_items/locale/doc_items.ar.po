@@ -1,0 +1,400 @@
+# Arabic translation draft for Mineclonia component: doc_items
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/HELP/doc/doc_items/locale/template.pot
+# Source template blob SHA: ad8e9a88fdc3fafcf58e56ba8149337a6fe42ca8
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 12:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "This is a decorational block."
+msgstr "هذه كتلة زخرفية."
+
+msgid "This block is a building block for creating various buildings."
+msgstr "هذه الكتلة مادة بناء تُستخدم في إنشاء المباني المختلفة."
+
+msgid "This item is primarily used for crafting other items."
+msgstr "يُستخدم هذا العنصر أساسًا في تصنيع عناصر أخرى."
+
+msgid "Hold it in your hand, then leftclick to eat it."
+msgstr "أمسكه بيدك، ثم انقر بزر الفأرة الأيسر لتناوله."
+
+msgid "Hold it in your hand, then leftclick to eat it. But why would you want to do this?"
+msgstr "أمسكه بيدك، ثم انقر بزر الفأرة الأيسر لتناوله. لكن لماذا قد ترغب في فعل ذلك؟"
+
+msgid "This block's rotation is affected by the way you place it: Place it on the floor or ceiling for a vertical orientation; place it at the side for a horizontal orientation. Sneaking while placing it leads to a perpendicular orientation instead."
+msgstr "يتأثر اتجاه دوران هذه الكتلة بطريقة وضعها: ضعها على الأرض أو السقف لتكون عمودية، أو على جانب كتلة لتكون أفقية. أما وضعها أثناء التسلل فيجعلها تتجه عموديًا على الاتجاهين السابقين."
+
+msgid "Hand"
+msgstr "اليد"
+
+msgid "Air"
+msgstr "هواء"
+
+msgid "Yes"
+msgstr "نعم"
+
+msgid "No"
+msgstr "لا"
+
+msgid ", "
+msgstr ", "
+
+msgid "Unknown item (@1)"
+msgstr "عنصر غير معروف (@1)"
+
+msgid "unknown"
+msgstr "غير معروف"
+
+msgid "1 second"
+msgstr "ثانية واحدة"
+
+msgid "@1 seconds"
+msgstr "@1 ثانية"
+
+msgid "• @1: @2"
+msgstr "• @1: @2"
+
+msgid "• @1, rating @2: @3 s - @4 s"
+msgstr "• @1، التقييم @2: من @3 ث إلى @4 ث"
+
+msgid "• @1, rating @2: @3 s"
+msgstr "• @1، التقييم @2: @3 ث"
+
+msgid "• @1, level @2: @3 uses"
+msgstr "• @1، المستوى @2: @3 استخدامات"
+
+msgid "• @1, level @2: Unlimited"
+msgstr "• @1، المستوى @2: غير محدود"
+
+msgid "This tool is capable of mining."
+msgstr "هذه الأداة قادرة على التعدين."
+
+msgid "Maximum toughness levels:"
+msgstr "أقصى مستويات الصلابة:"
+
+msgid "Mining times:"
+msgstr "أوقات التعدين:"
+
+msgid "Mining durability:"
+msgstr "متانة التعدين:"
+
+msgid "This is a melee weapon which deals damage by punching."
+msgstr "هذا سلاح قتال قريب يلحق الضرر بالضرب."
+
+msgid "Maximum damage per hit:"
+msgstr "أقصى ضرر لكل ضربة:"
+
+msgid "• @1: @2 HP"
+msgstr "• @1: @2 نقطة صحة"
+
+msgid "Full punch interval: @1 s"
+msgstr "الفاصل الزمني الكامل بين الضربات: @1 ث"
+
+msgid "This block can be mined by any mining tool in half a second."
+msgstr "يمكن تعدين هذه الكتلة بأي أداة تعدين خلال نصف ثانية."
+
+msgid "This block can be mined by any mining tool immediately."
+msgstr "يمكن تعدين هذه الكتلة فورًا بأي أداة تعدين."
+
+msgid "This block can not be mined by ordinary mining tools."
+msgstr "لا يمكن تعدين هذه الكتلة بأدوات التعدين العادية."
+
+msgid "This block can be destroyed by any mining tool in half a second."
+msgstr "يمكن تدمير هذه الكتلة بأي أداة تعدين خلال نصف ثانية."
+
+msgid "This block can be destroyed by any mining tool immediately."
+msgstr "يمكن تدمير هذه الكتلة فورًا بأي أداة تعدين."
+
+msgid "This block can not be destroyed by ordinary mining tools."
+msgstr "لا يمكن تدمير هذه الكتلة بأدوات التعدين العادية."
+
+msgid "This block can be mined by mining tools which match any of the following mining ratings and its toughness level."
+msgstr "يمكن تعدين هذه الكتلة بأدوات التعدين التي تطابق أيًا من تقييمات التعدين التالية ومستوى صلابتها."
+
+msgid "Mining ratings:"
+msgstr "تقييمات التعدين:"
+
+msgid "Toughness level: @1"
+msgstr "مستوى الصلابة: @1"
+
+msgid "Range: @1"
+msgstr "المدى: @1"
+
+msgid "Range: @1 (@2)"
+msgstr "المدى: @1 (@2)"
+
+msgid "This tool can serve as a smelting fuel with a burning time of @1."
+msgstr "يمكن استخدام هذه الأداة وقودًا للصهر لمدة احتراق تبلغ @1."
+
+msgid "This block can serve as a smelting fuel with a burning time of @1."
+msgstr "يمكن استخدام هذه الكتلة وقودًا للصهر لمدة احتراق تبلغ @1."
+
+msgid "This item can serve as a smelting fuel with a burning time of @1."
+msgstr "يمكن استخدام هذا العنصر وقودًا للصهر لمدة احتراق تبلغ @1."
+
+msgid " Using it as fuel turns it into: @1."
+msgstr " يؤدي استخدامه وقودًا إلى تحويله إلى: @1."
+
+msgid "Itemstring: \"@1\""
+msgstr "معرّف العنصر: \"@1\""
+
+msgid "Description: @1"
+msgstr "الوصف: @1"
+
+msgid "Usage help: @1"
+msgstr "تعليمات الاستخدام: @1"
+
+msgid "Maximum stack size: @1"
+msgstr "أقصى حجم للرزمة: @1"
+
+msgid "This block points to liquids."
+msgstr "يمكن لهذه الكتلة استهداف السوائل."
+
+msgid "This tool points to liquids."
+msgstr "يمكن لهذه الأداة استهداف السوائل."
+
+msgid "This item points to liquids."
+msgstr "يمكن لهذا العنصر استهداف السوائل."
+
+msgid "Punches with this block don't work as usual; melee combat and mining are either not possible or work differently."
+msgstr "لا تعمل الضربات بهذه الكتلة بالطريقة المعتادة؛ فقد يتعذر القتال القريب والتعدين أو يعملان بطريقة مختلفة."
+
+msgid "Punches with this tool don't work as usual; melee combat and mining are either not possible or work differently."
+msgstr "لا تعمل الضربات بهذه الأداة بالطريقة المعتادة؛ فقد يتعذر القتال القريب والتعدين أو يعملان بطريقة مختلفة."
+
+msgid "Punches with this item don't work as usual; melee combat and mining are either not possible or work differently."
+msgstr "لا تعمل الضربات بهذا العنصر بالطريقة المعتادة؛ فقد يتعذر القتال القريب والتعدين أو يعملان بطريقة مختلفة."
+
+msgid "This block belongs to the @1 group."
+msgstr "تنتمي هذه الكتلة إلى مجموعة @1."
+
+msgid "This tool belongs to the @1 group."
+msgstr "تنتمي هذه الأداة إلى مجموعة @1."
+
+msgid "This item belongs to the @1 group."
+msgstr "ينتمي هذا العنصر إلى مجموعة @1."
+
+msgid "This block belongs to these groups: @1."
+msgstr "تنتمي هذه الكتلة إلى المجموعات التالية: @1."
+
+msgid "This tool belongs to these groups: @1."
+msgstr "تنتمي هذه الأداة إلى المجموعات التالية: @1."
+
+msgid "This item belongs to these groups: @1."
+msgstr "ينتمي هذا العنصر إلى المجموعات التالية: @1."
+
+msgid "Blocks"
+msgstr "الكتل"
+
+msgid "Item reference of blocks and other things which are capable of occupying space"
+msgstr "مرجع للكتل وغيرها من الأشياء القادرة على شغل مساحة في العالم."
+
+msgid "Collidable: @1"
+msgstr "قابل للتصادم: @1"
+
+msgid "Pointable: Yes"
+msgstr "قابل للاستهداف: نعم"
+
+msgid "Pointable: Only by special items"
+msgstr "قابل للاستهداف: بالعناصر الخاصة فقط"
+
+msgid "Pointable: No"
+msgstr "قابل للاستهداف: لا"
+
+msgid "This block is a liquid with these properties:"
+msgstr "هذا السائل له الخصائص التالية:"
+
+msgid "• Renewable"
+msgstr "• متجدد"
+
+msgid "• Not renewable"
+msgstr "• غير متجدد"
+
+msgid "• No flowing"
+msgstr "• لا يتدفق"
+
+msgid "• Flowing range: @1"
+msgstr "• مدى التدفق: @1"
+
+msgid "• Viscosity: @1"
+msgstr "• اللزوجة: @1"
+
+msgid "This block causes a damage of @1 hit points per second."
+msgstr "تسبب هذه الكتلة ضررًا مقداره @1 نقطة صحة في الثانية."
+
+msgid "This block causes a damage of @1 hit point per second."
+msgstr "تسبب هذه الكتلة ضررًا مقداره @1 نقطة صحة في الثانية."
+
+msgid "This block decreases your breath and causes a drowning damage of @1 hit points every 2 seconds."
+msgstr "تقلل هذه الكتلة نقاط تنفسك وتسبب ضرر غرق مقداره @1 نقطة صحة كل ثانيتين."
+
+msgid "This block decreases your breath and causes a drowning damage of @1 hit point every 2 seconds."
+msgstr "تقلل هذه الكتلة نقاط تنفسك وتسبب ضرر غرق مقداره @1 نقطة صحة كل ثانيتين."
+
+msgid "The fall damage on this block is increased by @1%."
+msgstr "يزداد ضرر السقوط على هذه الكتلة بنسبة @1%."
+
+msgid "This block negates all fall damage."
+msgstr "تلغي هذه الكتلة ضرر السقوط بالكامل."
+
+msgid "The fall damage on this block is reduced by @1%."
+msgstr "ينخفض ضرر السقوط على هذه الكتلة بنسبة @1%."
+
+msgid "You can not jump while standing on this block."
+msgstr "لا يمكنك القفز أثناء الوقوف على هذه الكتلة."
+
+msgid "This block can be climbed."
+msgstr "يمكن تسلق هذه الكتلة."
+
+msgid "This block will make you bounce off with an elasticity of @1%."
+msgstr "تجعلك هذه الكتلة ترتد عنها بمرونة مقدارها @1%."
+
+msgid "This block is slippery."
+msgstr "هذه الكتلة زلقة."
+
+msgid "This block is completely silent when walked on, mined or built."
+msgstr "لا يصدر عن هذه الكتلة أي صوت عند المشي فوقها أو تعدينها أو وضعها."
+
+msgid "This block is completely silent when mined or built."
+msgstr "لا يصدر عن هذه الكتلة أي صوت عند تعدينها أو وضعها."
+
+msgid "Walking on this block is completely silent."
+msgstr "المشي فوق هذه الكتلة صامت تمامًا."
+
+msgid "Mining this block is completely silent."
+msgstr "تعدين هذه الكتلة صامت تمامًا."
+
+msgid "Building this block is completely silent."
+msgstr "وضع هذه الكتلة صامت تمامًا."
+
+msgid "This block is affected by gravity and can fall."
+msgstr "تتأثر هذه الكتلة بالجاذبية ويمكنها السقوط."
+
+msgid "Building another block at this block will place it inside and replace it."
+msgstr "سيؤدي وضع كتلة أخرى عند هذه الكتلة إلى وضعها داخلها واستبدالها بها."
+
+msgid "Falling blocks can go through this block; they destroy it when doing so."
+msgstr "يمكن للكتل الساقطة المرور عبر هذه الكتلة وتدميرها أثناء ذلك."
+
+msgid "This block will drop as an item when a falling block ends up inside it."
+msgstr "ستسقط هذه الكتلة كعنصر عندما تستقر كتلة ساقطة داخلها."
+
+msgid "This block is destroyed when a falling block ends up inside it."
+msgstr "تُدمّر هذه الكتلة عندما تستقر كتلة ساقطة داخلها."
+
+msgid "This block will drop as an item when it is not attached to a surrounding block."
+msgstr "ستسقط هذه الكتلة كعنصر إذا لم تكن متصلة بكتلة مجاورة."
+
+msgid "This block will drop as an item when no collidable block is below it."
+msgstr "ستسقط هذه الكتلة كعنصر إذا لم توجد أسفلها كتلة قابلة للتصادم."
+
+msgid "Liquids can flow into this block and destroy it."
+msgstr "يمكن للسوائل التدفق إلى داخل هذه الكتلة وتدميرها."
+
+msgid "This block is a light source with a light level of @1."
+msgstr "هذه الكتلة مصدر ضوء بمستوى إضاءة @1."
+
+msgid "This block glows faintly with a light level of @1."
+msgstr "تتوهج هذه الكتلة بخفوت بمستوى إضاءة @1."
+
+msgid "This block allows light to propagate with a small loss of brightness, and sunlight can even go through losslessly."
+msgstr "تسمح هذه الكتلة بانتشار الضوء مع فقدان بسيط في السطوع، ويمكن لضوء الشمس المرور خلالها دون أي فقدان."
+
+msgid "This block allows light to propagate with a small loss of brightness."
+msgstr "تسمح هذه الكتلة بانتشار الضوء مع فقدان بسيط في السطوع."
+
+msgid "This block allows sunlight to propagate without loss in brightness."
+msgstr "تسمح هذه الكتلة بمرور ضوء الشمس دون فقدان في السطوع."
+
+msgid "Unknown Node"
+msgstr "عقدة غير معروفة"
+
+msgid "This block connects to this block: @1."
+msgstr "تتصل هذه الكتلة بالكتلة التالية: @1."
+
+msgid "This block connects to these blocks: @1."
+msgstr "تتصل هذه الكتلة بالكتل التالية: @1."
+
+msgid "This block connects to blocks of the @1 group."
+msgstr "تتصل هذه الكتلة بالكتل التابعة لمجموعة @1."
+
+msgid "This block connects to blocks of the following groups: @1."
+msgstr "تتصل هذه الكتلة بالكتل التابعة للمجموعات التالية: @1."
+
+msgid "This block won't drop anything when mined."
+msgstr "لن تسقط أي عناصر عند تعدين هذه الكتلة."
+
+msgid "This block will drop the following when mined: @1×@2."
+msgstr "ستسقط العناصر التالية عند تعدين هذه الكتلة: @1×@2."
+
+msgid "This block will drop the following when mined: @1."
+msgstr "ستسقط العناصر التالية عند تعدين هذه الكتلة: @1."
+
+msgid "This block will drop the following items when mined: @1."
+msgstr "ستسقط العناصر التالية عند تعدين هذه الكتلة: @1."
+
+msgid "This block will randomly drop one of the following when mined: @1."
+msgstr "ستسقط عشوائيًا إحدى العناصر التالية عند تعدين هذه الكتلة: @1."
+
+msgid "This block will randomly drop up to @1 drops of the following possible drops when mined: @2."
+msgstr "ستسقط هذه الكتلة عشوائيًا ما يصل إلى @1 من العناصر من بين الغنائم التالية عند تعدينها: @2."
+
+msgid " and "
+msgstr " و"
+
+msgid "@1×@2"
+msgstr "@1×@2"
+
+msgid "@1 (<0.5%)"
+msgstr "@1 (أقل من 0.5%)"
+
+msgid "@1 (ca. @2%)"
+msgstr "@1 (حوالي @2%)"
+
+msgid "@1 (@2%)"
+msgstr "@1 (@2%)"
+
+msgid "Tools and weapons"
+msgstr "الأدوات والأسلحة"
+
+msgid "Item reference of all wieldable tools and weapons"
+msgstr "مرجع لجميع الأدوات والأسلحة التي يمكن حملها باليد."
+
+msgid "Durability: @1 uses"
+msgstr "المتانة: @1 استخدام"
+
+msgid "Durability: @1"
+msgstr "المتانة: @1"
+
+msgid "Miscellaneous items"
+msgstr "عناصر متنوعة"
+
+msgid "Item reference of items which are neither blocks, tools or weapons (esp. crafting items)"
+msgstr "مرجع للعناصر التي ليست كتلًا أو أدوات أو أسلحة (خصوصًا عناصر التصنيع)."
+
+msgid "Mobs"
+msgstr "الكائنات"
+
+msgid "Different Mobs"
+msgstr "كائنات مختلفة"
+
+msgid "Drops: "
+msgstr "الغنائم: "
+
+msgid "Follows player when these items are held:"
+msgstr "يتبع اللاعب عند حمل هذه العناصر:"
+
+msgid "A transparent block, basically empty space. It is usually left behind after digging something."
+msgstr "كتلة شفافة تمثل مساحة فارغة في الأساس. عادةً ما تبقى بعد تعدين شيء ما."
+
+msgid "Whenever you are not wielding any item, you use the hand which acts as a tool with its own capabilities. When you are wielding an item which is not a mining tool or a weapon it will behave as if it would be the hand."
+msgstr "عندما لا تحمل أي عنصر، تستخدم يدك التي تعمل كأداة لها قدراتها الخاصة. وعندما تحمل عنصرًا ليس أداة تعدين أو سلاحًا، فإنه يتصرف كما لو كنت تستخدم يدك."
