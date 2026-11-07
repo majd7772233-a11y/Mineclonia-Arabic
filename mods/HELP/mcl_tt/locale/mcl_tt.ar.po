@@ -1,0 +1,200 @@
+# Arabic translation draft for Mineclonia component: mcl_tt
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/HELP/mcl_tt/locale/template.pot
+# Source template blob SHA: f0982f17952d9bd9f45b1758450940d62ed8957a
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:35 mods/HELP/mcl_tt/snippets_mcl.lua:104
+msgid "@1 uses"
+msgstr "عدد الاستخدامات: @1"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:37
+msgid "Unlimited uses"
+msgstr "استخدامات غير محدودة"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:40 mods/HELP/mcl_tt/snippets_mcl.lua:104
+msgid "Durability: @1"
+msgstr "المتانة: @1"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:46
+msgid "Painfully slow"
+msgstr "بطيء للغاية"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:47
+msgid "Very slow"
+msgstr "بطيء جداً"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:48
+msgid "Slow"
+msgstr "بطيء"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:49
+msgid "Fast"
+msgstr "سريع"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:50
+msgid "Very fast"
+msgstr "سريع جداً"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:51
+msgid "Extremely fast"
+msgstr "سريع للغاية"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:52
+msgid "Instantaneous"
+msgstr "فوري"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:63
+msgid "Mining speed: @1"
+msgstr "سرعة التعدين: @1"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:72
+msgid "Block breaking strength: @1"
+msgstr "قوة تكسير الكتلة: @1"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:79
+msgid "Damage: @1"
+msgstr "الضرر: @1"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:85
+msgid "Full punch interval: @1s"
+msgstr "الفاصل الزمني الكامل بين اللكمات: @1s"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:106
+msgid "Food item"
+msgstr "عنصر غذائي"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:108
+msgid "+@1 food points"
+msgstr "+@1 نقطة جوع"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:124
+msgid "Contact damage: @1 per second"
+msgstr "ضرر التلامس: @1 في الثانية"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:127
+msgid "Contact healing: @1 per second"
+msgstr "الشفاء عند التلامس: @1 في الثانية"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:132
+msgid "Drowning damage: @1"
+msgstr "ضرر الغرق: @1"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:137
+msgid "Fall damage: +@1%"
+msgstr "ضرر السقوط: +@1%"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:140
+msgid "No fall damage"
+msgstr "لا يتلقى ضرر السقوط"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:143
+msgid "Fall damage: @1%"
+msgstr "ضرر السقوط: @1%"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:150
+msgid "No jumping"
+msgstr "لا يمكنه القفز"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:153
+msgid "No swimming upwards"
+msgstr "لا يمكنه السباحة إلى الأعلى"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:156
+msgid "No rising"
+msgstr "لا يرتفع"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:162
+msgid "Climbable (only downwards)"
+msgstr "قابل للتسلق إلى الأسفل فقط"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:165
+msgid "Climbable"
+msgstr "قابل للتسلق"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:170
+msgid "Slippery"
+msgstr "زلق"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:175
+msgid "Bouncy (@1%)"
+msgstr "ارتدادي (@1%)"
+
+#: mods/HELP/mcl_tt/snippets_base.lua:182
+msgid "Luminance: @1"
+msgstr "شدة الإضاءة: @1"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:14
+msgid "Head armor"
+msgstr "درع الرأس"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:15
+msgid "Torso armor"
+msgstr "درع الجذع"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:16
+msgid "Legs armor"
+msgstr "درع الساقين"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:17
+msgid "Feet armor"
+msgstr "درع القدمين"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:21
+msgid "Armor points: @1"
+msgstr "نقاط الدرع: @1"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:38
+msgid "Armor durability: @1"
+msgstr "متانة الدرع: @1"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:47
+msgid "Protection: @1%"
+msgstr "الحماية: @1%"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:55
+msgid "Hunger points: +@1"
+msgstr "نقاط الجوع: +@1"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:61
+msgid "Saturation points: +@1"
+msgstr "نقاط التشبع: +@1"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:68
+msgid "Deals damage when falling"
+msgstr "يلحق الضرر عند السقوط"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:75
+msgid "Grows on grass blocks or dirt"
+msgstr "ينمو على كتل العشب أو التراب"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:77
+msgid "Grows on grass blocks, podzol, dirt or coarse dirt"
+msgstr "ينمو على كتل العشب أو البودزول أو التراب أو التراب الخشن"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:83
+msgid "Flammable"
+msgstr "قابل للاشتعال"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:89
+msgid "Zombie view range: -50%"
+msgstr "مدى رؤية الزومبي: ‎-50%"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:91
+msgid "Skeleton view range: -50%"
+msgstr "مدى رؤية الهيكل العظمي: ‎-50%"
+
+#: mods/HELP/mcl_tt/snippets_mcl.lua:93
+msgid "Creeper view range: -50%"
+msgstr "مدى رؤية الكريبر: ‎-50%"
