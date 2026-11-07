@@ -1,0 +1,52 @@
+# Arabic translation draft for Mineclonia component: mcl_monster_eggs
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_monster_eggs/locale/template.pot
+# Source template blob SHA: 018255e9c8f4f3cd6098f697fd95d52144f28514
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:14
+msgid "Hides a silverfish"
+msgstr "يُخفي سمكة فضية"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:15
+msgid ""
+"\t\t\tAn infested block is a block from which a silverfish will pop out when "
+"it is broken.\n"
+"\t\t\tIt looks identical to its normal counterpart.\n"
+"\t\t"
+msgstr "\t\t\tالكتلة المصابة هي كتلة تخرج منها سمكة فضية عند تكسيرها.\n\t\t\tوتبدو مطابقة تماماً للكتلة العادية المشابهة لها.\n\t\t"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:48
+msgid "Infested Stone"
+msgstr "حجر مصاب"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:49
+msgid "Infested Cobblestone"
+msgstr "حصى مرصوف مصاب"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:50
+msgid "Infested Stone Bricks"
+msgstr "طوب حجري مصاب"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:51
+msgid "Infested Cracked Stone Bricks"
+msgstr "طوب حجري متشقق مصاب"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:52
+msgid "Infested Mossy Stone Bricks"
+msgstr "طوب حجري مغطى بالطحالب مصاب"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:53
+msgid "Infested Chiseled Stone Bricks"
+msgstr "طوب حجري منحوت مصاب"
