@@ -704,7 +704,8 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 
 						const s32 glyph_x = static_cast<s32>((glyph_pen_x + shaped.x_offset + 32) / 64)
 								+ glyph->offset.X;
-						const s32 glyph_y = baseline - static_cast<s32>((shaped.y_offset + 32) / 64)
+						const s32 owner_baseline = base.Y + owner->font_metrics.ascender / 64;
+						const s32 glyph_y = owner_baseline - static_cast<s32>((shaped.y_offset + 32) / 64)
 								- glyph->offset.Y;
 						const core::recti glyph_rect(
 							core::position2di(glyph_x, glyph_y),
@@ -741,68 +742,6 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 
 	renderQueuedGlyphs(clip);
 }
-
-core::dimension2d<u32> CGUITTFont::getDimension(const wchar_t* text) const
-{
-	return getDimension(convertWCharToU32String(text));
-}
-
-core::dimension2d<u32> CGUITTFont::getDimension(const std::u32string& utext) const
-{
-	// Get the maximum font height.  Unfortunately, we have to do this hack as
-	// Irrlicht will draw things wrong.  In FreeType, the font size is the
-	// maximum size for a single glyph, but that glyph may hang "under" the
-	// draw line, increasing the total font height to beyond the set size.
-	// Irrlicht does not understand this concept when drawing fonts.  Also, I
-	// add +1 to give it a 1 pixel blank border.  This makes things like
-	// tooltips look nicer.
-	const u32 lineHeight = getLineHeight();
-
-	core::dimension2d<u32> text_dimension(0, lineHeight);
-	core::dimension2d<u32> line(0, lineHeight);
-
-	// The same logic is applied to `CGUITTFont::draw`
-	char32_t previousChar = 0;
-	for (size_t i = 0; i < utext.size(); ++i)
-	{
-		char32_t currentChar = utext[i];
-		bool lineBreak = false;
-		if (currentChar == U'\r') // Mac or Windows breaks
-		{
-			lineBreak = true;
-			// `std::u32string` is '\0'-terminated, thus this check is OK
-			if (utext[i + 1] == U'\n') // Windows line breaks.
-				currentChar = utext[++i];
-		}
-		else if (currentChar == U'\n') // Unix breaks
-		{
-			lineBreak = true;
-		}
-
-		// Check for linebreak.
-		if (lineBreak)
-		{
-			previousChar = 0;
-			text_dimension.Height += line.Height;
-			if (text_dimension.Width < line.Width)
-				text_dimension.Width = line.Width;
-			line.Width = 0;
-			line.Height = lineHeight;
-			continue;
-		}
-
-		// Kerning.
-		line.Width += getKerning(currentChar, previousChar).X;
-
-		previousChar = currentChar;
-		line.Width += getWidthFromCharacter(currentChar);
-	}
-	if (text_dimension.Width < line.Width)
-		text_dimension.Width = line.Width;
-
-	return text_dimension;
-}
-
 
 core::dimension2d<u32> CGUITTFont::getDimension(const wchar_t* text) const
 {
@@ -1150,6 +1089,29 @@ s32 CGUITTFont::getCharacterFromPos(const std::u32string& text, s32 pixel_x) con
 	const bool success = raqm_position_to_index(layout, pixel_x, 0, &index);
 	raqm_destroy(layout);
 	return success ? static_cast<s32>(index) : -1;
+}
+
+bool CGUITTFont::isRightToLeft(const wchar_t *text) const
+{
+	if (!text || !*text)
+		return false;
+
+	const std::u32string unicode = convertWCharToU32String(text);
+	size_t line_end = 0;
+	while (line_end < unicode.size() && !isTextLineBreak(unicode[line_end]))
+		++line_end;
+
+	const std::u32string paragraph = unicode.substr(0, line_end);
+	if (paragraph.empty())
+		return false;
+
+	raqm_t *layout = createLayout(paragraph);
+	if (!layout)
+		return false;
+
+	const bool rtl = raqm_get_par_resolved_direction(layout) == RAQM_DIRECTION_RTL;
+	raqm_destroy(layout);
+	return rtl;
 }
 
 
