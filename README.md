@@ -30,9 +30,17 @@ mods/<CATEGORY>/<MOD>/locale/<MOD>.ar.po
 5. لا نترجم أسماء الأوامر والمعرّفات والرموز البرمجية إلا إذا كانت نصوص عرض صريحة.
 6. أي نص غير مفهوم سياقياً يُعلَّم للمراجعة بدلاً من تخمين ترجمته.
 
-## التثبيت
+## حزمة التثبيت
 
-لن ننشر حزمة تثبيت نهائية قبل التحقق من آلية تحميل الترجمات في نسخة Mineclonia المستهدفة. راجع [SOURCE_VERSION.md](SOURCE_VERSION.md) و[PROGRESS.md](PROGRESS.md).
+<badge>Pre-release للتجربة</badge>
+
+- [تنزيل حزمة ملفات التشغيل](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/download/mineclonia-arabic-source-4ba113d1/Mineclonia-Arabic-TR-4ba113d1.zip)
+- [صفحة الإصدار وملاحظاته](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/tag/mineclonia-arabic-source-4ba113d1)
+- [ملف SHA-256](https://github.com/majd7772233-a11y/Mineclonia-Arabic/releases/download/mineclonia-arabic-source-4ba113d1/Mineclonia-Arabic-TR-4ba113d1.zip.sha256)
+
+الحزمة تحتوي 162 ملف تشغيل .ar.tr وملف PO واحداً لصيغ الجمع، مع دليل تثبيت وManifest. أغلق Luanti، ثم فك الأرشيف في مجلد Mineclonia الذي يحتوي على game.conf وادمج مجلد mods؛ لا تستبدل مجلد mods بالكامل ولا تستبدل ملفات Lua.
+
+الحزمة بُنيت من لقطة مصدر Mineclonia 0.123.0 المثبتة في SOURCE_VERSION.md. رقم release=39603 الذي أبلغت عنه لم يُطابق بعد مع شجرة المصدر، كما أن عرض العربية لم يُختبر داخل عميل Luanti فعلي. لذلك هذا Pre-release مرشح للتثبيت والاختبار، وليس اعتماداً upstream أو دمجاً في Weblate. راجع [SOURCE_VERSION.md](SOURCE_VERSION.md) و[PROGRESS.md](PROGRESS.md).
 
 ## المراجع
 
