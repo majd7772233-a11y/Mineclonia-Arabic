@@ -1,0 +1,124 @@
+# Arabic translation draft for Mineclonia component: mcl_pottery_sherds
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_pottery_sherds/locale/template.pot
+# Source template blob SHA: a1a521ebf70a8cdebf35c03de575144a02dea647
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_pottery_sherds/init.lua:49
+msgid "Used for crafting decorated pots"
+msgstr "تُستخدم في تصنيع الأواني المزخرفة"
+
+#: mods/ITEMS/mcl_pottery_sherds/init.lua:171
+msgid "Decorated Pot"
+msgstr "إناء مزخرف"
+
+#: mods/ITEMS/mcl_pottery_sherds/init.lua:172
+msgid "Pots are decorative blocks."
+msgstr "الأواني كتل زخرفية."
+
+#: mods/ITEMS/mcl_pottery_sherds/init.lua:173
+msgid "Specially decorated pots can be crafted using pottery sherds"
+msgstr "يمكن تصنيع أوانٍ مزخرفة بنقوش خاصة باستخدام الشظايا الفخارية."
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:1
+msgid "Angler Pottery Sherd"
+msgstr "شظية فخارية للصياد"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:2
+msgid "Archer Pottery Sherd"
+msgstr "شظية فخارية للرامي"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:3
+msgid "Arms Up Pottery Sherd"
+msgstr "شظية فخارية للأذرع المرفوعة"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:4
+msgid "Blade Pottery Sherd"
+msgstr "شظية فخارية للشفرة"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:5
+msgid "Brewer Pottery Sherd"
+msgstr "شظية فخارية لمحضّر الجرع"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:6
+msgid "Burn Pottery Sherd"
+msgstr "شظية فخارية للاحتراق"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:7
+msgid "Danger Pottery Sherd"
+msgstr "شظية فخارية للخطر"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:8
+msgid "Explorer Pottery Sherd"
+msgstr "شظية فخارية للمستكشف"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:9
+msgid "Flow Pottery Sherd"
+msgstr "شظية فخارية للتدفق"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:10
+msgid "Friend Pottery Sherd"
+msgstr "شظية فخارية للصديق"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:11
+msgid "Guster Pottery Sherd"
+msgstr "شظية فخارية لدوامة الرياح"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:12
+msgid "Heart Pottery Sherd"
+msgstr "شظية فخارية للقلب"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:13
+msgid "Heartbreak Pottery Sherd"
+msgstr "شظية فخارية للقلب المكسور"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:14
+msgid "Howl Pottery Sherd"
+msgstr "شظية فخارية للعواء"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:15
+msgid "Miner Pottery Sherd"
+msgstr "شظية فخارية لعامل المنجم"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:16
+msgid "Mourner Pottery Sherd"
+msgstr "شظية فخارية للنائح"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:17
+msgid "Plenty Pottery Sherd"
+msgstr "شظية فخارية للوفرة"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:18
+msgid "Prize Pottery Sherd"
+msgstr "شظية فخارية للجائزة"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:19
+msgid "Scrape Pottery Sherd"
+msgstr "شظية فخارية للكشط"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:20
+msgid "Sheaf Pottery Sherd"
+msgstr "شظية فخارية لحزمة القمح"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:21
+msgid "Shelter Pottery Sherd"
+msgstr "شظية فخارية للمأوى"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:22
+msgid "Skull Pottery Sherd"
+msgstr "شظية فخارية للجمجمة"
+
+#: mods/ITEMS/mcl_pottery_sherds/mcl_pottery_sherds_translations_tmp.lua:23
+msgid "Snort Pottery Sherd"
+msgstr "شظية فخارية للشخير"
