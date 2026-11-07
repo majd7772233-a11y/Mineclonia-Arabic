@@ -27,6 +27,12 @@ msgstr "لا ينجح ظهوره إلا على كتل الطين."
 msgid "Bat"
 msgstr "خفاش"
 
+#: mods/ENTITIES/mobs_mc/bat.lua:204
+msgid ""
+"Spawning will only be successful between light levels of 0 and 3 at most "
+"times of the year, or 0 and 6 between 20 October and 3 November."
+msgstr "لا ينجح ظهور الخفاش إلا عندما يكون مستوى الإضاءة بين 0 و3 في معظم أوقات السنة، أو بين 0 و6 خلال الفترة من 20 أكتوبر إلى 3 نوفمبر."
+
 #. ~jordan4ibanez
 #. blaze.lua partial copy of mobs_mc/ghast.lua
 #. ###################
@@ -43,6 +49,13 @@ msgstr "دجاجة"
 #: mods/ENTITIES/mobs_mc/cod.lua:14 mods/ENTITIES/mobs_mc/cod.lua:104
 msgid "Cod"
 msgstr "سمك القد"
+
+#: mods/ENTITIES/mobs_mc/cod.lua:129 mods/ENTITIES/mobs_mc/salmon.lua:124
+#: mods/ENTITIES/mobs_mc/tropical_fish.lua:220
+msgid ""
+"Each mob spawned will form a school with the remainder of the mobs in the "
+"group."
+msgstr "تكوّن كل سمكة تظهر سرباً مع بقية الأسماك في المجموعة."
 
 #: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:7
 #: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:228
@@ -105,6 +118,12 @@ msgstr "كرة غاست النارية"
 #: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:456
 msgid "Guardian"
 msgstr "حارس"
+
+#: mods/ENTITIES/mobs_mc/guardian.lua:417
+msgid ""
+"Guardians spawn less frequently in regions of the ocean which are exposed to "
+"the sky at the surface."
+msgstr "تظهر الحراس بوتيرة أقل في مناطق المحيط المكشوفة للسماء عند السطح."
 
 #: mods/ENTITIES/mobs_mc/guardian_elder.lua:11
 #: mods/ENTITIES/mobs_mc/guardian_elder.lua:130
@@ -188,6 +207,13 @@ msgstr "أسيلوت"
 #: mods/ENTITIES/mobs_mc/ocelot.lua:437 mods/ENTITIES/mobs_mc/ocelot.lua:1086
 msgid "Cat"
 msgstr "قطة"
+
+#: mods/ENTITIES/mobs_mc/ocelot.lua:1138
+msgid ""
+"This mob will spawn infrequently on grass or leaves when no obstructions "
+"exist within a volume @1 nodes in size around the center of such a node's "
+"upper surface."
+msgstr "يظهر هذا الكائن نادراً على العشب أو الأوراق، بشرط عدم وجود عوائق ضمن حيز حجمه @1 كتلة حول مركز السطح العلوي للكتلة المعنية."
 
 #: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:352
 msgid "Parrot"
@@ -323,6 +349,27 @@ msgstr "غولم ثلجي"
 msgid "on grass nodes"
 msgstr "على عقد العشب"
 
+#: mods/ENTITIES/mobs_mc/spawning.lua:161
+msgid ""
+"This mob will spawn infrequently @1 with a surface occupying a full node "
+"when no obstructions exist within a volume @2 nodes in size around the "
+"center of such a node's upper surface, in light levels of 8 or greater."
+msgstr "يظهر هذا الكائن نادراً عند الموضع @1 على سطح يشغل كتلة كاملة، بشرط عدم وجود عوائق ضمن حيز حجمه @2 كتلة حول مركز السطح العلوي لتلك الكتلة، ومع مستوى إضاءة لا يقل عن 8."
+
+#: mods/ENTITIES/mobs_mc/spawning.lua:214
+msgid ""
+"This mob will spawn between sea level and Y level -12 when the nodes above "
+"and below are water and no obstructions exist within a volume @1 nodes in "
+"size around the center of the base of the fluid node where spawning is being "
+"attempted."
+msgstr "يظهر هذا الكائن بين مستوى سطح البحر والارتفاع Y=-12 عندما تكون الكتل الموجودة أعلاه وأسفله ماءً، ولا توجد عوائق ضمن حيز حجمه @1 كتلة حول مركز قاعدة كتلة السائل التي تجري محاولة الظهور فيها."
+
+#: mods/ENTITIES/mobs_mc/spawning.lua:264
+msgid ""
+"Spawning will only succeed in the absence of artificial lighting and if the "
+"natural light is @1 or dimmer."
+msgstr "لا ينجح الظهور إلا في غياب الإضاءة الاصطناعية، وعندما يكون مستوى الإضاءة الطبيعية @1 أو أقل."
+
 #: mods/ENTITIES/mobs_mc/spawning.lua:266
 msgid "Spawning will only succeed between artificial light levels of 0 and @1."
 msgstr "لا ينجح الظهور إلا عندما يكون مستوى الإضاءة الاصطناعية بين 0 و@1."
@@ -330,6 +377,12 @@ msgstr "لا ينجح الظهور إلا عندما يكون مستوى الإ�
 #: mods/ENTITIES/mobs_mc/spawning.lua:268
 msgid "Spawning will only succeed between natural light levels of 0 and @1."
 msgstr "لا ينجح الظهور إلا عندما يكون مستوى الإضاءة الطبيعية بين 0 و@1."
+
+#: mods/ENTITIES/mobs_mc/spawning.lua:270
+msgid ""
+"Spawning will only succeed between artificial light levels of 0 and @1, and "
+"natural light levels of 0 and @2."
+msgstr "لا ينجح الظهور إلا عندما يكون مستوى الإضاءة الاصطناعية بين 0 و@1، ومستوى الإضاءة الطبيعية بين 0 و@2."
 
 #: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:371
 msgid "Spider"
