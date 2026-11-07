@@ -248,18 +248,19 @@ def main() -> None:
 
         po_ids = [entry.msgid for entry in entries]
         pot_ids = [entry.msgid for entry in source_entries]
-        if Counter(po_ids) != Counter(pot_ids):
-            missing = list((Counter(pot_ids) - Counter(po_ids)).elements())[:5]
-            extra = list((Counter(po_ids) - Counter(pot_ids)).elements())[:5]
-            fail(f"{rel}: PO differs from pinned POT; missing={missing!r}; extra={extra!r}")
-
         domain, template_ids = parse_template_txt(txt_path)
-        if Counter(template_ids) != Counter(pot_ids):
-            missing = list((Counter(template_ids) - Counter(pot_ids)).elements())[:5]
-            extra = list((Counter(pot_ids) - Counter(template_ids)).elements())[:5]
+        template_counter = Counter(template_ids)
+        po_counter = Counter(po_ids)
+        pot_counter = Counter(pot_ids)
+        if pot_counter - template_counter:
+            missing_from_runtime = list((pot_counter - template_counter).elements())[:5]
+            fail(f"{rel}: POT contains keys absent from runtime template.txt: {missing_from_runtime!r}")
+        if po_counter != template_counter:
+            missing = list((template_counter - po_counter).elements())[:5]
+            extra = list((po_counter - template_counter).elements())[:5]
             fail(
-                f"{rel}: template.txt does not match POT; "
-                f"untranslated/computed={missing!r}; absent-from-template={extra!r}"
+                f"{rel}: PO does not cover the complete runtime template.txt; "
+                f"missing={missing!r}; extra={extra!r}"
             )
         previous = seen_domains.get(domain)
         if previous and previous != str(rel.parent):
@@ -298,14 +299,14 @@ def main() -> None:
     # Official Mineclonia workflow: PO files live in locale/poconvert; MTT
     # writes the runtime .tr files into each locale directory.
     run_checked(
-        [sys.executable, str(args.mtt_convert.resolve()), "--po2tr", "-r"],
-        cwd=stage_mods,
-        description="mtt_convert.py --po2tr -r",
+        [sys.executable, str(args.mtt_convert.resolve()), str(stage_mods), "--po2tr", "-r"],
+        cwd=stage_mods.parent,
+        description="ltt_convert.py <mods> --po2tr -r",
     )
     run_checked(
-        [sys.executable, str(args.mtt_check.resolve()), "-r"],
-        cwd=stage_mods,
-        description="mtt_check.py -r",
+        [sys.executable, str(args.mtt_check.resolve()), str(stage_mods)],
+        cwd=stage_mods.parent,
+        description="ltt_check.py <mods>",
     )
 
     tr_files = sorted(stage_mods.rglob("*.ar.tr"))
@@ -416,8 +417,8 @@ def main() -> None:
         "po_files": len(po_files),
         "tr_files": len(tr_files),
         "translated_messages": total_messages,
-        "conversion": "Wuzzy Minetest Translation Tools: mtt_convert.py --po2tr -r",
-        "validation": "Wuzzy Minetest Translation Tools: mtt_check.py -r",
+        "conversion": "Wuzzy Luanti Translation Tools: ltt_convert.py <mods> --po2tr -r",
+        "validation": "Wuzzy Luanti Translation Tools: ltt_check.py <mods>",
         "runtime_tested": False,
         "official_weblate_merged": False,
         "modules": per_module,
