@@ -48,3 +48,7 @@ msgstr "درج طوب الطين"
 #: mods/ITEMS/mcl_mud/init.lua:51
 msgid "Mud Brick Slab"
 msgstr "بلاطة طوب الطين"
+
+#: mods/ITEMS/mcl_mud/init.lua:56
+msgid "Mud Brick Wall"
+msgstr "جدار طوب الطين"
