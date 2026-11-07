@@ -108,3 +108,22 @@
 | `mods/ITEMS/mcl_banners/locale/template.pot` | `7971c5e32031991dbed11e2a243808e0a7fe313d` |
 | `mods/HELP/mcl_doc_basics/locale/template.pot` | `9889343a0dcc3d4e1e63e070e65151855bd58e6b` |
 
+
+## قوالب دفعة المساعدة والبيئات والكتل والكائنات والنباتات — 2026-11-07
+
+- مرآة المصدر: https://github.com/ZenonSeth/mineclonia-mirror
+- commit المصدر: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/HELP/doc/doc_items/locale/template.pot` | `ad8e9a88fdc3fafcf58e56ba8149337a6fe42ca8` |
+| `mods/HELP/mcl_doc/locale/template.pot` | `0109e39e1a994671f61237adf3b5fed2eb87de3f` |
+| `mods/ITEMS/mcl_nether/locale/template.pot` | `7dfc78087f3578e692eda4dc153951aa4c4b6949` |
+| `mods/ITEMS/mcl_ocean/locale/template.pot` | `edf05185b1cb291a3514f5986cdbdfb1e5786190` |
+| `mods/ITEMS/mcl_deepslate/locale/template.pot` | `f1d6d193db85398cfb854541ea6e6812702cb772` |
+| `mods/ITEMS/mcl_crimson/locale/template.pot` | `80f4ad16eb01b6d99f3a9fd90b724c559b6c5bee` |
+| `mods/ENTITIES/mcl_minecarts/locale/template.pot` | `0b014fa1cfefc80236d267b0a04cc6959f310536` |
+| `mods/ITEMS/mcl_chests/locale/template.pot` | `cc9c7d149e2df9309e5f886b939585f8f0e1a19b` |
+| `mods/ITEMS/mcl_buckets/locale/template.pot` | `a2d1b49847a0aa694033a8b29b8ac840dfd19797` |
+| `mods/ITEMS/mcl_flowers/locale/template.pot` | `73d02eed6fc3cbe7afaa29fcc548b5cda52987eb` |
+
