@@ -169,3 +169,29 @@
 | `mods/ITEMS/mcl_walls/locale/template.pot` | `5d5ac42623e022dfa0eee50f680f0e67912a6698` |
 | `mods/ENTITIES/mcl_boats/locale/template.pot` | `f51a9756a8859241f6aa90aa5a7874fa9531b8ba` |
 | `mods/HELP/doc/doc_identifier/locale/template.pot` | `d0e4bdf2edb61025fdeda1e291fbcbdaa6c23bc3` |
+
+## قوالب دفعة تحديد المواقع والإسفنج وريدستون والآلات واللافتات — 2026-11-07
+
+- مرآة المصدر: https://github.com/ZenonSeth/mineclonia-mirror
+- commit المصدر: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/MAPGEN/mcl_biome_dispatch/locale/template.pot` | `15e7144390b9f589b85e7475eeb9d942e0a6922f` |
+| `mods/ITEMS/mcl_throwing/locale/template.pot` | `0f7102bd61e24177e02f7b8f074c3bb16b4a288e` |
+| `mods/ITEMS/mcl_sponges/locale/template.pot` | `fb80e2066498ea9f424fb3d7ec0b705ac8ee14cf` |
+| `mods/HELP/doc/doc/locale/template.pot` | `4637eb896b7b6307145c6f5b74209883b8092125` |
+| `mods/ITEMS/REDSTONE/mcl_comparators/locale/template.pot` | `adfea839a5d30a06e230a9a19471fdf1bb4d2409` |
+| `mods/ITEMS/mcl_itemframes/locale/template.pot` | `9fa485ba480e06faa3d06e6933f3a25f4dd537de` |
+| `mods/ITEMS/mcl_jukebox/locale/template.pot` | `0284e77afd840b162c7e7b70f6936c659bb5c4a4` |
+| `mods/ITEMS/mcl_blast_furnace/locale/template.pot` | `e601d235549a8b1c4c50acbe79872bbbbd8b1c54` |
+| `mods/ITEMS/mcl_composters/locale/template.pot` | `8cbbd561566ba966b791a2120b0b592d69b1eb0c` |
+| `mods/ITEMS/mcl_tnt/locale/template.pot` | `9d7036564d55335f5aefd89fcc23076adc571b21` |
+| `mods/ITEMS/REDSTONE/mcl_pressureplates/locale/template.pot` | `4c64a75f335d14ce21f14097aa5bc671c443ddc0` |
+| `mods/ITEMS/REDSTONE/mcl_noteblock/locale/template.pot` | `075540b4b2df34645994fc37c6b986c25c2d55c8` |
+| `mods/ITEMS/mcl_smoker/locale/template.pot` | `e9f69a58e41c12a925ad166fa063f8ca2f19c8f7` |
+| `mods/ITEMS/REDSTONE/mcl_repeaters/locale/template.pot` | `1cf4df605a86641b88a16e634d4ca8eeddfea285` |
+| `mods/ITEMS/mcl_lightning_rods/locale/template.pot` | `93bd7e6869cff3af2726b7c637d5e29c15dbdeba` |
+| `mods/ITEMS/mcl_stairs/locale/template.pot` | `f1cbe4c643e1f0b5235a808484e69efb7093243c` |
+| `mods/ITEMS/mcl_signs/locale/template.pot` | `1ec03f4f56e3f9a4be5b129abd53a0f9de26b55d` |
+
