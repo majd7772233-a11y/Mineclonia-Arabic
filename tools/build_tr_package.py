@@ -97,7 +97,7 @@ def parse_tr_file(path: Path) -> dict[str, str]:
     # The TR grammar allows @ followed by a physical newline as a newline
     # escape. Replace it with a sentinel before processing physical lines.
     raw = path.read_text(encoding="utf-8-sig")
-    raw = raw.replace("@\\r\\n", "\\u0000").replace("@\\n", "\\u0000")
+    raw = raw.replace("@\r\n", "\u0000").replace("@\n", "\u0000")
     records: dict[str, str] = {}
     for line_no, line in enumerate(raw.splitlines(), 1):
         if not line or line.startswith("#"):
@@ -117,8 +117,8 @@ def decode_tr_value(raw: str, where: str) -> str:
     i = 0
     while i < len(raw):
         char = raw[i]
-        if char == "\\u0000":
-            result.append("\\n")
+        if char == "\u0000":
+            result.append("\n")
             i += 1
             continue
         if char != "@":
@@ -136,7 +136,7 @@ def decode_tr_value(raw: str, where: str) -> str:
             result.append("\\n")
         elif nxt in "123456789":
             result.append("@" + nxt)
-        elif nxt == "\\u0000":
+        elif nxt == "\u0000":
             result.append("\\n")
         else:
             fail(f"{where}: unsupported TR escape @{nxt}")
