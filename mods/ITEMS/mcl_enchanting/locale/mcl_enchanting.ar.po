@@ -422,3 +422,10 @@ msgstr "بعد اختيار التعويذة، انقر بزر الفأرة ال
 msgid "Enchant"
 msgstr "سحر"
 
+
+
+msgid "Sweeping Edge"
+msgstr "الحافة الكانسة"
+
+msgid "Increases sweeping attack damage."
+msgstr "تزيد ضرر الهجوم الكاسح."
