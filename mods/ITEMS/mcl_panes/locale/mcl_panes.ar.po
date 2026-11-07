@@ -1,0 +1,48 @@
+# Arabic translation draft for Mineclonia component: mcl_panes
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_panes/locale/template.pot
+# Source template blob SHA: 9885aef9b4f286a2aa6d67c9d1ec5b848b02f887
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_panes/init.lua:211
+msgid ""
+"Glass panes are thin layers of glass which neatly connect to their neighbors "
+"as you build them."
+msgstr "الألواح الزجاجية طبقات رقيقة من الزجاج تتصل بسلاسة بالألواح المجاورة عند بنائها."
+
+#: mods/ITEMS/mcl_panes/init.lua:216
+msgid ""
+"Stained glass panes are thin layers of stained glass which neatly connect to "
+"their neighbors as you build them. They come in many different colors."
+msgstr "ألواح الزجاج الملون طبقات رقيقة من الزجاج الملون تتصل بسلاسة بالألواح المجاورة عند بنائها، وتتوفر بألوان عديدة."
+
+#: mods/ITEMS/mcl_panes/init.lua:217
+msgid "Stained Glass Pane"
+msgstr "لوح زجاج ملون"
+
+#: mods/ITEMS/mcl_panes/init.lua:249
+msgid "Iron Bars"
+msgstr "قضبان حديدية"
+
+#: mods/ITEMS/mcl_panes/init.lua:250
+msgid "Iron bars neatly connect to their neighbors as you build them."
+msgstr "تتصل القضبان الحديدية بسلاسة بالقضبان المجاورة عند بنائها."
+
+#: mods/ITEMS/mcl_panes/init.lua:264
+msgid "Glass Pane"
+msgstr "لوح زجاجي"
+
+#: mods/ITEMS/mcl_panes/mcl_panes_translations_tmp.lua:1
+msgid "@1 Glass Pane"
+msgstr "لوح زجاجي بلون @1"
