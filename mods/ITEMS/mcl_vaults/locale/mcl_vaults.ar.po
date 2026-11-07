@@ -1,0 +1,42 @@
+# Arabic translation draft for Mineclonia component: mcl_vaults
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_vaults/locale/template.pot
+# Source template blob SHA: 1ecf64e5c580a60365291c807fb1ae1acd2849ba
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_vaults/api.lua:73
+msgid "Vault"
+msgstr "خزنة"
+
+#: mods/ITEMS/mcl_vaults/api.lua:74
+msgid "Ejects loot when opened with the key"
+msgstr "تُخرج الغنائم عند فتحها بالمفتاح"
+
+#: mods/ITEMS/mcl_vaults/api.lua:75 mods/ITEMS/mcl_vaults/api.lua:76
+msgid ""
+"A vault ejects loot when opened with the right key. It can only be opened "
+"once by each player."
+msgstr "تُخرج الخزنة الغنائم عند فتحها بالمفتاح الصحيح. ولا يمكن لكل لاعب فتحها إلا مرة واحدة."
+
+#: mods/ITEMS/mcl_vaults/init.lua:35
+msgid "Trial Key"
+msgstr "مفتاح التجربة"
+
+#: mods/ITEMS/mcl_vaults/init.lua:118
+msgid "Ominous Trial Key"
+msgstr "مفتاح التجربة المشؤومة"
+
+#: mods/ITEMS/mcl_vaults/init.lua:122
+msgid "Ominous Vault"
+msgstr "خزنة مشؤومة"
