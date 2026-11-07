@@ -1,0 +1,36 @@
+# Arabic translation draft for Mineclonia component: mcl_clock
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_clock/locale/template.pot
+# Source template blob SHA: 57c9c06c51dd5bbb0baa7cca89a6e490f55e7a0b
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_clock/init.lua:68
+msgid "Clock"
+msgstr "ساعة"
+
+#: mods/ITEMS/mcl_clock/init.lua:69
+msgid "Displays the time of day in the Overworld"
+msgstr "تعرض وقت اليوم في العالم العلوي"
+
+#: mods/ITEMS/mcl_clock/init.lua:70
+msgid "Clocks are tools which shows the current time of day in the Overworld."
+msgstr "الساعات أدوات تعرض وقت اليوم الحالي في العالم العلوي."
+
+#: mods/ITEMS/mcl_clock/init.lua:71
+msgid ""
+"The clock contains a rotating disc with a sun symbol (yellow disc) and moon "
+"symbol and a little “pointer” which shows the current time of day by "
+"estimating the real position of the sun and the moon in the sky. Noon is "
+"represented by the sun symbol and midnight is represented by the moon symbol."
+msgstr "تحتوي الساعة على قرص دوّار يحمل رمز الشمس (قرص أصفر) ورمز القمر، مع «مؤشر» صغير يوضح وقت اليوم الحالي من خلال تقدير الموقع الفعلي للشمس والقمر في السماء. يُمثّل الظهر برمز الشمس، ومنتصف الليل برمز القمر."
