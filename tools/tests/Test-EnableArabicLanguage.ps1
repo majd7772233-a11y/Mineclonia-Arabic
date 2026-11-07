@@ -1,5 +1,5 @@
-﻿# This test exercises the real Windows PowerShell 5.1 helper against
-# a fixture matching Luanti 5.17.0's on-disk structure and language files.
+# Exercise the Windows PowerShell 5.1 installer against Luanti 5.17.0's
+# real folder layout and the exact language enum / option_labels structure.
 $ErrorActionPreference = "Stop"
 
 $helper = Join-Path (Split-Path -Parent $PSScriptRoot) "ENABLE_ARABIC_LANGUAGE.ps1"
@@ -14,7 +14,7 @@ if (!(Test-Path -LiteralPath $powerShell -PathType Leaf)) {
 
 $testRoot = Join-Path $env:TEMP ("Mineclonia Arabic Language Patch Test " + [guid]::NewGuid().ToString("N"))
 
-function New-LuantiFixture([string]$Name, [string]$EnumLine, [bool]$ArabicAlreadyEnabled) {
+function New-LuantiFixture([string]$Name, [string]$EnumLine, [string]$ArabicEntry) {
     $root = Join-Path $testRoot $Name
     $builtin = Join-Path $root "builtin"
     $settings = Join-Path $builtin "common\settings"
@@ -31,17 +31,12 @@ $EnumLine
 "@
     [IO.File]::WriteAllText((Join-Path $builtin "settingtypes.txt"), $settingText, [Text.UTF8Encoding]::new($false))
 
-    if ($ArabicAlreadyEnabled) {
-        $arabicLine = '        ar = "العربية [ar]",'
-    } else {
-        $arabicLine = '        --ar = " [ar]", blacklisted'
-    }
-
     $dialogText = @"
 -- Luanti 5.17.0 language labels from builtin/common/settings/dlg_settings.lua
 get_setting_info("language").option_labels = {
         [""] = fgettext_ne("(Use system language)"),
-$arabicLine
+$ArabicEntry
+        be = "Беларуская [be]",
         en = "English [en]",
         tr = "Türkçe [tr]",
 }
@@ -51,6 +46,7 @@ $arabicLine
     return [pscustomobject]@{
         Root = $root
         Builtin = $builtin
+        Bin = $bin
         SettingPath = Join-Path $builtin "settingtypes.txt"
         DialogPath = Join-Path $settings "dlg_settings.lua"
     }
@@ -78,12 +74,13 @@ function Assert-ArabicIsSecondOption($Fixture) {
     if ($arabicCount -ne 1 -or $parts.Count -lt 2 -or
         -not [string]::IsNullOrWhiteSpace($parts[0]) -or
         $parts[1].Trim() -ne "ar") {
-        throw "Expected empty system-language option first and ar second, got: $values"
+        throw "Expected the empty system-language option first and ar second, got: $values"
     }
 
     $dialog = [IO.File]::ReadAllText($Fixture.DialogPath)
-    if ($dialog -notmatch '(?m)^[ \t]*ar[ \t]*=[ \t]*"العربية \[ar\]"[ \t]*,[ \t]*$') {
-        throw "Arabic label is not active in dlg_settings.lua."
+    $activeArabicCount = [regex]::Matches($dialog, '(?m)^[ \t]*ar[ \t]*=[ \t]*"العربية \[ar\]"[ \t]*,[ \t]*$').Count
+    if ($activeArabicCount -ne 1) {
+        throw "Expected exactly one active Arabic label, found $activeArabicCount."
     }
     if ($dialog -match '(?m)^[ \t]*--[ \t]*ar[ \t]*=') {
         throw "The Arabic language label is still commented out."
@@ -93,27 +90,36 @@ function Assert-ArabicIsSecondOption($Fixture) {
 try {
     New-Item -ItemType Directory -Path $testRoot -Force | Out-Null
 
-    # Case 1: the user selects the installation root (the first reported path).
-    $rootFixture = New-LuantiFixture "Install Root With Spaces" "language (Language) enum   ,be,bg,ca,en,tr" $false
-    $output = Invoke-Helper $rootFixture.Root
+    # Exact Luanti 5.17.0 state: root selected, Arabic commented as blacklisted.
+    $rootFixture = New-LuantiFixture "Install Root With Spaces" "language (Language) enum   ,be,bg,ca,cs,da,de,el,en,eo,es,et,eu,fi,fr,gd,gl,hu,id,it,ja,jbo,kk,ko,lt,lv,ms,nb,nl,nn,pl,pt,pt_BR,ro,ru,sk,sl,sr_Cyrl,sr_Latn,sv,sw,tr,uk,vi,zh_CN,zh_TW" '        --ar = " [ar]", blacklisted'
+    [void](Invoke-Helper $rootFixture.Root)
     Assert-ArabicIsSecondOption $rootFixture
 
-    # Case 2: the user selects the builtin directory itself (the second reported path).
-    $builtinFixture = New-LuantiFixture "Builtin Folder Selection" "language (Language) enum   ,be,bg,en,tr" $false
-    $output = Invoke-Helper $builtinFixture.Builtin
+    # Selecting ...\builtin must resolve to its parent installation root.
+    $builtinFixture = New-LuantiFixture "Builtin Folder Selection" "language (Language) enum   ,be,bg,en,tr" '        --ar = " [ar]", blacklisted'
+    [void](Invoke-Helper $builtinFixture.Builtin)
     Assert-ArabicIsSecondOption $builtinFixture
 
-    # Case 3: repair the exact malformed ordering left by the previous helper:
-    # ar, [empty system-language item], be, ...; the label may already be active.
-    $partialFixture = New-LuantiFixture "Repair Previous Partial Attempt" "language (Language) enum   ,arbe,bg,en,tr" $true
-    $output = Invoke-Helper $partialFixture.Root
+    # Selecting ...\bin must also resolve to the installation root.
+    $binFixture = New-LuantiFixture "Bin Folder Selection" "language (Language) enum   ,be,bg,en,tr" '        --ar = " [ar]", blacklisted'
+    [void](Invoke-Helper $binFixture.Bin)
+    Assert-ArabicIsSecondOption $binFixture
+
+    # Repair the old malformed enum token "arbe" and keep an already-active label.
+    $partialFixture = New-LuantiFixture "Repair Previous Partial Attempt" "language (Language) enum   ,arbe,bg,en,tr" '        ar = "العربية [ar]",'
+    [void](Invoke-Helper $partialFixture.Root)
     Assert-ArabicIsSecondOption $partialFixture
 
-    # Case 4: idempotency. Running again must succeed without adding duplicates.
-    $secondRun = Invoke-Helper $rootFixture.Root
+    # Insert Arabic when the source table has no Arabic row at all.
+    $missingFixture = New-LuantiFixture "Missing Arabic Row" "language (Language) enum   ,be,bg,en,tr" '        de = "Deutsch [de]",'
+    [void](Invoke-Helper $missingFixture.Root)
+    Assert-ArabicIsSecondOption $missingFixture
+
+    # Idempotency: a second run must not add duplicate enum values or labels.
+    [void](Invoke-Helper $rootFixture.Root)
     Assert-ArabicIsSecondOption $rootFixture
 
-    Write-Host "PASS: Luanti 5.17.0 helper tests succeeded (root selection, builtin selection, previous partial repair, idempotency)." -ForegroundColor Green
+    Write-Host "PASS: Luanti 5.17.0 helper tests succeeded (root, builtin, bin, malformed enum repair, absent Arabic row, and idempotency)." -ForegroundColor Green
 }
 finally {
     if (Test-Path -LiteralPath $testRoot) {
