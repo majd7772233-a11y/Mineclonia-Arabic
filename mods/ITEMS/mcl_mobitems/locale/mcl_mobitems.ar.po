@@ -1,0 +1,479 @@
+# Arabic translation for Mineclonia component mcl_mobitems
+# Source mirror: ZenonSeth/mineclonia-mirror
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_mobitems/locale/template.pot
+# Source template blob SHA: 428b3f6b37d6724e789f9d79951259562c2d3262
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 12:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:5
+msgid "Rotten Flesh"
+msgstr "لحم متعفن"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:6
+msgid "80% chance of food poisoning"
+msgstr "احتمال التسمم الغذائي بنسبة 80%"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:7
+msgid ""
+"Yuck! This piece of flesh clearly has seen better days. If you're really "
+"desperate, you can eat it to restore a few hunger points, but there's a 80% "
+"chance it causes food poisoning, which increases your hunger for a while."
+msgstr "يا للقرف! من الواضح أن قطعة اللحم هذه لم تعد بحالة جيدة. إذا كنت في حاجة ماسة للطعام، يمكنك تناولها لاستعادة بعض نقاط الجوع، لكن هناك احتمالاً بنسبة 80% أن تسبب تسمماً غذائياً يزيد شعورك بالجوع لبعض الوقت."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:20
+msgid "Raw Mutton"
+msgstr "لحم ضأن نيئ"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:21
+msgid ""
+"Raw mutton is the flesh from a sheep and can be eaten safely. Cooking it "
+"will greatly increase its nutritional value."
+msgstr "اللحم الضأن النيئ هو لحم الخروف ويمكن تناوله بأمان. ويؤدي طهيه إلى زيادة قيمته الغذائية كثيراً."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:30
+msgid "Cooked Mutton"
+msgstr "لحم ضأن مطهو"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:31
+msgid "Cooked mutton is the cooked flesh from a sheep and is used as food."
+msgstr "اللحم الضأن المطهو هو لحم خروف مطبوخ ويُستخدم طعاماً."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:39
+msgid "Raw Beef"
+msgstr "لحم بقري نيئ"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:40
+msgid ""
+"Raw beef is the flesh from cows and can be eaten safely. Cooking it will "
+"greatly increase its nutritional value."
+msgstr "اللحم البقري النيئ هو لحم الأبقار ويمكن تناوله بأمان. ويؤدي طهيه إلى زيادة قيمته الغذائية كثيراً."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:49
+msgid "Steak"
+msgstr "شريحة لحم"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:50
+msgid "Steak is cooked beef from cows and can be eaten."
+msgstr "شريحة اللحم هي لحم بقري مطهو ويمكن تناولها."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:58
+msgid "Raw Chicken"
+msgstr "دجاج نيئ"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:59
+msgid "30% chance of food poisoning"
+msgstr "احتمال التسمم الغذائي بنسبة 30%"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:60
+msgid ""
+"Raw chicken is a food item which is not safe to consume. You can eat it to "
+"restore a few hunger points, but there's a 30% chance to suffer from food "
+"poisoning, which increases your hunger rate for a while. Cooking raw chicken "
+"will make it safe to eat and increases its nutritional value."
+msgstr "الدجاج النيئ طعام غير آمن للتناول. يمكنك أكله لاستعادة بعض نقاط الجوع، لكن هناك احتمالاً بنسبة 30% للإصابة بتسمم غذائي يزيد معدل شعورك بالجوع لبعض الوقت. ويجعل طهي الدجاج النيئ تناوله آمناً ويزيد قيمته الغذائية."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:74
+msgid "Cooked Chicken"
+msgstr "دجاج مطهو"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:75
+msgid "A cooked chicken is a healthy food item which can be eaten."
+msgstr "الدجاج المطهو طعام صحي يمكن تناوله."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:83
+msgid "Raw Porkchop"
+msgstr "قطعة لحم خنزير نيئة"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:84
+msgid ""
+"A raw porkchop is the flesh from a pig and can be eaten safely. Cooking it "
+"will greatly increase its nutritional value."
+msgstr "قطعة لحم الخنزير النيئة هي لحم خنزير ويمكن تناولها بأمان. ويؤدي طهيها إلى زيادة قيمتها الغذائية كثيراً."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:93
+msgid "Cooked Porkchop"
+msgstr "قطعة لحم خنزير مطهوة"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:94
+msgid "Cooked porkchop is the cooked flesh of a pig and is used as food."
+msgstr "قطعة لحم الخنزير المطهوة هي لحم خنزير مطبوخ وتُستخدم طعاماً."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:102
+msgid "Raw Rabbit"
+msgstr "لحم أرنب نيئ"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:103
+msgid ""
+"Raw rabbit is a food item from a dead rabbit. It can be eaten safely. "
+"Cooking it will increase its nutritional value."
+msgstr "لحم الأرنب النيئ طعام مأخوذ من أرنب ميت، ويمكن تناوله بأمان. ويؤدي طهيه إلى زيادة قيمته الغذائية."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:112
+msgid "Cooked Rabbit"
+msgstr "لحم أرنب مطهو"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:113
+msgid "This is a food item which can be eaten."
+msgstr "هذا طعام يمكن تناوله."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:121
+msgid "Milk"
+msgstr "حليب"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:122
+msgid "Removes all status effects"
+msgstr "يزيل جميع التأثيرات"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:123
+msgid ""
+"Milk is very refreshing and can be obtained by using a bucket on a cow. "
+"Drinking it will remove all status effects, but restores no hunger points."
+msgstr "الحليب منعش جداً ويمكن الحصول عليه باستخدام دلو على بقرة. يؤدي شربه إلى إزالة جميع التأثيرات، لكنه لا يستعيد أي نقاط جوع."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:124
+msgid "Use the placement key to drink the milk."
+msgstr "استخدم مفتاح الوضع لشرب الحليب."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:136
+msgid "Spider Eye"
+msgstr "عين عنكبوت"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:137
+msgid "Poisonous"
+msgstr "سام"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:138
+msgid ""
+"Spider eyes are used mainly in crafting. If you're really desperate, you can "
+"eat a spider eye, but it will poison you briefly."
+msgstr "تُستخدم عيون العناكب أساساً في التصنيع. وإذا كنت في حاجة ماسة للطعام، يمكنك تناول عين عنكبوت، لكنها ستسممك لفترة قصيرة."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:149
+msgid "Bone"
+msgstr "عظم"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:150
+msgid ""
+"Bones can be used to tame wolves so they will protect you. They are also "
+"useful as a crafting ingredient."
+msgstr "يمكن استخدام العظام لترويض الذئاب كي تحميك. وهي مفيدة أيضاً كمكوّن في التصنيع."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:151
+msgid ""
+"Wield the bone near wolves to attract them. Use the “Place” key on the wolf "
+"to give it a bone and tame it. You can then give commands to the tamed wolf "
+"by using the “Place” key on it."
+msgstr "أمسك العظم بالقرب من الذئاب لجذبها. استخدم مفتاح «الوضع» على الذئب لإعطائه عظماً وترويضه. وبعد ذلك يمكنك إصدار الأوامر للذئب المروّض باستخدام مفتاح «الوضع» عليه."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:159
+msgid "Squid Ink Sac"
+msgstr "كيس حبر الحبار"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:160
+msgid ""
+"This item is dropped by dead squids. Squid ink can be used to as an "
+"ingredient to craft book and quill or black dye."
+msgstr "يسقط هذا العنصر من الحبار الميت. ويمكن استخدام حبر الحبار مكوّناً لصناعة كتاب وريشة أو صبغة سوداء."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:167
+msgid "String"
+msgstr "خيط"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:168
+msgid "Strings are used in crafting."
+msgstr "تُستخدم الخيوط في التصنيع."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:175
+msgid "Blaze Rod"
+msgstr "قضيب لهب"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:176
+msgid "This is a crafting component dropped from dead blazes."
+msgstr "هذا مكوّن للتصنيع يسقط من كائنات اللهب عند قتلها."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:185
+msgid "Breeze Rod"
+msgstr "قضيب النسيم"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:186
+msgid "This is a crafting item dropped from breezes."
+msgstr "هذا عنصر تصنيع يسقط من كائنات النسيم."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:194
+msgid "Blaze Powder"
+msgstr "مسحوق اللهب"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:195
+msgid "This item is mainly used for crafting."
+msgstr "يُستخدم هذا العنصر أساساً في التصنيع."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:202
+msgid "Magma Cream"
+msgstr "كريمة الصهارة"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:203
+msgid "Magma cream is a crafting component."
+msgstr "كريمة الصهارة مكوّن للتصنيع."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:211
+msgid "Ghast Tear"
+msgstr "دمعة غاست"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:212
+msgid "Place this item in an item frame as decoration."
+msgstr "ضع هذا العنصر في إطار عناصر للزينة."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:219
+msgid "Nether Star"
+msgstr "نجمة العالم السفلي"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:220
+msgid ""
+"A nether star is dropped when the Wither dies. Place it in an item frame to "
+"show the world how hardcore you are! Or just as decoration."
+msgstr "تسقط نجمة العالم السفلي عند موت الوذر. ضعها في إطار عناصر لتُري العالم مدى قوتك! أو استخدمها للزينة فحسب."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:228
+msgid "Leather"
+msgstr "جلد"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:229
+msgid "Leather is a versatile crafting component."
+msgstr "الجلد مكوّن متعدد الاستخدامات في التصنيع."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:236
+msgid "Feather"
+msgstr "ريشة"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:237
+msgid "Feathers are used in crafting and are dropped from chickens."
+msgstr "تُستخدم الريش في التصنيع وتسقط من الدجاج."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:244
+msgid "Rabbit Hide"
+msgstr "جلد أرنب"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:245
+msgid "Rabbit hide is used to create leather."
+msgstr "يُستخدم جلد الأرنب لصناعة الجلد."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:253
+msgid "Rabbit's Foot"
+msgstr "قدم أرنب"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:254
+msgid ""
+"Must be your lucky day! Place this item in an item frame for decoration."
+msgstr "لا بد أن يومك سعيد! ضع هذا العنصر في إطار عناصر للزينة."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:261
+msgid "Saddle"
+msgstr "سرج"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:262
+msgid "Can be placed on animals to ride them"
+msgstr "يمكن وضعه على الحيوانات لركوبها"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:263
+msgid "Saddles can be put on some animals in order to mount them."
+msgstr "يمكن وضع السروج على بعض الحيوانات لركوبها."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:264
+msgid ""
+"Use the placement key with the saddle in your hand to try to put on the "
+"saddle. Saddles fit on horses, mules, donkeys and pigs. Horses, mules and "
+"donkeys need to be tamed first, otherwise they'll reject the saddle. Saddled "
+"animals can be mounted by using the placement key on them again."
+msgstr "أمسك السرج واستخدم مفتاح الوضع لمحاولة وضعه على الحيوان. يمكن وضع السروج على الخيول والبغال والحمير والخنازير. ويجب ترويض الخيول والبغال والحمير أولاً، وإلا فسترفض السرج. ويمكن ركوب الحيوانات المسروجة باستخدام مفتاح الوضع عليها مرة أخرى."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:272
+msgid "Rabbit Stew"
+msgstr "يخنة أرنب"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:273
+msgid "Rabbit stew is a very nutricious food item."
+msgstr "يخنة الأرنب طعام غني جداً بالعناصر الغذائية."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:283
+msgid "Shulker Shell"
+msgstr "صدفة شولكر"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:284
+msgid ""
+"Shulker shells are used in crafting. They are dropped from dead shulkers."
+msgstr "تُستخدم أصداف الشولكر في التصنيع، وتسقط من كائنات الشولكر عند قتلها."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:290
+msgid "Slimeball"
+msgstr "كرة مخاط"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:291
+msgid "Slimeballs are used in crafting. They are dropped from slimes."
+msgstr "تُستخدم كرات المخاط في التصنيع، وتسقط من كائنات المخاط."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:298
+msgid "Gunpowder"
+msgstr "بارود"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:305
+msgid "Carrot on a Stick"
+msgstr "جزرة على عصا"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:306
+msgid "Lets you ride a saddled pig"
+msgstr "تتيح لك ركوب خنزير مسروج"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:307
+msgid "A carrot on a stick can be used on saddled pigs to ride them."
+msgstr "يمكن استخدام الجزرة على عصا على الخنازير المسروجة لركوبها."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:308
+msgid ""
+"Place it on a saddled pig to mount it. You can now ride the pig like a "
+"horse. Pigs will also walk towards you when you just wield the carrot on a "
+"stick."
+msgstr "استخدمها على خنزير مسروج لتركبه. يمكنك الآن ركوب الخنزير كما تركب الحصان. كما ستسير الخنازير نحوك عندما تمسك الجزرة على عصا فحسب."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:317
+msgid "Warped Fungus on a Stick"
+msgstr "فطر ملتوي على عصا"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:318
+msgid "Lets you ride a strider"
+msgstr "تتيح لك ركوب المتزلّق"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:319
+msgid ""
+"A warped fungus on a stick can be used on saddled striders to ride them."
+msgstr "يمكن استخدام الفطر الملتوي على عصا على المتزلّقات المسروجة لركوبها."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:320
+msgid ""
+"Place it on a saddled strider to mount it. You can now ride the strider like "
+"a horse. Striders will also walk towards you when you just wield the fungus "
+"on a stick."
+msgstr "استخدمها على متزلّق مسروج لتركبه. يمكنك الآن ركوب المتزلّق كما تركب الحصان. كما ستسير المتزلّقات نحوك عندما تمسك الفطر على عصا فحسب."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:329
+msgid "Nautilus Shell"
+msgstr "صدفة نوتيلوس"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:330 mods/ITEMS/mcl_mobitems/init.lua:338
+msgid "Used to craft a conduit"
+msgstr "تُستخدم لصناعة موصل بحري"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:331
+msgid ""
+"The Nautilus Shell is used to craft a conduit. They can be obtained by "
+"fishing or killing a drowned that is wielding a shell."
+msgstr "تُستخدم صدفة نوتيلوس لصناعة موصل بحري. ويمكن الحصول عليها بالصيد أو بقتل غريق يحمل صدفة."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:337
+msgid "Heart of the Sea"
+msgstr "قلب البحر"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:339
+msgid ""
+"The Heart of the Sea is used to craft a conduit. They can be obtained by "
+"finding them in a buried treasure chest."
+msgstr "يُستخدم قلب البحر لصناعة موصل بحري. ويمكن العثور عليه في صناديق الكنوز المدفونة."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:344
+msgid ""
+"Place it on a horse to put on the horse armor. Donkeys and mules can't wear "
+"horse armor."
+msgstr "ضعها على الحصان لإلباسه درع الحصان. لا تستطيع الحمير والبغال ارتداء دروع الخيول."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:349
+msgid "Leather Horse Armor"
+msgstr "درع حصان جلدي"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:350
+msgid ""
+"Leather horse armor can be worn by horses to increase their protection from "
+"harm a little."
+msgstr "يمكن للخيول ارتداء درع الحصان الجلدي لزيادة حمايتها من الضرر قليلاً."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:363
+msgid "Copper Horse Armor"
+msgstr "درع حصان نحاسي"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:364
+msgid ""
+"Copper horse armor can be worn by horses to increase their protection from "
+"harm a bit."
+msgstr "يمكن للخيول ارتداء درع الحصان النحاسي لزيادة حمايتها من الضرر."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:379
+msgid "Iron Horse Armor"
+msgstr "درع حصان حديدي"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:380
+msgid ""
+"Iron horse armor can be worn by horses to increase their protection from "
+"harm a bit."
+msgstr "يمكن للخيول ارتداء درع الحصان الحديدي لزيادة حمايتها من الضرر."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:394
+msgid "Golden Horse Armor"
+msgstr "درع حصان ذهبي"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:395
+msgid ""
+"Golden horse armor can be worn by horses to increase their protection from "
+"harm."
+msgstr "يمكن للخيول ارتداء درع الحصان الذهبي لزيادة حمايتها من الضرر."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:408
+msgid "Diamond Horse Armor"
+msgstr "درع حصان ألماسي"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:409
+msgid ""
+"Diamond horse armor can be worn by horses to greatly increase their "
+"protection from harm."
+msgstr "يمكن للخيول ارتداء درع الحصان الألماسي لزيادة حمايتها من الضرر بدرجة كبيرة."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:425
+msgid "Glow Ink Sac"
+msgstr "كيس حبر متوهج"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:426
+msgid "Use it to craft the Glow Item Frame."
+msgstr "استخدمه لصناعة إطار عناصر متوهج."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:427
+msgid ""
+"Use the Glow Ink Sac and the normal Item Frame to craft the Glow Item Frame."
+msgstr "استخدم كيس الحبر المتوهج وإطار العناصر العادي لصناعة إطار عناصر متوهج."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:433
+msgid "Name Tag"
+msgstr "بطاقة اسم"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:434
+msgid "Give names to mobs"
+msgstr "تمنح الكائنات أسماء"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:434
+msgid "Set name at anvil"
+msgstr "تعيين الاسم في السندان"
+
+#: mods/ITEMS/mcl_mobitems/init.lua:435
+msgid "A name tag is an item to name a mob."
+msgstr "بطاقة الاسم عنصر يُستخدم لتسمية كائن."
+
+#: mods/ITEMS/mcl_mobitems/init.lua:436
+msgid ""
+"Before you use the name tag, you need to set a name at an anvil. Then you "
+"can use the name tag to name a mob. This uses up the name tag."
+msgstr "قبل استخدام بطاقة الاسم، عليك تعيين اسم لها في السندان. بعد ذلك يمكنك استخدام البطاقة لتسمية كائن، وسيؤدي ذلك إلى استهلاكها."
