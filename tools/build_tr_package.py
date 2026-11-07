@@ -93,6 +93,57 @@ def parse_template_txt(path: Path) -> tuple[str, list[str]]:
     return domain, keys
 
 
+def parse_tr_file(path: Path) -> dict[str, str]:
+    # The TR grammar allows @ followed by a physical newline as a newline
+    # escape. Replace it with a sentinel before processing physical lines.
+    raw = path.read_text(encoding="utf-8-sig")
+    raw = raw.replace("@\\r\\n", "\\u0000").replace("@\\n", "\\u0000")
+    records: dict[str, str] = {}
+    for line_no, line in enumerate(raw.splitlines(), 1):
+        if not line or line.startswith("#"):
+            continue
+        where = f"{path}:{line_no}"
+        separator = find_template_separator(line, where)
+        source = decode_tr_value(line[:separator], where)
+        translated = decode_tr_value(line[separator + 1:], where)
+        if source in records:
+            fail(f"{where}: duplicate source key in generated TR file: {source!r}")
+        records[source] = translated
+    return records
+
+
+def decode_tr_value(raw: str, where: str) -> str:
+    result: list[str] = []
+    i = 0
+    while i < len(raw):
+        char = raw[i]
+        if char == "\\u0000":
+            result.append("\\n")
+            i += 1
+            continue
+        if char != "@":
+            result.append(char)
+            i += 1
+            continue
+        if i + 1 >= len(raw):
+            fail(f"{where}: dangling @ escape")
+        nxt = raw[i + 1]
+        if nxt == "@":
+            result.append("@")
+        elif nxt == "=":
+            result.append("=")
+        elif nxt == "n":
+            result.append("\\n")
+        elif nxt in "123456789":
+            result.append("@" + nxt)
+        elif nxt == "\\u0000":
+            result.append("\\n")
+        else:
+            fail(f"{where}: unsupported TR escape @{nxt}")
+        i += 2
+    return "".join(result)
+
+
 def check_placeholder_pair(source: str, translated: str, where: str) -> None:
     source_all = ANY_NUMERIC_AT_RE.findall(source)
     target_all = ANY_NUMERIC_AT_RE.findall(translated)
@@ -161,6 +212,7 @@ def main() -> None:
     per_module: list[dict[str, object]] = []
     total_messages = 0
     seen_domains: dict[str, str] = {}
+    expected_catalogs: dict[str, dict[str, str]] = {}
 
     for po_path in po_files:
         rel = po_path.relative_to(repo_root)
@@ -235,6 +287,9 @@ def main() -> None:
             "textdomain": domain,
             "messages": message_count,
         })
+        expected_catalogs[str(rel.parent)] = {
+            entry.msgid: entry.msgstr for entry in entries
+        }
         print(f"VALID {module}: {message_count} messages, textdomain={domain}", flush=True)
 
     if total_messages != args.expected_messages:
@@ -264,22 +319,38 @@ def main() -> None:
 
     installed_messages = 0
     tr_manifest: list[dict[str, object]] = []
+    seen_tr_paths: set[str] = set()
     for tr_path in tr_files:
         rel = tr_path.relative_to(stage_mods)
-        text = tr_path.read_text(encoding="utf-8-sig")
-        entries = [
-            line for line in text.splitlines()
-            if line and not line.startswith("#")
-        ]
-        installed_messages += len(entries)
+        catalog_key = str(Path("mods") / tr_path.parent.relative_to(stage_mods))
+        expected = expected_catalogs.get(catalog_key)
+        if expected is None:
+            fail(f"unexpected generated TR file: {tr_path}")
+        actual = parse_tr_file(tr_path)
+        if actual != expected:
+            missing = list((Counter(expected) - Counter(actual)).elements())[:3]
+            extra = list((Counter(actual) - Counter(expected)).elements())[:3]
+            different = [
+                key for key in expected.keys() & actual.keys()
+                if expected[key] != actual[key]
+            ][:3]
+            fail(
+                f"{tr_path}: generated TR differs from PO; "
+                f"missing={missing!r}; extra={extra!r}; translation_mismatch={different!r}"
+            )
+        installed_messages += len(actual)
+        seen_tr_paths.add(catalog_key)
         destination = package_root / "mods" / rel
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(tr_path, destination)
         tr_manifest.append({
             "path": str(Path("mods") / rel),
-            "entries": len(entries),
+            "entries": len(actual),
             "sha256": sha256_file(tr_path),
         })
+    if seen_tr_paths != set(expected_catalogs):
+        missing_paths = sorted(set(expected_catalogs) - seen_tr_paths)
+        fail(f"missing generated TR files for: {missing_paths[:10]}")
 
     if installed_messages != total_messages:
         fail(
