@@ -504,7 +504,7 @@ void CGUIEditBox::processKeyLR(const SEvent::SKeyInput &input, s32 &new_mark_beg
 	} else {
 		// Move by a complete grapheme cluster while keeping the source text logical.
 		if (IGUIFont *font = getActiveFont())
-			new_pos = font->getNextCursorPosition(Text.c_str(), CursorPos, dir);
+			new_pos = font->getVisualCursorPosition(Text.c_str(), CursorPos, dir);
 		else
 			new_pos = CursorPos + dir;
 	}
