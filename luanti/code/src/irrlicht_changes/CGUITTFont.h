@@ -35,6 +35,7 @@
 
 #include <ft2build.h>
 #include <freetype/freetype.h>
+#include <raqm.h>
 
 #include "irr_ptr.h"
 #include "IGUIFont.h"
@@ -218,6 +219,13 @@ namespace gui
 			u32 batch_load_size;
 
 		private:
+			raqm_t *createLayout(const std::u32string &text) const;
+			CGUITTFont *getFontForFace(FT_Face face) const;
+			CGUITTFont *getFontForCluster(const std::u32string &text, size_t start, size_t end) const;
+			SGUITTGlyph *getGlyphByIndex(u32 glyph_index) const;
+			void clearRenderQueues() const;
+			void renderQueuedGlyphs(const core::rect<s32> *clip) const;
+
 			// Helper functions for the same-named public member functions above
 			// (Since std::u32string is nicer to work with than wchar_t *)
 			core::dimension2d<u32> getDimension(const std::u32string& text) const;
