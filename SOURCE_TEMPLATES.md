@@ -97,3 +97,14 @@
 | `mods/ITEMS/mcl_colorblocks/locale/template.pot` | `1cd67a32a51ebbd4fb0d5c660ba08d9ecfb740e3` |
 | `mods/ITEMS/mclx_stairs/locale/template.pot` | `464dd65d53ea705ed4613e6817d96a3820495645` |
 
+
+## قوالب دفعة الرايات ودليل أساسيات اللعب — 2026-11-08
+
+- مرآة المصدر: https://github.com/ZenonSeth/mineclonia-mirror
+- commit المصدر: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/ITEMS/mcl_banners/locale/template.pot` | `7971c5e32031991dbed11e2a243808e0a7fe313d` |
+| `mods/HELP/mcl_doc_basics/locale/template.pot` | `9889343a0dcc3d4e1e63e070e65151855bd58e6b` |
+
