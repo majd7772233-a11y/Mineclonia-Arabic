@@ -136,6 +136,17 @@ endif()
 
 if(BUILD_CLIENT)
 	find_package(Freetype REQUIRED)
+	find_path(RAQM_INCLUDE_DIR NAMES raqm.h)
+	find_library(RAQM_LIBRARY NAMES raqm)
+	find_library(HARFBUZZ_LIBRARY NAMES harfbuzz)
+	find_library(FRIBIDI_LIBRARY NAMES fribidi)
+
+	if(NOT RAQM_INCLUDE_DIR OR NOT RAQM_LIBRARY OR
+			NOT HARFBUZZ_LIBRARY OR NOT FRIBIDI_LIBRARY)
+		message(FATAL_ERROR
+			"Arabic text layout requires libraqm, HarfBuzz, and FriBidi. "
+			"Install the libraqm package or provide their include/library paths.")
+	endif()
 endif()
 
 option(ENABLE_CURSES "Enable ncurses console" ${BUILD_SERVER})
@@ -608,6 +619,7 @@ endif()
 if(BUILD_CLIENT)
 	include_directories(SYSTEM
 		${FREETYPE_INCLUDE_DIRS}
+		${RAQM_INCLUDE_DIR}
 		${SOUND_INCLUDE_DIRS}
 	)
 endif()
@@ -721,6 +733,9 @@ if(BUILD_CLIENT)
 		lstrpack
 		sha256
 		${FREETYPE_LIBRARY}
+		${RAQM_LIBRARY}
+		${HARFBUZZ_LIBRARY}
+		${FRIBIDI_LIBRARY}
 		${PLATFORM_LIBS}
 		# on Android, Luanti depends on SDL2 directly
 		# on other platforms, only IrrlichtMt depends on SDL2
