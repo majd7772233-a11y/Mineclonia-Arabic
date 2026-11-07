@@ -27,6 +27,8 @@ function New-LuantiFixture([string]$Name, [string]$EnumLine, [string]$ArabicEntr
     New-Item -ItemType Directory -Path $bin -Force | Out-Null
     New-Item -ItemType Directory -Path $userPath -Force | Out-Null
     New-Item -ItemType Directory -Path $appData -Force | Out-Null
+    $defaultUserPath = Join-Path $appData "Minetest"
+    New-Item -ItemType Directory -Path $defaultUserPath -Force | Out-Null
     [IO.File]::WriteAllText((Join-Path $bin "luanti.exe"), "fixture", [Text.UTF8Encoding]::new($false))
 
     $settingText = @"
@@ -55,7 +57,9 @@ $ArabicEntry
     $configLines += "fullscreen = true"
     $configText = [string]::Join($lineBreak, $configLines) + $lineBreak
     $configFile = Join-Path $userPath "minetest.conf"
+    $defaultConfig = Join-Path $defaultUserPath "minetest.conf"
     [IO.File]::WriteAllText($configFile, $configText, [Text.UTF8Encoding]::new($false))
+    [IO.File]::WriteAllText($defaultConfig, $configText, [Text.UTF8Encoding]::new($false))
 
     return [pscustomobject]@{
         Root = $root
