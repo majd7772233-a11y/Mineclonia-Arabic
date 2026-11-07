@@ -270,6 +270,13 @@ void StaticText::updateText()
 	else
 		setDrawBackground(false);
 
+	IGUIFont* font = getActiveFont();
+	if (font) {
+		LastBreakFont = font;
+		if (!RightToLeftOverride)
+			RightToLeft = IRR_DOWN_CAST<CGUITTFont *>(font)->isRightToLeft(cText.c_str());
+	}
+
 	if (!WordWrap) {
 		BrokenText = cText;
 		return;
@@ -278,13 +285,8 @@ void StaticText::updateText()
 	// Update word wrap
 
 	IGUISkin* skin = Environment->getSkin();
-	IGUIFont* font = getActiveFont();
 	if (!font)
 		return;
-
-	LastBreakFont = font;
-	if (!RightToLeftOverride)
-		RightToLeft = IRR_DOWN_CAST<CGUITTFont *>(font)->isRightToLeft(cText.c_str());
 
 	EnrichedString line;
 	EnrichedString word;
