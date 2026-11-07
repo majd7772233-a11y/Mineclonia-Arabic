@@ -405,7 +405,8 @@ void set_default_settings()
 	settings->setDefault("mono_font_path_bold", porting::getDataPath("fonts" DIR_DELIM "Cousine-Bold.ttf"));
 	settings->setDefault("mono_font_path_bold_italic", porting::getDataPath("fonts" DIR_DELIM "Cousine-BoldItalic.ttf"));
 	settings->setDefault("mono_font_size_divisible_by", "1");
-	settings->setDefault("fallback_font_path", porting::getDataPath("fonts" DIR_DELIM "DroidSansFallbackFull.ttf"));
+	settings->setDefault("fallback_font_path", porting::getDataPath("fonts" DIR_DELIM "NotoSansArabic-Regular.ttf"));
+	settings->setDefault("secondary_fallback_font_path", porting::getDataPath("fonts" DIR_DELIM "DroidSansFallbackFull.ttf"));
 
 	std::string font_size_str = std::to_string(TTF_DEFAULT_FONT_SIZE);
 	settings->setDefault("font_size", font_size_str);
