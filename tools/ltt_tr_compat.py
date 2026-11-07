@@ -147,7 +147,7 @@ def convert_one(po_path: Path) -> Path:
         if source.startswith("#"):
             die(f"{po_path}: source strings beginning with '#' cannot be represented safely in .tr")
         lines.append(f"{source}={translation}")
-    output_name = po_path.name[:-3] + "tr"
+    output_name = po_path.name[:-2] + "tr"
     output_path = locale / output_name
     output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"CONVERTED {po_path} -> {output_path} ({len(used)} entries)")
@@ -217,7 +217,9 @@ def main() -> None:
         outputs = [convert_one(path) for path in po_files]
         print(f"Converted {len(outputs)} Arabic PO files to TR.")
     else:
-        tr_files = sorted(root.rglob("*.ar.tr")) if args.recursive else sorted(root.glob("*/locale/*.ar.tr"))
+        # Mineclonia modules are nested (for example mods/CORE/mcl_init/locale).
+        # Always recurse, matching the package builder's nested mod layout.
+        tr_files = sorted(root.rglob("*.ar.tr"))
         if not tr_files:
             die(f"no .ar.tr files found under {root}")
         total = sum(check_tr_file(path) for path in tr_files)
