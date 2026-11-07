@@ -31,9 +31,11 @@ enum FontMode : u8 {
 	/// Monospace font (settings "mono_font*", overwritable)
 	FM_Mono,
 
-	/// Use only in `FontEngine`. Fallback font to render glyphs that are not present
-	/// in the originally requested font (setting "fallback_font_path")
+	/// First fallback font in the local Unicode fallback chain.
 	_FM_Fallback,
+
+	/// Secondary fallback font (normally the full coverage fallback font).
+	_FM_SecondaryFallback,
 
 	/// Sum of all font modes
 	FM_MaxMode,
