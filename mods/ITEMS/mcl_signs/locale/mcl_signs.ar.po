@@ -1,0 +1,52 @@
+# Arabic translation for Mineclonia component: mcl_signs
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_signs/locale/template.pot
+# Source template blob SHA: 1ec03f4f56e3f9a4be5b129abd53a0f9de26b55d
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_signs/init.lua:90
+msgid "Can be written"
+msgstr "قابلة للكتابة"
+
+#: mods/ITEMS/mcl_signs/init.lua:91
+msgid ""
+"Signs can be written and come in two variants: Wall sign and sign on a sign "
+"post. Signs can be placed on the top and the sides of other blocks, but not "
+"below them."
+msgstr "يمكن الكتابة على اللافتات، وتتوفر بنوعين: لافتة جدارية ولافتة مثبتة على عمود. ويمكن وضع اللافتات على السطح العلوي أو الجوانب من الكتل الأخرى، لكن لا يمكن وضعها أسفلها."
+
+#: mods/ITEMS/mcl_signs/init.lua:92
+msgid ""
+"After placing the sign, you can write something on it. You have @1 lines of "
+"text with up to @2 characters for each line; anything beyond these limits is "
+"lost. Not all characters are supported. The text can be changed after it's "
+"written by rightclicking the sign. Can be colored and made to glow. Use bone "
+"meal to remove color and glow."
+msgstr "بعد وضع اللافتة، يمكنك الكتابة عليها. لديك @1 أسطر نصية، ويمكن أن يحتوي كل سطر على ما يصل إلى @2 حرفاً؛ وسيُحذف أي نص يتجاوز هذه الحدود. لا تدعم اللافتات جميع المحارف. ويمكن تغيير النص بعد كتابته بالنقر على اللافتة بزر الفأرة الأيمن. كما يمكن تلوين النص وجعله متوهجاً. استخدم مسحوق العظام لإزالة اللون والتوهج."
+
+#: mods/ITEMS/mcl_signs/init.lua:351
+msgid "Enter sign text:"
+msgstr "أدخل نص اللافتة:"
+
+#: mods/ITEMS/mcl_signs/init.lua:353
+msgid "Maximum line length: @1"
+msgstr "أقصى طول للسطر: @1"
+
+#: mods/ITEMS/mcl_signs/init.lua:354
+msgid "Maximum lines: @1"
+msgstr "أقصى عدد للأسطر: @1"
+
+#: mods/ITEMS/mcl_signs/init.lua:356
+msgid "Done"
+msgstr "تم"
