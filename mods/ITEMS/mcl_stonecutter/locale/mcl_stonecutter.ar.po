@@ -1,0 +1,39 @@
+# Arabic translation draft for Mineclonia component: mcl_stonecutter
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_stonecutter/locale/template.pot
+# Source template blob SHA: 006a3440f4010589ea15b7c69a89d4e065998945
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_stonecutter/init.lua:60
+#: mods/ITEMS/mcl_stonecutter/init.lua:142
+msgid "Stonecutter"
+msgstr "قاطعة الحجر"
+
+#: mods/ITEMS/mcl_stonecutter/init.lua:77
+msgid "Fill Craft Grid"
+msgstr "ملء شبكة التصنيع"
+
+#: mods/ITEMS/mcl_stonecutter/init.lua:79
+msgid "Inventory"
+msgstr "المخزون"
+
+#: mods/ITEMS/mcl_stonecutter/init.lua:143
+msgid "Used to cut stone like materials."
+msgstr "تُستخدم لقطع المواد الشبيهة بالحجر."
+
+#: mods/ITEMS/mcl_stonecutter/init.lua:144
+msgid ""
+"Stonecutters are used to create stairs and slabs from stone like materials. "
+"It is also the jobsite for the Stone Mason Villager."
+msgstr "تُستخدم قواطع الحجر لصناعة الأدراج والبلاطات من المواد الشبيهة بالحجر. كما أنها محطة عمل القروي البنّاء الحجري."
