@@ -16,6 +16,8 @@ concurrency:
   group: mineclonia-arabic-runtime-package
   cancel-in-progress: true
 
+# Keep only one active package build; this commit refreshes a stalled runner attempt.
+
 jobs:
   package:
     name: Convert PO to TR and publish install package
