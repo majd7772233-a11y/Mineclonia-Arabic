@@ -1125,10 +1125,19 @@ s32 CGUITTFont::getCursorPosition(const wchar_t *text, s32 char_index) const
 		if (raqm_get_par_resolved_direction(layout) == RAQM_DIRECTION_RTL) {
 			size_t glyph_count = 0;
 			raqm_glyph_t *glyphs = raqm_get_glyphs(layout, &glyph_count);
-			if (!glyphs && glyph_count != 0)
+			if (!glyphs && glyph_count != 0) {
 				success = false;
-			for (size_t i = 0; success && i < glyph_count; ++i)
-				x += glyphs[i].x_advance;
+			} else {
+				int pen = 0;
+				int min_pen = 0;
+				int max_pen = 0;
+				for (size_t i = 0; i < glyph_count; ++i) {
+					pen += glyphs[i].x_advance;
+					min_pen = std::min(min_pen, pen);
+					max_pen = std::max(max_pen, pen);
+				}
+				x = max_pen - min_pen;
+			}
 		}
 	} else {
 		size_t layout_index = unicode_index - 1;
@@ -1150,14 +1159,14 @@ s32 CGUITTFont::getNextCursorPosition(const wchar_t *text, s32 char_index, s32 d
 
 	// Treat CRLF as one logical line break.
 	if (direction > 0 && position < length && isTextLineBreak(wide_text[position])) {
-		if (wide_text[position] == L'\\r' && position + 1 < length &&
-				wide_text[position + 1] == L'\\n')
+		if (wide_text[position] == L'\r' && position + 1 < length &&
+				wide_text[position + 1] == L'\n')
 			return static_cast<s32>(position + 2);
 		return static_cast<s32>(position + 1);
 	}
 	if (direction < 0 && position > 0 && isTextLineBreak(wide_text[position - 1])) {
-		if (position > 1 && wide_text[position - 1] == L'\\n' &&
-				wide_text[position - 2] == L'\\r')
+		if (position > 1 && wide_text[position - 1] == L'\n' &&
+				wide_text[position - 2] == L'\r')
 			return static_cast<s32>(position - 2);
 		return static_cast<s32>(position - 1);
 	}
