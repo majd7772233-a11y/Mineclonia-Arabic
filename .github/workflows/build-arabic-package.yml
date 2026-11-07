@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "mods/**/*.ar.po"
       - "tools/build_tr_package.py"
       - ".github/workflows/build-arabic-package.yml"
   workflow_dispatch:
@@ -115,7 +116,7 @@ jobs:
           cat > "$NOTES" <<EOF
           ## Mineclonia Arabic runtime package
 
-          - 163 translation domains and 4,980 PO/TR entries; all strings from the 163 runtime template.txt catalogs are required to be covered.
+          - 163 translation domains and 4,981 PO/TR entries; all strings from the 163 runtime template.txt catalogs are required to be covered.
           - Generated with the current Luanti Translation Tools CLI: `ltt_convert.py <mods> --po2tr -r`.
           - Checked with `ltt_check.py <mods>`. The build also verifies every generated TR entry round-trips exactly to its PO translation.
           - Mineclonia source mirror commit: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`.
