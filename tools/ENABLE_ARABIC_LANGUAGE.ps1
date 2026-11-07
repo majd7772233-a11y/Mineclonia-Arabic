@@ -221,22 +221,31 @@ function Set-ArabicLanguageLabel([string]$Text) {
     $newText = $Text.Substring(0, $tableOpen + 1) + $tableBody + $Text.Substring($tableClose)
     return [pscustomobject]@{ Text = $newText; Changed = ($newText -cne $Text) }
 }
-function Get-LuantiConfigFilePath {
+function Get-LuantiConfigFilePath([string]$InstallRoot) {
     if ($ConfigFile) {
         return [IO.Path]::GetFullPath($ConfigFile)
     }
 
-    # Luanti 5.17.0 on Windows uses %APPDATA%\Minetest by default.
-    # The environment variables below override that path in the engine.
+    # Environment overrides have the same priority as Luanti's own path code.
     $userPath = $env:LUANTI_USER_PATH
     if (!$userPath) {
         $userPath = $env:MINETEST_USER_PATH
     }
+
     if (!$userPath) {
-        if (!$env:APPDATA) {
-            throw "لم أتمكن من تحديد مجلد إعدادات Luanti: متغير APPDATA غير موجود."
+        # Official Windows builds use RUN_IN_PLACE by default. In that mode,
+        # porting.cpp sets path_user to the parent of bin\luanti.exe.
+        # The Windows distribution places minetest.conf.example in that root.
+        $exampleConfig = Join-Path $InstallRoot "minetest.conf.example"
+        if (Test-Path -LiteralPath $exampleConfig -PathType Leaf) {
+            $userPath = $InstallRoot
+        } else {
+            # Non-portable Windows builds use %APPDATA%\Minetest.
+            if (!$env:APPDATA) {
+                throw "لم أتمكن من تحديد مجلد إعدادات Luanti: لا يوجد مسار محمول ولا متغير APPDATA."
+            }
+            $userPath = Join-Path $env:APPDATA "Minetest"
         }
-        $userPath = Join-Path $env:APPDATA "Minetest"
     }
 
     return Join-Path ([IO.Path]::GetFullPath($userPath)) "minetest.conf"
@@ -293,7 +302,7 @@ try {
     $settingPath = Join-Path $root "builtin\settingtypes.txt"
     $dialogPath = Join-Path $root "builtin\common\settings\dlg_settings.lua"
     $exePath = Join-Path $root "bin\luanti.exe"
-    $configPath = Get-LuantiConfigFilePath
+    $configPath = Get-LuantiConfigFilePath $root
     $configExisted = Test-Path -LiteralPath $configPath -PathType Leaf
     $configText = if ($configExisted) { [IO.File]::ReadAllText($configPath) } else { "" }
     $configResult = Set-ArabicLanguageConfig $configText
@@ -431,7 +440,7 @@ try {
     Write-Host ""
     Write-Host "نجح الإصلاح: العربية [ar] مفعّلة في القائمة ومضبوطة كلغة بدء التشغيل." -ForegroundColor Green
     Write-Host "مجلد Luanti المعتمد: $root"
-    Write-Host "ملف إعدادات المستخدم: $configPath"
+    Write-Host "ملف إعدادات Luanti الفعلي: $configPath"
     Write-Host "النسخ الاحتياطية محفوظة في: $backupRoot" -ForegroundColor Yellow
     Write-Host "أُصلحت أي قيمة قديمة arbe إلى ar، مع الإبقاء على بقية الإعدادات."
     Write-Host "أغلق Luanti وافتحه مجدداً؛ لن تحتاج إلى اختيار اللغة يدوياً."
