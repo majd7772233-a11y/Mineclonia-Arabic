@@ -107,8 +107,8 @@ jobs:
           from pathlib import Path
           script = Path("source/tools/generate_translation_strings/generate.sh")
           content = script.read_text(encoding="utf-8")
-          outdated = '"$1" pot #"\${mcladir}/mods"\n"$1" po #-r "\${mcladir}/mods"'
-          current = '"$1" -r "\${mcladir}/mods"'
+          outdated = '"$1" pot #"${mcladir}/mods"\n"$1" po #-r "${mcladir}/mods"'
+          current = '"$1" -r "${mcladir}/mods"'
           if outdated not in content:
               raise SystemExit("Unexpected generate.sh body; refusing to patch unknown upstream script")
           script.write_text(content.replace(outdated, current), encoding="utf-8")
