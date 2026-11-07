@@ -1,0 +1,172 @@
+# Arabic translation draft for Mineclonia component: mcl_craftguide
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/HELP/mcl_craftguide/locale/template.pot
+# Source template blob SHA: be85fd034b5bbc20527b3b643c8a7bde0eb686f4
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/HELP/mcl_craftguide/init.lua:60
+msgid "Any shulker box"
+msgstr "أي صندوق شولكر"
+
+#: mods/HELP/mcl_craftguide/init.lua:61
+msgid "Any wool"
+msgstr "أي نوع من الصوف"
+
+#: mods/HELP/mcl_craftguide/init.lua:62
+msgid "Any wood planks"
+msgstr "أي ألواح خشبية"
+
+#: mods/HELP/mcl_craftguide/init.lua:63
+msgid "Any wood"
+msgstr "أي نوع من الخشب"
+
+#: mods/HELP/mcl_craftguide/init.lua:64
+msgid "Any sand"
+msgstr "أي نوع من الرمل"
+
+#: mods/HELP/mcl_craftguide/init.lua:65
+msgid "Any normal sandstone"
+msgstr "أي حجر رملي عادي"
+
+#: mods/HELP/mcl_craftguide/init.lua:66
+msgid "Any red sandstone"
+msgstr "أي حجر رملي أحمر"
+
+#: mods/HELP/mcl_craftguide/init.lua:67
+msgid "Any carpet"
+msgstr "أي سجادة"
+
+#: mods/HELP/mcl_craftguide/init.lua:68
+msgid "Any dye"
+msgstr "أي صبغة"
+
+#: mods/HELP/mcl_craftguide/init.lua:69
+msgid "Any water bucket"
+msgstr "أي دلو ماء"
+
+#: mods/HELP/mcl_craftguide/init.lua:70
+msgid "Any flower"
+msgstr "أي زهرة"
+
+#: mods/HELP/mcl_craftguide/init.lua:71
+msgid "Any mushroom"
+msgstr "أي فطر"
+
+#: mods/HELP/mcl_craftguide/init.lua:72
+msgid "Any wooden slab"
+msgstr "أي بلاطة خشبية"
+
+#: mods/HELP/mcl_craftguide/init.lua:73
+msgid "Any wooden stairs"
+msgstr "أي درج خشبي"
+
+#: mods/HELP/mcl_craftguide/init.lua:74
+msgid "Any coal"
+msgstr "أي نوع من الفحم"
+
+#: mods/HELP/mcl_craftguide/init.lua:75
+msgid "Any kind of quartz block"
+msgstr "أي نوع من كتل الكوارتز"
+
+#: mods/HELP/mcl_craftguide/init.lua:76
+msgid "Any kind of purpur block"
+msgstr "أي نوع من كتل البوربور"
+
+#: mods/HELP/mcl_craftguide/init.lua:77
+msgid "Any stone bricks"
+msgstr "أي نوع من الطوب الحجري"
+
+#: mods/HELP/mcl_craftguide/init.lua:78
+msgid "Any stick"
+msgstr "أي عصا"
+
+#: mods/HELP/mcl_craftguide/init.lua:329
+msgid "Any item belonging to the @1 group"
+msgstr "أي عنصر ينتمي إلى مجموعة @1"
+
+#: mods/HELP/mcl_craftguide/init.lua:340
+msgid "Any item belonging to the groups: @1"
+msgstr "أي عنصر ينتمي إلى المجموعات: @1"
+
+#: mods/HELP/mcl_craftguide/init.lua:349
+msgid "Cooking time: @1"
+msgstr "وقت الطهي: @1"
+
+#: mods/HELP/mcl_craftguide/init.lua:354
+msgid "Burning time: @1"
+msgstr "وقت الاحتراق: @1"
+
+#: mods/HELP/mcl_craftguide/init.lua:381
+msgid "Usages"
+msgstr "الاستخدامات"
+
+#: mods/HELP/mcl_craftguide/init.lua:381
+msgid "Recipes"
+msgstr "الوصفات"
+
+#: mods/HELP/mcl_craftguide/init.lua:402
+msgid "Recipe is too big to be displayed (@1×@2)"
+msgstr "الوصفة كبيرة جداً بحيث يتعذر عرضها (@1×@2)"
+
+#: mods/HELP/mcl_craftguide/init.lua:469
+msgid "Shapeless"
+msgstr "بلا نمط محدد"
+
+#: mods/HELP/mcl_craftguide/init.lua:469
+msgid "Cooking"
+msgstr "الطهي"
+
+#: mods/HELP/mcl_craftguide/init.lua:568
+msgid "Increase window size"
+msgstr "تكبير حجم النافذة"
+
+#: mods/HELP/mcl_craftguide/init.lua:569
+msgid "Decrease window size"
+msgstr "تصغير حجم النافذة"
+
+#: mods/HELP/mcl_craftguide/init.lua:587
+msgid "Search"
+msgstr "بحث"
+
+#: mods/HELP/mcl_craftguide/init.lua:588
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+#: mods/HELP/mcl_craftguide/init.lua:589
+msgid "Previous page"
+msgstr "الصفحة السابقة"
+
+#: mods/HELP/mcl_craftguide/init.lua:590
+msgid "Next page"
+msgstr "الصفحة التالية"
+
+#: mods/HELP/mcl_craftguide/init.lua:606
+msgid "No item to show"
+msgstr "لا يوجد عنصر لعرضه"
+
+#: mods/HELP/mcl_craftguide/init.lua:610
+msgid "Collect items to reveal more recipes"
+msgstr "اجمع عناصر لكشف مزيد من الوصفات"
+
+#: mods/HELP/mcl_craftguide/init.lua:1114
+msgid "This item can be repaired at an anvil with: @1."
+msgstr "يمكن إصلاح هذا العنصر على السندان باستخدام: @1."
+
+#: mods/HELP/mcl_craftguide/init.lua:1116
+msgid "This item can be repaired at an anvil with any wooden planks."
+msgstr "يمكن إصلاح هذا العنصر على السندان باستخدام أي ألواح خشبية."
+
+#: mods/HELP/mcl_craftguide/init.lua:1119
+msgid "This item can be repaired at an anvil with any item in the “@1” group."
+msgstr "يمكن إصلاح هذا العنصر على السندان باستخدام أي عنصر من مجموعة «@1»."
