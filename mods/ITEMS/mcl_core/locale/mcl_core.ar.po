@@ -1784,3 +1784,33 @@ msgstr "درج طوب حجري مغطى بالطحالب"
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:149
 msgid "Mossy Stone Brick Slab"
 msgstr "بلاطة طوب حجري مغطى بالطحالب"
+
+msgid "Andesite Wall"
+msgstr "جدار الأنديزيت"
+
+msgid "Granite Wall"
+msgstr "جدار الغرانيت"
+
+msgid "Diorite Wall"
+msgstr "جدار الديوريت"
+
+msgid "Cobblestone Wall"
+msgstr "جدار الحجر المرصوف"
+
+msgid "Mossy Cobblestone Wall"
+msgstr "جدار الحجر المرصوف المغطى بالطحلب"
+
+msgid "Brick Wall"
+msgstr "جدار الطوب"
+
+msgid "Sandstone Wall"
+msgstr "جدار الحجر الرملي"
+
+msgid "Red Sandstone Wall"
+msgstr "جدار الحجر الرملي الأحمر"
+
+msgid "Stone Brick Wall"
+msgstr "جدار الطوب الحجري"
+
+msgid "Mossy Stone Brick Wall"
+msgstr "جدار الطوب الحجري المغطى بالطحلب"
