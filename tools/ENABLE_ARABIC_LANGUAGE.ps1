@@ -105,6 +105,9 @@ function Set-ArabicLanguageEnum([string]$Text) {
     $otherCodes = @()
     for ($index = $startIndex; $index -lt $parts.Count; $index++) {
         $code = $parts[$index].Trim()
+        # The previous helper concatenated "ar" with the first "be" token,
+        # leaving "arbe" in settingtypes.txt. Restore the original code.
+        if ($code -ceq "arbe") { $code = "be" }
         if ($code -ne "" -and $code -ne "ar") {
             $otherCodes += $code
         }
