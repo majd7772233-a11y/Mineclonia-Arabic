@@ -45,7 +45,21 @@ jobs:
           LTT_DIR: ${{ runner.temp }}/Luanti_Translation_Tools
         run: |
           set -euo pipefail
-          git clone --depth 1 https://codeberg.org/Wuzzy/Luanti_Translation_Tools.git "$LTT_DIR"
+          success=0
+          for attempt in 1 2 3 4 5 6; do
+            rm -rf "$LTT_DIR"
+            echo "Cloning Luanti Translation Tools (attempt $attempt/6)..."
+            if git clone --depth 1 https://codeberg.org/Wuzzy/Luanti_Translation_Tools.git "$LTT_DIR"; then
+              success=1
+              break
+            fi
+            sleep $((attempt * 8))
+          done
+          if [ "$success" -ne 1 ]; then
+            echo "Codeberg remained unavailable after six attempts."
+            exit 1
+          fi
+          git -C "$LTT_DIR" fetch --depth 1 origin 62c1334537014821920bed5c7e2a11af44f6bfcd
           git -C "$LTT_DIR" checkout 62c1334537014821920bed5c7e2a11af44f6bfcd
           echo "LTT_COMMIT=$(git -C "$LTT_DIR" rev-parse HEAD)" >> "$GITHUB_ENV"
           echo "LTT FILE INVENTORY:"
