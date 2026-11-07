@@ -21,11 +21,12 @@ msgstr "يُخفي سمكة فضية"
 
 #: mods/ITEMS/mcl_monster_eggs/init.lua:15
 msgid ""
+"\n"
 "\t\t\tAn infested block is a block from which a silverfish will pop out when "
 "it is broken.\n"
 "\t\t\tIt looks identical to its normal counterpart.\n"
 "\t\t"
-msgstr "\t\t\tالكتلة المصابة هي كتلة تخرج منها سمكة فضية عند تكسيرها.\n\t\t\tوتبدو مطابقة تماماً للكتلة العادية المشابهة لها.\n\t\t"
+msgstr "\n\t\t\tالكتلة المصابة هي كتلة تخرج منها سمكة فضية عند تكسيرها.\n\t\t\tوتبدو مطابقة تماماً للكتلة العادية المشابهة لها.\n\t\t"
 
 #: mods/ITEMS/mcl_monster_eggs/init.lua:48
 msgid "Infested Stone"
