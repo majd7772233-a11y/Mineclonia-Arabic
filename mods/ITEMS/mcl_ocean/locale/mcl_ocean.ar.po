@@ -1,0 +1,285 @@
+# Arabic translation draft for Mineclonia component: mcl_ocean
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_ocean/locale/template.pot
+# Source template blob SHA: edf05185b1cb291a3514f5986cdbdfb1e5786190
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 12:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:4
+msgid "Tube Coral Block"
+msgstr "كتلة مرجان أنبوبي"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:4
+msgid "Dead Tube Coral Block"
+msgstr "كتلة مرجان أنبوبي ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:4
+msgid "Tube Coral"
+msgstr "مرجان أنبوبي"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:4
+msgid "Dead Tube Coral"
+msgstr "مرجان أنبوبي ميت"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:4
+msgid "Tube Coral Fan"
+msgstr "مروحة مرجان أنبوبي"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:4
+msgid "Dead Tube Coral Fan"
+msgstr "مروحة مرجان أنبوبي ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:5
+msgid "Brain Coral Block"
+msgstr "كتلة مرجان دماغي"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:5
+msgid "Dead Brain Coral Block"
+msgstr "كتلة مرجان دماغي ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:5
+msgid "Brain Coral"
+msgstr "مرجان دماغي"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:5
+msgid "Dead Brain Coral"
+msgstr "مرجان دماغي ميت"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:5
+msgid "Brain Coral Fan"
+msgstr "مروحة مرجان دماغي"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:5
+msgid "Dead Brain Coral Fan"
+msgstr "مروحة مرجان دماغي ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:6
+msgid "Bubble Coral Block"
+msgstr "كتلة مرجان فقاعي"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:6
+msgid "Dead Bubble Coral Block"
+msgstr "كتلة مرجان فقاعي ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:6
+msgid "Bubble Coral"
+msgstr "مرجان فقاعي"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:6
+msgid "Dead Bubble Coral"
+msgstr "مرجان فقاعي ميت"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:6
+msgid "Bubble Coral Fan"
+msgstr "مروحة مرجان فقاعي"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:6
+msgid "Dead Bubble Coral Fan"
+msgstr "مروحة مرجان فقاعي ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:7
+msgid "Fire Coral Block"
+msgstr "كتلة مرجان ناري"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:7
+msgid "Dead Fire Coral Block"
+msgstr "كتلة مرجان ناري ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:7
+msgid "Fire Coral"
+msgstr "مرجان ناري"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:7
+msgid "Dead Fire Coral"
+msgstr "مرجان ناري ميت"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:7
+msgid "Fire Coral Fan"
+msgstr "مروحة مرجان ناري"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:7
+msgid "Dead Fire Coral Fan"
+msgstr "مروحة مرجان ناري ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:8
+msgid "Horn Coral Block"
+msgstr "كتلة مرجان قرني"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:8
+msgid "Dead Horn Coral Block"
+msgstr "كتلة مرجان قرني ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:8
+msgid "Horn Coral"
+msgstr "مرجان قرني"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:8
+msgid "Dead Horn Coral"
+msgstr "مرجان قرني ميت"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:8
+msgid "Horn Coral Fan"
+msgstr "مروحة مرجان قرني"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:8
+msgid "Dead Horn Coral Fan"
+msgstr "مروحة مرجان قرني ميتة"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:73
+msgid ""
+"Coral blocks live in the oceans and need a water source next to them to "
+"survive. Without water, they die off."
+msgstr "تعيش كتل المرجان في المحيطات وتحتاج إلى مصدر ماء مجاور كي تبقى حية. تموت إذا لم يتوفر الماء."
+
+#: mods/ITEMS/mcl_ocean/corals.lua:74
+msgid ""
+"Corals grow on top of coral blocks and need to be inside a water source to "
+"survive. Without water, it will die off, as well as the coral block below."
+msgstr "ينمو المرجان فوق كتل المرجان ويجب أن يكون داخل مصدر ماء ليبقى حيًا. وبدون الماء سيموت، وكذلك كتلة المرجان الموجودة تحته."
+
+#: mods/ITEMS/mcl_ocean/corals.lua:75
+msgid ""
+"Corals fans grow on top of coral blocks and need to be inside a water source "
+"to survive. Without water, it will die off, as well as the coral block below."
+msgstr "تنمو مراوح المرجان فوق كتل المرجان ويجب أن تكون داخل مصدر ماء لتبقى حية. وبدون الماء ستموت، وكذلك كتلة المرجان الموجودة تحتها."
+
+#: mods/ITEMS/mcl_ocean/corals.lua:76 mods/ITEMS/mcl_ocean/corals.lua:78
+msgid "Needs water to live"
+msgstr "يحتاج إلى الماء ليبقى حيًا"
+
+#: mods/ITEMS/mcl_ocean/corals.lua:77
+msgid "Grows on coral block of same species"
+msgstr "ينمو على كتلة مرجان من النوع نفسه"
+
+#: mods/ITEMS/mcl_ocean/kelp.lua:515 mods/ITEMS/mcl_ocean/kelp.lua:586
+msgid "Kelp"
+msgstr "عشب البحر"
+
+#: mods/ITEMS/mcl_ocean/kelp.lua:516
+msgid "Kelp grows inside water on top of dirt, sand or gravel."
+msgstr "ينمو عشب البحر داخل الماء فوق التراب أو الرمل أو الحصى."
+
+#: mods/ITEMS/mcl_ocean/kelp.lua:587 mods/ITEMS/mcl_ocean/seagrass.lua:81
+msgid "Grows in water on dirt, sand, gravel"
+msgstr "ينمو في الماء فوق التراب أو الرمل أو الحصى"
+
+#: mods/ITEMS/mcl_ocean/kelp.lua:602
+msgid "Dried Kelp"
+msgstr "عشب البحر المجفف"
+
+#: mods/ITEMS/mcl_ocean/kelp.lua:603
+msgid "Dried kelp is a food item."
+msgstr "عشب البحر المجفف عنصر غذائي."
+
+#: mods/ITEMS/mcl_ocean/kelp.lua:613
+msgid "Dried Kelp Block"
+msgstr "كتلة عشب البحر المجفف"
+
+#: mods/ITEMS/mcl_ocean/kelp.lua:614
+msgid "A decorative block that serves as a great furnace fuel."
+msgstr "كتلة زخرفية تصلح وقودًا ممتازًا للفرن."
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:6
+msgid "Sea Lantern"
+msgstr "فانوس البحر"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:7
+msgid ""
+"Sea lanterns are decorative light sources which look great underwater but "
+"can be placed anywhere."
+msgstr "فوانيس البحر مصادر ضوء زخرفية تبدو رائعة تحت الماء، لكن يمكن وضعها في أي مكان."
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:34
+msgid "Prismarine"
+msgstr "بريسمارين"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:35
+msgid "Prismarine is used as a building block. It slowly changes its color."
+msgstr "يُستخدم البريسمارين ككتلة بناء، ويتغير لونه ببطء."
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:46
+msgid "Prismarine Bricks"
+msgstr "طوب البريسمارين"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:56
+msgid "Dark Prismarine"
+msgstr "بريسمارين داكن"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:67
+msgid "Prismarine Stairs"
+msgstr "درج البريسمارين"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:68
+msgid "Prismarine Slab"
+msgstr "بلاطة بريسمارين"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:73
+msgid "Prismarine Brick Stairs"
+msgstr "درج طوب البريسمارين"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:74
+msgid "Prismarine Brick Slab"
+msgstr "بلاطة طوب البريسمارين"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:79
+msgid "Dark Prismarine Stairs"
+msgstr "درج البريسمارين الداكن"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:80
+msgid "Dark Prismarine Slab"
+msgstr "بلاطة البريسمارين الداكن"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:87
+msgid "Prismarine Crystals"
+msgstr "بلورات البريسمارين"
+
+#: mods/ITEMS/mcl_ocean/prismarine.lua:94
+msgid "Prismarine Shard"
+msgstr "شظية بريسمارين"
+
+#: mods/ITEMS/mcl_ocean/sea_pickle.lua:81
+msgid "Sea Pickle"
+msgstr "خيار البحر"
+
+#: mods/ITEMS/mcl_ocean/sea_pickle.lua:82
+msgid ""
+"Sea pickles grow on dead brain coral blocks and provide light when "
+"underwater. They come in 4 sizes that vary in brightness."
+msgstr "ينمو خيار البحر على كتل المرجان الدماغي الميت، ويوفر الضوء تحت الماء. يأتي بأربعة أحجام تختلف في شدة إضاءتها."
+
+#: mods/ITEMS/mcl_ocean/sea_pickle.lua:83
+msgid ""
+"It can only be placed on top of dead brain coral blocks. Placing a sea "
+"pickle on another sea pickle will make it grow and brighter."
+msgstr "لا يمكن وضعه إلا فوق كتل المرجان الدماغي الميت. ويؤدي وضع خيار بحر فوق خيار آخر إلى نموه وزيادة سطوعه."
+
+#: mods/ITEMS/mcl_ocean/sea_pickle.lua:84
+msgid "Glows in the water"
+msgstr "يتوهج تحت الماء"
+
+#: mods/ITEMS/mcl_ocean/sea_pickle.lua:84
+msgid "4 possible sizes"
+msgstr "أربعة أحجام ممكنة"
+
+#: mods/ITEMS/mcl_ocean/sea_pickle.lua:84
+msgid "Grows on dead brain coral block"
+msgstr "ينمو على كتلة مرجان دماغي ميت"
+
+#: mods/ITEMS/mcl_ocean/seagrass.lua:80 mods/ITEMS/mcl_ocean/seagrass.lua:105
+msgid "Seagrass"
+msgstr "حشيشة البحر"
+
+#: mods/ITEMS/mcl_ocean/seagrass.lua:104
+msgid "Seagrass grows inside water on top of dirt, sand or gravel."
+msgstr "تنمو حشيشة البحر داخل الماء فوق التراب أو الرمل أو الحصى."
+
