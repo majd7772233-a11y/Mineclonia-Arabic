@@ -1,0 +1,51 @@
+# Arabic translation for Mineclonia component: mcl_comparators
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/REDSTONE/mcl_comparators/locale/template.pot
+# Source template blob SHA: adfea839a5d30a06e230a9a19471fdf1bb4d2409
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Redstone comparators are multi-purpose redstone components."
+msgstr "مقارنات ريدستون مكوّنات متعددة الاستخدامات في دوائر ريدستون."
+
+msgid "They can transmit a redstone signal, detect whether a block contains any items and compare multiple signals."
+msgstr "يمكنها نقل إشارة ريدستون، واكتشاف ما إذا كانت الكتلة تحتوي على عناصر، ومقارنة عدة إشارات."
+
+msgid "A redstone comparator has 1 main input, 2 side inputs and 1 output. The output is in arrow direction, the main input is in the opposite direction. The other 2 sides are the side inputs."
+msgstr "لمقارن ريدستون مدخل رئيسي واحد ومدخلان جانبيان ومخرج واحد. يكون المخرج في اتجاه السهم، ويكون المدخل الرئيسي في الاتجاه المعاكس له. أما الجانبان الآخران فهما المدخلان الجانبيان."
+
+msgid "The main input can powered in 2 ways: First, it can be powered directly by redstone power like any other component. Second, it is powered if, and only if a container (like a chest) is placed in front of it and the container contains at least one item."
+msgstr "يمكن تزويد المدخل الرئيسي بالطاقة بطريقتين: أولاً، يمكن تشغيله مباشرةً بطاقة ريدستون كما هو الحال مع أي مكوّن آخر. وثانياً، يُشغّل إذا وُضعت أمامه حاوية (مثل صندوق) وكانت تحتوي على عنصر واحد على الأقل."
+
+msgid "The side inputs are only powered by normal redstone power. The redstone comparator can operate in two modes: Transmission mode and subtraction mode. It starts in transmission mode and the mode can be changed by using the block."
+msgstr "لا تُشغّل المدخلات الجانبية إلا بطاقة ريدستون العادية. ويمكن لمقارن ريدستون العمل في وضعين: وضع النقل ووضع الطرح. يبدأ في وضع النقل، ويمكن تغيير وضعه باستخدام الكتلة."
+
+msgid "Transmission mode:\n"
+"The front torch is unlit and lowered. The output is powered if, and only if the main input is powered. The two side inputs are ignored."
+msgstr "وضع النقل:\nيكون المشعل الأمامي مطفأً ومنخفضاً. ولا تُشغّل إشارة الخرج إلا إذا كان المدخل الرئيسي مشغّلاً. ويتم تجاهل المدخلين الجانبيين."
+
+msgid "Subtraction mode:\n"
+"The front torch is lit. The output is powered if, and only if the main input is powered and none of the side inputs is powered."
+msgstr "وضع الطرح:\nيكون المشعل الأمامي مضيئاً. ولا تُشغّل إشارة الخرج إلا إذا كان المدخل الرئيسي مشغّلاً ولم يكن أي من المدخلين الجانبيين مشغّلاً."
+
+msgid "Redstone Comparator"
+msgstr "مقارن ريدستون"
+
+msgid "Redstone Comparator (Powered)"
+msgstr "مقارن ريدستون (مُشغّل)"
+
+msgid "Redstone Comparator (Subtract)"
+msgstr "مقارن ريدستون (وضع الطرح)"
+
+msgid "Redstone Comparator (Subtract, Powered)"
+msgstr "مقارن ريدستون (وضع الطرح، مُشغّل)"
