@@ -2852,3 +2852,4 @@ msgstr "شعار جمجمة صفراء"
 msgid "Yellow Thing Charge"
 msgstr "شعار غامض صفراء"
 
+
