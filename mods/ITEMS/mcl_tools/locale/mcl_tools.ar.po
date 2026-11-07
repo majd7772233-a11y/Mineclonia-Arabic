@@ -71,6 +71,10 @@ msgid ""
 "usual, but the drops are different for a few blocks."
 msgstr "لجزّ الأغنام أو نحت اليقطين الخالي من الوجه، استخدم مفتاح «place» عليه. لا يمكن نحت الوجوه إلا على جانب اليقطين الخالي من الوجه. يعمل التعدين كالمعتاد، لكن بعض الكتل تعطي عناصر مختلفة عند تعدينها."
 
+#: mods/ITEMS/mcl_tools/init.lua:71
+msgid "To shear sheep or carve pumpkins, use the “place” key on them. Faces can only be carved at the side of pumpkins. Mining works as usual, but the drops are different for a few blocks."
+msgstr "لجزّ الأغنام أو نحت اليقطين، استخدم مفتاح «place» عليه. لا يمكن نحت الوجوه إلا على جانب اليقطين. يعمل التعدين كالمعتاد، لكن بعض الكتل تعطي عناصر مختلفة عند تعدينها."
+
 #: mods/ITEMS/mcl_tools/init.lua:259
 msgid "Shears"
 msgstr "مقصّات"
