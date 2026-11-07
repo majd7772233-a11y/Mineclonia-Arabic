@@ -501,8 +501,11 @@ void CGUIEditBox::processKeyLR(const SEvent::SKeyInput &input, s32 &new_mark_beg
 		// Advance to next/previous word
 		new_pos = getCtrlKeyWord(CursorPos, dir);
 	} else {
-		// Advance by +1/-1 character
-		new_pos = CursorPos + dir;
+		// Move by a complete grapheme cluster while keeping the source text logical.
+		if (IGUIFont *font = getActiveFont())
+			new_pos = font->getNextCursorPosition(Text.c_str(), CursorPos, dir);
+		else
+			new_pos = CursorPos + dir;
 	}
 
 	if (!input.Shift) {
@@ -695,6 +698,8 @@ bool CGUIEditBox::onKeyBackDelete(const SEvent::SKeyInput &input)
 		s32 endpos;
 		if (input.Control)
 			endpos = getCtrlKeyWord(CursorPos, dir);
+		else if (IGUIFont *font = getActiveFont())
+			endpos = font->getNextCursorPosition(Text.c_str(), CursorPos, dir);
 		else
 			endpos = CursorPos + dir;
 
@@ -872,10 +877,7 @@ void CGUIEditBox::draw()
 				txtLine = &BrokenText[cursorLine];
 				startPos = BrokenTextPositions[cursorLine];
 			}
-			s = txtLine->subString(0, CursorPos - startPos);
-			charcursorpos = font->getDimension(s.c_str()).Width +
-							font->getKerning(CursorChar[0],
-							CursorPos - startPos > 0 ? (*txtLine)[CursorPos - startPos - 1] : 0).X;
+			charcursorpos = font->getCursorPosition(txtLine->c_str(), CursorPos - startPos);
 
 			if (focus && (CursorBlinkTime == 0 || (os::Timer::getTime() - BlinkStartTime) % (2 * CursorBlinkTime) < CursorBlinkTime)) {
 				setTextRect(cursorLine);
