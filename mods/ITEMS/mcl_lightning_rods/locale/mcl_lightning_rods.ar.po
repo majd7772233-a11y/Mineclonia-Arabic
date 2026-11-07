@@ -1,0 +1,52 @@
+# Arabic translation for Mineclonia component: mcl_lightning_rods
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_lightning_rods/locale/template.pot
+# Source template blob SHA: 93bd7e6869cff3af2726b7c637d5e29c15dbdeba
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_lightning_rods/init.lua:13
+msgid "Lightning Rod"
+msgstr "قضيب صواعق"
+
+#: mods/ITEMS/mcl_lightning_rods/init.lua:14
+msgid "A block that attracts lightning"
+msgstr "كتلة تجذب الصواعق"
+
+#: mods/ITEMS/mcl_lightning_rods/mcl_lightning_rods_translations_tmp.lua:1
+msgid "Exposed Lightning Rod"
+msgstr "قضيب صواعق مكشوف"
+
+#: mods/ITEMS/mcl_lightning_rods/mcl_lightning_rods_translations_tmp.lua:2
+msgid "Oxidized Lightning Rod"
+msgstr "قضيب صواعق متأكسد"
+
+#: mods/ITEMS/mcl_lightning_rods/mcl_lightning_rods_translations_tmp.lua:3
+msgid "Waxed Exposed Lightning Rod"
+msgstr "قضيب صواعق مكشوف مشمّع"
+
+#: mods/ITEMS/mcl_lightning_rods/mcl_lightning_rods_translations_tmp.lua:4
+msgid "Waxed Lightning Rod"
+msgstr "قضيب صواعق مشمّع"
+
+#: mods/ITEMS/mcl_lightning_rods/mcl_lightning_rods_translations_tmp.lua:5
+msgid "Waxed Oxidized Lightning Rod"
+msgstr "قضيب صواعق متأكسد مشمّع"
+
+#: mods/ITEMS/mcl_lightning_rods/mcl_lightning_rods_translations_tmp.lua:6
+msgid "Waxed Weathered Lightning Rod"
+msgstr "قضيب صواعق متجوي مشمّع"
+
+#: mods/ITEMS/mcl_lightning_rods/mcl_lightning_rods_translations_tmp.lua:7
+msgid "Weathered Lightning Rod"
+msgstr "قضيب صواعق متجوي"
