@@ -197,7 +197,7 @@ jobs:
         working-directory: workbench
         run: |
           set -euo pipefail
-          TAG="mineclonia-arabic-source-4ba113d1-language-menu-fix-v2"
+          TAG="mineclonia-arabic-source-4ba113d1-language-menu-fix-v3"
           NOTES="$RUNNER_TEMP/release-notes.md"
           cat > "$NOTES" <<EOF
           ## Mineclonia Arabic runtime translation package
@@ -208,14 +208,14 @@ jobs:
           - Converter: $CONVERTER_MODE. This run uses the pinned Wuzzy Luanti Translation Tools revision $LTT_COMMIT.
           - Mineclonia source mirror commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da (source README version 0.123.0).
           - Target reported by the owner: Mineclonia release 39603 and Luanti 5.17.0. Exact equivalence between that local game tree and the pinned source snapshot has not been independently verified.
-          - The Windows helper is tested on Windows PowerShell 5.1 against the exact Luanti 5.17.0 enum layout. It preserves the empty system-language option, inserts ar immediately after it, repairs the previous misplaced ar entry, and accepts either the install root or its builtin/bin child folder. It backs up both files before editing.
+          - The Windows helper is tested on Windows PowerShell 5.1 against the Luanti 5.17.0 enum and option-label layout. It repairs malformed arbe entries to the canonical ar locale, accepts the install root or its builtin/bin child folder, and sets the persistent language = ar value in the actual Windows user configuration (LUANTI_USER_PATH, MINETEST_USER_PATH, or the engine default %APPDATA%\\Minetest\\minetest.conf). Existing settings and backups are preserved.
           - The user Luanti tree shows the install root as %LOCALAPPDATA%\luanti\5.17.0, containing bin\luanti.exe and builtin\settingtypes.txt. The Mineclonia game root is separate and must not be selected for the language-menu patch.
           - Luanti still lacks full RTL layout/shaping for Arabic; the helper does not change engine rendering.
           - The package has not been tested in a running Luanti client. This is a pre-release candidate for installation testing, not an upstream-approved Mineclonia release or a Weblate merge.
           EOF
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "$PACKAGE_ZIP" "$PACKAGE_SHA" --clobber
-            gh release edit "$TAG" --title "Mineclonia Arabic runtime package — language helper fix v2" --notes-file "$NOTES" --prerelease
+            gh release edit "$TAG" --title "Mineclonia Arabic runtime package — persisted language fix v3" --notes-file "$NOTES" --prerelease
           else
             gh release create "$TAG" "$PACKAGE_ZIP" "$PACKAGE_SHA" \
               --target "$GITHUB_SHA" \
