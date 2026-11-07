@@ -1,0 +1,326 @@
+# Arabic translation draft for Mineclonia component: mcl_colorblocks
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_colorblocks/locale/template.pot
+# Source template blob SHA: 1cd67a32a51ebbd4fb0d5c660ba08d9ecfb740e3
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:4
+msgid ""
+"Terracotta is a basic building material. It comes in many different colors."
+msgstr "التيراكوتا مادة بناء أساسية، وتتوفر بألوان متعددة."
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:5
+msgid ""
+"Glazed terracotta is a decorative block with a complex pattern. It can be "
+"rotated by placing it in different directions."
+msgstr "التيراكوتا المزججة كتلة زخرفية ذات نقوش معقدة. يمكن تدويرها بوضعها في اتجاهات مختلفة."
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:6
+msgid ""
+"Concrete powder is used for creating concrete, but it can also be used as "
+"decoration itself. It comes in different colors. Concrete powder turns into "
+"concrete of the same color when it comes in contact with water."
+msgstr "يُستخدم مسحوق الخرسانة لصنع الخرسانة، ويمكن استخدامه للزينة أيضًا. يتوفر بألوان مختلفة، ويتحول إلى خرسانة من اللون نفسه عند ملامسته للماء."
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:7
+msgid ""
+"Concrete is a decorative block which comes in many different colors. It is "
+"notable for having a very strong and clean color."
+msgstr "الخرسانة كتلة زخرفية تتوفر بألوان عديدة، وتمتاز بألوانها القوية والواضحة."
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:8
+msgid "Turns into concrete on water contact"
+msgstr "يتحول إلى خرسانة عند ملامسة الماء."
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:11
+msgid "Terracotta"
+msgstr "التيراكوتا"
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:12
+msgid ""
+"Terracotta is a basic building material which comes in many different "
+"colors. This particular block is uncolored."
+msgstr "التيراكوتا مادة بناء أساسية تتوفر بألوان عديدة. هذه الكتلة عديمة اللون."
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:37
+msgid "Colored Terracotta"
+msgstr "تيراكوتا ملوّنة"
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:38
+msgid "Glazed Terracotta"
+msgstr "تيراكوتا مزججة"
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:39
+msgid "Concrete Powder"
+msgstr "مسحوق الخرسانة"
+
+#: mods/ITEMS/mcl_colorblocks/init.lua:40
+msgid "Concrete"
+msgstr "الخرسانة"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:1
+msgid "Black Concrete"
+msgstr "خرسانة سوداء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:2
+msgid "Black Concrete Powder"
+msgstr "مسحوق خرسانة أسود"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:3
+msgid "Black Glazed Terracotta"
+msgstr "تيراكوتا مزججة سوداء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:4
+msgid "Black Terracotta"
+msgstr "تيراكوتا سوداء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:5
+msgid "Blue Concrete"
+msgstr "خرسانة زرقاء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:6
+msgid "Blue Concrete Powder"
+msgstr "مسحوق خرسانة أزرق"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:7
+msgid "Blue Glazed Terracotta"
+msgstr "تيراكوتا مزججة زرقاء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:8
+msgid "Blue Terracotta"
+msgstr "تيراكوتا زرقاء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:9
+msgid "Brown Concrete"
+msgstr "خرسانة بنية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:10
+msgid "Brown Concrete Powder"
+msgstr "مسحوق خرسانة بني"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:11
+msgid "Brown Glazed Terracotta"
+msgstr "تيراكوتا مزججة بنية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:12
+msgid "Brown Terracotta"
+msgstr "تيراكوتا بنية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:13
+msgid "Cyan Concrete"
+msgstr "خرسانة سماوية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:14
+msgid "Cyan Concrete Powder"
+msgstr "مسحوق خرسانة سماوي"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:15
+msgid "Cyan Glazed Terracotta"
+msgstr "تيراكوتا مزججة سماوية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:16
+msgid "Cyan Terracotta"
+msgstr "تيراكوتا سماوية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:17
+msgid "Green Concrete"
+msgstr "خرسانة خضراء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:18
+msgid "Green Concrete Powder"
+msgstr "مسحوق خرسانة أخضر"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:19
+msgid "Green Glazed Terracotta"
+msgstr "تيراكوتا مزججة خضراء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:20
+msgid "Green Terracotta"
+msgstr "تيراكوتا خضراء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:21
+msgid "Grey Concrete"
+msgstr "خرسانة رمادية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:22
+msgid "Grey Concrete Powder"
+msgstr "مسحوق خرسانة رمادي"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:23
+msgid "Grey Glazed Terracotta"
+msgstr "تيراكوتا مزججة رمادية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:24
+msgid "Grey Terracotta"
+msgstr "تيراكوتا رمادية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:25
+msgid "Light Blue Concrete"
+msgstr "خرسانة زرقاء فاتحة"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:26
+msgid "Light Blue Concrete Powder"
+msgstr "مسحوق خرسانة أزرق فاتح"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:27
+msgid "Light Blue Glazed Terracotta"
+msgstr "تيراكوتا مزججة زرقاء فاتحة"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:28
+msgid "Light Blue Terracotta"
+msgstr "تيراكوتا زرقاء فاتحة"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:29
+msgid "Light Grey Concrete"
+msgstr "خرسانة رمادية فاتحة"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:30
+msgid "Light Grey Concrete Powder"
+msgstr "مسحوق خرسانة رمادي فاتح"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:31
+msgid "Light Grey Glazed Terracotta"
+msgstr "تيراكوتا مزججة رمادية فاتحة"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:32
+msgid "Light Grey Terracotta"
+msgstr "تيراكوتا رمادية فاتحة"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:33
+msgid "Lime Concrete"
+msgstr "خرسانة ليمونية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:34
+msgid "Lime Concrete Powder"
+msgstr "مسحوق خرسانة ليموني"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:35
+msgid "Lime Glazed Terracotta"
+msgstr "تيراكوتا مزججة ليمونية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:36
+msgid "Lime Terracotta"
+msgstr "تيراكوتا ليمونية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:37
+msgid "Magenta Concrete"
+msgstr "خرسانة أرجوانية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:38
+msgid "Magenta Concrete Powder"
+msgstr "مسحوق خرسانة أرجواني"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:39
+msgid "Magenta Glazed Terracotta"
+msgstr "تيراكوتا مزججة أرجوانية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:40
+msgid "Magenta Terracotta"
+msgstr "تيراكوتا أرجوانية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:41
+msgid "Orange Concrete"
+msgstr "خرسانة برتقالية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:42
+msgid "Orange Concrete Powder"
+msgstr "مسحوق خرسانة برتقالي"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:43
+msgid "Orange Glazed Terracotta"
+msgstr "تيراكوتا مزججة برتقالية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:44
+msgid "Orange Terracotta"
+msgstr "تيراكوتا برتقالية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:45
+msgid "Pink Concrete"
+msgstr "خرسانة وردية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:46
+msgid "Pink Concrete Powder"
+msgstr "مسحوق خرسانة وردي"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:47
+msgid "Pink Glazed Terracotta"
+msgstr "تيراكوتا مزججة وردية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:48
+msgid "Pink Terracotta"
+msgstr "تيراكوتا وردية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:49
+msgid "Purple Concrete"
+msgstr "خرسانة بنفسجية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:50
+msgid "Purple Concrete Powder"
+msgstr "مسحوق خرسانة بنفسجي"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:51
+msgid "Purple Glazed Terracotta"
+msgstr "تيراكوتا مزججة بنفسجية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:52
+msgid "Purple Terracotta"
+msgstr "تيراكوتا بنفسجية"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:53
+msgid "Red Concrete"
+msgstr "خرسانة حمراء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:54
+msgid "Red Concrete Powder"
+msgstr "مسحوق خرسانة أحمر"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:55
+msgid "Red Glazed Terracotta"
+msgstr "تيراكوتا مزججة حمراء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:56
+msgid "Red Terracotta"
+msgstr "تيراكوتا حمراء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:57
+msgid "White Concrete"
+msgstr "خرسانة بيضاء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:58
+msgid "White Concrete Powder"
+msgstr "مسحوق خرسانة أبيض"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:59
+msgid "White Glazed Terracotta"
+msgstr "تيراكوتا مزججة بيضاء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:60
+msgid "White Terracotta"
+msgstr "تيراكوتا بيضاء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:61
+msgid "Yellow Concrete"
+msgstr "خرسانة صفراء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:62
+msgid "Yellow Concrete Powder"
+msgstr "مسحوق خرسانة أصفر"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:63
+msgid "Yellow Glazed Terracotta"
+msgstr "تيراكوتا مزججة صفراء"
+
+#: mods/ITEMS/mcl_colorblocks/mcl_colorblocks_translations_tmp.lua:64
+msgid "Yellow Terracotta"
+msgstr "تيراكوتا صفراء"
+
