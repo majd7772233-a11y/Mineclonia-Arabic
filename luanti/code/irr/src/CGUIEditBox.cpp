@@ -826,31 +826,24 @@ void CGUIEditBox::draw()
 				// draw mark and marked text
 				if (focus && MarkBegin != MarkEnd && i >= hlineStart && i < hlineStart + hlineCount) {
 
-					s32 mbegin = 0, mend = 0;
 					s32 lineStartPos = 0, lineEndPos = txtLine->size();
+					s32 start_x = 0;
+					s32 end_x = font->getDimension(txtLine->c_str()).Width;
 
 					if (i == hlineStart) {
-						// highlight start is on this line
-						s = txtLine->subString(0, realmbgn - startPos);
-						mbegin = font->getDimension(s.c_str()).Width;
-
-						// deal with kerning
-						mbegin += font->getKerning(
-								(*txtLine)[realmbgn - startPos],
-								realmbgn - startPos > 0 ? (*txtLine)[realmbgn - startPos - 1] : 0).X;
-
+						// The start of the selection may be visually right of its end in RTL text.
 						lineStartPos = realmbgn - startPos;
+						start_x = font->getCursorPosition(txtLine->c_str(), lineStartPos);
 					}
 					if (i == hlineStart + hlineCount - 1) {
-						// highlight end is on this line
-						s2 = txtLine->subString(0, realmend - startPos);
-						mend = font->getDimension(s2.c_str()).Width;
-						lineEndPos = (s32)s2.size();
-					} else
-						mend = font->getDimension(txtLine->c_str()).Width;
+						lineEndPos = realmend - startPos;
+						end_x = font->getCursorPosition(txtLine->c_str(), lineEndPos);
+					}
 
-					CurrentTextRect.UpperLeftCorner.X += mbegin;
-					CurrentTextRect.LowerRightCorner.X = CurrentTextRect.UpperLeftCorner.X + mend - mbegin;
+					const s32 left_x = std::min(start_x, end_x);
+					const s32 right_x = std::max(start_x, end_x);
+					CurrentTextRect.UpperLeftCorner.X += left_x;
+					CurrentTextRect.LowerRightCorner.X = CurrentTextRect.UpperLeftCorner.X + (right_x - left_x);
 
 					// draw mark
 					skin->draw2DRectangle(this, skin->getColor(EGDC_HIGH_LIGHT), CurrentTextRect, &localClipRect);
@@ -884,8 +877,14 @@ void CGUIEditBox::draw()
 				CurrentTextRect.UpperLeftCorner.X += charcursorpos;
 
 				if (OverwriteMode) {
-					core::stringw character = Text.subString(CursorPos, 1);
-					s32 mend = font->getDimension(character.c_str()).Width;
+					const s32 local_cursor = CursorPos - startPos;
+					const s32 next_local_cursor = font->getNextCursorPosition(
+							txtLine->c_str(), local_cursor, 1);
+					const s32 next_cursor = startPos + next_local_cursor;
+					core::stringw character = Text.subString(
+							CursorPos, std::max<s32>(0, next_cursor - CursorPos));
+					s32 mend = std::abs(font->getCursorPosition(
+							txtLine->c_str(), next_local_cursor) - charcursorpos);
 					// Make sure the cursor box has at least some width to it
 					if (mend <= 0)
 						mend = font->getDimension(CursorChar.c_str()).Width;
