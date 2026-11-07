@@ -15,6 +15,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
 
+#: mods/ITEMS/mcl_mushrooms/huge.lua:49
+msgid ""
+"This decorative block is like a huge mushroom stem, but with the stem "
+"texture on all sides."
+msgstr "تشبه هذه الكتلة الزخرفية ساق فطر عملاق، لكن نسيج الساق يغطي جميع جوانبها."
+
+#: mods/ITEMS/mcl_mushrooms/huge.lua:107
+msgid ""
+"By placing huge mushroom blocks of the same species next to each other, the "
+"sides that touch each other will turn into pores permanently."
+msgstr "عند وضع كتل فطر عملاق من النوع نفسه بجانب بعضها، تتحول الجوانب المتلامسة بينها إلى مسام بصورة دائمة."
+
+#: mods/ITEMS/mcl_mushrooms/huge.lua:166
+msgid ""
+"Huge red mushroom blocks are the cap parts of huge red mushrooms. It "
+"consists of a red skin and can have pores on each of its sides."
+msgstr "تشكل كتل الفطر الأحمر العملاق قبعات الفطر الأحمر العملاق. وهي مغطاة بقشرة حمراء، وقد تحتوي جوانبها على مسام."
+
 #: mods/ITEMS/mcl_mushrooms/huge.lua:167
 msgid "The stem part of a huge red mushroom."
 msgstr "جزء الساق في فطر أحمر عملاق."
@@ -30,6 +48,12 @@ msgstr "ساق فطر أحمر عملاق"
 #: mods/ITEMS/mcl_mushrooms/huge.lua:168
 msgid "Huge Red Mushroom All-Faces Stem"
 msgstr "ساق فطر أحمر عملاق مغطاة من جميع الجهات"
+
+#: mods/ITEMS/mcl_mushrooms/huge.lua:171
+msgid ""
+"Huge brown mushroom blocks are the cap parts of huge brown mushrooms. It "
+"consists of a brown skin and can have pores on each of its sides."
+msgstr "تشكل كتل الفطر البني العملاق قبعات الفطر البني العملاق. وهي مغطاة بقشرة بنية، وقد تحتوي جوانبها على مسام."
 
 #: mods/ITEMS/mcl_mushrooms/huge.lua:172
 msgid "The stem part of a huge brown mushroom."
@@ -47,6 +71,34 @@ msgstr "ساق فطر بني عملاق"
 msgid "Huge Brown Mushroom All-Faces Stem"
 msgstr "ساق فطر بني عملاق مغطاة من جميع الجهات"
 
+#: mods/ITEMS/mcl_mushrooms/small.lua:20
+msgid ""
+"Brown mushrooms are fungi which grow and spread in darkness, but are "
+"sensitive to light. They are inedible as such, but they can be used to craft "
+"food items."
+msgstr "الفطر البني فطريات تنمو وتنتشر في الظلام، لكنها حساسة للضوء. لا تؤكل مباشرةً، ولكن يمكن استخدامها في تصنيع الأطعمة."
+
+#: mods/ITEMS/mcl_mushrooms/small.lua:21
+msgid ""
+"Red mushrooms are fungi which grow and spread in darkness, but are sensitive "
+"to light. They are inedible as such, but they can be used to craft food "
+"items."
+msgstr "الفطر الأحمر فطريات تنمو وتنتشر في الظلام، لكنها حساسة للضوء. لا تؤكل مباشرةً، ولكن يمكن استخدامها في تصنيع الأطعمة."
+
+#: mods/ITEMS/mcl_mushrooms/small.lua:23
+msgid ""
+"A single mushroom of this species will slowly spread over time towards a "
+"random solid opaque block with a light level of 12 or lower in a 3×3×3 cube "
+"around the mushroom. It stops spreading when there are 5 or more mushrooms "
+"of the same species within an area of 9×3×9 blocks around the mushroom."
+msgstr "ينتشر الفطر الواحد من هذا النوع ببطء مع مرور الوقت نحو كتلة صلبة معتمة عشوائية، لا يتجاوز مستوى إضاءتها 12، ضمن مكعب أبعاده 3×3×3 حول الفطر. ويتوقف انتشاره عندما يوجد خمسة فطريات أو أكثر من النوع نفسه ضمن مساحة أبعادها 9×3×9 كتل حوله."
+
+#: mods/ITEMS/mcl_mushrooms/small.lua:24
+msgid ""
+"Mushrooms will eventually uproot at a light level of 12 or higher. On "
+"mycelium or podzol, they survive and spread at any light level."
+msgstr "تُقتلع الفطريات في النهاية عند مستوى إضاءة يبلغ 12 أو أكثر. لكنها تعيش وتنتشر عند أي مستوى إضاءة إذا كانت على الميسيليوم أو البودزول."
+
 #: mods/ITEMS/mcl_mushrooms/small.lua:26
 msgid "Grows on podzol, mycelium and other blocks"
 msgstr "ينمو على البودزول والميسيليوم وكتل أخرى"
@@ -54,6 +106,13 @@ msgstr "ينمو على البودزول والميسيليوم وكتل أخر�
 #: mods/ITEMS/mcl_mushrooms/small.lua:26
 msgid "Spreads in darkness"
 msgstr "ينتشر في الظلام"
+
+#: mods/ITEMS/mcl_mushrooms/small.lua:28
+msgid ""
+"This mushroom can be placed on mycelium and podzol at any light level. It "
+"can also be placed on blocks which are both solid and opaque, as long as the "
+"light level at daytime is not higher than 12."
+msgstr "يمكن وضع هذا الفطر على الميسيليوم والبودزول عند أي مستوى إضاءة. ويمكن أيضاً وضعه على الكتل الصلبة والمعتمة، ما دام مستوى الإضاءة نهاراً لا يتجاوز 12."
 
 #: mods/ITEMS/mcl_mushrooms/small.lua:92 mods/ITEMS/mcl_mushrooms/small.lua:150
 msgid "Brown Mushroom"
@@ -67,3 +126,9 @@ msgstr "فطر أحمر"
 #: mods/ITEMS/mcl_mushrooms/small.lua:161
 msgid "Mushroom Stew"
 msgstr "حساء الفطر"
+
+#: mods/ITEMS/mcl_mushrooms/small.lua:162
+msgid ""
+"Mushroom stew is a healthy soup which can be consumed to restore some hunger "
+"points."
+msgstr "حساء الفطر حساء صحي يمكن تناوله لاستعادة بعض نقاط الجوع."
