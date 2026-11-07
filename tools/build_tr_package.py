@@ -433,8 +433,8 @@ def main() -> None:
             fail(f"unexpected generated TR file: {tr_path}")
         actual = parse_tr_file(tr_path)
         if actual != expected:
-            missing = list((Counter(expected) - Counter(actual)).elements())[:3]
-            extra = list((Counter(actual) - Counter(expected)).elements())[:3]
+            missing = sorted(set(expected) - set(actual))[:3]
+            extra = sorted(set(actual) - set(expected))[:3]
             different = [
                 key for key in expected.keys() & actual.keys()
                 if expected[key] != actual[key]
