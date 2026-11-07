@@ -45,6 +45,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <algorithm>
+#include <limits>
 #include <cstdint>
 #include <vector>
 #include <cwchar>
