@@ -8,6 +8,7 @@ on:
       - "tools/build_tr_package.py"
       - "tools/ENABLE_ARABIC_LANGUAGE.ps1"
       - "tools/ENABLE_ARABIC_LANGUAGE.bat"
+      - "tools/tests/Test-EnableArabicLanguage.ps1"
       - ".github/workflows/build-arabic-package.yml"
   workflow_dispatch:
 
@@ -15,13 +16,26 @@ permissions:
   contents: write
 
 concurrency:
-  group: mineclonia-arabic-runtime-package-v3
+  group: mineclonia-arabic-runtime-package-v4
   cancel-in-progress: true
 
 # Keep only one active package build; this commit refreshes a stalled runner attempt.
 
 jobs:
+  test-language-helper:
+    name: Test Luanti 5.17.0 Arabic language helper on Windows PowerShell 5.1
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Test root and builtin directory selection, enum ordering, repair, and idempotency
+        shell: powershell
+        run: |
+          & "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "tools/tests/Test-EnableArabicLanguage.ps1"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
   package:
+    needs: test-language-helper
     name: Convert PO to TR and publish install package
     runs-on: ubuntu-latest
     steps:
@@ -183,7 +197,7 @@ jobs:
         working-directory: workbench
         run: |
           set -euo pipefail
-          TAG="mineclonia-arabic-source-4ba113d1-language-menu-fix"
+          TAG="mineclonia-arabic-source-4ba113d1-language-menu-fix-v2"
           NOTES="$RUNNER_TEMP/release-notes.md"
           cat > "$NOTES" <<EOF
           ## Mineclonia Arabic runtime translation package
@@ -194,12 +208,14 @@ jobs:
           - Converter: $CONVERTER_MODE. This run uses the pinned Wuzzy Luanti Translation Tools revision $LTT_COMMIT.
           - Mineclonia source mirror commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da (source README version 0.123.0).
           - Target reported by the owner: Mineclonia release 39603 and Luanti 5.17.0. Exact equivalence between that local game tree and the pinned source snapshot has not been independently verified.
-          - The package includes a Windows helper that adds ar to the Luanti 5.17.0 language enum and visible menu labels, with backups. Luanti still lacks full RTL layout/shaping for Arabic; the helper does not change engine rendering.
+          - The Windows helper is tested on Windows PowerShell 5.1 against the exact Luanti 5.17.0 enum layout. It preserves the empty system-language option, inserts ar immediately after it, repairs the previous misplaced ar entry, and accepts either the install root or its builtin/bin child folder. It backs up both files before editing.
+          - The user Luanti tree shows the install root as %LOCALAPPDATA%\luanti\5.17.0, containing bin\luanti.exe and builtin\settingtypes.txt. The Mineclonia game root is separate and must not be selected for the language-menu patch.
+          - Luanti still lacks full RTL layout/shaping for Arabic; the helper does not change engine rendering.
           - The package has not been tested in a running Luanti client. This is a pre-release candidate for installation testing, not an upstream-approved Mineclonia release or a Weblate merge.
           EOF
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "$PACKAGE_ZIP" "$PACKAGE_SHA" --clobber
-            gh release edit "$TAG" --title "Mineclonia Arabic runtime package" --notes-file "$NOTES" --prerelease
+            gh release edit "$TAG" --title "Mineclonia Arabic runtime package — language helper fix v2" --notes-file "$NOTES" --prerelease
           else
             gh release create "$TAG" "$PACKAGE_ZIP" "$PACKAGE_SHA" \
               --target "$GITHUB_SHA" \
