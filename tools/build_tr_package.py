@@ -611,7 +611,7 @@ def main() -> None:
 3. استخرج محتويات هذا الأرشيف إلى ذلك المجلد، واسمح بدمج مجلد mods.
 4. لا تستبدل مجلد mods بالكامل؛ اسمح بدمج ملفات locale فقط.
 5. تحتوي الحزمة على ملف PO أصلي للوحدة ذات صيغ الجمع الست؛ يتطلب تحميله Luanti 5.10.0 أو أحدث، وإصدارك المبلغ عنه 5.17.0 يفي بذلك.
-6. لتظهر العربية في قائمة اللغة، شغّل ENABLE_ARABIC_LANGUAGE.bat الموجود بجانب مجلد mods. اختر مجلد تثبيت Luanti الذي يحتوي على builtin، واسمح بصلاحية المسؤول إذا طلبها Windows. سيأخذ البرنامج نسخة احتياطية ويعدّل ملفي builtin/settingtypes.txt وbuiltin/common/settings/dlg_settings.lua فقط.
+6. لتظهر العربية في قائمة اللغة، شغّل ENABLE_ARABIC_LANGUAGE.bat الموجود بجانب مجلد mods. اختر جذر تثبيت Luanti الذي يحتوي على المجلدين bin وbuiltin (في شجرة جهازك: C:\\Users\\Magd\\AppData\\Local\\luanti\\5.17.0). لا تختر مجلد Mineclonia. إذا اخترت builtin نفسه بالخطأ فسيصعد البرنامج إلى جذر التثبيت تلقائياً. يقبل أيضاً مجلد bin ويصحح موضع ar بعد خيار لغة النظام الفارغ. سيأخذ نسخة احتياطية قبل تعديل builtin/settingtypes.txt وbuiltin/common/settings/dlg_settings.lua فقط.
 7. افتح Luanti ثم Settings > Accessibility > Language واختر العربية [ar]، وبعدها أعد تشغيل Luanti.
 
 إزالة التعريب
@@ -666,7 +666,7 @@ def main() -> None:
                 "builtin/settingtypes.txt",
                 "builtin/common/settings/dlg_settings.lua",
             ],
-            "purpose": "Expose ar in Luanti 5.17.0 language setting; no RTL engine support is added.",
+            "purpose": "Expose ar in Luanti 5.17.0 language setting after the empty system-language enum item; accepts the install root, builtin child, or bin child, and repairs the previous misplaced ar entry. Windows fixture tests cover the exact Luanti 5.17.0 setting line; no RTL engine support is added.",
         },
         "tr_filename_normalization": "textdomain.ar.tr",
         "modules": per_module,
