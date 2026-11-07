@@ -1,0 +1,181 @@
+# Arabic translation draft for Mineclonia component: mcl_buckets
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_buckets/locale/template.pot
+# Source template blob SHA: a2d1b49847a0aa694033a8b29b8ac840dfd19797
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 12:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_buckets/init.lua:255
+msgid "Empty Bucket"
+msgstr "دلو فارغ"
+
+#: mods/ITEMS/mcl_buckets/init.lua:256
+msgid "A bucket can be used to collect and release liquids."
+msgstr "يمكن استخدام الدلو لجمع السوائل وسكبها."
+
+#: mods/ITEMS/mcl_buckets/init.lua:257
+msgid ""
+"Punch a liquid source to collect it. You can then use the filled bucket to "
+"place the liquid somewhere else."
+msgstr "اضرب مصدر السائل لجمعه. بعد ذلك يمكنك استخدام الدلو الممتلئ لوضع السائل في مكان آخر."
+
+#: mods/ITEMS/mcl_buckets/init.lua:258
+msgid "Collects liquids"
+msgstr "يجمع السوائل"
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:1
+msgid "Bucket of Axolotl"
+msgstr "دلو أكسولوتل"
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:2
+msgid "Bucket of Cod"
+msgstr "دلو سمك القد"
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:3
+msgid "Bucket of Pufferfish"
+msgstr "دلو سمكة منتفخة"
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:4
+msgid "Bucket of Salmon"
+msgstr "دلو سلمون"
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:5
+msgid "Bucket of Tropical Fish"
+msgstr "دلو سمكة استوائية"
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:6
+msgid ""
+"Place it to empty the bucket and place a Cod. Obtain by right clicking on a "
+"Cod with a bucket of water."
+msgstr "ضعه لإفراغ الدلو وإطلاق سمكة قد. يمكنك الحصول عليه بالنقر بزر الفأرة الأيمن على سمكة قد باستخدام دلو ماء."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:7
+msgid ""
+"Place it to empty the bucket and place a Pufferfish. Obtain by right "
+"clicking on a Pufferfish with a bucket of water."
+msgstr "ضعه لإفراغ الدلو وإطلاق سمكة منتفخة. يمكنك الحصول عليه بالنقر بزر الفأرة الأيمن على سمكة منتفخة باستخدام دلو ماء."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:8
+msgid ""
+"Place it to empty the bucket and place a Salmon. Obtain by right clicking on "
+"a Salmon with a bucket of water."
+msgstr "ضعه لإفراغ الدلو وإطلاق سمكة سلمون. يمكنك الحصول عليه بالنقر بزر الفأرة الأيمن على سمكة سلمون باستخدام دلو ماء."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:9
+msgid ""
+"Place it to empty the bucket and place a Tropical Fish. Obtain by right "
+"clicking on a Tropical Fish with a bucket of water."
+msgstr "ضعه لإفراغ الدلو وإطلاق سمكة استوائية. يمكنك الحصول عليه بالنقر بزر الفأرة الأيمن على سمكة استوائية باستخدام دلو ماء."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:10
+msgid ""
+"Place it to empty the bucket and place an Axolotl. Obtain by right clicking "
+"on an Axolotl with a bucket of water."
+msgstr "ضعه لإفراغ الدلو وإطلاق أكسولوتل. يمكنك الحصول عليه بالنقر بزر الفأرة الأيمن على أكسولوتل باستخدام دلو ماء."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:11
+msgid "Places a water source and a Cod."
+msgstr "يضع مصدر ماء وسمكة قد."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:12
+msgid "Places a water source and a Pufferfish."
+msgstr "يضع مصدر ماء وسمكة منتفخة."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:13
+msgid "Places a water source and a Salmon."
+msgstr "يضع مصدر ماء وسمكة سلمون."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:14
+msgid "Places a water source and a Tropical Fish."
+msgstr "يضع مصدر ماء وسمكة استوائية."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:15
+msgid "Places a water source and an Axolotl."
+msgstr "يضع مصدر ماء وأكسولوتل."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:16
+msgid "This bucket is filled with water and a Cod."
+msgstr "هذا الدلو ممتلئ بالماء وسمكة قد."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:17
+msgid "This bucket is filled with water and a Pufferfish."
+msgstr "هذا الدلو ممتلئ بالماء وسمكة منتفخة."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:18
+msgid "This bucket is filled with water and a Salmon."
+msgstr "هذا الدلو ممتلئ بالماء وسمكة سلمون."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:19
+msgid "This bucket is filled with water and a Tropical Fish."
+msgstr "هذا الدلو ممتلئ بالماء وسمكة استوائية."
+
+#: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:20
+msgid "This bucket is filled with water and an Axolotl."
+msgstr "هذا الدلو ممتلئ بالماء وأكسولوتل."
+
+#: mods/ITEMS/mcl_buckets/register.lua:22
+msgid "Lava Bucket"
+msgstr "دلو حمم"
+
+#: mods/ITEMS/mcl_buckets/register.lua:23
+msgid ""
+"A bucket can be used to collect and release liquids. This one is filled with "
+"hot lava, safely contained inside. Use with caution."
+msgstr "يمكن استخدام الدلو لجمع السوائل وسكبها. هذا الدلو ممتلئ بالحمم الساخنة المحفوظة بداخله بأمان. استخدمه بحذر."
+
+#: mods/ITEMS/mcl_buckets/register.lua:24
+msgid ""
+"Get in a safe distance and place the bucket to empty it and create a lava "
+"source at this spot. Don't burn yourself!"
+msgstr "ابتعد إلى مسافة آمنة ثم ضع الدلو لإفراغه وإنشاء مصدر حمم في هذا الموضع. لا تحرق نفسك!"
+
+#: mods/ITEMS/mcl_buckets/register.lua:25
+msgid "Places a lava source"
+msgstr "يضع مصدر حمم"
+
+#: mods/ITEMS/mcl_buckets/register.lua:37
+msgid "Water Bucket"
+msgstr "دلو ماء"
+
+#: mods/ITEMS/mcl_buckets/register.lua:38
+msgid ""
+"A bucket can be used to collect and release liquids. This one is filled with "
+"water."
+msgstr "يمكن استخدام الدلو لجمع السوائل وسكبها. هذا الدلو ممتلئ بالماء."
+
+#: mods/ITEMS/mcl_buckets/register.lua:39
+msgid "Place it to empty the bucket and create a water source."
+msgstr "ضعه لإفراغ الدلو وإنشاء مصدر ماء."
+
+#: mods/ITEMS/mcl_buckets/register.lua:40
+msgid "Places a water source"
+msgstr "يضع مصدر ماء"
+
+#: mods/ITEMS/mcl_buckets/register.lua:58
+msgid "River Water Bucket"
+msgstr "دلو ماء نهر"
+
+#: mods/ITEMS/mcl_buckets/register.lua:59
+msgid ""
+"A bucket can be used to collect and release liquids. This one is filled with "
+"river water."
+msgstr "يمكن استخدام الدلو لجمع السوائل وسكبها. هذا الدلو ممتلئ بماء النهر."
+
+#: mods/ITEMS/mcl_buckets/register.lua:60
+msgid "Place it to empty the bucket and create a river water source."
+msgstr "ضعه لإفراغ الدلو وإنشاء مصدر لماء النهر."
+
+#: mods/ITEMS/mcl_buckets/register.lua:61
+msgid "Places a river water source"
+msgstr "يضع مصدر ماء نهر"
+
