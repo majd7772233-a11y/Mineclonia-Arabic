@@ -1,0 +1,528 @@
+# Arabic translation draft for Mineclonia component: mobs_mc
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ENTITIES/mobs_mc/locale/template.pot
+# Source template blob SHA: 5a5babed4b4b9c4394bffe2c21b0906f68181632
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ENTITIES/mobs_mc/axolotl.lua:10 mods/ENTITIES/mobs_mc/axolotl.lua:331
+msgid "Axolotl"
+msgstr "أكسولوتل"
+
+#: mods/ENTITIES/mobs_mc/axolotl.lua:325
+msgid "Spawning will only be successful on clay."
+msgstr "لا ينجح ظهوره إلا على كتل الطين."
+
+#: mods/ENTITIES/mobs_mc/bat.lua:7 mods/ENTITIES/mobs_mc/bat.lua:162
+msgid "Bat"
+msgstr "خفاش"
+
+#. ~jordan4ibanez
+#. blaze.lua partial copy of mobs_mc/ghast.lua
+#. ###################
+#. ################### BLAZE
+#. ###################
+#: mods/ENTITIES/mobs_mc/blaze.lua:14 mods/ENTITIES/mobs_mc/blaze.lua:317
+msgid "Blaze"
+msgstr "بلايز"
+
+#: mods/ENTITIES/mobs_mc/chicken.lua:11 mods/ENTITIES/mobs_mc/chicken.lua:183
+msgid "Chicken"
+msgstr "دجاجة"
+
+#: mods/ENTITIES/mobs_mc/cod.lua:14 mods/ENTITIES/mobs_mc/cod.lua:104
+msgid "Cod"
+msgstr "سمك القد"
+
+#: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:7
+#: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:228
+msgid "Cow"
+msgstr "بقرة"
+
+#: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:114
+#: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:229
+msgid "Mooshroom"
+msgstr "بقرة الفطر"
+
+#: mods/ENTITIES/mobs_mc/creeper.lua:230 mods/ENTITIES/mobs_mc/creeper.lua:270
+msgid "Creeper"
+msgstr "كريبر"
+
+#: mods/ENTITIES/mobs_mc/creeper.lua:253
+msgid "Charged Creeper"
+msgstr "كريبر مشحون"
+
+#: mods/ENTITIES/mobs_mc/dolphin.lua:13 mods/ENTITIES/mobs_mc/dolphin.lua:642
+msgid "Dolphin"
+msgstr "دلفين"
+
+#: mods/ENTITIES/mobs_mc/drowned.lua:30 mods/ENTITIES/mobs_mc/drowned.lua:865
+msgid "Drowned"
+msgstr "غريق"
+
+#: mods/ENTITIES/mobs_mc/drowned.lua:751
+msgid "Baby Drowned"
+msgstr "غريق صغير"
+
+#: mods/ENTITIES/mobs_mc/drowned.lua:838
+msgid "Drowned will spawn more frequently in this biome."
+msgstr "تظهر الكائنات الغريقة بوتيرة أكبر في هذه المنطقة الأحيائية."
+
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:13
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:184
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1988
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1996
+msgid "Ender Dragon"
+msgstr "تنين إندر"
+
+#: mods/ENTITIES/mobs_mc/enderman.lua:235
+#: mods/ENTITIES/mobs_mc/enderman.lua:759
+msgid "Enderman"
+msgstr "إندرمان"
+
+#: mods/ENTITIES/mobs_mc/endermite.lua:9 mods/ENTITIES/mobs_mc/endermite.lua:65
+msgid "Endermite"
+msgstr "عثة إندر"
+
+#: mods/ENTITIES/mobs_mc/ghast.lua:17 mods/ENTITIES/mobs_mc/ghast.lua:241
+msgid "Ghast"
+msgstr "غاست"
+
+#: mods/ENTITIES/mobs_mc/ghast.lua:291
+msgid "Ghast Fireball"
+msgstr "كرة غاست النارية"
+
+#: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:456
+msgid "Guardian"
+msgstr "حارس"
+
+#: mods/ENTITIES/mobs_mc/guardian_elder.lua:11
+#: mods/ENTITIES/mobs_mc/guardian_elder.lua:130
+msgid "Elder Guardian"
+msgstr "الحارس الأكبر"
+
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:15
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:514
+msgid "Hoglin"
+msgstr "هوغلين"
+
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:561
+msgid "Hoglins do not spawn above Nether Wart blocks."
+msgstr "لا تظهر الهوغلينات فوق كتل ثؤلول العالم السفلي."
+
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:562
+msgid "20% of Hoglins spawn as their baby variants."
+msgstr "تظهر 20% من الهوغلينات بصفتها صغاراً."
+
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:572
+msgid "Zoglin"
+msgstr "زوغلين"
+
+#: mods/ENTITIES/mobs_mc/horse.lua:8
+msgid "Sneak to dismount"
+msgstr "انحنِ للترجل"
+
+#: mods/ENTITIES/mobs_mc/horse.lua:68 mods/ENTITIES/mobs_mc/horse.lua:1363
+msgid "Horse"
+msgstr "حصان"
+
+#: mods/ENTITIES/mobs_mc/horse.lua:1096 mods/ENTITIES/mobs_mc/horse.lua:1364
+msgid "Skeleton Horse"
+msgstr "حصان هيكلي"
+
+#: mods/ENTITIES/mobs_mc/horse.lua:1233 mods/ENTITIES/mobs_mc/horse.lua:1365
+msgid "Zombie Horse"
+msgstr "حصان زومبي"
+
+#: mods/ENTITIES/mobs_mc/horse.lua:1264 mods/ENTITIES/mobs_mc/horse.lua:1326
+#: mods/ENTITIES/mobs_mc/horse.lua:1366
+msgid "Donkey"
+msgstr "حمار"
+
+#: mods/ENTITIES/mobs_mc/horse.lua:1334 mods/ENTITIES/mobs_mc/horse.lua:1357
+#: mods/ENTITIES/mobs_mc/horse.lua:1367
+msgid "Mule"
+msgstr "بغل"
+
+#: mods/ENTITIES/mobs_mc/iron_golem.lua:15
+#: mods/ENTITIES/mobs_mc/iron_golem.lua:514
+msgid "Iron Golem"
+msgstr "غولم حديدي"
+
+#. ~= nil
+#. Attempt to locate a llama within a 9 block radius
+#. that leashed or is fewer than 7 llamas removed from
+#. its leasher.
+#. Minecraft punts very readily if the closest
+#. straggler is unavailable.
+#. Cancel this attack after one shot has been
+#. discharged.
+#. For Trader Llamas.
+#. ----------------------------------------------------------------------------
+#. Llama inventories.
+#. ----------------------------------------------------------------------------
+#. Main inventory.
+#. Hotbar.
+#. ----------------------------------------------------------------------
+#. Llama mounting.
+#. ----------------------------------------------------------------------
+#: mods/ENTITIES/mobs_mc/llama.lua:13 mods/ENTITIES/mobs_mc/llama.lua:481
+#: mods/ENTITIES/mobs_mc/llama.lua:487
+msgid "Llama"
+msgstr "لاما"
+
+#: mods/ENTITIES/mobs_mc/ocelot.lua:25 mods/ENTITIES/mobs_mc/ocelot.lua:1085
+msgid "Ocelot"
+msgstr "أسيلوت"
+
+#: mods/ENTITIES/mobs_mc/ocelot.lua:437 mods/ENTITIES/mobs_mc/ocelot.lua:1086
+msgid "Cat"
+msgstr "قطة"
+
+#: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:352
+msgid "Parrot"
+msgstr "ببغاء"
+
+#: mods/ENTITIES/mobs_mc/parrot.lua:369
+msgid "on grass, leaves, or logs"
+msgstr "على كتل العشب أو الأوراق أو جذوع الأشجار"
+
+#. ~= "mcl_mobitems:carrot_on_a_stick" then -- Note: This is for when the ability to make the pig go faster is implemented
+#. Detach if already attached
+#. Initialize attachment properties.
+#. Ride pig if it has a saddle
+#. Make saddle load upon rejoin
+#. base
+#. saddle
+#. ----------------------------------------------------------------------
+#. Pig AI.
+#. ----------------------------------------------------------------------
+#. ----------------------------------------------------------------------
+#. Pig spawning.
+#. ----------------------------------------------------------------------
+#. spawn eggs
+#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:285
+msgid "Pig"
+msgstr "خنزير"
+
+#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1945
+msgid "Piglin"
+msgstr "بيغلين"
+
+#: mods/ENTITIES/mobs_mc/piglin.lua:1573 mods/ENTITIES/mobs_mc/piglin.lua:1946
+msgid "Piglin Brute"
+msgstr "بيغلين همجي"
+
+#: mods/ENTITIES/mobs_mc/piglin.lua:1725 mods/ENTITIES/mobs_mc/zombiepig.lua:5
+msgid "Zombified Piglin"
+msgstr "بيغلين متحوّل إلى زومبي"
+
+#: mods/ENTITIES/mobs_mc/piglin.lua:1947
+msgid "Zombie Piglin"
+msgstr "بيغلين زومبي"
+
+#: mods/ENTITIES/mobs_mc/pillager.lua:9 mods/ENTITIES/mobs_mc/pillager.lua:303
+msgid "Pillager"
+msgstr "ناهب"
+
+#: mods/ENTITIES/mobs_mc/polar_bear.lua:11
+#: mods/ENTITIES/mobs_mc/polar_bear.lua:269
+msgid "Polar Bear"
+msgstr "دب قطبي"
+
+#: mods/ENTITIES/mobs_mc/polar_bear.lua:311
+msgid "on grass or snow blocks"
+msgstr "على كتل العشب أو كتل الثلج"
+
+#: mods/ENTITIES/mobs_mc/polar_bear.lua:317
+msgid "The second polar bear in a group will always be spawned as a cub."
+msgstr "سيظهر الدب القطبي الثاني في المجموعة دائماً على هيئة شبل."
+
+#: mods/ENTITIES/mobs_mc/pufferfish.lua:38
+#: mods/ENTITIES/mobs_mc/pufferfish.lua:284
+msgid "Pufferfish"
+msgstr "سمكة منتفخة"
+
+#: mods/ENTITIES/mobs_mc/rabbit.lua:7 mods/ENTITIES/mobs_mc/rabbit.lua:469
+msgid "Rabbit"
+msgstr "أرنب"
+
+#: mods/ENTITIES/mobs_mc/rabbit.lua:427
+msgid "Killer Bunny"
+msgstr "أرنب قاتل"
+
+#: mods/ENTITIES/mobs_mc/ravager.lua:19 mods/ENTITIES/mobs_mc/ravager.lua:518
+msgid "Ravager"
+msgstr "مُخرّب"
+
+#: mods/ENTITIES/mobs_mc/salmon.lua:14 mods/ENTITIES/mobs_mc/salmon.lua:97
+msgid "Salmon"
+msgstr "سلمون"
+
+#: mods/ENTITIES/mobs_mc/sheep.lua:58 mods/ENTITIES/mobs_mc/sheep.lua:352
+msgid "Sheep"
+msgstr "خروف"
+
+#. ~= 0 then
+#. ----------------------------------------------------------------------
+#. Shulker spawning.
+#. ----------------------------------------------------------------------
+#: mods/ENTITIES/mobs_mc/shulker.lua:15 mods/ENTITIES/mobs_mc/shulker.lua:850
+msgid "Shulker"
+msgstr "شولكر"
+
+#: mods/ENTITIES/mobs_mc/silverfish.lua:14
+#: mods/ENTITIES/mobs_mc/silverfish.lua:176
+msgid "Silverfish"
+msgstr "سمكة فضية"
+
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:15
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:402
+msgid "Skeleton"
+msgstr "هيكل عظمي"
+
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:360
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:403
+msgid "Stray"
+msgstr "هيكل عظمي ضال"
+
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:489
+msgid "Moreover, the block where the mob is to spawn must be exposed to sky."
+msgstr "بالإضافة إلى ذلك، يجب أن تكون الكتلة التي سيظهر عليها الكائن مكشوفة للسماء."
+
+#: mods/ENTITIES/mobs_mc/skeleton_wither.lua:15
+#: mods/ENTITIES/mobs_mc/skeleton_wither.lua:184
+msgid "Wither Skeleton"
+msgstr "هيكل عظمي للوذر"
+
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:21
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:345
+msgid "Slime"
+msgstr "سلايم"
+
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:451
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:587
+msgid "Magma Cube"
+msgstr "مكعب صهارة"
+
+#: mods/ENTITIES/mobs_mc/snowman.lua:22 mods/ENTITIES/mobs_mc/snowman.lua:239
+msgid "Snow Golem"
+msgstr "غولم ثلجي"
+
+#: mods/ENTITIES/mobs_mc/spawning.lua:157
+msgid "on grass nodes"
+msgstr "على عقد العشب"
+
+#: mods/ENTITIES/mobs_mc/spawning.lua:266
+msgid "Spawning will only succeed between artificial light levels of 0 and @1."
+msgstr "لا ينجح الظهور إلا عندما يكون مستوى الإضاءة الاصطناعية بين 0 و@1."
+
+#: mods/ENTITIES/mobs_mc/spawning.lua:268
+msgid "Spawning will only succeed between natural light levels of 0 and @1."
+msgstr "لا ينجح الظهور إلا عندما يكون مستوى الإضاءة الطبيعية بين 0 و@1."
+
+#: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:371
+msgid "Spider"
+msgstr "عنكبوت"
+
+#: mods/ENTITIES/mobs_mc/spider.lua:332 mods/ENTITIES/mobs_mc/spider.lua:372
+msgid "Cave Spider"
+msgstr "عنكبوت الكهوف"
+
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:11
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:485
+msgid "Squid"
+msgstr "حبار"
+
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:412
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:486
+msgid "Glow Squid"
+msgstr "حبار متوهج"
+
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:601
+msgid "Glow Squid only spawn in absolute darkness at Y levels of 33 or below."
+msgstr "لا يظهر الحبار المتوهج إلا في ظلام دامس عند مستوى Y=33 أو أقل."
+
+#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:518
+msgid "Strider"
+msgstr "عدّاء الحمم"
+
+#: mods/ENTITIES/mobs_mc/strider.lua:557
+msgid "Baby Strider"
+msgstr "عدّاء حمم صغير"
+
+#: mods/ENTITIES/mobs_mc/tropical_fish.lua:6
+#: mods/ENTITIES/mobs_mc/tropical_fish.lua:193
+msgid "Tropical Fish"
+msgstr "سمكة استوائية"
+
+#: mods/ENTITIES/mobs_mc/vex.lua:15 mods/ENTITIES/mobs_mc/vex.lua:333
+msgid "Vex"
+msgstr "فكس"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:973
+#: mods/ENTITIES/mobs_mc/villager.lua:6786
+msgid "Villager"
+msgstr "قروي"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1021
+msgid "Armorer"
+msgstr "صانع الدروع"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1029
+msgid "Butcher"
+msgstr "جزّار"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1037
+msgid "Cartographer"
+msgstr "رسّام خرائط"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1045
+msgid "Cleric"
+msgstr "رجل دين"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1053
+msgid "Farmer"
+msgstr "مزارع"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1066
+msgid "Fisherman"
+msgstr "صياد"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1074
+msgid "Fletcher"
+msgstr "صانع سهام"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1082
+msgid "Leatherworker"
+msgstr "دبّاغ"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1090
+msgid "Librarian"
+msgstr "أمين مكتبة"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1098
+msgid "Mason"
+msgstr "بنّاء"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1106
+msgid "Shepherd"
+msgstr "راعٍ"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1114
+msgid "Toolsmith"
+msgstr "صانع أدوات"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1122
+msgid "Weaponsmith"
+msgstr "صانع أسلحة"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1130
+msgid "Nitwit"
+msgstr "قروي أبله"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1966
+msgid "Novice"
+msgstr "مبتدئ"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1967
+msgid "Apprentice"
+msgstr "متدرّب"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1968
+msgid "Journeyman"
+msgstr "متمرّس"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1969
+msgid "Expert"
+msgstr "خبير"
+
+#: mods/ENTITIES/mobs_mc/villager.lua:1970
+msgid "Master"
+msgstr "أستاذ"
+
+#: mods/ENTITIES/mobs_mc/villager_evoker.lua:20
+#: mods/ENTITIES/mobs_mc/villager_evoker.lua:556
+msgid "Evoker"
+msgstr "مستحضر الأرواح"
+
+#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:19
+#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:647
+msgid "Illusioner"
+msgstr "موهِم"
+
+#: mods/ENTITIES/mobs_mc/villager_vindicator.lua:17
+#: mods/ENTITIES/mobs_mc/villager_vindicator.lua:283
+msgid "Vindicator"
+msgstr "منتقم"
+
+#: mods/ENTITIES/mobs_mc/villager_zombie.lua:26
+#: mods/ENTITIES/mobs_mc/villager_zombie.lua:583
+msgid "Zombie Villager"
+msgstr "قروي زومبي"
+
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:12
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:546
+msgid "Wandering Trader"
+msgstr "تاجر جوّال"
+
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:563
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:681
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:682
+msgid "Trader Llama"
+msgstr "لاما التاجر"
+
+#: mods/ENTITIES/mobs_mc/witch.lua:59 mods/ENTITIES/mobs_mc/witch.lua:398
+msgid "Witch"
+msgstr "ساحرة"
+
+#: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:301
+#: mods/ENTITIES/mobs_mc/wither.lua:933
+msgid "Wither"
+msgstr "الوذر"
+
+#: mods/ENTITIES/mobs_mc/wolf.lua:13 mods/ENTITIES/mobs_mc/wolf.lua:903
+msgid "Wolf"
+msgstr "ذئب"
+
+#: mods/ENTITIES/mobs_mc/wolf.lua:927
+msgid "on grass, snow blocks, coarse dirt, or podzol"
+msgstr "على كتل العشب أو الثلج أو التراب الخشن أو تربة بودزولية"
+
+#: mods/ENTITIES/mobs_mc/zombie.lua:62 mods/ENTITIES/mobs_mc/zombie.lua:866
+msgid "Zombie"
+msgstr "زومبي"
+
+#: mods/ENTITIES/mobs_mc/zombie.lua:786
+msgid "Baby Zombie"
+msgstr "زومبي صغير"
+
+#: mods/ENTITIES/mobs_mc/zombie.lua:812 mods/ENTITIES/mobs_mc/zombie.lua:865
+msgid "Husk"
+msgstr "زومبي متيبّس"
+
+#: mods/ENTITIES/mobs_mc/zombie.lua:841
+msgid "Baby Husk"
+msgstr "زومبي متيبّس صغير"
+
+#: mods/ENTITIES/mobs_mc/zombie.lua:900
+msgid "5% of Zombies will spawn as their baby variants."
+msgstr "تظهر 5% من كائنات الزومبي بصفتها صغاراً."
+
+#: mods/ENTITIES/mobs_mc/zombie.lua:939
+msgid "5% of Husks will spawn as their baby variants."
+msgstr "تظهر 5% من كائنات الزومبي المتصلّبة بصفتها صغاراً."
+
+#: mods/ENTITIES/mobs_mc/zombie.lua:940
+msgid "Husks will only spawn on nodes that are exposed to sky."
+msgstr "لا تظهر الزومبيات المتصلّبة إلا على كتل مكشوفة للسماء."
