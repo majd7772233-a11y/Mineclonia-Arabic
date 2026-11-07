@@ -1,0 +1,202 @@
+# Arabic translation draft for Mineclonia component: mcl_minecarts
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ENTITIES/mcl_minecarts/locale/template.pot
+# Source template blob SHA: 0b014fa1cfefc80236d267b0a04cc6959f310536
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 12:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:725
+msgid "Sneak-click to remove"
+msgstr "انقر أثناء التسلل لإزالته"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:735
+msgid "Minecart"
+msgstr "عربة منجمية"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:736
+#: mods/ENTITIES/mcl_minecarts/init.lua:890
+msgid "Vehicle for fast travel on rails"
+msgstr "وسيلة نقل سريعة على السكك الحديدية."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:737
+msgid "Minecarts can be used for a quick transportion on rails."
+msgstr "يمكن استخدام العربات المنجمية للتنقل بسرعة على السكك الحديدية."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:738
+msgid ""
+"Minecarts only ride on rails and always follow the tracks. At a T-junction "
+"with no straight way ahead, they turn left. The speed is affected by the "
+"rail type."
+msgstr "تتحرك العربات المنجمية على السكك فقط وتتبع المسار دائمًا. عند تقاطع على شكل T لا يوجد أمامه مسار مستقيم، تنعطف إلى اليسار. وتتأثر سرعتها بنوع السكة."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:739
+msgid ""
+"You can place the minecart on rails. Right-click it to enter it. Punch it to "
+"get it moving."
+msgstr "يمكنك وضع العربة المنجمية على السكك. انقر عليها بزر الفأرة الأيمن لركوبها، واضربها لتبدأ بالحركة."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:740
+msgid "To obtain the minecart, punch it while holding down the sneak key."
+msgstr "للحصول على العربة المنجمية، اضربها مع الضغط باستمرار على مفتاح التسلل."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:741
+msgid "If it moves over a powered activator rail, you'll get ejected."
+msgstr "إذا مرت فوق سكة تفعيل مزودة بالطاقة، فستُقذف خارجها."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:763
+msgid "Sneak to dismount"
+msgstr "اضغط مفتاح التسلل للنزول"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:774
+msgid "Minecart with Chest"
+msgstr "عربة منجمية بصندوق"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:795
+msgid "Minecart with Furnace"
+msgstr "عربة منجمية بفرن"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:797
+msgid ""
+"A minecart with furnace is a vehicle that travels on rails. It can propel "
+"itself with fuel."
+msgstr "العربة المنجمية المزودة بفرن وسيلة نقل تسير على السكك، ويمكنها دفع نفسها باستخدام الوقود."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:798
+msgid ""
+"Place it on rails. If you give it some coal, the furnace will start burning "
+"for a long time and the minecart will be able to move itself. Punch it to "
+"get it moving."
+msgstr "ضعها على السكك. إذا زودتها بالفحم، فسيبدأ الفرن بالاحتراق مدة طويلة وستتمكن العربة من دفع نفسها. اضربها لتبدأ بالحركة."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:799
+msgid ""
+"To obtain the minecart and furnace, punch them while holding down the sneak "
+"key."
+msgstr "للحصول على العربة المنجمية والفرن، اضربهما مع الضغط باستمرار على مفتاح التسلل."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:849
+msgid "Minecart with Command Block"
+msgstr "عربة منجمية بكتلة أوامر"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:870
+msgid "Minecart with Hopper"
+msgstr "عربة منجمية بقمع"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:889
+msgid "Minecart with TNT"
+msgstr "عربة منجمية بـTNT"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:890
+msgid "Can be ignited by tools or powered activator rail"
+msgstr "يمكن إشعالها بالأدوات أو بسكة تفعيل مزودة بالطاقة"
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:891
+msgid "A minecart with TNT is an explosive vehicle that travels on rail."
+msgstr "العربة المنجمية المزودة بـTNT وسيلة نقل متفجرة تسير على السكك."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:892
+msgid ""
+"Place it on rails. Punch it to move it. The TNT is ignited with a flint and "
+"steel or when the minecart is on an powered activator rail."
+msgstr "ضعها على السكك واضربها لتحريكها. يُشعل الـTNT باستخدام قداحة أو عندما تكون العربة المنجمية فوق سكة تفعيل مزودة بالطاقة."
+
+#: mods/ENTITIES/mcl_minecarts/init.lua:893
+msgid ""
+"To obtain the minecart and TNT, punch them while holding down the sneak key. "
+"You can't do this if the TNT was ignited."
+msgstr "للحصول على العربة المنجمية وكتلة TNT، اضربهما مع الضغط باستمرار على مفتاح التسلل. لا يمكنك فعل ذلك إذا كان الـTNT قد اشتعل."
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:46
+msgid ""
+"Place them on the ground to build your railway, the rails will automatically "
+"connect to each other and will turn into curves, T-junctions, crossings and "
+"slopes as needed."
+msgstr "ضع السكك على الأرض لبناء خطك الحديدي؛ وستتصل السكك بعضها ببعض تلقائيًا وتتحول عند الحاجة إلى منحنيات وتقاطع على شكل T وتقاطع رباعي ومنحدرات."
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:52
+msgid "Rail"
+msgstr "سكة"
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:53
+#: mods/ENTITIES/mcl_minecarts/rails.lua:211
+#: mods/ENTITIES/mcl_minecarts/rails.lua:246
+#: mods/ENTITIES/mcl_minecarts/rails.lua:289
+msgid "Track for minecarts"
+msgstr "مسار للعربات المنجمية"
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:54
+msgid ""
+"Rails can be used to build transport tracks for minecarts. Normal rails "
+"slightly slow down minecarts due to friction."
+msgstr "يمكن استخدام السكك لبناء مسارات نقل للعربات المنجمية. وتبطئ السكك العادية العربات قليلًا بسبب الاحتكاك."
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:210
+msgid "Powered Rail"
+msgstr "سكة طاقة"
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:211
+msgid "Speed up when powered, slow down when not powered"
+msgstr "تسرّع العربات عند تزويدها بالطاقة وتبطئها عند انقطاعها"
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:212
+msgid ""
+"Rails can be used to build transport tracks for minecarts. Powered rails are "
+"able to accelerate and brake minecarts."
+msgstr "يمكن استخدام السكك لبناء مسارات نقل للعربات المنجمية. تستطيع سكك الطاقة تسريع العربات المنجمية وإبطاءها."
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:213
+msgid ""
+"Without redstone power, the rail will brake minecarts. To make this rail "
+"accelerate minecarts, power it with redstone power."
+msgstr "من دون طاقة ريدستون، ستُبطئ هذه السكة العربات المنجمية. ولجعلها تسرّع العربات، زوّدها بطاقة ريدستون."
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:245
+msgid "Activator Rail"
+msgstr "سكة تفعيل"
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:246
+msgid "Activates minecarts when powered"
+msgstr "تفعّل العربات المنجمية عند تزويدها بالطاقة"
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:247
+msgid ""
+"Rails can be used to build transport tracks for minecarts. Activator rails "
+"are used to activate special minecarts."
+msgstr "يمكن استخدام السكك لبناء مسارات نقل للعربات المنجمية. وتُستخدم سكك التفعيل لتنشيط العربات المنجمية الخاصة."
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:248
+msgid ""
+"To make this rail activate minecarts, power it with redstone power and send "
+"a minecart over this piece of rail."
+msgstr "لتفعيل العربات المنجمية بهذه السكة، زوّدها بطاقة ريدستون ومرّر عربة منجمية فوقها."
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:288
+msgid "Detector Rail"
+msgstr "سكة كاشفة"
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:289
+msgid "Emits redstone power when a minecart is detected"
+msgstr "تصدر طاقة ريدستون عند اكتشاف عربة منجمية"
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:290
+msgid ""
+"Rails can be used to build transport tracks for minecarts. A detector rail "
+"is able to detect a minecart above it and powers redstone mechanisms."
+msgstr "يمكن استخدام السكك لبناء مسارات نقل للعربات المنجمية. تستطيع السكة الكاشفة اكتشاف عربة منجمية فوقها وتزويد آليات ريدستون بالطاقة."
+
+#: mods/ENTITIES/mcl_minecarts/rails.lua:291
+msgid ""
+"To detect a minecart and provide redstone power, connect it to redstone "
+"trails or redstone mechanisms and send any minecart over the rail."
+msgstr "لكشف عربة منجمية وإصدار طاقة ريدستون، صِل السكة بمسارات ريدستون أو بآليات ريدستون، ثم مرّر أي عربة منجمية فوقها."
+
