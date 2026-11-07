@@ -1,0 +1,58 @@
+# Arabic translation for Mineclonia component: mcl_smoker
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_smoker/locale/template.pot
+# Source template blob SHA: e9f69a58e41c12a925ad166fa063f8ca2f19c8f7
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_smoker/init.lua:8
+msgid "Smoker"
+msgstr "مدخّن"
+
+#: mods/ITEMS/mcl_smoker/init.lua:9
+msgid "Cooks food faster than furnace"
+msgstr "يطهو الطعام أسرع من الفرن العادي"
+
+#: mods/ITEMS/mcl_smoker/init.lua:11
+msgid ""
+"Smokers cook several items, mainly raw foods, into cooked foods, but twice "
+"as fast as a normal furnace."
+msgstr "يطهو المدخّن عدة عناصر، معظمها الأطعمة النيئة، ليحوّلها إلى أطعمة مطهوة، لكنه يعمل بسرعة مضاعفة مقارنةً بالفرن العادي."
+
+#: mods/ITEMS/mcl_smoker/init.lua:13
+msgid "Use the smoker to open the furnace menu."
+msgstr "استخدم المدخّن لفتح قائمة الفرن."
+
+#: mods/ITEMS/mcl_smoker/init.lua:14
+msgid ""
+"Place a furnace fuel in the lower slot and the source material in the upper "
+"slot."
+msgstr "ضع وقود الفرن في الخانة السفلية والمادة المراد طهيها في الخانة العلوية."
+
+#: mods/ITEMS/mcl_smoker/init.lua:15
+msgid "The smoker will slowly use its fuel to smelt the item."
+msgstr "يستهلك المدخّن وقوده تدريجياً لطهي العنصر."
+
+#: mods/ITEMS/mcl_smoker/init.lua:16
+msgid "The result will be placed into the output slot at the right side."
+msgstr "ستظهر النتيجة في خانة الإخراج الموجودة على الجانب الأيمن."
+
+#: mods/ITEMS/mcl_smoker/init.lua:17
+msgid ""
+"Use the recipe book to see what foods you can smelt, what you can use as "
+"fuel and how long it will burn."
+msgstr "استخدم كتاب الوصفات لمعرفة الأطعمة التي يمكنك طهيها، وأنواع الوقود المناسبة، ومدة احتراق كل نوع."
+
+#: mods/ITEMS/mcl_smoker/init.lua:26
+msgid "Burning Smoker"
+msgstr "مدخّن مشتعل"
