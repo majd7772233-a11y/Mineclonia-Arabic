@@ -307,3 +307,10 @@ msgstr "المكونات:"
 #: mods/ITEMS/mcl_armor/trims.lua:12
 msgid "Ingot & Crystals"
 msgstr "سبيكة وبلورات"
+
+
+msgid "Aqua Affinity"
+msgstr "الألفة مع الماء"
+
+msgid "Increases underwater mining speed."
+msgstr "تزيد سرعة التعدين تحت الماء."
