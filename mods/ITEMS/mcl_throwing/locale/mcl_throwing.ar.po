@@ -1,0 +1,66 @@
+# Arabic translation for Mineclonia component: mcl_throwing
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_throwing/locale/template.pot
+# Source template blob SHA: 0f7102bd61e24177e02f7b8f074c3bb16b4a288e
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_throwing/register.lua:319
+msgid "Use the place key to throw."
+msgstr "استخدم زر الوضع للرمي."
+
+#: mods/ITEMS/mcl_throwing/register.lua:323
+msgid "Snowball"
+msgstr "كرة ثلج"
+
+#: mods/ITEMS/mcl_throwing/register.lua:324
+#: mods/ITEMS/mcl_throwing/register.lua:339
+#: mods/ITEMS/mcl_throwing/register.lua:354
+msgid "Throwable"
+msgstr "قابل للرمي"
+
+#: mods/ITEMS/mcl_throwing/register.lua:325
+msgid ""
+"Snowballs can be thrown or launched from a dispenser for fun. Hitting "
+"something with a snowball does nothing."
+msgstr "يمكن رمي كرات الثلج أو إطلاقها من الموزّع للتسلية. لا يؤدي إصابة شيء بكرة ثلج إلى إلحاق أي ضرر به."
+
+#: mods/ITEMS/mcl_throwing/register.lua:338
+msgid "Egg"
+msgstr "بيضة"
+
+#: mods/ITEMS/mcl_throwing/register.lua:339
+msgid "Chance to hatch chicks when broken"
+msgstr "احتمال فقس كتاكيت عند تحطمها"
+
+#: mods/ITEMS/mcl_throwing/register.lua:340
+msgid ""
+"Eggs can be thrown or launched from a dispenser and breaks on impact. There "
+"is a small chance that 1 or even 4 chicks will pop out of the egg."
+msgstr "يمكن رمي البيض أو إطلاقه من الموزّع، ويتحطم عند الاصطدام. هناك احتمال ضئيل أن تخرج من البيضة كتكوتة واحدة أو حتى أربعة كتاكيت."
+
+#: mods/ITEMS/mcl_throwing/register.lua:353
+msgid "Ender Pearl"
+msgstr "لؤلؤة إندر"
+
+#: mods/ITEMS/mcl_throwing/register.lua:354
+msgid "Teleports you on impact for cost of 5 HP"
+msgstr "تنقلك آنياً عند الاصطدام مقابل 5 نقاط صحة"
+
+#: mods/ITEMS/mcl_throwing/register.lua:355
+msgid ""
+"An ender pearl is an item which can be used for teleportation at the cost of "
+"health. It can be thrown and teleport the thrower to its impact location "
+"when it hits a solid block or a plant. Each teleportation hurts the user by "
+"5 hit points."
+msgstr "لؤلؤة إندر عنصر يُستخدم للانتقال الآني مقابل خسارة نقاط من الصحة. يمكن رميها، فتنقل من يرميها إلى موضع اصطدامها عندما تصطدم بكتلة صلبة أو نبات. وكل عملية انتقال آني تلحق بالمستخدم ضرراً مقداره 5 نقاط صحة."
