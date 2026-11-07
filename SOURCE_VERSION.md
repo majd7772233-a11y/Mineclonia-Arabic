@@ -36,3 +36,10 @@
 - https://github.com/mineclonia-mirror/mineclonia/blob/main/DEV_TRANSLATION_WORKFLOW.md
 - https://docs.luanti.org/for-creators/translation/mods-and-games/
 - https://api.luanti.org/translations/
+
+## دفعة 2026-11-07 التالية
+
+- أضيفت 17 وحدة ترجمة و184 رسالة من لقطة المصدر `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`.
+- الملفات الجديدة تشمل `mcl_biome_dispatch`, `mcl_throwing`, `mcl_sponges`, `doc`, ومكوّنات ريدستون والأفران واللافتات.
+- إجمالي ملفات PO: 112. إجمالي الرسائل: 4,736.
+- تحقق CI: [42367489651](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/42367489651).
