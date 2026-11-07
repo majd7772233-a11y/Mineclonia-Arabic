@@ -155,8 +155,11 @@ jobs:
             --target-release "39603 (reported by owner; exact source match unverified)" \
             --luanti-version "5.17.0 (reported by owner)" \
             --output workbench/dist
-          echo "PACKAGE_ZIP=$(find workbench/dist -maxdepth 1 -name '*.zip' -print -quit)" >> "$GITHUB_ENV"
-          echo "PACKAGE_SHA=$(find workbench/dist -maxdepth 1 -name '*.zip.sha256' -print -quit)" >> "$GITHUB_ENV"
+          ZIP_PATH=$(find workbench/dist -maxdepth 1 -name '*.zip' -print -quit)
+          SHA_PATH=$(find workbench/dist -maxdepth 1 -name '*.zip.sha256' -print -quit)
+          test -n "$ZIP_PATH" && test -n "$SHA_PATH"
+          echo "PACKAGE_ZIP=$(realpath "$ZIP_PATH")" >> "$GITHUB_ENV"
+          echo "PACKAGE_SHA=$(realpath "$SHA_PATH")" >> "$GITHUB_ENV"
 
       - name: Upload package artifact
         uses: actions/upload-artifact@v4
@@ -181,17 +184,15 @@ jobs:
           TAG="mineclonia-arabic-source-4ba113d1"
           NOTES="$RUNNER_TEMP/release-notes.md"
           cat > "$NOTES" <<EOF
-          ## Mineclonia Arabic runtime package
+          ## Mineclonia Arabic runtime translation package
 
-          - 163 translation domains and 5,010 PO entries; all strings from the 163 runtime template.txt catalogs are required to be covered.
-          - Converter mode: `$CONVERTER_MODE`. When `official-ltt`, files are generated and checked with Wuzzy Luanti Translation Tools. When the Codeberg service is unavailable, a local compatibility implementation of Luanti .tr escaping is used; it is explicitly not represented as the upstream tool.
-          - The build also verifies every generated TR entry round-trips exactly to its PO translation and checks runtime-template coverage. Modules with gettext plurals are shipped as native PO runtime catalogs (Luanti 5.10.0+), not flattened into TR.
-          - Mineclonia source mirror commit: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`.
-          - Minetest Translation Tools commit: `$LTT_COMMIT`.
-          - Owner-reported target: Mineclonia `release=39603`, Luanti `5.17.0`; exact source-to-local-build equivalence has not been independently confirmed.
-          - The upstream LTT converter describes itself as experimental; this build validates generated files with ltt_check.py and compares every generated TR translation against the source PO catalog.
-          - Computed strings are extracted by running the pinned Mineclonia source snapshot in Luanti server mode with its translation-dumper mod.
-          - The package has not yet been tested in a running Luanti client. It is published as a pre-release candidate for installation testing, not as an upstream-approved Mineclonia release.
+          - 163 translation modules are covered: 162 generated Arabic TR files and one native Arabic PO catalog for gettext plural forms.
+          - 5,018 translated non-whitespace PO entries are included. One whitespace-only formatting key is intentionally left for the engine.
+          - All runtime strings extracted from the pinned Mineclonia snapshot are checked for coverage; every generated TR catalog is round-trip compared with its PO source.
+          - Converter: $CONVERTER_MODE. This run uses the pinned Wuzzy Luanti Translation Tools revision $LTT_COMMIT.
+          - Mineclonia source mirror commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da (source README version 0.123.0).
+          - Target reported by the owner: Mineclonia release 39603 and Luanti 5.17.0. Exact equivalence between that local game tree and the pinned source snapshot has not been independently verified.
+          - The package has not been tested in a running Luanti client. This is a pre-release candidate for installation testing, not an upstream-approved Mineclonia release or a Weblate merge.
           EOF
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "$PACKAGE_ZIP" "$PACKAGE_SHA" --clobber
