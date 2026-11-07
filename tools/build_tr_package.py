@@ -37,6 +37,24 @@ def decode_template_key(raw: str, where: str) -> str:
     i = 0
     while i < len(raw):
         char = raw[i]
+        if char == "\\" and i + 1 < len(raw):
+            nxt = raw[i + 1]
+            if nxt == "n":
+                result.append("\n")
+                i += 2
+                continue
+            if nxt == "\\":
+                result.append("\\")
+                i += 2
+                continue
+            if nxt == "=":
+                result.append("=")
+                i += 2
+                continue
+            if nxt == "@":
+                result.append("@")
+                i += 2
+                continue
         if char != "@":
             result.append(char)
             i += 1
