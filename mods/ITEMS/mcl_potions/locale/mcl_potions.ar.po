@@ -1,0 +1,878 @@
+# Arabic translation draft for Mineclonia component: mcl_potions
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_potions/locale/template.pot
+# Source template blob SHA: 91ff20722afcc4e696875ad157f332bd00ca2d7e
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_potions/commands.lua:11
+msgid ""
+"<effect>|heal|list|clear|remove <duration|heal-amount|effect>|INF [<level>] "
+"[<factor>] [NOPART]"
+msgstr "<effect>|heal|list|clear|remove <duration|heal-amount|effect>|INF [<level>] [<factor>] [NOPART]"
+
+#: mods/ITEMS/mcl_potions/commands.lua:12
+msgid ""
+"Add a status effect to yourself. Arguments: <effect>: name of status effect. "
+"Passing \"list\" as effect name lists available effects. Passing \"heal\" as "
+"effect name heals (or harms) by amount designed by the next parameter. "
+"Passing \"clear\" as effect name removes all effects. Passing \"remove\" as "
+"effect name removes the effect named by the next parameter. <duration>: "
+"duration in seconds. Passing \"INF\" as duration makes the effect infinite. "
+"(<heal-amount>: amount of healing when the effect is \"heal\", passing a "
+"negative value subtracts health. <effect>: name of a status effect to be "
+"removed when using \"remove\" as the previous parameter.) <level>: effect "
+"power determinant, bigger level results in more powerful effect for effects "
+"that depend on the level (no changes for other effects), defaults to 1, pass "
+"F to use low-level factor instead. <factor>: effect strength modifier, can "
+"mean different things depending on the effect, no changes for effects that "
+"do not depend on level/factor. NOPART at the end means no particles will be "
+"shown for this effect."
+msgstr "أضف تأثير حالة إلى شخصيتك. الوسائط: <effect>: اسم تأثير الحالة. إذا كانت قيمة التأثير \"list\" فستُعرض التأثيرات المتاحة. وإذا كانت \"heal\" فسيتم الشفاء أو إلحاق الضرر بمقدار تحدده الوسيطة التالية. وإذا كانت \"clear\" فستُزال جميع التأثيرات. وإذا كانت \"remove\" فسيُزال التأثير الذي تحدده الوسيطة التالية. <duration>: المدة بالثواني. استخدم \"INF\" لجعل التأثير دائمًا. (<heal-amount>: مقدار الشفاء عند استخدام \"heal\"؛ والقيمة السالبة تُنقص الصحة. <effect>: اسم تأثير الحالة المراد إزالته عند استخدام \"remove\" في الوسيطة السابقة.) <level>: محدد قوة التأثير؛ كلما ارتفع المستوى زادت قوة التأثيرات التي تعتمد عليه، ولا يتغير غيرها. القيمة الافتراضية 1، ويمكن تمرير F لاستخدام معامل المستوى المنخفض بدلًا منه. <factor>: معامل تعديل قوة التأثير، ويختلف معناه بحسب التأثير؛ ولا يؤثر في التأثيرات التي لا تعتمد على المستوى أو المعامل. أضف NOPART في النهاية لإخفاء الجسيمات الخاصة بهذا التأثير."
+
+#: mods/ITEMS/mcl_potions/commands.lua:24
+#: mods/ITEMS/mcl_potions/commands.lua:50
+msgid "Missing effect parameter!"
+msgstr "وسيط التأثير مفقود!"
+
+#: mods/ITEMS/mcl_potions/commands.lua:34
+msgid "Missing or invalid heal amount parameter!"
+msgstr "وسيط مقدار الشفاء مفقود أو غير صالح!"
+
+#: mods/ITEMS/mcl_potions/commands.lua:39
+msgid "Player @1 healed by @2 HP."
+msgstr "تم شفاء اللاعب @1 بمقدار @2 من نقاط الصحة."
+
+#: mods/ITEMS/mcl_potions/commands.lua:42
+msgid "Player @1 harmed by @2 HP."
+msgstr "تعرّض اللاعب @1 لضرر مقداره @2 من نقاط الصحة."
+
+#: mods/ITEMS/mcl_potions/commands.lua:47
+msgid "Effects cleared for player @1"
+msgstr "تمت إزالة جميع التأثيرات عن اللاعب @1."
+
+#: mods/ITEMS/mcl_potions/commands.lua:54
+msgid "Removed effect @1 from player @2"
+msgstr "تمت إزالة التأثير @1 من اللاعب @2."
+
+#: mods/ITEMS/mcl_potions/commands.lua:56
+#: mods/ITEMS/mcl_potions/commands.lua:108
+msgid "@1 is not an available status effect."
+msgstr "التأثير @1 غير متاح."
+
+#: mods/ITEMS/mcl_potions/commands.lua:59
+msgid "Missing or invalid duration parameter!"
+msgstr "وسيط المدة مفقود أو غير صالح!"
+
+#: mods/ITEMS/mcl_potions/commands.lua:61
+msgid "Invalid level parameter!"
+msgstr "وسيط المستوى غير صالح!"
+
+#: mods/ITEMS/mcl_potions/commands.lua:63
+msgid "Missing or invalid factor parameter when level is F!"
+msgstr "وسيط المعامل مفقود أو غير صالح عندما يكون المستوى F!"
+
+#: mods/ITEMS/mcl_potions/commands.lua:88
+msgid "@1 effect given to player @2 for @3 seconds with factor of @4."
+msgstr "مُنح اللاعب @2 التأثير @1 لمدة @3 ثانية بمعامل قوة @4."
+
+#: mods/ITEMS/mcl_potions/commands.lua:90
+#: mods/ITEMS/mcl_potions/commands.lua:101
+msgid "@1 effect given to player @2 for @3 seconds."
+msgstr "مُنح اللاعب @2 التأثير @1 لمدة @3 ثانية."
+
+#: mods/ITEMS/mcl_potions/commands.lua:93
+#: mods/ITEMS/mcl_potions/commands.lua:104
+msgid "Giving effect @1 to player @2 failed."
+msgstr "تعذّر منح اللاعب @2 التأثير @1."
+
+#: mods/ITEMS/mcl_potions/commands.lua:99
+msgid "@1 effect on level @2 given to player @3 for @4 seconds."
+msgstr "مُنح اللاعب @3 التأثير @1 بالمستوى @2 لمدة @4 ثانية."
+
+#: mods/ITEMS/mcl_potions/functions.lua:195
+msgid "Invisiblity"
+msgstr "الاختفاء"
+
+#: mods/ITEMS/mcl_potions/functions.lua:198
+msgid "body is invisible"
+msgstr "الجسم غير مرئي"
+
+#: mods/ITEMS/mcl_potions/functions.lua:215
+msgid "Poison"
+msgstr "السم"
+
+#: mods/ITEMS/mcl_potions/functions.lua:218
+msgid "-1 HP / @1 s"
+msgstr "-1 نقطة صحة / @1 ث"
+
+#: mods/ITEMS/mcl_potions/functions.lua:238
+msgid "Regeneration"
+msgstr "تجدد الصحة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:241
+msgid "+1 HP / @1 s"
+msgstr "+1 نقطة صحة / @1 ث"
+
+#: mods/ITEMS/mcl_potions/functions.lua:264
+msgid "Strength"
+msgstr "القوة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:267
+msgid "+@1% melee damage"
+msgstr "+@1% من ضرر القتال القريب"
+
+#: mods/ITEMS/mcl_potions/functions.lua:278
+msgid "Weakness"
+msgstr "الضعف"
+
+#: mods/ITEMS/mcl_potions/functions.lua:280
+msgid "-@1% melee damage"
+msgstr "-@1% من ضرر القتال القريب"
+
+#: mods/ITEMS/mcl_potions/functions.lua:304
+msgid "Water Breathing"
+msgstr "التنفس تحت الماء"
+
+#: mods/ITEMS/mcl_potions/functions.lua:306
+#: mods/ITEMS/mcl_potions/functions.lua:1156
+msgid "limitless breathing under water"
+msgstr "تنفس بلا حدود تحت الماء"
+
+#: mods/ITEMS/mcl_potions/functions.lua:367
+msgid "Dolphin's Grace"
+msgstr "رشاقة الدلافين"
+
+#: mods/ITEMS/mcl_potions/functions.lua:369
+msgid "swimming gracefully"
+msgstr "السباحة برشاقة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:397
+msgid "Leaping"
+msgstr "القفز"
+
+#: mods/ITEMS/mcl_potions/functions.lua:399
+msgid "+@1% jumping power"
+msgstr "+@1% من قوة القفز"
+
+#: mods/ITEMS/mcl_potions/functions.lua:400
+msgid "-@1% jumping power"
+msgstr "-@1% من قوة القفز"
+
+#: mods/ITEMS/mcl_potions/functions.lua:443
+msgid "Slow Falling"
+msgstr "السقوط البطيء"
+
+#: mods/ITEMS/mcl_potions/functions.lua:445
+msgid "decreases gravity effects"
+msgstr "يخفف تأثير الجاذبية"
+
+#: mods/ITEMS/mcl_potions/functions.lua:476
+msgid "Weak"
+msgstr "ضعيف"
+
+#: mods/ITEMS/mcl_potions/functions.lua:477
+msgid "Strong"
+msgstr "قوي"
+
+#: mods/ITEMS/mcl_potions/functions.lua:480
+msgid "Potion FoV effect strength"
+msgstr "قوة تأثير مجال الرؤية للجرعة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:481
+msgid ""
+"Select strength of the FoV change of the swiftness and slowness effects."
+msgstr "حدد شدة تغيير مجال الرؤية الناتج عن تأثيري السرعة والبطء."
+
+#: mods/ITEMS/mcl_potions/functions.lua:494
+msgid "Swiftness"
+msgstr "السرعة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:497
+msgid "+@1% running speed"
+msgstr "+@1% من سرعة الركض"
+
+#: mods/ITEMS/mcl_potions/functions.lua:534
+msgid "Slowness"
+msgstr "البطء"
+
+#: mods/ITEMS/mcl_potions/functions.lua:537
+msgid "-@1% running speed"
+msgstr "-@1% من سرعة الركض"
+
+#: mods/ITEMS/mcl_potions/functions.lua:572
+msgid "Levitation"
+msgstr "التحليق"
+
+#: mods/ITEMS/mcl_potions/functions.lua:574
+msgid "moves body upwards at @1 nodes/s"
+msgstr "يرفع الجسم إلى الأعلى بسرعة @1 عقدة/ثانية"
+
+#: mods/ITEMS/mcl_potions/functions.lua:615
+msgid "Night Vision"
+msgstr "الرؤية الليلية"
+
+#: mods/ITEMS/mcl_potions/functions.lua:617
+msgid "improved vision during the night"
+msgstr "تحسين الرؤية أثناء الليل"
+
+#: mods/ITEMS/mcl_potions/functions.lua:650
+msgid "Darkness"
+msgstr "الظلام"
+
+#: mods/ITEMS/mcl_potions/functions.lua:652
+msgid "surrounded by darkness"
+msgstr "الإحاطة بالظلام"
+
+#: mods/ITEMS/mcl_potions/functions.lua:652
+msgid "not seeing anything beyond @1 nodes"
+msgstr "تعذّر رؤية أي شيء بعد مسافة @1 عقدة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:708
+msgid "Glowing"
+msgstr "التوهج"
+
+#: mods/ITEMS/mcl_potions/functions.lua:710
+msgid "more visible at all times"
+msgstr "يجعلك أكثر وضوحًا في جميع الأوقات"
+
+#: mods/ITEMS/mcl_potions/functions.lua:767
+msgid "Health Boost"
+msgstr "تعزيز الصحة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:769
+msgid "HP increased by @1"
+msgstr "زادت نقاط الصحة بمقدار @1"
+
+#: mods/ITEMS/mcl_potions/functions.lua:790
+#: mods/ITEMS/mcl_potions/functions.lua:1372
+msgid "Absorption"
+msgstr "الامتصاص"
+
+#: mods/ITEMS/mcl_potions/functions.lua:792
+msgid "absorbs up to @1 incoming damage"
+msgstr "يمتص ما يصل إلى @1 من الضرر الوارد"
+
+#: mods/ITEMS/mcl_potions/functions.lua:838
+msgid "Fire Resistance"
+msgstr "مقاومة النار"
+
+#: mods/ITEMS/mcl_potions/functions.lua:841
+msgid "resistance to fire damage"
+msgstr "مقاومة ضرر النار"
+
+#: mods/ITEMS/mcl_potions/functions.lua:850
+msgid "Resistance"
+msgstr "المقاومة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:852
+msgid "resist @1% of incoming damage"
+msgstr "يقلل الضرر الوارد بنسبة @1%"
+
+#: mods/ITEMS/mcl_potions/functions.lua:866
+msgid "Luck"
+msgstr "الحظ"
+
+#: mods/ITEMS/mcl_potions/functions.lua:877
+msgid "Bad Luck"
+msgstr "سوء الحظ"
+
+#: mods/ITEMS/mcl_potions/functions.lua:888
+msgid "Bad Omen"
+msgstr "نذير الشؤم"
+
+#: mods/ITEMS/mcl_potions/functions.lua:890
+#: mods/ITEMS/mcl_potions/functions.lua:900
+msgid "danger is imminent"
+msgstr "الخطر وشيك"
+
+#: mods/ITEMS/mcl_potions/functions.lua:898
+msgid "Trial omen"
+msgstr "نذير المحاكمة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:909
+msgid "Hero of the Village"
+msgstr "بطل القرية"
+
+#: mods/ITEMS/mcl_potions/functions.lua:915
+msgid "Withering"
+msgstr "الذبول"
+
+#: mods/ITEMS/mcl_potions/functions.lua:917
+msgid "-1 HP / @1 s, can kill"
+msgstr "-1 نقطة صحة / @1 ث، وقد يؤدي إلى الموت"
+
+#: mods/ITEMS/mcl_potions/functions.lua:939
+msgid "impaired sight"
+msgstr "ضعف البصر"
+
+#: mods/ITEMS/mcl_potions/functions.lua:977
+msgid "Hunger"
+msgstr "الجوع"
+
+#: mods/ITEMS/mcl_potions/functions.lua:980
+msgid "exhausts by @1 per second"
+msgstr "يزيد الإرهاق بمقدار @1 في الثانية"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1010
+msgid "Nausea"
+msgstr "الغثيان"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1012
+msgid "not feeling very well..."
+msgstr "لا تشعر بأنك على ما يرام..."
+
+#: mods/ITEMS/mcl_potions/functions.lua:1012
+msgid "frequency: @1 / 1 s"
+msgstr "التردد: @1 / ثانية واحدة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1042
+msgid "Saturation"
+msgstr "التشبع"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1044
+msgid "saturates by @1 per second"
+msgstr "يزيد التشبع بمقدار @1 في الثانية"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1106
+msgid "Haste"
+msgstr "العجلة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1108
+msgid "+@1% mining and attack speed"
+msgstr "+@1% من سرعة التعدين والهجوم"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1130
+msgid "Fatigue"
+msgstr "الإرهاق"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1132
+msgid "-@1% mining and attack speed"
+msgstr "-@1% من سرعة التعدين والهجوم"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1154
+msgid "Conduit Power"
+msgstr "قوة القناة"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1156
+msgid "+@1% mining and attack speed in water"
+msgstr "+@1% من سرعة التعدين والهجوم تحت الماء"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1192
+msgid "Infested"
+msgstr "موبوء"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1203
+msgid "Causes 1-3 silverfish to spawn with a 5% chance when damaged"
+msgstr "يمنح احتمالًا بنسبة 5% لظهور 1 إلى 3 من السمك الفضي عند التعرّض للضرر"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1226
+msgid "Oozing"
+msgstr "التسرب اللزج"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1237
+msgid "Causes 2 medium slimes to spawn on death"
+msgstr "يتسبب في ظهور كائنين لزجين متوسطَي الحجم عند الموت"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1245
+msgid "Weaving"
+msgstr "النسج"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1256
+msgid "Causes 2-3 cobwebs to appear on death"
+msgstr "يتسبب في ظهور 2 إلى 3 من خيوط العنكبوت عند الموت"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1264
+msgid "Wind Charged"
+msgstr "مشحون بالرياح"
+
+#: mods/ITEMS/mcl_potions/functions.lua:1275
+msgid "Causes a wind burst on death"
+msgstr "يُطلق دفعة من الرياح عند الموت"
+
+#: mods/ITEMS/mcl_potions/init.lua:36
+msgid "Fermented Spider Eye"
+msgstr "عين عنكبوت مخمّرة"
+
+#: mods/ITEMS/mcl_potions/init.lua:37
+msgid "Try different combinations to create potions."
+msgstr "جرّب تركيبات مختلفة لصنع الجرعات."
+
+#: mods/ITEMS/mcl_potions/init.lua:76
+msgid "Glass Bottle"
+msgstr "قارورة زجاجية"
+
+#: mods/ITEMS/mcl_potions/init.lua:77
+msgid "Liquid container"
+msgstr "وعاء للسوائل"
+
+#: mods/ITEMS/mcl_potions/init.lua:78
+msgid ""
+"A glass bottle is used as a container for liquids and can be used to collect "
+"water directly."
+msgstr "تُستخدم القارورة الزجاجية لحفظ السوائل، ويمكنك جمع الماء فيها مباشرة."
+
+#: mods/ITEMS/mcl_potions/init.lua:79
+msgid ""
+"To collect water, use it on a cauldron with water (which removes a level of "
+"water) or any water source (which removes no water)."
+msgstr "لجمع الماء، استخدمها على مرجل يحتوي على الماء (فيُستهلك مستوى واحد من الماء)، أو على أي مصدر للماء (من دون استهلاك الماء)."
+
+#: mods/ITEMS/mcl_potions/init.lua:175
+msgid "Water Bottle"
+msgstr "قارورة ماء"
+
+#: mods/ITEMS/mcl_potions/init.lua:176 mods/ITEMS/mcl_potions/init.lua:202
+#: mods/ITEMS/mcl_potions/potions.lua:335
+#: mods/ITEMS/mcl_potions/potions.lua:343
+#: mods/ITEMS/mcl_potions/potions.lua:351
+msgid "No effect"
+msgstr "بلا تأثير"
+
+#: mods/ITEMS/mcl_potions/init.lua:177
+msgid ""
+"Water bottles can be used to fill cauldrons. Drinking water has no effect."
+msgstr "يمكن استخدام قوارير الماء لملء المراجل. شرب الماء لا يمنح أي تأثير."
+
+#: mods/ITEMS/mcl_potions/init.lua:178
+msgid ""
+"Use the “Place” key to drink. Place this item on a cauldron to pour the "
+"water into the cauldron."
+msgstr "اضغط مفتاح «الوضع» للشرب. ضع هذا العنصر على المرجل لصب الماء داخله."
+
+#: mods/ITEMS/mcl_potions/init.lua:201
+msgid "River Water Bottle"
+msgstr "قارورة ماء النهر"
+
+#: mods/ITEMS/mcl_potions/init.lua:203
+msgid ""
+"River water bottles can be used to fill cauldrons. Drinking it has no effect."
+msgstr "يمكن استخدام قوارير ماء النهر لملء المراجل. شربه لا يمنح أي تأثير."
+
+#: mods/ITEMS/mcl_potions/init.lua:204
+msgid ""
+"Use the “Place” key to drink. Place this item on a cauldron to pour the "
+"river water into the cauldron."
+msgstr "اضغط مفتاح «الوضع» للشرب. ضع هذا العنصر على المرجل لصب ماء النهر داخله."
+
+#: mods/ITEMS/mcl_potions/init.lua:217
+msgid "Splash Water Bottle"
+msgstr "قارورة ماء قابلة للرمي"
+
+#: mods/ITEMS/mcl_potions/init.lua:218 mods/ITEMS/mcl_potions/init.lua:229
+msgid "Extinguishes fire and hurts some mobs"
+msgstr "تطفئ النار وتؤذي بعض الكائنات"
+
+#: mods/ITEMS/mcl_potions/init.lua:219
+msgid ""
+"A throwable water bottle that will shatter on impact, where it extinguishes "
+"nearby fire and hurts mobs that are vulnerable to water."
+msgstr "قارورة ماء قابلة للرمي تتحطم عند الاصطدام، فتطفئ النيران القريبة وتؤذي الكائنات التي تتضرر من الماء."
+
+#: mods/ITEMS/mcl_potions/init.lua:228
+msgid "Lingering Water Bottle"
+msgstr "قارورة ماء مستمرة"
+
+#: mods/ITEMS/mcl_potions/init.lua:230
+msgid ""
+"A throwable water bottle that will shatter on impact, where it creates a "
+"cloud of water vapor that lingers on the ground for a while. This cloud "
+"extinguishes fire and hurts mobs that are vulnerable to water."
+msgstr "قارورة ماء قابلة للرمي تتحطم عند الاصطدام، وتُنشئ سحابة من بخار الماء تبقى قرب الأرض مدة من الوقت. تطفئ هذه السحابة النار وتؤذي الكائنات التي تتضرر من الماء."
+
+#: mods/ITEMS/mcl_potions/init.lua:238
+msgid "Glistering Melon"
+msgstr "بطيخ لامع"
+
+#: mods/ITEMS/mcl_potions/init.lua:239
+msgid ""
+"This shiny melon is full of tiny gold nuggets and would be nice in an item "
+"frame. It isn't edible and not useful for anything else."
+msgstr "يمتلئ هذا البطيخ اللامع بشذرات الذهب الصغيرة، ويبدو جميلًا داخل إطار العناصر. لكنه غير صالح للأكل ولا يفيد في أي شيء آخر."
+
+#: mods/ITEMS/mcl_potions/lingering.lua:176
+msgid ""
+"A throwable potion that will shatter on impact, where it creates a magic "
+"cloud that lingers around for a while. Any player or mob inside the cloud "
+"will receive the potion's effect or set of effects, possibly repeatedly."
+msgstr "جرعة قابلة للرمي تتحطم عند الاصطدام، وتُنشئ سحابة سحرية تبقى في المكان مدة من الوقت. يتلقى كل لاعب أو كائن داخل السحابة تأثير الجرعة أو مجموعة تأثيراتها، وقد يتلقى التأثير أكثر من مرة."
+
+#: mods/ITEMS/mcl_potions/lingering.lua:212
+#: mods/ITEMS/mcl_potions/splash.lua:45
+msgid "Use the “Place” key to throw it."
+msgstr "اضغط مفتاح «الوضع» لرميها."
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:1
+msgid "Arrow of Bad Luck"
+msgstr "سهم سوء الحظ"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:2
+msgid "Arrow of Decay"
+msgstr "سهم التحلل"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:3
+msgid "Arrow of Fire Resistance"
+msgstr "سهم مقاومة النار"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:4
+msgid "Arrow of Harming"
+msgstr "سهم الضرر"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:5
+msgid "Arrow of Healing"
+msgstr "سهم الشفاء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:6
+msgid "Arrow of Infestation"
+msgstr "سهم التفشي"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:7
+msgid "Arrow of Invisibility"
+msgstr "سهم الاختفاء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:8
+msgid "Arrow of Leaping"
+msgstr "سهم القفز"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:9
+msgid "Arrow of Luck"
+msgstr "سهم الحظ"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:10
+msgid "Arrow of Night Vision"
+msgstr "سهم الرؤية الليلية"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:11
+msgid "Arrow of Oozing"
+msgstr "سهم التسرب اللزج"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:12
+msgid "Arrow of Poison"
+msgstr "سهم السم"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:13
+msgid "Arrow of Regeneration"
+msgstr "سهم تجدد الصحة"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:14
+msgid "Arrow of Slow Falling"
+msgstr "سهم السقوط البطيء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:15
+msgid "Arrow of Slowness"
+msgstr "سهم البطء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:16
+msgid "Arrow of Strength"
+msgstr "سهم القوة"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:17
+msgid "Arrow of Swiftness"
+msgstr "سهم السرعة"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:18
+msgid "Arrow of Water Breathing"
+msgstr "سهم التنفس تحت الماء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:19
+msgid "Arrow of Weakness"
+msgstr "سهم الضعف"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:20
+msgid "Arrow of Weaving"
+msgstr "سهم النسج"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:21
+msgid "Arrow of Wind Charging"
+msgstr "سهم الشحن بالرياح"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:22
+msgid "Arrow of the Turtle Master"
+msgstr "سهم سيد السلاحف"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:23
+msgid "Awkward Potion"
+msgstr "جرعة غير مألوفة"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:24
+msgid "Mundane Potion"
+msgstr "جرعة عادية"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:25
+msgid "Potion of Bad Luck"
+msgstr "جرعة سوء الحظ"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:26
+msgid "Potion of Decay"
+msgstr "جرعة التحلل"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:27
+msgid "Potion of Fire Resistance"
+msgstr "جرعة مقاومة النار"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:28
+msgid "Potion of Harming"
+msgstr "جرعة الضرر"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:29
+msgid "Potion of Healing"
+msgstr "جرعة الشفاء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:30
+msgid "Potion of Infestation"
+msgstr "جرعة التفشي"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:31
+msgid "Potion of Invisibility"
+msgstr "جرعة الاختفاء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:32
+msgid "Potion of Leaping"
+msgstr "جرعة القفز"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:33
+msgid "Potion of Luck"
+msgstr "جرعة الحظ"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:34
+msgid "Potion of Night Vision"
+msgstr "جرعة الرؤية الليلية"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:35
+msgid "Potion of Oozing"
+msgstr "جرعة التسرب اللزج"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:36
+msgid "Potion of Poison"
+msgstr "جرعة السم"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:37
+msgid "Potion of Regeneration"
+msgstr "جرعة تجدد الصحة"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:38
+msgid "Potion of Slow Falling"
+msgstr "جرعة السقوط البطيء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:39
+msgid "Potion of Slowness"
+msgstr "جرعة البطء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:40
+msgid "Potion of Strength"
+msgstr "جرعة القوة"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:41
+msgid "Potion of Swiftness"
+msgstr "جرعة السرعة"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:42
+msgid "Potion of Water Breathing"
+msgstr "جرعة التنفس تحت الماء"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:43
+msgid "Potion of Weakness"
+msgstr "جرعة الضعف"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:44
+msgid "Potion of Weaving"
+msgstr "جرعة النسج"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:45
+msgid "Potion of Wind Charging"
+msgstr "جرعة الشحن بالرياح"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:46
+msgid "Potion of the Turtle Master"
+msgstr "جرعة سيد السلاحف"
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:47
+msgid "Thick Potion"
+msgstr "جرعة كثيفة"
+
+#: mods/ITEMS/mcl_potions/potions.lua:12
+msgid "Use the “Place” key to drink it."
+msgstr "اضغط مفتاح «الوضع» لشربها."
+
+#: mods/ITEMS/mcl_potions/potions.lua:13
+msgid "Drinking a potion gives you a particular effect or set of effects."
+msgstr "يمنحك شرب الجرعة تأثيرًا محددًا أو مجموعة من التأثيرات."
+
+#: mods/ITEMS/mcl_potions/potions.lua:127
+msgid "Strange Potion"
+msgstr "جرعة غريبة"
+
+#: mods/ITEMS/mcl_potions/potions.lua:209
+msgid "Splash @1"
+msgstr "جرعة رذاذ @1"
+
+#: mods/ITEMS/mcl_potions/potions.lua:233
+msgid "Lingering @1"
+msgstr "جرعة مستمرة @1"
+
+#: mods/ITEMS/mcl_potions/potions.lua:266
+msgid "Strange Tipped Arrow"
+msgstr "سهم غريب مغمّس"
+
+#: mods/ITEMS/mcl_potions/potions.lua:326
+msgid "Dragon's Breath"
+msgstr "نَفَس التنين"
+
+#: mods/ITEMS/mcl_potions/potions.lua:327
+msgid ""
+"This item is used in brewing and can be combined with splash potions to "
+"create lingering potions."
+msgstr "يُستخدم هذا العنصر في تحضير الجرعات، ويمكن دمجه مع جرعات الرذاذ لصنع جرعات مستمرة."
+
+#: mods/ITEMS/mcl_potions/potions.lua:336
+msgid "Has an awkward taste and is used for brewing potions."
+msgstr "طعمه غير مألوف ويُستخدم في تحضير الجرعات."
+
+#: mods/ITEMS/mcl_potions/potions.lua:344
+msgid "Has a terrible taste and is not really useful for brewing potions."
+msgstr "طعمه سيئ للغاية ولا يفيد كثيرًا في تحضير الجرعات."
+
+#: mods/ITEMS/mcl_potions/potions.lua:352
+msgid "Has a bitter taste and is not really useful for brewing potions."
+msgstr "طعمه مرّ ولا يفيد كثيرًا في تحضير الجرعات."
+
+#: mods/ITEMS/mcl_potions/potions.lua:360
+msgid "+@1 HP"
+msgstr "+@1 نقطة صحة"
+
+#: mods/ITEMS/mcl_potions/potions.lua:362
+msgid "Instantly heals."
+msgstr "يشفي فورًا."
+
+#: mods/ITEMS/mcl_potions/potions.lua:375
+msgid "-@1 HP"
+msgstr "-@1 نقطة صحة"
+
+#: mods/ITEMS/mcl_potions/potions.lua:377
+msgid "Instantly deals damage."
+msgstr "يلحق الضرر فورًا."
+
+#: mods/ITEMS/mcl_potions/potions.lua:390
+msgid "Increases the perceived brightness of light under a dark sky."
+msgstr "يزيد مستوى السطوع الظاهر في الإضاءة تحت السماء المظلمة."
+
+#: mods/ITEMS/mcl_potions/potions.lua:402
+msgid "Increases walking speed."
+msgstr "يزيد سرعة المشي."
+
+#: mods/ITEMS/mcl_potions/potions.lua:414
+msgid "Decreases walking speed."
+msgstr "يقلل سرعة المشي."
+
+#: mods/ITEMS/mcl_potions/potions.lua:430
+msgid "Increases jump strength."
+msgstr "يزيد قوة القفز."
+
+#: mods/ITEMS/mcl_potions/potions.lua:442
+msgid ""
+"Applies the withering effect which deals damage at a regular interval and "
+"can kill."
+msgstr "يُحدث تأثير الذبول الذي يلحق الضرر على فترات منتظمة وقد يؤدي إلى الموت."
+
+#: mods/ITEMS/mcl_potions/potions.lua:454
+msgid "Applies the poison effect which deals damage at a regular interval."
+msgstr "يُحدث تأثير السم الذي يلحق الضرر على فترات منتظمة."
+
+#: mods/ITEMS/mcl_potions/potions.lua:466
+msgid "Regenerates health over time."
+msgstr "يجدد الصحة بمرور الوقت."
+
+#: mods/ITEMS/mcl_potions/potions.lua:478
+msgid "Grants invisibility."
+msgstr "يمنح الاختفاء."
+
+#: mods/ITEMS/mcl_potions/potions.lua:490
+msgid "Grants limitless breath underwater."
+msgstr "يمنح القدرة على التنفس بلا حدود تحت الماء."
+
+#: mods/ITEMS/mcl_potions/potions.lua:502
+msgid "Grants immunity to damage from heat sources like fire."
+msgstr "يمنح حصانة من الضرر الناتج عن مصادر الحرارة مثل النار."
+
+#: mods/ITEMS/mcl_potions/potions.lua:514
+msgid "Increases attack power."
+msgstr "يزيد قوة الهجوم."
+
+#: mods/ITEMS/mcl_potions/potions.lua:526
+msgid "Decreases attack power."
+msgstr "يقلل قوة الهجوم."
+
+#: mods/ITEMS/mcl_potions/potions.lua:538
+msgid "Instead of falling, you descend gracefully."
+msgstr "يجعلك تهبط برفق بدلًا من السقوط."
+
+#: mods/ITEMS/mcl_potions/potions.lua:550
+msgid "Decreases damage taken at the cost of speed."
+msgstr "يقلل الضرر الذي تتلقاه مقابل خفض السرعة."
+
+#: mods/ITEMS/mcl_potions/potions.lua:570
+msgid "Increases luck."
+msgstr "يزيد الحظ."
+
+#: mods/ITEMS/mcl_potions/potions.lua:582
+msgid "Decreases luck."
+msgstr "يقلل الحظ."
+
+#: mods/ITEMS/mcl_potions/potions.lua:597
+msgid "Attracts danger."
+msgstr "يجذب الخطر."
+
+#: mods/ITEMS/mcl_potions/potions.lua:611
+msgid ""
+"Causes 1-3 silverfish to spawn with a 5% chance when damaged. It not applies "
+"to silverfishes."
+msgstr "يمنح احتمالًا بنسبة 5% لظهور 1 إلى 3 من السمك الفضي عند التعرّض للضرر. لا ينطبق هذا التأثير على السمك الفضي نفسه."
+
+#: mods/ITEMS/mcl_potions/potions.lua:621
+msgid "Causes 2 medium slimes to spawn on death. It not applies to slimes."
+msgstr "يتسبب في ظهور كائنين لزجين متوسطَي الحجم عند الموت. لا ينطبق هذا التأثير على الكائنات اللزجة نفسها."
+
+#: mods/ITEMS/mcl_potions/potions.lua:631
+msgid ""
+"Causes 2-3 cobwebs to appear on death. Also increases walking speed when "
+"crossing cobwebs."
+msgstr "يتسبب في ظهور 2 إلى 3 من خيوط العنكبوت عند الموت، كما يزيد سرعة المشي عند عبور خيوط العنكبوت."
+
+#: mods/ITEMS/mcl_potions/potions.lua:641
+msgid "Causes A wind burst on death."
+msgstr "يُطلق دفعة من الرياح عند الموت."
+
+#: mods/ITEMS/mcl_potions/potions.lua:689
+msgid "Unknown Potion"
+msgstr "جرعة مجهولة"
+
+#: mods/ITEMS/mcl_potions/potions.lua:689
+#: mods/ITEMS/mcl_potions/potions.lua:696
+msgid "Right-click to identify"
+msgstr "انقر بزر الفأرة الأيمن للتعرّف عليها"
+
+#: mods/ITEMS/mcl_potions/potions.lua:696
+msgid "Unknown Tipped Arrow"
+msgstr "سهم مغمّس مجهول"
+
+#: mods/ITEMS/mcl_potions/splash.lua:14
+msgid ""
+"A throwable potion that will shatter on impact, where it gives all nearby "
+"players and mobs a status effect or a set of status effects."
+msgstr "جرعة قابلة للرمي تتحطم عند الاصطدام، وتمنح جميع اللاعبين والكائنات القريبة تأثير حالة واحدًا أو مجموعة من التأثيرات."
+
+#: mods/ITEMS/mcl_potions/tipped_arrow.lua:25
+msgid ""
+"This particular arrow is tipped and will give an effect when it hits a "
+"player or mob."
+msgstr "هذا السهم مغمّس بمادة خاصة، وسيمنح تأثيرًا عند إصابة لاعب أو كائن به."
+
