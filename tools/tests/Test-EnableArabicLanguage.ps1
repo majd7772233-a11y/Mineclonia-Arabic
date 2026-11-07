@@ -1,5 +1,5 @@
-﻿# Exercise the Windows PowerShell 5.1 installer against Luanti 5.17.0's
-# real folder layout and the exact language enum / option_labels structure.
+﻿# Test the Luanti 5.17.0 language patch with the actual builtin layout
+# and the Windows user-config lookup used by the engine.
 $ErrorActionPreference = "Stop"
 
 $helper = Join-Path (Split-Path -Parent $PSScriptRoot) "ENABLE_ARABIC_LANGUAGE.ps1"
@@ -13,15 +13,20 @@ if (!(Test-Path -LiteralPath $powerShell -PathType Leaf)) {
 }
 
 $testRoot = Join-Path $env:TEMP ("Mineclonia Arabic Language Patch Test " + [guid]::NewGuid().ToString("N"))
+$lineBreak = [Environment]::NewLine
 
-function New-LuantiFixture([string]$Name, [string]$EnumLine, [string]$ArabicEntry) {
+function New-LuantiFixture([string]$Name, [string]$EnumLine, [string]$ArabicEntry, [string]$StoredLanguage) {
     $root = Join-Path $testRoot $Name
     $builtin = Join-Path $root "builtin"
     $settings = Join-Path $builtin "common\settings"
     $bin = Join-Path $root "bin"
+    $userPath = Join-Path $root "CustomUserData"
+    $appData = Join-Path $root "Roaming"
 
     New-Item -ItemType Directory -Path $settings -Force | Out-Null
     New-Item -ItemType Directory -Path $bin -Force | Out-Null
+    New-Item -ItemType Directory -Path $userPath -Force | Out-Null
+    New-Item -ItemType Directory -Path $appData -Force | Out-Null
     [IO.File]::WriteAllText((Join-Path $bin "luanti.exe"), "fixture", [Text.UTF8Encoding]::new($false))
 
     $settingText = @"
@@ -43,26 +48,56 @@ $ArabicEntry
 "@
     [IO.File]::WriteAllText((Join-Path $settings "dlg_settings.lua"), $dialogText, [Text.UTF8Encoding]::new($false))
 
+    $configLines = @("# Preserve unrelated settings")
+    if ($StoredLanguage -ne "__MISSING__") {
+        $configLines += "language = $StoredLanguage"
+    }
+    $configLines += "fullscreen = true"
+    $configText = [string]::Join($lineBreak, $configLines) + $lineBreak
+    $configFile = Join-Path $userPath "minetest.conf"
+    [IO.File]::WriteAllText($configFile, $configText, [Text.UTF8Encoding]::new($false))
+
     return [pscustomobject]@{
         Root = $root
         Builtin = $builtin
         Bin = $bin
+        UserPath = $userPath
+        AppData = $appData
+        ConfigFile = $configFile
         SettingPath = Join-Path $builtin "settingtypes.txt"
         DialogPath = Join-Path $settings "dlg_settings.lua"
     }
 }
 
-function Invoke-Helper([string]$SelectedPath) {
-    $output = & $powerShell -NoProfile -ExecutionPolicy Bypass -File $helper -LuantiDir $SelectedPath -NonInteractive 2>&1
-    $exitCode = $LASTEXITCODE
-    if ($exitCode -ne 0) {
-        $detail = $output -join [Environment]::NewLine
-        throw ("Helper failed for '{0}' (exit {1}):{2}{3}" -f $SelectedPath, $exitCode, [Environment]::NewLine, $detail)
+function Invoke-Helper($Fixture, [string]$SelectedPath, [ValidateSet("env", "appdata")][string]$ConfigMode) {
+    $oldLuantiUser = [Environment]::GetEnvironmentVariable("LUANTI_USER_PATH", "Process")
+    $oldMinetestUser = [Environment]::GetEnvironmentVariable("MINETEST_USER_PATH", "Process")
+    $oldAppData = [Environment]::GetEnvironmentVariable("APPDATA", "Process")
+    try {
+        [Environment]::SetEnvironmentVariable("APPDATA", $Fixture.AppData, "Process")
+        [Environment]::SetEnvironmentVariable("MINETEST_USER_PATH", $null, "Process")
+        if ($ConfigMode -eq "env") {
+            [Environment]::SetEnvironmentVariable("LUANTI_USER_PATH", $Fixture.UserPath, "Process")
+        } else {
+            [Environment]::SetEnvironmentVariable("LUANTI_USER_PATH", $null, "Process")
+        }
+
+        $output = & $powerShell -NoProfile -ExecutionPolicy Bypass -File $helper -LuantiDir $SelectedPath -NonInteractive 2>&1
+        $exitCode = $LASTEXITCODE
+        if ($exitCode -ne 0) {
+            $detail = $output -join [Environment]::NewLine
+            throw ("Helper failed for '{0}' (exit {1}):{2}{3}" -f $SelectedPath, $exitCode, [Environment]::NewLine, $detail)
+        }
+        return ($output -join [Environment]::NewLine)
     }
-    return ($output -join [Environment]::NewLine)
+    finally {
+        [Environment]::SetEnvironmentVariable("LUANTI_USER_PATH", $oldLuantiUser, "Process")
+        [Environment]::SetEnvironmentVariable("MINETEST_USER_PATH", $oldMinetestUser, "Process")
+        [Environment]::SetEnvironmentVariable("APPDATA", $oldAppData, "Process")
+    }
 }
 
-function Assert-ArabicIsSecondOption($Fixture) {
+function Assert-ArabicIsInstalled($Fixture, [string]$ConfigMode) {
     $line = [IO.File]::ReadAllLines($Fixture.SettingPath) |
         Where-Object { $_ -match '^[ \t]*language[ \t]+\(Language\)[ \t]+enum[ \t]+' } |
         Select-Object -First 1
@@ -71,10 +106,13 @@ function Assert-ArabicIsSecondOption($Fixture) {
     $values = [regex]::Replace($line, '^[ \t]*language[ \t]+\(Language\)[ \t]+enum[ \t]+', '')
     $parts = @($values.Split(","))
     $arabicCount = @($parts | Where-Object { $_.Trim() -eq "ar" }).Count
-    if ($arabicCount -ne 1 -or $parts.Count -lt 2 -or
+    $belarusianCount = @($parts | Where-Object { $_.Trim() -eq "be" }).Count
+    $malformedCount = @($parts | Where-Object { $_.Trim() -eq "arbe" }).Count
+    if ($arabicCount -ne 1 -or $belarusianCount -ne 1 -or
+        $malformedCount -ne 0 -or $parts.Count -lt 2 -or
         -not [string]::IsNullOrWhiteSpace($parts[0]) -or
         $parts[1].Trim() -ne "ar") {
-        throw "Expected the empty system-language option first and ar second, got: $values"
+        throw "Expected empty system-language first and separate ar/be values, got: $values"
     }
 
     $dialog = [IO.File]::ReadAllText($Fixture.DialogPath)
@@ -86,49 +124,61 @@ function Assert-ArabicIsSecondOption($Fixture) {
     if ($activeArabicLines.Count -ne 1) {
         throw "Expected exactly one active Arabic label, found $($activeArabicLines.Count). Dialog contains: $dialog"
     }
-    $commentedArabicLines = @(
-        $dialog -split "\r?\n" |
-            ForEach-Object { $_.TrimStart() } |
-            Where-Object { $_ -match '^--[ \t]*ar[ \t]*=' }
+    $malformedRows = @($dialog -split "\r?\n" | Where-Object { $_ -match '^[ \t]*(?:--[ \t]*)?arbe[ \t]*=' })
+    if ($malformedRows.Count -gt 0) {
+        throw "Malformed 'arbe' language label remains: $($malformedRows -join ' | ')"
+    }
+
+    $configPath = if ($ConfigMode -eq "env") { $Fixture.ConfigFile } else { Join-Path $Fixture.AppData "Minetest\minetest.conf" }
+    $config = [IO.File]::ReadAllText($configPath)
+    $languageRows = @(
+        $config -split "\r?\n" |
+            Where-Object { $_ -match '^[ \t]*language[ \t]*=' }
     )
-    if ($commentedArabicLines.Count -gt 0) {
-        throw ("The Arabic language label is still commented out. Remaining rows: " + ($commentedArabicLines -join " || ") + ". Full dialog: " + $dialog)
+    if ($languageRows.Count -ne 1 -or $languageRows[0] -notmatch '^[ \t]*language[ \t]*=[ \t]*ar[ \t]*$') {
+        throw "Expected exactly one persisted language = ar setting in $configPath, got: $($languageRows -join ' | ')"
+    }
+    if ($config -notmatch '(?m)^fullscreen = true$') {
+        throw "The helper did not preserve unrelated settings in $configPath"
     }
 }
 
 try {
     New-Item -ItemType Directory -Path $testRoot -Force | Out-Null
 
-    # Exact Luanti 5.17.0 state: root selected, Arabic commented as blacklisted.
-    $rootFixture = New-LuantiFixture "Install Root With Spaces" "language (Language) enum   ,be,bg,ca,cs,da,de,el,en,eo,es,et,eu,fi,fr,gd,gl,hu,id,it,ja,jbo,kk,ko,lt,lv,ms,nb,nl,nn,pl,pt,pt_BR,ro,ru,sk,sl,sr_Cyrl,sr_Latn,sv,sw,tr,uk,vi,zh_CN,zh_TW" '        --ar = " [ar]", blacklisted'
-    [void](Invoke-Helper $rootFixture.Root)
-    Assert-ArabicIsSecondOption $rootFixture
+    # Repair the exact malformed enum token and a stale persisted config value.
+    $rootFixture = New-LuantiFixture "Install Root With Spaces" "language (Language) enum   ,arbe,bg,be,en,tr" '        --ar = " [ar]", blacklisted' "arbe"
+    [void](Invoke-Helper $rootFixture $rootFixture.Root "env")
+    Assert-ArabicIsInstalled $rootFixture "env"
 
-    # Selecting ...\builtin must resolve to its parent installation root.
-    $builtinFixture = New-LuantiFixture "Builtin Folder Selection" "language (Language) enum   ,be,bg,en,tr" '        --ar = " [ar]", blacklisted'
-    [void](Invoke-Helper $builtinFixture.Builtin)
-    Assert-ArabicIsSecondOption $builtinFixture
+    # Selecting ...\builtin resolves to its parent; APPDATA\Minetest is used.
+    $builtinFixture = New-LuantiFixture "Builtin Folder Selection" "language (Language) enum   ,be,bg,en,tr" '        --ar = " [ar]", blacklisted' "en"
+    [void](Invoke-Helper $builtinFixture $builtinFixture.Builtin "appdata")
+    Assert-ArabicIsInstalled $builtinFixture "appdata"
 
-    # Selecting ...\bin must also resolve to the installation root.
-    $binFixture = New-LuantiFixture "Bin Folder Selection" "language (Language) enum   ,be,bg,en,tr" '        --ar = " [ar]", blacklisted'
-    [void](Invoke-Helper $binFixture.Bin)
-    Assert-ArabicIsSecondOption $binFixture
+    # Selecting ...\bin resolves to its parent; missing language value is added.
+    $binFixture = New-LuantiFixture "Bin Folder Selection" "language (Language) enum   ,be,bg,en,tr" '        --ar = " [ar]", blacklisted' "__MISSING__"
+    $binConfig = [IO.File]::ReadAllText($binFixture.ConfigFile)
+    $binConfig = $binConfig -replace '(?m)^language = .*(\r?\n)?', ''
+    [IO.File]::WriteAllText($binFixture.ConfigFile, $binConfig, [Text.UTF8Encoding]::new($false))
+    [void](Invoke-Helper $binFixture $binFixture.Bin "env")
+    Assert-ArabicIsInstalled $binFixture "env"
 
-    # Repair the old malformed enum token "arbe" and keep an already-active label.
-    $partialFixture = New-LuantiFixture "Repair Previous Partial Attempt" "language (Language) enum   ,arbe,bg,en,tr" '        ar = "العربية [ar]",'
-    [void](Invoke-Helper $partialFixture.Root)
-    Assert-ArabicIsSecondOption $partialFixture
+    # Remove an existing malformed label key as well as the enum token.
+    $partialFixture = New-LuantiFixture "Repair Previous Partial Attempt" "language (Language) enum   ,arbe,bg,en,tr" '        arbe = "Broken Arabic label",' "arbe"
+    [void](Invoke-Helper $partialFixture $partialFixture.Root "env")
+    Assert-ArabicIsInstalled $partialFixture "env"
 
-    # Insert Arabic when the source table has no Arabic row at all.
-    $missingFixture = New-LuantiFixture "Missing Arabic Row" "language (Language) enum   ,be,bg,en,tr" '        de = "Deutsch [de]",'
-    [void](Invoke-Helper $missingFixture.Root)
-    Assert-ArabicIsSecondOption $missingFixture
+    # Insert Arabic when the option-label table has no Arabic row.
+    $missingFixture = New-LuantiFixture "Missing Arabic Row" "language (Language) enum   ,be,bg,en,tr" '        de = "Deutsch [de]",' "en"
+    [void](Invoke-Helper $missingFixture $missingFixture.Root "appdata")
+    Assert-ArabicIsInstalled $missingFixture "appdata"
 
-    # Idempotency: a second run must not add duplicate enum values or labels.
-    [void](Invoke-Helper $rootFixture.Root)
-    Assert-ArabicIsSecondOption $rootFixture
+    # Idempotency: a second run must not duplicate labels, enum values, or config keys.
+    [void](Invoke-Helper $rootFixture $rootFixture.Root "env")
+    Assert-ArabicIsInstalled $rootFixture "env"
 
-    Write-Host "PASS: Luanti 5.17.0 helper tests succeeded (root, builtin, bin, malformed enum repair, absent Arabic row, and idempotency)." -ForegroundColor Green
+    Write-Host "PASS: Windows PowerShell 5.1 tests succeeded (root/builtin/bin, malformed arbe repair, persistent config, APPDATA/LUANTI_USER_PATH lookup, preservation, and idempotency)." -ForegroundColor Green
 }
 finally {
     if (Test-Path -LiteralPath $testRoot) {
