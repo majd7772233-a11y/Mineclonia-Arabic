@@ -211,7 +211,10 @@ def main() -> None:
 
     per_module: list[dict[str, object]] = []
     total_messages = 0
+    source_po_entries = 0
+    whitespace_passthrough_entries = 0
     runtime_messages = 0
+    runtime_whitespace_keys = 0
     stale_po_entries: list[dict[str, object]] = []
     missing_runtime_entries: list[dict[str, str]] = []
     po_runtime_modules: list[dict[str, object]] = []
@@ -274,7 +277,8 @@ def main() -> None:
                 "count": len(extra_po),
                 "examples": extra_po[:20],
             })
-        runtime_messages += len(required_keys)
+        runtime_messages += sum(1 for key in required_keys if not key.isspace())
+        runtime_whitespace_keys += sum(1 for key in required_keys if key.isspace())
         previous = seen_domains.get(domain)
         if previous and previous != str(rel.parent):
             fail(f"textdomain collision: {domain!r} belongs to both {previous} and {rel.parent}")
@@ -322,7 +326,11 @@ def main() -> None:
             shutil.copy2(source_mod_conf, stage_module / "mod.conf")
         shutil.copy2(txt_path, locale_stage / "template.txt")
 
-        message_count = len(entries)
+        source_po_entries += len(entries)
+        whitespace_entries = [entry for entry in entries if entry.msgid.isspace()]
+        message_entries = [entry for entry in entries if not entry.msgid.isspace()]
+        whitespace_passthrough_entries += len(whitespace_entries)
+        message_count = len(message_entries)
         total_messages += message_count
         per_module.append({
             "module": module,
@@ -351,9 +359,16 @@ def main() -> None:
         else:
             poconvert = locale_stage / "poconvert"
             poconvert.mkdir(exist_ok=True)
-            shutil.copy2(po_path, poconvert / po_path.name)
+            # A source key made only of whitespace is a formatting token, not
+            # visible text. Luanti's TR converter collapses it to an empty key;
+            # leave it to the engine's original source-string fallback instead.
+            po_for_tr = polib.pofile(str(po_path), check_for_duplicates=True)
+            for staged_entry in list(po_for_tr):
+                if not staged_entry.obsolete and staged_entry.msgid and staged_entry.msgid.isspace():
+                    po_for_tr.remove(staged_entry)
+            po_for_tr.save(str(poconvert / po_path.name))
             expected_catalogs[module] = {
-                entry.msgid: entry.msgstr for entry in entries
+                entry.msgid: entry.msgstr for entry in message_entries
             }
 
         print(
@@ -505,7 +520,8 @@ def main() -> None:
 - ملفات تشغيل Luanti: {len(tr_files)} ملفاً بصيغة .ar.tr و{len(po_runtime_modules)} ملفاً بصيغة .ar.po الأصلية.
 - أداة التحويل لملفات TR: {converter_description}.
 - إجمالي الوحدات المغطاة: {len(tr_files) + len(po_runtime_modules)} من {len(po_files)}.
-- إجمالي إدخالات الترجمة: {total_messages}.
+- إجمالي النصوص المترجمة: {total_messages}.
+- مفاتيح التنسيق المكونة من مسافات فقط: {whitespace_passthrough_entries}؛ تُترك لمحرك اللعبة كما هي ولا تتحول إلى مفاتيح TR فارغة.
 - مصدر القوالب: ZenonSeth/mineclonia-mirror
 - commit المصدر: {args.source_commit}
 - إصدار Mineclonia الظاهر في README للمصدر: {source_version}
@@ -518,6 +534,7 @@ def main() -> None:
 2. افتح مجلد لعبة Mineclonia الذي يحتوي على game.conf.
 3. استخرج محتويات هذا الأرشيف إلى ذلك المجلد، واسمح بدمج مجلد mods.
 4. لا تستبدل مجلد mods بالكامل؛ اسمح بدمج ملفات locale فقط.
+   مفاتيح التنسيق التي تتكون من مسافة فقط لا تحتاج ملف ترجمة، ويستخدم المحرك نص المصدر الأصلي لها.
 5. تحتوي الحزمة على ملف PO أصلي للوحدات ذات صيغ الجمع، لأن TR لا يمثل صيغ gettext الست. يتطلب تحميل PO في اللعبة Luanti 5.10.0 أو أحدث؛ إصدارك المبلغ عنه 5.17.0 يفي بهذا الشرط.
 6. افتح Luanti، واختر العربية من إعدادات اللغة، ثم أعد تشغيل اللعبة.
 
@@ -548,6 +565,8 @@ def main() -> None:
         "target_game_release_owner_reported": args.target_release,
         "luanti_version_owner_reported": args.luanti_version,
         "po_files": len(po_files),
+        "source_po_entries_including_whitespace_tokens": source_po_entries,
+        "whitespace_only_source_entries_left_to_engine_fallback": whitespace_passthrough_entries,
         "tr_files": len(tr_files),
         "native_po_runtime_files": len(po_runtime_modules),
         "native_po_runtime_modules": po_runtime_modules,
@@ -555,6 +574,7 @@ def main() -> None:
         "messages_in_tr": installed_messages,
         "messages_in_native_po": po_runtime_messages,
         "runtime_template_messages": runtime_messages,
+        "runtime_whitespace_only_keys_left_to_engine_fallback": runtime_whitespace_keys,
         "extra_po_entries_not_present_in_current_template_txt": sum(x["count"] for x in stale_po_entries),
         "extra_po_entries_report": stale_po_entries,
         "converter_implementation": converter_description,
@@ -590,12 +610,15 @@ def main() -> None:
         "converter_is_official_ltt": not using_local_fallback,
         "converter_implementation": converter_description,
         "po_files": len(po_files),
+        "source_po_entries_including_whitespace_tokens": source_po_entries,
+        "whitespace_only_source_entries_left_to_engine_fallback": whitespace_passthrough_entries,
         "tr_files": len(tr_files),
         "native_po_runtime_files": len(po_runtime_modules),
         "messages": total_messages,
         "messages_in_tr": installed_messages,
         "messages_in_native_po": po_runtime_messages,
         "runtime_template_messages": runtime_messages,
+        "runtime_whitespace_only_keys_left_to_engine_fallback": runtime_whitespace_keys,
         "stale_po_entries": sum(x["count"] for x in stale_po_entries),
         "source_version": source_version,
         "package": str(zip_path),
