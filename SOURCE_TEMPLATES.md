@@ -4,9 +4,11 @@
 
 ## مرجع المصدر
 
-- المستودع المرجعي المستخدم لجلب القوالب: https://github.com/mineclonia-mirror/mineclonia
-- صفحة README للمصدر تذكر أن مستودع المشروع الأساسي مستضاف على Codeberg: https://codeberg.org/mineclonia/mineclonia
-- لقطة المصدر المرجعية المسجلة عند بدء المشروع: `24521bf6c99ddfc82bf52a60420a23902282c2a0`
+- المستودع المرجعي للدفعات السابقة: https://github.com/mineclonia-mirror/mineclonia
+- مرآة GitHub الأحدث المستخدمة لهذه الدفعة: https://github.com/ZenonSeth/mineclonia-mirror
+- المستودع الأساسي مستضاف على Codeberg: https://codeberg.org/mineclonia/mineclonia
+- لقطة المصدر الأقدم: `24521bf6c99ddfc82bf52a60420a23902282c2a0`
+- لقطة المصدر لهذه الدفعة: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
 - كل قيمة أدناه هي Git blob SHA للقالب الذي جرى جلبه.
 
 ## القوالب المستخدمة
@@ -59,6 +61,21 @@
 | ملف قالب المصدر | Blob SHA |
 |---|---|
 | `mods/ITEMS/mcl_core/locale/template.pot` | `439198c1e836bd7966f9a224378bf67776a3960d` |
+
+## قوالب دفعة الزراعة والطعام والصيد — 2026-11-07
+
+- مرآة المصدر: https://github.com/ZenonSeth/mineclonia-mirror
+- commit المصدر: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/ITEMS/mcl_farming/locale/template.pot` | `844024036a32d7a03ac11736e8d5a8105f8d5796` |
+| `mods/ITEMS/mcl_fishing/locale/template.pot` | `dc161c03bc5ca4b80aecb93742f694028d912735` |
+| `mods/ITEMS/mcl_brewing/locale/template.pot` | `5b709ce6710082a172c87dd8d5d433c6bcb10a86` |
+| `mods/ITEMS/mcl_cake/locale/template.pot` | `0caef4c2920803d9a3fa8e454bfc1d77a66239a1` |
+| `mods/ITEMS/mcl_sus_stew/locale/template.pot` | `1f2c1bbd349bed5c3597956f81db88d9a0ce934d` |
+| `mods/ITEMS/mcl_honey/locale/template.pot` | `af602763e186f3c24a23325ff25e3f556cfc2cda` |
+| `mods/ITEMS/mcl_mobitems/locale/template.pot` | `428b3f6b37d6724e789f9d79951259562c2d3262` |
 
 ## مبدأ التتبع
 
