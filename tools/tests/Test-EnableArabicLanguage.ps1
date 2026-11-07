@@ -15,7 +15,7 @@ if (!(Test-Path -LiteralPath $powerShell -PathType Leaf)) {
 $testRoot = Join-Path $env:TEMP ("Mineclonia Arabic Language Patch Test " + [guid]::NewGuid().ToString("N"))
 $lineBreak = [Environment]::NewLine
 
-function New-LuantiFixture([string]$Name, [string]$EnumLine, [string]$ArabicEntry, [string]$StoredLanguage, [bool]$RunInPlace = $false) {
+function New-LuantiFixture([string]$Name, [string]$EnumLine, [string]$ArabicEntry, [string]$StoredLanguage) {
     $root = Join-Path $testRoot $Name
     $builtin = Join-Path $root "builtin"
     $settings = Join-Path $builtin "common\settings"
@@ -73,7 +73,7 @@ $ArabicEntry
     }
 }
 
-function Invoke-Helper($Fixture, [string]$SelectedPath, [ValidateSet("env", "appdata")][string]$ConfigMode) {
+function Invoke-Helper($Fixture, [string]$SelectedPath, [ValidateSet("env", "appdata", "run-in-place")][string]$ConfigMode) {
     $oldLuantiUser = [Environment]::GetEnvironmentVariable("LUANTI_USER_PATH", "Process")
     $oldMinetestUser = [Environment]::GetEnvironmentVariable("MINETEST_USER_PATH", "Process")
     $oldAppData = [Environment]::GetEnvironmentVariable("APPDATA", "Process")
