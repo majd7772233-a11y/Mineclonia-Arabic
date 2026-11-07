@@ -1,0 +1,112 @@
+# Arabic translation draft for Mineclonia component: mcl_books
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_books/locale/template.pot
+# Source template blob SHA: 6f768eb235b703821826e0664330c2afbc816bcc
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_books/chiseled_bookshelf.lua:253
+msgid "Chiseled Bookshelf"
+msgstr "رف كتب منحوت"
+
+#: mods/ITEMS/mcl_books/chiseled_bookshelf.lua:254
+msgid "Chiseled bookshelf holds up to six books."
+msgstr "يتسع رف الكتب المنحوت لستة كتب كحد أقصى."
+
+#: mods/ITEMS/mcl_books/init.lua:15
+msgid "Book"
+msgstr "كتاب"
+
+#: mods/ITEMS/mcl_books/init.lua:16
+msgid "Books are used to make bookshelves and book and quills."
+msgstr "تُستخدم الكتب لصناعة أرفف الكتب والكتب مع الريشة."
+
+#: mods/ITEMS/mcl_books/init.lua:39
+msgid "“@1”"
+msgstr "«@1»"
+
+#: mods/ITEMS/mcl_books/init.lua:41
+msgid "Copy of “@1”"
+msgstr "نسخة من «@1»"
+
+#: mods/ITEMS/mcl_books/init.lua:43
+msgid "Copy of Copy of “@1”"
+msgstr "نسخة من نسخة «@1»"
+
+#: mods/ITEMS/mcl_books/init.lua:45
+msgid "Tattered Book"
+msgstr "كتاب مهترئ"
+
+#: mods/ITEMS/mcl_books/init.lua:47 mods/ITEMS/mcl_books/init.lua:123
+msgid "by @1"
+msgstr "بواسطة @1"
+
+#: mods/ITEMS/mcl_books/init.lua:64
+msgid "Sign"
+msgstr "توقيع"
+
+#: mods/ITEMS/mcl_books/init.lua:65 mods/ITEMS/mcl_books/init.lua:78
+msgid "Done"
+msgstr "تم"
+
+#: mods/ITEMS/mcl_books/init.lua:84
+msgid "Book and Quill"
+msgstr "كتاب وريشة"
+
+#: mods/ITEMS/mcl_books/init.lua:85
+msgid "Write down some notes"
+msgstr "دوّن بعض الملاحظات"
+
+#: mods/ITEMS/mcl_books/init.lua:86
+msgid "This item can be used to write down some notes."
+msgstr "يمكن استخدام هذا العنصر لتدوين بعض الملاحظات."
+
+#: mods/ITEMS/mcl_books/init.lua:121
+msgid "Enter book title:"
+msgstr "أدخل عنوان الكتاب:"
+
+#: mods/ITEMS/mcl_books/init.lua:125
+msgid "Sign and Close"
+msgstr "وقّع وأغلق"
+
+#: mods/ITEMS/mcl_books/init.lua:127
+msgid "Note: The book will no longer be editable after signing"
+msgstr "ملاحظة: لن يعود بالإمكان تعديل الكتاب بعد توقيعه"
+
+#: mods/ITEMS/mcl_books/init.lua:128
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: mods/ITEMS/mcl_books/init.lua:139
+msgid "Nameless Book"
+msgstr "كتاب بلا اسم"
+
+#: mods/ITEMS/mcl_books/init.lua:173
+msgid "Written Book"
+msgstr "كتاب مكتوب"
+
+#: mods/ITEMS/mcl_books/init.lua:177
+msgid "Hold it in your hand, then rightclick to read the book."
+msgstr "أمسكه بيدك، ثم انقر بزر الفأرة الأيمن لقراءة الكتاب."
+
+#: mods/ITEMS/mcl_books/init.lua:282 mods/ITEMS/mcl_books/init.lua:318
+msgid "Bookshelf"
+msgstr "رف كتب"
+
+#: mods/ITEMS/mcl_books/init.lua:297
+msgid "Inventory"
+msgstr "المخزون"
+
+#: mods/ITEMS/mcl_books/init.lua:319
+msgid "Bookshelves are used for decoration."
+msgstr "تُستخدم أرفف الكتب للزينة."
