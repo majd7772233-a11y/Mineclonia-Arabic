@@ -129,7 +129,7 @@ msgstr "ثمرة الكورس فاكهة صالحة للأكل من نبات ا�
 
 #: mods/ITEMS/mcl_end/chorus_plant.lua:559
 msgid "Popped Chorus Fruit"
-msgstr "ثمرة كورس منبثقة"
+msgstr "ثمرة الكورس المطهوة"
 
 #: mods/ITEMS/mcl_end/end_crystal.lua:199
 msgid "End Crystal"
