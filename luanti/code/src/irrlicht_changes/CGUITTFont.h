@@ -209,6 +209,9 @@ namespace gui
 			//! Set font that should be used for glyphs not present in ours
 			void setFallback(gui::IGUIFont *font);
 
+			//! Detect paragraph base direction using the Unicode Bidirectional Algorithm.
+			bool isRightToLeft(const wchar_t *text) const;
+
 			inline s32 getAscender() const { return font_metrics.ascender; }
 
 		protected:
