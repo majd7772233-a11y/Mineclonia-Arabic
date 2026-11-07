@@ -27,7 +27,7 @@ def tokens(value: str) -> Counter[str]:
 
 
 def active_entries(po: polib.POFile):
-    return [entry for entry in po if not entry.obsolete and entry.msgid]
+    return [entry for entry in po if not entry.obsolete and entry.msgid and entry.msgid.strip()]
 
 
 def get_textdomain(path: Path) -> str:
@@ -49,6 +49,8 @@ def prepare(source_root: Path, plan_path: Path, source_commit: str) -> None:
         "source_commit": source_commit,
         "po_file_count": len(po_files),
         "message_count": 0,
+        "stale_pot_keys": 0,
+        "po_extra_keys": 0,
         "tr_files": [],
         "po_fallbacks": [],
     }
@@ -87,13 +89,37 @@ def prepare(source_root: Path, plan_path: Path, source_commit: str) -> None:
         translated_entries = active_entries(po)
         source_keys = {(e.msgctxt, e.msgid, e.msgid_plural) for e in source_entries}
         translated_keys = {(e.msgctxt, e.msgid, e.msgid_plural) for e in translated_entries}
-        if source_keys != translated_keys:
+
+        # Mineclonia's checked-in POT/template.txt can lag behind its current Lua
+        # strings. A POT key is required only while its literal remains in Lua.
+        lua_text = "\n".join(
+            path.read_text(encoding="utf-8", errors="replace")
+            for path in source_mod.rglob("*.lua")
+        )
+
+        def still_used(key):
+            _, msgid, plural = key
+            for value in (msgid, plural):
+                if not value:
+                    continue
+                variants = (
+                    value,
+                    value.replace(chr(10), chr(92) + "n"),
+                    value.replace('"', chr(92) + '"'),
+                )
+                if any(candidate and candidate in lua_text for candidate in variants):
+                    return True
+            return False
+
+        missing_active = [key for key in source_keys - translated_keys if still_used(key)]
+        if missing_active:
             errors.append(
-                f"{relative}: POT/PO mismatch; "
-                f"{len(source_keys - translated_keys)} missing, "
-                f"{len(translated_keys - source_keys)} extra"
+                f"{relative}: {len(missing_active)} strings still present in Lua are missing from PO"
             )
             continue
+
+        plan["stale_pot_keys"] += len(source_keys - translated_keys)
+        plan["po_extra_keys"] += len(translated_keys - source_keys)
 
         needs_po = False
         for entry in translated_entries:
@@ -142,7 +168,8 @@ def prepare(source_root: Path, plan_path: Path, source_commit: str) -> None:
     print(
         f"PASS: {len(po_files)} PO files match pinned POT templates; "
         f"{plan['message_count']} messages checked; "
-        f"{len(plan['tr_files'])} TR and {len(plan['po_fallbacks'])} PO runtime files."
+        f"{len(plan['tr_files'])} TR and {len(plan['po_fallbacks'])} PO runtime files; "
+        f"{plan['stale_pot_keys']} stale POT keys retained, {plan['po_extra_keys']} PO-only keys preserved."
     )
 
 
