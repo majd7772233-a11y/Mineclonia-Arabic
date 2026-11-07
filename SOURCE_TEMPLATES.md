@@ -83,3 +83,17 @@
 - الترجمة العربية وحدها توضع في `msgstr`.
 - عند تحديث القوالب، لا نستبدل هذه الملفات آلياً؛ نراجع الفروقات أولاً ثم نحدّث الترجمات.
 
+
+## قوالب دفعة الجرعات والنحاس والسحر والكتل الملونة والسلالم — 2026-11-07
+
+- مرآة المصدر: https://github.com/ZenonSeth/mineclonia-mirror
+- commit المصدر: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/ITEMS/mcl_potions/locale/template.pot` | `91ff20722afcc4e696875ad157f332bd00ca2d7e` |
+| `mods/ITEMS/mcl_copper/locale/template.pot` | `27a546e1327bd318ccbc89c59d72ed63bbc62fa5` |
+| `mods/ITEMS/mcl_enchanting/locale/template.pot` | `790da1f4928860dadb27b912a61c82a02ccfa29c` |
+| `mods/ITEMS/mcl_colorblocks/locale/template.pot` | `1cd67a32a51ebbd4fb0d5c660ba08d9ecfb740e3` |
+| `mods/ITEMS/mclx_stairs/locale/template.pot` | `464dd65d53ea705ed4613e6817d96a3820495645` |
+
