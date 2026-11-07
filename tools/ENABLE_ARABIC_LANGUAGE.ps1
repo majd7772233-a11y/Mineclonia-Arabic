@@ -141,56 +141,79 @@ function Set-ArabicLanguageLabel([string]$Text) {
     }
 
     $tableBody = $Text.Substring($tableOpen + 1, $tableClose - $tableOpen - 1)
-    $rowPattern = [regex]'(?m)^(?<indent>[ \t]*)(?:--[ \t]*)?ar[ \t]*=[^\r\n]*$'
-    $rowMatches = $rowPattern.Matches($tableBody)
+    $tableLines = New-Object 'System.Collections.Generic.List[string]'
+    $arabicIndent = $null
 
-    if ($rowMatches.Count -gt 0) {
-        # Remove all old/duplicate Arabic rows, then add one clean entry.
-        $indent = $rowMatches[0].Groups["indent"].Value
-        $tableLines = New-Object 'System.Collections.Generic.List[string]'
-        foreach ($line in [regex]::Split($tableBody, "\r\n|\n")) {
-            if ($line -match '^[ \t]*(?:--[ \t]*)?ar[ \t]*=') { continue }
-            [void]$tableLines.Add($line)
+    # Avoid regex parsing differences between Windows PowerShell versions.
+    # Remove any active or commented ar = ... row, remembering its indentation.
+    foreach ($line in [regex]::Split($tableBody, "\r\n|\n")) {
+        $trimmed = $line.TrimStart()
+        $probe = $trimmed
+        if ($probe.StartsWith("--", [StringComparison]::Ordinal)) {
+            $probe = $probe.Substring(2).TrimStart()
         }
 
-        $insertAt = 0
+        $isArabicKey = $false
+        if ($probe.StartsWith("ar", [StringComparison]::Ordinal) -and $probe.Length -gt 2) {
+            $remainder = $probe.Substring(2).TrimStart()
+            if ($remainder.StartsWith("=", [StringComparison]::Ordinal)) {
+                $isArabicKey = $true
+            }
+        }
+
+        if ($isArabicKey) {
+            if ($null -eq $arabicIndent) {
+                $arabicIndent = $line.Substring(0, $line.Length - $trimmed.Length)
+            }
+            continue
+        }
+
+        [void]$tableLines.Add($line)
+    }
+
+    # If there was no Arabic row, inherit the indentation from the system-language row.
+    $anchorIndex = -1
+    for ($i = 0; $i -lt $tableLines.Count; $i++) {
+        if ($tableLines[$i].TrimStart().StartsWith('[""]', [StringComparison]::Ordinal)) {
+            $anchorIndex = $i
+            if ($null -eq $arabicIndent) {
+                $trimmed = $tableLines[$i].TrimStart()
+                $arabicIndent = $tableLines[$i].Substring(0, $tableLines[$i].Length - $trimmed.Length)
+            }
+            break
+        }
+    }
+
+    if ($anchorIndex -lt 0) {
         for ($i = 0; $i -lt $tableLines.Count; $i++) {
-            if ($tableLines[$i].Trim() -eq "") { $insertAt = $i + 1 } else { break }
+            if ($tableLines[$i].TrimStart().StartsWith("en", [StringComparison]::Ordinal)) {
+                $anchorIndex = $i
+                if ($null -eq $arabicIndent) {
+                    $trimmed = $tableLines[$i].TrimStart()
+                    $arabicIndent = $tableLines[$i].Substring(0, $tableLines[$i].Length - $trimmed.Length)
+                }
+                break
+            }
         }
-        $tableLines.Insert($insertAt, $indent + $desired)
-        $crlf = ([char]13).ToString() + ([char]10).ToString()
-        $separator = if ($tableBody.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
-        $tableBody = [string]::Join($separator, $tableLines.ToArray())
+    }
+
+    if ($null -eq $arabicIndent) {
+        $arabicIndent = ([string][char]9) + ([string][char]9)
+    }
+    if ($anchorIndex -ge 0) {
+        $tableLines.Insert($anchorIndex + 1, $arabicIndent + $desired)
     } else {
-        $crlf = ([char]13).ToString() + ([char]10).ToString()
-        $separator = if ($Text.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
-        $anchorPattern = [regex]'(?m)^(?<indent>[ \t]*)\[""\][^\r\n]*$'
-        $anchor = $anchorPattern.Match($tableBody)
-        if (!$anchor.Success) {
-            $anchorPattern = [regex]'(?m)^(?<indent>[ \t]*)en[ \t]*=[^\r\n]*$'
-            $anchor = $anchorPattern.Match($tableBody)
+        $insertAt = 0
+        while ($insertAt -lt $tableLines.Count -and $tableLines[$insertAt].Trim() -eq "") {
+            $insertAt++
         }
-
-        if ($anchor.Success) {
-            $insert = $separator + $anchor.Groups["indent"].Value + $desired
-            $position = $anchor.Index + $anchor.Length
-            $tableBody = $tableBody.Insert($position, $insert)
-        } else {
-            $tableBody = $tableBody + $separator + ([string][char]9) + $desired
-        }
+        $tableLines.Insert($insertAt, $arabicIndent + $desired)
     }
 
-    # Preserve the newline before the Lua table closing brace; otherwise the new key can become ar = "...",}.
     $crlf = ([char]13).ToString() + ([char]10).ToString()
     $separator = if ($Text.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
-    if (!$tableBody.EndsWith($separator)) {
-        $tableBody += $separator
-    }
-
-    # Keep the Lua table closing brace on its own line. The original table body
-    # may not end with a newline, especially after removing a commented Arabic row.
-    $crlf = ([char]13).ToString() + ([char]10).ToString()
-    $separator = if ($Text.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
+    $tableBody = [string]::Join($separator, $tableLines.ToArray())
+    # Preserve the newline before the closing brace of the Lua table.
     if (!$tableBody.EndsWith($separator)) {
         $tableBody += $separator
     }
