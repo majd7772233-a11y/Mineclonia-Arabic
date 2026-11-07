@@ -25,4 +25,4 @@ msgid "An observer is a redstone component which observes the block in front of 
 msgstr "المراقب مكوّن من مكوّنات ريدستون يراقب الكتلة الموجودة أمامه، ويرسل نبضة ريدستون قصيرة جداً كلما تغيّرت تلك الكتلة."
 
 msgid "Place the observer directly in front of the block you want to observe with the “face” looking at the block. The arrow points to the side of the output, which is at the opposite side of the “face”. You can place your redstone dust or any other component here."
-msgstr "ضع المراقب مباشرة أمام الكتلة التي تريد مراقبتها، بحيث يكون «وجهه» باتجاهها. يشير السهم إلى جهة الخرج، الموجودة في الجانب المقابل للوجه. يمكنك وضع غبار ريدستون أو أي مكوّن آخر في هذا الموضع."
+msgstr "ضع المراقب مباشرة أمام الكتلة التي تريد مراقبتها، بحيث يكون «وجهه» باتجاهها. يشير السهم إلى جهة الخرج، الموجودة في الجانب المقابل للوجه. يمكنك وضع مسحوق ريدستون أو أي مكوّن آخر في هذا الموضع."
