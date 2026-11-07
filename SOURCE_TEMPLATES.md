@@ -195,3 +195,36 @@
 | `mods/ITEMS/mcl_stairs/locale/template.pot` | `f1cbe4c643e1f0b5235a808484e69efb7093243c` |
 | `mods/ITEMS/mcl_signs/locale/template.pot` | `1ec03f4f56e3f9a4be5b129abd53a0f9de26b55d` |
 
+
+
+## قوالب دفعة المراجل والمنارات والبناء والاستكشاف — 2026-11-07
+
+- مرآة المصدر: https://github.com/ZenonSeth/mineclonia-mirror
+- commit المصدر: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/ITEMS/mcl_cauldrons/locale/template.pot` | `322c9fe8325dd919a877e9395727c89b43c320f8` |
+| `mods/ITEMS/mcl_beacons/locale/template.pot` | `fd1dcfb2a41a9d8b250b78b99192ca66aae168e6` |
+| `mods/ITEMS/mcl_monster_eggs/locale/template.pot` | `018255e9c8f4f3cd6098f697fd95d52144f28514` |
+| `mods/ITEMS/mcl_raw_ores/locale/template.pot` | `62b3c155e2b628a257e5b65f0cad8a94001ef62e` |
+| `mods/ITEMS/mcl_panes/locale/template.pot` | `9885aef9b4f286a2aa6d67c9d1ec5b848b02f887` |
+| `mods/ITEMS/mcl_cocoas/locale/template.pot` | `6a0e5d61ca6b69e412e7320094fe310f222fd73a` |
+| `mods/ITEMS/mcl_maps/locale/template.pot` | `1906d4b47a94e429a8855d83cf83da81bf1338ae` |
+| `mods/ITEMS/mcl_mobspawners/locale/template.pot` | `37cd730d07d1bb40414edf6dbc4115e3ebce424b` |
+| `mods/ITEMS/mcl_mud/locale/template.pot` | `fbbc50f6710c9b2e612f2d07a9ad0c5f17231bf5` |
+| `mods/ITEMS/REDSTONE/mcl_redstone/locale/template.pot` | `acf37b053b983a9896b4ba74e946db2595d98991` |
+| `mods/ITEMS/mcl_barrels/locale/template.pot` | `a2f48acf2a8cb0a7004d0ccf69e06cd78a61ed4b` |
+| `mods/ITEMS/mcl_beehives/locale/template.pot` | `4664b47a7d093dd8e98e8325d03eb50a5b3effd8` |
+| `mods/ITEMS/mcl_flowerpots/locale/template.pot` | `3a40b0decfa24592880b17a21bcdf2a88fc2e756` |
+| `mods/ITEMS/mcl_powder_snow/locale/template.pot` | `6da77aa9c1fbb79254948319cae64553b925eb7e` |
+| `mods/ITEMS/mcl_clock/locale/template.pot` | `57c9c06c51dd5bbb0baa7cca89a6e490f55e7a0b` |
+| `mods/ITEMS/mcl_dripstone/locale/template.pot` | `c1776b594506d11528dceddacd497c3eb9416b57` |
+| `mods/ITEMS/mcl_stonecutter/locale/template.pot` | `006a3440f4010589ea15b7c69a89d4e065998945` |
+| `mods/ITEMS/mcl_totems/locale/template.pot` | `38fafaf19d83aeb6576be07cba7d408764c7c541` |
+| `mods/ITEMS/mcl_lectern/locale/template.pot` | `10ebefbadb0b5061b94a63dd029f0532da693218` |
+| `mods/ITEMS/mcl_trial_spawners/locale/template.pot` | `ce09e25abb820605b3b0bc8bb9c631a2f5cbeb9f` |
+| `mods/ITEMS/mcl_vaults/locale/template.pot` | `1ecf64e5c580a60365291c807fb1ae1acd2849ba` |
+| `mods/MAPGEN/mcl_villages/locale/template.pot` | `3b21761af3c68420ef38f3e6316e13df8e24934f` |
+| `mods/MAPGEN/mcl_structures/locale/template.pot` | `0c7b8ac08bf1402f7ef5e28396d96425f984ff9e` |
+| `mods/ITEMS/mcl_lanterns/locale/template.pot` | `747a2ce18266556f8c8a9a1be3cc0202fe5a9ee8` |
