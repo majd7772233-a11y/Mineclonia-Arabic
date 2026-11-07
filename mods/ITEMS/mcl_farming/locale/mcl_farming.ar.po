@@ -1,0 +1,527 @@
+# Arabic translation for Mineclonia component mcl_farming
+# Source mirror: ZenonSeth/mineclonia-mirror
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_farming/locale/template.pot
+# Source template blob SHA: 844024036a32d7a03ac11736e8d5a8105f8d5796
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 12:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:10
+msgid "Beetroot Seeds"
+msgstr "بذور الشمندر"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:11
+#: mods/ITEMS/mcl_farming/carrots.lua:100 mods/ITEMS/mcl_farming/melon.lua:9
+#: mods/ITEMS/mcl_farming/potatoes.lua:102
+#: mods/ITEMS/mcl_farming/pumpkin.lua:29 mods/ITEMS/mcl_farming/wheat.lua:10
+msgid "Grows on farmland"
+msgstr "تنمو على الأرض الزراعية"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:12
+msgid "Grows into a beetroot plant. Chickens like beetroot seeds."
+msgstr "تنمو لتصبح نبتة شمندر. تحب الدجاجات بذور الشمندر."
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:13
+msgid ""
+"Place the beetroot seeds on farmland (which can be created with a hoe) to "
+"plant a beetroot plant. They grow in sunlight and grow faster on hydrated "
+"farmland. Rightclick an animal to feed it beetroot seeds."
+msgstr "ضع بذور الشمندر على الأرض الزراعية (التي يمكنك إعدادها باستخدام المعزقة) لزراعة نبتة شمندر. تنمو النباتات تحت ضوء الشمس وتنمو أسرع على الأرض الزراعية المروية. انقر بزر الفأرة الأيمن على حيوان لإطعامه بذور الشمندر."
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:24
+msgid "Premature Beetroot Plant (Stage 1)"
+msgstr "نبتة شمندر غير ناضجة (المرحلة 1)"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:25
+msgid ""
+"Beetroot plants are plants which grow on farmland under sunlight in 4 "
+"stages. On hydrated farmland, they grow a bit faster. They can be harvested "
+"at any time but will only yield a profit when mature."
+msgstr "نباتات الشمندر تنمو على الأرض الزراعية تحت ضوء الشمس عبر 4 مراحل. وتنمو أسرع قليلاً على الأرض المروية. ويمكن حصادها في أي وقت، لكنها لا تعطي محصولاً مفيداً إلا عند نضجها."
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:26
+msgid "Premature Beetroot Plant"
+msgstr "نبتة شمندر غير ناضجة"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:51
+msgid "Premature Beetroot Plant (Stage 2)"
+msgstr "نبتة شمندر غير ناضجة (المرحلة 2)"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:77
+msgid "Premature Beetroot Plant (Stage 3)"
+msgstr "نبتة شمندر غير ناضجة (المرحلة 3)"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:103
+msgid "Mature Beetroot Plant"
+msgstr "نبتة شمندر ناضجة"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:104
+msgid ""
+"A mature beetroot plant is a farming plant which is ready to be harvested "
+"for a beetroot and some beetroot seeds. It won't grow any further."
+msgstr "نبتة الشمندر الناضجة جاهزة للحصاد للحصول على حبة شمندر وبعض بذور الشمندر. ولن تنمو أكثر من ذلك."
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:157
+msgid "Beetroot"
+msgstr "شمندر"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:158
+msgid ""
+"Beetroots are both used as food item and a dye ingredient. Pigs like "
+"beetroots, too."
+msgstr "يُستخدم الشمندر طعاماً ومكوّناً لصناعة الأصباغ. كما تحب الخنازير الشمندر."
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:159
+msgid ""
+"Hold it in your hand and right-click to eat it. Rightclick an animal to feed "
+"it."
+msgstr "أمسكه بيدك وانقر بزر الفأرة الأيمن لتناوله. وانقر بزر الفأرة الأيمن على حيوان لإطعامه."
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:168
+msgid "Beetroot Soup"
+msgstr "حساء الشمندر"
+
+#: mods/ITEMS/mcl_farming/beetroot.lua:169
+msgid "Beetroot soup is a food item."
+msgstr "حساء الشمندر عنصر غذائي."
+
+#: mods/ITEMS/mcl_farming/carrots.lua:23
+msgid "Premature Carrot Plant"
+msgstr "نبتة جزر غير ناضجة"
+
+#: mods/ITEMS/mcl_farming/carrots.lua:24
+msgid ""
+"Carrot plants are plants which grow on farmland under sunlight in 8 stages, "
+"but only 4 stages can be visually told apart. On hydrated farmland, they "
+"grow a bit faster. They can be harvested at any time but will only yield a "
+"profit when mature."
+msgstr "نباتات الجزر تنمو على الأرض الزراعية تحت ضوء الشمس عبر 8 مراحل، لكن يمكن تمييز 4 مراحل منها بصرياً فقط. وتنمو أسرع قليلاً على الأرض المروية. ويمكن حصادها في أي وقت، لكنها لا تعطي محصولاً مفيداً إلا عند نضجها."
+
+#: mods/ITEMS/mcl_farming/carrots.lua:29
+msgid "Premature Carrot Plant (Stage @1)"
+msgstr "نبتة جزر غير ناضجة (المرحلة @1)"
+
+#: mods/ITEMS/mcl_farming/carrots.lua:58
+msgid "Mature Carrot Plant"
+msgstr "نبتة جزر ناضجة"
+
+#: mods/ITEMS/mcl_farming/carrots.lua:59
+msgid ""
+"Mature carrot plants are ready to be harvested for carrots. They won't grow "
+"any further."
+msgstr "نباتات الجزر الناضجة جاهزة لحصاد الجزر، ولن تنمو أكثر من ذلك."
+
+#: mods/ITEMS/mcl_farming/carrots.lua:99
+msgid "Carrot"
+msgstr "جزرة"
+
+#: mods/ITEMS/mcl_farming/carrots.lua:101
+msgid "Carrots can be eaten and planted. Pigs and rabbits like carrots."
+msgstr "يمكن تناول الجزر وزراعته. تحب الخنازير والأرانب الجزر."
+
+#: mods/ITEMS/mcl_farming/carrots.lua:102
+msgid ""
+"Hold it in your hand and rightclick to eat it. Place it on top of farmland "
+"to plant the carrot. It grows in sunlight and grows faster on hydrated "
+"farmland. Rightclick an animal to feed it."
+msgstr "أمسك الجزرة وانقر بزر الفأرة الأيمن لتناولها. وضعها فوق الأرض الزراعية لزراعتها. تنمو تحت ضوء الشمس وتنمو أسرع على الأرض المروية. وانقر بزر الفأرة الأيمن على حيوان لإطعامه."
+
+#: mods/ITEMS/mcl_farming/carrots.lua:117
+msgid "Golden Carrot"
+msgstr "جزرة ذهبية"
+
+#: mods/ITEMS/mcl_farming/carrots.lua:118
+msgid ""
+"A golden carrot is a precious food item which can be eaten. It is really, "
+"really filling!"
+msgstr "الجزرة الذهبية طعام ثمين يمكن تناوله، وهي مشبعة للغاية!"
+
+#: mods/ITEMS/mcl_farming/hoes.lua:29
+msgid "Turns block into farmland"
+msgstr "تحوّل الكتلة إلى أرض زراعية"
+
+#: mods/ITEMS/mcl_farming/hoes.lua:30
+msgid ""
+"Hoes are essential tools for growing crops. They are used to create farmland "
+"in order to plant seeds on it. Hoes can also be used as very weak weapons in "
+"a pinch."
+msgstr "المعازق أدوات أساسية لزراعة المحاصيل. وتُستخدم لإعداد الأرض الزراعية كي تتمكن من زرع البذور فيها. ويمكن استخدامها أيضاً أسلحة ضعيفة جداً عند الضرورة."
+
+#: mods/ITEMS/mcl_farming/hoes.lua:31
+msgid ""
+"Use the hoe on a cultivatable block (by rightclicking it) to turn it into "
+"farmland. Dirt, grass blocks and grass paths are cultivatable blocks. Using "
+"a hoe on coarse dirt turns it into dirt."
+msgstr "استخدم المعزقة على كتلة قابلة للحراثة (بالنقر عليها بزر الفأرة الأيمن) لتحويلها إلى أرض زراعية. وتشمل الكتل القابلة للحراثة التراب وكتل العشب والمسارات العشبية. ويؤدي استخدام المعزقة على التراب الخشن إلى تحويله إلى تراب عادي."
+
+#: mods/ITEMS/mcl_farming/hoes.lua:64
+msgid "Wood Hoe"
+msgstr "معزقة خشبية"
+
+#: mods/ITEMS/mcl_farming/hoes.lua:74
+msgid "Stone Hoe"
+msgstr "معزقة حجرية"
+
+#: mods/ITEMS/mcl_farming/hoes.lua:82
+msgid "Copper Hoe"
+msgstr "معزقة نحاسية"
+
+#: mods/ITEMS/mcl_farming/hoes.lua:91
+msgid "Iron Hoe"
+msgstr "معزقة حديدية"
+
+#: mods/ITEMS/mcl_farming/hoes.lua:100
+msgid "Golden Hoe"
+msgstr "معزقة ذهبية"
+
+#: mods/ITEMS/mcl_farming/hoes.lua:109
+msgid "Diamond Hoe"
+msgstr "معزقة ألماسية"
+
+#: mods/ITEMS/mcl_farming/hoes.lua:119
+msgid "Netherite Hoe"
+msgstr "معزقة نذرايتية"
+
+#: mods/ITEMS/mcl_farming/melon.lua:8
+msgid "Melon Seeds"
+msgstr "بذور البطيخ"
+
+#: mods/ITEMS/mcl_farming/melon.lua:10
+msgid ""
+"Grows into a melon stem which in turn grows melons. Chickens like melon "
+"seeds."
+msgstr "تنمو لتصبح ساق بطيخ تنتج ثمار البطيخ. تحب الدجاجات بذور البطيخ."
+
+#: mods/ITEMS/mcl_farming/melon.lua:11
+msgid ""
+"Place the melon seeds on farmland (which can be created with a hoe) to plant "
+"a melon stem. Melon stems grow in sunlight and grow faster on hydrated "
+"farmland. When mature, the stem will attempt to grow a melon at the side. "
+"Rightclick an animal to feed it melon seeds."
+msgstr "ضع بذور البطيخ على الأرض الزراعية (التي يمكنك إعدادها باستخدام المعزقة) لزراعة ساق بطيخ. تنمو سيقان البطيخ تحت ضوء الشمس وتنمو أسرع على الأرض المروية. وعندما تنضج، تحاول الساق إنبات ثمرة بطيخ بجانبها. انقر بزر الفأرة الأيمن على حيوان لإطعامه بذور البطيخ."
+
+#: mods/ITEMS/mcl_farming/melon.lua:23
+msgid "Melon"
+msgstr "بطيخ"
+
+#: mods/ITEMS/mcl_farming/melon.lua:24
+msgid ""
+"A melon is a block which can be grown from melon stems, which in turn are "
+"grown from melon seeds. It can be harvested for melon slices."
+msgstr "البطيخ كتلة يمكن زراعتها من سيقان البطيخ التي تنمو بدورها من بذور البطيخ. ويمكن حصاده للحصول على شرائح البطيخ."
+
+#: mods/ITEMS/mcl_farming/melon.lua:86
+msgid "Premature Melon Stem"
+msgstr "ساق بطيخ غير ناضجة"
+
+#: mods/ITEMS/mcl_farming/melon.lua:87
+msgid ""
+"Melon stems grow on farmland in 8 stages. On hydrated farmland, the growth "
+"is a bit quicker. Mature melon stems are able to grow melons."
+msgstr "تنمو سيقان البطيخ على الأرض الزراعية عبر 8 مراحل. ويكون نموها أسرع قليلاً على الأرض المروية. وتستطيع السيقان الناضجة إنتاج البطيخ."
+
+#: mods/ITEMS/mcl_farming/melon.lua:92
+msgid "Premature Melon Stem (Stage @1)"
+msgstr "ساق بطيخ غير ناضجة (المرحلة @1)"
+
+#: mods/ITEMS/mcl_farming/melon.lua:120
+msgid "Mature Melon Stem"
+msgstr "ساق بطيخ ناضجة"
+
+#: mods/ITEMS/mcl_farming/melon.lua:122
+msgid ""
+"A mature melon stem attempts to grow a melon at one of its four adjacent "
+"blocks. A melon can only grow on top of farmland, dirt, or a grass block. "
+"When a melon is next to a melon stem, the melon stem immediately bends and "
+"connects to the melon. While connected, a melon stem can't grow another "
+"melon. As soon all melons around the stem have been removed, it loses the "
+"connection and is ready to grow another melon."
+msgstr "تحاول ساق البطيخ الناضجة إنبات ثمرة بطيخ في إحدى الكتل الأربع المجاورة لها. ولا يمكن أن تنمو ثمرة البطيخ إلا فوق أرض زراعية أو تراب أو كتلة عشب. وعندما تنمو ثمرة بجوار الساق، تنحني الساق فوراً وتتصل بها. ولا تستطيع الساق المتصلة بثمرة إنبات ثمرة أخرى. وعندما تُزال جميع ثمار البطيخ المحيطة بالساق، ينقطع الاتصال وتصبح جاهزة لإنبات ثمرة جديدة."
+
+#: mods/ITEMS/mcl_farming/melon.lua:138
+msgid "Melon Slice"
+msgstr "شريحة بطيخ"
+
+#: mods/ITEMS/mcl_farming/melon.lua:139 mods/ITEMS/mcl_farming/wheat.lua:140
+#: mods/ITEMS/mcl_farming/wheat.lua:148
+msgid "This is a food item which can be eaten."
+msgstr "هذا عنصر غذائي يمكن تناوله."
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:25
+msgid "Premature Potato Plant"
+msgstr "نبتة بطاطس غير ناضجة"
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:26
+msgid ""
+"Potato plants are plants which grow on farmland under sunlight in 8 stages, "
+"but only 4 stages can be visually told apart. On hydrated farmland, they "
+"grow a bit faster. They can be harvested at any time but will only yield a "
+"profit when mature."
+msgstr "تنمو نباتات البطاطس على الأرض الزراعية تحت ضوء الشمس عبر 8 مراحل، لكن يمكن تمييز 4 مراحل منها بصرياً فقط. وتنمو أسرع قليلاً على الأرض المروية. ويمكن حصادها في أي وقت، لكنها لا تعطي محصولاً مفيداً إلا عند نضجها."
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:33
+msgid "Premature Potato Plant (Stage @1)"
+msgstr "نبتة بطاطس غير ناضجة (المرحلة @1)"
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:61
+msgid "Mature Potato Plant"
+msgstr "نبتة بطاطس ناضجة"
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:62
+msgid ""
+"Mature potato plants are ready to be harvested for potatoes. They won't grow "
+"any further."
+msgstr "نباتات البطاطس الناضجة جاهزة لحصاد البطاطس، ولن تنمو أكثر من ذلك."
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:101
+msgid "Potato"
+msgstr "بطاطس"
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:103
+msgid ""
+"Potatoes are food items which can be eaten, cooked in the furnace and "
+"planted. Pigs like potatoes."
+msgstr "البطاطس طعام يمكن تناوله أو طهيه في الفرن أو زراعته. تحب الخنازير البطاطس."
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:104
+msgid ""
+"Hold it in your hand and rightclick to eat it. Place it on top of farmland "
+"to plant it. It grows in sunlight and grows faster on hydrated farmland. "
+"Rightclick an animal to feed it."
+msgstr "أمسك البطاطس وانقر بزر الفأرة الأيمن لتناولها. وضعها فوق الأرض الزراعية لزراعتها. تنمو تحت ضوء الشمس وتنمو أسرع على الأرض المروية. وانقر بزر الفأرة الأيمن على حيوان لإطعامه."
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:120
+msgid "Baked Potato"
+msgstr "بطاطس مخبوزة"
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:121
+msgid ""
+"Baked potatoes are food items which are more filling than the unbaked ones."
+msgstr "البطاطس المخبوزة طعام أكثر إشباعاً من البطاطس غير المطهوة."
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:128
+msgid "Poisonous Potato"
+msgstr "بطاطس سامة"
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:129
+msgid "60% chance of poisoning"
+msgstr "احتمال التسمم بنسبة 60%"
+
+#: mods/ITEMS/mcl_farming/potatoes.lua:130
+msgid ""
+"This potato doesn't look too healthy. You can eat it to restore hunger "
+"points, but there's a 60% chance it will poison you briefly."
+msgstr "لا تبدو هذه البطاطس سليمة تماماً. يمكنك تناولها لاستعادة نقاط الجوع، لكن هناك احتمالاً بنسبة 60% أن تسبب لك تسمماً مؤقتاً."
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:28
+msgid "Pumpkin Seeds"
+msgstr "بذور اليقطين"
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:30
+msgid ""
+"Grows into a pumpkin stem which in turn grows pumpkins. Chickens like "
+"pumpkin seeds."
+msgstr "تنمو لتصبح ساق يقطين تنتج ثمار اليقطين. تحب الدجاجات بذور اليقطين."
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:31
+msgid ""
+"Place the pumpkin seeds on farmland (which can be created with a hoe) to "
+"plant a pumpkin stem. Pumpkin stems grow in sunlight and grow faster on "
+"hydrated farmland. When mature, the stem attempts to grow a pumpkin next to "
+"it. Rightclick an animal to feed it pumpkin seeds."
+msgstr "ضع بذور اليقطين على الأرض الزراعية (التي يمكنك إعدادها باستخدام المعزقة) لزراعة ساق يقطين. تنمو سيقان اليقطين تحت ضوء الشمس وتنمو أسرع على الأرض المروية. وعندما تنضج، تحاول الساق إنبات ثمرة يقطين بجانبها. انقر بزر الفأرة الأيمن على حيوان لإطعامه بذور اليقطين."
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:71
+msgid "Premature Pumpkin Stem"
+msgstr "ساق يقطين غير ناضجة"
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:72
+msgid ""
+"Pumpkin stems grow on farmland in 8 stages. On hydrated farmland, the growth "
+"is a bit quicker. Mature pumpkin stems are able to grow pumpkins."
+msgstr "تنمو سيقان اليقطين على الأرض الزراعية عبر 8 مراحل. ويكون نموها أسرع قليلاً على الأرض المروية. وتستطيع السيقان الناضجة إنتاج اليقطين."
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:77
+msgid "Premature Pumpkin Stem (Stage @1)"
+msgstr "ساق يقطين غير ناضجة (المرحلة @1)"
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:105
+msgid "Mature Pumpkin Stem"
+msgstr "ساق يقطين ناضجة"
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:106
+msgid ""
+"A mature pumpkin stem attempts to grow a pumpkin at one of its four adjacent "
+"blocks. A pumpkin can only grow on top of farmland, dirt or a grass block. "
+"When a pumpkin is next to a pumpkin stem, the pumpkin stem immediately bends "
+"and connects to the pumpkin. A connected pumpkin stem can't grow another "
+"pumpkin. As soon all pumpkins around the stem have been removed, it loses "
+"the connection and is ready to grow another pumpkin."
+msgstr "تحاول ساق اليقطين الناضجة إنبات ثمرة يقطين في إحدى الكتل الأربع المجاورة لها. ولا يمكن أن تنمو ثمرة اليقطين إلا فوق أرض زراعية أو تراب أو كتلة عشب. وعندما تنمو ثمرة بجوار الساق، تنحني الساق فوراً وتتصل بها. ولا تستطيع الساق المتصلة بثمرة إنبات ثمرة أخرى. وعندما تُزال جميع ثمار اليقطين المحيطة بالساق، ينقطع الاتصال وتصبح جاهزة لإنبات ثمرة جديدة."
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:115
+msgid "Pumpkin"
+msgstr "يقطين"
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:116
+msgid ""
+"A pumpkin is a decorative block. It can be carved with shears to obtain "
+"pumpkin seeds."
+msgstr "اليقطين كتلة زخرفية. ويمكن نحتها باستخدام المقص للحصول على بذور اليقطين."
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:117
+msgid ""
+"To carve a face into the pumpkin, use the shears on the side you want to "
+"carve."
+msgstr "لنحت وجه على اليقطين، استخدم المقص على الجانب الذي تريد نحته."
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:132
+msgid "Carved Pumpkin"
+msgstr "يقطين منحوت"
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:133
+msgid ""
+"A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
+"which in turn grow from pumpkin seeds."
+msgstr "يمكن ارتداء اليقطين المنحوت كخوذة. وتنمو ثمار اليقطين من سيقان اليقطين التي تنمو بدورها من بذور اليقطين."
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:228
+msgid "Jack o'Lantern"
+msgstr "فانوس اليقطين"
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:229
+msgid ""
+"A jack o'lantern is a traditional Halloween decoration made from a pumpkin. "
+"It glows brightly."
+msgstr "فانوس اليقطين زينة تقليدية لعيد الهالووين تُصنع من اليقطين، وتصدر ضوءاً ساطعاً."
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:260
+msgid "Pumpkin Pie"
+msgstr "فطيرة اليقطين"
+
+#: mods/ITEMS/mcl_farming/pumpkin.lua:261
+msgid "A pumpkin pie is a tasty food item which can be eaten."
+msgstr "فطيرة اليقطين طعام لذيذ يمكن تناوله."
+
+#: mods/ITEMS/mcl_farming/soil.lua:5
+msgid "Farmland"
+msgstr "أرض زراعية"
+
+#: mods/ITEMS/mcl_farming/soil.lua:6
+msgid "Surface for crops"
+msgstr "سطح لزراعة المحاصيل"
+
+#: mods/ITEMS/mcl_farming/soil.lua:6
+msgid "Can become wet"
+msgstr "يمكن أن تصبح رطبة"
+
+#: mods/ITEMS/mcl_farming/soil.lua:7
+msgid ""
+"Farmland is used for farming, a necessary surface to plant crops. It is "
+"created when a hoe is used on dirt or a similar block. Plants are able to "
+"grow on farmland, but slowly. Farmland will become hydrated farmland (on "
+"which plants grow faster) when it rains or a water source is nearby. This "
+"block will turn back to dirt when a solid block appears above it or a piston "
+"arm extends above it."
+msgstr "تُستخدم الأرض الزراعية لزراعة المحاصيل، فهي السطح اللازم لزرعها. وتُنشأ باستخدام المعزقة على التراب أو كتلة مشابهة. تستطيع النباتات النمو عليها، لكن ببطء. وتتحول إلى أرض زراعية مروية (تنمو النباتات عليها أسرع) عند هطول المطر أو وجود مصدر ماء قريب. وتعود هذه الكتلة إلى تراب عندما تظهر كتلة صلبة فوقها أو يمتد فوقها ذراع مكبس."
+
+#: mods/ITEMS/mcl_farming/soil.lua:30
+msgid "Hydrated Farmland"
+msgstr "أرض زراعية مروية"
+
+#: mods/ITEMS/mcl_farming/soil.lua:31
+msgid ""
+"Hydrated farmland is used in farming, this is where you can plant and grow "
+"some plants. It is created when farmland is under rain or near water. "
+"Without water, this block will dry out eventually. This block will turn back "
+"to dirt when a solid block appears above it or a piston arm extends above it."
+msgstr "تُستخدم الأرض الزراعية المروية في الزراعة، ويمكنك زرع بعض النباتات وإنمائها عليها. وتتكون عندما تتعرض الأرض الزراعية للمطر أو تكون بالقرب من الماء. ومن دون الماء، ستجف هذه الكتلة في النهاية. وتعود إلى تراب عندما تظهر كتلة صلبة فوقها أو يمتد فوقها ذراع مكبس."
+
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:48
+msgid "Sweet Berry Bush (Stage @1)"
+msgstr "شجيرة توت حلو (المرحلة @1)"
+
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:91
+msgid "Sweet Berry"
+msgstr "حبة توت حلو"
+
+#: mods/ITEMS/mcl_farming/wheat.lua:9
+msgid "Wheat Seeds"
+msgstr "بذور القمح"
+
+#: mods/ITEMS/mcl_farming/wheat.lua:11
+msgid "Grows into a wheat plant. Chickens like wheat seeds."
+msgstr "تنمو لتصبح نبتة قمح. تحب الدجاجات بذور القمح."
+
+#: mods/ITEMS/mcl_farming/wheat.lua:12
+msgid ""
+"\t\tPlace the wheat seeds on farmland (which can be created with a hoe) to "
+"plant a wheat plant.\n"
+"\t\tThey grow in sunlight and grow faster on hydrated farmland. Rightclick "
+"an animal to feed it wheat seeds.\n"
+"\t"
+msgstr "ضع بذور القمح على الأرض الزراعية (التي يمكنك إعدادها باستخدام المعزقة) لزراعة نبتة قمح. تنمو النباتات تحت ضوء الشمس وتنمو أسرع على الأرض المروية. انقر بزر الفأرة الأيمن على حيوان لإطعامه بذور القمح."
+
+#: mods/ITEMS/mcl_farming/wheat.lua:39
+msgid "Premature Wheat Plant"
+msgstr "نبتة قمح غير ناضجة"
+
+#: mods/ITEMS/mcl_farming/wheat.lua:40
+msgid ""
+"\t\t\tPremature wheat plants grow on farmland under sunlight in 8 stages.\n"
+"\t\t\tOn hydrated farmland, they grow faster. They can be harvested at any "
+"time but will only yield a profit when mature.\n"
+"\t\t"
+msgstr "تنمو نباتات القمح غير الناضجة على الأرض الزراعية تحت ضوء الشمس عبر 8 مراحل. وتنمو أسرع على الأرض المروية. ويمكن حصادها في أي وقت، لكنها لا تعطي محصولاً مفيداً إلا عند نضجها."
+
+#: mods/ITEMS/mcl_farming/wheat.lua:49
+msgid "Premature Wheat Plant (Stage @1)"
+msgstr "نبتة قمح غير ناضجة (المرحلة @1)"
+
+#: mods/ITEMS/mcl_farming/wheat.lua:79
+msgid "Mature Wheat Plant"
+msgstr "نبتة قمح ناضجة"
+
+#: mods/ITEMS/mcl_farming/wheat.lua:80
+msgid ""
+"\t\tMature wheat plants are ready to be harvested for wheat and wheat "
+"seeds.\n"
+"\t\tThey won't grow any further.\n"
+"\t"
+msgstr "نباتات القمح الناضجة جاهزة للحصاد للحصول على القمح وبذور القمح، ولن تنمو أكثر من ذلك."
+
+#: mods/ITEMS/mcl_farming/wheat.lua:120
+msgid "Wheat"
+msgstr "قمح"
+
+#: mods/ITEMS/mcl_farming/wheat.lua:121
+msgid "Wheat is used in crafting. Some animals like wheat."
+msgstr "يُستخدم القمح في التصنيع. تحب بعض الحيوانات القمح."
+
+#: mods/ITEMS/mcl_farming/wheat.lua:122
+msgid "Use the “Place” key on an animal to try to feed it wheat."
+msgstr "استخدم مفتاح «الوضع» على حيوان لمحاولة إطعامه القمح."
+
+#: mods/ITEMS/mcl_farming/wheat.lua:139
+msgid "Cookie"
+msgstr "بسكويت"
+
+#: mods/ITEMS/mcl_farming/wheat.lua:147
+msgid "Bread"
+msgstr "خبز"
+
+#: mods/ITEMS/mcl_farming/wheat.lua:155
+msgid "Hay Bale"
+msgstr "بالة قش"
+
+#: mods/ITEMS/mcl_farming/wheat.lua:156
+msgid "Hay bales are decorative blocks made from wheat."
+msgstr "بالات القش كتل زخرفية مصنوعة من القمح."
