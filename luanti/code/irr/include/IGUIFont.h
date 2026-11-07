@@ -4,6 +4,10 @@
 
 #pragma once
 
+#include <algorithm>
+#include <cwchar>
+#include <string>
+
 #include "IReferenceCounted.h"
 #include "SColor.h"
 #include "rect.h"
@@ -59,6 +63,28 @@ public:
 	\return Returns zero based index of the character in the text, and -1 if no no character
 	is on this position. (=the text is too short). */
 	virtual s32 getCharacterFromPos(const wchar_t *text, s32 pixel_x) const = 0;
+
+	//! Returns the visual pixel position of a logical cursor index in a text line.
+	//! The default implementation measures the logical prefix; complex-script fonts
+	//! should override this with their shaped layout result.
+	virtual s32 getCursorPosition(const wchar_t *text, s32 char_index) const
+	{
+		if (!text || char_index <= 0)
+			return 0;
+		const size_t length = wcslen(text);
+		const size_t count = std::min<size_t>(static_cast<size_t>(char_index), length);
+		const std::wstring prefix(text, count);
+		return getDimension(prefix.c_str()).Width;
+	}
+
+	//! Moves a logical cursor position to the previous/next grapheme boundary.
+	//! direction must be -1 or +1. The default implementation moves by one code unit.
+	virtual s32 getNextCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const
+	{
+		const size_t length = text ? wcslen(text) : 0;
+		const s32 limit = static_cast<s32>(std::min<size_t>(length, 0x7fffffff));
+		return std::max<s32>(0, std::min<s32>(limit, char_index + (direction < 0 ? -1 : 1)));
+	}
 
 	//! Returns the type of this font
 	virtual EGUI_FONT_TYPE getType() const { return EGFT_CUSTOM; }
