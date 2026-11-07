@@ -109,10 +109,17 @@ jobs:
         run: |
           set -euo pipefail
           chmod +x modtools/mod_translation_updater.py source/tools/generate_translation_strings/generate.sh
-          # Luanti enables the Prometheus HTTP listener on 127.0.0.1:30000 by default.
-          # The translation dumper does not need it; disable it in the temporary world only
-          # to prevent an unrelated CivetServer port bind failure in CI.
-          printf '\nprometheus_listener_address =\nserver_announce = false\n' >> source/tools/generate_translation_strings/world.conf
+          # Luanti enables a Prometheus HTTP listener by default. Give this
+          # temporary one-shot world a free loopback port to avoid collisions.
+          PROMETHEUS_PORT=$(python - <<'PY'
+          import socket
+          with socket.socket() as sock:
+              sock.bind(("127.0.0.1", 0))
+              print(sock.getsockname()[1])
+          PY
+          )
+          printf '\nprometheus_listener_address = 127.0.0.1:%s\nserver_announce = false\n' "$PROMETHEUS_PORT" >> source/tools/generate_translation_strings/world.conf
+          echo "Using temporary local Prometheus port $PROMETHEUS_PORT for the dumper world."
           python - <<'PY'
           from pathlib import Path
           script = Path("source/tools/generate_translation_strings/generate.sh")
