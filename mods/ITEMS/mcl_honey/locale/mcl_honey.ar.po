@@ -1,0 +1,60 @@
+# Arabic translation for Mineclonia component mcl_honey
+# Source mirror: ZenonSeth/mineclonia-mirror
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_honey/locale/template.pot
+# Source template blob SHA: af602763e186f3c24a23325ff25e3f556cfc2cda
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 12:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_honey/init.lua:23
+msgid "Honeycomb"
+msgstr "قرص عسل"
+
+#: mods/ITEMS/mcl_honey/init.lua:24
+msgid ""
+"Used to craft beehives and protect copper blocks from further oxidation."
+msgstr "يُستخدم لصناعة خلايا النحل وحماية الكتل النحاسية من المزيد من التأكسد."
+
+#: mods/ITEMS/mcl_honey/init.lua:25
+msgid "Use on copper blocks to prevent further oxidation."
+msgstr "استخدمه على الكتل النحاسية لمنع المزيد من التأكسد."
+
+#: mods/ITEMS/mcl_honey/init.lua:32
+msgid "Honeycomb Block"
+msgstr "كتلة أقراص العسل"
+
+#: mods/ITEMS/mcl_honey/init.lua:33
+msgid "Honeycomb Block. Used as a decoration."
+msgstr "كتلة من أقراص العسل. تُستخدم للزينة."
+
+#: mods/ITEMS/mcl_honey/init.lua:44
+msgid "Honey Bottle"
+msgstr "زجاجة عسل"
+
+#: mods/ITEMS/mcl_honey/init.lua:45
+msgid ""
+"Honey Bottle is used to craft honey blocks and to restore hunger points."
+msgstr "تُستخدم زجاجة العسل لصناعة كتل العسل واستعادة نقاط الجوع."
+
+#: mods/ITEMS/mcl_honey/init.lua:46
+msgid ""
+"Drinking will restore 6 hunger points. Can also be used to craft honey "
+"blocks."
+msgstr "يعيد شربها 6 نقاط من الجوع. ويمكن استخدامها أيضاً لصناعة كتل العسل."
+
+#: mods/ITEMS/mcl_honey/init.lua:72
+msgid "Honey Block"
+msgstr "كتلة عسل"
+
+#: mods/ITEMS/mcl_honey/init.lua:73
+msgid ""
+"Honey Block. Used as a decoration and in redstone. Is sticky on some sides."
+msgstr "كتلة العسل تُستخدم للزينة وفي آليات ريدستون، وتكون لزجة من بعض الجوانب."
