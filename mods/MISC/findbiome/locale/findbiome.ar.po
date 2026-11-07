@@ -39,3 +39,5 @@ msgstr "عرض قائمة بجميع المناطق الأحيائية"
 msgid "No biomes."
 msgstr "لا توجد مناطق أحيائية."
 
+msgid "Adds commands to list and find biomes"
+msgstr "تضيف أوامر لعرض المناطق الأحيائية والعثور عليها."
