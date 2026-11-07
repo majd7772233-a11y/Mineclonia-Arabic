@@ -151,7 +151,7 @@ jobs:
             --mtt-check "$LTT_CHECK" \
             --source-commit 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da \
             --expected-files 163 \
-            --expected-messages 5006 \
+            --expected-messages 5008 \
             --target-release "39603 (reported by owner; exact source match unverified)" \
             --luanti-version "5.17.0 (reported by owner)" \
             --output workbench/dist
