@@ -218,6 +218,7 @@ def main() -> None:
     po_runtime_catalogs: list[dict[str, str]] = []
     seen_domains: dict[str, str] = {}
     expected_catalogs: dict[str, dict[str, str]] = {}
+    module_locale_paths: dict[str, Path] = {}
 
     for po_path in po_files:
         rel = po_path.relative_to(repo_root)
@@ -300,16 +301,27 @@ def main() -> None:
                     fail(f"{rel}: empty translation for {entry.msgid!r}")
                 check_placeholder_pair(entry.msgid, entry.msgstr, f"{rel}: {entry.msgid!r}")
 
-        # rel already begins with "mods/"; stage_mods is the mods root.
-        # Strip that leading component so the packaged tree is not mods/mods/...
-        locale_stage = stage_mods / rel.parent.relative_to("mods")
+        # Luanti Translation Tools expects a flat mods folder: each direct
+        # child must be a mod root containing init.lua and mod.conf. Mineclonia
+        # groups its mods by category, so make a temporary flat conversion tree
+        # while preserving each module's original path for the install ZIP.
+        module = rel.parent.parent.name
+        if module in module_locale_paths:
+            fail(f"duplicate module directory name in package staging: {module}")
+        module_locale_paths[module] = rel.parent
+        stage_module = stage_mods / module
+        locale_stage = stage_module / "locale"
         locale_stage.mkdir(parents=True, exist_ok=True)
-        source_mod_conf = source_root / rel.parent.parent / "mod.conf"
+        source_mod = source_root / rel.parent.parent
+        source_init = source_mod / "init.lua"
+        if not source_init.is_file():
+            fail(f"{rel}: source mod root has no init.lua required by Luanti Translation Tools")
+        shutil.copy2(source_init, stage_module / "init.lua")
+        source_mod_conf = source_mod / "mod.conf"
         if source_mod_conf.is_file():
-            shutil.copy2(source_mod_conf, locale_stage.parent / "mod.conf")
+            shutil.copy2(source_mod_conf, stage_module / "mod.conf")
         shutil.copy2(txt_path, locale_stage / "template.txt")
 
-        module = rel.parent.parent.name
         message_count = len(entries)
         total_messages += message_count
         per_module.append({
@@ -321,8 +333,9 @@ def main() -> None:
         })
 
         if use_native_po:
-            runtime_po_path = locale_stage / po_path.name
-            shutil.copy2(po_path, runtime_po_path)
+            # Do not put this PO in the converter staging tree: the converter
+            # must not flatten its gettext plural forms. It is copied verbatim
+            # into the original locale path after the TR modules are processed.
             po_runtime_modules.append({
                 "module": module,
                 "path": str(rel.parent),
@@ -339,7 +352,7 @@ def main() -> None:
             poconvert = locale_stage / "poconvert"
             poconvert.mkdir(exist_ok=True)
             shutil.copy2(po_path, poconvert / po_path.name)
-            expected_catalogs[str(rel.parent)] = {
+            expected_catalogs[module] = {
                 entry.msgid: entry.msgstr for entry in entries
             }
 
@@ -414,8 +427,8 @@ def main() -> None:
     seen_tr_paths: set[str] = set()
     for tr_path in tr_files:
         rel = tr_path.relative_to(stage_mods)
-        catalog_key = str(Path("mods") / tr_path.parent.relative_to(stage_mods))
-        expected = expected_catalogs.get(catalog_key)
+        module = rel.parts[0]
+        expected = expected_catalogs.get(module)
         if expected is None:
             fail(f"unexpected generated TR file: {tr_path}")
         actual = parse_tr_file(tr_path)
@@ -431,12 +444,15 @@ def main() -> None:
                 f"missing={missing!r}; extra={extra!r}; translation_mismatch={different!r}"
             )
         installed_messages += len(actual)
-        seen_tr_paths.add(catalog_key)
-        destination = package_root / "mods" / rel
+        seen_tr_paths.add(module)
+        original_locale = module_locale_paths.get(module)
+        if original_locale is None:
+            fail(f"generated TR belongs to unknown staged module: {module}")
+        destination = package_root / "mods" / original_locale.relative_to("mods") / tr_path.name
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(tr_path, destination)
         tr_manifest.append({
-            "path": str(Path("mods") / rel),
+            "path": str(Path("mods") / original_locale.relative_to("mods") / tr_path.name),
             "entries": len(actual),
             "sha256": sha256_file(tr_path),
         })
