@@ -151,7 +151,7 @@ jobs:
             --mtt-check "$LTT_CHECK" \
             --source-commit 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da \
             --expected-files 163 \
-            --expected-messages 5009 \
+            --expected-messages 5010 \
             --target-release "39603 (reported by owner; exact source match unverified)" \
             --luanti-version "5.17.0 (reported by owner)" \
             --output workbench/dist
@@ -183,7 +183,7 @@ jobs:
           cat > "$NOTES" <<EOF
           ## Mineclonia Arabic runtime package
 
-          - 163 translation domains and 5,009 PO/TR entries; all strings from the 163 runtime template.txt catalogs are required to be covered.
+          - 163 translation domains and 5,010 PO entries; all strings from the 163 runtime template.txt catalogs are required to be covered.
           - Converter mode: `$CONVERTER_MODE`. When `official-ltt`, files are generated and checked with Wuzzy Luanti Translation Tools. When the Codeberg service is unavailable, a local compatibility implementation of Luanti .tr escaping is used; it is explicitly not represented as the upstream tool.
           - The build also verifies every generated TR entry round-trips exactly to its PO translation and checks runtime-template coverage. Modules with gettext plurals are shipped as native PO runtime catalogs (Luanti 5.10.0+), not flattened into TR.
           - Mineclonia source mirror commit: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`.
