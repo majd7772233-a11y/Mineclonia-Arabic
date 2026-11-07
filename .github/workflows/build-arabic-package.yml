@@ -46,23 +46,18 @@ jobs:
         run: |
           set -euo pipefail
           git clone --depth 1 https://codeberg.org/Wuzzy/Luanti_Translation_Tools.git "$MTT_DIR"
-          echo "MTT_COMMIT=$(git -C "$MTT_DIR" rev-parse HEAD)" >> "$GITHUB_ENV"
+          git -C "$MTT_DIR" checkout 62c1334537014821920bed5c7e2a11af44f6bfcd
+          echo "LTT_COMMIT=$(git -C "$MTT_DIR" rev-parse HEAD)" >> "$GITHUB_ENV"
           echo "MTT FILE INVENTORY:"
           find "$MTT_DIR" -maxdepth 4 -type f | sort | head -200
           CONVERTER=$(find "$MTT_DIR" -type f -name 'ltt_convert.py' -print -quit)
           CHECKER=$(find "$MTT_DIR" -type f -name 'ltt_check.py' -print -quit)
-          echo "=== Converter instructions ==="
-          cat "$MTT_DIR/README_ltt_convert.md"
-          echo "=== Checker instructions ==="
-          cat "$MTT_DIR/README_ltt_check.md"
-          python "$CONVERTER" --help || true
-          python "$CHECKER" --help || true
           if [ -z "$CONVERTER" ] || [ -z "$CHECKER" ]; then
             echo "Expected ltt_convert.py and ltt_check.py were not found in the renamed repository."
             exit 1
           fi
-          echo "MTT_CONVERT=$CONVERTER" >> "$GITHUB_ENV"
-          echo "MTT_CHECK=$CHECKER" >> "$GITHUB_ENV"
+          echo "LTT_CONVERT=$CONVERTER" >> "$GITHUB_ENV"
+          echo "LTT_CHECK=$CHECKER" >> "$GITHUB_ENV"
 
       - name: Validate source coverage, convert PO to TR, and create ZIP
         env:
@@ -71,8 +66,8 @@ jobs:
           set -euo pipefail
           python workbench/tools/build_tr_package.py \
             --source-root source \
-            --mtt-convert "$MTT_CONVERT" \
-            --mtt-check "$MTT_CHECK" \
+            --mtt-convert "$LTT_CONVERT" \
+            --mtt-check "$LTT_CHECK" \
             --source-commit 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da \
             --expected-files 163 \
             --expected-messages 4980 \
@@ -97,7 +92,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PACKAGE_ZIP: ${{ env.PACKAGE_ZIP }}
           PACKAGE_SHA: ${{ env.PACKAGE_SHA }}
-          MTT_COMMIT: ${{ env.MTT_COMMIT }}
+          LTT_COMMIT: ${{ env.LTT_COMMIT }}
         working-directory: workbench
         run: |
           set -euo pipefail
@@ -110,7 +105,7 @@ jobs:
           - Generated with Mineclonia's documented `ltt_convert.py --po2tr -r` workflow.
           - Checked with `ltt_check.py -r`.
           - Mineclonia source mirror commit: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`.
-          - Minetest Translation Tools commit: `$MTT_COMMIT`.
+          - Minetest Translation Tools commit: `$LTT_COMMIT`.
           - Owner-reported target: Mineclonia `release=39603`, Luanti `5.17.0`; exact source-to-local-build equivalence has not been independently confirmed.
           - The package has not yet been tested in a running Luanti client. It is published as a pre-release candidate for installation testing, not as an upstream-approved Mineclonia release.
           EOF
