@@ -214,6 +214,8 @@ def main() -> None:
     runtime_messages = 0
     stale_po_entries: list[dict[str, object]] = []
     missing_runtime_entries: list[dict[str, str]] = []
+    po_runtime_modules: list[dict[str, object]] = []
+    po_runtime_catalogs: list[dict[str, str]] = []
     seen_domains: dict[str, str] = {}
     expected_catalogs: dict[str, dict[str, str]] = {}
 
@@ -238,14 +240,9 @@ def main() -> None:
 
         entries = meaningful_entries(po)
         source_entries = meaningful_entries(pot)
-        if any(entry.msgctxt for entry in entries):
-            fail(f"{rel}: msgctxt requires a separate textdomain mapping; none expected here")
-        plural_entries = [entry.msgid for entry in entries if entry.msgid_plural]
-        if plural_entries:
-            fail(
-                f"{rel}: TR does not support gettext plurals; "
-                f"found {len(plural_entries)} plural entr(y/ies), e.g. {plural_entries[:3]}"
-            )
+        # Legacy TR cannot represent gettext contexts or plural forms. Keep the
+        # whole module as a native Luanti PO catalog when either feature is used.
+        use_native_po = any(entry.msgctxt or entry.msgid_plural for entry in entries)
         if any("fuzzy" in entry.flags for entry in entries):
             fail(f"{rel}: contains fuzzy entries")
 
@@ -283,9 +280,25 @@ def main() -> None:
         seen_domains[domain] = str(rel.parent)
 
         for entry in entries:
-            if not entry.msgstr.strip() and not (entry.msgid.isspace() and entry.msgstr == entry.msgid):
-                fail(f"{rel}: empty translation for {entry.msgid!r}")
-            check_placeholder_pair(entry.msgid, entry.msgstr, f"{rel}: {entry.msgid!r}")
+            if entry.msgid_plural:
+                plural_values = list(entry.msgstr_plural.values())
+                if len(plural_values) != 6 or any(not value.strip() for value in plural_values):
+                    fail(
+                        f"{rel}: Arabic plural entry {entry.msgid!r} must have six non-empty msgstr_plural forms"
+                    )
+                if Counter(re.findall(r"@[1-9]", entry.msgid)) != Counter(
+                    re.findall(r"@[1-9]", entry.msgid_plural)
+                ):
+                    fail(f"{rel}: singular/plural placeholders differ for {entry.msgid!r}")
+                for form_index, value in enumerate(plural_values):
+                    check_placeholder_pair(
+                        entry.msgid_plural, value,
+                        f"{rel}: {entry.msgid!r} plural form {form_index}"
+                    )
+            else:
+                if not entry.msgstr.strip() and not (entry.msgid.isspace() and entry.msgstr == entry.msgid):
+                    fail(f"{rel}: empty translation for {entry.msgid!r}")
+                check_placeholder_pair(entry.msgid, entry.msgstr, f"{rel}: {entry.msgid!r}")
 
         # rel already begins with "mods/"; stage_mods is the mods root.
         # Strip that leading component so the packaged tree is not mods/mods/...
@@ -295,9 +308,6 @@ def main() -> None:
         if source_mod_conf.is_file():
             shutil.copy2(source_mod_conf, locale_stage.parent / "mod.conf")
         shutil.copy2(txt_path, locale_stage / "template.txt")
-        poconvert = locale_stage / "poconvert"
-        poconvert.mkdir(exist_ok=True)
-        shutil.copy2(po_path, poconvert / po_path.name)
 
         module = rel.parent.parent.name
         message_count = len(entries)
@@ -307,11 +317,37 @@ def main() -> None:
             "path": str(rel.parent),
             "textdomain": domain,
             "messages": message_count,
+            "runtime_format": "po" if use_native_po else "tr",
         })
-        expected_catalogs[str(rel.parent)] = {
-            entry.msgid: entry.msgstr for entry in entries
-        }
-        print(f"VALID {module}: {message_count} messages, textdomain={domain}", flush=True)
+
+        if use_native_po:
+            runtime_po_path = locale_stage / po_path.name
+            shutil.copy2(po_path, runtime_po_path)
+            po_runtime_modules.append({
+                "module": module,
+                "path": str(rel.parent),
+                "runtime_path": str(Path("mods") / rel.parent.relative_to("mods") / po_path.name),
+                "messages": message_count,
+                "reason": "gettext plural forms or message contexts require native PO support",
+            })
+            po_runtime_catalogs.append({
+                "path": str(rel.parent),
+                "runtime_path": str(Path("mods") / rel.parent.relative_to("mods") / po_path.name),
+                "source_sha256": sha256_file(po_path),
+            })
+        else:
+            poconvert = locale_stage / "poconvert"
+            poconvert.mkdir(exist_ok=True)
+            shutil.copy2(po_path, poconvert / po_path.name)
+            expected_catalogs[str(rel.parent)] = {
+                entry.msgid: entry.msgstr for entry in entries
+            }
+
+        print(
+            f"VALID {module}: {message_count} messages, textdomain={domain}, "
+            f"runtime_format={'PO' if use_native_po else 'TR'}",
+            flush=True,
+        )
 
     if missing_runtime_entries:
         print(
@@ -359,8 +395,14 @@ def main() -> None:
     )
 
     tr_files = sorted(stage_mods.rglob("*.ar.tr"))
-    if len(tr_files) != args.expected_files:
-        fail(f"expected {args.expected_files} generated .ar.tr files, found {len(tr_files)}")
+    expected_tr_count = len(expected_catalogs)
+    if len(tr_files) != expected_tr_count:
+        fail(f"expected {expected_tr_count} generated .ar.tr files, found {len(tr_files)}")
+    if len(po_runtime_modules) + len(tr_files) != len(po_files):
+        fail(
+            f"runtime file coverage mismatch: {len(tr_files)} TR + "
+            f"{len(po_runtime_modules)} native PO != {len(po_files)} modules"
+        )
 
     package_root = args.output.resolve() / "Mineclonia-Arabic-TR"
     if package_root.exists():
@@ -402,11 +444,33 @@ def main() -> None:
         missing_paths = sorted(set(expected_catalogs) - seen_tr_paths)
         fail(f"missing generated TR files for: {missing_paths[:10]}")
 
-    if installed_messages != total_messages:
+    po_runtime_messages = sum(int(item["messages"]) for item in po_runtime_modules)
+    if installed_messages + po_runtime_messages != total_messages:
         fail(
-            f"generated TR entry count mismatch: expected {total_messages}, "
-            f"found {installed_messages}"
+            f"runtime message count mismatch: expected {total_messages}, "
+            f"found {installed_messages} TR + {po_runtime_messages} PO"
         )
+
+    po_manifest: list[dict[str, object]] = []
+    for item in po_runtime_catalogs:
+        source_file = repo_root / item["path"] / Path(item["runtime_path"]).name
+        if not source_file.is_file():
+            fail(f"native PO fallback disappeared before packaging: {source_file}")
+        relative = Path(item["runtime_path"])
+        destination = package_root / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source_file, destination)
+        po_manifest.append({
+            "path": str(relative),
+            "format": "gettext-po",
+            "reason": "preserves Arabic gettext plural forms; requires Luanti 5.10.0+",
+            "messages": next(
+                int(module["messages"])
+                for module in po_runtime_modules
+                if str(module["runtime_path"]) == str(relative)
+            ),
+            "sha256": sha256_file(destination),
+        })
 
     source_readme = source_root / "README.md"
     source_version = "unknown"
@@ -422,10 +486,10 @@ def main() -> None:
 
 المحتويات
 ---------
-- ملفات تشغيل Luanti بصيغة .tr فقط.
-- أداة التحويل: {converter_description}.
-- {len(tr_files)} ملف ترجمة موزعة على مجلدات mods/*/*/locale/.
-- {total_messages} مدخلاً مترجماً.
+- ملفات تشغيل Luanti: {len(tr_files)} ملفاً بصيغة .ar.tr و{len(po_runtime_modules)} ملفاً بصيغة .ar.po الأصلية.
+- أداة التحويل لملفات TR: {converter_description}.
+- إجمالي الوحدات المغطاة: {len(tr_files) + len(po_runtime_modules)} من {len(po_files)}.
+- إجمالي إدخالات الترجمة: {total_messages}.
 - مصدر القوالب: ZenonSeth/mineclonia-mirror
 - commit المصدر: {args.source_commit}
 - إصدار Mineclonia الظاهر في README للمصدر: {source_version}
@@ -437,28 +501,31 @@ def main() -> None:
 1. أغلق Luanti بالكامل.
 2. افتح مجلد لعبة Mineclonia الذي يحتوي على game.conf.
 3. استخرج محتويات هذا الأرشيف إلى ذلك المجلد، واسمح بدمج مجلد mods.
-4. لا تستبدل مجلد mods بالكامل؛ الحزمة تضيف ملفات locale/*.ar.tr فقط.
-5. افتح Luanti، واختر العربية من إعدادات اللغة، ثم أعد تشغيل اللعبة.
+4. لا تستبدل مجلد mods بالكامل؛ اسمح بدمج ملفات locale فقط.
+5. تحتوي الحزمة على ملف PO أصلي للوحدات ذات صيغ الجمع، لأن TR لا يمثل صيغ gettext الست. يتطلب تحميل PO في اللعبة Luanti 5.10.0 أو أحدث؛ إصدارك المبلغ عنه 5.17.0 يفي بهذا الشرط.
+6. افتح Luanti، واختر العربية من إعدادات اللغة، ثم أعد تشغيل اللعبة.
 
 إزالة التعريب
 -------------
-احذف ملفات *.ar.tr التي أضافتها هذه الحزمة من مجلدات mods/*/locale/.
+احذف ملفات *.ar.tr وملفات *.ar.po الخاصة بهذه الحزمة من مجلدات mods/*/locale/.
 
 ملاحظات التوافق
 ---------------
-هذه الحزمة مبنية من جميع قوالب template.pot وtemplate.txt في لقطة المصدر
-المثبتة أعلاه. لم تتم مطابقة شجرة ملفات اللعبة المحلية مع تلك اللقطة بصورة
-مباشرة، ولذلك لا يمكن ضمان التطابق التام مع رقم release المحلي حتى تُفحص
-نسخة اللعبة نفسها. الملفات التي لا يقابلها textdomain داخل اللعبة لن تؤثر.
+هذه الحزمة مبنية من قوالب template.pot وكتالوجات template.txt التي أُعيد
+استخراجها بتشغيل لقطة المصدر المثبتة أعلاه في خادم Luanti. جرى التحقق من
+تغطية مفاتيح runtime ومطابقة مخرجات TR مع ترجمات PO. وحدات gettext ذات صيغ
+الجمع تُوزّع كملفات PO أصلية، لا تُختزل إلى ترجمة TR واحدة.
 
-لم يتم اختبار العرض داخل عميل Luanti فعلياً ضمن عملية البناء هذه.
+لم تتم مطابقة شجرة ملفات اللعبة المحلية مع لقطة المصدر بصورة مباشرة، ولذلك
+لا يمكن ضمان التطابق التام مع release=39603 حتى تُفحص نسخة اللعبة نفسها.
+ولم يتم اختبار العرض داخل عميل Luanti فعلياً ضمن عملية البناء هذه.
 """
     (package_root / "INSTALL_ARABIC.txt").write_text(install_text, encoding="utf-8")
 
     manifest = {
         "name": "Mineclonia Arabic runtime translation overlay",
         "language": "ar",
-        "format": "Luanti legacy TR",
+        "format": "Luanti TR plus native gettext PO fallback",
         "source_repository": "https://github.com/ZenonSeth/mineclonia-mirror",
         "source_commit": args.source_commit,
         "source_version": source_version,
@@ -466,7 +533,11 @@ def main() -> None:
         "luanti_version_owner_reported": args.luanti_version,
         "po_files": len(po_files),
         "tr_files": len(tr_files),
+        "native_po_runtime_files": len(po_runtime_modules),
+        "native_po_runtime_modules": po_runtime_modules,
         "translated_messages_in_po_and_tr": total_messages,
+        "messages_in_tr": installed_messages,
+        "messages_in_native_po": po_runtime_messages,
         "runtime_template_messages": runtime_messages,
         "extra_po_entries_not_present_in_current_template_txt": sum(x["count"] for x in stale_po_entries),
         "extra_po_entries_report": stale_po_entries,
@@ -477,7 +548,7 @@ def main() -> None:
         "runtime_tested": False,
         "official_weblate_merged": False,
         "modules": per_module,
-        "files": tr_manifest,
+        "files": tr_manifest + po_manifest,
     }
     (package_root / "ARABIC_TRANSLATION_MANIFEST.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
@@ -504,7 +575,10 @@ def main() -> None:
         "converter_implementation": converter_description,
         "po_files": len(po_files),
         "tr_files": len(tr_files),
+        "native_po_runtime_files": len(po_runtime_modules),
         "messages": total_messages,
+        "messages_in_tr": installed_messages,
+        "messages_in_native_po": po_runtime_messages,
         "runtime_template_messages": runtime_messages,
         "stale_po_entries": sum(x["count"] for x in stale_po_entries),
         "source_version": source_version,
