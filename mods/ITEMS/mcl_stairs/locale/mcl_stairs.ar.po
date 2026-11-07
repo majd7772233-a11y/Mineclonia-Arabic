@@ -1,0 +1,46 @@
+# Arabic translation for Mineclonia component: mcl_stairs
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_stairs/locale/template.pot
+# Source template blob SHA: f1cbe4c643e1f0b5235a808484e69efb7093243c
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_stairs/api.lua:185
+msgid ""
+"Stairs are useful to reach higher places by walking over them; jumping is "
+"not required. Placing stairs in a corner pattern will create corner stairs. "
+"Stairs placed on the ceiling or at the upper half of the side of a block "
+"will be placed upside down."
+msgstr "تسهّل السلالم الوصول إلى الأماكن المرتفعة بالمشي عليها دون الحاجة إلى القفز. يؤدي وضع السلالم بنمط زاوية إلى تكوين سلالم زاوية. وإذا وُضعت السلالم على السقف أو في النصف العلوي من جانب كتلة، فستُوضع مقلوبة."
+
+#: mods/ITEMS/mcl_stairs/api.lua:314 mods/ITEMS/mcl_stairs/api.lua:529
+msgid "Double @1"
+msgstr "مزدوج @1"
+
+#: mods/ITEMS/mcl_stairs/api.lua:315
+msgid ""
+"Slabs are half as high as their full block counterparts and occupy either "
+"the lower or upper part of a block, depending on how it was placed. Slabs "
+"can be easily stepped on without needing to jump. When a slab is placed on "
+"another slab of the same type, a double slab is created."
+msgstr "يبلغ ارتفاع البلاطات نصف ارتفاع الكتل الكاملة المقابلة لها، وتشغل الجزء السفلي أو العلوي من الكتلة وفقاً لطريقة وضعها. ويمكن الصعود فوق البلاطات بسهولة دون الحاجة إلى القفز. وعند وضع بلاطة فوق أخرى من النوع نفسه، تتكوّن بلاطة مزدوجة."
+
+#: mods/ITEMS/mcl_stairs/api.lua:402
+msgid "Upper @1"
+msgstr "علوي @1"
+
+#: mods/ITEMS/mcl_stairs/api.lua:438
+msgid ""
+"Double slabs are full blocks which are created by placing two slabs of the "
+"same kind on each other."
+msgstr "البلاطات المزدوجة كتل كاملة تتكوّن من وضع بلاطتين من النوع نفسه إحداهما فوق الأخرى."
