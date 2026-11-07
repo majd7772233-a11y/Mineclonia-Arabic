@@ -1,0 +1,168 @@
+# Arabic translation draft for Mineclonia component: mcl_levelgen
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/MAPGEN/mcl_levelgen/locale/template.pot
+# Source template blob SHA: 2868f07da1ffdcf1dd67cff6cf26a02c958c7fea
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:157
+msgid "Structure Void"
+msgstr "فراغ البنية"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:158
+msgid "Enables structures not to replace existing level contents"
+msgstr "يمنع البنى من استبدال محتويات العالم الموجودة."
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:254
+msgid "Structure Block"
+msgstr "كتلة البنية"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
+msgid "Saves, generates, or records structure data"
+msgstr "تحفظ بيانات البنية أو تنشئها أو تسجلها."
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:406
+msgid "Template name is not specified"
+msgstr "لم يتم تحديد اسم القالب"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:415
+msgid "Template `@1' is not available: @2"
+msgstr "القالب `@1` غير متاح: @2"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:520
+msgid "Invalid dimensions: @1,@2,@3"
+msgstr "أبعاد غير صالحة: @1،@2،@3"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:574
+msgid "Metadata storage limit exceeded"
+msgstr "تم تجاوز الحد الأقصى لتخزين البيانات الوصفية"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:612
+msgid "Creating file @1: @2"
+msgstr "جارٍ إنشاء الملف @1: @2"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:802
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:916
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1016
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1057
+msgid "`server' privileges are required to utilize structure blocks"
+msgstr "يلزم امتلاك صلاحية `server` لاستخدام كتل البنية"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1217
+msgid "Jigsaw Block"
+msgstr "كتلة جيجسو"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1218
+msgid "Facilitates generation of multiple-piece structures"
+msgstr "تسهّل إنشاء البنى المكوّنة من عدة قطع"
+
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1352
+msgid "`server' privileges are required to interact with jigsaw blocks"
+msgstr "يلزم امتلاك صلاحية `server` للتفاعل مع كتل جيجسو"
+
+#. ~= 0 then
+#. print ("Nonempty structuremask",
+#. structuremask[1],
+#. structuremask[2],
+#. structuremask[3])
+#. break
+#. end
+#. end
+#. end
+#. Retain the heightmap assignments of
+#. existing MapBlocks.
+#. But write a heightmap as soon as it
+#. is referenced by a MapBlock.
+#. Heightmap is written twice;
+#. the second map is assigned
+#. an ID 1 MapBlock greater
+#. than the first, which is
+#. never altered and as such
+#. always represents the
+#. terrain of the world at the
+#. time of generation.
+#. Assign this structure mask to this
+#. MapBlock's generation data list.
+#. print ("Writing heightmap " .. id)
+#. print ("Writing heightmap " .. id)
+#. Bit 31 indicates that the true value of `surface' is only
+#. known to be an indeterminate value between the value
+#. returned and the bottom of the level.  Bit 32 means the
+#. same of `motion_blocking'.
+#. Bit 29 indicates that the true value of `surface' is only
+#. known to be an indeterminate value between the value
+#. returned and the bottom of the level.  Bit 30 means the
+#. same of `motion_blocking'.  Bit 31 means that `surface' has
+#. changed; bit 32 means that of `motion_blocking'.
+#. Transform output coordinates.
+#. Transform heightmap coordinates.
+#. Write transformed data into the destination heightmap.
+#. Load any structure masks that intersect the run.
+#. Construct an empty heightmap if this MapBlock is
+#. outside the Luanti map.
+#. Create heightmaps REQUIRED_CONTEXT_XZ * 2 + 1 Minecraft chunks in
+#. width and length for the run RUN, represented in the Minecraft
+#. coordinate system.  Value is the heightmap representing the current
+#. and potentially modified state of the level followed by that which
+#. represents the state of the level at the time of generation.
+#.
+#. Additionally return any structure masks intersecting the run.
+#. Reconciliation of divergent heightmaps.
+#.
+#. Vertically separated runs should be prevented from writing outdated
+#. values to the heightmap.  As runs cannot modify content beyond the
+#. the accessible region of the level, reconciling modifications where
+#. the heightmap value increases is trivial--simply a matter of taking
+#. the greater of the two values.  If a value is reduced, the
+#. reduction must only be applied if the previous value sits within
+#. the region locked by the run whose modifications are being applied,
+#. for otherwise the heightmap has been altered by another run with a
+#. higher accessible region or the code that corrects heightmaps is
+#. defective and has overstepped the run's confines (and in neither
+#. case is it desirable to apply the changes).
+#. Transform output coordinates.
+#. Reject out of bounds heightmaps.
+#. Transform heightmap coordinates.
+#. Restore transformed data from the destination heightmap.
+#. Must only apply these modifications
+#. if RUN was in a position to edit
+#. the previous value.
+#. ----------------------------------------------------------------------
+#. Biome provisioning.
+#. ----------------------------------------------------------------------
+#. Return a table of every biome data string of a MapBlock in RUN
+#. indexed by MapBlock hash including its context.  Coordinates in
+#. this table are expected to be represented in Luanti's standard
+#. coordinate system.
+#. ----------------------------------------------------------------------
+#. Debug HUD.
+#. ----------------------------------------------------------------------
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3062
+msgid "Enable or disable the level generation HUD"
+msgstr "تفعيل واجهة عرض توليد العالم أو تعطيلها"
+
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3114
+msgid "@1 structure piece(s) were (re-)inserted into the structure database"
+msgstr "تمت إعادة إدراج @1 من قطع البنية في قاعدة بيانات البنى"
+
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3121
+msgid "Regenerate nearby structure pieces for a structure set"
+msgstr "أعد توليد قطع البنية القريبة لمجموعة بنى"
+
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3124
+msgid "The structure database is currently being repaired.  Please wait."
+msgstr "قاعدة بيانات البنى قيد الإصلاح حالياً. يُرجى الانتظار."
+
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3137
+msgid "No level contains the position @1,@2,@3"
+msgstr "لا يوجد عالم يحتوي على الموضع @1،@2،@3"
