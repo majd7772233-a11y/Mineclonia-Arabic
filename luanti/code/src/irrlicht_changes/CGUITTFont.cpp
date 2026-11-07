@@ -44,10 +44,89 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <algorithm>
+#include <cstdint>
+#include <vector>
+#include <cwchar>
 
 
 namespace gui
 {
+
+namespace
+{
+
+bool isArabicScriptCodepoint(char32_t c)
+{
+	return (c >= 0x0600 && c <= 0x08FF) ||
+			(c >= 0xFB50 && c <= 0xFDFF) ||
+			(c >= 0xFE70 && c <= 0xFEFF);
+}
+
+bool isIgnorableForFontCoverage(char32_t c)
+{
+	return c == 0x200C || c == 0x200D || c == 0xFEFF ||
+			(c >= 0xFE00 && c <= 0xFE0F) ||
+			(c >= 0xE0100 && c <= 0xE01EF);
+}
+
+bool isTextLineBreak(char32_t c)
+{
+	return c == U'\r' || c == U'\n' || c == 0x2028 || c == 0x2029;
+}
+
+std::vector<size_t> makeU32ToWideIndexMap(const std::wstring &text)
+{
+	std::vector<size_t> result;
+	result.reserve(text.size());
+
+	for (size_t i = 0; i < text.size(); ++i) {
+		result.push_back(i);
+		if (sizeof(wchar_t) == 2) {
+			const uint32_t current = static_cast<uint16_t>(text[i]);
+			if (current >= 0xD800 && current <= 0xDBFF &&
+					i + 1 < text.size()) {
+					const uint32_t next = static_cast<uint16_t>(text[i + 1]);
+					if (next >= 0xDC00 && next <= 0xDFFF)
+						++i;
+				}
+		}
+	}
+	return result;
+}
+
+s32 u32IndexToWideIndex(const wchar_t *text, size_t index)
+{
+	if (!text)
+		return 0;
+	if (sizeof(wchar_t) == 4)
+		return static_cast<s32>(std::min<size_t>(index, wcslen(text)));
+
+	size_t wide_index = 0;
+	size_t scalar_index = 0;
+	while (text[wide_index] != 0 && scalar_index < index) {
+		const uint32_t current = static_cast<uint16_t>(text[wide_index]);
+		if (current >= 0xD800 && current <= 0xDBFF &&
+				text[wide_index + 1] != 0) {
+			const uint32_t next = static_cast<uint16_t>(text[wide_index + 1]);
+			if (next >= 0xDC00 && next <= 0xDFFF)
+				wide_index += 2;
+			else
+				++wide_index;
+		} else {
+			++wide_index;
+		}
+		++scalar_index;
+	}
+	return static_cast<s32>(wide_index);
+}
+
+u32 fixedToPixels(int value)
+{
+	return static_cast<u32>(std::max<s32>(0, (value + 32) / 64));
+}
+
+} // namespace
 
 FT_Library SGUITTFace::freetype_library = nullptr;
 size_t SGUITTFace::n_faces = 0;
@@ -558,172 +637,109 @@ void CGUITTFont::draw(const core::stringw& text, const core::rect<s32>& position
 	draw(s, position, hcenter, vcenter, clip);
 }
 
+
 void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& position, bool hcenter, bool vcenter, const core::rect<s32>* clip)
 {
-	const auto &colors = text.getColors();
-	constexpr video::SColor fallback_color(255, 255, 255, 255); // if colors is too short
-
-	if (!Driver)
+	if (!Driver || !tt_face)
 		return;
 
-	// Clear the glyph pages of their render information.
-	for (u32 i = 0; i < Glyph_Pages.size(); ++i)
-	{
-		Glyph_Pages[i]->render_positions.clear();
-		Glyph_Pages[i]->render_source_rects.clear();
-		Glyph_Pages[i]->render_colors.clear();
+	clearRenderQueues();
+
+	const std::wstring &wide_text = text.getString();
+	const std::vector<video::SColor> &colors = text.getColors();
+	const std::vector<size_t> u32_to_wide = makeU32ToWideIndexMap(wide_text);
+	const std::u32string utext = convertWCharToU32String(wide_text.c_str());
+	const u32 line_height = getLineHeight();
+
+	core::position2d<s32> base = position.UpperLeftCorner;
+	if (vcenter) {
+		const core::dimension2d<u32> dimensions = getDimension(utext);
+		base.Y += (position.getHeight() - static_cast<s32>(dimensions.Height)) / 2;
 	}
 
-	// Set up some variables.
-	core::dimension2d<s32> textDimension;
-	core::position2d<s32> offset = position.UpperLeftCorner;
+	constexpr video::SColor fallback_color(255, 255, 255, 255);
+	size_t line_start = 0;
+	while (line_start <= utext.size()) {
+		size_t line_end = line_start;
+		while (line_end < utext.size() && !isTextLineBreak(utext[line_end]))
+			++line_end;
 
-	// Determine offset positions.
-	if (hcenter || vcenter)
-	{
-		textDimension = getDimension(text.c_str());
+		const std::u32string line = utext.substr(line_start, line_end - line_start);
+		if (!line.empty()) {
+			raqm_t *layout = createLayout(line);
+			if (layout) {
+				size_t glyph_count = 0;
+				raqm_glyph_t *glyphs = raqm_get_glyphs(layout, &glyph_count);
+				if (glyphs || glyph_count == 0) {
+					int pen = 0;
+					int min_pen = 0;
+					int max_pen = 0;
+					for (size_t i = 0; i < glyph_count; ++i) {
+						pen += glyphs[i].x_advance;
+						min_pen = std::min(min_pen, pen);
+						max_pen = std::max(max_pen, pen);
+					}
+					const s32 line_width = static_cast<s32>((max_pen - min_pen + 32) / 64);
+					const s32 line_x = base.X + (hcenter
+							? (position.getWidth() - line_width) / 2 : 0);
+					int pen_x = line_x * 64 - min_pen;
+					const s32 baseline = base.Y + font_metrics.ascender / 64;
 
-		if (hcenter)
-			offset.X = ((position.getWidth() - textDimension.Width) / 2) + offset.X;
+					for (size_t i = 0; i < glyph_count; ++i) {
+						const raqm_glyph_t &shaped = glyphs[i];
+						const int glyph_pen_x = pen_x;
+						pen_x += shaped.x_advance;
 
-		if (vcenter)
-			offset.Y = ((position.getHeight() - textDimension.Height) / 2) + offset.Y;
-	}
+						if (shaped.cluster >= line.size())
+							continue;
+						if (InvisibleChars.find(line[shaped.cluster]) != std::u32string::npos)
+							continue;
 
-	// Convert to a unicode string.
-	const std::u32string utext = convertWCharToU32String(text.c_str());
-	const u32 lineHeight = getLineHeight();
+						CGUITTFont *owner = getFontForFace(shaped.ftface);
+						if (!owner)
+							owner = this;
+						SGUITTGlyph *glyph = owner->getGlyphByIndex(shaped.index);
+						if (!glyph || glyph->glyph_page >= owner->Glyph_Pages.size())
+							continue;
 
-	// Start parsing characters.
-	// The same logic is applied to `CGUITTFont::getDimension`
-	char32_t previousChar = 0;
-	for (size_t i = 0; i < utext.size(); ++i)
-	{
-		char32_t currentChar = utext[i];
-		bool lineBreak = false;
-		if (currentChar == U'\r') // Mac or Windows breaks
-		{
-			lineBreak = true;
-			// `std::u32string` is '\0'-terminated, thus this check is OK
-			if (utext[i + 1] == U'\n') // Windows line breaks.
-				currentChar = utext[++i];
-		}
-		else if (currentChar == U'\n') // Unix breaks
-		{
-			lineBreak = true;
-		}
+						const s32 glyph_x = static_cast<s32>((glyph_pen_x + shaped.x_offset + 32) / 64)
+								+ glyph->offset.X;
+						const s32 glyph_y = baseline - static_cast<s32>((shaped.y_offset + 32) / 64)
+								- glyph->offset.Y;
+						const core::recti glyph_rect(
+							core::position2di(glyph_x, glyph_y),
+							core::dimension2di(glyph->source_rect.getWidth(),
+									glyph->source_rect.getHeight()));
+						if (clip && !clip->isRectCollided(glyph_rect))
+							continue;
 
-		if (lineBreak)
-		{
-			previousChar = 0;
-			offset.Y += lineHeight;
-			offset.X = position.UpperLeftCorner.X;
+						const size_t absolute_cluster = line_start + shaped.cluster;
+						const size_t wide_index = absolute_cluster < u32_to_wide.size()
+								? u32_to_wide[absolute_cluster] : wide_text.size();
+						const video::SColor glyph_color = wide_index < colors.size()
+								? colors[wide_index] : fallback_color;
 
-			if (hcenter)
-				offset.X += (position.getWidth() - textDimension.Width) / 2;
-			continue;
-		}
-
-		// Draw visible text
-
-		SGUITTGlyph *glyph = nullptr;
-		const u32 width = getWidthFromCharacter(currentChar);
-
-		// Skip whitespace characters
-		if (InvisibleChars.find(currentChar) != std::u32string::npos)
-			goto skip_invisible;
-
-		if (clip) {
-			// Skip fully clipped characters.
-			const core::recti rect(
-				offset,
-				offset + core::vector2di(width, lineHeight)
-			);
-			if (!clip->isRectCollided(rect))
-				goto skip_invisible;
-		}
-
-		{
-			// Retrieve the glyph
-			const u32 n = getGlyphIndexByChar(currentChar);
-			if (n > 0)
-				glyph = &Glyphs[n - 1];
-		}
-
-		if (glyph)
-		{
-			// Calculate the glyph offset.
-			const s32 offx = glyph->offset.X;
-			const s32 offy = (font_metrics.ascender / 64) - glyph->offset.Y;
-
-			// Apply kerning.
-			offset += getKerning(currentChar, previousChar);
-
-			// Determine rendering information.
-			CGUITTGlyphPage *const page = Glyph_Pages[glyph->glyph_page];
-			page->render_positions.emplace_back(offset.X + offx, offset.Y + offy);
-			page->render_source_rects.push_back(glyph->source_rect);
-			page->render_colors.push_back(i < colors.size() ? colors[i] : fallback_color);
-		}
-		else if (fallback)
-		{
-			// Let the fallback font draw it, this isn't super efficient but hopefully that doesn't matter
-			wchar_t l1[] = { (wchar_t) currentChar, 0 };
-
-			// Apply kerning.
-			offset += fallback->getKerning(*l1, (wchar_t) previousChar);
-
-			fallback->draw(core::stringw(l1),
-				core::rect<s32>({offset.X-1, offset.Y-1}, position.LowerRightCorner), // ???
-				i < colors.size() ? colors[i] : fallback_color,
-				false, false, clip);
-		}
-
-skip_invisible:
-		offset.X += width;
-		previousChar = currentChar;
-	}
-
-	// Draw now.
-	update_glyph_pages();
-	core::array<core::vector2di> tmp_positions;
-	core::array<core::recti> tmp_source_rects;
-	for (u32 page_i = 0; page_i < Glyph_Pages.size(); ++page_i) {
-		CGUITTGlyphPage *page = Glyph_Pages[page_i];
-
-		if (page->render_positions.empty())
-			continue;
-
-		assert(page->render_positions.size() == page->render_colors.size());
-		assert(page->render_positions.size() == page->render_source_rects.size());
-
-		// render runs of matching color in batch
-		video::SColor colprev;
-		for (size_t i = 0; i < page->render_positions.size(); ++i) {
-			const size_t ibegin = i;
-			colprev = page->render_colors[i];
-			do
-				++i;
-			while (i < page->render_positions.size() && page->render_colors[i] == colprev);
-			tmp_positions.set_data(&page->render_positions[ibegin], i - ibegin);
-			tmp_source_rects.set_data(&page->render_source_rects[ibegin], i - ibegin);
-			--i;
-
-			if (shadow_offset) {
-				for (size_t i = 0; i < tmp_positions.size(); ++i)
-					tmp_positions[i] += core::vector2di(shadow_offset, shadow_offset);
-
-				u32 new_shadow_alpha = core::clamp(core::round32(shadow_alpha * colprev.getAlpha() / 255.0f), 0, 255);
-				video::SColor shadow_color = video::SColor(new_shadow_alpha, 0, 0, 0);
-				Driver->draw2DImageBatch(page->texture, tmp_positions, tmp_source_rects, clip, shadow_color, true);
-
-				for (size_t i = 0; i < tmp_positions.size(); ++i)
-					tmp_positions[i] -= core::vector2di(shadow_offset, shadow_offset);
+						CGUITTGlyphPage *page = owner->Glyph_Pages[glyph->glyph_page];
+						page->render_positions.emplace_back(glyph_x, glyph_y);
+						page->render_source_rects.push_back(glyph->source_rect);
+						page->render_colors.push_back(glyph_color);
+				}
+				}
+				raqm_destroy(layout);
 			}
-
-			Driver->draw2DImageBatch(page->texture, tmp_positions, tmp_source_rects, clip, colprev, true);
 		}
+
+		base.Y += line_height;
+		if (line_end == utext.size())
+			break;
+		if (utext[line_end] == U'\r' && line_end + 1 < utext.size() &&
+				utext[line_end + 1] == U'\n')
+			line_start = line_end + 2;
+		else
+			line_start = line_end + 1;
 	}
+
+	renderQueuedGlyphs(clip);
 }
 
 core::dimension2d<u32> CGUITTFont::getDimension(const wchar_t* text) const
@@ -786,6 +802,242 @@ core::dimension2d<u32> CGUITTFont::getDimension(const std::u32string& utext) con
 
 	return text_dimension;
 }
+
+
+core::dimension2d<u32> CGUITTFont::getDimension(const wchar_t* text) const
+{
+	return getDimension(convertWCharToU32String(text));
+}
+
+core::dimension2d<u32> CGUITTFont::getDimension(const std::u32string& utext) const
+{
+	const u32 line_height = getLineHeight();
+	u32 line_count = 1;
+	u32 maximum_width = 0;
+
+	size_t line_start = 0;
+	while (line_start <= utext.size()) {
+		size_t line_end = line_start;
+		while (line_end < utext.size() && !isTextLineBreak(utext[line_end]))
+			++line_end;
+
+		const std::u32string line = utext.substr(line_start, line_end - line_start);
+		if (!line.empty()) {
+			raqm_t *layout = createLayout(line);
+			if (layout) {
+				size_t glyph_count = 0;
+				raqm_glyph_t *glyphs = raqm_get_glyphs(layout, &glyph_count);
+				if (glyphs || glyph_count == 0) {
+					int pen = 0;
+					int min_pen = 0;
+					int max_pen = 0;
+					for (size_t i = 0; i < glyph_count; ++i) {
+						pen += glyphs[i].x_advance;
+						min_pen = std::min(min_pen, pen);
+						max_pen = std::max(max_pen, pen);
+					}
+					const u32 width = fixedToPixels(max_pen - min_pen);
+					maximum_width = std::max(maximum_width, width);
+				}
+				raqm_destroy(layout);
+			}
+		}
+
+		if (line_end == utext.size())
+			break;
+		++line_count;
+		if (utext[line_end] == U'\r' && line_end + 1 < utext.size() &&
+				utext[line_end + 1] == U'\n')
+			line_start = line_end + 2;
+		else
+			line_start = line_end + 1;
+	}
+
+	return core::dimension2d<u32>(maximum_width, line_count * line_height);
+}
+
+CGUITTFont *CGUITTFont::getFontForFace(FT_Face face) const
+{
+	if (face == tt_face)
+		return const_cast<CGUITTFont *>(this);
+	if (!fallback)
+		return nullptr;
+	return static_cast<CGUITTFont *>(fallback.get())->getFontForFace(face);
+}
+
+CGUITTFont *CGUITTFont::getFontForCluster(const std::u32string &text, size_t start, size_t end) const
+{
+	std::vector<CGUITTFont *> candidates;
+	CGUITTFont *candidate = const_cast<CGUITTFont *>(this);
+	while (candidate) {
+		candidates.push_back(candidate);
+		if (!candidate->fallback)
+			break;
+		candidate = static_cast<CGUITTFont *>(candidate->fallback.get());
+	}
+
+	for (CGUITTFont *font : candidates) {
+		bool supports_cluster = true;
+		for (size_t i = start; i < end; ++i) {
+			const char32_t c = text[i];
+			if (isIgnorableForFontCoverage(c))
+				continue;
+			if (FT_Get_Char_Index(font->tt_face, static_cast<FT_ULong>(c)) == 0) {
+				supports_cluster = false;
+				break;
+			}
+		}
+		if (supports_cluster)
+			return font;
+	}
+
+	return const_cast<CGUITTFont *>(this);
+}
+
+raqm_t *CGUITTFont::createLayout(const std::u32string &text) const
+{
+	if (!tt_face || text.empty())
+		return nullptr;
+
+	static_assert(sizeof(char32_t) == sizeof(uint32_t), "Raqm requires UTF-32 code points");
+	std::vector<uint32_t> codepoints(text.begin(), text.end());
+
+	raqm_t *layout = raqm_create();
+	if (!layout)
+		return nullptr;
+
+	if (FT_Set_Pixel_Sizes(tt_face, 0, size) != 0 ||
+			!raqm_set_text(layout, codepoints.data(), codepoints.size()) ||
+			!raqm_set_par_direction(layout, RAQM_DIRECTION_DEFAULT) ||
+			!raqm_set_freetype_face(layout, tt_face) ||
+			!raqm_set_freetype_load_flags(layout, load_flags)) {
+		raqm_destroy(layout);
+		return nullptr;
+	}
+
+	CGUITTFont *font = const_cast<CGUITTFont *>(this);
+	while (font) {
+		FT_Set_Pixel_Sizes(font->tt_face, 0, font->size);
+		if (!font->fallback)
+			break;
+		font = static_cast<CGUITTFont *>(font->fallback.get());
+	}
+
+	for (size_t i = 0; i < text.size();) {
+		if (!isArabicScriptCodepoint(text[i])) {
+			++i;
+			continue;
+		}
+		const size_t start = i;
+		while (i < text.size() &&
+				(isArabicScriptCodepoint(text[i]) ||
+						(text[i] >= 0x064B && text[i] <= 0x065F)))
+			++i;
+		raqm_set_language(layout, "ar", start, i - start);
+	}
+
+	size_t start = 0;
+	while (start < text.size()) {
+		size_t end = start;
+		while (end + 1 < text.size() &&
+				!raqm_allowed_grapheme_boundary(layout, end))
+			++end;
+		++end;
+
+		CGUITTFont *selected = getFontForCluster(text, start, end);
+		if (selected != this) {
+			if (!raqm_set_freetype_face_range(layout, selected->tt_face, start, end - start) ||
+					!raqm_set_freetype_load_flags_range(layout, selected->load_flags, start, end - start)) {
+				raqm_destroy(layout);
+				return nullptr;
+			}
+		}
+		start = end;
+	}
+
+	if (!raqm_layout(layout)) {
+		raqm_destroy(layout);
+		return nullptr;
+	}
+	return layout;
+}
+
+SGUITTGlyph *CGUITTFont::getGlyphByIndex(u32 glyph_index) const
+{
+	if (!tt_face || glyph_index == 0 || glyph_index > Glyphs.size())
+		return nullptr;
+
+	SGUITTGlyph &glyph = Glyphs[glyph_index - 1];
+	if (glyph.isLoaded())
+		return &glyph;
+
+	FT_Set_Pixel_Sizes(tt_face, 0, size);
+	CGUITTFont *self = const_cast<CGUITTFont *>(this);
+	glyph.preload(glyph_index, tt_face, self, size, load_flags);
+	if (!glyph.isLoaded() || glyph.glyph_page >= Glyph_Pages.size())
+		return nullptr;
+
+	video::IImage *surface = glyph.createGlyphImage(tt_face->glyph->bitmap, Driver);
+	if (!surface)
+		return nullptr;
+	Glyph_Pages[glyph.glyph_page]->pushGlyphToBePaged(&glyph, surface);
+	return &glyph;
+}
+
+void CGUITTFont::clearRenderQueues() const
+{
+	for (u32 i = 0; i < Glyph_Pages.size(); ++i) {
+		Glyph_Pages[i]->render_positions.clear();
+		Glyph_Pages[i]->render_source_rects.clear();
+		Glyph_Pages[i]->render_colors.clear();
+	}
+	if (fallback)
+		static_cast<CGUITTFont *>(fallback.get())->clearRenderQueues();
+}
+
+void CGUITTFont::renderQueuedGlyphs(const core::rect<s32> *clip) const
+{
+	update_glyph_pages();
+	core::array<core::vector2di> tmp_positions;
+	core::array<core::recti> tmp_source_rects;
+	for (u32 page_i = 0; page_i < Glyph_Pages.size(); ++page_i) {
+		CGUITTGlyphPage *page = Glyph_Pages[page_i];
+		if (page->render_positions.empty())
+			continue;
+
+		assert(page->render_positions.size() == page->render_colors.size());
+		assert(page->render_positions.size() == page->render_source_rects.size());
+
+		for (size_t i = 0; i < page->render_positions.size(); ++i) {
+			const size_t begin = i;
+			const video::SColor color = page->render_colors[i];
+			do {
+				++i;
+			} while (i < page->render_positions.size() && page->render_colors[i] == color);
+			tmp_positions.set_data(&page->render_positions[begin], i - begin);
+			tmp_source_rects.set_data(&page->render_source_rects[begin], i - begin);
+			--i;
+
+			if (shadow_offset) {
+				for (size_t j = 0; j < tmp_positions.size(); ++j)
+					tmp_positions[j] += core::vector2di(shadow_offset, shadow_offset);
+				const u32 alpha = core::clamp(
+						core::round32(shadow_alpha * color.getAlpha() / 255.0f), 0, 255);
+				Driver->draw2DImageBatch(page->texture, tmp_positions, tmp_source_rects,
+						clip, video::SColor(alpha, 0, 0, 0), true);
+				for (size_t j = 0; j < tmp_positions.size(); ++j)
+					tmp_positions[j] -= core::vector2di(shadow_offset, shadow_offset);
+			}
+
+			Driver->draw2DImageBatch(page->texture, tmp_positions, tmp_source_rects,
+					clip, color, true);
+		}
+	}
+
+	if (fallback)
+		static_cast<CGUITTFont *>(fallback.get())->renderQueuedGlyphs(clip);
+}
+
 
 inline u32 CGUITTFont::getWidthFromCharacter(char32_t c) const
 {
@@ -871,37 +1123,35 @@ u32 CGUITTFont::getGlyphIndexByChar(char32_t c) const
 	return glyph;
 }
 
+
 s32 CGUITTFont::getCharacterFromPos(const wchar_t* text, s32 pixel_x) const
 {
-	return getCharacterFromPos(convertWCharToU32String(text), pixel_x);
+	const std::u32string unicode = convertWCharToU32String(text);
+	const s32 index = getCharacterFromPos(unicode, pixel_x);
+	if (index < 0)
+		return -1;
+	return u32IndexToWideIndex(text, static_cast<size_t>(index));
 }
 
 s32 CGUITTFont::getCharacterFromPos(const std::u32string& text, s32 pixel_x) const
 {
-	s32 x = 0;
+	size_t line_end = 0;
+	while (line_end < text.size() && !isTextLineBreak(text[line_end]))
+		++line_end;
+	const std::u32string line = text.substr(0, line_end);
+	if (line.empty())
+		return 0;
 
-	u32 character = 0;
-	char32_t previousChar = 0;
-	auto iter = text.begin();
-	while (iter != text.end())
-	{
-		char32_t c = *iter;
-		x += getWidthFromCharacter(c);
+	raqm_t *layout = createLayout(line);
+	if (!layout)
+		return -1;
 
-		// Kerning.
-		core::vector2di k = getKerning(c, previousChar);
-		x += k.X;
-
-		if (x >= pixel_x)
-			return character;
-
-		previousChar = c;
-		++iter;
-		++character;
-	}
-
-	return -1;
+	size_t index = 0;
+	const bool success = raqm_position_to_index(layout, pixel_x, 0, &index);
+	raqm_destroy(layout);
+	return success ? static_cast<s32>(index) : -1;
 }
+
 
 void CGUITTFont::setKerningWidth(s32 kerning)
 {
