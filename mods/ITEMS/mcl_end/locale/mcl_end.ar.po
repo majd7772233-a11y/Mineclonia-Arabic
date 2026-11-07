@@ -192,3 +192,6 @@ msgid ""
 "To activate an End portal, eyes of ender need to be placed into each block "
 "of an intact End portal frame."
 msgstr "لتفعيل بوابة إندر، يجب وضع عيون إندر في كل كتلة من إطار بوابة إندر سليم."
+
+msgid "End Stone Brick Wall"
+msgstr "جدار طوب حجر النهاية"
