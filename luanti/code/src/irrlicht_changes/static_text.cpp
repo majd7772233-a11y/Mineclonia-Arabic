@@ -27,7 +27,7 @@ StaticText::StaticText(const EnrichedString &text, bool border,
 : IGUIStaticText(environment, parent, id, rectangle),
 	HAlign(EGUIA_UPPERLEFT), VAlign(EGUIA_UPPERLEFT),
 	Border(border), WordWrap(false), Background(background),
-	RestrainTextInside(true), RightToLeft(false),
+	RestrainTextInside(true), RightToLeft(false), RightToLeftOverride(false),
 	OverrideFont(0), LastBreakFont(0)
 {
 	setText(text);
@@ -83,7 +83,7 @@ void StaticText::draw()
 
 		if (HAlign == EGUIA_CENTER) {
 			r.UpperLeftCorner.X = r.getCenter().X - (text_dim.Width / 2);
-		} else if (HAlign == EGUIA_LOWERRIGHT) {
+		} else if (HAlign == EGUIA_LOWERRIGHT || RightToLeft) {
 			r.UpperLeftCorner.X = r.LowerRightCorner.X - text_dim.Width;
 		}
 
@@ -244,8 +244,8 @@ bool StaticText::isWordWrapEnabled() const
 
 void StaticText::setRightToLeft(bool rtl)
 {
-	if (RightToLeft != rtl)
-	{
+	RightToLeftOverride = true;
+	if (RightToLeft != rtl) {
 		RightToLeft = rtl;
 		updateText();
 	}
@@ -283,6 +283,8 @@ void StaticText::updateText()
 		return;
 
 	LastBreakFont = font;
+	if (!RightToLeftOverride)
+		RightToLeft = IRR_DOWN_CAST<CGUITTFont *>(font)->isRightToLeft(cText.c_str());
 
 	EnrichedString line;
 	EnrichedString word;
