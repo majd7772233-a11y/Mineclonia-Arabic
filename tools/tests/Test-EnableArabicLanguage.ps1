@@ -1,4 +1,4 @@
-# Exercise the Windows PowerShell 5.1 installer against Luanti 5.17.0's
+﻿# Exercise the Windows PowerShell 5.1 installer against Luanti 5.17.0's
 # real folder layout and the exact language enum / option_labels structure.
 $ErrorActionPreference = "Stop"
 
