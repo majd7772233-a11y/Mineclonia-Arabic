@@ -159,6 +159,14 @@ msgstr "درج طوب العالم السفلي الأحمر"
 msgid "Red Nether Brick Slab"
 msgstr "بلاطة طوب العالم السفلي الأحمر"
 
+#: mods/ITEMS/mcl_nether/init.lua:318
+msgid "Nether Brick Wall"
+msgstr "جدار طوب العالم السفلي"
+
+#: mods/ITEMS/mcl_nether/init.lua:332
+msgid "Red Nether Brick Wall"
+msgstr "جدار طوب العالم السفلي الأحمر"
+
 #: mods/ITEMS/mcl_nether/init.lua:325
 msgid "Nether Brick Fence"
 msgstr "سياج طوب العالم السفلي"
