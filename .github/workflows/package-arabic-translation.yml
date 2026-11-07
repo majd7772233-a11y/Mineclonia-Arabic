@@ -1,0 +1,92 @@
+name: Build Arabic translation overlay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "mods/**/*.ar.po"
+      - "tools/prepare_translation_release.py"
+      - ".github/workflows/package-arabic-translation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Arabic translation source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validator dependency
+        run: python -m pip install --disable-pip-version-check "polib>=1.2,<2"
+
+      - name: Check out pinned Mineclonia source
+        env:
+          SOURCE_COMMIT: "4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da"
+        run: |
+          set -euxo pipefail
+          git clone --filter=blob:none --no-checkout https://github.com/ZenonSeth/mineclonia-mirror.git "$RUNNER_TEMP/mineclonia"
+          git -C "$RUNNER_TEMP/mineclonia" fetch --depth 1 origin "$SOURCE_COMMIT"
+          git -C "$RUNNER_TEMP/mineclonia" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/mineclonia" rev-parse HEAD)" = "$SOURCE_COMMIT"
+
+      - name: Prepare only Arabic PO files for conversion
+        run: |
+          set -euxo pipefail
+          # Remove other language PO files from the temporary checkout.
+          find "$RUNNER_TEMP/mineclonia/mods" -type f -name "*.po" -delete
+          while IFS= read -r -d '' file; do
+            relative=$(python -c 'import os,sys; print(os.path.relpath(sys.argv[1], sys.argv[2]))' "$file" "$GITHUB_WORKSPACE")
+            destination="$RUNNER_TEMP/mineclonia/$relative"
+            mkdir -p "$(dirname "$destination")"
+            cp "$file" "$destination"
+          done < <(find "$GITHUB_WORKSPACE/mods" -type f -name "*.ar.po" -print0)
+
+      - name: Validate PO files against pinned POT templates
+        run: |
+          set -euxo pipefail
+          python tools/prepare_translation_release.py prepare \
+            --source-root "$RUNNER_TEMP/mineclonia" \
+            --plan "$RUNNER_TEMP/translation-plan.json"
+
+      - name: Obtain Mineclonia translation converter
+        run: |
+          set -euxo pipefail
+          git clone --depth 1 https://codeberg.org/Wuzzy/Minetest_Translation_Tools.git "$RUNNER_TEMP/mtt"
+          test -f "$RUNNER_TEMP/mtt/mtt_convert.py"
+          test -f "$RUNNER_TEMP/mtt/mtt_check.py"
+
+      - name: Convert PO to TR using the documented converter
+        run: |
+          set -euxo pipefail
+          cd "$RUNNER_TEMP/mineclonia/mods"
+          python "$RUNNER_TEMP/mtt/mtt_convert.py" --po2tr -r
+
+      - name: Validate generated TR files
+        run: |
+          set -euxo pipefail
+          cd "$RUNNER_TEMP/mineclonia/mods"
+          python "$RUNNER_TEMP/mtt/mtt_check.py" -r
+
+      - name: Package runtime translations
+        run: |
+          set -euxo pipefail
+          python tools/prepare_translation_release.py package \
+            --source-root "$RUNNER_TEMP/mineclonia" \
+            --plan "$RUNNER_TEMP/translation-plan.json" \
+            --output "$GITHUB_WORKSPACE/Mineclonia-Arabic-Translation-0.123.0.zip"
+
+      - name: Upload installation package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mineclonia-Arabic-Translation-0.123.0
+          path: Mineclonia-Arabic-Translation-0.123.0.zip
+          if-no-files-found: error
+          retention-days: 30
