@@ -150,3 +150,22 @@
 | `mods/ITEMS/mcl_mushrooms/locale/template.pot` | `2fd00f16e824b4a0c6fd0c83954862c74eb10526` |
 | `mods/ITEMS/mcl_fire/locale/template.pot` | `01db672ede846a498223a3a503db3fd4e4691c79` |
 | `mods/ITEMS/mcl_sculk/locale/template.pot` | `4a885b4037de5f341258ff3d1ee9ee0d08182f23` |
+
+
+## قوالب دفعة إندر والقرم والكهوف والريداستون — 2026-11-07
+
+- مرآة المصدر: https://github.com/ZenonSeth/mineclonia-mirror
+- commit المصدر: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/ITEMS/mcl_blackstone/locale/template.pot` | `4e47fdef774257d8e715d3cdde6f28f40386d6a4` |
+| `mods/ITEMS/mcl_candles/locale/template.pot` | `f3e3b922977c3c2dd08f76ec80dbba24536d45d8` |
+| `mods/ITEMS/mcl_amethyst/locale/template.pot` | `237e730af96d4624bd1ef0819306b3903f44ab0a` |
+| `mods/ITEMS/mcl_shields/locale/template.pot` | `76f00fa1567e2fb190907bd12368ec17f401fe92` |
+| `mods/ITEMS/mcl_dyes/locale/template.pot` | `8c7a08bb7b85528b76349f2ca077514f406758ff` |
+| `mods/ITEMS/mcl_grindstone/locale/template.pot` | `78744685e537d63dd2478915e82c116ae3fbba6e` |
+| `mods/ITEMS/mcl_smithing_table/locale/template.pot` | `47496de5cae7bb7ab0f8fbfb2ffa455bb83520a5` |
+| `mods/ITEMS/mcl_walls/locale/template.pot` | `5d5ac42623e022dfa0eee50f680f0e67912a6698` |
+| `mods/ENTITIES/mcl_boats/locale/template.pot` | `f51a9756a8859241f6aa90aa5a7874fa9531b8ba` |
+| `mods/HELP/doc/doc_identifier/locale/template.pot` | `d0e4bdf2edb61025fdeda1e291fbcbdaa6c23bc3` |

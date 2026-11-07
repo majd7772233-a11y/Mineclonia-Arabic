@@ -1,0 +1,67 @@
+# Arabic translation draft for Mineclonia component: doc_identifier
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/HELP/doc/doc_identifier/locale/template.pot
+# Source template blob SHA: d0e4bdf2edb61025fdeda1e291fbcbdaa6c23bc3
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 13:45+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "No help entry for this item could be found."
+msgstr "تعذّر العثور على مدخل مساعدة لهذا العنصر."
+
+msgid "No help entry for this block could be found."
+msgstr "تعذّر العثور على مدخل مساعدة لهذه الكتلة."
+
+msgid "Error: This node, item or object is undefined. This is always an error."
+msgstr "خطأ: هذه العقدة أو العنصر أو الكائن غير معرّف. وهذا خطأ دائمًا."
+
+msgid "This can happen for the following reasons:"
+msgstr "قد يحدث ذلك للأسباب التالية:"
+
+msgid "• The mod which is required for it is not enabled"
+msgstr "• الوحدة المطلوبة غير مفعّلة"
+
+msgid "• The author of the game or a mod has made a mistake"
+msgstr "• ارتكب مؤلف اللعبة أو إحدى الوحدات خطأً"
+
+msgid "It appears to originate from the mod “@1”, which is enabled."
+msgstr "يبدو أن مصدره الوحدة «@1»، وهي مفعّلة."
+
+msgid "It appears to originate from the mod “@1”, which is not enabled!"
+msgstr "يبدو أن مصدره الوحدة «@1»، لكنها غير مفعّلة!"
+
+msgid "Its identifier is “@1”."
+msgstr "المعرّف الخاص به هو «@1»."
+
+msgid "This block cannot be identified because the world has not materialized at this point yet. Try again in a few seconds."
+msgstr "لا يمكن تحديد هذه الكتلة لأن العالم لم يُنشأ في هذا الموضع بعد. حاول مجدداً بعد بضع ثوانٍ."
+
+msgid "No help entry for this object could be found."
+msgstr "تعذّر العثور على مدخل مساعدة لهذا الكائن."
+
+msgid "This is a player."
+msgstr "هذا لاعب."
+
+msgid "OK"
+msgstr "حسناً"
+
+msgid "Lookup Tool"
+msgstr "أداة الاستعلام"
+
+msgid "Show help for pointed thing"
+msgstr "عرض المساعدة عن الشيء المستهدف"
+
+msgid "This useful little helper can be used to quickly learn more about about one's closer environment. It identifies and analyzes blocks, items and other things and it shows extensive information about the thing on which it is used."
+msgstr "يمكن استخدام هذه الأداة المساعدة الصغيرة لمعرفة المزيد بسرعة عن البيئة المحيطة بك. فهي تحدد الكتل والعناصر والأشياء الأخرى وتحللها، ثم تعرض معلومات مفصلة عن الشيء الذي تستخدمها عليه."
+
+msgid "Punch any block, item or other thing about you wish to learn more about. This will open up the appropriate help entry. The tool comes in two modes which are changed by using. In liquid mode, this tool points to liquids as well while in solid mode this is not the case."
+msgstr "اضرب أي كتلة أو عنصر أو شيء آخر تريد معرفة المزيد عنه. سيفتح ذلك مدخل المساعدة المناسب. للأداة وضعان يمكن التبديل بينهما باستخدامها. في وضع السوائل، تشير الأداة إلى السوائل أيضاً، أما في الوضع الصلب فلا تفعل ذلك."

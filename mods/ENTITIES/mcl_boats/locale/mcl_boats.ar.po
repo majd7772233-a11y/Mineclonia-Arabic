@@ -1,0 +1,62 @@
+# Arabic translation draft for Mineclonia component: mcl_boats
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ENTITIES/mcl_boats/locale/template.pot
+# Source template blob SHA: f51a9756a8859241f6aa90aa5a7874fa9531b8ba
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 13:45+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ENTITIES/mcl_boats/init.lua:166
+msgid "Sneak to dismount"
+msgstr "انحنِ للترجل"
+
+#: mods/ENTITIES/mcl_boats/init.lua:632
+msgid "Boats are used to travel on the surface of water."
+msgstr "تُستخدم القوارب للتنقل فوق سطح الماء."
+
+#: mods/ENTITIES/mcl_boats/init.lua:633
+msgid ""
+"Rightclick on a water source to place the boat. Rightclick the boat to enter "
+"it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] "
+"to slow down or move backwards. Use [Sneak] to leave the boat, punch the "
+"boat to make it drop as an item."
+msgstr "انقر بزر الفأرة الأيمن على مصدر ماء لوضع القارب. ثم انقر بزر الفأرة الأيمن على القارب لركوبه. استخدم [Left] و[Right] للتوجيه، و[Forwards] لزيادة السرعة، و[Backwards] للإبطاء أو التحرك إلى الخلف. استخدم [Sneak] لمغادرة القارب، أو اضرب القارب ليَسقط كعنصر."
+
+#: mods/ENTITIES/mcl_boats/init.lua:634
+msgid "Boat"
+msgstr "قارب"
+
+#: mods/ENTITIES/mcl_boats/init.lua:640
+msgid "Water vehicle"
+msgstr "مركبة مائية"
+
+#: mods/ENTITIES/mcl_boats/init.lua:649
+msgid ""
+"Chest Boats are used to travel on the surface of water. And transport goods"
+msgstr "تُستخدم القوارب الصندوقية للتنقل فوق سطح الماء ونقل البضائع."
+
+#: mods/ENTITIES/mcl_boats/init.lua:650
+msgid ""
+"Rightclick on a water source to place the boat. Rightclick the boat to enter "
+"it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] "
+"to slow down or move backwards. Use [Sneak] to leave the boat, punch the "
+"boat to make it drop as an item. Use [Sneak] + [Rightclick] to open the "
+"boat's chest"
+msgstr "انقر بزر الفأرة الأيمن على مصدر ماء لوضع القارب. ثم انقر بزر الفأرة الأيمن على القارب لركوبه. استخدم [Left] و[Right] للتوجيه، و[Forwards] لزيادة السرعة، و[Backwards] للإبطاء أو التحرك إلى الخلف. استخدم [Sneak] لمغادرة القارب، واضغط [Sneak] + [Rightclick] لفتح صندوق القارب."
+
+#: mods/ENTITIES/mcl_boats/init.lua:651
+msgid "Chest Boat"
+msgstr "قارب صندوقي"
+
+#: mods/ENTITIES/mcl_boats/init.lua:663
+msgid " Boat"
+msgstr "قارب"

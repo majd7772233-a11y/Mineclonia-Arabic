@@ -1,0 +1,69 @@
+# Arabic translation draft for Mineclonia component: mcl_grindstone
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_grindstone/locale/template.pot
+# Source template blob SHA: 78744685e537d63dd2478915e82c116ae3fbba6e
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 13:45+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_grindstone/init.lua:13
+msgid "Repair & Disenchant"
+msgstr "إصلاح وإزالة التعويذات"
+
+#: mods/ITEMS/mcl_grindstone/init.lua:26
+msgid "Inventory"
+msgstr "المخزون"
+
+#: mods/ITEMS/mcl_grindstone/init.lua:171
+msgid "Grindstone"
+msgstr "حجر الجلخ"
+
+#: mods/ITEMS/mcl_grindstone/init.lua:172
+msgid "Used to disenchant/fix tools"
+msgstr "يُستخدم لإزالة تعويذات الأدوات وإصلاحها"
+
+#: mods/ITEMS/mcl_grindstone/init.lua:173
+msgid ""
+"Grindstone disenchants tools and armour except for curses, and repairs two "
+"items of the same type it is also the weapon smith's work station."
+msgstr "يزيل حجر الجلخ التعويذات من الأدوات والدروع باستثناء اللعنات، كما يصلح عنصرين من النوع نفسه. وهو أيضاً محطة عمل صانع الأسلحة."
+
+#: mods/ITEMS/mcl_grindstone/init.lua:174
+msgid ""
+"To use the grindstone, rightclick it, Two input slots (on the left) and a "
+"single output slot."
+msgstr "لاستخدام حجر الجلخ، انقر عليه بزر الفأرة الأيمن. توجد خانتا إدخال (على اليسار) وخانة إخراج واحدة."
+
+#: mods/ITEMS/mcl_grindstone/init.lua:175
+msgid ""
+"To disenchant an item place enchanted item in one of the input slots and "
+"take the disenchanted item from the output."
+msgstr "لإزالة التعويذات من عنصر، ضع العنصر المسحور في إحدى خانتي الإدخال، ثم خذ العنصر بعد إزالة تعويذاته من خانة الإخراج."
+
+#: mods/ITEMS/mcl_grindstone/init.lua:176
+msgid ""
+"To repair a tool you need a tool of the same type and material, put both "
+"items in the input slot and the output slot will combine two items "
+"durabilities with 5% bonus."
+msgstr "لإصلاح أداة، تحتاج إلى أداة أخرى من النوع والمادة نفسيهما. ضع العنصرين في خانتي الإدخال، وستجمع خانة الإخراج متانة العنصرين مع مكافأة قدرها 5%."
+
+#: mods/ITEMS/mcl_grindstone/init.lua:177
+msgid ""
+"If both items have enchantments the player will get xp from both items from "
+"the disenchant."
+msgstr "إذا كان العنصران يحملان تعويذات، فسيحصل اللاعب على نقاط خبرة من إزالة تعويذات كليهما."
+
+#: mods/ITEMS/mcl_grindstone/init.lua:178
+msgid ""
+"Curses cannot be removed and will be transfered to the new repaired item, if "
+"both items have a different curse the curses will be combined."
+msgstr "لا يمكن إزالة اللعنات، وستُنقل إلى العنصر الجديد بعد الإصلاح. وإذا حمل العنصران لعنتين مختلفتين، فستُدمج اللعنتان."

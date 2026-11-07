@@ -1,0 +1,95 @@
+# Arabic translation draft for Mineclonia component: mcl_amethyst
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_amethyst/locale/template.pot
+# Source template blob SHA: 237e730af96d4624bd1ef0819306b3903f44ab0a
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 13:45+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:10
+msgid "Block of Amethyst"
+msgstr "كتلة جمشت"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:11
+msgid ""
+"The Block of Amethyst is a decoration block crafted from amethyst shards."
+msgstr "كتلة الجمشت كتلة زخرفية تُصنع من شظايا الجمشت."
+
+#: mods/ITEMS/mcl_amethyst/init.lua:19
+msgid "Budding Amethyst"
+msgstr "جمشت متبرعم"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:20
+msgid "The Budding Amethyst can grow amethyst"
+msgstr "يمكن للجمشت المتبرعم أن ينمّي الجمشت."
+
+#: mods/ITEMS/mcl_amethyst/init.lua:34
+msgid "Amethyst Shard"
+msgstr "شظية جمشت"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:35
+msgid "An amethyst shard is a crystalline mineral."
+msgstr "شظية الجمشت معدن بلوري."
+
+#: mods/ITEMS/mcl_amethyst/init.lua:39
+msgid "Amethyst Material"
+msgstr "مادة الجمشت"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:45
+msgid "Calcite"
+msgstr "كالسيت"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:46
+msgid "Calcite can be found as part of amethyst geodes."
+msgstr "يمكن العثور على الكالسيت ضمن جيودات الجمشت."
+
+#: mods/ITEMS/mcl_amethyst/init.lua:55
+msgid "Tinted Glass"
+msgstr "زجاج مظلل"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:56
+msgid ""
+"Tinted Glass is a type of glass which blocks lights while it is visually "
+"transparent."
+msgstr "الزجاج المظلل نوع من الزجاج يحجب الضوء مع بقائه شفافاً بصرياً."
+
+#: mods/ITEMS/mcl_amethyst/init.lua:70
+msgid "Small Amethyst Bud"
+msgstr "برعم جمشت صغير"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:71
+msgid "Small Amethyst Bud is the first growth of amethyst bud."
+msgstr "برعم الجمشت الصغير هو المرحلة الأولى من نمو برعم الجمشت."
+
+#: mods/ITEMS/mcl_amethyst/init.lua:80
+msgid "Medium Amethyst Bud"
+msgstr "برعم جمشت متوسط"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:81
+msgid "Medium Amethyst Bud is the second growth of amethyst bud."
+msgstr "برعم الجمشت المتوسط هو المرحلة الثانية من نمو برعم الجمشت."
+
+#: mods/ITEMS/mcl_amethyst/init.lua:90
+msgid "Large Amethyst Bud"
+msgstr "برعم جمشت كبير"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:91
+msgid "Large Amethyst Bud is the third growth of amethyst bud."
+msgstr "برعم الجمشت الكبير هو المرحلة الثالثة من نمو برعم الجمشت."
+
+#: mods/ITEMS/mcl_amethyst/init.lua:127
+msgid "Amethyst Cluster"
+msgstr "عنقود جمشت"
+
+#: mods/ITEMS/mcl_amethyst/init.lua:129
+msgid "Amethyst Cluster is the final growth of amethyst bud."
+msgstr "عنقود الجمشت هو المرحلة الأخيرة من نمو برعم الجمشت."

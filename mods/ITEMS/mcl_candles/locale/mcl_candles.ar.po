@@ -1,0 +1,99 @@
+# Arabic translation draft for Mineclonia component: mcl_candles
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_candles/locale/template.pot
+# Source template blob SHA: f3e3b922977c3c2dd08f76ec80dbba24536d45d8
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 13:45+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_candles/init.lua:71
+msgid ""
+"A candle is a block that emits light when lit with a flint and steel. It "
+"comes in the sixteen dye colors. Up to four of the same color of candle can "
+"be placed in one block space, which affects the amount of light produced."
+msgstr "الشمعة كتلة تصدر الضوء عند إشعالها بالصوان والحديد. تتوفر بألوان الصبغات الستة عشر. يمكن وضع ما يصل إلى أربع شمعات من اللون نفسه في حيز كتلة واحدة، ويؤثر عددها في شدة الضوء الناتج."
+
+#: mods/ITEMS/mcl_candles/init.lua:99
+msgid "Candle"
+msgstr "شمعة"
+
+#: mods/ITEMS/mcl_candles/init.lua:121
+msgid "Lit Candle"
+msgstr "شمعة مشتعلة"
+
+#: mods/ITEMS/mcl_candles/init.lua:336
+msgid "Cake"
+msgstr "كعكة"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:1
+msgid "Black Candle"
+msgstr "شمعة سوداء"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:2
+msgid "Blue Candle"
+msgstr "شمعة زرقاء"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:3
+msgid "Brown Candle"
+msgstr "شمعة بنية"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:4
+msgid "Cyan Candle"
+msgstr "شمعة سماوية"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:5
+msgid "Green Candle"
+msgstr "شمعة خضراء"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:6
+msgid "Grey Candle"
+msgstr "شمعة رمادية"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:7
+msgid "Light Blue Candle"
+msgstr "شمعة زرقاء فاتحة"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:8
+msgid "Light Grey Candle"
+msgstr "شمعة رمادية فاتحة"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:9
+msgid "Lime Candle"
+msgstr "شمعة خضراء ليمونية"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:10
+msgid "Magenta Candle"
+msgstr "شمعة أرجوانية"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:11
+msgid "Orange Candle"
+msgstr "شمعة برتقالية"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:12
+msgid "Pink Candle"
+msgstr "شمعة وردية"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:13
+msgid "Purple Candle"
+msgstr "شمعة بنفسجية"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:14
+msgid "Red Candle"
+msgstr "شمعة حمراء"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:15
+msgid "White Candle"
+msgstr "شمعة بيضاء"
+
+#: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:16
+msgid "Yellow Candle"
+msgstr "شمعة صفراء"
