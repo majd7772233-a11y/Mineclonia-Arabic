@@ -133,11 +133,11 @@ def decode_tr_value(raw: str, where: str) -> str:
         elif nxt == "=":
             result.append("=")
         elif nxt == "n":
-            result.append("\\n")
+            result.append("\n")
         elif nxt in "123456789":
             result.append("@" + nxt)
         elif nxt == "\u0000":
-            result.append("\\n")
+            result.append("\n")
         else:
             fail(f"{where}: unsupported TR escape @{nxt}")
         i += 2
