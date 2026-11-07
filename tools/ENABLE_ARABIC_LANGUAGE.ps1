@@ -180,6 +180,13 @@ function Set-ArabicLanguageLabel([string]$Text) {
         }
     }
 
+    # Preserve the newline before the Lua table closing brace; otherwise the new key can become ar = "...",}.
+    $crlf = ([char]13).ToString() + ([char]10).ToString()
+    $separator = if ($Text.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
+    if (!$tableBody.EndsWith($separator)) {
+        $tableBody += $separator
+    }
+
     $newText = $Text.Substring(0, $tableOpen + 1) + $tableBody + $Text.Substring($tableClose)
     return [pscustomobject]@{ Text = $newText; Changed = ($newText -cne $Text) }
 }
