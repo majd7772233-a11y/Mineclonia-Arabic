@@ -1,0 +1,68 @@
+# Arabic translation for Mineclonia component: mcl_itemframes
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_itemframes/locale/template.pot
+# Source template blob SHA: 9fa485ba480e06faa3d06e6933f3a25f4dd537de
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:5
+msgid "Item Frame"
+msgstr "إطار عنصر"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:6
+msgid "Can hold an item"
+msgstr "يمكنه حمل عنصر"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:7
+#: mods/ITEMS/mcl_itemframes/register.lua:19
+msgid "Item frames are decorative blocks in which items can be placed."
+msgstr "إطارات العناصر كتل زخرفية يمكن وضع العناصر بداخلها."
+
+#: mods/ITEMS/mcl_itemframes/register.lua:8
+#: mods/ITEMS/mcl_itemframes/register.lua:20
+msgid ""
+"Just place any item on the item frame. Use the item frame again to retrieve "
+"the item."
+msgstr "ضع أي عنصر على إطار العنصر. واستخدم الإطار مرة أخرى لاستعادة العنصر."
+
+#: mods/ITEMS/mcl_itemframes/register.lua:17
+msgid "Glow Item Frame"
+msgstr "إطار عنصر متوهج"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:18
+msgid "Can hold an item and glows"
+msgstr "يمكنه حمل عنصر ويصدر الضوء"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:30
+msgid "Invisible Item Frame"
+msgstr "إطار عنصر غير مرئي"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:32
+msgid "Can hold an item but is invisible"
+msgstr "يمكنه حمل عنصر لكنه غير مرئي"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:41
+msgid "Invisible Glow Item Frame"
+msgstr "إطار عنصر متوهج غير مرئي"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:43
+msgid "Can hold an item and glows but is invisible"
+msgstr "يمكنه حمل عنصر ويصدر الضوء لكنه غير مرئي"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:52
+msgid "Glow and Behold!"
+msgstr "توهّج وتأمّل!"
+
+#: mods/ITEMS/mcl_itemframes/register.lua:53
+msgid "Craft a glow item frame."
+msgstr "اصنع إطار عنصر متوهجاً."
