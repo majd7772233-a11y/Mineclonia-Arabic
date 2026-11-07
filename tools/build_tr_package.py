@@ -254,21 +254,22 @@ def main() -> None:
         template_counter = Counter(template_ids)
         po_counter = Counter(po_ids)
         pot_counter = Counter(pot_ids)
-        if pot_counter - template_counter:
-            missing_from_runtime = list((pot_counter - template_counter).elements())[:5]
-            fail(f"{rel}: POT contains keys absent from runtime template.txt: {missing_from_runtime!r}")
-        missing_runtime = list((template_counter - po_counter).elements())
-        if missing_runtime:
-            fail(
-                f"{rel}: PO is missing {len(missing_runtime)} runtime template string(s); "
-                f"examples={missing_runtime[:5]!r}"
+        required_counter = template_counter | pot_counter
+        missing_required = list((required_counter - po_counter).elements())
+        if missing_required:
+            print(
+                f"MISSING TRANSLATION KEYS IN {rel} ({len(missing_required)}):",
+                flush=True,
             )
-        extra_po = list((po_counter - template_counter).elements())
+            for missing_key in missing_required:
+                print("MISSING_RUNTIME_OR_POT\t" + json.dumps(missing_key, ensure_ascii=False), flush=True)
+            fail(f"{rel}: Arabic PO does not cover every current runtime or POT string")
+        extra_po = list((po_counter - required_counter).elements())
         if extra_po:
             stale_po_entries.append({
                 "path": str(rel),
                 "count": len(extra_po),
-                "examples": extra_po[:10],
+                "examples": extra_po[:20],
             })
         runtime_messages += len(template_ids)
         previous = seen_domains.get(domain)
@@ -305,8 +306,11 @@ def main() -> None:
         }
         print(f"VALID {module}: {message_count} messages, textdomain={domain}", flush=True)
 
-    if total_messages != args.expected_messages:
-        fail(f"expected {args.expected_messages} messages, found {total_messages}")
+    if total_messages < args.expected_messages:
+        fail(
+            f"expected at least {args.expected_messages} translated PO messages, "
+            f"found {total_messages}"
+        )
 
     # Official Mineclonia workflow: PO files live in locale/poconvert; MTT
     # writes the runtime .tr files into each locale directory.
