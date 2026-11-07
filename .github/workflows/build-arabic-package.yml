@@ -66,36 +66,42 @@ jobs:
       - name: Install PO parser
         run: python -m pip install --disable-pip-version-check polib==1.2.0
 
-      - name: Fetch Mineclonia's documented translation tools
+      - name: Fetch Mineclonia's documented translation tools (fallback only if Codeberg is unavailable)
         env:
           LTT_DIR: ${{ runner.temp }}/Luanti_Translation_Tools
         run: |
           set -euo pipefail
           success=0
-          for attempt in 1 2 3 4 5 6; do
+          for attempt in 1 2 3; do
             rm -rf "$LTT_DIR"
-            echo "Cloning Luanti Translation Tools (attempt $attempt/6)..."
+            echo "Cloning Luanti Translation Tools (attempt $attempt/3)..."
             if git clone --depth 1 https://codeberg.org/Wuzzy/Luanti_Translation_Tools.git "$LTT_DIR"; then
               success=1
               break
             fi
-            sleep $((attempt * 8))
+            sleep $((attempt * 5))
           done
-          if [ "$success" -ne 1 ]; then
-            echo "Codeberg remained unavailable after six attempts."
-            exit 1
+
+          if [ "$success" -eq 1 ]; then
+            git -C "$LTT_DIR" fetch --depth 1 origin 62c1334537014821920bed5c7e2a11af44f6bfcd
+            git -C "$LTT_DIR" checkout 62c1334537014821920bed5c7e2a11af44f6bfcd
+            CONVERTER=$(find "$LTT_DIR" -type f -name 'ltt_convert.py' -print -quit)
+            CHECKER=$(find "$LTT_DIR" -type f -name 'ltt_check.py' -print -quit)
+            if [ -z "$CONVERTER" ] || [ -z "$CHECKER" ]; then
+              echo "Luanti Translation Tools checkout is missing ltt_convert.py or ltt_check.py."
+              exit 1
+            fi
+            echo "LTT_COMMIT=$(git -C "$LTT_DIR" rev-parse HEAD)" >> "$GITHUB_ENV"
+            echo "CONVERTER_MODE=official-ltt" >> "$GITHUB_ENV"
+          else
+            echo "::warning::Codeberg unavailable after three attempts; using the repository's explicitly-labelled compatibility fallback."
+            CONVERTER="$GITHUB_WORKSPACE/workbench/tools/ltt_tr_compat.py"
+            CHECKER="$CONVERTER"
+            test -f "$CONVERTER"
+            echo "LTT_COMMIT=not-used-local-fallback" >> "$GITHUB_ENV"
+            echo "CONVERTER_MODE=local-compatibility-fallback-not-official-ltt" >> "$GITHUB_ENV"
           fi
-          git -C "$LTT_DIR" fetch --depth 1 origin 62c1334537014821920bed5c7e2a11af44f6bfcd
-          git -C "$LTT_DIR" checkout 62c1334537014821920bed5c7e2a11af44f6bfcd
-          echo "LTT_COMMIT=$(git -C "$LTT_DIR" rev-parse HEAD)" >> "$GITHUB_ENV"
-          echo "LTT FILE INVENTORY:"
-          find "$LTT_DIR" -maxdepth 4 -type f | sort | head -200
-          CONVERTER=$(find "$LTT_DIR" -type f -name 'ltt_convert.py' -print -quit)
-          CHECKER=$(find "$LTT_DIR" -type f -name 'ltt_check.py' -print -quit)
-          if [ -z "$CONVERTER" ] || [ -z "$CHECKER" ]; then
-            echo "Expected ltt_convert.py and ltt_check.py were not found in the renamed repository."
-            exit 1
-          fi
+
           echo "LTT_CONVERT=$CONVERTER" >> "$GITHUB_ENV"
           echo "LTT_CHECK=$CHECKER" >> "$GITHUB_ENV"
 
@@ -152,6 +158,7 @@ jobs:
           PACKAGE_ZIP: ${{ env.PACKAGE_ZIP }}
           PACKAGE_SHA: ${{ env.PACKAGE_SHA }}
           LTT_COMMIT: ${{ env.LTT_COMMIT }}
+          CONVERTER_MODE: ${{ env.CONVERTER_MODE }}
         working-directory: workbench
         run: |
           set -euo pipefail
@@ -161,8 +168,8 @@ jobs:
           ## Mineclonia Arabic runtime package
 
           - 163 translation domains and 4,982 PO/TR entries; all strings from the 163 runtime template.txt catalogs are required to be covered.
-          - Generated with the current Luanti Translation Tools CLI: `ltt_convert.py <mods> --po2tr -r`.
-          - Checked with `ltt_check.py <mods>`. The build also verifies every generated TR entry round-trips exactly to its PO translation.
+          - Converter mode: `$CONVERTER_MODE`. When `official-ltt`, files are generated and checked with Wuzzy Luanti Translation Tools. When the Codeberg service is unavailable, a local compatibility implementation of Luanti .tr escaping is used; it is explicitly not represented as the upstream tool.
+          - The build also verifies every generated TR entry round-trips exactly to its PO translation and checks runtime-template coverage.
           - Mineclonia source mirror commit: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`.
           - Minetest Translation Tools commit: `$LTT_COMMIT`.
           - Owner-reported target: Mineclonia `release=39603`, Luanti `5.17.0`; exact source-to-local-build equivalence has not been independently confirmed.
