@@ -22,11 +22,19 @@ function New-LuantiFixture([string]$Name, [string]$EnumLine, [string]$ArabicEntr
     $bin = Join-Path $root "bin"
     $userPath = Join-Path $root "CustomUserData"
     $appData = Join-Path $root "Roaming"
+    $localePackageRoot = Join-Path $testRoot "PackageAssets"
+    $localeCatalogSource = Join-Path $localePackageRoot "luanti-locale\ar\LC_MESSAGES\luanti.mo"
+    $localeCatalogDestination = Join-Path $root "locale\ar\LC_MESSAGES\luanti.mo"
 
     New-Item -ItemType Directory -Path $settings -Force | Out-Null
     New-Item -ItemType Directory -Path $bin -Force | Out-Null
     New-Item -ItemType Directory -Path $userPath -Force | Out-Null
     New-Item -ItemType Directory -Path $appData -Force | Out-Null
+    New-Item -ItemType Directory -Path (Split-Path -Parent $localeCatalogSource) -Force | Out-Null
+    if (!(Test-Path -LiteralPath $localeCatalogSource)) {
+        # Valid GNU MO byte-order magic followed by fixture payload.
+        [IO.File]::WriteAllBytes($localeCatalogSource, [byte[]]@(0xDE, 0x12, 0x04, 0x95, 0x01, 0x00))
+    }
     $defaultUserPath = Join-Path $appData "Minetest"
     New-Item -ItemType Directory -Path $defaultUserPath -Force | Out-Null
     [IO.File]::WriteAllText((Join-Path $bin "luanti.exe"), "fixture", [Text.UTF8Encoding]::new($false))
@@ -68,6 +76,8 @@ $ArabicEntry
         UserPath = $userPath
         AppData = $appData
         ConfigFile = $configFile
+        LocaleCatalogSource = $localeCatalogSource
+        LocaleCatalogDestination = $localeCatalogDestination
         SettingPath = Join-Path $builtin "settingtypes.txt"
         DialogPath = Join-Path $settings "dlg_settings.lua"
     }
@@ -90,7 +100,7 @@ function Invoke-Helper($Fixture, [string]$SelectedPath, [ValidateSet("env", "app
             [Environment]::SetEnvironmentVariable("LUANTI_USER_PATH", $null, "Process")
         }
 
-        $output = & $powerShell -NoProfile -ExecutionPolicy Bypass -File $helper -LuantiDir $SelectedPath -NonInteractive 2>&1
+        $output = & $powerShell -NoProfile -ExecutionPolicy Bypass -File $helper -LuantiDir $SelectedPath -LocaleCatalog $Fixture.LocaleCatalogSource -NonInteractive 2>&1
         $exitCode = $LASTEXITCODE
         if ($exitCode -ne 0) {
             $detail = $output -join [Environment]::NewLine
@@ -155,6 +165,15 @@ function Assert-ArabicIsInstalled($Fixture, [string]$ConfigMode) {
     if (!$config.Contains("fullscreen = true")) {
         throw "The helper did not preserve unrelated settings in $configPath. Contents: $config"
     }
+
+    if (!(Test-Path -LiteralPath $Fixture.LocaleCatalogDestination -PathType Leaf)) {
+        throw "Luanti language-tag catalog was not installed at $($Fixture.LocaleCatalogDestination)"
+    }
+    $sourceCatalog = [Convert]::ToBase64String([IO.File]::ReadAllBytes($Fixture.LocaleCatalogSource))
+    $installedCatalog = [Convert]::ToBase64String([IO.File]::ReadAllBytes($Fixture.LocaleCatalogDestination))
+    if ($sourceCatalog -cne $installedCatalog) {
+        throw "Installed Luanti language-tag catalog differs from the package catalog."
+    }
 }
 
 try {
@@ -212,7 +231,7 @@ try {
     [void](Invoke-Helper $rootFixture $rootFixture.Root "env")
     Assert-ArabicIsInstalled $rootFixture "env"
 
-    Write-Host "PASS: Windows PowerShell 5.1 tests succeeded (root/builtin/bin, malformed arbe repair, RUN_IN_PLACE install-root config, APPDATA/LUANTI_USER_PATH lookup, preservation, and idempotency)." -ForegroundColor Green
+    Write-Host "PASS: Windows PowerShell 5.1 tests succeeded (root/builtin/bin selection, malformed arbe repair, RUN_IN_PLACE config, MO language-code bridge installation, preservation, and idempotency)." -ForegroundColor Green
 }
 finally {
     if (Test-Path -LiteralPath $testRoot) {
