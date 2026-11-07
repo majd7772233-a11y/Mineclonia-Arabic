@@ -1,0 +1,48 @@
+# Arabic translation for Mineclonia component: mcl_composters
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_composters/locale/template.pot
+# Source template blob SHA: 8cbbd561566ba966b791a2120b0b592d69b1eb0c
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_composters/init.lua:12 mods/ITEMS/mcl_composters/init.lua:260
+#: mods/ITEMS/mcl_composters/init.lua:312
+msgid "Composter"
+msgstr "حاوية التسميد"
+
+#: mods/ITEMS/mcl_composters/init.lua:15
+msgid "Composters can convert various organic items into bonemeal."
+msgstr "تحوّل حاويات التسميد مختلف العناصر العضوية إلى مسحوق العظام."
+
+#: mods/ITEMS/mcl_composters/init.lua:18
+msgid ""
+"Use organic items on the composter to fill it with layers of compost. Every "
+"time an item is put in the composter, there is a chance that the composter "
+"adds another layer of compost.  Some items have a bigger chance of adding an "
+"extra layer than other items.  After filling up with 7 layers of compost, "
+"the composter is full.  After a delay of approximately one second the "
+"composter becomes ready and bone meal can be retrieved from it. Right-"
+"clicking the composter takes out the bone meal empties the composter."
+msgstr "استخدم العناصر العضوية على حاوية التسميد لملئها بطبقات من السماد. في كل مرة تضيف فيها عنصراً، هناك احتمال أن تكتسب الحاوية طبقة سماد إضافية. وتكون فرصة إضافة طبقة أكبر لبعض العناصر مقارنةً بغيرها. بعد امتلاء الحاوية بسبع طبقات من السماد، تصبح ممتلئة. وبعد تأخير يقارب ثانية واحدة، تصبح جاهزة، ويمكنك أخذ مسحوق العظام منها. انقر بزر الفأرة الأيمن على حاوية التسميد لأخذ مسحوق العظام وإفراغها."
+
+#: mods/ITEMS/mcl_composters/init.lua:226
+msgid "Converts organic items into bonemeal"
+msgstr "تحوّل العناصر العضوية إلى مسحوق العظام"
+
+#: mods/ITEMS/mcl_composters/init.lua:260
+msgid "filled"
+msgstr "ممتلئ"
+
+#: mods/ITEMS/mcl_composters/init.lua:312
+msgid "ready for harvest"
+msgstr "جاهز للحصاد"
