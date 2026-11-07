@@ -1,0 +1,41 @@
+# Arabic translation draft for Mineclonia component: mcl_mobspawners
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_mobspawners/locale/template.pot
+# Source template blob SHA: 37cd730d07d1bb40414edf6dbc4115e3ebce424b
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_mobspawners/init.lua:225
+msgid "Mob Spawner"
+msgstr "مولّد الكائنات"
+
+#: mods/ITEMS/mcl_mobspawners/init.lua:226
+msgid "Makes mobs appear"
+msgstr "يستدعي الكائنات"
+
+#: mods/ITEMS/mcl_mobspawners/init.lua:227
+msgid ""
+"A mob spawner regularily causes mobs to appear around it while a player is "
+"nearby. Some mob spawners are disabled while in light."
+msgstr "يستدعي مولّد الكائنات كائنات في محيطه بانتظام ما دام أحد اللاعبين قريباً منه. وتتعطل بعض مولّدات الكائنات عند وجود الضوء."
+
+#: mods/ITEMS/mcl_mobspawners/init.lua:228
+msgid ""
+"If you have a spawn egg, you can use it to change the mob to spawn. Just "
+"place the item on the mob spawner. Player-set mob spawners always spawn mobs "
+"regardless of the light level."
+msgstr "إذا كانت لديك بيضة استدعاء، فيمكنك استخدامها لتغيير الكائن الذي يستدعيه المولّد. ما عليك سوى وضع البيضة على مولّد الكائنات. أما المولّدات التي يضبطها اللاعب فتستدعي الكائنات دائماً بصرف النظر عن مستوى الإضاءة."
+
+#: mods/ITEMS/mcl_mobspawners/init.lua:273
+msgid "You need the “maphack” privilege to change the mob spawner."
+msgstr "تحتاج إلى صلاحية “maphack” لتغيير مولّد الكائنات."
