@@ -86,75 +86,75 @@ msgstr "قاعدة سوداء مع ركن علوي أيسر من جهة حامل
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:7
 msgid "Black Bend"
-msgstr "شريط مائل سوداء"
+msgstr "شريط مائل أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:8
 msgid "Black Bend Sinister"
-msgstr "شريط مائل عكسي سوداء"
+msgstr "شريط مائل عكسي أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:9
 msgid "Black Bordure"
-msgstr "إطار سوداء"
+msgstr "إطار أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:10
 msgid "Black Bordure Indented"
-msgstr "إطار سوداء مسنن"
+msgstr "إطار أسود مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:11
 msgid "Black Bricks"
-msgstr "نقش طوب سوداء"
+msgstr "نقش طوب أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:12
 msgid "Black Chevron"
-msgstr "نقش شيفرون سوداء"
+msgstr "نقش شيفرون أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:13
 msgid "Black Chevron Inverted"
-msgstr "نقش شيفرون سوداء مقلوب"
+msgstr "نقش شيفرون أسود مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:14
 msgid "Black Chief"
-msgstr "شريط علوي سوداء"
+msgstr "شريط علوي أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:15
 msgid "Black Chief Dexter Canton"
-msgstr "شريط علوي سوداء مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي أسود مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:16
 msgid "Black Chief Indented"
-msgstr "شريط علوي سوداء مسنن"
+msgstr "شريط علوي أسود مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:17
 msgid "Black Chief Sinister Canton"
-msgstr "شريط علوي سوداء مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي أسود مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:18
 msgid "Black Creeper Charge"
-msgstr "شعار كريبر سوداء"
+msgstr "شعار كريبر أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:19
 msgid "Black Cross"
-msgstr "صليب سوداء"
+msgstr "صليب أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:20
 msgid "Black Fess"
-msgstr "شريط أفقي وسطي سوداء"
+msgstr "شريط أفقي وسطي أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:21
 msgid "Black Flow"
-msgstr "نقش التدفق سوداء"
+msgstr "نمط التدفق أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:22
 msgid "Black Flower Charge"
-msgstr "شعار زهرة سوداء"
+msgstr "شعار زهرة أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:23
 msgid "Black Globe Charge"
-msgstr "شعار الكرة الأرضية سوداء"
+msgstr "شعار الكرة الأرضية أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:24
 msgid "Black Gradient"
-msgstr "تدرج سوداء"
+msgstr "تدرج أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:25
 msgid "Black Guster"
@@ -162,19 +162,19 @@ msgstr "دوامة رياح سوداء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:26
 msgid "Black Lozenge"
-msgstr "معين سوداء"
+msgstr "معين أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:27
 msgid "Black Pale"
-msgstr "شريط عمودي وسطي سوداء"
+msgstr "شريط عمودي وسطي أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:28
 msgid "Black Pale Dexter"
-msgstr "شريط عمودي سوداء منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي أسود منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:29
 msgid "Black Pale Sinister"
-msgstr "شريط عمودي سوداء منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي أسود منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:30
 msgid "Black Paly"
@@ -182,39 +182,39 @@ msgstr "خطوط عمودية سوداء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:31
 msgid "Black Per Bend"
-msgstr "تقسيم قطري سوداء"
+msgstr "تقسيم قطري أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:32
 msgid "Black Per Bend Inverted"
-msgstr "تقسيم قطري سوداء مقلوب"
+msgstr "تقسيم قطري أسود مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:33
 msgid "Black Per Bend Sinister"
-msgstr "تقسيم قطري عكسي سوداء"
+msgstr "تقسيم قطري عكسي أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:34
 msgid "Black Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي سوداء مقلوب"
+msgstr "تقسيم قطري عكسي أسود مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:35
 msgid "Black Per Fess"
-msgstr "تقسيم أفقي سوداء"
+msgstr "تقسيم أفقي أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:36
 msgid "Black Per Fess Inverted"
-msgstr "تقسيم أفقي سوداء مقلوب"
+msgstr "تقسيم أفقي أسود مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:37
 msgid "Black Per Pale"
-msgstr "تقسيم عمودي سوداء"
+msgstr "تقسيم عمودي أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:38
 msgid "Black Per Pale Inverted"
-msgstr "تقسيم عمودي سوداء مقلوب"
+msgstr "تقسيم عمودي أسود مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:39
 msgid "Black Piglin Charge"
-msgstr "شعار بيغلين سوداء"
+msgstr "شعار بيغلين أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:40
 msgid "Black Roundel"
@@ -222,15 +222,15 @@ msgstr "دائرة سوداء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:41
 msgid "Black Saltire"
-msgstr "صليب قطري سوداء"
+msgstr "صليب قطري أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:42
 msgid "Black Skull Charge"
-msgstr "شعار جمجمة سوداء"
+msgstr "شعار جمجمة أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:43
 msgid "Black Thing Charge"
-msgstr "شعار غامض سوداء"
+msgstr "شعار غامض أسود"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:44
 msgid "Blue Banner"
@@ -258,75 +258,75 @@ msgstr "قاعدة زرقاء مع ركن علوي أيسر من جهة حامل
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:50
 msgid "Blue Bend"
-msgstr "شريط مائل زرقاء"
+msgstr "شريط مائل أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:51
 msgid "Blue Bend Sinister"
-msgstr "شريط مائل عكسي زرقاء"
+msgstr "شريط مائل عكسي أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:52
 msgid "Blue Bordure"
-msgstr "إطار زرقاء"
+msgstr "إطار أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:53
 msgid "Blue Bordure Indented"
-msgstr "إطار زرقاء مسنن"
+msgstr "إطار أزرق مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:54
 msgid "Blue Bricks"
-msgstr "نقش طوب زرقاء"
+msgstr "نقش طوب أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:55
 msgid "Blue Chevron"
-msgstr "نقش شيفرون زرقاء"
+msgstr "نقش شيفرون أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:56
 msgid "Blue Chevron Inverted"
-msgstr "نقش شيفرون زرقاء مقلوب"
+msgstr "نقش شيفرون أزرق مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:57
 msgid "Blue Chief"
-msgstr "شريط علوي زرقاء"
+msgstr "شريط علوي أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:58
 msgid "Blue Chief Dexter Canton"
-msgstr "شريط علوي زرقاء مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي أزرق مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:59
 msgid "Blue Chief Indented"
-msgstr "شريط علوي زرقاء مسنن"
+msgstr "شريط علوي أزرق مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:60
 msgid "Blue Chief Sinister Canton"
-msgstr "شريط علوي زرقاء مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي أزرق مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:61
 msgid "Blue Creeper Charge"
-msgstr "شعار كريبر زرقاء"
+msgstr "شعار كريبر أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:62
 msgid "Blue Cross"
-msgstr "صليب زرقاء"
+msgstr "صليب أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:63
 msgid "Blue Fess"
-msgstr "شريط أفقي وسطي زرقاء"
+msgstr "شريط أفقي وسطي أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:64
 msgid "Blue Flow"
-msgstr "نقش التدفق زرقاء"
+msgstr "نمط التدفق أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:65
 msgid "Blue Flower Charge"
-msgstr "شعار زهرة زرقاء"
+msgstr "شعار زهرة أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:66
 msgid "Blue Globe Charge"
-msgstr "شعار الكرة الأرضية زرقاء"
+msgstr "شعار الكرة الأرضية أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:67
 msgid "Blue Gradient"
-msgstr "تدرج زرقاء"
+msgstr "تدرج أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:68
 msgid "Blue Guster"
@@ -334,19 +334,19 @@ msgstr "دوامة رياح زرقاء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:69
 msgid "Blue Lozenge"
-msgstr "معين زرقاء"
+msgstr "معين أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:70
 msgid "Blue Pale"
-msgstr "شريط عمودي وسطي زرقاء"
+msgstr "شريط عمودي وسطي أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:71
 msgid "Blue Pale Dexter"
-msgstr "شريط عمودي زرقاء منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي أزرق منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:72
 msgid "Blue Pale Sinister"
-msgstr "شريط عمودي زرقاء منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي أزرق منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:73
 msgid "Blue Paly"
@@ -354,39 +354,39 @@ msgstr "خطوط عمودية زرقاء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:74
 msgid "Blue Per Bend"
-msgstr "تقسيم قطري زرقاء"
+msgstr "تقسيم قطري أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:75
 msgid "Blue Per Bend Inverted"
-msgstr "تقسيم قطري زرقاء مقلوب"
+msgstr "تقسيم قطري أزرق مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:76
 msgid "Blue Per Bend Sinister"
-msgstr "تقسيم قطري عكسي زرقاء"
+msgstr "تقسيم قطري عكسي أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:77
 msgid "Blue Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي زرقاء مقلوب"
+msgstr "تقسيم قطري عكسي أزرق مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:78
 msgid "Blue Per Fess"
-msgstr "تقسيم أفقي زرقاء"
+msgstr "تقسيم أفقي أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:79
 msgid "Blue Per Fess Inverted"
-msgstr "تقسيم أفقي زرقاء مقلوب"
+msgstr "تقسيم أفقي أزرق مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:80
 msgid "Blue Per Pale"
-msgstr "تقسيم عمودي زرقاء"
+msgstr "تقسيم عمودي أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:81
 msgid "Blue Per Pale Inverted"
-msgstr "تقسيم عمودي زرقاء مقلوب"
+msgstr "تقسيم عمودي أزرق مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:82
 msgid "Blue Piglin Charge"
-msgstr "شعار بيغلين زرقاء"
+msgstr "شعار بيغلين أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:83
 msgid "Blue Roundel"
@@ -394,15 +394,15 @@ msgstr "دائرة زرقاء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:84
 msgid "Blue Saltire"
-msgstr "صليب قطري زرقاء"
+msgstr "صليب قطري أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:85
 msgid "Blue Skull Charge"
-msgstr "شعار جمجمة زرقاء"
+msgstr "شعار جمجمة أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:86
 msgid "Blue Thing Charge"
-msgstr "شعار غامض زرقاء"
+msgstr "شعار غامض أزرق"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:87
 msgid "Bricks Banner Pattern"
@@ -434,75 +434,75 @@ msgstr "قاعدة بنية مع ركن علوي أيسر من جهة حامل �
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:94
 msgid "Brown Bend"
-msgstr "شريط مائل بنية"
+msgstr "شريط مائل بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:95
 msgid "Brown Bend Sinister"
-msgstr "شريط مائل عكسي بنية"
+msgstr "شريط مائل عكسي بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:96
 msgid "Brown Bordure"
-msgstr "إطار بنية"
+msgstr "إطار بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:97
 msgid "Brown Bordure Indented"
-msgstr "إطار بنية مسنن"
+msgstr "إطار بني مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:98
 msgid "Brown Bricks"
-msgstr "نقش طوب بنية"
+msgstr "نقش طوب بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:99
 msgid "Brown Chevron"
-msgstr "نقش شيفرون بنية"
+msgstr "نقش شيفرون بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:100
 msgid "Brown Chevron Inverted"
-msgstr "نقش شيفرون بنية مقلوب"
+msgstr "نقش شيفرون بني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:101
 msgid "Brown Chief"
-msgstr "شريط علوي بنية"
+msgstr "شريط علوي بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:102
 msgid "Brown Chief Dexter Canton"
-msgstr "شريط علوي بنية مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي بني مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:103
 msgid "Brown Chief Indented"
-msgstr "شريط علوي بنية مسنن"
+msgstr "شريط علوي بني مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:104
 msgid "Brown Chief Sinister Canton"
-msgstr "شريط علوي بنية مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي بني مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:105
 msgid "Brown Creeper Charge"
-msgstr "شعار كريبر بنية"
+msgstr "شعار كريبر بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:106
 msgid "Brown Cross"
-msgstr "صليب بنية"
+msgstr "صليب بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:107
 msgid "Brown Fess"
-msgstr "شريط أفقي وسطي بنية"
+msgstr "شريط أفقي وسطي بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:108
 msgid "Brown Flow"
-msgstr "نقش التدفق بنية"
+msgstr "نمط التدفق بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:109
 msgid "Brown Flower Charge"
-msgstr "شعار زهرة بنية"
+msgstr "شعار زهرة بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:110
 msgid "Brown Globe Charge"
-msgstr "شعار الكرة الأرضية بنية"
+msgstr "شعار الكرة الأرضية بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:111
 msgid "Brown Gradient"
-msgstr "تدرج بنية"
+msgstr "تدرج بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:112
 msgid "Brown Guster"
@@ -510,19 +510,19 @@ msgstr "دوامة رياح بنية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:113
 msgid "Brown Lozenge"
-msgstr "معين بنية"
+msgstr "معين بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:114
 msgid "Brown Pale"
-msgstr "شريط عمودي وسطي بنية"
+msgstr "شريط عمودي وسطي بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:115
 msgid "Brown Pale Dexter"
-msgstr "شريط عمودي بنية منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي بني منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:116
 msgid "Brown Pale Sinister"
-msgstr "شريط عمودي بنية منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي بني منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:117
 msgid "Brown Paly"
@@ -530,39 +530,39 @@ msgstr "خطوط عمودية بنية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:118
 msgid "Brown Per Bend"
-msgstr "تقسيم قطري بنية"
+msgstr "تقسيم قطري بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:119
 msgid "Brown Per Bend Inverted"
-msgstr "تقسيم قطري بنية مقلوب"
+msgstr "تقسيم قطري بني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:120
 msgid "Brown Per Bend Sinister"
-msgstr "تقسيم قطري عكسي بنية"
+msgstr "تقسيم قطري عكسي بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:121
 msgid "Brown Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي بنية مقلوب"
+msgstr "تقسيم قطري عكسي بني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:122
 msgid "Brown Per Fess"
-msgstr "تقسيم أفقي بنية"
+msgstr "تقسيم أفقي بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:123
 msgid "Brown Per Fess Inverted"
-msgstr "تقسيم أفقي بنية مقلوب"
+msgstr "تقسيم أفقي بني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:124
 msgid "Brown Per Pale"
-msgstr "تقسيم عمودي بنية"
+msgstr "تقسيم عمودي بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:125
 msgid "Brown Per Pale Inverted"
-msgstr "تقسيم عمودي بنية مقلوب"
+msgstr "تقسيم عمودي بني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:126
 msgid "Brown Piglin Charge"
-msgstr "شعار بيغلين بنية"
+msgstr "شعار بيغلين بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:127
 msgid "Brown Roundel"
@@ -570,15 +570,15 @@ msgstr "دائرة بنية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:128
 msgid "Brown Saltire"
-msgstr "صليب قطري بنية"
+msgstr "صليب قطري بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:129
 msgid "Brown Skull Charge"
-msgstr "شعار جمجمة بنية"
+msgstr "شعار جمجمة بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:130
 msgid "Brown Thing Charge"
-msgstr "شعار غامض بنية"
+msgstr "شعار غامض بني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:131
 msgid "Creeper Banner Pattern"
@@ -614,75 +614,75 @@ msgstr "قاعدة سماوية مع ركن علوي أيسر من جهة حام
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:139
 msgid "Cyan Bend"
-msgstr "شريط مائل سماوية"
+msgstr "شريط مائل سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:140
 msgid "Cyan Bend Sinister"
-msgstr "شريط مائل عكسي سماوية"
+msgstr "شريط مائل عكسي سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:141
 msgid "Cyan Bordure"
-msgstr "إطار سماوية"
+msgstr "إطار سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:142
 msgid "Cyan Bordure Indented"
-msgstr "إطار سماوية مسنن"
+msgstr "إطار سماوي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:143
 msgid "Cyan Bricks"
-msgstr "نقش طوب سماوية"
+msgstr "نقش طوب سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:144
 msgid "Cyan Chevron"
-msgstr "نقش شيفرون سماوية"
+msgstr "نقش شيفرون سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:145
 msgid "Cyan Chevron Inverted"
-msgstr "نقش شيفرون سماوية مقلوب"
+msgstr "نقش شيفرون سماوي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:146
 msgid "Cyan Chief"
-msgstr "شريط علوي سماوية"
+msgstr "شريط علوي سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:147
 msgid "Cyan Chief Dexter Canton"
-msgstr "شريط علوي سماوية مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي سماوي مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:148
 msgid "Cyan Chief Indented"
-msgstr "شريط علوي سماوية مسنن"
+msgstr "شريط علوي سماوي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:149
 msgid "Cyan Chief Sinister Canton"
-msgstr "شريط علوي سماوية مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي سماوي مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:150
 msgid "Cyan Creeper Charge"
-msgstr "شعار كريبر سماوية"
+msgstr "شعار كريبر سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:151
 msgid "Cyan Cross"
-msgstr "صليب سماوية"
+msgstr "صليب سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:152
 msgid "Cyan Fess"
-msgstr "شريط أفقي وسطي سماوية"
+msgstr "شريط أفقي وسطي سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:153
 msgid "Cyan Flow"
-msgstr "نقش التدفق سماوية"
+msgstr "نمط التدفق سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:154
 msgid "Cyan Flower Charge"
-msgstr "شعار زهرة سماوية"
+msgstr "شعار زهرة سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:155
 msgid "Cyan Globe Charge"
-msgstr "شعار الكرة الأرضية سماوية"
+msgstr "شعار الكرة الأرضية سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:156
 msgid "Cyan Gradient"
-msgstr "تدرج سماوية"
+msgstr "تدرج سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:157
 msgid "Cyan Guster"
@@ -690,19 +690,19 @@ msgstr "دوامة رياح سماوية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:158
 msgid "Cyan Lozenge"
-msgstr "معين سماوية"
+msgstr "معين سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:159
 msgid "Cyan Pale"
-msgstr "شريط عمودي وسطي سماوية"
+msgstr "شريط عمودي وسطي سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:160
 msgid "Cyan Pale Dexter"
-msgstr "شريط عمودي سماوية منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي سماوي منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:161
 msgid "Cyan Pale Sinister"
-msgstr "شريط عمودي سماوية منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي سماوي منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:162
 msgid "Cyan Paly"
@@ -710,39 +710,39 @@ msgstr "خطوط عمودية سماوية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:163
 msgid "Cyan Per Bend"
-msgstr "تقسيم قطري سماوية"
+msgstr "تقسيم قطري سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:164
 msgid "Cyan Per Bend Inverted"
-msgstr "تقسيم قطري سماوية مقلوب"
+msgstr "تقسيم قطري سماوي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:165
 msgid "Cyan Per Bend Sinister"
-msgstr "تقسيم قطري عكسي سماوية"
+msgstr "تقسيم قطري عكسي سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:166
 msgid "Cyan Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي سماوية مقلوب"
+msgstr "تقسيم قطري عكسي سماوي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:167
 msgid "Cyan Per Fess"
-msgstr "تقسيم أفقي سماوية"
+msgstr "تقسيم أفقي سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:168
 msgid "Cyan Per Fess Inverted"
-msgstr "تقسيم أفقي سماوية مقلوب"
+msgstr "تقسيم أفقي سماوي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:169
 msgid "Cyan Per Pale"
-msgstr "تقسيم عمودي سماوية"
+msgstr "تقسيم عمودي سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:170
 msgid "Cyan Per Pale Inverted"
-msgstr "تقسيم عمودي سماوية مقلوب"
+msgstr "تقسيم عمودي سماوي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:171
 msgid "Cyan Piglin Charge"
-msgstr "شعار بيغلين سماوية"
+msgstr "شعار بيغلين سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:172
 msgid "Cyan Roundel"
@@ -750,15 +750,15 @@ msgstr "دائرة سماوية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:173
 msgid "Cyan Saltire"
-msgstr "صليب قطري سماوية"
+msgstr "صليب قطري سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:174
 msgid "Cyan Skull Charge"
-msgstr "شعار جمجمة سماوية"
+msgstr "شعار جمجمة سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:175
 msgid "Cyan Thing Charge"
-msgstr "شعار غامض سماوية"
+msgstr "شعار غامض سماوي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:176
 msgid "Flow Banner Pattern"
@@ -798,75 +798,75 @@ msgstr "قاعدة خضراء مع ركن علوي أيسر من جهة حامل
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:185
 msgid "Green Bend"
-msgstr "شريط مائل خضراء"
+msgstr "شريط مائل أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:186
 msgid "Green Bend Sinister"
-msgstr "شريط مائل عكسي خضراء"
+msgstr "شريط مائل عكسي أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:187
 msgid "Green Bordure"
-msgstr "إطار خضراء"
+msgstr "إطار أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:188
 msgid "Green Bordure Indented"
-msgstr "إطار خضراء مسنن"
+msgstr "إطار أخضر مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:189
 msgid "Green Bricks"
-msgstr "نقش طوب خضراء"
+msgstr "نقش طوب أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:190
 msgid "Green Chevron"
-msgstr "نقش شيفرون خضراء"
+msgstr "نقش شيفرون أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:191
 msgid "Green Chevron Inverted"
-msgstr "نقش شيفرون خضراء مقلوب"
+msgstr "نقش شيفرون أخضر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:192
 msgid "Green Chief"
-msgstr "شريط علوي خضراء"
+msgstr "شريط علوي أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:193
 msgid "Green Chief Dexter Canton"
-msgstr "شريط علوي خضراء مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي أخضر مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:194
 msgid "Green Chief Indented"
-msgstr "شريط علوي خضراء مسنن"
+msgstr "شريط علوي أخضر مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:195
 msgid "Green Chief Sinister Canton"
-msgstr "شريط علوي خضراء مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي أخضر مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:196
 msgid "Green Creeper Charge"
-msgstr "شعار كريبر خضراء"
+msgstr "شعار كريبر أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:197
 msgid "Green Cross"
-msgstr "صليب خضراء"
+msgstr "صليب أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:198
 msgid "Green Fess"
-msgstr "شريط أفقي وسطي خضراء"
+msgstr "شريط أفقي وسطي أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:199
 msgid "Green Flow"
-msgstr "نقش التدفق خضراء"
+msgstr "نمط التدفق أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:200
 msgid "Green Flower Charge"
-msgstr "شعار زهرة خضراء"
+msgstr "شعار زهرة أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:201
 msgid "Green Globe Charge"
-msgstr "شعار الكرة الأرضية خضراء"
+msgstr "شعار الكرة الأرضية أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:202
 msgid "Green Gradient"
-msgstr "تدرج خضراء"
+msgstr "تدرج أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:203
 msgid "Green Guster"
@@ -874,19 +874,19 @@ msgstr "دوامة رياح خضراء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:204
 msgid "Green Lozenge"
-msgstr "معين خضراء"
+msgstr "معين أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:205
 msgid "Green Pale"
-msgstr "شريط عمودي وسطي خضراء"
+msgstr "شريط عمودي وسطي أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:206
 msgid "Green Pale Dexter"
-msgstr "شريط عمودي خضراء منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي أخضر منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:207
 msgid "Green Pale Sinister"
-msgstr "شريط عمودي خضراء منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي أخضر منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:208
 msgid "Green Paly"
@@ -894,39 +894,39 @@ msgstr "خطوط عمودية خضراء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:209
 msgid "Green Per Bend"
-msgstr "تقسيم قطري خضراء"
+msgstr "تقسيم قطري أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:210
 msgid "Green Per Bend Inverted"
-msgstr "تقسيم قطري خضراء مقلوب"
+msgstr "تقسيم قطري أخضر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:211
 msgid "Green Per Bend Sinister"
-msgstr "تقسيم قطري عكسي خضراء"
+msgstr "تقسيم قطري عكسي أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:212
 msgid "Green Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي خضراء مقلوب"
+msgstr "تقسيم قطري عكسي أخضر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:213
 msgid "Green Per Fess"
-msgstr "تقسيم أفقي خضراء"
+msgstr "تقسيم أفقي أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:214
 msgid "Green Per Fess Inverted"
-msgstr "تقسيم أفقي خضراء مقلوب"
+msgstr "تقسيم أفقي أخضر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:215
 msgid "Green Per Pale"
-msgstr "تقسيم عمودي خضراء"
+msgstr "تقسيم عمودي أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:216
 msgid "Green Per Pale Inverted"
-msgstr "تقسيم عمودي خضراء مقلوب"
+msgstr "تقسيم عمودي أخضر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:217
 msgid "Green Piglin Charge"
-msgstr "شعار بيغلين خضراء"
+msgstr "شعار بيغلين أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:218
 msgid "Green Roundel"
@@ -934,15 +934,15 @@ msgstr "دائرة خضراء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:219
 msgid "Green Saltire"
-msgstr "صليب قطري خضراء"
+msgstr "صليب قطري أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:220
 msgid "Green Skull Charge"
-msgstr "شعار جمجمة خضراء"
+msgstr "شعار جمجمة أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:221
 msgid "Green Thing Charge"
-msgstr "شعار غامض خضراء"
+msgstr "شعار غامض أخضر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:222
 msgid "Grey Banner"
@@ -970,75 +970,75 @@ msgstr "قاعدة رمادية مع ركن علوي أيسر من جهة حام
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:228
 msgid "Grey Bend"
-msgstr "شريط مائل رمادية"
+msgstr "شريط مائل رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:229
 msgid "Grey Bend Sinister"
-msgstr "شريط مائل عكسي رمادية"
+msgstr "شريط مائل عكسي رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:230
 msgid "Grey Bordure"
-msgstr "إطار رمادية"
+msgstr "إطار رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:231
 msgid "Grey Bordure Indented"
-msgstr "إطار رمادية مسنن"
+msgstr "إطار رمادي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:232
 msgid "Grey Bricks"
-msgstr "نقش طوب رمادية"
+msgstr "نقش طوب رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:233
 msgid "Grey Chevron"
-msgstr "نقش شيفرون رمادية"
+msgstr "نقش شيفرون رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:234
 msgid "Grey Chevron Inverted"
-msgstr "نقش شيفرون رمادية مقلوب"
+msgstr "نقش شيفرون رمادي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:235
 msgid "Grey Chief"
-msgstr "شريط علوي رمادية"
+msgstr "شريط علوي رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:236
 msgid "Grey Chief Dexter Canton"
-msgstr "شريط علوي رمادية مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي رمادي مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:237
 msgid "Grey Chief Indented"
-msgstr "شريط علوي رمادية مسنن"
+msgstr "شريط علوي رمادي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:238
 msgid "Grey Chief Sinister Canton"
-msgstr "شريط علوي رمادية مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي رمادي مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:239
 msgid "Grey Creeper Charge"
-msgstr "شعار كريبر رمادية"
+msgstr "شعار كريبر رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:240
 msgid "Grey Cross"
-msgstr "صليب رمادية"
+msgstr "صليب رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:241
 msgid "Grey Fess"
-msgstr "شريط أفقي وسطي رمادية"
+msgstr "شريط أفقي وسطي رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:242
 msgid "Grey Flow"
-msgstr "نقش التدفق رمادية"
+msgstr "نمط التدفق رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:243
 msgid "Grey Flower Charge"
-msgstr "شعار زهرة رمادية"
+msgstr "شعار زهرة رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:244
 msgid "Grey Globe Charge"
-msgstr "شعار الكرة الأرضية رمادية"
+msgstr "شعار الكرة الأرضية رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:245
 msgid "Grey Gradient"
-msgstr "تدرج رمادية"
+msgstr "تدرج رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:246
 msgid "Grey Guster"
@@ -1046,19 +1046,19 @@ msgstr "دوامة رياح رمادية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:247
 msgid "Grey Lozenge"
-msgstr "معين رمادية"
+msgstr "معين رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:248
 msgid "Grey Pale"
-msgstr "شريط عمودي وسطي رمادية"
+msgstr "شريط عمودي وسطي رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:249
 msgid "Grey Pale Dexter"
-msgstr "شريط عمودي رمادية منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي رمادي منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:250
 msgid "Grey Pale Sinister"
-msgstr "شريط عمودي رمادية منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي رمادي منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:251
 msgid "Grey Paly"
@@ -1066,39 +1066,39 @@ msgstr "خطوط عمودية رمادية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:252
 msgid "Grey Per Bend"
-msgstr "تقسيم قطري رمادية"
+msgstr "تقسيم قطري رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:253
 msgid "Grey Per Bend Inverted"
-msgstr "تقسيم قطري رمادية مقلوب"
+msgstr "تقسيم قطري رمادي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:254
 msgid "Grey Per Bend Sinister"
-msgstr "تقسيم قطري عكسي رمادية"
+msgstr "تقسيم قطري عكسي رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:255
 msgid "Grey Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي رمادية مقلوب"
+msgstr "تقسيم قطري عكسي رمادي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:256
 msgid "Grey Per Fess"
-msgstr "تقسيم أفقي رمادية"
+msgstr "تقسيم أفقي رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:257
 msgid "Grey Per Fess Inverted"
-msgstr "تقسيم أفقي رمادية مقلوب"
+msgstr "تقسيم أفقي رمادي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:258
 msgid "Grey Per Pale"
-msgstr "تقسيم عمودي رمادية"
+msgstr "تقسيم عمودي رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:259
 msgid "Grey Per Pale Inverted"
-msgstr "تقسيم عمودي رمادية مقلوب"
+msgstr "تقسيم عمودي رمادي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:260
 msgid "Grey Piglin Charge"
-msgstr "شعار بيغلين رمادية"
+msgstr "شعار بيغلين رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:261
 msgid "Grey Roundel"
@@ -1106,15 +1106,15 @@ msgstr "دائرة رمادية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:262
 msgid "Grey Saltire"
-msgstr "صليب قطري رمادية"
+msgstr "صليب قطري رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:263
 msgid "Grey Skull Charge"
-msgstr "شعار جمجمة رمادية"
+msgstr "شعار جمجمة رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:264
 msgid "Grey Thing Charge"
-msgstr "شعار غامض رمادية"
+msgstr "شعار غامض رمادي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:265
 msgid "Guster Banner Pattern"
@@ -1146,75 +1146,75 @@ msgstr "قاعدة زرقاء فاتحة مع ركن علوي أيسر من جه
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:272
 msgid "Light Blue Bend"
-msgstr "شريط مائل زرقاء فاتحة"
+msgstr "شريط مائل أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:273
 msgid "Light Blue Bend Sinister"
-msgstr "شريط مائل عكسي زرقاء فاتحة"
+msgstr "شريط مائل عكسي أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:274
 msgid "Light Blue Bordure"
-msgstr "إطار زرقاء فاتحة"
+msgstr "إطار أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:275
 msgid "Light Blue Bordure Indented"
-msgstr "إطار زرقاء فاتحة مسنن"
+msgstr "إطار أزرق فاتح مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:276
 msgid "Light Blue Bricks"
-msgstr "نقش طوب زرقاء فاتحة"
+msgstr "نقش طوب أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:277
 msgid "Light Blue Chevron"
-msgstr "نقش شيفرون زرقاء فاتحة"
+msgstr "نقش شيفرون أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:278
 msgid "Light Blue Chevron Inverted"
-msgstr "نقش شيفرون زرقاء فاتحة مقلوب"
+msgstr "نقش شيفرون أزرق فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:279
 msgid "Light Blue Chief"
-msgstr "شريط علوي زرقاء فاتحة"
+msgstr "شريط علوي أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:280
 msgid "Light Blue Chief Dexter Canton"
-msgstr "شريط علوي زرقاء فاتحة مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي أزرق فاتح مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:281
 msgid "Light Blue Chief Indented"
-msgstr "شريط علوي زرقاء فاتحة مسنن"
+msgstr "شريط علوي أزرق فاتح مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:282
 msgid "Light Blue Chief Sinister Canton"
-msgstr "شريط علوي زرقاء فاتحة مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي أزرق فاتح مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:283
 msgid "Light Blue Creeper Charge"
-msgstr "شعار كريبر زرقاء فاتحة"
+msgstr "شعار كريبر أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:284
 msgid "Light Blue Cross"
-msgstr "صليب زرقاء فاتحة"
+msgstr "صليب أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:285
 msgid "Light Blue Fess"
-msgstr "شريط أفقي وسطي زرقاء فاتحة"
+msgstr "شريط أفقي وسطي أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:286
 msgid "Light Blue Flow"
-msgstr "نقش التدفق زرقاء فاتحة"
+msgstr "نمط التدفق أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:287
 msgid "Light Blue Flower Charge"
-msgstr "شعار زهرة زرقاء فاتحة"
+msgstr "شعار زهرة أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:288
 msgid "Light Blue Globe Charge"
-msgstr "شعار الكرة الأرضية زرقاء فاتحة"
+msgstr "شعار الكرة الأرضية أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:289
 msgid "Light Blue Gradient"
-msgstr "تدرج زرقاء فاتحة"
+msgstr "تدرج أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:290
 msgid "Light Blue Guster"
@@ -1222,19 +1222,19 @@ msgstr "دوامة رياح زرقاء فاتحة"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:291
 msgid "Light Blue Lozenge"
-msgstr "معين زرقاء فاتحة"
+msgstr "معين أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:292
 msgid "Light Blue Pale"
-msgstr "شريط عمودي وسطي زرقاء فاتحة"
+msgstr "شريط عمودي وسطي أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:293
 msgid "Light Blue Pale Dexter"
-msgstr "شريط عمودي زرقاء فاتحة منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي أزرق فاتح منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:294
 msgid "Light Blue Pale Sinister"
-msgstr "شريط عمودي زرقاء فاتحة منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي أزرق فاتح منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:295
 msgid "Light Blue Paly"
@@ -1242,39 +1242,39 @@ msgstr "خطوط عمودية زرقاء فاتحة"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:296
 msgid "Light Blue Per Bend"
-msgstr "تقسيم قطري زرقاء فاتحة"
+msgstr "تقسيم قطري أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:297
 msgid "Light Blue Per Bend Inverted"
-msgstr "تقسيم قطري زرقاء فاتحة مقلوب"
+msgstr "تقسيم قطري أزرق فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:298
 msgid "Light Blue Per Bend Sinister"
-msgstr "تقسيم قطري عكسي زرقاء فاتحة"
+msgstr "تقسيم قطري عكسي أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:299
 msgid "Light Blue Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي زرقاء فاتحة مقلوب"
+msgstr "تقسيم قطري عكسي أزرق فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:300
 msgid "Light Blue Per Fess"
-msgstr "تقسيم أفقي زرقاء فاتحة"
+msgstr "تقسيم أفقي أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:301
 msgid "Light Blue Per Fess Inverted"
-msgstr "تقسيم أفقي زرقاء فاتحة مقلوب"
+msgstr "تقسيم أفقي أزرق فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:302
 msgid "Light Blue Per Pale"
-msgstr "تقسيم عمودي زرقاء فاتحة"
+msgstr "تقسيم عمودي أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:303
 msgid "Light Blue Per Pale Inverted"
-msgstr "تقسيم عمودي زرقاء فاتحة مقلوب"
+msgstr "تقسيم عمودي أزرق فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:304
 msgid "Light Blue Piglin Charge"
-msgstr "شعار بيغلين زرقاء فاتحة"
+msgstr "شعار بيغلين أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:305
 msgid "Light Blue Roundel"
@@ -1282,15 +1282,15 @@ msgstr "دائرة زرقاء فاتحة"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:306
 msgid "Light Blue Saltire"
-msgstr "صليب قطري زرقاء فاتحة"
+msgstr "صليب قطري أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:307
 msgid "Light Blue Skull Charge"
-msgstr "شعار جمجمة زرقاء فاتحة"
+msgstr "شعار جمجمة أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:308
 msgid "Light Blue Thing Charge"
-msgstr "شعار غامض زرقاء فاتحة"
+msgstr "شعار غامض أزرق فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:309
 msgid "Light Grey Banner"
@@ -1318,75 +1318,75 @@ msgstr "قاعدة رمادية فاتحة مع ركن علوي أيسر من ج
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:315
 msgid "Light Grey Bend"
-msgstr "شريط مائل رمادية فاتحة"
+msgstr "شريط مائل رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:316
 msgid "Light Grey Bend Sinister"
-msgstr "شريط مائل عكسي رمادية فاتحة"
+msgstr "شريط مائل عكسي رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:317
 msgid "Light Grey Bordure"
-msgstr "إطار رمادية فاتحة"
+msgstr "إطار رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:318
 msgid "Light Grey Bordure Indented"
-msgstr "إطار رمادية فاتحة مسنن"
+msgstr "إطار رمادي فاتح مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:319
 msgid "Light Grey Bricks"
-msgstr "نقش طوب رمادية فاتحة"
+msgstr "نقش طوب رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:320
 msgid "Light Grey Chevron"
-msgstr "نقش شيفرون رمادية فاتحة"
+msgstr "نقش شيفرون رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:321
 msgid "Light Grey Chevron Inverted"
-msgstr "نقش شيفرون رمادية فاتحة مقلوب"
+msgstr "نقش شيفرون رمادي فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:322
 msgid "Light Grey Chief"
-msgstr "شريط علوي رمادية فاتحة"
+msgstr "شريط علوي رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:323
 msgid "Light Grey Chief Dexter Canton"
-msgstr "شريط علوي رمادية فاتحة مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي رمادي فاتح مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:324
 msgid "Light Grey Chief Indented"
-msgstr "شريط علوي رمادية فاتحة مسنن"
+msgstr "شريط علوي رمادي فاتح مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:325
 msgid "Light Grey Chief Sinister Canton"
-msgstr "شريط علوي رمادية فاتحة مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي رمادي فاتح مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:326
 msgid "Light Grey Creeper Charge"
-msgstr "شعار كريبر رمادية فاتحة"
+msgstr "شعار كريبر رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:327
 msgid "Light Grey Cross"
-msgstr "صليب رمادية فاتحة"
+msgstr "صليب رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:328
 msgid "Light Grey Fess"
-msgstr "شريط أفقي وسطي رمادية فاتحة"
+msgstr "شريط أفقي وسطي رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:329
 msgid "Light Grey Flow"
-msgstr "نقش التدفق رمادية فاتحة"
+msgstr "نمط التدفق رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:330
 msgid "Light Grey Flower Charge"
-msgstr "شعار زهرة رمادية فاتحة"
+msgstr "شعار زهرة رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:331
 msgid "Light Grey Globe Charge"
-msgstr "شعار الكرة الأرضية رمادية فاتحة"
+msgstr "شعار الكرة الأرضية رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:332
 msgid "Light Grey Gradient"
-msgstr "تدرج رمادية فاتحة"
+msgstr "تدرج رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:333
 msgid "Light Grey Guster"
@@ -1394,19 +1394,19 @@ msgstr "دوامة رياح رمادية فاتحة"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:334
 msgid "Light Grey Lozenge"
-msgstr "معين رمادية فاتحة"
+msgstr "معين رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:335
 msgid "Light Grey Pale"
-msgstr "شريط عمودي وسطي رمادية فاتحة"
+msgstr "شريط عمودي وسطي رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:336
 msgid "Light Grey Pale Dexter"
-msgstr "شريط عمودي رمادية فاتحة منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي رمادي فاتح منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:337
 msgid "Light Grey Pale Sinister"
-msgstr "شريط عمودي رمادية فاتحة منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي رمادي فاتح منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:338
 msgid "Light Grey Paly"
@@ -1414,39 +1414,39 @@ msgstr "خطوط عمودية رمادية فاتحة"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:339
 msgid "Light Grey Per Bend"
-msgstr "تقسيم قطري رمادية فاتحة"
+msgstr "تقسيم قطري رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:340
 msgid "Light Grey Per Bend Inverted"
-msgstr "تقسيم قطري رمادية فاتحة مقلوب"
+msgstr "تقسيم قطري رمادي فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:341
 msgid "Light Grey Per Bend Sinister"
-msgstr "تقسيم قطري عكسي رمادية فاتحة"
+msgstr "تقسيم قطري عكسي رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:342
 msgid "Light Grey Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي رمادية فاتحة مقلوب"
+msgstr "تقسيم قطري عكسي رمادي فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:343
 msgid "Light Grey Per Fess"
-msgstr "تقسيم أفقي رمادية فاتحة"
+msgstr "تقسيم أفقي رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:344
 msgid "Light Grey Per Fess Inverted"
-msgstr "تقسيم أفقي رمادية فاتحة مقلوب"
+msgstr "تقسيم أفقي رمادي فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:345
 msgid "Light Grey Per Pale"
-msgstr "تقسيم عمودي رمادية فاتحة"
+msgstr "تقسيم عمودي رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:346
 msgid "Light Grey Per Pale Inverted"
-msgstr "تقسيم عمودي رمادية فاتحة مقلوب"
+msgstr "تقسيم عمودي رمادي فاتح مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:347
 msgid "Light Grey Piglin Charge"
-msgstr "شعار بيغلين رمادية فاتحة"
+msgstr "شعار بيغلين رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:348
 msgid "Light Grey Roundel"
@@ -1454,15 +1454,15 @@ msgstr "دائرة رمادية فاتحة"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:349
 msgid "Light Grey Saltire"
-msgstr "صليب قطري رمادية فاتحة"
+msgstr "صليب قطري رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:350
 msgid "Light Grey Skull Charge"
-msgstr "شعار جمجمة رمادية فاتحة"
+msgstr "شعار جمجمة رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:351
 msgid "Light Grey Thing Charge"
-msgstr "شعار غامض رمادية فاتحة"
+msgstr "شعار غامض رمادي فاتح"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:352
 msgid "Lime Banner"
@@ -1490,75 +1490,75 @@ msgstr "قاعدة ليمونية مع ركن علوي أيسر من جهة حا
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:358
 msgid "Lime Bend"
-msgstr "شريط مائل ليمونية"
+msgstr "شريط مائل ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:359
 msgid "Lime Bend Sinister"
-msgstr "شريط مائل عكسي ليمونية"
+msgstr "شريط مائل عكسي ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:360
 msgid "Lime Bordure"
-msgstr "إطار ليمونية"
+msgstr "إطار ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:361
 msgid "Lime Bordure Indented"
-msgstr "إطار ليمونية مسنن"
+msgstr "إطار ليموني مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:362
 msgid "Lime Bricks"
-msgstr "نقش طوب ليمونية"
+msgstr "نقش طوب ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:363
 msgid "Lime Chevron"
-msgstr "نقش شيفرون ليمونية"
+msgstr "نقش شيفرون ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:364
 msgid "Lime Chevron Inverted"
-msgstr "نقش شيفرون ليمونية مقلوب"
+msgstr "نقش شيفرون ليموني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:365
 msgid "Lime Chief"
-msgstr "شريط علوي ليمونية"
+msgstr "شريط علوي ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:366
 msgid "Lime Chief Dexter Canton"
-msgstr "شريط علوي ليمونية مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي ليموني مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:367
 msgid "Lime Chief Indented"
-msgstr "شريط علوي ليمونية مسنن"
+msgstr "شريط علوي ليموني مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:368
 msgid "Lime Chief Sinister Canton"
-msgstr "شريط علوي ليمونية مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي ليموني مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:369
 msgid "Lime Creeper Charge"
-msgstr "شعار كريبر ليمونية"
+msgstr "شعار كريبر ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:370
 msgid "Lime Cross"
-msgstr "صليب ليمونية"
+msgstr "صليب ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:371
 msgid "Lime Fess"
-msgstr "شريط أفقي وسطي ليمونية"
+msgstr "شريط أفقي وسطي ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:372
 msgid "Lime Flow"
-msgstr "نقش التدفق ليمونية"
+msgstr "نمط التدفق ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:373
 msgid "Lime Flower Charge"
-msgstr "شعار زهرة ليمونية"
+msgstr "شعار زهرة ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:374
 msgid "Lime Globe Charge"
-msgstr "شعار الكرة الأرضية ليمونية"
+msgstr "شعار الكرة الأرضية ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:375
 msgid "Lime Gradient"
-msgstr "تدرج ليمونية"
+msgstr "تدرج ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:376
 msgid "Lime Guster"
@@ -1566,19 +1566,19 @@ msgstr "دوامة رياح ليمونية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:377
 msgid "Lime Lozenge"
-msgstr "معين ليمونية"
+msgstr "معين ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:378
 msgid "Lime Pale"
-msgstr "شريط عمودي وسطي ليمونية"
+msgstr "شريط عمودي وسطي ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:379
 msgid "Lime Pale Dexter"
-msgstr "شريط عمودي ليمونية منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي ليموني منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:380
 msgid "Lime Pale Sinister"
-msgstr "شريط عمودي ليمونية منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي ليموني منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:381
 msgid "Lime Paly"
@@ -1586,39 +1586,39 @@ msgstr "خطوط عمودية ليمونية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:382
 msgid "Lime Per Bend"
-msgstr "تقسيم قطري ليمونية"
+msgstr "تقسيم قطري ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:383
 msgid "Lime Per Bend Inverted"
-msgstr "تقسيم قطري ليمونية مقلوب"
+msgstr "تقسيم قطري ليموني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:384
 msgid "Lime Per Bend Sinister"
-msgstr "تقسيم قطري عكسي ليمونية"
+msgstr "تقسيم قطري عكسي ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:385
 msgid "Lime Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي ليمونية مقلوب"
+msgstr "تقسيم قطري عكسي ليموني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:386
 msgid "Lime Per Fess"
-msgstr "تقسيم أفقي ليمونية"
+msgstr "تقسيم أفقي ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:387
 msgid "Lime Per Fess Inverted"
-msgstr "تقسيم أفقي ليمونية مقلوب"
+msgstr "تقسيم أفقي ليموني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:388
 msgid "Lime Per Pale"
-msgstr "تقسيم عمودي ليمونية"
+msgstr "تقسيم عمودي ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:389
 msgid "Lime Per Pale Inverted"
-msgstr "تقسيم عمودي ليمونية مقلوب"
+msgstr "تقسيم عمودي ليموني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:390
 msgid "Lime Piglin Charge"
-msgstr "شعار بيغلين ليمونية"
+msgstr "شعار بيغلين ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:391
 msgid "Lime Roundel"
@@ -1626,15 +1626,15 @@ msgstr "دائرة ليمونية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:392
 msgid "Lime Saltire"
-msgstr "صليب قطري ليمونية"
+msgstr "صليب قطري ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:393
 msgid "Lime Skull Charge"
-msgstr "شعار جمجمة ليمونية"
+msgstr "شعار جمجمة ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:394
 msgid "Lime Thing Charge"
-msgstr "شعار غامض ليمونية"
+msgstr "شعار غامض ليموني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:395
 msgid "Magenta Banner"
@@ -1662,75 +1662,75 @@ msgstr "قاعدة أرجوانية مع ركن علوي أيسر من جهة ح
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:401
 msgid "Magenta Bend"
-msgstr "شريط مائل أرجوانية"
+msgstr "شريط مائل أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:402
 msgid "Magenta Bend Sinister"
-msgstr "شريط مائل عكسي أرجوانية"
+msgstr "شريط مائل عكسي أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:403
 msgid "Magenta Bordure"
-msgstr "إطار أرجوانية"
+msgstr "إطار أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:404
 msgid "Magenta Bordure Indented"
-msgstr "إطار أرجوانية مسنن"
+msgstr "إطار أرجواني مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:405
 msgid "Magenta Bricks"
-msgstr "نقش طوب أرجوانية"
+msgstr "نقش طوب أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:406
 msgid "Magenta Chevron"
-msgstr "نقش شيفرون أرجوانية"
+msgstr "نقش شيفرون أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:407
 msgid "Magenta Chevron Inverted"
-msgstr "نقش شيفرون أرجوانية مقلوب"
+msgstr "نقش شيفرون أرجواني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:408
 msgid "Magenta Chief"
-msgstr "شريط علوي أرجوانية"
+msgstr "شريط علوي أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:409
 msgid "Magenta Chief Dexter Canton"
-msgstr "شريط علوي أرجوانية مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي أرجواني مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:410
 msgid "Magenta Chief Indented"
-msgstr "شريط علوي أرجوانية مسنن"
+msgstr "شريط علوي أرجواني مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:411
 msgid "Magenta Chief Sinister Canton"
-msgstr "شريط علوي أرجوانية مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي أرجواني مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:412
 msgid "Magenta Creeper Charge"
-msgstr "شعار كريبر أرجوانية"
+msgstr "شعار كريبر أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:413
 msgid "Magenta Cross"
-msgstr "صليب أرجوانية"
+msgstr "صليب أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:414
 msgid "Magenta Fess"
-msgstr "شريط أفقي وسطي أرجوانية"
+msgstr "شريط أفقي وسطي أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:415
 msgid "Magenta Flow"
-msgstr "نقش التدفق أرجوانية"
+msgstr "نمط التدفق أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:416
 msgid "Magenta Flower Charge"
-msgstr "شعار زهرة أرجوانية"
+msgstr "شعار زهرة أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:417
 msgid "Magenta Globe Charge"
-msgstr "شعار الكرة الأرضية أرجوانية"
+msgstr "شعار الكرة الأرضية أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:418
 msgid "Magenta Gradient"
-msgstr "تدرج أرجوانية"
+msgstr "تدرج أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:419
 msgid "Magenta Guster"
@@ -1738,19 +1738,19 @@ msgstr "دوامة رياح أرجوانية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:420
 msgid "Magenta Lozenge"
-msgstr "معين أرجوانية"
+msgstr "معين أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:421
 msgid "Magenta Pale"
-msgstr "شريط عمودي وسطي أرجوانية"
+msgstr "شريط عمودي وسطي أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:422
 msgid "Magenta Pale Dexter"
-msgstr "شريط عمودي أرجوانية منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي أرجواني منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:423
 msgid "Magenta Pale Sinister"
-msgstr "شريط عمودي أرجوانية منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي أرجواني منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:424
 msgid "Magenta Paly"
@@ -1758,39 +1758,39 @@ msgstr "خطوط عمودية أرجوانية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:425
 msgid "Magenta Per Bend"
-msgstr "تقسيم قطري أرجوانية"
+msgstr "تقسيم قطري أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:426
 msgid "Magenta Per Bend Inverted"
-msgstr "تقسيم قطري أرجوانية مقلوب"
+msgstr "تقسيم قطري أرجواني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:427
 msgid "Magenta Per Bend Sinister"
-msgstr "تقسيم قطري عكسي أرجوانية"
+msgstr "تقسيم قطري عكسي أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:428
 msgid "Magenta Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي أرجوانية مقلوب"
+msgstr "تقسيم قطري عكسي أرجواني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:429
 msgid "Magenta Per Fess"
-msgstr "تقسيم أفقي أرجوانية"
+msgstr "تقسيم أفقي أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:430
 msgid "Magenta Per Fess Inverted"
-msgstr "تقسيم أفقي أرجوانية مقلوب"
+msgstr "تقسيم أفقي أرجواني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:431
 msgid "Magenta Per Pale"
-msgstr "تقسيم عمودي أرجوانية"
+msgstr "تقسيم عمودي أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:432
 msgid "Magenta Per Pale Inverted"
-msgstr "تقسيم عمودي أرجوانية مقلوب"
+msgstr "تقسيم عمودي أرجواني مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:433
 msgid "Magenta Piglin Charge"
-msgstr "شعار بيغلين أرجوانية"
+msgstr "شعار بيغلين أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:434
 msgid "Magenta Roundel"
@@ -1798,15 +1798,15 @@ msgstr "دائرة أرجوانية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:435
 msgid "Magenta Saltire"
-msgstr "صليب قطري أرجوانية"
+msgstr "صليب قطري أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:436
 msgid "Magenta Skull Charge"
-msgstr "شعار جمجمة أرجوانية"
+msgstr "شعار جمجمة أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:437
 msgid "Magenta Thing Charge"
-msgstr "شعار غامض أرجوانية"
+msgstr "شعار غامض أرجواني"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:438
 msgid "Orange Banner"
@@ -1834,75 +1834,75 @@ msgstr "قاعدة برتقالية مع ركن علوي أيسر من جهة ح
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:444
 msgid "Orange Bend"
-msgstr "شريط مائل برتقالية"
+msgstr "شريط مائل برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:445
 msgid "Orange Bend Sinister"
-msgstr "شريط مائل عكسي برتقالية"
+msgstr "شريط مائل عكسي برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:446
 msgid "Orange Bordure"
-msgstr "إطار برتقالية"
+msgstr "إطار برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:447
 msgid "Orange Bordure Indented"
-msgstr "إطار برتقالية مسنن"
+msgstr "إطار برتقالي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:448
 msgid "Orange Bricks"
-msgstr "نقش طوب برتقالية"
+msgstr "نقش طوب برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:449
 msgid "Orange Chevron"
-msgstr "نقش شيفرون برتقالية"
+msgstr "نقش شيفرون برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:450
 msgid "Orange Chevron Inverted"
-msgstr "نقش شيفرون برتقالية مقلوب"
+msgstr "نقش شيفرون برتقالي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:451
 msgid "Orange Chief"
-msgstr "شريط علوي برتقالية"
+msgstr "شريط علوي برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:452
 msgid "Orange Chief Dexter Canton"
-msgstr "شريط علوي برتقالية مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي برتقالي مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:453
 msgid "Orange Chief Indented"
-msgstr "شريط علوي برتقالية مسنن"
+msgstr "شريط علوي برتقالي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:454
 msgid "Orange Chief Sinister Canton"
-msgstr "شريط علوي برتقالية مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي برتقالي مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:455
 msgid "Orange Creeper Charge"
-msgstr "شعار كريبر برتقالية"
+msgstr "شعار كريبر برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:456
 msgid "Orange Cross"
-msgstr "صليب برتقالية"
+msgstr "صليب برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:457
 msgid "Orange Fess"
-msgstr "شريط أفقي وسطي برتقالية"
+msgstr "شريط أفقي وسطي برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:458
 msgid "Orange Flow"
-msgstr "نقش التدفق برتقالية"
+msgstr "نمط التدفق برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:459
 msgid "Orange Flower Charge"
-msgstr "شعار زهرة برتقالية"
+msgstr "شعار زهرة برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:460
 msgid "Orange Globe Charge"
-msgstr "شعار الكرة الأرضية برتقالية"
+msgstr "شعار الكرة الأرضية برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:461
 msgid "Orange Gradient"
-msgstr "تدرج برتقالية"
+msgstr "تدرج برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:462
 msgid "Orange Guster"
@@ -1910,19 +1910,19 @@ msgstr "دوامة رياح برتقالية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:463
 msgid "Orange Lozenge"
-msgstr "معين برتقالية"
+msgstr "معين برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:464
 msgid "Orange Pale"
-msgstr "شريط عمودي وسطي برتقالية"
+msgstr "شريط عمودي وسطي برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:465
 msgid "Orange Pale Dexter"
-msgstr "شريط عمودي برتقالية منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي برتقالي منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:466
 msgid "Orange Pale Sinister"
-msgstr "شريط عمودي برتقالية منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي برتقالي منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:467
 msgid "Orange Paly"
@@ -1930,39 +1930,39 @@ msgstr "خطوط عمودية برتقالية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:468
 msgid "Orange Per Bend"
-msgstr "تقسيم قطري برتقالية"
+msgstr "تقسيم قطري برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:469
 msgid "Orange Per Bend Inverted"
-msgstr "تقسيم قطري برتقالية مقلوب"
+msgstr "تقسيم قطري برتقالي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:470
 msgid "Orange Per Bend Sinister"
-msgstr "تقسيم قطري عكسي برتقالية"
+msgstr "تقسيم قطري عكسي برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:471
 msgid "Orange Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي برتقالية مقلوب"
+msgstr "تقسيم قطري عكسي برتقالي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:472
 msgid "Orange Per Fess"
-msgstr "تقسيم أفقي برتقالية"
+msgstr "تقسيم أفقي برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:473
 msgid "Orange Per Fess Inverted"
-msgstr "تقسيم أفقي برتقالية مقلوب"
+msgstr "تقسيم أفقي برتقالي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:474
 msgid "Orange Per Pale"
-msgstr "تقسيم عمودي برتقالية"
+msgstr "تقسيم عمودي برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:475
 msgid "Orange Per Pale Inverted"
-msgstr "تقسيم عمودي برتقالية مقلوب"
+msgstr "تقسيم عمودي برتقالي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:476
 msgid "Orange Piglin Charge"
-msgstr "شعار بيغلين برتقالية"
+msgstr "شعار بيغلين برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:477
 msgid "Orange Roundel"
@@ -1970,15 +1970,15 @@ msgstr "دائرة برتقالية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:478
 msgid "Orange Saltire"
-msgstr "صليب قطري برتقالية"
+msgstr "صليب قطري برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:479
 msgid "Orange Skull Charge"
-msgstr "شعار جمجمة برتقالية"
+msgstr "شعار جمجمة برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:480
 msgid "Orange Thing Charge"
-msgstr "شعار غامض برتقالية"
+msgstr "شعار غامض برتقالي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:481
 msgid "Piglin Banner Pattern"
@@ -2010,75 +2010,75 @@ msgstr "قاعدة وردية مع ركن علوي أيسر من جهة حامل
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:488
 msgid "Pink Bend"
-msgstr "شريط مائل وردية"
+msgstr "شريط مائل وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:489
 msgid "Pink Bend Sinister"
-msgstr "شريط مائل عكسي وردية"
+msgstr "شريط مائل عكسي وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:490
 msgid "Pink Bordure"
-msgstr "إطار وردية"
+msgstr "إطار وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:491
 msgid "Pink Bordure Indented"
-msgstr "إطار وردية مسنن"
+msgstr "إطار وردي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:492
 msgid "Pink Bricks"
-msgstr "نقش طوب وردية"
+msgstr "نقش طوب وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:493
 msgid "Pink Chevron"
-msgstr "نقش شيفرون وردية"
+msgstr "نقش شيفرون وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:494
 msgid "Pink Chevron Inverted"
-msgstr "نقش شيفرون وردية مقلوب"
+msgstr "نقش شيفرون وردي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:495
 msgid "Pink Chief"
-msgstr "شريط علوي وردية"
+msgstr "شريط علوي وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:496
 msgid "Pink Chief Dexter Canton"
-msgstr "شريط علوي وردية مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي وردي مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:497
 msgid "Pink Chief Indented"
-msgstr "شريط علوي وردية مسنن"
+msgstr "شريط علوي وردي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:498
 msgid "Pink Chief Sinister Canton"
-msgstr "شريط علوي وردية مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي وردي مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:499
 msgid "Pink Creeper Charge"
-msgstr "شعار كريبر وردية"
+msgstr "شعار كريبر وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:500
 msgid "Pink Cross"
-msgstr "صليب وردية"
+msgstr "صليب وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:501
 msgid "Pink Fess"
-msgstr "شريط أفقي وسطي وردية"
+msgstr "شريط أفقي وسطي وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:502
 msgid "Pink Flow"
-msgstr "نقش التدفق وردية"
+msgstr "نمط التدفق وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:503
 msgid "Pink Flower Charge"
-msgstr "شعار زهرة وردية"
+msgstr "شعار زهرة وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:504
 msgid "Pink Globe Charge"
-msgstr "شعار الكرة الأرضية وردية"
+msgstr "شعار الكرة الأرضية وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:505
 msgid "Pink Gradient"
-msgstr "تدرج وردية"
+msgstr "تدرج وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:506
 msgid "Pink Guster"
@@ -2086,19 +2086,19 @@ msgstr "دوامة رياح وردية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:507
 msgid "Pink Lozenge"
-msgstr "معين وردية"
+msgstr "معين وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:508
 msgid "Pink Pale"
-msgstr "شريط عمودي وسطي وردية"
+msgstr "شريط عمودي وسطي وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:509
 msgid "Pink Pale Dexter"
-msgstr "شريط عمودي وردية منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي وردي منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:510
 msgid "Pink Pale Sinister"
-msgstr "شريط عمودي وردية منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي وردي منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:511
 msgid "Pink Paly"
@@ -2106,39 +2106,39 @@ msgstr "خطوط عمودية وردية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:512
 msgid "Pink Per Bend"
-msgstr "تقسيم قطري وردية"
+msgstr "تقسيم قطري وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:513
 msgid "Pink Per Bend Inverted"
-msgstr "تقسيم قطري وردية مقلوب"
+msgstr "تقسيم قطري وردي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:514
 msgid "Pink Per Bend Sinister"
-msgstr "تقسيم قطري عكسي وردية"
+msgstr "تقسيم قطري عكسي وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:515
 msgid "Pink Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي وردية مقلوب"
+msgstr "تقسيم قطري عكسي وردي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:516
 msgid "Pink Per Fess"
-msgstr "تقسيم أفقي وردية"
+msgstr "تقسيم أفقي وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:517
 msgid "Pink Per Fess Inverted"
-msgstr "تقسيم أفقي وردية مقلوب"
+msgstr "تقسيم أفقي وردي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:518
 msgid "Pink Per Pale"
-msgstr "تقسيم عمودي وردية"
+msgstr "تقسيم عمودي وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:519
 msgid "Pink Per Pale Inverted"
-msgstr "تقسيم عمودي وردية مقلوب"
+msgstr "تقسيم عمودي وردي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:520
 msgid "Pink Piglin Charge"
-msgstr "شعار بيغلين وردية"
+msgstr "شعار بيغلين وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:521
 msgid "Pink Roundel"
@@ -2146,15 +2146,15 @@ msgstr "دائرة وردية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:522
 msgid "Pink Saltire"
-msgstr "صليب قطري وردية"
+msgstr "صليب قطري وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:523
 msgid "Pink Skull Charge"
-msgstr "شعار جمجمة وردية"
+msgstr "شعار جمجمة وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:524
 msgid "Pink Thing Charge"
-msgstr "شعار غامض وردية"
+msgstr "شعار غامض وردي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:525
 msgid "Purple Banner"
@@ -2182,75 +2182,75 @@ msgstr "قاعدة بنفسجية مع ركن علوي أيسر من جهة حا
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:531
 msgid "Purple Bend"
-msgstr "شريط مائل بنفسجية"
+msgstr "شريط مائل بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:532
 msgid "Purple Bend Sinister"
-msgstr "شريط مائل عكسي بنفسجية"
+msgstr "شريط مائل عكسي بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:533
 msgid "Purple Bordure"
-msgstr "إطار بنفسجية"
+msgstr "إطار بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:534
 msgid "Purple Bordure Indented"
-msgstr "إطار بنفسجية مسنن"
+msgstr "إطار بنفسجي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:535
 msgid "Purple Bricks"
-msgstr "نقش طوب بنفسجية"
+msgstr "نقش طوب بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:536
 msgid "Purple Chevron"
-msgstr "نقش شيفرون بنفسجية"
+msgstr "نقش شيفرون بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:537
 msgid "Purple Chevron Inverted"
-msgstr "نقش شيفرون بنفسجية مقلوب"
+msgstr "نقش شيفرون بنفسجي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:538
 msgid "Purple Chief"
-msgstr "شريط علوي بنفسجية"
+msgstr "شريط علوي بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:539
 msgid "Purple Chief Dexter Canton"
-msgstr "شريط علوي بنفسجية مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي بنفسجي مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:540
 msgid "Purple Chief Indented"
-msgstr "شريط علوي بنفسجية مسنن"
+msgstr "شريط علوي بنفسجي مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:541
 msgid "Purple Chief Sinister Canton"
-msgstr "شريط علوي بنفسجية مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي بنفسجي مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:542
 msgid "Purple Creeper Charge"
-msgstr "شعار كريبر بنفسجية"
+msgstr "شعار كريبر بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:543
 msgid "Purple Cross"
-msgstr "صليب بنفسجية"
+msgstr "صليب بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:544
 msgid "Purple Fess"
-msgstr "شريط أفقي وسطي بنفسجية"
+msgstr "شريط أفقي وسطي بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:545
 msgid "Purple Flow"
-msgstr "نقش التدفق بنفسجية"
+msgstr "نمط التدفق بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:546
 msgid "Purple Flower Charge"
-msgstr "شعار زهرة بنفسجية"
+msgstr "شعار زهرة بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:547
 msgid "Purple Globe Charge"
-msgstr "شعار الكرة الأرضية بنفسجية"
+msgstr "شعار الكرة الأرضية بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:548
 msgid "Purple Gradient"
-msgstr "تدرج بنفسجية"
+msgstr "تدرج بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:549
 msgid "Purple Guster"
@@ -2258,19 +2258,19 @@ msgstr "دوامة رياح بنفسجية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:550
 msgid "Purple Lozenge"
-msgstr "معين بنفسجية"
+msgstr "معين بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:551
 msgid "Purple Pale"
-msgstr "شريط عمودي وسطي بنفسجية"
+msgstr "شريط عمودي وسطي بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:552
 msgid "Purple Pale Dexter"
-msgstr "شريط عمودي بنفسجية منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي بنفسجي منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:553
 msgid "Purple Pale Sinister"
-msgstr "شريط عمودي بنفسجية منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي بنفسجي منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:554
 msgid "Purple Paly"
@@ -2278,39 +2278,39 @@ msgstr "خطوط عمودية بنفسجية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:555
 msgid "Purple Per Bend"
-msgstr "تقسيم قطري بنفسجية"
+msgstr "تقسيم قطري بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:556
 msgid "Purple Per Bend Inverted"
-msgstr "تقسيم قطري بنفسجية مقلوب"
+msgstr "تقسيم قطري بنفسجي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:557
 msgid "Purple Per Bend Sinister"
-msgstr "تقسيم قطري عكسي بنفسجية"
+msgstr "تقسيم قطري عكسي بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:558
 msgid "Purple Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي بنفسجية مقلوب"
+msgstr "تقسيم قطري عكسي بنفسجي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:559
 msgid "Purple Per Fess"
-msgstr "تقسيم أفقي بنفسجية"
+msgstr "تقسيم أفقي بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:560
 msgid "Purple Per Fess Inverted"
-msgstr "تقسيم أفقي بنفسجية مقلوب"
+msgstr "تقسيم أفقي بنفسجي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:561
 msgid "Purple Per Pale"
-msgstr "تقسيم عمودي بنفسجية"
+msgstr "تقسيم عمودي بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:562
 msgid "Purple Per Pale Inverted"
-msgstr "تقسيم عمودي بنفسجية مقلوب"
+msgstr "تقسيم عمودي بنفسجي مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:563
 msgid "Purple Piglin Charge"
-msgstr "شعار بيغلين بنفسجية"
+msgstr "شعار بيغلين بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:564
 msgid "Purple Roundel"
@@ -2318,15 +2318,15 @@ msgstr "دائرة بنفسجية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:565
 msgid "Purple Saltire"
-msgstr "صليب قطري بنفسجية"
+msgstr "صليب قطري بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:566
 msgid "Purple Skull Charge"
-msgstr "شعار جمجمة بنفسجية"
+msgstr "شعار جمجمة بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:567
 msgid "Purple Thing Charge"
-msgstr "شعار غامض بنفسجية"
+msgstr "شعار غامض بنفسجي"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:568
 msgid "Red Banner"
@@ -2354,75 +2354,75 @@ msgstr "قاعدة حمراء مع ركن علوي أيسر من جهة حامل
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:574
 msgid "Red Bend"
-msgstr "شريط مائل حمراء"
+msgstr "شريط مائل أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:575
 msgid "Red Bend Sinister"
-msgstr "شريط مائل عكسي حمراء"
+msgstr "شريط مائل عكسي أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:576
 msgid "Red Bordure"
-msgstr "إطار حمراء"
+msgstr "إطار أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:577
 msgid "Red Bordure Indented"
-msgstr "إطار حمراء مسنن"
+msgstr "إطار أحمر مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:578
 msgid "Red Bricks"
-msgstr "نقش طوب حمراء"
+msgstr "نقش طوب أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:579
 msgid "Red Chevron"
-msgstr "نقش شيفرون حمراء"
+msgstr "نقش شيفرون أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:580
 msgid "Red Chevron Inverted"
-msgstr "نقش شيفرون حمراء مقلوب"
+msgstr "نقش شيفرون أحمر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:581
 msgid "Red Chief"
-msgstr "شريط علوي حمراء"
+msgstr "شريط علوي أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:582
 msgid "Red Chief Dexter Canton"
-msgstr "شريط علوي حمراء مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي أحمر مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:583
 msgid "Red Chief Indented"
-msgstr "شريط علوي حمراء مسنن"
+msgstr "شريط علوي أحمر مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:584
 msgid "Red Chief Sinister Canton"
-msgstr "شريط علوي حمراء مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي أحمر مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:585
 msgid "Red Creeper Charge"
-msgstr "شعار كريبر حمراء"
+msgstr "شعار كريبر أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:586
 msgid "Red Cross"
-msgstr "صليب حمراء"
+msgstr "صليب أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:587
 msgid "Red Fess"
-msgstr "شريط أفقي وسطي حمراء"
+msgstr "شريط أفقي وسطي أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:588
 msgid "Red Flow"
-msgstr "نقش التدفق حمراء"
+msgstr "نمط التدفق أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:589
 msgid "Red Flower Charge"
-msgstr "شعار زهرة حمراء"
+msgstr "شعار زهرة أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:590
 msgid "Red Globe Charge"
-msgstr "شعار الكرة الأرضية حمراء"
+msgstr "شعار الكرة الأرضية أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:591
 msgid "Red Gradient"
-msgstr "تدرج حمراء"
+msgstr "تدرج أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:592
 msgid "Red Guster"
@@ -2430,19 +2430,19 @@ msgstr "دوامة رياح حمراء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:593
 msgid "Red Lozenge"
-msgstr "معين حمراء"
+msgstr "معين أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:594
 msgid "Red Pale"
-msgstr "شريط عمودي وسطي حمراء"
+msgstr "شريط عمودي وسطي أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:595
 msgid "Red Pale Dexter"
-msgstr "شريط عمودي حمراء منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي أحمر منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:596
 msgid "Red Pale Sinister"
-msgstr "شريط عمودي حمراء منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي أحمر منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:597
 msgid "Red Paly"
@@ -2450,39 +2450,39 @@ msgstr "خطوط عمودية حمراء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:598
 msgid "Red Per Bend"
-msgstr "تقسيم قطري حمراء"
+msgstr "تقسيم قطري أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:599
 msgid "Red Per Bend Inverted"
-msgstr "تقسيم قطري حمراء مقلوب"
+msgstr "تقسيم قطري أحمر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:600
 msgid "Red Per Bend Sinister"
-msgstr "تقسيم قطري عكسي حمراء"
+msgstr "تقسيم قطري عكسي أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:601
 msgid "Red Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي حمراء مقلوب"
+msgstr "تقسيم قطري عكسي أحمر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:602
 msgid "Red Per Fess"
-msgstr "تقسيم أفقي حمراء"
+msgstr "تقسيم أفقي أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:603
 msgid "Red Per Fess Inverted"
-msgstr "تقسيم أفقي حمراء مقلوب"
+msgstr "تقسيم أفقي أحمر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:604
 msgid "Red Per Pale"
-msgstr "تقسيم عمودي حمراء"
+msgstr "تقسيم عمودي أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:605
 msgid "Red Per Pale Inverted"
-msgstr "تقسيم عمودي حمراء مقلوب"
+msgstr "تقسيم عمودي أحمر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:606
 msgid "Red Piglin Charge"
-msgstr "شعار بيغلين حمراء"
+msgstr "شعار بيغلين أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:607
 msgid "Red Roundel"
@@ -2490,15 +2490,15 @@ msgstr "دائرة حمراء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:608
 msgid "Red Saltire"
-msgstr "صليب قطري حمراء"
+msgstr "صليب قطري أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:609
 msgid "Red Skull Charge"
-msgstr "شعار جمجمة حمراء"
+msgstr "شعار جمجمة أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:610
 msgid "Red Thing Charge"
-msgstr "شعار غامض حمراء"
+msgstr "شعار غامض أحمر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:611
 msgid "Skull Banner Pattern"
@@ -2534,75 +2534,75 @@ msgstr "قاعدة بيضاء مع ركن علوي أيسر من جهة حامل
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:619
 msgid "White Bend"
-msgstr "شريط مائل بيضاء"
+msgstr "شريط مائل أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:620
 msgid "White Bend Sinister"
-msgstr "شريط مائل عكسي بيضاء"
+msgstr "شريط مائل عكسي أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:621
 msgid "White Bordure"
-msgstr "إطار بيضاء"
+msgstr "إطار أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:622
 msgid "White Bordure Indented"
-msgstr "إطار بيضاء مسنن"
+msgstr "إطار أبيض مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:623
 msgid "White Bricks"
-msgstr "نقش طوب بيضاء"
+msgstr "نقش طوب أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:624
 msgid "White Chevron"
-msgstr "نقش شيفرون بيضاء"
+msgstr "نقش شيفرون أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:625
 msgid "White Chevron Inverted"
-msgstr "نقش شيفرون بيضاء مقلوب"
+msgstr "نقش شيفرون أبيض مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:626
 msgid "White Chief"
-msgstr "شريط علوي بيضاء"
+msgstr "شريط علوي أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:627
 msgid "White Chief Dexter Canton"
-msgstr "شريط علوي بيضاء مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي أبيض مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:628
 msgid "White Chief Indented"
-msgstr "شريط علوي بيضاء مسنن"
+msgstr "شريط علوي أبيض مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:629
 msgid "White Chief Sinister Canton"
-msgstr "شريط علوي بيضاء مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي أبيض مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:630
 msgid "White Creeper Charge"
-msgstr "شعار كريبر بيضاء"
+msgstr "شعار كريبر أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:631
 msgid "White Cross"
-msgstr "صليب بيضاء"
+msgstr "صليب أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:632
 msgid "White Fess"
-msgstr "شريط أفقي وسطي بيضاء"
+msgstr "شريط أفقي وسطي أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:633
 msgid "White Flow"
-msgstr "نقش التدفق بيضاء"
+msgstr "نمط التدفق أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:634
 msgid "White Flower Charge"
-msgstr "شعار زهرة بيضاء"
+msgstr "شعار زهرة أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:635
 msgid "White Globe Charge"
-msgstr "شعار الكرة الأرضية بيضاء"
+msgstr "شعار الكرة الأرضية أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:636
 msgid "White Gradient"
-msgstr "تدرج بيضاء"
+msgstr "تدرج أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:637
 msgid "White Guster"
@@ -2610,19 +2610,19 @@ msgstr "دوامة رياح بيضاء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:638
 msgid "White Lozenge"
-msgstr "معين بيضاء"
+msgstr "معين أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:639
 msgid "White Pale"
-msgstr "شريط عمودي وسطي بيضاء"
+msgstr "شريط عمودي وسطي أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:640
 msgid "White Pale Dexter"
-msgstr "شريط عمودي بيضاء منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي أبيض منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:641
 msgid "White Pale Sinister"
-msgstr "شريط عمودي بيضاء منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي أبيض منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:642
 msgid "White Paly"
@@ -2630,39 +2630,39 @@ msgstr "خطوط عمودية بيضاء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:643
 msgid "White Per Bend"
-msgstr "تقسيم قطري بيضاء"
+msgstr "تقسيم قطري أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:644
 msgid "White Per Bend Inverted"
-msgstr "تقسيم قطري بيضاء مقلوب"
+msgstr "تقسيم قطري أبيض مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:645
 msgid "White Per Bend Sinister"
-msgstr "تقسيم قطري عكسي بيضاء"
+msgstr "تقسيم قطري عكسي أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:646
 msgid "White Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي بيضاء مقلوب"
+msgstr "تقسيم قطري عكسي أبيض مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:647
 msgid "White Per Fess"
-msgstr "تقسيم أفقي بيضاء"
+msgstr "تقسيم أفقي أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:648
 msgid "White Per Fess Inverted"
-msgstr "تقسيم أفقي بيضاء مقلوب"
+msgstr "تقسيم أفقي أبيض مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:649
 msgid "White Per Pale"
-msgstr "تقسيم عمودي بيضاء"
+msgstr "تقسيم عمودي أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:650
 msgid "White Per Pale Inverted"
-msgstr "تقسيم عمودي بيضاء مقلوب"
+msgstr "تقسيم عمودي أبيض مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:651
 msgid "White Piglin Charge"
-msgstr "شعار بيغلين بيضاء"
+msgstr "شعار بيغلين أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:652
 msgid "White Roundel"
@@ -2670,15 +2670,15 @@ msgstr "دائرة بيضاء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:653
 msgid "White Saltire"
-msgstr "صليب قطري بيضاء"
+msgstr "صليب قطري أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:654
 msgid "White Skull Charge"
-msgstr "شعار جمجمة بيضاء"
+msgstr "شعار جمجمة أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:655
 msgid "White Thing Charge"
-msgstr "شعار غامض بيضاء"
+msgstr "شعار غامض أبيض"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:656
 msgid "Yellow Banner"
@@ -2706,75 +2706,75 @@ msgstr "قاعدة صفراء مع ركن علوي أيسر من جهة حامل
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:662
 msgid "Yellow Bend"
-msgstr "شريط مائل صفراء"
+msgstr "شريط مائل أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:663
 msgid "Yellow Bend Sinister"
-msgstr "شريط مائل عكسي صفراء"
+msgstr "شريط مائل عكسي أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:664
 msgid "Yellow Bordure"
-msgstr "إطار صفراء"
+msgstr "إطار أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:665
 msgid "Yellow Bordure Indented"
-msgstr "إطار صفراء مسنن"
+msgstr "إطار أصفر مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:666
 msgid "Yellow Bricks"
-msgstr "نقش طوب صفراء"
+msgstr "نقش طوب أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:667
 msgid "Yellow Chevron"
-msgstr "نقش شيفرون صفراء"
+msgstr "نقش شيفرون أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:668
 msgid "Yellow Chevron Inverted"
-msgstr "نقش شيفرون صفراء مقلوب"
+msgstr "نقش شيفرون أصفر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:669
 msgid "Yellow Chief"
-msgstr "شريط علوي صفراء"
+msgstr "شريط علوي أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:670
 msgid "Yellow Chief Dexter Canton"
-msgstr "شريط علوي صفراء مع ركن أيمن من جهة حامل الراية"
+msgstr "شريط علوي أصفر مع ركن أيمن من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:671
 msgid "Yellow Chief Indented"
-msgstr "شريط علوي صفراء مسنن"
+msgstr "شريط علوي أصفر مسنن"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:672
 msgid "Yellow Chief Sinister Canton"
-msgstr "شريط علوي صفراء مع ركن أيسر من جهة حامل الراية"
+msgstr "شريط علوي أصفر مع ركن أيسر من جهة حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:673
 msgid "Yellow Creeper Charge"
-msgstr "شعار كريبر صفراء"
+msgstr "شعار كريبر أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:674
 msgid "Yellow Cross"
-msgstr "صليب صفراء"
+msgstr "صليب أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:675
 msgid "Yellow Fess"
-msgstr "شريط أفقي وسطي صفراء"
+msgstr "شريط أفقي وسطي أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:676
 msgid "Yellow Flow"
-msgstr "نقش التدفق صفراء"
+msgstr "نمط التدفق أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:677
 msgid "Yellow Flower Charge"
-msgstr "شعار زهرة صفراء"
+msgstr "شعار زهرة أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:678
 msgid "Yellow Globe Charge"
-msgstr "شعار الكرة الأرضية صفراء"
+msgstr "شعار الكرة الأرضية أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:679
 msgid "Yellow Gradient"
-msgstr "تدرج صفراء"
+msgstr "تدرج أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:680
 msgid "Yellow Guster"
@@ -2782,19 +2782,19 @@ msgstr "دوامة رياح صفراء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:681
 msgid "Yellow Lozenge"
-msgstr "معين صفراء"
+msgstr "معين أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:682
 msgid "Yellow Pale"
-msgstr "شريط عمودي وسطي صفراء"
+msgstr "شريط عمودي وسطي أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:683
 msgid "Yellow Pale Dexter"
-msgstr "شريط عمودي صفراء منحاز إلى يمين حامل الراية"
+msgstr "شريط عمودي أصفر منحاز إلى يمين حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:684
 msgid "Yellow Pale Sinister"
-msgstr "شريط عمودي صفراء منحاز إلى يسار حامل الراية"
+msgstr "شريط عمودي أصفر منحاز إلى يسار حامل الراية"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:685
 msgid "Yellow Paly"
@@ -2802,39 +2802,39 @@ msgstr "خطوط عمودية صفراء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:686
 msgid "Yellow Per Bend"
-msgstr "تقسيم قطري صفراء"
+msgstr "تقسيم قطري أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:687
 msgid "Yellow Per Bend Inverted"
-msgstr "تقسيم قطري صفراء مقلوب"
+msgstr "تقسيم قطري أصفر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:688
 msgid "Yellow Per Bend Sinister"
-msgstr "تقسيم قطري عكسي صفراء"
+msgstr "تقسيم قطري عكسي أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:689
 msgid "Yellow Per Bend Sinister Inverted"
-msgstr "تقسيم قطري عكسي صفراء مقلوب"
+msgstr "تقسيم قطري عكسي أصفر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:690
 msgid "Yellow Per Fess"
-msgstr "تقسيم أفقي صفراء"
+msgstr "تقسيم أفقي أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:691
 msgid "Yellow Per Fess Inverted"
-msgstr "تقسيم أفقي صفراء مقلوب"
+msgstr "تقسيم أفقي أصفر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:692
 msgid "Yellow Per Pale"
-msgstr "تقسيم عمودي صفراء"
+msgstr "تقسيم عمودي أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:693
 msgid "Yellow Per Pale Inverted"
-msgstr "تقسيم عمودي صفراء مقلوب"
+msgstr "تقسيم عمودي أصفر مقلوب"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:694
 msgid "Yellow Piglin Charge"
-msgstr "شعار بيغلين صفراء"
+msgstr "شعار بيغلين أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:695
 msgid "Yellow Roundel"
@@ -2842,14 +2842,12 @@ msgstr "دائرة صفراء"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:696
 msgid "Yellow Saltire"
-msgstr "صليب قطري صفراء"
+msgstr "صليب قطري أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:697
 msgid "Yellow Skull Charge"
-msgstr "شعار جمجمة صفراء"
+msgstr "شعار جمجمة أصفر"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:698
 msgid "Yellow Thing Charge"
-msgstr "شعار غامض صفراء"
-
-
+msgstr "شعار غامض أصفر"
