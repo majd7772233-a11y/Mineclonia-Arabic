@@ -274,6 +274,9 @@ def main() -> None:
 
         locale_stage = stage_mods / rel.parent
         locale_stage.mkdir(parents=True, exist_ok=True)
+        source_mod_conf = source_root / rel.parent.parent / "mod.conf"
+        if source_mod_conf.is_file():
+            shutil.copy2(source_mod_conf, locale_stage.parent / "mod.conf")
         shutil.copy2(txt_path, locale_stage / "template.txt")
         poconvert = locale_stage / "poconvert"
         poconvert.mkdir(exist_ok=True)
