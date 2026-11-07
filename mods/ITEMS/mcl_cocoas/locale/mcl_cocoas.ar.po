@@ -1,0 +1,51 @@
+# Arabic translation draft for Mineclonia component: mcl_cocoas
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_cocoas/locale/template.pot
+# Source template blob SHA: 6a0e5d61ca6b69e412e7320094fe310f222fd73a
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_cocoas/init.lua:41
+msgid "Cocoa pods grow on the side of jungle trees in 3 stages."
+msgstr "تنمو ثمار الكاكاو على جوانب أشجار الأدغال عبر ثلاث مراحل."
+
+#: mods/ITEMS/mcl_cocoas/init.lua:76
+msgid "Premature Cocoa Pod"
+msgstr "ثمرة كاكاو غير ناضجة"
+
+#: mods/ITEMS/mcl_cocoas/init.lua:77
+msgid "Medium Cocoa Pod"
+msgstr "ثمرة كاكاو متوسطة النضج"
+
+#: mods/ITEMS/mcl_cocoas/init.lua:78
+msgid "Mature Cocoa Pod"
+msgstr "ثمرة كاكاو ناضجة"
+
+#: mods/ITEMS/mcl_cocoas/init.lua:103
+msgid "Cocoa Beans"
+msgstr "حبوب الكاكاو"
+
+#: mods/ITEMS/mcl_cocoas/init.lua:104
+msgid "Grows at the side of jungle trees"
+msgstr "تنمو على جوانب أشجار الأدغال"
+
+#: mods/ITEMS/mcl_cocoas/init.lua:105
+msgid ""
+"Cocoa beans can be used to plant cocoa, bake cookies or craft brown dye."
+msgstr "يمكن استخدام حبوب الكاكاو لزراعة الكاكاو، وخَبز البسكويت، وصناعة الصبغة البنية."
+
+#: mods/ITEMS/mcl_cocoas/init.lua:106
+msgid ""
+"Right click on the side of a jungle tree trunk (Jungle Wood) to plant a "
+"young cocoa."
+msgstr "انقر بزر الفأرة الأيمن على جانب جذع شجرة أدغال (خشب الأدغال) لزراعة ثمرة كاكاو صغيرة."
