@@ -74,7 +74,8 @@ function Assert-ArabicIsSecondOption($Fixture) {
 
     $values = [regex]::Replace($line, '^[ \t]*language[ \t]+\(Language\)[ \t]+enum[ \t]+', '')
     $parts = @($values.Split(","))
-    if ($parts.Count -lt 2 -or
+    $arabicCount = @($parts | Where-Object { $_.Trim() -eq "ar" }).Count
+    if ($arabicCount -ne 1 -or $parts.Count -lt 2 -or
         -not [string]::IsNullOrWhiteSpace($parts[0]) -or
         $parts[1].Trim() -ne "ar") {
         throw "Expected empty system-language option first and ar second, got: $values"
