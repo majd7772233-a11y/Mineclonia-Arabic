@@ -1,0 +1,58 @@
+# Arabic translation for Mineclonia component: mcl_blast_furnace
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_blast_furnace/locale/template.pot
+# Source template blob SHA: e601d235549a8b1c4c50acbe79872bbbbd8b1c54
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_blast_furnace/init.lua:8
+msgid "Blast Furnace"
+msgstr "فرن صهر"
+
+#: mods/ITEMS/mcl_blast_furnace/init.lua:9
+msgid "Smelts ores faster than furnace"
+msgstr "يصهر الخامات أسرع من الفرن العادي"
+
+#: mods/ITEMS/mcl_blast_furnace/init.lua:11
+msgid ""
+"Blast Furnaces smelt several items, mainly ores and armor, using a furnace "
+"fuel, but twice as fast as a normal furnace."
+msgstr "يصهر فرن الصهر عدة عناصر، معظمها الخامات والدروع، باستخدام وقود الأفران، لكنه يعمل بسرعة مضاعفة مقارنةً بالفرن العادي."
+
+#: mods/ITEMS/mcl_blast_furnace/init.lua:13
+msgid "Use the blast furnace to open the furnace menu."
+msgstr "استخدم فرن الصهر لفتح قائمة الفرن."
+
+#: mods/ITEMS/mcl_blast_furnace/init.lua:14
+msgid ""
+"Place a furnace fuel in the lower slot and the source material in the upper "
+"slot."
+msgstr "ضع وقود الفرن في الخانة السفلية والمادة المراد صهرها في الخانة العلوية."
+
+#: mods/ITEMS/mcl_blast_furnace/init.lua:15
+msgid "The blast furnace will slowly use its fuel to smelt the item."
+msgstr "يستهلك فرن الصهر وقوده تدريجياً لصهر العنصر."
+
+#: mods/ITEMS/mcl_blast_furnace/init.lua:16
+msgid "The result will be placed into the output slot at the right side."
+msgstr "ستظهر النتيجة في خانة الإخراج الموجودة على الجانب الأيمن."
+
+#: mods/ITEMS/mcl_blast_furnace/init.lua:17
+msgid ""
+"Use the recipe book to see what ores you can smelt, what you can use as fuel "
+"and how long it will burn."
+msgstr "استخدم كتاب الوصفات لمعرفة الخامات التي يمكنك صهرها، وأنواع الوقود المناسبة، ومدة احتراق كل نوع."
+
+#: mods/ITEMS/mcl_blast_furnace/init.lua:26
+msgid "Burning Blast Furnace"
+msgstr "فرن صهر مشتعل"
