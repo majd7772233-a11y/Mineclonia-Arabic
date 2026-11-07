@@ -211,6 +211,8 @@ def main() -> None:
 
     per_module: list[dict[str, object]] = []
     total_messages = 0
+    runtime_messages = 0
+    stale_po_entries: list[dict[str, object]] = []
     seen_domains: dict[str, str] = {}
     expected_catalogs: dict[str, dict[str, str]] = {}
 
@@ -255,13 +257,20 @@ def main() -> None:
         if pot_counter - template_counter:
             missing_from_runtime = list((pot_counter - template_counter).elements())[:5]
             fail(f"{rel}: POT contains keys absent from runtime template.txt: {missing_from_runtime!r}")
-        if po_counter != template_counter:
-            missing = list((template_counter - po_counter).elements())[:5]
-            extra = list((po_counter - template_counter).elements())[:5]
+        missing_runtime = list((template_counter - po_counter).elements())
+        if missing_runtime:
             fail(
-                f"{rel}: PO does not cover the complete runtime template.txt; "
-                f"missing={missing!r}; extra={extra!r}"
+                f"{rel}: PO is missing {len(missing_runtime)} runtime template string(s); "
+                f"examples={missing_runtime[:5]!r}"
             )
+        extra_po = list((po_counter - template_counter).elements())
+        if extra_po:
+            stale_po_entries.append({
+                "path": str(rel),
+                "count": len(extra_po),
+                "examples": extra_po[:10],
+            })
+        runtime_messages += len(template_ids)
         previous = seen_domains.get(domain)
         if previous and previous != str(rel.parent):
             fail(f"textdomain collision: {domain!r} belongs to both {previous} and {rel.parent}")
@@ -419,7 +428,10 @@ def main() -> None:
         "luanti_version_owner_reported": args.luanti_version,
         "po_files": len(po_files),
         "tr_files": len(tr_files),
-        "translated_messages": total_messages,
+        "translated_messages_in_po_and_tr": total_messages,
+        "runtime_template_messages": runtime_messages,
+        "extra_po_entries_not_present_in_current_template_txt": sum(x["count"] for x in stale_po_entries),
+        "extra_po_entries_report": stale_po_entries,
         "conversion": "Wuzzy Luanti Translation Tools: ltt_convert.py <mods> --po2tr -r",
         "validation": "Wuzzy Luanti Translation Tools: ltt_check.py <mods>",
         "runtime_tested": False,
@@ -451,6 +463,8 @@ def main() -> None:
         "po_files": len(po_files),
         "tr_files": len(tr_files),
         "messages": total_messages,
+        "runtime_template_messages": runtime_messages,
+        "stale_po_entries": sum(x["count"] for x in stale_po_entries),
         "source_version": source_version,
         "package": str(zip_path),
         "sha256": checksum,
