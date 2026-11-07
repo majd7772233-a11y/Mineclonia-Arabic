@@ -1,0 +1,260 @@
+# Arabic translation draft for Mineclonia component: mcl_deepslate
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_deepslate/locale/template.pot
+# Source template blob SHA: f1d6d193db85398cfb854541ea6e6812702cb772
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 12:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:12
+msgid "Deepslate"
+msgstr "الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:13
+msgid ""
+"Deepslate is a stone type found deep underground in the Overworld that "
+"functions similar to regular stone but is harder than the stone."
+msgstr "الأردواز العميق نوع من الحجر يوجد في أعماق العالم العلوي، ويؤدي وظيفة مشابهة للحجر العادي لكنه أشد صلابة منه."
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:27
+msgid "Infested Deepslate"
+msgstr "الأردواز العميق المصاب"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:31
+msgid "Reinforced Deepslate"
+msgstr "الأردواز العميق المقوّى"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:32
+msgid ""
+"Reinforced deepslate is a very hard block undestructable by even wither "
+"explosions. It is unobtainable in survival mode."
+msgstr "الأردواز العميق المقوّى كتلة شديدة الصلابة لا يمكن تدميرها حتى بانفجارات الوذر. ولا يمكن الحصول عليها في نمط البقاء."
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:51
+msgid "Deepslate Coal Ore"
+msgstr "خام الفحم في الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:52
+msgid "Deepslate Iron Ore"
+msgstr "خام الحديد في الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:53
+msgid "Deepslate Gold Ore"
+msgstr "خام الذهب في الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:54
+msgid "Deepslate Emerald Ore"
+msgstr "خام الزمرد في الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:55
+msgid "Deepslate Diamond Ore"
+msgstr "خام الألماس في الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:56
+msgid "Deepslate Lapis Lazuli Ore"
+msgstr "خام اللازورد في الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:57
+msgid "Deepslate Redstone Ore"
+msgstr "خام ريدستون في الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:62
+msgid "Lit Deepslate Redstone Ore"
+msgstr "خام ريدستون المضيء في الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:69
+msgid "Deepslate Copper Ore"
+msgstr "خام النحاس في الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:73
+msgid "Cobbled Deepslate"
+msgstr "أردواز عميق مرصوف"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:74
+msgid ""
+"Cobbled deepslate is a stone variant that functions similar to cobblestone "
+"or blackstone."
+msgstr "الأردواز العميق المرصوف نوع من الحجر يؤدي وظيفة مشابهة للحجر المرصوف أو الحجر الأسود."
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:81
+msgid "Cobbled Deepslate Stairs"
+msgstr "درج الأردواز العميق المرصوف"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:85
+msgid "Cobbled Deepslate Slab"
+msgstr "بلاطة الأردواز العميق المرصوف"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:89
+msgid "Cobbled Deepslate Wall"
+msgstr "جدار الأردواز العميق المرصوف"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:96
+msgid "Polished Deepslate"
+msgstr "أردواز عميق مصقول"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:97
+msgid "Polished deepslate is the stone-like polished version of deepslate."
+msgstr "الأردواز العميق المصقول هو النسخة المصقولة الشبيهة بالحجر من الأردواز العميق."
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:103
+msgid "Polished Deepslate Stairs"
+msgstr "درج الأردواز العميق المصقول"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:107
+msgid "Polished Deepslate Slab"
+msgstr "بلاطة الأردواز العميق المصقول"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:111
+msgid "Polished Deepslate Wall"
+msgstr "جدار الأردواز العميق المصقول"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:118
+msgid "Deepslate Bricks"
+msgstr "طوب الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:119
+msgid "Deepslate bricks are the brick version of deepslate."
+msgstr "طوب الأردواز العميق هو النسخة المبنية على شكل طوب من الأردواز العميق."
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:126
+msgid "Deepslate Brick Stairs"
+msgstr "درج طوب الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:130
+msgid "Deepslate Brick Slab"
+msgstr "بلاطة طوب الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:134
+msgid "Deepslate Brick Wall"
+msgstr "جدار طوب الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:138
+msgid "Cracked Deepslate Bricks"
+msgstr "طوب الأردواز العميق المتشقق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:144
+msgid "Deepslate Tiles"
+msgstr "بلاط الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:145
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:170
+msgid "Deepslate tiles are a decorative variant of deepslate."
+msgstr "بلاط الأردواز العميق نوع زخرفي من الأردواز العميق."
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:151
+msgid "Deepslate Tile Stairs"
+msgstr "درج بلاط الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:155
+msgid "Deepslate Tile Slab"
+msgstr "بلاطة بلاط الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:159
+msgid "Deepslate Tiles Wall"
+msgstr "جدار بلاط الأردواز العميق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:163
+msgid "Cracked Deepslate Tiles"
+msgstr "بلاط الأردواز العميق المتشقق"
+
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:169
+msgid "Chiseled Deepslate"
+msgstr "أردواز عميق منحوت"
+
+#: mods/ITEMS/mcl_deepslate/init.lua:13
+msgid "@1 is a variant of @2 that can generate in deepslate and tuff blobs."
+msgstr "@1 نوع من @2 يمكن أن يتولد في كتل الأردواز العميق والتوف."
+
+#: mods/ITEMS/mcl_deepslate/init.lua:52
+msgid "@1 are a cracked variant."
+msgstr "@1 نوع متشقق."
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:14
+msgid "Chiseled Tuff"
+msgstr "توف منحوت"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:15
+msgid "Chiseled tuff is a chiseled variant of tuff."
+msgstr "التوف المنحوت هو نسخة منحوتة من التوف."
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:26
+msgid "Chiseled Tuff Bricks"
+msgstr "طوب توف منحوت"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:27
+msgid ""
+"Chiseled tuff bricks are a variant of tuff bricks, featuring a large brick "
+"in the center of the block, with geometric design above and below."
+msgstr "طوب التوف المنحوت نوع من طوب التوف، يتميز بطوبة كبيرة في وسط الكتلة ونقش هندسي فوقها وأسفلها."
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:39
+msgid "Tuff"
+msgstr "توف"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:40
+msgid ""
+"Tuff is an ornamental rock formed from volcanic ash, occurring in "
+"underground blobs below Y=16."
+msgstr "التوف صخر زخرفي يتكون من الرماد البركاني، ويوجد في كتل تحت الأرض أسفل المستوى Y=16."
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:47
+msgid "Tuff Stairs"
+msgstr "درج التوف"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:51
+msgid "Tuff Slab"
+msgstr "بلاطة التوف"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:55
+msgid "Tuff Wall"
+msgstr "جدار التوف"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:62
+msgid "Polished Tuff"
+msgstr "توف مصقول"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:63
+msgid "Polished tuff is a polished variant of the tuff block."
+msgstr "التوف المصقول نسخة مصقولة من كتلة التوف."
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:68
+msgid "Polished Tuff Stairs"
+msgstr "درج التوف المصقول"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:72
+msgid "Polished Tuff Slab"
+msgstr "بلاطة التوف المصقول"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:76
+msgid "Polished Tuff Wall"
+msgstr "جدار التوف المصقول"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:83
+msgid "Tuff Bricks"
+msgstr "طوب التوف"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:84
+msgid "Tuff bricks are a brick variant of tuff."
+msgstr "طوب التوف نسخة مبنية على شكل طوب من التوف."
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:89
+msgid "Tuff Bricks Stairs"
+msgstr "درج طوب التوف"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:93
+msgid "Tuff Bricks Slab"
+msgstr "بلاطة طوب التوف"
+
+#: mods/ITEMS/mcl_deepslate/tuff.lua:97
+msgid "Tuff Bricks Wall"
+msgstr "جدار طوب التوف"
+
