@@ -83,7 +83,7 @@ void StaticText::draw()
 
 		if (HAlign == EGUIA_CENTER) {
 			r.UpperLeftCorner.X = r.getCenter().X - (text_dim.Width / 2);
-		} else if (HAlign == EGUIA_LOWERRIGHT || RightToLeft) {
+		} else if (HAlign == EGUIA_LOWERRIGHT) {
 			r.UpperLeftCorner.X = r.LowerRightCorner.X - text_dim.Width;
 		}
 
