@@ -21,4 +21,4 @@ msgstr "صاروخ ألعاب نارية"
 
 #: mods/ITEMS/mcl_fireworks/register.lua:30
 msgid "Flight Duration: @1s"
-msgstr "مدة الطيران: @1 ثانية"
+msgstr "مدة الطيران: @1 ث"
