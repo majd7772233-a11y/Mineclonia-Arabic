@@ -1,0 +1,107 @@
+# Arabic translation draft for Mineclonia component: mcl_commandblock
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/REDSTONE/mcl_commandblock/locale/template.pot
+# Source template blob SHA: d4eef43b81b691cfc814bf34d6a3318ca2cd6482
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Command blocks are not enabled on this server"
+msgstr "كتل الأوامر غير مفعّلة على هذا الخادم"
+
+msgid "Error: The command “@1” does not exist; your command block has not been changed. Use the “help” chat command for a list of available commands."
+msgstr "خطأ: الأمر «@1» غير موجود؛ لم يتم تغيير كتلة الأوامر. استخدم أمر المحادثة «help» للاطلاع على قائمة الأوامر المتاحة."
+
+msgid "Error: The command “@1” does not exist; your command block has not been changed. Use the “help” chat command for a list of available commands. Hint: Try to remove the leading slash."
+msgstr "خطأ: الأمر «@1» غير موجود؛ لم يتم تغيير كتلة الأوامر. استخدم أمر المحادثة «help» للاطلاع على قائمة الأوامر المتاحة. تلميح: جرّب حذف الشرطة المائلة من بداية الأمر."
+
+msgid "Error: You have insufficient privileges to use the command “@1” (missing privilege: @2)! The command block has not been changed."
+msgstr "خطأ: لا تملك صلاحيات كافية لاستخدام الأمر «@1» (الصلاحية المفقودة: @2)! لم يتم تغيير كتلة الأوامر."
+
+msgid "Error: No commander! Block must be replaced."
+msgstr "خطأ: لا يوجد منفّذ للأوامر! يجب استبدال الكتلة."
+
+msgid "Commander: @1"
+msgstr "منفّذ الأوامر: @1"
+
+msgid "Submit"
+msgstr "إرسال"
+
+msgid "No commands."
+msgstr "لا توجد أوامر."
+
+msgid "Commands:"
+msgstr "الأوامر:"
+
+msgid "Help"
+msgstr "مساعدة"
+
+msgid "Command Block"
+msgstr "كتلة الأوامر"
+
+msgid "Placement denied. You need the “maphack” privilege to place command blocks."
+msgstr "رُفض وضع الكتلة. تحتاج إلى صلاحية «maphack» لوضع كتل الأوامر."
+
+msgid "Executes server commands when powered by redstone power"
+msgstr "تنفّذ أوامر الخادم عند تزويدها بطاقة ريدستون"
+
+msgid "Command blocks are mighty redstone components which are able to alter reality itself. In other words, they cause the server to execute server commands when they are supplied with redstone power."
+msgstr "كتل الأوامر مكوّنات ريدستون قوية قادرة على تغيير العالم نفسه. فهي تجعل الخادم ينفّذ أوامر الخادم عند تزويدها بطاقة ريدستون."
+
+msgid "Everyone can activate a command block and look at its commands, but not everyone can edit and place them."
+msgstr "يمكن للجميع تفعيل كتلة الأوامر والاطلاع على أوامرها، لكن لا يمكن للجميع تعديلها أو وضعها."
+
+msgid "To view the commands in a command block, use it. To activate the command block, just supply it with redstone power. This will execute the commands once. To execute the commands again, turn the redstone power off and on again."
+msgstr "للاطلاع على أوامر كتلة الأوامر، استخدمها. ولتفعيلها، زوّدها بطاقة ريدستون؛ فسينفّذ ذلك الأوامر مرة واحدة. ولتنفيذ الأوامر مجدداً، افصل طاقة ريدستون ثم أعد توصيلها."
+
+msgid "To be able to place a command block and change the commands, you need to be in Creative Mode and must have the “maphack” privilege. A new command block does not have any commands and does nothing. Use the command block (in Creative Mode!) to edit its commands. Read the help entry “Advanced usage > Server Commands” to understand how commands work. Each line contains a single command. You enter them like you would in the console, but without the leading slash. The commands will be executed from top to bottom."
+msgstr "لكي تتمكن من وضع كتلة أوامر وتغيير أوامرها، يجب أن تكون في نمط الإبداع وأن تملك صلاحية «maphack». لا تحتوي كتلة الأوامر الجديدة على أي أوامر، ولذلك لا تفعل شيئاً. استخدم كتلة الأوامر (في نمط الإبداع!) لتحرير أوامرها. اقرأ مدخل المساعدة «الاستخدام المتقدم > أوامر الخادم» لفهم طريقة عمل الأوامر. يحتوي كل سطر على أمر واحد. أدخل الأوامر كما تفعل في وحدة التحكم، ولكن من دون الشرطة المائلة في بدايتها. ستُنفّذ الأوامر من الأعلى إلى الأسفل."
+
+msgid "All commands will be executed on behalf of the player who placed the command block, as if the player typed in the commands. This player is said to be the “commander” of the block."
+msgstr "ستُنفّذ جميع الأوامر نيابةً عن اللاعب الذي وضع كتلة الأوامر، كما لو أن اللاعب كتب الأوامر بنفسه. ويُسمّى هذا اللاعب «منفّذ» الكتلة."
+
+msgid "Command blocks support placeholders, insert one of these placeholders and they will be replaced by some other text:"
+msgstr "تدعم كتل الأوامر العناصر النائبة. أدرج أحد العناصر النائبة التالية ليُستبدل بنص آخر:"
+
+msgid "• “@c”: commander of this command block"
+msgstr "• «@c»: منفّذ كتلة الأوامر هذه"
+
+msgid "• “@n” or “@p”: nearest player from the command block"
+msgstr "• «@n» أو «@p»: أقرب لاعب إلى كتلة الأوامر"
+
+msgid "• “@f” farthest player from the command block"
+msgstr "• «@f»: أبعد لاعب عن كتلة الأوامر"
+
+msgid "• “@r”: random player currently in the world"
+msgstr "• «@r»: لاعب عشوائي موجود حالياً في العالم"
+
+msgid "• “@@”: literal “@” sign"
+msgstr "• «@@»: رمز «@» حرفياً"
+
+msgid "Example 1:\n"
+"    time 12000\n"
+"Sets the game clock to 12:00"
+msgstr "المثال 1:\n"
+
+msgid "Example 2:\n"
+"    give @n mcl_core:apple 5\n"
+"Gives the nearest player 5 apples"
+msgstr "المثال 2:\n"
+
+msgid "Access denied. You need the “maphack” privilege to edit command blocks."
+msgstr "رُفض الوصول. تحتاج إلى صلاحية «maphack» لتحرير كتل الأوامر."
+
+msgid "Editing the command block has failed! You can only change the command block in Creative Mode!"
+msgstr "فشل تحرير كتلة الأوامر! لا يمكنك تغييرها إلا في نمط الإبداع!"
+
+msgid "Editing the command block has failed! The command block is gone."
+msgstr "فشل تحرير كتلة الأوامر! كتلة الأوامر لم تعد موجودة."
