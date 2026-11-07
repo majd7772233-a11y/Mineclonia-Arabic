@@ -37,3 +37,11 @@ msgstr "سلسلة"
 #: mods/ITEMS/mcl_lanterns/register.lua:42
 msgid "Chains are metallic decoration blocks."
 msgstr "السلاسل كتل زخرفية معدنية."
+
+#: mods/ITEMS/mcl_lanterns/register.lua:41
+msgid "Iron Chain"
+msgstr "سلسلة حديدية"
+
+#: mods/ITEMS/mcl_lanterns/register.lua:42
+msgid "Iron Chains are metallic decoration blocks."
+msgstr "السلاسل الحديدية كتل زخرفية معدنية."
