@@ -1,0 +1,45 @@
+# Arabic translation draft for Mineclonia component: mcl_fire
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_fire/locale/template.pot
+# Source template blob SHA: 01db672ede846a498223a3a503db3fd4e4691c79
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_fire/fire_charge.lua:5
+msgid "Fire Charge"
+msgstr "كرة نارية"
+
+#: mods/ITEMS/mcl_fire/fire_charge.lua:6
+msgid "Dispenser projectile"
+msgstr "مقذوف الموزّع"
+
+#: mods/ITEMS/mcl_fire/fire_charge.lua:6
+#: mods/ITEMS/mcl_fire/flint_and_steel.lua:6
+msgid "Starts fires and ignites blocks"
+msgstr "يشعل النار ويضرم الكتل"
+
+#: mods/ITEMS/mcl_fire/flint_and_steel.lua:5
+msgid "Flint and Steel"
+msgstr "قدّاحة"
+
+#: mods/ITEMS/mcl_fire/flint_and_steel.lua:7
+msgid "Flint and steel is a tool to start fires and ignite blocks."
+msgstr "الصوان والقدّاحة أداة لإشعال النار وإضرام الكتل."
+
+#: mods/ITEMS/mcl_fire/init.lua:59
+msgid "Fire"
+msgstr "نار"
+
+#: mods/ITEMS/mcl_fire/init.lua:105
+msgid "Eternal Fire"
+msgstr "نار أبدية"
