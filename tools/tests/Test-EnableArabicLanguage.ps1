@@ -138,7 +138,54 @@ function Assert-ArabicIsInstalled($Fixture, [string]$ConfigMode) {
     if ($languageRows.Count -ne 1 -or $languageRows[0] -notmatch '^[ \t]*language[ \t]*=[ \t]*ar[ \t]*$') {
         throw "Expected exactly one persisted language = ar setting in $configPath, got: $($languageRows -join ' | ')"
     }
-    if ($config -notmatch '(?m)^fullscreen = true$') {
+    if ($config -notmatch '(?m)^fullscreen = true?
+        throw "The helper did not preserve unrelated settings in $configPath"
+    }
+}
+
+try {
+    New-Item -ItemType Directory -Path $testRoot -Force | Out-Null
+
+    # Repair the exact malformed enum token and a stale persisted config value.
+    $rootFixture = New-LuantiFixture "Install Root With Spaces" "language (Language) enum   ,arbe,bg,be,en,tr" '        --ar = " [ar]", blacklisted' "arbe"
+    [void](Invoke-Helper $rootFixture $rootFixture.Root "env")
+    Assert-ArabicIsInstalled $rootFixture "env"
+
+    # Selecting ...\builtin resolves to its parent; APPDATA\Minetest is used.
+    $builtinFixture = New-LuantiFixture "Builtin Folder Selection" "language (Language) enum   ,be,bg,en,tr" '        --ar = " [ar]", blacklisted' "en"
+    [void](Invoke-Helper $builtinFixture $builtinFixture.Builtin "appdata")
+    Assert-ArabicIsInstalled $builtinFixture "appdata"
+
+    # Selecting ...\bin resolves to its parent; missing language value is added.
+    $binFixture = New-LuantiFixture "Bin Folder Selection" "language (Language) enum   ,be,bg,en,tr" '        --ar = " [ar]", blacklisted' "__MISSING__"
+    $binConfig = [IO.File]::ReadAllText($binFixture.ConfigFile)
+    $binConfig = $binConfig -replace '(?m)^language = .*(\r?\n)?', ''
+    [IO.File]::WriteAllText($binFixture.ConfigFile, $binConfig, [Text.UTF8Encoding]::new($false))
+    [void](Invoke-Helper $binFixture $binFixture.Bin "env")
+    Assert-ArabicIsInstalled $binFixture "env"
+
+    # Remove an existing malformed label key as well as the enum token.
+    $partialFixture = New-LuantiFixture "Repair Previous Partial Attempt" "language (Language) enum   ,arbe,bg,en,tr" '        arbe = "Broken Arabic label",' "arbe"
+    [void](Invoke-Helper $partialFixture $partialFixture.Root "env")
+    Assert-ArabicIsInstalled $partialFixture "env"
+
+    # Insert Arabic when the option-label table has no Arabic row.
+    $missingFixture = New-LuantiFixture "Missing Arabic Row" "language (Language) enum   ,be,bg,en,tr" '        de = "Deutsch [de]",' "en"
+    [void](Invoke-Helper $missingFixture $missingFixture.Root "appdata")
+    Assert-ArabicIsInstalled $missingFixture "appdata"
+
+    # Idempotency: a second run must not duplicate labels, enum values, or config keys.
+    [void](Invoke-Helper $rootFixture $rootFixture.Root "env")
+    Assert-ArabicIsInstalled $rootFixture "env"
+
+    Write-Host "PASS: Windows PowerShell 5.1 tests succeeded (root/builtin/bin, malformed arbe repair, persistent config, APPDATA/LUANTI_USER_PATH lookup, preservation, and idempotency)." -ForegroundColor Green
+}
+finally {
+    if (Test-Path -LiteralPath $testRoot) {
+        Remove-Item -LiteralPath $testRoot -Recurse -Force
+    }
+}
+) {
         throw "The helper did not preserve unrelated settings in $configPath"
     }
 }
