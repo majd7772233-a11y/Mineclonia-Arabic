@@ -1,0 +1,38 @@
+# Arabic translation draft for Mineclonia component: mcl_bone_meal
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_bone_meal/locale/template.pot
+# Source template blob SHA: c8ffba88eb73c9132b9ac124fc2070c3fc0dec18
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_bone_meal/init.lua:62
+msgid "Bone Meal"
+msgstr "مسحوق العظام"
+
+#: mods/ITEMS/mcl_bone_meal/init.lua:63
+msgid "Speeds up plant growth"
+msgstr "يسرّع نمو النباتات"
+
+#: mods/ITEMS/mcl_bone_meal/init.lua:64
+msgid ""
+"Bone meal is a white dye and also useful as a fertilizer to speed up the "
+"growth of many plants."
+msgstr "مسحوق العظام صبغة بيضاء، كما يُستخدم سماداً لتسريع نمو كثير من النباتات."
+
+#: mods/ITEMS/mcl_bone_meal/init.lua:65
+msgid ""
+"Rightclick a sheep to turn its wool white. Rightclick a plant to speed up "
+"its growth. Note that not all plants can be fertilized like this. When you "
+"rightclick a grass block, tall grass and flowers will grow all over the "
+"place."
+msgstr "انقر بزر الفأرة الأيمن على الخروف لتحويل صوفه إلى اللون الأبيض. وانقر على نبتة لتسريع نموها. لاحظ أنه لا يمكن تسميد جميع النباتات بهذه الطريقة. وعند النقر على كتلة عشبية، تنمو الأعشاب الطويلة والأزهار في أرجائها."

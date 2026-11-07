@@ -1,0 +1,30 @@
+# Arabic translation draft for Mineclonia component: mcl_fletching_table
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_fletching_table/locale/template.pot
+# Source template blob SHA: 53a1dd955df2a535e4290d4f67d7ec14438d0771
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_fletching_table/init.lua:4
+msgid "Fletching Table"
+msgstr "طاولة صناعة الأسهم"
+
+#: mods/ITEMS/mcl_fletching_table/init.lua:5
+msgid "A fletching table"
+msgstr "طاولة صناعة الأسهم"
+
+#: mods/ITEMS/mcl_fletching_table/init.lua:6
+msgid ""
+"This is the fletcher villager's work station. It currently has no use beyond "
+"decoration."
+msgstr "هذه محطة عمل القروي من مهنة صانع السهام. ولا تؤدي حالياً أي وظيفة سوى الزخرفة."

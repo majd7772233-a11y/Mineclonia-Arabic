@@ -228,3 +228,39 @@
 | `mods/MAPGEN/mcl_villages/locale/template.pot` | `3b21761af3c68420ef38f3e6316e13df8e24934f` |
 | `mods/MAPGEN/mcl_structures/locale/template.pot` | `0c7b8ac08bf1402f7ef5e28396d96425f984ff9e` |
 | `mods/ITEMS/mcl_lanterns/locale/template.pot` | `747a2ce18266556f8c8a9a1be3cc0202fe5a9ee8` |
+
+
+## قوالب دفعة استكمال الكائنات وريدستون والأدوات — 2026-11-07
+
+- مرآة المصدر: https://github.com/ZenonSeth/mineclonia-mirror
+- commit المصدر: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/ENTITIES/mcl_charges/locale/template.pot` | `ea1efd1e930bc3ebf101ac05c123c0f9b282f379` |
+| `mods/ENTITIES/mcl_paintings/locale/template.pot` | `8144ba3f892af3326bbcf35a0066df4f0e05e226` |
+| `mods/ITEMS/REDSTONE/mcl_buttons/locale/template.pot` | `d9788960a6bbe662921a78f8a696d022d3248d98` |
+| `mods/ITEMS/REDSTONE/mcl_daylight_detector/locale/template.pot` | `e6bc6884adc0769c4d76f3db2630ea1fdd69064e` |
+| `mods/ITEMS/REDSTONE/mcl_lever/locale/template.pot` | `d1ca812a33c1f8de43775669fb308806ea8e1efa` |
+| `mods/ITEMS/REDSTONE/mcl_observers/locale/template.pot` | `b5d3a7bb061182ff2e838491299d992840f6aa82` |
+| `mods/ITEMS/REDSTONE/mcl_pistons/locale/template.pot` | `1be9a796b3423a97b425c28ea96afd119ed5d8dd` |
+| `mods/ITEMS/REDSTONE/mcl_redstone_lamp/locale/template.pot` | `bc6a3c5962a12d3e949f79e3897d2a0569bebb75` |
+| `mods/ITEMS/REDSTONE/mcl_redstone_torch/locale/template.pot` | `e448444f1fc2f7b22f84f09418585268e36aa3fa` |
+| `mods/ITEMS/REDSTONE/mcl_target/locale/template.pot` | `f88add8ed769a5b947a62e251a14c535c841f71c` |
+| `mods/ITEMS/mcl_armor_stand/locale/template.pot` | `25050fd4002e9a041d04eb3fec32c66b0fe68306` |
+| `mods/ITEMS/mcl_bells/locale/template.pot` | `ec4bd9dd73468dd90dc81982b82451592cfb4b79` |
+| `mods/ITEMS/mcl_bone_meal/locale/template.pot` | `c8ffba88eb73c9132b9ac124fc2070c3fc0dec18` |
+| `mods/ITEMS/mcl_campfires/locale/template.pot` | `6637c79d3c005e9d1ef16b109c7aad8beed31666` |
+| `mods/ITEMS/mcl_cartography_table/locale/template.pot` | `e8bce52549395d8bbe7f5dea1367d1fe625b2c69` |
+| `mods/ITEMS/mcl_conduits/locale/template.pot` | `c29b70a131aced5de5aaf455327af77426ac4ffd` |
+| `mods/ITEMS/mcl_fences/locale/template.pot` | `302231af7793bc4589fec8887c30127b77225387` |
+| `mods/ITEMS/mcl_fireworks/locale/template.pot` | `4be644ba22b17245c2bc2bc1ea4309ef5d53f0fc` |
+| `mods/ITEMS/mcl_fletching_table/locale/template.pot` | `53a1dd955df2a535e4290d4f67d7ec14438d0771` |
+| `mods/ITEMS/mcl_loom/locale/template.pot` | `b0e790ba89a0c0a248b97916071c7b06d7e306c7` |
+| `mods/ITEMS/mcl_spyglass/locale/template.pot` | `4b6c3c0f420629184a2db2fd97fee91bc56ceff3` |
+| `mods/ITEMS/mcl_tridents/locale/template.pot` | `444f1dc5676fc550bcc7424c1e9412eb866ee7e8` |
+| `mods/ITEMS/mcl_sus_nodes/locale/template.pot` | `c57f977a0ab8e178af98599781e877b3e626ceae` |
+| `mods/ITEMS/mcl_torches/locale/template.pot` | `d051d499c0e8f09db472cbe1b1fa79b917a5afcc` |
+| `mods/ITEMS/mclx_core/locale/template.pot` | `0124235524b2bbc1ce47d8f87011ea377d188c51` |
+| `mods/ITEMS/mclx_fences/locale/template.pot` | `084a935acf4fcbbf5a7311e5f198f02c7215de93` |
+| `mods/ITEMS/screwdriver/locale/template.pot` | `4366d7078e8b843b937ea18fc05f0500c1f27cba` |

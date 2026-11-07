@@ -1,0 +1,40 @@
+# Arabic translation draft for Mineclonia component: mcl_buttons
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/REDSTONE/mcl_buttons/locale/template.pot
+# Source template blob SHA: d9788960a6bbe662921a78f8a696d022d3248d98
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Provides redstone power when pushed"
+msgstr "يوفّر طاقة ريدستون عند الضغط عليه"
+
+msgid "Push duration: @1s"
+msgstr "مدة الضغط: @1 ثانية"
+
+msgid "Pushable by arrow"
+msgstr "يمكن تفعيله بسهم"
+
+msgid "Use the button to push it."
+msgstr "استخدم الزر للضغط عليه."
+
+msgid "Stone Button"
+msgstr "زر حجري"
+
+msgid "A stone button is a redstone component made out of stone which can be pushed to provide redstone power. When pushed, it powers adjacent redstone components for 1 second."
+msgstr "الزر الحجري مكوّن من مكوّنات ريدستون مصنوع من الحجر، ويمكن الضغط عليه لتوليد طاقة ريدستون. عند الضغط عليه، يزوّد مكوّنات ريدستون المجاورة بالطاقة لمدة ثانية واحدة."
+
+msgid "Polished Blackstone Button"
+msgstr "زر الحجر الأسود المصقول"
+
+msgid "A polished blackstone button is a redstone component made out of polished blackstone which can be pushed to provide redstone power. When pushed, it powers adjacent redstone components for 1 second."
+msgstr "زر الحجر الأسود المصقول مكوّن من مكوّنات ريدستون مصنوع من الحجر الأسود المصقول، ويمكن الضغط عليه لتوليد طاقة ريدستون. عند الضغط عليه، يزوّد مكوّنات ريدستون المجاورة بالطاقة لمدة ثانية واحدة."
