@@ -92,7 +92,7 @@ function Assert-ArabicIsSecondOption($Fixture) {
             Where-Object { $_ -match '^--[ \t]*ar[ \t]*=' }
     )
     if ($commentedArabicLines.Count -gt 0) {
-        throw "The Arabic language label is still commented out."
+        throw ("The Arabic language label is still commented out. Remaining rows: " + ($commentedArabicLines -join " || ") + ". Full dialog: " + $dialog)
     }
 }
 
