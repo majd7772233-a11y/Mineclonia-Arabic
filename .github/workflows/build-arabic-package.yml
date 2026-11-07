@@ -45,10 +45,18 @@ jobs:
           MTT_DIR: ${{ runner.temp }}/Minetest_Translation_Tools
         run: |
           set -euo pipefail
-          git clone --depth 1 https://codeberg.org/Wuzzy/Minetest_Translation_Tools.git "$MTT_DIR"
-          test -f "$MTT_DIR/mtt_convert.py"
-          test -f "$MTT_DIR/mtt_check.py"
+          git clone --depth 1 https://codeberg.org/Wuzzy/Luanti_Translation_Tools.git "$MTT_DIR"
           echo "MTT_COMMIT=$(git -C "$MTT_DIR" rev-parse HEAD)" >> "$GITHUB_ENV"
+          echo "MTT FILE INVENTORY:"
+          find "$MTT_DIR" -maxdepth 4 -type f | sort | head -200
+          CONVERTER=$(find "$MTT_DIR" -type f -name 'mtt_convert.py' -print -quit)
+          CHECKER=$(find "$MTT_DIR" -type f -name 'mtt_check.py' -print -quit)
+          if [ -z "$CONVERTER" ] || [ -z "$CHECKER" ]; then
+            echo "Expected mtt_convert.py and mtt_check.py were not found in the renamed repository."
+            exit 1
+          fi
+          echo "MTT_CONVERT=$CONVERTER" >> "$GITHUB_ENV"
+          echo "MTT_CHECK=$CHECKER" >> "$GITHUB_ENV"
 
       - name: Validate source coverage, convert PO to TR, and create ZIP
         env:
@@ -57,8 +65,8 @@ jobs:
           set -euo pipefail
           python workbench/tools/build_tr_package.py \
             --source-root source \
-            --mtt-convert "$MTT_DIR/mtt_convert.py" \
-            --mtt-check "$MTT_DIR/mtt_check.py" \
+            --mtt-convert "$MTT_CONVERT" \
+            --mtt-check "$MTT_CHECK" \
             --source-commit 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da \
             --expected-files 163 \
             --expected-messages 4980 \
