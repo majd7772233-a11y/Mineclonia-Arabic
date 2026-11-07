@@ -1,0 +1,112 @@
+name: Build Mineclonia Arabic runtime package
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/build_tr_package.py"
+      - ".github/workflows/build-arabic-package.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mineclonia-arabic-runtime-package
+  cancel-in-progress: false
+
+jobs:
+  package:
+    name: Convert PO to TR and publish install package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Arabic translation workbench
+        uses: actions/checkout@v4
+        with:
+          path: workbench
+
+      - name: Check out pinned Mineclonia source snapshot
+        uses: actions/checkout@v4
+        with:
+          repository: ZenonSeth/mineclonia-mirror
+          ref: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+          path: source
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PO parser
+        run: python -m pip install --disable-pip-version-check polib==1.2.0
+
+      - name: Fetch Mineclonia's documented translation tools
+        env:
+          MTT_DIR: ${{ runner.temp }}/Minetest_Translation_Tools
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://codeberg.org/Wuzzy/Minetest_Translation_Tools.git "$MTT_DIR"
+          test -f "$MTT_DIR/mtt_convert.py"
+          test -f "$MTT_DIR/mtt_check.py"
+          echo "MTT_COMMIT=$(git -C "$MTT_DIR" rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Validate source coverage, convert PO to TR, and create ZIP
+        env:
+          MTT_DIR: ${{ runner.temp }}/Minetest_Translation_Tools
+        run: |
+          set -euo pipefail
+          python workbench/tools/build_tr_package.py \
+            --source-root source \
+            --mtt-convert "$MTT_DIR/mtt_convert.py" \
+            --mtt-check "$MTT_DIR/mtt_check.py" \
+            --source-commit 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da \
+            --expected-files 163 \
+            --expected-messages 4980 \
+            --target-release "39603 (reported by owner; exact source match unverified)" \
+            --luanti-version "5.17.0 (reported by owner)" \
+            --output workbench/dist
+          echo "PACKAGE_ZIP=$(find workbench/dist -maxdepth 1 -name '*.zip' -print -quit)" >> "$GITHUB_ENV"
+          echo "PACKAGE_SHA=$(find workbench/dist -maxdepth 1 -name '*.zip.sha256' -print -quit)" >> "$GITHUB_ENV"
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mineclonia-Arabic-TR-install-package
+          path: |
+            ${{ env.PACKAGE_ZIP }}
+            ${{ env.PACKAGE_SHA }}
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish pre-release with install ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PACKAGE_ZIP: ${{ env.PACKAGE_ZIP }}
+          PACKAGE_SHA: ${{ env.PACKAGE_SHA }}
+          MTT_COMMIT: ${{ env.MTT_COMMIT }}
+        working-directory: workbench
+        run: |
+          set -euo pipefail
+          TAG="mineclonia-arabic-source-4ba113d1"
+          NOTES="$RUNNER_TEMP/release-notes.md"
+          cat > "$NOTES" <<EOF
+          ## Mineclonia Arabic runtime package
+
+          - 163 translation domains, 4,980 translated messages.
+          - Generated with Mineclonia's documented `mtt_convert.py --po2tr -r` workflow.
+          - Checked with `mtt_check.py -r`.
+          - Mineclonia source mirror commit: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`.
+          - Minetest Translation Tools commit: `$MTT_COMMIT`.
+          - Owner-reported target: Mineclonia `release=39603`, Luanti `5.17.0`; exact source-to-local-build equivalence has not been independently confirmed.
+          - The package has not yet been tested in a running Luanti client. It is published as a pre-release candidate for installation testing, not as an upstream-approved Mineclonia release.
+          EOF
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$PACKAGE_ZIP" "$PACKAGE_SHA" --clobber
+            gh release edit "$TAG" --title "Mineclonia Arabic runtime package" --notes-file "$NOTES" --prerelease
+          else
+            gh release create "$TAG" "$PACKAGE_ZIP" "$PACKAGE_SHA" \
+              --target "$GITHUB_SHA" \
+              --title "Mineclonia Arabic runtime package" \
+              --notes-file "$NOTES" \
+              --prerelease
+          fi
