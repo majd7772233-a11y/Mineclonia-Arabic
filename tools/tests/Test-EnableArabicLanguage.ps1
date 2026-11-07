@@ -105,7 +105,7 @@ try {
 
     # Case 3: repair the exact malformed ordering left by the previous helper:
     # ar, [empty system-language item], be, ...; the label may already be active.
-    $partialFixture = New-LuantiFixture "Repair Previous Partial Attempt" "language (Language) enum ar,  ,be,bg,en,tr" $true
+    $partialFixture = New-LuantiFixture "Repair Previous Partial Attempt" "language (Language) enum   ,arbe,bg,en,tr" $true
     $output = Invoke-Helper $partialFixture.Root
     Assert-ArabicIsSecondOption $partialFixture
 
