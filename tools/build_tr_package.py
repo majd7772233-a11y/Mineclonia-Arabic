@@ -213,6 +213,7 @@ def main() -> None:
     total_messages = 0
     runtime_messages = 0
     stale_po_entries: list[dict[str, object]] = []
+    missing_runtime_entries: list[dict[str, str]] = []
     seen_domains: dict[str, str] = {}
     expected_catalogs: dict[str, dict[str, str]] = {}
 
@@ -264,7 +265,10 @@ def main() -> None:
             )
             for missing_key in missing_required:
                 print("MISSING_RUNTIME\\t" + json.dumps(missing_key, ensure_ascii=False), flush=True)
-            fail(f"{rel}: Arabic PO does not cover every generated runtime template string")
+                missing_runtime_entries.append({
+                    "path": str(rel),
+                    "key": missing_key,
+                })
         extra_po = sorted(po_keys - required_keys)
         if extra_po:
             stale_po_entries.append({
@@ -308,6 +312,22 @@ def main() -> None:
             entry.msgid: entry.msgstr for entry in entries
         }
         print(f"VALID {module}: {message_count} messages, textdomain={domain}", flush=True)
+
+    if missing_runtime_entries:
+        print(
+            f"RUNTIME COVERAGE SUMMARY: {len(missing_runtime_entries)} missing unique key(s) "
+            f"across {len({item['path'] for item in missing_runtime_entries})} module(s).",
+            flush=True,
+        )
+        for item in missing_runtime_entries:
+            print(
+                "MISSING_RUNTIME_SUMMARY\\t"
+                + item["path"]
+                + "\\t"
+                + json.dumps(item["key"], ensure_ascii=False),
+                flush=True,
+            )
+        fail("Arabic PO catalogs do not cover every generated runtime template string")
 
     if total_messages < args.expected_messages:
         fail(
