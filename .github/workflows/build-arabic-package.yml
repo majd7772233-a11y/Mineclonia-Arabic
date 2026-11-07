@@ -111,15 +111,18 @@ jobs:
           chmod +x modtools/mod_translation_updater.py source/tools/generate_translation_strings/generate.sh
           # Luanti enables a Prometheus HTTP listener by default. Give this
           # temporary one-shot world a free loopback port to avoid collisions.
-          PROMETHEUS_PORT=$(python - <<'PY'
+          read -r GAME_PORT PROMETHEUS_PORT < <(python - <<'PY'
           import socket
-          with socket.socket() as sock:
-              sock.bind(("127.0.0.1", 0))
-              print(sock.getsockname()[1])
+          selected = []
+          for kind in (socket.SOCK_DGRAM, socket.SOCK_STREAM):
+              with socket.socket(socket.AF_INET, kind) as sock:
+                  sock.bind(("127.0.0.1", 0))
+                  selected.append(sock.getsockname()[1])
+          print(*selected)
           PY
           )
-          printf '\nprometheus_listener_address = 127.0.0.1:%s\nserver_announce = false\n' "$PROMETHEUS_PORT" >> source/tools/generate_translation_strings/world.conf
-          echo "Using temporary local Prometheus port $PROMETHEUS_PORT for the dumper world."
+          printf '\nport = %s\nbind_address = 127.0.0.1\nprometheus_listener_address = 127.0.0.1:%s\nserver_announce = false\n' "$GAME_PORT" "$PROMETHEUS_PORT" >> source/tools/generate_translation_strings/world.conf
+          echo "Using temporary loopback game UDP port $GAME_PORT and metrics TCP port $PROMETHEUS_PORT."
           python - <<'PY'
           from pathlib import Path
           script = Path("source/tools/generate_translation_strings/generate.sh")
