@@ -1,0 +1,62 @@
+# Arabic translation for Mineclonia component: mcl_sponges
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_sponges/locale/template.pot
+# Source template blob SHA: fb80e2066498ea9f424fb3d7ec0b705ac8ee14cf
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_sponges/init.lua:24
+msgid "Sponge"
+msgstr "إسفنجة"
+
+#: mods/ITEMS/mcl_sponges/init.lua:25
+msgid "Removes water on contact"
+msgstr "تمتص الماء عند ملامسته"
+
+#: mods/ITEMS/mcl_sponges/init.lua:26
+msgid ""
+"Sponges are blocks which remove water around them when they are placed or "
+"come in contact with water, turning it into a wet sponge."
+msgstr "الإسفنج كتل تمتص الماء المحيط بها عند وضعها أو ملامستها للماء، وتتحول عندئذٍ إلى إسفنجة مبللة."
+
+#: mods/ITEMS/mcl_sponges/init.lua:117
+msgid "Waterlogged Sponge"
+msgstr "إسفنجة مشبعة بالماء"
+
+#: mods/ITEMS/mcl_sponges/init.lua:118 mods/ITEMS/mcl_sponges/init.lua:133
+msgid "Can be dried in furnace"
+msgstr "يمكن تجفيفها في الفرن"
+
+#: mods/ITEMS/mcl_sponges/init.lua:119
+msgid ""
+"A waterlogged sponge can be dried in the furnace to turn it into (dry) "
+"sponge. When there's an empty bucket in the fuel slot of a furnace, the "
+"water will pour into the bucket."
+msgstr "يمكن تجفيف الإسفنجة المشبعة بالماء في الفرن لتتحول إلى إسفنجة جافة. وإذا وُضع دلو فارغ في خانة الوقود بالفرن، فسوف يُسكب الماء داخل الدلو."
+
+#: mods/ITEMS/mcl_sponges/init.lua:132
+msgid "Riverwaterlogged Sponge"
+msgstr "إسفنجة مشبعة بماء النهر"
+
+#: mods/ITEMS/mcl_sponges/init.lua:134
+msgid ""
+"This is a sponge soaking wet with river water. It can be dried in the "
+"furnace to turn it into (dry) sponge. When there's an empty bucket in the "
+"fuel slot of the furnace, the river water will pour into the bucket."
+msgstr "هذه إسفنجة امتصت كمية كبيرة من ماء النهر. يمكن تجفيفها في الفرن لتتحول إلى إسفنجة جافة. وإذا وُضع دلو فارغ في خانة الوقود بالفرن، فسوف يُسكب ماء النهر داخله."
+
+#: mods/ITEMS/mcl_sponges/init.lua:134
+msgid ""
+"A sponge becomes riverwaterlogged (instead of waterlogged) if it sucks up "
+"more river water than (normal) water."
+msgstr "تتحول الإسفنجة إلى إسفنجة مشبعة بماء النهر (بدلاً من الماء العادي) إذا امتصت من ماء النهر كمية أكبر مما امتصته من الماء العادي."
