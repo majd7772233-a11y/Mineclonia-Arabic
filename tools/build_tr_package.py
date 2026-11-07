@@ -612,7 +612,7 @@ def main() -> None:
 4. لا تستبدل مجلد mods بالكامل؛ اسمح بدمج ملفات locale فقط.
 5. تحتوي الحزمة على ملف PO أصلي للوحدة ذات صيغ الجمع الست؛ يتطلب تحميله Luanti 5.10.0 أو أحدث، وإصدارك المبلغ عنه 5.17.0 يفي بذلك.
 6. شغّل ENABLE_ARABIC_LANGUAGE.bat الموجود بجانب مجلد mods. اختر جذر تثبيت Luanti الذي يحتوي على bin وbuiltin (في شجرة جهازك: C:\\Users\\Magd\\AppData\\Local\\luanti\\5.17.0). لا تختر مجلد Mineclonia. يقبل السكربت أيضاً اختيار builtin أو bin ويحدد الجذر تلقائياً.
-7. في إصدار Windows المحمول RUN_IN_PLACE سيكتشف السكربت وجود minetest.conf.example ويضبط language = ar في ملف minetest.conf بجذر التثبيت، بجانب bin. إذا كانت لديك متغيرات LUANTI_USER_PATH أو MINETEST_USER_PATH فسيحترمها؛ وفي التثبيت غير المحمول يستخدم %APPDATA%\\Minetest\\minetest.conf.
+7. في إصدار Windows المحمول RUN_IN_PLACE سيكتشف السكربت وجود minetest.conf.example ويضبط language = ar في ملف minetest.conf بجذر التثبيت، بجانب bin؛ وهذا يطابق سلوك المحرك الذي يتجاهل متغيرات مسار المستخدم في وضع RUN_IN_PLACE. أما التثبيت غير المحمول فيحترم LUANTI_USER_PATH أو MINETEST_USER_PATH، ثم يستخدم %APPDATA%\\Minetest\\minetest.conf عند غيابها.
 8. لن تحتاج إلى اختيار arbe أو العربية يدوياً من القائمة؛ أغلق Luanti ثم افتحه مجدداً، ويقرأ المحرك اللغة ar عند بدء التشغيل. يحتفظ السكربت ببقية إعداداتك، وينشئ نسخة احتياطية من كل ملف سيغيره داخل %LOCALAPPDATA%\\Mineclonia-Arabic\\LuantiBackups.
 
 إزالة التعريب
@@ -668,7 +668,7 @@ def main() -> None:
                 "builtin/common/settings/dlg_settings.lua",
                 "minetest.conf (RUN_IN_PLACE install root or resolved Windows user path)",
             ],
-            "purpose": "Expose canonical locale ar in Luanti 5.17.0 and persist language = ar in the actual user config. Detects RUN_IN_PLACE from minetest.conf.example, honors LUANTI_USER_PATH and MINETEST_USER_PATH, and otherwise uses the non-portable APPDATA path. Windows PowerShell 5.1 tests cover root/builtin/bin selection, malformed arbe repair, config persistence, preservation, and idempotency; no RTL engine support is added.",
+            "purpose": "Expose canonical locale ar in Luanti 5.17.0 and persist language = ar in the actual user config. Detects RUN_IN_PLACE from minetest.conf.example and writes to the install root because Luanti bypasses setSystemPaths() in that compile-time mode; non-portable builds honor LUANTI_USER_PATH and MINETEST_USER_PATH before the APPDATA fallback. Windows PowerShell 5.1 tests cover root/builtin/bin selection, malformed arbe repair, RUN_IN_PLACE precedence, config persistence, preservation, and idempotency; no RTL engine support is added.",
         },
         "tr_filename_normalization": "textdomain.ar.tr",
         "modules": per_module,
