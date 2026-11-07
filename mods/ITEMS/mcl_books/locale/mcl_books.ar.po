@@ -71,6 +71,26 @@ msgstr "دوّن بعض الملاحظات"
 msgid "This item can be used to write down some notes."
 msgstr "يمكن استخدام هذا العنصر لتدوين بعض الملاحظات."
 
+#: mods/ITEMS/mcl_books/init.lua:88
+msgid ""
+"Hold it in the hand, then rightclick to read the current notes and edit "
+"then. You can edit the text as often as you like. You can also sign the book "
+"which turns it into a written book which you can stack, but it can't be "
+"edited anymore."
+msgstr "أمسك الكتاب بيدك، ثم انقر بزر الفأرة الأيمن لقراءة الملاحظات الحالية وتعديلها. يمكنك تعديل النص كلما شئت. ويمكنك أيضاً توقيع الكتاب لتحويله إلى كتاب مكتوب يمكن تكديسه، لكنه لن يعود قابلاً للتعديل."
+
+#: mods/ITEMS/mcl_books/init.lua:90
+msgid ""
+"A book can hold up to @1 characters. The title length is limited to @2 "
+"characters."
+msgstr "يمكن أن يحتوي الكتاب على ما يصل إلى @1 حرفاً. ويقتصر طول العنوان على @2 حرفاً."
+
+#: mods/ITEMS/mcl_books/init.lua:111
+msgid ""
+"Text is @1 characters too long for one book.\n"
+"It will be capped at @2 characters."
+msgstr "النص أطول من سعة الكتاب بمقدار @1 حرفاً.\nسيُقتطع النص إلى @2 حرفاً."
+
 #: mods/ITEMS/mcl_books/init.lua:121
 msgid "Enter book title:"
 msgstr "أدخل عنوان الكتاب:"
@@ -95,9 +115,22 @@ msgstr "كتاب بلا اسم"
 msgid "Written Book"
 msgstr "كتاب مكتوب"
 
+#: mods/ITEMS/mcl_books/init.lua:175
+msgid ""
+"Written books contain some text written by someone. They can be read and "
+"copied, but not edited."
+msgstr "تحتوي الكتب المكتوبة على نص كتبه شخص ما. ويمكن قراءتها ونسخها، لكن لا يمكن تعديلها."
+
 #: mods/ITEMS/mcl_books/init.lua:177
 msgid "Hold it in your hand, then rightclick to read the book."
 msgstr "أمسكه بيدك، ثم انقر بزر الفأرة الأيمن لقراءة الكتاب."
+
+#: mods/ITEMS/mcl_books/init.lua:180
+msgid ""
+"To copy the text of the written book, place it into the crafting grid "
+"together with a book and quill (or multiple of those) and craft. The written "
+"book will not be consumed. Copies of copies can not be copied."
+msgstr "لنسخ نص الكتاب المكتوب، ضعه في شبكة التصنيع مع كتاب وريشة (أو أكثر من واحد منهما) ثم اصنع الوصفة. لن يُستهلك الكتاب المكتوب. ولا يمكن نسخ النسخ المنسوخة من الكتب."
 
 #: mods/ITEMS/mcl_books/init.lua:282 mods/ITEMS/mcl_books/init.lua:318
 msgid "Bookshelf"
