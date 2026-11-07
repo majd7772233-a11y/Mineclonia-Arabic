@@ -16,31 +16,31 @@ function Write-ExitPrompt {
 
 function Resolve-LuantiRoot([string]$SelectedPath) {
     $selected = (Resolve-Path -LiteralPath $SelectedPath).Path
-    $item = Get-Item -LiteralPath $selected
 
-    # Accept either the Luanti installation root or its builtin child.
-    # If the user chose ...\5.17.0\builtin, normalize to ...\5.17.0.
-    if ($item.Name -ieq "builtin" -and
-        (Test-Path -LiteralPath (Join-Path $selected "settingtypes.txt") -PathType Leaf)) {
-        $parent = $item.Parent.FullName
-        if (Test-Path -LiteralPath (Join-Path $parent "builtin\settingtypes.txt") -PathType Leaf) {
+    # The Luanti root contains builtin\settingtypes.txt.
+    if (Test-Path -LiteralPath (Join-Path $selected "builtin\settingtypes.txt") -PathType Leaf) {
+        return $selected
+    }
+
+    # If builtin itself was selected, move one level up to the installation root.
+    if (Test-Path -LiteralPath (Join-Path $selected "settingtypes.txt") -PathType Leaf) {
+        $parent = Split-Path -LiteralPath $selected -Parent
+        if ($parent -and (Test-Path -LiteralPath (Join-Path $parent "builtin\settingtypes.txt") -PathType Leaf)) {
             return $parent
         }
     }
 
-    # Also accept the bin child as a convenience, although the dialog asks
-    # for the installation root.
-    if ($item.Name -ieq "bin" -and
+    # Also accept the bin child when it belongs to a normal Luanti installation.
+    if ((Split-Path -Leaf $selected) -ieq "bin" -and
         (Test-Path -LiteralPath (Join-Path $selected "luanti.exe") -PathType Leaf)) {
-        $parent = $item.Parent.FullName
-        if (Test-Path -LiteralPath (Join-Path $parent "builtin\settingtypes.txt") -PathType Leaf) {
+        $parent = Split-Path -LiteralPath $selected -Parent
+        if ($parent -and (Test-Path -LiteralPath (Join-Path $parent "builtin\settingtypes.txt") -PathType Leaf)) {
             return $parent
         }
     }
 
     return $selected
 }
-
 function Get-LuantiDirectory {
     if ($LuantiDir) {
         return Resolve-LuantiRoot $LuantiDir
@@ -86,46 +86,31 @@ function Set-ArabicLanguageEnum([string]$Text) {
         throw "تعريف language (Language) enum غير موجود في builtin\settingtypes.txt."
     }
 
-    $values = $match.Groups["values"].Value
-    $parts = @($values.Split(","))
-    $leadingBlank = ""
+    # Normalize instead of concatenating tokens; also repair the old malformed "arbe" token.
+    $parts = @($match.Groups["values"].Value.Split(","))
+    $otherCodes = New-Object 'System.Collections.Generic.List[string]'
+    $seen = @{}
 
-    # The first empty enum item means “use system language”. Preserve it,
-    # then put ar immediately after it. Also repairs the misplaced ar value
-    # left by the previous helper version.
-    if ($parts.Count -gt 0 -and [string]::IsNullOrWhiteSpace($parts[0])) {
-        $leadingBlank = $parts[0]
-        $startIndex = 1
-    } else {
-        # Preserve the engine's system-language option if an older package
-        # or downstream build omitted its leading blank enum item.
-        $startIndex = 0
-    }
-
-    $otherCodes = @()
-    for ($index = $startIndex; $index -lt $parts.Count; $index++) {
-        $code = $parts[$index].Trim()
-        # The previous helper concatenated "ar" with the first "be" token,
-        # leaving "arbe" in settingtypes.txt. Restore the original code.
+    foreach ($part in $parts) {
+        $code = $part.Trim()
         if ($code -ceq "arbe") { $code = "be" }
-        if ($code -ne "" -and $code -ne "ar") {
-            $otherCodes += $code
+        if ($code -eq "" -or $code -eq "ar") { continue }
+        if (!$seen.ContainsKey($code)) {
+            $seen[$code] = $true
+            [void]$otherCodes.Add($code)
         }
     }
 
-    $newValues = $leadingBlank + ",ar"
+    # Keep the empty system-language option first, then Arabic exactly once.
+    $newValues = ",ar"
     if ($otherCodes.Count -gt 0) {
         $newValues += "," + ($otherCodes -join ",")
     }
 
-    if ($newValues -ceq $values) {
-        return [pscustomobject]@{
-            Text = $Text
-            Changed = $false
-        }
+    if ($newValues -ceq $match.Groups["values"].Value) {
+        return [pscustomobject]@{ Text = $Text; Changed = $false }
     }
 
-    $replacement = $match.Groups["prefix"].Value + $newValues
     $pattern = [regex]'(?m)^(?<prefix>[ \t]*language[ \t]+\(Language\)[ \t]+enum[ \t]+)(?<values>[^\r\n]*)$'
     $newText = $pattern.Replace(
         $Text,
@@ -136,60 +121,87 @@ function Set-ArabicLanguageEnum([string]$Text) {
         1
     )
 
-    return [pscustomobject]@{
-        Text = $newText
-        Changed = $true
-    }
-}
-
-function Set-ArabicLanguageLabel([string]$Text) {
-    $desired = 'ar = "العربية [ar]",'
-    $activeAny = [regex]'(?m)^(?<indent>[ \t]*)ar[ \t]*=[ \t]*"[^"]*"[ \t]*,[ \t]*$'
-    $activeMatch = $activeAny.Match($Text)
-
-    if ($activeMatch.Success) {
-        if ($activeMatch.Value.Trim() -ceq $desired) {
-            return [pscustomobject]@{ Text = $Text; Changed = $false }
-        }
-        $replacement = $activeMatch.Groups["indent"].Value + $desired
-        $newText = $activeAny.Replace(
-            $Text,
-            [System.Text.RegularExpressions.MatchEvaluator]{ param($m) $replacement },
-            1
-        )
-        return [pscustomobject]@{ Text = $newText; Changed = $true }
-    }
-
-    # Luanti 5.17.0 ships this language label commented out as blacklisted.
-    $blocked = [regex]'(?m)^(?<indent>[ \t]*)--[ \t]*ar[ \t]*=[ \t]*"[^"]*"[ \t]*,[ \t]*blacklisted[^\r\n]*$'
-    $blockedMatch = $blocked.Match($Text)
-    if ($blockedMatch.Success) {
-        $replacement = $blockedMatch.Groups["indent"].Value + $desired
-        $newText = $blocked.Replace(
-            $Text,
-            [System.Text.RegularExpressions.MatchEvaluator]{ param($m) $replacement },
-            1
-        )
-        return [pscustomobject]@{ Text = $newText; Changed = $true }
-    }
-
-    # If the old comment format differs, insert the visible option after English.
-    $english = [regex]'(?m)^(?<indent>[ \t]*)en[ \t]*=[ \t]*"English \[en\]",[ \t]*$'
-    $englishMatch = $english.Match($Text)
-    if (!$englishMatch.Success) {
-        throw "لم أجد سطر English داخل قائمة اللغة في builtin\common\settings\dlg_settings.lua."
-    }
-    $replacement = $englishMatch.Value + [Environment]::NewLine +
-        $englishMatch.Groups["indent"].Value + $desired
-    $newText = $english.Replace($Text, $replacement, 1)
-
     return [pscustomobject]@{ Text = $newText; Changed = $true }
 }
+function Set-ArabicLanguageLabel([string]$Text) {
+    $desired = 'ar = "العربية [ar]",'
+    $crlf = ([char]13).ToString() + ([char]10).ToString()
+    $separator = if ($Text.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
+    $lines = New-Object 'System.Collections.Generic.List[string]'
+    foreach ($line in [regex]::Split($Text, "\r\n|\n")) {
+        [void]$lines.Add($line)
+    }
 
+    # Work only inside the language option_labels table, not another "ar" key.
+    $tableStart = -1
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        if ($lines[$i].IndexOf('get_setting_info("language").option_labels', [StringComparison]::Ordinal) -ge 0) {
+            $tableStart = $i
+            break
+        }
+    }
+    if ($tableStart -lt 0) {
+        throw "لم أجد جدول option_labels الخاص بإعداد اللغة في builtin\common\settings\dlg_settings.lua."
+    }
+
+    $tableEnd = -1
+    for ($i = $tableStart + 1; $i -lt $lines.Count; $i++) {
+        if ($lines[$i].Trim() -ceq "}") {
+            $tableEnd = $i
+            break
+        }
+    }
+    if ($tableEnd -lt 0) {
+        throw "جدول خيارات اللغة غير مكتمل في builtin\common\settings\dlg_settings.lua."
+    }
+
+    $arabicIndexes = New-Object 'System.Collections.Generic.List[int]'
+    for ($i = $tableStart + 1; $i -lt $tableEnd; $i++) {
+        $trimmed = $lines[$i].TrimStart()
+        if ($trimmed -match '^ar[ \t]*=' -or $trimmed -match '^--[ \t]*ar[ \t]*=') {
+            [void]$arabicIndexes.Add($i)
+        }
+    }
+
+    if ($arabicIndexes.Count -gt 0) {
+        $firstIndex = $arabicIndexes[0]
+        $indent = [regex]::Match($lines[$firstIndex], '^[ \t]*').Value
+        $lines[$firstIndex] = $indent + $desired
+        for ($j = $arabicIndexes.Count - 1; $j -ge 1; $j--) {
+            $lines.RemoveAt($arabicIndexes[$j])
+        }
+    } else {
+        $anchor = -1
+        for ($i = $tableStart + 1; $i -lt $tableEnd; $i++) {
+            if ($lines[$i].IndexOf('[""]', [StringComparison]::Ordinal) -ge 0) {
+                $anchor = $i
+                break
+            }
+        }
+        if ($anchor -lt 0) {
+            for ($i = $tableStart + 1; $i -lt $tableEnd; $i++) {
+                if ($lines[$i].TrimStart() -match '^en[ \t]*=') {
+                    $anchor = $i
+                    break
+                }
+            }
+        }
+
+        if ($anchor -ge 0) {
+            $indent = [regex]::Match($lines[$anchor], '^[ \t]*').Value
+            $lines.Insert($anchor + 1, $indent + $desired)
+        } else {
+            $lines.Insert($tableEnd, ([string][char]9) + $desired)
+        }
+    }
+
+    $newText = [string]::Join($separator, $lines.ToArray())
+    return [pscustomobject]@{ Text = $newText; Changed = ($newText -cne $Text) }
+}
 try {
     Write-Host "تفعيل العربية في قائمة لغات Luanti 5.17.0" -ForegroundColor Cyan
-    Write-Host "اختر جذر Luanti الذي يحتوي على bin و builtin."
-    Write-Host "يمكنك أيضاً اختيار مجلد builtin نفسه؛ سيُكتشف الجذر تلقائياً."
+    Write-Host "اختر جذر تثبيت Luanti الذي يحتوي على builtin و bin."
+    Write-Host "يمكنك أيضاً اختيار مجلد builtin أو bin نفسه؛ سيُكتشف الجذر تلقائياً."
 
     $root = Get-LuantiDirectory
     $settingPath = Join-Path $root "builtin\settingtypes.txt"
