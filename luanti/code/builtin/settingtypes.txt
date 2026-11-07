@@ -2198,9 +2198,12 @@ mono_font_path_bold (Bold monospace font path) filepath fonts/Cousine-Bold.ttf
 mono_font_path_italic (Italic monospace font path) filepath fonts/Cousine-Italic.ttf
 mono_font_path_bold_italic (Bold and italic monospace font path) filepath fonts/Cousine-BoldItalic.ttf
 
-#    Path of the fallback font. Must be a TrueType font.
-#    This font will be used for certain languages or if the default font is unavailable.
-fallback_font_path (Fallback font path) filepath fonts/DroidSansFallbackFull.ttf
+#    First fallback font in the Unicode fallback chain. Must be a TrueType font.
+#    Use a font with Arabic glyph coverage so Arabic shaping can use one consistent face.
+fallback_font_path (Fallback font path) filepath fonts/NotoSansArabic-Regular.ttf
+
+#    Additional fallback font used for scripts not covered by the primary and first fallback fonts.
+secondary_fallback_font_path (Secondary fallback font path) filepath fonts/DroidSansFallbackFull.ttf
 
 [**Lighting] [client]
 
