@@ -254,16 +254,19 @@ def main() -> None:
         template_counter = Counter(template_ids)
         po_counter = Counter(po_ids)
         pot_counter = Counter(pot_ids)
-        required_counter = template_counter | pot_counter
+        # template.txt is regenerated from the running game and is the
+        # authoritative runtime inventory. POT may contain extraction
+        # fragments or stale IDs (for example a dynamic " Boat" suffix).
+        required_counter = template_counter
         missing_required = list((required_counter - po_counter).elements())
         if missing_required:
             print(
-                f"MISSING TRANSLATION KEYS IN {rel} ({len(missing_required)}):",
+                f"MISSING RUNTIME TRANSLATION KEYS IN {rel} ({len(missing_required)}):",
                 flush=True,
             )
             for missing_key in missing_required:
-                print("MISSING_RUNTIME_OR_POT\t" + json.dumps(missing_key, ensure_ascii=False), flush=True)
-            fail(f"{rel}: Arabic PO does not cover every current runtime or POT string")
+                print("MISSING_RUNTIME\t" + json.dumps(missing_key, ensure_ascii=False), flush=True)
+            fail(f"{rel}: Arabic PO does not cover every generated runtime template string")
         extra_po = list((po_counter - required_counter).elements())
         if extra_po:
             stale_po_entries.append({
