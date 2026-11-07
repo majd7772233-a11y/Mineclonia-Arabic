@@ -251,30 +251,28 @@ def main() -> None:
         po_ids = [entry.msgid for entry in entries]
         pot_ids = [entry.msgid for entry in source_entries]
         domain, template_ids = parse_template_txt(txt_path)
-        template_counter = Counter(template_ids)
-        po_counter = Counter(po_ids)
-        pot_counter = Counter(pot_ids)
         # template.txt is regenerated from the running game and is the
-        # authoritative runtime inventory. POT may contain extraction
-        # fragments or stale IDs (for example a dynamic " Boat" suffix).
-        required_counter = template_counter
-        missing_required = list((required_counter - po_counter).elements())
+        # authoritative runtime inventory. A single gettext key may occur at
+        # several call sites, but a TR catalog stores each source key once.
+        required_keys = set(template_ids)
+        po_keys = set(po_ids)
+        missing_required = sorted(required_keys - po_keys)
         if missing_required:
             print(
                 f"MISSING RUNTIME TRANSLATION KEYS IN {rel} ({len(missing_required)}):",
                 flush=True,
             )
             for missing_key in missing_required:
-                print("MISSING_RUNTIME\t" + json.dumps(missing_key, ensure_ascii=False), flush=True)
+                print("MISSING_RUNTIME\\t" + json.dumps(missing_key, ensure_ascii=False), flush=True)
             fail(f"{rel}: Arabic PO does not cover every generated runtime template string")
-        extra_po = list((po_counter - required_counter).elements())
+        extra_po = sorted(po_keys - required_keys)
         if extra_po:
             stale_po_entries.append({
                 "path": str(rel),
                 "count": len(extra_po),
                 "examples": extra_po[:20],
             })
-        runtime_messages += len(template_ids)
+        runtime_messages += len(required_keys)
         previous = seen_domains.get(domain)
         if previous and previous != str(rel.parent):
             fail(f"textdomain collision: {domain!r} belongs to both {previous} and {rel.parent}")
