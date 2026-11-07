@@ -315,17 +315,27 @@ def main() -> None:
             f"found {total_messages}"
         )
 
-    # Official Mineclonia workflow: PO files live in locale/poconvert; MTT
-    # writes the runtime .tr files into each locale directory.
+    # Mineclonia's documented layout: PO files live in locale/poconvert;
+    # the selected converter writes Arabic .tr files into each locale folder.
+    using_local_fallback = args.mtt_convert.name == "ltt_tr_compat.py"
+    if using_local_fallback:
+        converter_description = "project-local Luanti TR compatibility fallback (not upstream LTT)"
+        validator_description = "project-local recursive TR syntax/placeholder checker"
+        converter_command_name = "ltt_tr_compat.py"
+    else:
+        converter_description = "Wuzzy Luanti Translation Tools"
+        validator_description = "Wuzzy Luanti Translation Tools"
+        converter_command_name = "ltt_convert.py"
+
     run_checked(
         [sys.executable, str(args.mtt_convert.resolve()), str(stage_mods), "--po2tr", "-r"],
         cwd=stage_mods.parent,
-        description="ltt_convert.py <mods> --po2tr -r",
+        description=f"{converter_command_name} <mods> --po2tr -r",
     )
     run_checked(
         [sys.executable, str(args.mtt_check.resolve()), str(stage_mods)],
         cwd=stage_mods.parent,
-        description="ltt_check.py <mods>",
+        description=f"{'ltt_tr_compat.py' if using_local_fallback else 'ltt_check.py'} <mods>",
     )
 
     tr_files = sorted(stage_mods.rglob("*.ar.tr"))
@@ -393,6 +403,7 @@ def main() -> None:
 المحتويات
 ---------
 - ملفات تشغيل Luanti بصيغة .tr فقط.
+- أداة التحويل: {converter_description}.
 - {len(tr_files)} ملف ترجمة موزعة على مجلدات mods/*/*/locale/.
 - {total_messages} مدخلاً مترجماً.
 - مصدر القوالب: ZenonSeth/mineclonia-mirror
@@ -439,8 +450,10 @@ def main() -> None:
         "runtime_template_messages": runtime_messages,
         "extra_po_entries_not_present_in_current_template_txt": sum(x["count"] for x in stale_po_entries),
         "extra_po_entries_report": stale_po_entries,
-        "conversion": "Wuzzy Luanti Translation Tools: ltt_convert.py <mods> --po2tr -r",
-        "validation": "Wuzzy Luanti Translation Tools: ltt_check.py <mods>",
+        "converter_implementation": converter_description,
+        "converter_is_official_ltt": not using_local_fallback,
+        "conversion": f"{converter_command_name} <mods> --po2tr -r",
+        "validation": validator_description,
         "runtime_tested": False,
         "official_weblate_merged": False,
         "modules": per_module,
@@ -467,6 +480,8 @@ def main() -> None:
     shutil.rmtree(stage_root, ignore_errors=True)
     print(json.dumps({
         "status": "success",
+        "converter_is_official_ltt": not using_local_fallback,
+        "converter_implementation": converter_description,
         "po_files": len(po_files),
         "tr_files": len(tr_files),
         "messages": total_messages,
