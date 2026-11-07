@@ -22,18 +22,21 @@ function Resolve-LuantiRoot([string]$SelectedPath) {
         return $selected
     }
 
+    $item = Get-Item -LiteralPath $selected
+
     # If builtin itself was selected, move one level up to the installation root.
-    if (Test-Path -LiteralPath (Join-Path $selected "settingtypes.txt") -PathType Leaf) {
-        $parent = Split-Path -LiteralPath $selected -Parent
+    if ($item.Name -ieq "builtin" -and
+        (Test-Path -LiteralPath (Join-Path $selected "settingtypes.txt") -PathType Leaf)) {
+        $parent = $item.Parent.FullName
         if ($parent -and (Test-Path -LiteralPath (Join-Path $parent "builtin\settingtypes.txt") -PathType Leaf)) {
             return $parent
         }
     }
 
     # Also accept the bin child when it belongs to a normal Luanti installation.
-    if ((Split-Path -Leaf $selected) -ieq "bin" -and
+    if ($item.Name -ieq "bin" -and
         (Test-Path -LiteralPath (Join-Path $selected "luanti.exe") -PathType Leaf)) {
-        $parent = Split-Path -LiteralPath $selected -Parent
+        $parent = $item.Parent.FullName
         if ($parent -and (Test-Path -LiteralPath (Join-Path $parent "builtin\settingtypes.txt") -PathType Leaf)) {
             return $parent
         }
