@@ -285,7 +285,9 @@ def main() -> None:
                 fail(f"{rel}: empty translation for {entry.msgid!r}")
             check_placeholder_pair(entry.msgid, entry.msgstr, f"{rel}: {entry.msgid!r}")
 
-        locale_stage = stage_mods / rel.parent
+        # rel already begins with "mods/"; stage_mods is the mods root.
+        # Strip that leading component so the packaged tree is not mods/mods/...
+        locale_stage = stage_mods / rel.parent.relative_to("mods")
         locale_stage.mkdir(parents=True, exist_ok=True)
         source_mod_conf = source_root / rel.parent.parent / "mod.conf"
         if source_mod_conf.is_file():
