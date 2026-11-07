@@ -94,3 +94,23 @@ msgid ""
 "(which drains your health non-fatally) and causes serious food poisoning "
 "(which increases your hunger)."
 msgstr "السمكة المنتفخة نوع شائع من الأسماك ويمكن الحصول عليها بالصيد. ومن الناحية التقنية يمكن تناولها، لكنها ضارة جداً بالبشر. فتناولها لا يستعيد سوى نقطة جوع واحدة، لكنه يسبب تسمماً شديداً (يستنزف صحتك دون أن يقتلك) وتسمماً غذائياً خطيراً (يزيد شعورك بالجوع)."
+
+#: mods/ITEMS/mcl_fishing/items.lua:4
+msgid "Raw Cod"
+msgstr "سمك القد النيء"
+
+#: mods/ITEMS/mcl_fishing/items.lua:5
+msgid "Raw cod is obtained by fishing and is a food item which can be eaten safely. Cooking it improves its nutritional value."
+msgstr "يمكن الحصول على سمك القد النيء بالصيد، وهو طعام يمكن تناوله بأمان. ويؤدي طهيه إلى تحسين قيمته الغذائية."
+
+#: mods/ITEMS/mcl_fishing/items.lua:13
+msgid "Cooked Cod"
+msgstr "سمك القد المطهو"
+
+#: mods/ITEMS/mcl_fishing/items.lua:38
+msgid "Tropical Fish"
+msgstr "سمكة استوائية"
+
+#: mods/ITEMS/mcl_fishing/items.lua:39
+msgid "Tropical fish may be obtained by fishing (and luck) and is a food item which can be eaten safely."
+msgstr "يمكن الحصول على السمكة الاستوائية بالصيد (وبالحظ أيضاً)، وهي طعام يمكن تناوله بأمان."
