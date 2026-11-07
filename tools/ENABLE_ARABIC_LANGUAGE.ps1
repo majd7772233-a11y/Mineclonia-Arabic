@@ -125,77 +125,62 @@ function Set-ArabicLanguageEnum([string]$Text) {
 }
 function Set-ArabicLanguageLabel([string]$Text) {
     $desired = 'ar = "العربية [ar]",'
-    $crlf = ([char]13).ToString() + ([char]10).ToString()
-    $separator = if ($Text.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
-    $lines = New-Object 'System.Collections.Generic.List[string]'
-    foreach ($line in [regex]::Split($Text, "\r\n|\n")) {
-        [void]$lines.Add($line)
-    }
-
-    # Work only inside the language option_labels table, not another "ar" key.
-    $tableStart = -1
-    for ($i = 0; $i -lt $lines.Count; $i++) {
-        if ($lines[$i].IndexOf('get_setting_info("language").option_labels', [StringComparison]::Ordinal) -ge 0) {
-            $tableStart = $i
-            break
-        }
-    }
-    if ($tableStart -lt 0) {
+    $marker = 'get_setting_info("language").option_labels'
+    $markerIndex = $Text.IndexOf($marker, [StringComparison]::Ordinal)
+    if ($markerIndex -lt 0) {
         throw "لم أجد جدول option_labels الخاص بإعداد اللغة في builtin\common\settings\dlg_settings.lua."
     }
 
-    $tableEnd = -1
-    for ($i = $tableStart + 1; $i -lt $lines.Count; $i++) {
-        if ($lines[$i].Trim() -ceq "}") {
-            $tableEnd = $i
-            break
-        }
+    $tableOpen = $Text.IndexOf("{", $markerIndex)
+    if ($tableOpen -lt 0) {
+        throw "لم أجد بداية جدول خيارات اللغة في dlg_settings.lua."
     }
-    if ($tableEnd -lt 0) {
-        throw "جدول خيارات اللغة غير مكتمل في builtin\common\settings\dlg_settings.lua."
+    $tableClose = $Text.IndexOf("}", $tableOpen + 1)
+    if ($tableClose -lt 0) {
+        throw "جدول خيارات اللغة غير مكتمل في dlg_settings.lua."
     }
 
-    $arabicIndexes = New-Object 'System.Collections.Generic.List[int]'
-    for ($i = $tableStart + 1; $i -lt $tableEnd; $i++) {
-        $trimmed = $lines[$i].TrimStart()
-        if ($trimmed -match '^ar[ \t]*=' -or $trimmed -match '^--[ \t]*ar[ \t]*=') {
-            [void]$arabicIndexes.Add($i)
-        }
-    }
+    $tableBody = $Text.Substring($tableOpen + 1, $tableClose - $tableOpen - 1)
+    $rowPattern = [regex]'(?m)^(?<indent>[ \t]*)(?:--[ \t]*)?ar[ \t]*=[^\r\n]*$'
+    $rowMatches = $rowPattern.Matches($tableBody)
 
-    if ($arabicIndexes.Count -gt 0) {
-        $firstIndex = $arabicIndexes[0]
-        $indent = [regex]::Match($lines[$firstIndex], '^[ \t]*').Value
-        $lines[$firstIndex] = $indent + $desired
-        for ($j = $arabicIndexes.Count - 1; $j -ge 1; $j--) {
-            $lines.RemoveAt($arabicIndexes[$j])
+    if ($rowMatches.Count -gt 0) {
+        # Remove all old/duplicate Arabic rows, then add one clean entry.
+        $indent = $rowMatches[0].Groups["indent"].Value
+        $tableLines = New-Object 'System.Collections.Generic.List[string]'
+        foreach ($line in [regex]::Split($tableBody, "\r\n|\n")) {
+            if ($line -match '^[ \t]*(?:--[ \t]*)?ar[ \t]*=') { continue }
+            [void]$tableLines.Add($line)
         }
+
+        $insertAt = 0
+        for ($i = 0; $i -lt $tableLines.Count; $i++) {
+            if ($tableLines[$i].Trim() -eq "") { $insertAt = $i + 1 } else { break }
+        }
+        $tableLines.Insert($insertAt, $indent + $desired)
+        $crlf = ([char]13).ToString() + ([char]10).ToString()
+        $separator = if ($tableBody.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
+        $tableBody = [string]::Join($separator, $tableLines.ToArray())
     } else {
-        $anchor = -1
-        for ($i = $tableStart + 1; $i -lt $tableEnd; $i++) {
-            if ($lines[$i].IndexOf('[""]', [StringComparison]::Ordinal) -ge 0) {
-                $anchor = $i
-                break
-            }
-        }
-        if ($anchor -lt 0) {
-            for ($i = $tableStart + 1; $i -lt $tableEnd; $i++) {
-                if ($lines[$i].TrimStart() -match '^en[ \t]*=') {
-                    $anchor = $i
-                    break
-                }
-            }
+        $crlf = ([char]13).ToString() + ([char]10).ToString()
+        $separator = if ($Text.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
+        $anchorPattern = [regex]'(?m)^(?<indent>[ \t]*)\[""\][^\r\n]*$'
+        $anchor = $anchorPattern.Match($tableBody)
+        if (!$anchor.Success) {
+            $anchorPattern = [regex]'(?m)^(?<indent>[ \t]*)en[ \t]*=[^\r\n]*$'
+            $anchor = $anchorPattern.Match($tableBody)
         }
 
-        if ($anchor -ge 0) {
-            $indent = [regex]::Match($lines[$anchor], '^[ \t]*').Value
-            $lines.Insert($anchor + 1, $indent + $desired)
+        if ($anchor.Success) {
+            $insert = $separator + $anchor.Groups["indent"].Value + $desired
+            $position = $anchor.Index + $anchor.Length
+            $tableBody = $tableBody.Insert($position, $insert)
         } else {
-            $lines.Insert($tableEnd, ([string][char]9) + $desired)
+            $tableBody = $tableBody + $separator + ([string][char]9) + $desired
         }
     }
 
-    $newText = [string]::Join($separator, $lines.ToArray())
+    $newText = $Text.Substring(0, $tableOpen + 1) + $tableBody + $Text.Substring($tableClose)
     return [pscustomobject]@{ Text = $newText; Changed = ($newText -cne $Text) }
 }
 try {
@@ -301,8 +286,9 @@ try {
         $checkCodes -notcontains "ar") {
         throw "فشل التحقق من ترتيب ar بعد خيار لغة النظام في enum اللغة."
     }
-    if ($checkDialog -notmatch '(?m)^[ \t]*ar[ \t]*=[ \t]*"العربية \[ar\]"[ \t]*,[ \t]*$') {
-        throw "فشل التحقق من إضافة تسمية العربية إلى قائمة اللغة."
+    if ($checkDialog.IndexOf('ar = "العربية [ar]",', [StringComparison]::Ordinal) -lt 0) {
+        $debugArabicRows = @($checkDialog -split "\r?\n" | Where-Object { $_ -match '(^|--)ar[ \t]*=' })
+        throw ("فشل التحقق من إضافة تسمية العربية إلى قائمة اللغة. الأسطر التي تبدأ بمفتاح ar: " + ($debugArabicRows -join " | "))
     }
 
     Write-Host ""
