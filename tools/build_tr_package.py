@@ -5,10 +5,13 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+import gettext
 import hashlib
+import io
 import json
 import re
 import shutil
+import struct
 import subprocess
 import sys
 from pathlib import Path
@@ -222,6 +225,72 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def build_luanti_language_code_catalog() -> bytes:
+    """Build a minimal Luanti gettext catalog that advertises client language ar.
+
+    Luanti's client sends gettext("LANG_CODE") during the INIT2 handshake.
+    Without this exact translation, it sends an empty language code and the
+    server does not send any *.ar.tr catalogs to the client.
+    """
+    headers = (
+        "Project-Id-Version: Luanti Arabic locale bridge\\n"
+        "Language: ar\\n"
+        "Content-Type: text/plain; charset=UTF-8\\n"
+        "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
+        "n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\\n"
+    )
+    messages = {"": headers, "LANG_CODE": "ar"}
+    keys = sorted(messages, key=lambda value: value.encode("utf-8"))
+    originals = [key.encode("utf-8") for key in keys]
+    translations = [messages[key].encode("utf-8") for key in keys]
+
+    count = len(keys)
+    original_table_offset = 7 * 4
+    translated_table_offset = original_table_offset + count * 8
+    data_offset = translated_table_offset + count * 8
+
+    original_data = bytearray()
+    original_descriptors: list[tuple[int, int]] = []
+    for value in originals:
+        original_descriptors.append((len(value), data_offset + len(original_data)))
+        original_data.extend(value)
+        original_data.append(0)
+
+    translated_data_offset = data_offset + len(original_data)
+    translated_data = bytearray()
+    translated_descriptors: list[tuple[int, int]] = []
+    for value in translations:
+        translated_descriptors.append((len(value), translated_data_offset + len(translated_data)))
+        translated_data.extend(value)
+        translated_data.append(0)
+
+    catalog = bytearray(struct.pack(
+        "<7I",
+        0x950412DE,  # GNU MO magic (little-endian)
+        0,            # revision
+        count,
+        original_table_offset,
+        translated_table_offset,
+        0,            # no hash table
+        0,
+    ))
+    for descriptor in original_descriptors:
+        catalog.extend(struct.pack("<2I", *descriptor))
+    for descriptor in translated_descriptors:
+        catalog.extend(struct.pack("<2I", *descriptor))
+    catalog.extend(original_data)
+    catalog.extend(translated_data)
+
+    result = bytes(catalog)
+    try:
+        decoded = gettext.GNUTranslations(io.BytesIO(result)).gettext("LANG_CODE")
+    except Exception as exc:
+        fail(f"generated Luanti Arabic language-tag catalog is invalid: {exc}")
+    if decoded != "ar":
+        fail(f"generated Luanti Arabic language-tag catalog returned {decoded!r}, expected 'ar'")
+    return result
 
 
 def main() -> None:
@@ -513,6 +582,16 @@ def main() -> None:
             fail(f"missing Windows language-menu helper: {helper_source}")
         shutil.copy2(helper_source, package_root / helper_name)
 
+    # This is deliberately installed into the Luanti engine root by the
+    # Windows helper, not into the Mineclonia game directory. It supplies the
+    # one gettext key that makes the client announce "ar" to the server.
+    language_catalog_relative = Path("luanti-locale/ar/LC_MESSAGES/luanti.mo")
+    language_catalog_path = package_root / language_catalog_relative
+    language_catalog_path.parent.mkdir(parents=True, exist_ok=True)
+    language_catalog_data = build_luanti_language_code_catalog()
+    language_catalog_path.write_bytes(language_catalog_data)
+    language_catalog_sha256 = hashlib.sha256(language_catalog_data).hexdigest()
+
     installed_messages = 0
     tr_manifest: list[dict[str, object]] = []
     seen_tr_paths: set[str] = set()
@@ -594,6 +673,7 @@ def main() -> None:
 المحتويات
 ---------
 - ملفات تشغيل Luanti: {len(tr_files)} ملفاً بصيغة .ar.tr و{len(po_runtime_modules)} ملفاً بصيغة .ar.po الأصلية.
+- جسر رمز اللغة لمحرك Luanti: ملف GNU MO صغير يعرّف LANG_CODE = ar حتى يعلن العميل اللغة العربية للخادم ويستلم ملفات .ar.tr.
 - أداة التحويل لملفات TR: {converter_description}.
 - إجمالي الوحدات المغطاة: {len(tr_files) + len(po_runtime_modules)} من {len(po_files)}.
 - إجمالي النصوص المترجمة: {total_messages}.
@@ -612,8 +692,9 @@ def main() -> None:
 4. لا تستبدل مجلد mods بالكامل؛ اسمح بدمج ملفات locale فقط.
 5. تحتوي الحزمة على ملف PO أصلي للوحدة ذات صيغ الجمع الست؛ يتطلب تحميله Luanti 5.10.0 أو أحدث، وإصدارك المبلغ عنه 5.17.0 يفي بذلك.
 6. شغّل ENABLE_ARABIC_LANGUAGE.bat الموجود بجانب مجلد mods. اختر جذر تثبيت Luanti الذي يحتوي على bin وbuiltin (في شجرة جهازك: C:\\Users\\Magd\\AppData\\Local\\luanti\\5.17.0). لا تختر مجلد Mineclonia. يقبل السكربت أيضاً اختيار builtin أو bin ويحدد الجذر تلقائياً.
-7. في إصدار Windows المحمول RUN_IN_PLACE سيكتشف السكربت وجود minetest.conf.example ويضبط language = ar في ملف minetest.conf بجذر التثبيت، بجانب bin؛ وهذا يطابق سلوك المحرك الذي يتجاهل متغيرات مسار المستخدم في وضع RUN_IN_PLACE. أما التثبيت غير المحمول فيحترم LUANTI_USER_PATH أو MINETEST_USER_PATH، ثم يستخدم %APPDATA%\\Minetest\\minetest.conf عند غيابها.
-8. لن تحتاج إلى اختيار arbe أو العربية يدوياً من القائمة؛ أغلق Luanti ثم افتحه مجدداً، ويقرأ المحرك اللغة ar عند بدء التشغيل. يحتفظ السكربت ببقية إعداداتك، وينشئ نسخة احتياطية من كل ملف سيغيره داخل %LOCALAPPDATA%\\Mineclonia-Arabic\\LuantiBackups.
+7. ينسخ المشغّل ملف locale\\ar\\LC_MESSAGES\\luanti.mo إلى مجلد Luanti نفسه. هذا الملف يعرّف LANG_CODE = ar؛ وهو ضروري لأن Luanti يرسل رمز اللغة للخادم من ترجمة هذا المفتاح، وإذا غاب فلن يرسل العميل رمز العربية وبالتالي لن تصله ملفات Mineclonia العربية.
+8. في إصدار Windows المحمول RUN_IN_PLACE سيكتشف السكربت وجود minetest.conf.example ويضبط language = ar في ملف minetest.conf بجذر التثبيت، بجانب bin؛ وهذا يطابق سلوك المحرك الذي يتجاهل متغيرات مسار المستخدم في وضع RUN_IN_PLACE. أما التثبيت غير المحمول فيحترم LUANTI_USER_PATH أو MINETEST_USER_PATH، ثم يستخدم %APPDATA%\\Minetest\\minetest.conf عند غيابها.
+9. لن تحتاج إلى اختيار arbe أو العربية يدوياً من القائمة؛ أغلق Luanti ثم افتحه مجدداً. يحتفظ السكربت ببقية إعداداتك وينشئ نسخاً احتياطية من الملفات التي يغيّرها داخل %LOCALAPPDATA%\\Mineclonia-Arabic\\LuantiBackups.
 
 إزالة التعريب
 -------------
@@ -626,16 +707,31 @@ def main() -> None:
 تغطية مفاتيح runtime ومطابقة مخرجات TR مع ترجمات PO. وحدات gettext ذات صيغ
 الجمع تُوزّع كملفات PO أصلية، لا تُختزل إلى ترجمة TR واحدة.
 
+ملف luanti.mo المضمّن لا يحاول ترجمة واجهة Luanti؛ بل يعرّف LANG_CODE = ar
+فقط حتى يرسل العميل رمز العربية إلى الخادم ويحصل على كتالوجات Mineclonia
+المطابقة. لذلك قد تبقى واجهة قوائم Luanti نفسها بالإنجليزية، بينما تُحمّل
+ترجمات اللعبة. ولا يضيف هذا التعديل تشكيل الحروف أو تخطيط RTL الكامل.
+
 لم تتم مطابقة شجرة ملفات اللعبة المحلية مع لقطة المصدر بصورة مباشرة، ولذلك
 لا يمكن ضمان التطابق التام مع release=39603 حتى تُفحص نسخة اللعبة نفسها.
-ولم يتم اختبار العرض داخل عميل Luanti فعلياً ضمن عملية البناء هذه. يدعم المشغّل الآن تفعيل locale ar عبر قائمة المحرك وإعداد المستخدم المحفوظ؛ لكنه لا يضيف تشكيل الحروف أو تخطيط RTL الكامل إلى محرك Luanti.
+ولم يتم اختبار العرض داخل عميل Luanti فعلياً ضمن عملية البناء هذه.
 """
     (package_root / "INSTALL_ARABIC.txt").write_text(install_text, encoding="utf-8")
 
     manifest = {
         "name": "Mineclonia Arabic runtime translation overlay",
         "language": "ar",
-        "format": "Luanti TR plus native gettext PO fallback",
+        "format": "Luanti TR plus native gettext PO fallback and Luanti language-tag MO bridge",
+        "luanti_language_tag_bridge": {
+            "package_path": str(language_catalog_relative),
+            "install_path": "locale/ar/LC_MESSAGES/luanti.mo",
+            "gettext_domain": "luanti",
+            "msgid": "LANG_CODE",
+            "msgstr": "ar",
+            "translated_entries": 1,
+            "sha256": language_catalog_sha256,
+            "purpose": "Make the Luanti 5.17.0 client announce the Arabic language code so the server sends Mineclonia *.ar.tr catalogs.",
+        },
         "source_repository": "https://github.com/ZenonSeth/mineclonia-mirror",
         "source_commit": args.source_commit,
         "source_version": source_version,
@@ -662,6 +758,7 @@ def main() -> None:
         "official_weblate_merged": False,
         "language_menu_patch": {
             "included_script": "ENABLE_ARABIC_LANGUAGE.ps1",
+            "installs_engine_language_catalog": "locale/ar/LC_MESSAGES/luanti.mo (LANG_CODE -> ar)",
             "launcher": "ENABLE_ARABIC_LANGUAGE.bat",
             "targets": [
                 "builtin/settingtypes.txt",
