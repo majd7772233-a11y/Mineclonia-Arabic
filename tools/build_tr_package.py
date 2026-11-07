@@ -27,7 +27,7 @@ def fail(message: str) -> None:
 def meaningful_entries(po: polib.POFile):
     return [
         entry for entry in po
-        if not entry.obsolete and entry.msgid and entry.msgid.strip()
+        if not entry.obsolete and entry.msgid
     ]
 
 
@@ -281,7 +281,7 @@ def main() -> None:
         seen_domains[domain] = str(rel.parent)
 
         for entry in entries:
-            if not entry.msgstr.strip():
+            if not entry.msgstr.strip() and not (entry.msgid.isspace() and entry.msgstr == entry.msgid):
                 fail(f"{rel}: empty translation for {entry.msgid!r}")
             check_placeholder_pair(entry.msgid, entry.msgstr, f"{rel}: {entry.msgid!r}")
 
