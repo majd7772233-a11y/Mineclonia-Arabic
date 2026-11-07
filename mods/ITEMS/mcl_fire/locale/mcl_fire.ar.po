@@ -28,6 +28,20 @@ msgstr "مقذوف الموزّع"
 msgid "Starts fires and ignites blocks"
 msgstr "يشعل النار ويضرم الكتل"
 
+#: mods/ITEMS/mcl_fire/fire_charge.lua:7
+msgid ""
+"Fire charges are primarily projectiles which can be launched from "
+"dispensers, they will fly in a straight line and burst into a fire on "
+"impact. Alternatively, they can be used to ignite fires directly."
+msgstr "كرات النار مقذوفات في الأساس، ويمكن إطلاقها من الموزّعات؛ إذ تطير في خط مستقيم وتنفجر إلى لهب عند اصطدامها. ويمكن استخدامها أيضاً لإشعال النار مباشرةً."
+
+#: mods/ITEMS/mcl_fire/fire_charge.lua:8
+msgid ""
+"Put the fire charge into a dispenser and supply it with redstone power to "
+"launch it. To ignite a fire directly, simply place the fire charge on the "
+"ground, which uses it up."
+msgstr "ضع الكرة النارية في موزّع وزوّده بطاقة ريدستون لإطلاقها. ولإشعال النار مباشرةً، ضع الكرة النارية على الأرض فحسب، وسيُستهلك العنصر."
+
 #: mods/ITEMS/mcl_fire/flint_and_steel.lua:5
 msgid "Flint and Steel"
 msgstr "قدّاحة"
@@ -35,6 +49,49 @@ msgstr "قدّاحة"
 #: mods/ITEMS/mcl_fire/flint_and_steel.lua:7
 msgid "Flint and steel is a tool to start fires and ignite blocks."
 msgstr "الصوان والقدّاحة أداة لإشعال النار وإضرام الكتل."
+
+#: mods/ITEMS/mcl_fire/flint_and_steel.lua:8
+msgid ""
+"Rightclick the surface of a block to attempt to light a fire in front of it "
+"or ignite the block. A few blocks have an unique reaction when ignited."
+msgstr "انقر بزر الفأرة الأيمن على سطح كتلة لمحاولة إشعال نار أمامها أو إضرام الكتلة نفسها. وتُظهر بعض الكتل تفاعلاً خاصاً عند إشعالها."
+
+#: mods/ITEMS/mcl_fire/init.lua:42
+msgid ""
+"Fire is a damaging and destructive but short-lived kind of block. It will "
+"destroy and spread towards near flammable blocks, but fire will disappear "
+"when there is nothing to burn left. It will be extinguished by nearby water "
+"and rain. Fire can be destroyed safely by punching it, but it is hurtful if "
+"you stand directly in it. If a fire is started above netherrack or a magma "
+"block, it will immediately turn into an eternal fire."
+msgstr "النار نوع من الكتل قصير العمر، يسبب الضرر والتدمير. فهي تدمّر الكتل القابلة للاشتعال القريبة وتنتشر إليها، لكنها تختفي عندما لا يبقى شيء لتحرقه. ويطفئها الماء القريب والمطر. ويمكن إخماد النار بأمان عن طريق لكمها، لكن الوقوف داخلها يسبب الضرر. وإذا اشتعلت فوق صخر النذر أو كتلة صهارة، تحولت فوراً إلى نار أبدية."
+
+#: mods/ITEMS/mcl_fire/init.lua:44
+msgid ""
+"Fire is a damaging but non-destructive short-lived kind of block. It will "
+"disappear when there is no flammable block around. Fire does not destroy "
+"blocks, at least not in this world. It will be extinguished by nearby water "
+"and rain. Fire can be destroyed safely by punching it, but it is hurtful if "
+"you stand directly in it. If a fire is started above netherrack or a magma "
+"block, it will immediately turn into an eternal fire."
+msgstr "النار نوع من الكتل قصير العمر يسبب الضرر لكنه لا يدمّر الكتل. وتختفي عندما لا توجد كتل قابلة للاشتعال بالقرب منها. لا تدمّر النار الكتل، على الأقل في هذا العالم. ويطفئها الماء القريب والمطر. ويمكن إخماد النار بأمان عن طريق لكمها، لكن الوقوف داخلها يسبب الضرر. وإذا اشتعلت فوق صخر النذر أو كتلة صهارة، تحولت فوراً إلى نار أبدية."
+
+#: mods/ITEMS/mcl_fire/init.lua:48
+msgid ""
+"Eternal fire is a damaging block that might create more fire. It will create "
+"fire around it when flammable blocks are nearby. Eternal fire can be "
+"extinguished by punches and nearby water blocks. Other than (normal) fire, "
+"eternal fire does not get extinguished on its own and also continues to burn "
+"under rain. Punching eternal fire is safe, but it hurts if you stand inside."
+msgstr "النار الأبدية كتلة تسبب الضرر وقد تنشئ مزيداً من النار. فهي تنشئ نيراناً حولها عند وجود كتل قابلة للاشتعال بالقرب منها. ويمكن إخماد النار الأبدية باللكم أو بكتل الماء القريبة. وعلى خلاف النار العادية، لا تنطفئ النار الأبدية من تلقاء نفسها وتواصل الاشتعال حتى تحت المطر. لا يسبب لكم النار الأبدية ضرراً، لكن الوقوف داخلها مؤذٍ."
+
+#: mods/ITEMS/mcl_fire/init.lua:50
+msgid ""
+"Eternal fire is a damaging block. Eternal fire can be extinguished by "
+"punches and nearby water blocks. Other than (normal) fire, eternal fire does "
+"not get extinguished on its own and also continues to burn under rain. "
+"Punching eternal fire is safe, but it hurts if you stand inside."
+msgstr "النار الأبدية كتلة تسبب الضرر. ويمكن إخمادها باللكم أو بكتل الماء القريبة. وعلى خلاف النار العادية، لا تنطفئ النار الأبدية من تلقاء نفسها وتواصل الاشتعال حتى تحت المطر. لا يسبب لكم النار الأبدية ضرراً، لكن الوقوف داخلها مؤذٍ."
 
 #: mods/ITEMS/mcl_fire/init.lua:59
 msgid "Fire"
