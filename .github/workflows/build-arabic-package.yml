@@ -49,10 +49,16 @@ jobs:
           echo "MTT_COMMIT=$(git -C "$MTT_DIR" rev-parse HEAD)" >> "$GITHUB_ENV"
           echo "MTT FILE INVENTORY:"
           find "$MTT_DIR" -maxdepth 4 -type f | sort | head -200
-          CONVERTER=$(find "$MTT_DIR" -type f -name 'mtt_convert.py' -print -quit)
-          CHECKER=$(find "$MTT_DIR" -type f -name 'mtt_check.py' -print -quit)
+          CONVERTER=$(find "$MTT_DIR" -type f -name 'ltt_convert.py' -print -quit)
+          CHECKER=$(find "$MTT_DIR" -type f -name 'ltt_check.py' -print -quit)
+          echo "=== Converter instructions ==="
+          cat "$MTT_DIR/README_ltt_convert.md"
+          echo "=== Checker instructions ==="
+          cat "$MTT_DIR/README_ltt_check.md"
+          python "$CONVERTER" --help || true
+          python "$CHECKER" --help || true
           if [ -z "$CONVERTER" ] || [ -z "$CHECKER" ]; then
-            echo "Expected mtt_convert.py and mtt_check.py were not found in the renamed repository."
+            echo "Expected ltt_convert.py and ltt_check.py were not found in the renamed repository."
             exit 1
           fi
           echo "MTT_CONVERT=$CONVERTER" >> "$GITHUB_ENV"
@@ -101,8 +107,8 @@ jobs:
           ## Mineclonia Arabic runtime package
 
           - 163 translation domains, 4,980 translated messages.
-          - Generated with Mineclonia's documented `mtt_convert.py --po2tr -r` workflow.
-          - Checked with `mtt_check.py -r`.
+          - Generated with Mineclonia's documented `ltt_convert.py --po2tr -r` workflow.
+          - Checked with `ltt_check.py -r`.
           - Mineclonia source mirror commit: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`.
           - Minetest Translation Tools commit: `$MTT_COMMIT`.
           - Owner-reported target: Mineclonia `release=39603`, Luanti `5.17.0`; exact source-to-local-build equivalence has not been independently confirmed.
