@@ -43,6 +43,14 @@ def decode_template_key(raw: str, where: str) -> str:
                 result.append("\n")
                 i += 2
                 continue
+            if nxt == "t":
+                result.append("\t")
+                i += 2
+                continue
+            if nxt == "r":
+                result.append("\r")
+                i += 2
+                continue
             if nxt == "\\":
                 result.append("\\")
                 i += 2
@@ -79,7 +87,9 @@ def decode_template_key(raw: str, where: str) -> str:
 def find_template_separator(line: str, where: str) -> int:
     i = 0
     while i < len(line):
-        if line[i] == "@":
+        if line[i] == "\\" and i + 1 < len(line):
+            i += 2
+        elif line[i] == "@":
             if i + 1 >= len(line):
                 fail(f"{where}: dangling @ escape")
             i += 2
@@ -138,6 +148,24 @@ def decode_tr_value(raw: str, where: str) -> str:
         if char == "\u0000":
             result.append("\n")
             i += 1
+            continue
+        if char == "\\" and i + 1 < len(raw):
+            nxt = raw[i + 1]
+            if nxt == "t":
+                result.append("\t")
+            elif nxt == "n":
+                result.append("\n")
+            elif nxt == "r":
+                result.append("\r")
+            elif nxt == "\\":
+                result.append("\\")
+            elif nxt == "=":
+                result.append("=")
+            elif nxt == "@":
+                result.append("@")
+            else:
+                fail(f"{where}: unsupported backslash escape \\{nxt}")
+            i += 2
             continue
         if char != "@":
             result.append(char)
