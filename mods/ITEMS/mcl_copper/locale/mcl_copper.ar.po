@@ -1,0 +1,686 @@
+# Arabic translation draft for Mineclonia component: mcl_copper
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_copper/locale/template.pot
+# Source template blob SHA: 27a546e1327bd318ccbc89c59d72ed63bbc62fa5
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 22:00+0300\n"
+"Language-Team: Mineclonia Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_copper/items.lua:4
+msgid "Copper Ingot"
+msgstr "سبيكة نحاس"
+
+#: mods/ITEMS/mcl_copper/items.lua:5
+msgid "Molten Copper. It is used to craft armor, tools, and blocks."
+msgstr "نحاس مصهور يُستخدم في صناعة الدروع والأدوات والكتل."
+
+#: mods/ITEMS/mcl_copper/items.lua:9
+msgid "Copper Material"
+msgstr "مادة النحاس"
+
+#: mods/ITEMS/mcl_copper/items.lua:18
+msgid "Copper Nugget"
+msgstr "شذرة نحاس"
+
+#: mods/ITEMS/mcl_copper/items.lua:19
+msgid ""
+"Copper nuggets are very small pieces of molten copper; the main purpose is "
+"to create copper ingots."
+msgstr "شذرات النحاس قطع صغيرة جدًا من النحاس المصهور، والغرض الأساسي منها صنع سبائك النحاس."
+
+#: mods/ITEMS/mcl_copper/items.lua:26
+msgid "Raw Copper"
+msgstr "نحاس خام"
+
+#: mods/ITEMS/mcl_copper/items.lua:27
+msgid "Raw Copper. Mine a Copper Ore to get it."
+msgstr "نحاس خام تحصل عليه عند تعدين خام النحاس."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:1
+msgid "Block of Copper"
+msgstr "كتلة النحاس"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:2
+msgid "Block of Copper is mostly a decorative block."
+msgstr "كتلة النحاس مخصصة للزينة في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:3
+msgid "Chiseled Copper"
+msgstr "النحاس المنحوت"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:4
+msgid "Chiseled Copper is mostly a decorative block."
+msgstr "النحاس المنحوت كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:5
+msgid "Copper Bars"
+msgstr "قضبان النحاس"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:6
+msgid "Copper Bulb"
+msgstr "مصباح النحاس"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:7
+msgid "Copper Bulb On"
+msgstr "مصباح النحاس المضاء"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:8
+msgid "Copper Bulb Powered Off"
+msgstr "مصباح النحاس غير المزوّد بالطاقة"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:9
+msgid "Copper Bulb Powered On"
+msgstr "مصباح النحاس المزوّد بالطاقة"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:10
+msgid "Copper Bulb is mostly a decorative block."
+msgstr "مصباح النحاس كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:11
+msgid "Copper Chain"
+msgstr "سلسلة النحاس"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:12
+msgid "Copper Chains are metallic decoration blocks."
+msgstr "سلاسل النحاس كتل زخرفية معدنية."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:13
+msgid "Copper Door"
+msgstr "باب النحاس"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:14
+msgid "Copper Grate"
+msgstr "شبكة النحاس"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:15
+msgid "Copper Grate is mostly a decorative block."
+msgstr "شبكة النحاس كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:16
+msgid "Copper Lantern"
+msgstr "فانوس النحاس"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:17
+msgid ""
+"Copper Lanterns are light sources which can be placed on the top or the "
+"bottom of most blocks."
+msgstr "فوانيس النحاس مصادر ضوء يمكن وضعها أعلى معظم الكتل أو أسفلها."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:18
+msgid "Copper Trapdoor"
+msgstr "باب النحاس الأرضي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:19
+msgid "Cut Copper"
+msgstr "النحاس المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:20
+msgid "Cut Copper Slab"
+msgstr "بلاطة النحاس المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:21
+msgid "Cut Copper Stairs"
+msgstr "درج النحاس المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:22
+msgid "Cut Copper is mostly a decorative block."
+msgstr "النحاس المقطّع كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:23
+msgid "Exposed Chiseled Copper"
+msgstr "النحاس المكشوف المنحوت"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:24
+msgid "Exposed Chiseled Copper is mostly a decorative block."
+msgstr "النحاس المكشوف المنحوت كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:25
+msgid "Exposed Copper"
+msgstr "النحاس المكشوف"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:26
+msgid "Exposed Copper Bars"
+msgstr "قضبان النحاس المكشوف"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:27
+msgid "Exposed Copper Bulb"
+msgstr "مصباح النحاس المكشوف"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:28
+msgid "Exposed Copper Bulb On"
+msgstr "مصباح النحاس المكشوف المضاء"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:29
+msgid "Exposed Copper Bulb Powered Off"
+msgstr "مصباح النحاس المكشوف غير المزوّد بالطاقة"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:30
+msgid "Exposed Copper Bulb Powered On"
+msgstr "مصباح النحاس المكشوف المزوّد بالطاقة"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:31
+msgid "Exposed Copper Bulb is mostly a decorative block."
+msgstr "مصباح النحاس المكشوف كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:32
+msgid "Exposed Copper Chain"
+msgstr "سلسلة النحاس المكشوف"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:33
+msgid "Exposed Copper Chains are metallic decoration blocks."
+msgstr "سلاسل النحاس المكشوف كتل زخرفية معدنية."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:34
+msgid "Exposed Copper Door"
+msgstr "باب النحاس المكشوف"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:35
+msgid "Exposed Copper Grate"
+msgstr "شبكة النحاس المكشوف"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:36
+msgid "Exposed Copper Grate is mostly a decorative block."
+msgstr "شبكة النحاس المكشوف كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:37
+msgid "Exposed Copper Lantern"
+msgstr "فانوس النحاس المكشوف"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:38
+msgid ""
+"Exposed Copper Lanterns are light sources which can be placed on the top or "
+"the bottom of most blocks."
+msgstr "فوانيس النحاس المكشوف مصادر ضوء يمكن وضعها أعلى معظم الكتل أو أسفلها."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:39
+msgid "Exposed Copper Trapdoor"
+msgstr "باب النحاس المكشوف الأرضي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:40
+msgid "Exposed Copper is mostly a decorative block."
+msgstr "النحاس المكشوف كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:41
+msgid "Exposed Cut Copper"
+msgstr "النحاس المكشوف المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:42
+msgid "Exposed Cut Copper Slab"
+msgstr "بلاطة النحاس المكشوف المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:43
+msgid "Exposed Cut Copper Stairs"
+msgstr "درج النحاس المكشوف المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:44
+msgid "Exposed Cut Copper is mostly a decorative block."
+msgstr "النحاس المكشوف المقطّع كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:45
+msgid "Oxidized Chiseled Copper"
+msgstr "النحاس المتأكسد المنحوت"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:46
+msgid "Oxidized Chiseled Copper is mostly a decorative block."
+msgstr "النحاس المتأكسد المنحوت كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:47
+msgid "Oxidized Copper"
+msgstr "النحاس المتأكسد"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:48
+msgid "Oxidized Copper Bars"
+msgstr "قضبان النحاس المتأكسد"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:49
+msgid "Oxidized Copper Bulb"
+msgstr "مصباح النحاس المتأكسد"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:50
+msgid "Oxidized Copper Bulb On"
+msgstr "مصباح النحاس المتأكسد المضاء"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:51
+msgid "Oxidized Copper Bulb Powered Off"
+msgstr "مصباح النحاس المتأكسد غير المزوّد بالطاقة"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:52
+msgid "Oxidized Copper Bulb Powered On"
+msgstr "مصباح النحاس المتأكسد المزوّد بالطاقة"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:53
+msgid "Oxidized Copper Bulb is mostly a decorative block."
+msgstr "مصباح النحاس المتأكسد كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:54
+msgid "Oxidized Copper Chain"
+msgstr "سلسلة النحاس المتأكسد"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:55
+msgid "Oxidized Copper Chains are metallic decoration blocks."
+msgstr "سلاسل النحاس المتأكسد كتل زخرفية معدنية."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:56
+msgid "Oxidized Copper Door"
+msgstr "باب النحاس المتأكسد"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:57
+msgid "Oxidized Copper Grate"
+msgstr "شبكة النحاس المتأكسد"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:58
+msgid "Oxidized Copper Grate is mostly a decorative block."
+msgstr "شبكة النحاس المتأكسد كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:59
+msgid "Oxidized Copper Lantern"
+msgstr "فانوس النحاس المتأكسد"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:60
+msgid ""
+"Oxidized Copper Lanterns are light sources which can be placed on the top or "
+"the bottom of most blocks."
+msgstr "فوانيس النحاس المتأكسد مصادر ضوء يمكن وضعها أعلى معظم الكتل أو أسفلها."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:61
+msgid "Oxidized Copper Trapdoor"
+msgstr "باب النحاس المتأكسد الأرضي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:62
+msgid "Oxidized Copper is mostly a decorative block."
+msgstr "النحاس المتأكسد كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:63
+msgid "Oxidized Cut Copper"
+msgstr "النحاس المتأكسد المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:64
+msgid "Oxidized Cut Copper Slab"
+msgstr "بلاطة النحاس المتأكسد المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:65
+msgid "Oxidized Cut Copper Stairs"
+msgstr "درج النحاس المتأكسد المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:66
+msgid "Oxidized Cut Copper is mostly a decorative block."
+msgstr "النحاس المتأكسد المقطّع كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:67
+msgid "Waxed Block of Copper"
+msgstr "كتلة النحاس المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:68
+msgid "Waxed Chiseled Copper"
+msgstr "النحاس المنحوت المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:69
+msgid "Waxed Copper Bars"
+msgstr "قضبان النحاس المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:70
+msgid "Waxed Copper Bulb"
+msgstr "مصباح النحاس المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:71
+msgid "Waxed Copper Bulb On"
+msgstr "مصباح النحاس المضاء المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:72
+msgid "Waxed Copper Bulb Powered Off"
+msgstr "مصباح النحاس غير المزوّد بالطاقة المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:73
+msgid "Waxed Copper Bulb Powered On"
+msgstr "مصباح النحاس المزوّد بالطاقة المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:74
+msgid "Waxed Copper Chain"
+msgstr "سلسلة النحاس المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:75
+msgid "Waxed Copper Door"
+msgstr "باب النحاس المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:76
+msgid "Waxed Copper Grate"
+msgstr "شبكة النحاس المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:77
+msgid "Waxed Copper Lantern"
+msgstr "فانوس النحاس المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:78
+msgid "Waxed Copper Trapdoor"
+msgstr "باب النحاس الأرضي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:79
+msgid "Waxed Cut Copper"
+msgstr "النحاس المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:80
+msgid "Waxed Cut Copper Slab"
+msgstr "بلاطة النحاس المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:81
+msgid "Waxed Cut Copper Stairs"
+msgstr "درج النحاس المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:82
+msgid "Waxed Double @1"
+msgstr "مزدوج مشمع @1"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:83
+msgid "Waxed Exposed Chiseled Copper"
+msgstr "النحاس المكشوف المنحوت المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:84
+msgid "Waxed Exposed Copper"
+msgstr "النحاس المكشوف المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:85
+msgid "Waxed Exposed Copper Bars"
+msgstr "قضبان النحاس المكشوف المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:86
+msgid "Waxed Exposed Copper Bulb"
+msgstr "مصباح النحاس المكشوف المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:87
+msgid "Waxed Exposed Copper Bulb On"
+msgstr "مصباح النحاس المكشوف المضاء المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:88
+msgid "Waxed Exposed Copper Bulb Powered Off"
+msgstr "مصباح النحاس المكشوف غير المزوّد بالطاقة المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:89
+msgid "Waxed Exposed Copper Bulb Powered On"
+msgstr "مصباح النحاس المكشوف المزوّد بالطاقة المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:90
+msgid "Waxed Exposed Copper Chain"
+msgstr "سلسلة النحاس المكشوف المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:91
+msgid "Waxed Exposed Copper Door"
+msgstr "باب النحاس المكشوف المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:92
+msgid "Waxed Exposed Copper Grate"
+msgstr "شبكة النحاس المكشوف المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:93
+msgid "Waxed Exposed Copper Lantern"
+msgstr "فانوس النحاس المكشوف المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:94
+msgid "Waxed Exposed Copper Trapdoor"
+msgstr "باب النحاس المكشوف الأرضي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:95
+msgid "Waxed Exposed Cut Copper"
+msgstr "النحاس المكشوف المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:96
+msgid "Waxed Exposed Cut Copper Slab"
+msgstr "بلاطة النحاس المكشوف المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:97
+msgid "Waxed Exposed Cut Copper Stairs"
+msgstr "درج النحاس المكشوف المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:98
+msgid "Waxed Oxidized Chiseled Copper"
+msgstr "النحاس المتأكسد المنحوت المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:99
+msgid "Waxed Oxidized Copper"
+msgstr "النحاس المتأكسد المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:100
+msgid "Waxed Oxidized Copper Bars"
+msgstr "قضبان النحاس المتأكسد المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:101
+msgid "Waxed Oxidized Copper Bulb"
+msgstr "مصباح النحاس المتأكسد المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:102
+msgid "Waxed Oxidized Copper Bulb On"
+msgstr "مصباح النحاس المتأكسد المضاء المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:103
+msgid "Waxed Oxidized Copper Bulb Powered Off"
+msgstr "مصباح النحاس المتأكسد غير المزوّد بالطاقة المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:104
+msgid "Waxed Oxidized Copper Bulb Powered On"
+msgstr "مصباح النحاس المتأكسد المزوّد بالطاقة المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:105
+msgid "Waxed Oxidized Copper Chain"
+msgstr "سلسلة النحاس المتأكسد المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:106
+msgid "Waxed Oxidized Copper Door"
+msgstr "باب النحاس المتأكسد المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:107
+msgid "Waxed Oxidized Copper Grate"
+msgstr "شبكة النحاس المتأكسد المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:108
+msgid "Waxed Oxidized Copper Lantern"
+msgstr "فانوس النحاس المتأكسد المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:109
+msgid "Waxed Oxidized Copper Trapdoor"
+msgstr "باب النحاس المتأكسد الأرضي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:110
+msgid "Waxed Oxidized Cut Copper"
+msgstr "النحاس المتأكسد المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:111
+msgid "Waxed Oxidized Cut Copper Slab"
+msgstr "بلاطة النحاس المتأكسد المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:112
+msgid "Waxed Oxidized Cut Copper Stairs"
+msgstr "درج النحاس المتأكسد المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:113
+msgid "Waxed Upper @1"
+msgstr "الجزء العلوي المشمع @1"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:114
+msgid "Waxed Weathered Chiseled Copper"
+msgstr "النحاس المتجوي المنحوت المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:115
+msgid "Waxed Weathered Copper"
+msgstr "النحاس المتجوي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:116
+msgid "Waxed Weathered Copper Bars"
+msgstr "قضبان النحاس المتجوي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:117
+msgid "Waxed Weathered Copper Bulb"
+msgstr "مصباح النحاس المتجوي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:118
+msgid "Waxed Weathered Copper Bulb On"
+msgstr "مصباح النحاس المتجوي المضاء المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:119
+msgid "Waxed Weathered Copper Bulb Powered Off"
+msgstr "مصباح النحاس المتجوي غير المزوّد بالطاقة المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:120
+msgid "Waxed Weathered Copper Bulb Powered On"
+msgstr "مصباح النحاس المتجوي المزوّد بالطاقة المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:121
+msgid "Waxed Weathered Copper Chain"
+msgstr "سلسلة النحاس المتجوي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:122
+msgid "Waxed Weathered Copper Door"
+msgstr "باب النحاس المتجوي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:123
+msgid "Waxed Weathered Copper Grate"
+msgstr "شبكة النحاس المتجوي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:124
+msgid "Waxed Weathered Copper Lantern"
+msgstr "فانوس النحاس المتجوي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:125
+msgid "Waxed Weathered Copper Trapdoor"
+msgstr "باب النحاس المتجوي الأرضي المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:126
+msgid "Waxed Weathered Cut Copper"
+msgstr "النحاس المتجوي المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:127
+msgid "Waxed Weathered Cut Copper Slab"
+msgstr "بلاطة النحاس المتجوي المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:128
+msgid "Waxed Weathered Cut Copper Stairs"
+msgstr "درج النحاس المتجوي المقطّع المشمع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:129
+msgid "Weathered Chiseled Copper"
+msgstr "النحاس المتجوي المنحوت"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:130
+msgid "Weathered Chiseled Copper is mostly a decorative block."
+msgstr "النحاس المتجوي المنحوت كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:131
+msgid "Weathered Copper"
+msgstr "النحاس المتجوي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:132
+msgid "Weathered Copper Bars"
+msgstr "قضبان النحاس المتجوي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:133
+msgid "Weathered Copper Bulb"
+msgstr "مصباح النحاس المتجوي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:134
+msgid "Weathered Copper Bulb On"
+msgstr "مصباح النحاس المتجوي المضاء"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:135
+msgid "Weathered Copper Bulb Powered Off"
+msgstr "مصباح النحاس المتجوي غير المزوّد بالطاقة"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:136
+msgid "Weathered Copper Bulb Powered On"
+msgstr "مصباح النحاس المتجوي المزوّد بالطاقة"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:137
+msgid "Weathered Copper Bulb is mostly a decorative block."
+msgstr "مصباح النحاس المتجوي كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:138
+msgid "Weathered Copper Chain"
+msgstr "سلسلة النحاس المتجوي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:139
+msgid "Weathered Copper Chains are metallic decoration blocks."
+msgstr "سلاسل النحاس المتجوي كتل زخرفية معدنية."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:140
+msgid "Weathered Copper Door"
+msgstr "باب النحاس المتجوي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:141
+msgid "Weathered Copper Grate"
+msgstr "شبكة النحاس المتجوي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:142
+msgid "Weathered Copper Grate is mostly a decorative block."
+msgstr "شبكة النحاس المتجوي كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:143
+msgid "Weathered Copper Lantern"
+msgstr "فانوس النحاس المتجوي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:144
+msgid ""
+"Weathered Copper Lanterns are light sources which can be placed on the top "
+"or the bottom of most blocks."
+msgstr "فوانيس النحاس المتجوي مصادر ضوء يمكن وضعها أعلى معظم الكتل أو أسفلها."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:145
+msgid "Weathered Copper Trapdoor"
+msgstr "باب النحاس المتجوي الأرضي"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:146
+msgid "Weathered Copper is mostly a decorative block."
+msgstr "النحاس المتجوي كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:147
+msgid "Weathered Cut Copper"
+msgstr "النحاس المتجوي المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:148
+msgid "Weathered Cut Copper Slab"
+msgstr "بلاطة النحاس المتجوي المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:149
+msgid "Weathered Cut Copper Stairs"
+msgstr "درج النحاس المتجوي المقطّع"
+
+#: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:150
+msgid "Weathered Cut Copper is mostly a decorative block."
+msgstr "النحاس المتجوي المقطّع كتلة زخرفية في المقام الأول."
+
+#: mods/ITEMS/mcl_copper/nodes.lua:42
+msgid "Copper Ore"
+msgstr "خام النحاس"
+
+#: mods/ITEMS/mcl_copper/nodes.lua:43
+msgid ""
+"Some copper contained in stone, it is pretty common and can be found below "
+"sea level."
+msgstr "يحتوي هذا الحجر على بعض النحاس؛ وهو خام شائع نسبيًا ويمكن العثور عليه أسفل مستوى سطح البحر."
+
+#: mods/ITEMS/mcl_copper/nodes.lua:63
+msgid "Block of Raw Copper"
+msgstr "كتلة النحاس الخام"
+
+#: mods/ITEMS/mcl_copper/nodes.lua:64
+msgid "A block used for compact raw copper storage."
+msgstr "كتلة تُستخدم لتخزين النحاس الخام بصورة مضغوطة."
+
+#: mods/ITEMS/mcl_copper/nodes.lua:247
+msgid "Copper Bars neatly connect to their neighbors as you build them."
+msgstr "تتصل قضبان النحاس المجاورة بعضها ببعض بشكل أنيق أثناء البناء."
+
+#: mods/ITEMS/mcl_copper/nodes.lua:290
+msgid "Copper Torch"
+msgstr "مشعل النحاس"
+
+#: mods/ITEMS/mcl_copper/nodes.lua:291
+msgid ""
+"Copper Torches are light sources which can be placed at the side or on the "
+"top of most blocks."
+msgstr "مشاعل النحاس مصادر ضوء يمكن وضعها على جانب معظم الكتل أو أعلاها."
+
