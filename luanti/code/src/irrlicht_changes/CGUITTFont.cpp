@@ -1087,9 +1087,117 @@ s32 CGUITTFont::getCharacterFromPos(const std::u32string& text, s32 pixel_x) con
 		return -1;
 
 	size_t index = 0;
-	const bool success = raqm_position_to_index(layout, pixel_x, 0, &index);
+	const bool success = raqm_position_to_index(layout, pixel_x * 64, 0, &index);
 	raqm_destroy(layout);
 	return success ? static_cast<s32>(index) : -1;
+}
+
+s32 CGUITTFont::getCursorPosition(const wchar_t *text, s32 char_index) const
+{
+	if (!text || !*text)
+		return 0;
+
+	const std::wstring wide_text(text);
+	const std::u32string unicode = convertWCharToU32String(text);
+	size_t line_end = 0;
+	while (line_end < unicode.size() && !isTextLineBreak(unicode[line_end]))
+		++line_end;
+
+	const std::u32string line = unicode.substr(0, line_end);
+	if (line.empty())
+		return 0;
+
+	raqm_t *layout = createLayout(line);
+	if (!layout)
+		return 0;
+
+	const std::vector<size_t> index_map = makeU32ToWideIndexMap(wide_text);
+	const size_t wide_index = static_cast<size_t>(std::max<s32>(0,
+			std::min<s32>(char_index, static_cast<s32>(wide_text.size()))));
+	const auto it = std::lower_bound(index_map.begin(), index_map.end(), wide_index);
+	size_t unicode_index = static_cast<size_t>(it - index_map.begin());
+	unicode_index = std::min(unicode_index, line.size());
+
+	int x = 0;
+	int y = 0;
+	bool success = true;
+	if (unicode_index == 0) {
+		if (raqm_get_par_resolved_direction(layout) == RAQM_DIRECTION_RTL) {
+			size_t glyph_count = 0;
+			raqm_glyph_t *glyphs = raqm_get_glyphs(layout, &glyph_count);
+			if (!glyphs && glyph_count != 0)
+				success = false;
+			for (size_t i = 0; success && i < glyph_count; ++i)
+				x += glyphs[i].x_advance;
+		}
+	} else {
+		size_t layout_index = unicode_index - 1;
+		success = raqm_index_to_position(layout, &layout_index, &x, &y);
+	}
+	raqm_destroy(layout);
+	return success ? static_cast<s32>((x + 32) / 64) : 0;
+}
+
+s32 CGUITTFont::getNextCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const
+{
+	if (!text || !*text || direction == 0)
+		return 0;
+
+	const std::wstring wide_text(text);
+	const size_t length = wide_text.size();
+	size_t position = static_cast<size_t>(std::max<s32>(0,
+			std::min<s32>(char_index, static_cast<s32>(length))));
+
+	// Treat CRLF as one logical line break.
+	if (direction > 0 && position < length && isTextLineBreak(wide_text[position])) {
+		if (wide_text[position] == L'\\r' && position + 1 < length &&
+				wide_text[position + 1] == L'\\n')
+			return static_cast<s32>(position + 2);
+		return static_cast<s32>(position + 1);
+	}
+	if (direction < 0 && position > 0 && isTextLineBreak(wide_text[position - 1])) {
+		if (position > 1 && wide_text[position - 1] == L'\\n' &&
+				wide_text[position - 2] == L'\\r')
+			return static_cast<s32>(position - 2);
+		return static_cast<s32>(position - 1);
+	}
+
+	size_t line_start = position;
+	while (line_start > 0 && !isTextLineBreak(wide_text[line_start - 1]))
+		--line_start;
+	size_t line_end = position;
+	while (line_end < length && !isTextLineBreak(wide_text[line_end]))
+		++line_end;
+
+	const std::wstring line_wide = wide_text.substr(line_start, line_end - line_start);
+	const std::u32string line = convertWCharToU32String(line_wide.c_str());
+	if (line.empty())
+		return static_cast<s32>(line_start);
+
+	raqm_t *layout = createLayout(line);
+	if (!layout)
+		return static_cast<s32>(position);
+
+	const std::vector<size_t> index_map = makeU32ToWideIndexMap(line_wide);
+	const size_t local_wide = position - line_start;
+	const auto it = std::lower_bound(index_map.begin(), index_map.end(), local_wide);
+	size_t unicode_index = static_cast<size_t>(it - index_map.begin());
+	unicode_index = std::min(unicode_index, line.size());
+
+	size_t target = unicode_index;
+	if (direction > 0) {
+		while (target < line.size() && !raqm_allowed_grapheme_boundary(layout, target))
+			++target;
+		if (target < line.size())
+			++target;
+	} else if (target > 0) {
+		--target;
+		while (target > 0 && !raqm_allowed_grapheme_boundary(layout, target - 1))
+			--target;
+	}
+
+	raqm_destroy(layout);
+	return static_cast<s32>(line_start + u32IndexToWideIndex(line_wide.c_str(), target));
 }
 
 bool CGUITTFont::isRightToLeft(const wchar_t *text) const
