@@ -3,6 +3,7 @@
 param(
     [string]$LuantiDir,
     [string]$ConfigFile,
+    [string]$LocaleCatalog,
     [switch]$Elevated,
     [switch]$NonInteractive
 )
@@ -66,8 +67,8 @@ function Is-Administrator {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
-function Restart-Elevated([string]$Directory, [string]$UserConfigFile) {
-    $argsLine = '-NoProfile -ExecutionPolicy Bypass -File "' + $PSCommandPath + '" -LuantiDir "' + $Directory + '" -ConfigFile "' + $UserConfigFile + '" -Elevated'
+function Restart-Elevated([string]$Directory, [string]$UserConfigFile, [string]$CatalogFile) {
+    $argsLine = '-NoProfile -ExecutionPolicy Bypass -File "' + $PSCommandPath + '" -LuantiDir "' + $Directory + '" -ConfigFile "' + $UserConfigFile + '" -LocaleCatalog "' + $CatalogFile + '" -Elevated'
     Start-Process -FilePath "powershell.exe" -Verb RunAs -ArgumentList $argsLine | Out-Null
 }
 
@@ -308,6 +309,32 @@ try {
     $configText = if ($configExisted) { [IO.File]::ReadAllText($configPath) } else { "" }
     $configResult = Set-ArabicLanguageConfig $configText
 
+    # Luanti sends gettext("LANG_CODE") to the server during INIT2. If this
+    # catalog is missing, it sends an empty language code and the server does
+    # not deliver Mineclonia's *.ar.tr files, even when minetest.conf says ar.
+    if ($LocaleCatalog) {
+        $catalogSource = [IO.Path]::GetFullPath($LocaleCatalog)
+    } else {
+        $catalogSource = Join-Path $PSScriptRoot "luanti-locale\ar\LC_MESSAGES\luanti.mo"
+    }
+    if (!(Test-Path -LiteralPath $catalogSource -PathType Leaf)) {
+        throw "ملف جسر اللغة غير موجود: $catalogSource. أعد استخراج حزمة التعريب v7 كاملة مع مجلد luanti-locale."
+    }
+    $catalogBytes = [IO.File]::ReadAllBytes($catalogSource)
+    if ($catalogBytes.Length -lt 4 -or
+        $catalogBytes[0] -ne 0xDE -or $catalogBytes[1] -ne 0x12 -or
+        $catalogBytes[2] -ne 0x04 -or $catalogBytes[3] -ne 0x95) {
+        throw "ملف luanti.mo غير صالح أو ليس بصيغة GNU MO little-endian: $catalogSource"
+    }
+    $catalogRelativePath = "locale\ar\LC_MESSAGES\luanti.mo"
+    $catalogDestination = Join-Path $root $catalogRelativePath
+    $catalogExisted = Test-Path -LiteralPath $catalogDestination -PathType Leaf
+    $catalogChanged = $true
+    if ($catalogExisted) {
+        $existingCatalogBytes = [IO.File]::ReadAllBytes($catalogDestination)
+        $catalogChanged = [Convert]::ToBase64String($existingCatalogBytes) -cne [Convert]::ToBase64String($catalogBytes)
+    }
+
     if (!(Test-Path -LiteralPath $settingPath -PathType Leaf)) {
         throw "لم أجد builtin\settingtypes.txt. اختر C:\Users\Magd\AppData\Local\luanti\5.17.0 أو مجلد builtin بداخله."
     }
@@ -331,10 +358,11 @@ try {
     $settingChanged = $enumResult.Changed
     $dialogChanged = $labelResult.Changed
 
-    if (!$settingChanged -and !$dialogChanged -and !$configResult.Changed) {
-        Write-Host "العربية [ar] مفعّلة بالفعل، وإعداد بدء التشغيل مضبوط على ar." -ForegroundColor Green
+    if (!$settingChanged -and !$dialogChanged -and !$configResult.Changed -and !$catalogChanged) {
+        Write-Host "العربية [ar] مفعّلة، وإعداد بدء التشغيل وجسر إرسال رمز اللغة للخادم صحيحان بالفعل." -ForegroundColor Green
         Write-Host "مجلد Luanti: $root"
         Write-Host "ملف الإعدادات: $configPath"
+        Write-Host "ملف جسر اللغة: $catalogDestination"
         Write-Host "أعد تشغيل Luanti لتطبيق اللغة."
         Write-ExitPrompt
         exit 0
@@ -362,11 +390,20 @@ try {
         Copy-Item -LiteralPath $configPath -Destination $backupTarget
         $backupList += "user\minetest.conf"
     }
+    if ($catalogChanged -and $catalogExisted) {
+        $backupTarget = Join-Path $backupRoot $catalogRelativePath
+        New-Item -ItemType Directory -Path (Split-Path $backupTarget -Parent) -Force | Out-Null
+        Copy-Item -LiteralPath $catalogDestination -Destination $backupTarget
+        $backupList += $catalogRelativePath
+    }
 
     $backupInfo = [ordered]@{
         install_root = $root
         config_file = $configPath
         config_file_existed_before = $configExisted
+        language_catalog_source = $catalogSource
+        language_catalog_destination = $catalogDestination
+        language_catalog_existed_before = $catalogExisted
         created_at = (Get-Date).ToString("o")
         backup_files = $backupList
     }
@@ -389,11 +426,16 @@ try {
             New-Item -ItemType Directory -Path $configDirectory -Force | Out-Null
             [IO.File]::WriteAllText($configPath, $configResult.Text, $utf8)
         }
+        if ($catalogChanged) {
+            $catalogDirectory = Split-Path -Parent $catalogDestination
+            New-Item -ItemType Directory -Path $catalogDirectory -Force | Out-Null
+            [IO.File]::WriteAllBytes($catalogDestination, $catalogBytes)
+        }
     }
     catch [System.UnauthorizedAccessException] {
         if (!$Elevated -and !(Is-Administrator)) {
             Write-Host "هناك مجلد محمي. سأطلب صلاحية المسؤول لإكمال التعديل." -ForegroundColor Yellow
-            Restart-Elevated $root $configPath
+            Restart-Elevated $root $configPath $catalogSource
             Write-ExitPrompt
             exit 0
         }
@@ -434,19 +476,33 @@ try {
             Where-Object { $_ -match '^[ \t]*language[ \t]*=' }
     )
     if ($configLanguageRows.Count -eq 0 -or
-        @($configLanguageRows | Where-Object { $_ -notmatch '^[ \t]*language[ \t]*=[ \t]*ar[ \t]*(?:#.*)?$' }).Count -gt 0) {
+        @($configLanguageRows | Where-Object { $_ -notmatch '^[ \t]*language[ \t]*=[ \t]*ar[ \t]*(?:#.*)?    Write-ExitPrompt
+}
+catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red
+    Write-Host "لم تُحذف ملفات اللعبة أو ملفات العالم."
+    Write-ExitPrompt
+    exit 1
+}
+ }).Count -gt 0) {
         throw "فشل التحقق: ملف minetest.conf لا يحفظ language = ar."
     }
 
+    $installedCatalogBytes = [IO.File]::ReadAllBytes($catalogDestination)
+    if ([Convert]::ToBase64String($installedCatalogBytes) -cne [Convert]::ToBase64String($catalogBytes)) {
+        throw "فشل التحقق: لم يُثبت ملف جسر اللغة في $catalogDestination."
+    }
+
     Write-Host ""
-    Write-Host "نجح الإصلاح: العربية [ar] مفعّلة في القائمة ومضبوطة كلغة بدء التشغيل." -ForegroundColor Green
+    Write-Host "نجح الإصلاح: العربية [ar] مفعّلة، وملف LANG_CODE يعلن العربية إلى خادم اللعبة." -ForegroundColor Green
     Write-Host "مجلد Luanti المعتمد: $root"
     Write-Host "ملف إعدادات Luanti الفعلي: $configPath"
+    Write-Host "جسر رمز اللغة للخادم: $catalogDestination"
     Write-Host "النسخ الاحتياطية محفوظة في: $backupRoot" -ForegroundColor Yellow
     Write-Host "أُصلحت أي قيمة قديمة arbe إلى ar، مع الإبقاء على بقية الإعدادات."
-    Write-Host "أغلق Luanti وافتحه مجدداً؛ لن تحتاج إلى اختيار اللغة يدوياً."
+    Write-Host "أغلق Luanti وافتحه مجدداً؛ سيعلن العميل ar ويستطيع استلام ملفات ترجمة Mineclonia."
     Write-Host ""
-    Write-Host "تنبيه: هذا الإصلاح يفعّل ملفات الترجمة لكنه لا يضيف تشكيل الحروف أو تخطيط RTL الكامل للمحرك."
+    Write-Host "ملاحظة: جسر LANG_CODE لا يترجم واجهة قوائم Luanti نفسها، ولا يضيف تشكيل الحروف أو تخطيط RTL الكامل."
     Write-ExitPrompt
 }
 catch {
