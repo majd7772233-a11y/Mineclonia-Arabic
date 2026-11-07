@@ -226,21 +226,22 @@ function Get-LuantiConfigFilePath([string]$InstallRoot) {
         return [IO.Path]::GetFullPath($ConfigFile)
     }
 
-    # Environment overrides have the same priority as Luanti's own path code.
-    $userPath = $env:LUANTI_USER_PATH
-    if (!$userPath) {
-        $userPath = $env:MINETEST_USER_PATH
-    }
-
-    if (!$userPath) {
-        # Official Windows builds use RUN_IN_PLACE by default. In that mode,
-        # porting.cpp sets path_user to the parent of bin\luanti.exe.
-        # The Windows distribution places minetest.conf.example in that root.
-        $exampleConfig = Join-Path $InstallRoot "minetest.conf.example"
-        if (Test-Path -LiteralPath $exampleConfig -PathType Leaf) {
-            $userPath = $InstallRoot
-        } else {
-            # Non-portable Windows builds use %APPDATA%\Minetest.
+    # On Windows RUN_IN_PLACE is checked first: Luanti's initializePaths()
+    # bypasses setSystemPaths() in this build mode, so LUANTI_USER_PATH and
+    # MINETEST_USER_PATH do not override the executable-relative user path.
+    # The official portable distribution contains minetest.conf.example
+    # beside bin\luanti.exe, and porting.cpp resolves path_user to that root.
+    $exampleConfig = Join-Path $InstallRoot "minetest.conf.example"
+    if (Test-Path -LiteralPath $exampleConfig -PathType Leaf) {
+        $userPath = $InstallRoot
+    } else {
+        # Non-portable Windows builds use setSystemPaths(), which honors
+        # LUANTI_USER_PATH / MINETEST_USER_PATH before falling back to APPDATA.
+        $userPath = $env:LUANTI_USER_PATH
+        if (!$userPath) {
+            $userPath = $env:MINETEST_USER_PATH
+        }
+        if (!$userPath) {
             if (!$env:APPDATA) {
                 throw "لم أتمكن من تحديد مجلد إعدادات Luanti: لا يوجد مسار محمول ولا متغير APPDATA."
             }
