@@ -127,3 +127,26 @@
 | `mods/ITEMS/mcl_buckets/locale/template.pot` | `a2d1b49847a0aa694033a8b29b8ac840dfd19797` |
 | `mods/ITEMS/mcl_flowers/locale/template.pot` | `73d02eed6fc3cbe7afaa29fcc548b5cda52987eb` |
 
+
+
+## قوالب دفعة الكائنات والتلميحات والبناء والديكور — 2026-11-07
+
+- مرآة المصدر: https://github.com/ZenonSeth/mineclonia-mirror
+- commit المصدر: `4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da`
+- أُعيد تحليل قوالب هذه الدفعة على مستوى حقول PO كاملة، بما في ذلك قيم `msgid` متعددة الأسطر.
+
+| ملف قالب المصدر | Blob SHA |
+|---|---|
+| `mods/ENTITIES/mcl_mobs/locale/template.pot` | `5b2cabfb354809f385d5a734fa3bad5278330202` |
+| `mods/ENTITIES/mobs_mc/locale/template.pot` | `5a5babed4b4b9c4394bffe2c21b0906f68181632` |
+| `mods/HELP/mcl_tt/locale/template.pot` | `f0982f17952d9bd9f45b1758450940d62ed8957a` |
+| `mods/HELP/mcl_craftguide/locale/template.pot` | `be85fd034b5bbc20527b3b643c8a7bde0eb686f4` |
+| `mods/ITEMS/REDSTONE/mcl_commandblock/locale/template.pot` | `d4eef43b81b691cfc814bf34d6a3318ca2cd6482` |
+| `mods/MAPGEN/mcl_levelgen/locale/template.pot` | `2868f07da1ffdcf1dd67cff6cf26a02c958c7fea` |
+| `mods/ITEMS/mcl_pale_oak/locale/template.pot` | `1ff51c8829ded008f9e78107c95aad5c80139ee5` |
+| `mods/ITEMS/mcl_pottery_sherds/locale/template.pot` | `a1a521ebf70a8cdebf35c03de575144a02dea647` |
+| `mods/ITEMS/mcl_books/locale/template.pot` | `6f768eb235b703821826e0664330c2afbc816bcc` |
+| `mods/ITEMS/mcl_cherry_blossom/locale/template.pot` | `80e3b86d3c5f0c282a1aa552c20454a6e5bd6b85` |
+| `mods/ITEMS/mcl_mushrooms/locale/template.pot` | `2fd00f16e824b4a0c6fd0c83954862c74eb10526` |
+| `mods/ITEMS/mcl_fire/locale/template.pot` | `01db672ede846a498223a3a503db3fd4e4691c79` |
+| `mods/ITEMS/mcl_sculk/locale/template.pot` | `4a885b4037de5f341258ff3d1ee9ee0d08182f23` |
