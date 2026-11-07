@@ -1,0 +1,2323 @@
+# Arabic translation draft for Mineclonia component: mcl_doc_basics
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/HELP/mcl_doc_basics/locale/template.pot
+# Source template blob SHA: 9889343a0dcc3d4e1e63e070e65151855bd58e6b
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-08 00:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:9
+msgid "Advanced usage"
+msgstr "الاستخدام المتقدم"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:10
+msgid ""
+"Advanced information which may be nice to know, but is not crucial to "
+"gameplay"
+msgstr "معلومات متقدمة قد تكون مفيدة للاطلاع، لكنها ليست ضرورية للعب"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:18
+msgid "Creative Mode"
+msgstr "الوضع الإبداعي"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:20
+msgid "Enabling Creative Mode in MineClonia applies the following changes:"
+msgstr "يؤدي تفعيل الوضع الإبداعي في Mineclonia إلى التغييرات التالية:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:22
+msgid "• You keep the things you've placed"
+msgstr "• تحتفظ بالأشياء التي وضعتها."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:23
+msgid "• Creative inventory is available to obtain most items easily"
+msgstr "• يتوفر المخزون الإبداعي للحصول على معظم العناصر بسهولة."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:24
+msgid "• Hand breaks all default blocks instantly"
+msgstr "• تكسر اليد جميع الكتل الافتراضية فورًا."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:25
+msgid "• Greatly increased hand pointing range"
+msgstr "• يزداد مدى توجيه اليد نحو الأشياء بشكل كبير."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:26
+msgid "• Mined blocks don't drop items"
+msgstr "• لا تسقط الكتل المستخرجة أي عناصر."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:27
+msgid "• Items don't get used up"
+msgstr "• لا تُستهلك العناصر عند استخدامها."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:28
+msgid "• Tools don't wear off"
+msgstr "• لا تتآكل الأدوات."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:29
+msgid "• You can eat food whenever you want"
+msgstr "• يمكنك تناول الطعام في أي وقت تشاء."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:30
+msgid "• You can always use the minimap (including radar mode)"
+msgstr "• يمكنك استخدام الخريطة المصغرة دائمًا، بما في ذلك وضع الرادار."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:32
+msgid ""
+"Damage is not affected by Creative Mode, it needs to be disabled separately."
+msgstr "لا يتأثر الضرر بالوضع الإبداعي؛ يجب تعطيل الضرر بشكل منفصل."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:36
+msgid "Console"
+msgstr "وحدة التحكم"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:38
+msgid ""
+"With [F10] you can open and close the console. The main use of the console "
+"is to show the chat log and enter chat messages or server commands."
+msgstr "يمكنك فتح وحدة التحكم وإغلاقها باستخدام [F10]. وتُستخدم أساسًا لعرض سجل الدردشة وإدخال رسائل الدردشة أو أوامر الخادم."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:39
+msgid ""
+"Using the chat or server command key also opens the console, but it is "
+"smaller and will be closed after you sent a message."
+msgstr "يفتح مفتاح الدردشة أو مفتاح أوامر الخادم وحدة التحكم أيضًا، لكنها تكون أصغر وتُغلق بعد إرسال الرسالة."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:41
+msgid ""
+"Use the chat to communicate with other players. This requires you to have "
+"the “shout” privilege."
+msgstr "استخدم الدردشة للتواصل مع اللاعبين الآخرين. يتطلب ذلك امتلاك صلاحية “shout”."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:42
+msgid ""
+"Just type in the message and hit [Enter]. Public chat messages can not begin "
+"with “/”."
+msgstr "اكتب الرسالة ثم اضغط [Enter]. لا يمكن أن تبدأ رسائل الدردشة العامة بالرمز “/”."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:44
+msgid ""
+"You can send private messages: Say “/msg <player> <message>” in chat to send "
+"“<message>” which can only be seen by <player>."
+msgstr "يمكنك إرسال رسائل خاصة: اكتب “/msg <player> <message>” في الدردشة لإرسال “<message>” التي لا يستطيع رؤيتها إلا <player>."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:46
+msgid "There are some special controls for the console:"
+msgstr "توجد بعض عناصر التحكم الخاصة بوحدة التحكم:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:48
+msgid "• [F10] Open/close console"
+msgstr "• [F10] فتح وحدة التحكم أو إغلاقها"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:49
+msgid "• [Enter]: Send message or command"
+msgstr "• [Enter]: إرسال الرسالة أو الأمر"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:50
+msgid "• [Tab]: Try to auto-complete a partially-entered player name"
+msgstr "• [Tab]: محاولة إكمال اسم لاعب بدأت بكتابته تلقائيًا"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:51
+msgid "• [Ctrl]+[Left]: Move cursor to the beginning of the previous word"
+msgstr "• [Ctrl]+[Left]: نقل المؤشر إلى بداية الكلمة السابقة"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:52
+msgid "• [Ctrl]+[Right]: Move cursor to the beginning of the next word"
+msgstr "• [Ctrl]+[Right]: نقل المؤشر إلى بداية الكلمة التالية"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:53
+msgid "• [Ctrl]+[Backspace]: Delete previous word"
+msgstr "• [Ctrl]+[Backspace]: حذف الكلمة السابقة"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:54
+msgid "• [Ctrl]+[Delete]: Delete next word"
+msgstr "• [Ctrl]+[Delete]: حذف الكلمة التالية"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:55
+msgid "• [Ctrl]+[U]: Delete all text before the cursor"
+msgstr "• [Ctrl]+[U]: حذف النص كله قبل المؤشر"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:56
+msgid "• [Ctrl]+[K]: Delete all text after the cursor"
+msgstr "• [Ctrl]+[K]: حذف النص كله بعد المؤشر"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:57
+msgid "• [Page up]: Scroll up"
+msgstr "• [Page up]: التمرير إلى أعلى"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:58
+msgid "• [Page down]: Scroll down"
+msgstr "• [Page down]: التمرير إلى أسفل"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:60
+msgid ""
+"There is also an input history. Luanti saves your previous console inputs "
+"which you can quickly access later:"
+msgstr "يوجد أيضًا سجل للإدخال. يحفظ Luanti أوامرك السابقة في وحدة التحكم لتتمكن من الرجوع إليها بسرعة لاحقًا:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:62
+msgid "• [Up]: Go to previous entry in history"
+msgstr "• [Up]: الانتقال إلى الإدخال السابق في السجل"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:63
+msgid "• [Down]: Go to next entry in history"
+msgstr "• [Down]: الانتقال إلى الإدخال التالي في السجل"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:67
+msgid "Server commands"
+msgstr "أوامر الخادم"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:69
+msgid ""
+"Server commands (also called “chat commands”) are little helpers for "
+"advanced users. You don't need to use these commands when playing. But they "
+"might come in handy to perform some more technical tasks. Server commands "
+"work both in multi-player and single-player mode."
+msgstr "أوامر الخادم، المعروفة أيضًا باسم “أوامر الدردشة”، أدوات مساعدة صغيرة للمستخدمين المتقدمين. لست بحاجة إلى استخدامها أثناء اللعب، لكنها قد تفيدك في تنفيذ بعض المهام التقنية. تعمل أوامر الخادم في نمطي اللعب الجماعي والفردي."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:71
+msgid ""
+"Server commands can be entered by players using the chat to perform a "
+"special server action. There are a few commands which can be issued by "
+"everyone, but some commands only work if you have certain privileges granted "
+"on the server. There is a small set of basic commands which are always "
+"available, other commands can be added by mods."
+msgstr "يمكن للاعبين إدخال أوامر الخادم عبر الدردشة لتنفيذ إجراء خاص على الخادم. يمكن للجميع تنفيذ بعض الأوامر، بينما تتطلب أوامر أخرى امتلاك صلاحيات معينة على الخادم. توجد مجموعة صغيرة من الأوامر الأساسية المتاحة دائمًا، ويمكن للإضافات (Mods) إضافة أوامر أخرى."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:73
+msgid ""
+"To issue a command, simply type it like a chat message or press Luanti's "
+"command key (default: [/]). All commands have to begin with “/”, for example "
+"“/mods”. The Luanti command key does the same as the chat key, except that "
+"the slash is already entered."
+msgstr "لتنفيذ أمر، اكتبه مثل رسالة دردشة أو اضغط مفتاح الأوامر في Luanti (الافتراضي: [/]). يجب أن تبدأ جميع الأوامر بالرمز “/”، مثل “/mods”. يؤدي مفتاح أوامر Luanti الوظيفة نفسها التي يؤديها مفتاح الدردشة، لكن الشرطة المائلة تكون مكتوبة مسبقًا."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:74
+msgid ""
+"Commands may or may not give a response in the chat log, but errors will "
+"generally be shown in the chat. Try it for yourselves: Close this window and "
+"type in the “/mods” command. This will give you the list of available mods "
+"on this server."
+msgstr "قد تعرض الأوامر ردًا في سجل الدردشة أو لا تعرضه، لكن الأخطاء تظهر عادةً في الدردشة. جرّب بنفسك: أغلق هذه النافذة واكتب الأمر “/mods”. سيعرض ذلك قائمة الإضافات المتاحة على هذا الخادم."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:76
+msgid ""
+"“/help all” is a very important command: You get a list of all available "
+"commands on the server, a short explanation and the allowed parameters. This "
+"command is also important because the available commands often differ per "
+"server."
+msgstr "يُعد الأمر “/help all” مهمًا جدًا؛ إذ يعرض قائمة بجميع الأوامر المتاحة على الخادم، مع شرح موجز والمعاملات المسموح بها. وهو مهم أيضًا لأن الأوامر المتاحة تختلف غالبًا من خادم إلى آخر."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:78
+msgid "Commands are followed by zero or more parameters."
+msgstr "تتبع الأوامرَ صفرُ معاملات أو أكثر."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:80
+msgid ""
+"In the command reference, you see some placeholders which you need to "
+"replace with an actual value. Here's an explanation:"
+msgstr "في مرجع الأوامر، سترى عناصر نائبة يجب استبدالها بقيم فعلية. إليك شرحها:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:82
+msgid ""
+"• Text in greater-than and lower-than signs (e.g. “<param>”): Placeholder "
+"for a parameter"
+msgstr "• النص المحصور بين علامتي أكبر من وأقل من (مثل “<param>”): عنصر نائب لمعامل."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:83
+msgid ""
+"• Anything in square brackets (e.g. “[text]”) is optional and can be omitted"
+msgstr "• أي شيء بين قوسين مربعين (مثل “[text]”) اختياري ويمكن حذفه."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:84
+msgid ""
+"• Pipe or slash (e.g. “text1 | text2 | text3”): Alternation. One of multiple "
+"texts must be used (e.g. “text2”)"
+msgstr "• الخط العمودي أو الشرطة المائلة (مثل “text1 | text2 | text3”): تعني الاختيار بين بدائل؛ يجب استخدام أحد النصوص المتاحة (مثل “text2”)."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:85
+msgid ""
+"• Parenthesis: (e.g. “(word1 word2) | word3”): Groups multiple words "
+"together, used for alternations"
+msgstr "• الأقواس الدائرية (مثل “(word1 word2) | word3”): تجمع عدة كلمات معًا لاستخدامها ضمن البدائل."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:86
+msgid "• Everything else is to be read as literal text"
+msgstr "• يُقرأ كل ما عدا ذلك على أنه نص حرفي."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:88
+msgid "Here are some examples to illustrate the command syntax:"
+msgstr "إليك بعض الأمثلة لتوضيح صياغة الأوامر:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:90
+msgid "• /mods: No parameters. Just enter “/mods”"
+msgstr "• /mods: لا يحتاج إلى معاملات. اكتب “/mods” فقط."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:91
+msgid ""
+"• /me <action>: 1 parameter. You have to enter “/me ” followed by any text, "
+"e.g. “/me orders pizza”"
+msgstr "• /me <action>: يحتاج إلى معامل واحد. اكتب “/me ” متبوعًا بأي نص، مثل “/me orders pizza”."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:92
+msgid ""
+"• /give <name> <ItemString>: Two parameters. Example: “/give Player "
+"default:apple”"
+msgstr "• /give <name> <ItemString>: يحتاج إلى معاملين. مثال: “/give Player default:apple”."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:93
+msgid ""
+"• /help [all|privs|<cmd>]: Valid inputs are “/help”, “/help all”, “/help "
+"privs”, or “/help ” followed by a command name, like “/help time”"
+msgstr "• /help [all|privs|<cmd>]: القيم المقبولة هي “/help” أو “/help all” أو “/help privs”، أو “/help ” متبوعًا باسم أمر، مثل “/help time”."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:94
+msgid ""
+"• /spawnentity <EntityName> [<X>,<Y>,<Z>]: Valid inputs include “/"
+"spawnentity boats:boat” and “/spawnentity boats:boat 0,0,0”"
+msgstr "• /spawnentity <EntityName> [<X>,<Y>,<Z>]: من القيم المقبولة “/spawnentity boats:boat” و“/spawnentity boats:boat 0,0,0”."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:97
+msgid "Some final remarks:"
+msgstr "بعض الملاحظات الأخيرة:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:99
+msgid ""
+"• For /give and /giveme, you need an itemstring. This is an internally used "
+"unique item identifier which you may find in the item help if you have the "
+"“give” or “debug” privilege"
+msgstr "• يتطلب الأمران /give و/giveme سلسلة عنصر (itemstring). وهي معرّف فريد للعنصر يُستخدم داخليًا، ويمكنك العثور عليه في مساعدة العناصر إذا امتلكت صلاحية “give” أو “debug”."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:100
+msgid "• For /spawnentity you need an entity name, which is another identifier"
+msgstr "• يتطلب الأمر /spawnentity اسم كائن، وهو معرّف آخر."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:104
+msgid "Privileges"
+msgstr "الصلاحيات"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:106
+msgid ""
+"Each player has a set of privileges, which differs from server to server. "
+"Your privileges determine what you can and can't do. Privileges can be "
+"granted and revoked from other players by any player who has the privilege "
+"called “privs”."
+msgstr "يمتلك كل لاعب مجموعة من الصلاحيات تختلف من خادم إلى آخر. تحدد صلاحياتك ما يمكنك فعله وما لا يمكنك فعله. ويمكن لأي لاعب يمتلك صلاحية “privs” منح الصلاحيات للاعبين الآخرين أو سحبها منهم."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:108
+msgid ""
+"On a multiplayer server with the default configuration, new players start "
+"with the privileges called “interact” and “shout”. The “interact” privilege "
+"is required for the most basic gameplay actions such as building, mining, "
+"using, etc. The “shout” privilege allows to chat."
+msgstr "في خادم لعب جماعي بإعداداته الافتراضية، يبدأ اللاعبون الجدد بصلاحيتَي “interact” و“shout”. صلاحية “interact” مطلوبة لتنفيذ أبسط أنشطة اللعب، مثل البناء والتعدين واستخدام العناصر وغيرها. أما صلاحية “shout” فتتيح استخدام الدردشة."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:110
+msgid ""
+"There is a small set of core privileges which you'll find on every server, "
+"other privileges might be added by mods."
+msgstr "توجد مجموعة صغيرة من الصلاحيات الأساسية في كل خادم، وقد تضيف الإضافات صلاحيات أخرى."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:112
+msgid "To view your own privileges, issue the server command “/privs”."
+msgstr "لعرض صلاحياتك، نفّذ أمر الخادم “/privs”."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:114
+msgid "Here are a few basic privilege-related commands:"
+msgstr "إليك بعض الأوامر الأساسية المتعلقة بالصلاحيات:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:116
+msgid "• /privs: Lists your privileges"
+msgstr "• /privs: يعرض صلاحياتك."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:117
+msgid "• /privs <player>: Lists the privileges of <player>"
+msgstr "• /privs <player>: يعرض صلاحيات <player>."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:118
+msgid "• /help privs: Shows a list and description about all privileges"
+msgstr "• /help privs: يعرض قائمة بجميع الصلاحيات مع وصف لكل منها."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:120
+msgid "Players with the “privs” privilege can modify privileges at will:"
+msgstr "يمكن للاعبين الذين يمتلكون صلاحية “privs” تعديل الصلاحيات كما يشاؤون:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:122
+msgid "• /grant <player> <privilege>: Grant <privilege> to <player>"
+msgstr "• /grant <player> <privilege>: يمنح <privilege> إلى <player>."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:123
+msgid "• /revoke <player> <privilege>: Revoke <privilege> from <player>"
+msgstr "• /revoke <player> <privilege>: يسحب <privilege> من <player>."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:125
+msgid ""
+"In single-player mode, you can use “/grantme all” to unlock all abilities."
+msgstr "في نمط اللعب الفردي، يمكنك استخدام “/grantme all” لفتح جميع القدرات."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:129
+msgid "Movement modes"
+msgstr "أنماط الحركة"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:131
+msgid "You can enable some special movement modes that change how you move."
+msgstr "يمكنك تفعيل بعض أنماط الحركة الخاصة التي تغيّر طريقة تحركك."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:133
+msgid "Pitch movement mode:"
+msgstr "نمط الحركة وفق زاوية النظر:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:134
+msgid ""
+"• Description: If this mode is activated, the movement keys will move you "
+"relative to your current view pitch (vertical look angle) when you're in a "
+"liquid or in fly mode."
+msgstr "• الوصف: عند تفعيل هذا النمط، تحركك مفاتيح الحركة بالنسبة إلى زاوية النظر العمودية الحالية عندما تكون داخل سائل أو في وضع الطيران."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:135
+msgid "• Default key: [L]"
+msgstr "• المفتاح الافتراضي: [L]"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:136
+msgid "• No privilege required"
+msgstr "• لا يتطلب صلاحية"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:138
+msgid "Fast mode:"
+msgstr "النمط السريع:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:139
+msgid ""
+"• Description: Allows you to move much faster. Hold down the the “Use” key "
+"[E] to move faster. In the client configuration, you can further customize "
+"fast mode."
+msgstr "• الوصف: يتيح لك التحرك بسرعة أكبر بكثير. اضغط باستمرار على مفتاح “Use” [E] للتحرك بسرعة. ويمكنك تخصيص النمط السريع أكثر من إعدادات العميل."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:140
+msgid "• Default key: [J]"
+msgstr "• المفتاح الافتراضي: [J]"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:141
+msgid "• Required privilege: fast"
+msgstr "• الصلاحية المطلوبة: fast"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:143
+msgid "Fly mode:"
+msgstr "وضع الطيران:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:144
+msgid ""
+"• Description: Gravity doesn't affect you and you can move freely in all "
+"directions. Use the jump key to rise and the sneak key to sink."
+msgstr "• الوصف: لا تؤثر الجاذبية فيك، ويمكنك التحرك بحرية في جميع الاتجاهات. استخدم مفتاح القفز للصعود ومفتاح التسلل للهبوط."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:145
+msgid "• Default key: [K]"
+msgstr "• المفتاح الافتراضي: [K]"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:146
+msgid "• Required privilege: fly"
+msgstr "• الصلاحية المطلوبة: fly"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:148
+msgid "Noclip mode:"
+msgstr "وضع المرور عبر الكتل (Noclip):"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:149
+msgid ""
+"• Description: Allows you to move through walls. Only works when fly mode is "
+"enabled, too."
+msgstr "• الوصف: يتيح لك المرور عبر الجدران. لا يعمل إلا عند تفعيل وضع الطيران أيضًا."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:150
+msgid "• Default key: [H]"
+msgstr "• المفتاح الافتراضي: [H]"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:151
+msgid "• Required privilege: noclip"
+msgstr "• الصلاحية المطلوبة: noclip"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:155
+msgid "Coordinates"
+msgstr "الإحداثيات"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:157
+msgid ""
+"The world is a large cube. And because of this, a position in the world can "
+"be easily expressed with Cartesian coordinates. That is, for each position "
+"in the world, there are 3 values X, Y and Z."
+msgstr "العالم مكعب كبير؛ لذلك يمكن التعبير عن أي موضع فيه بسهولة باستخدام الإحداثيات الديكارتية. أي إن كل موضع في العالم يُحدد بثلاث قيم: X وY وZ."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:159
+msgid "Like this: (5, 45, -12)"
+msgstr "مثلًا: (5, 45, -12)"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:161
+msgid ""
+"This refers to the position where X=5, Y=45 and Z=-12. The 3 letters are "
+"called “axes”: Y is for the height. X and Z are for the horizontal position."
+msgstr "يشير هذا إلى الموضع الذي تكون فيه X=5 وY=45 وZ=-12. وتسمى هذه الأحرف الثلاثة “المحاور”: يحدد Y الارتفاع، بينما يحدد X وZ الموضع الأفقي."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:163
+msgid "The values for X, Y and Z work like this:"
+msgstr "تعمل قيم X وY وZ كما يلي:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:165
+msgid "• If you go up, Y increases"
+msgstr "• إذا تحركت إلى أعلى، تزداد قيمة Y."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:166
+msgid "• If you go down, Y decreases"
+msgstr "• إذا تحركت إلى أسفل، تنقص قيمة Y."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:167
+msgid "• If you follow the sun, X increases"
+msgstr "• إذا تحركت باتجاه الشمس، تزداد قيمة X."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:168
+msgid "• If you go to the reverse direction, X decreases"
+msgstr "• إذا تحركت في الاتجاه المعاكس، تنقص قيمة X."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:169
+msgid "• Follow the sun, then go right: Z increases"
+msgstr "• اتجه نحو الشمس ثم تحرك إلى اليمين: تزداد قيمة Z."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:170
+msgid "• Follow the sun, then go left: Z decreases"
+msgstr "• اتجه نحو الشمس ثم تحرك إلى اليسار: تنقص قيمة Z."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:171
+msgid "• The side length of a full cube is 1"
+msgstr "• طول ضلع المكعب الكامل يساوي 1."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:173
+msgid ""
+"You can view your current position in the debug screen (open with [F5])."
+msgstr "يمكنك رؤية موضعك الحالي في شاشة التصحيح (افتحها باستخدام [F5])."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:177
+msgid "Settings"
+msgstr "الإعدادات"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:180
+msgid ""
+"There is a large variety of settings to configure Luanti. Pretty much every "
+"aspect can be changed that way."
+msgstr "تتوفر مجموعة كبيرة من الإعدادات لتهيئة Luanti، ويمكن تغيير معظم جوانب اللعبة من خلالها."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:182
+msgid "These are a few of the most important gameplay settings:"
+msgstr "إليك بعض أهم إعدادات اللعب:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:184
+msgid ""
+"• Damage enabled (enable_damage): Enables the health and breath attributes "
+"for all players. If disabled, players are immortal"
+msgstr "• تفعيل الضرر (enable_damage): يفعّل خصائص الصحة والتنفس لجميع اللاعبين. وإذا عُطّل، يصبح اللاعبون خالدين."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:185
+msgid ""
+"• Creative Mode (creative_mode): Enables sandbox-style gameplay focusing on "
+"creativity rather than a challenging gameplay. The meaning depends on the "
+"game; usual changes are: Reduced dig times, easy access to almost all items, "
+"tools never wear off, etc."
+msgstr "• الوضع الإبداعي (creative_mode): يفعّل أسلوب لعب حر يركز على الإبداع بدلًا من التحدي. ويختلف تأثيره بحسب اللعبة؛ وتشمل التغييرات المعتادة تقليل أوقات التعدين، وإتاحة الوصول بسهولة إلى معظم العناصر، وعدم تآكل الأدوات، وغير ذلك."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:186
+msgid ""
+"• PvP (enable_pvp): Short for “Player vs Player”. If enabled, players can "
+"deal damage to each other"
+msgstr "• لاعب ضد لاعب (PvP، enable_pvp): اختصار لعبارة “Player vs Player”. عند تفعيله، يستطيع اللاعبون إلحاق الضرر بعضهم ببعض."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:188
+msgid ""
+"For a full list of all available settings, use the “All Settings” dialog in "
+"the main menu."
+msgstr "للاطلاع على القائمة الكاملة للإعدادات المتاحة، استخدم نافذة “All Settings” في القائمة الرئيسية."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:192
+msgid "Online help"
+msgstr "المساعدة عبر الإنترنت"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:194
+msgid "You may want to check out these online resources related to Luanti:"
+msgstr "قد ترغب في الاطلاع على هذه المصادر المتاحة عبر الإنترنت والمتعلقة بـLuanti:"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:196
+msgid "Official homepage of Luanti: <https://luanti.org/>"
+msgstr "الموقع الرسمي لـLuanti: <https://luanti.org/>"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:197
+msgid "The main place to find the most recent version of Luanti."
+msgstr "الموقع الرئيسي للحصول على أحدث إصدار من Luanti."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:199
+msgid "Luanti Documentation: <https://docs.luanti.org/>"
+msgstr "وثائق Luanti: <https://docs.luanti.org/>"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:200
+msgid "A official documentation website for Luanti."
+msgstr "موقع الوثائق الرسمي الخاص بـLuanti."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:202
+msgid "Web forums: <https://forum.luanti.org/>"
+msgstr "منتديات الويب: <https://forum.luanti.org/>"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:203
+msgid ""
+"A web-based discussion platform where you can discuss everything related to "
+"Luanti. This is also a place where player-made mods and games are published "
+"and discussed. The discussions are mainly in English, but there is also "
+"space for discussion in other languages."
+msgstr "منصة نقاش عبر الويب يمكنك من خلالها مناقشة كل ما يتعلق بـLuanti. وهي أيضًا مكان لنشر الإضافات والألعاب التي يصنعها اللاعبون ومناقشتها. تدور معظم النقاشات باللغة الإنجليزية، لكن توجد مساحة للنقاش بلغات أخرى."
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:205
+msgid "Chat: <irc://irc.libera.chat/#luanti>"
+msgstr "الدردشة: <irc://irc.libera.chat/#luanti>"
+
+#: mods/HELP/mcl_doc_basics/advanced.lua:206
+msgid ""
+"A generic Internet Relay Chat channel for everything related to Luanti where "
+"people can meet to discuss in real-time. If you do not understand IRC, see "
+"the Luanti Documentation for help."
+msgstr "قناة دردشة IRC عامة عبر الإنترنت لكل ما يتعلق بـLuanti، حيث يمكن للمستخدمين الالتقاء والنقاش في الوقت الفعلي. إذا لم تكن تعرف IRC، فراجع وثائق Luanti للحصول على المساعدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:9
+msgid "Basics"
+msgstr "الأساسيات"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:10
+msgid "Everything you need to know to get started with playing"
+msgstr "كل ما تحتاج إلى معرفته للبدء في اللعب"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:17
+msgid "Quick start"
+msgstr "البدء السريع"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:19
+msgid "This is a very brief introduction to the basic gameplay."
+msgstr "هذه مقدمة موجزة جدًا لأساسيات اللعب."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:21
+msgid "How to play:"
+msgstr "طريقة اللعب:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:22
+msgid "• Punch a tree trunk until it breaks and collect wood"
+msgstr "• اضرب جذع شجرة حتى ينكسر، ثم اجمع الخشب."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:23
+msgid ""
+"• Place the wood into the 2×2 grid (your “crafting grid”) in your inventory "
+"menu and craft 4 wood planks"
+msgstr "• ضع الخشب في شبكة 2×2 (المعروفة باسم “شبكة التصنيع”) في قائمة المخزون، واصنع 4 ألواح خشبية."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:24
+msgid ""
+"• Place them in a 2×2 shape in the crafting grid to craft a crafting table"
+msgstr "• رتّب الألواح على شكل مربع 2×2 في شبكة التصنيع لصنع طاولة تصنيع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:25
+msgid "• Place the crafting table on the ground"
+msgstr "• ضع طاولة التصنيع على الأرض."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:26
+msgid "• Rightclick it for a 3×3 crafting grid"
+msgstr "• انقر عليها بزر الفأرة الأيمن لفتح شبكة تصنيع 3×3."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:27
+msgid ""
+"• Use the crafting guide (book icon) to learn all the possible crafting "
+"recipes"
+msgstr "• استخدم دليل التصنيع (أيقونة الكتاب) لمعرفة جميع وصفات التصنيع الممكنة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:28
+msgid "• Craft a wooden pickaxe so you can dig stone"
+msgstr "• اصنع معولًا خشبيًا لتتمكن من تعدين الحجر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:29
+msgid "• Different tools break different kinds of blocks. Try them out!"
+msgstr "• تكسر الأدوات المختلفة أنواعًا مختلفة من الكتل. جرّبها بنفسك!"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:30
+msgid "• Read entries in this help to learn the rest"
+msgstr "• اقرأ مقالات المساعدة هذه لتتعلم بقية الأمور."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:31
+msgid ""
+"• Continue playing as you wish. There's no real goal, but you may want to "
+"check the advancements available from the inventory screen. Have fun!"
+msgstr "• واصل اللعب بالطريقة التي تحبها. ليس هناك هدف محدد، لكن يمكنك الاطلاع على الإنجازات المتاحة من شاشة المخزون. استمتع!"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:33
+msgid "For the default controls, see the next section [Controls]."
+msgstr "للاطلاع على عناصر التحكم الافتراضية، راجع القسم التالي [Controls]."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:37
+msgid "Controls"
+msgstr "عناصر التحكم"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:39
+msgid ""
+"These are the default controls (which can be remapped in the 'Change keys' "
+"dialog):"
+msgstr "هذه هي عناصر التحكم الافتراضية (ويمكن إعادة تعيينها من نافذة 'Change keys'):"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:41
+msgid "Basic movement:"
+msgstr "الحركة الأساسية:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:42
+msgid "• Moving the mouse around: Look around"
+msgstr "• تحريك الفأرة: النظر حولك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:43
+msgid "• W: Move forwards"
+msgstr "• W: التحرك إلى الأمام."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:44
+msgid "• A: Move to the left"
+msgstr "• A: التحرك إلى اليسار."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:45
+msgid "• D: Move to the right"
+msgstr "• D: التحرك إلى اليمين."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:46
+msgid "• S: Move backwards"
+msgstr "• S: التحرك إلى الخلف."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:47
+msgid "• E: Sprint (aux1)"
+msgstr "• E: الركض (aux1)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:49
+msgid "While standing on solid ground:"
+msgstr "أثناء الوقوف على أرض صلبة:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:50
+msgid "• Space: Jump"
+msgstr "• Space: القفز."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:51
+msgid "• Shift: Sneak"
+msgstr "• Shift: التسلل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:53
+msgid "While on a ladder, swimming in a liquid or fly mode is active"
+msgstr "أثناء الوقوف على سلم أو السباحة في سائل أو تفعيل وضع الطيران:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:54
+msgid "• Space: Move up"
+msgstr "• Space: التحرك إلى أعلى."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:55
+msgid "• Shift: Move down"
+msgstr "• Shift: التحرك إلى أسفل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:57
+msgid "Extended movement (requires privileges):"
+msgstr "الحركة المتقدمة (تتطلب صلاحيات):"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:58
+msgid ""
+"• J: Toggle fast mode, makes you run or fly fast (requires “fast” privilege)"
+msgstr "• J: تشغيل أو إيقاف النمط السريع، الذي يجعلك تركض أو تطير بسرعة (يتطلب صلاحية “fast”)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:59
+msgid ""
+"• K: Toggle fly mode, makes you move freely in all directions (requires "
+"“fly” privilege)"
+msgstr "• K: تشغيل أو إيقاف وضع الطيران، الذي يتيح لك التحرك بحرية في جميع الاتجاهات (يتطلب صلاحية “fly”)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:60
+msgid ""
+"• H: Toggle noclip mode, makes you go through walls in fly mode (requires "
+"“noclip” privilege)"
+msgstr "• H: تشغيل أو إيقاف وضع المرور عبر الكتل، الذي يتيح لك اختراق الجدران أثناء الطيران (يتطلب صلاحية “noclip”)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:61
+msgid "• E: Walk fast in fast mode"
+msgstr "• E: المشي بسرعة أثناء تفعيل النمط السريع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:63
+msgid "World interaction:"
+msgstr "التفاعل مع العالم:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:64
+msgid "• Left mouse button: Punch / mine blocks"
+msgstr "• زر الفأرة الأيسر: الضرب أو تعدين الكتل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:65
+msgid "• Right mouse button: Build or use pointed block"
+msgstr "• زر الفأرة الأيمن: البناء أو استخدام الكتلة التي تشير إليها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:66
+msgid "• Shift+Right mouse button: Build"
+msgstr "• Shift+زر الفأرة الأيمن: البناء."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:67
+msgid "• Roll mouse wheel / B / N: Select next/previous item in hotbar"
+msgstr "• تدوير عجلة الفأرة / B / N: اختيار العنصر التالي أو السابق في شريط العناصر السريع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:68
+msgid "• 1-9: Select item in hotbar directly"
+msgstr "• 1-9: اختيار عنصر مباشرة من شريط العناصر السريع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:69
+msgid "• Q: Drop item stack"
+msgstr "• Q: إسقاط رزمة العناصر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:70
+msgid "• Shift+Q: Drop 1 item"
+msgstr "• Shift+Q: إسقاط عنصر واحد."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:71
+msgid "• I: Show/hide inventory menu"
+msgstr "• I: إظهار قائمة المخزون أو إخفاؤها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:73
+msgid "Inventory interaction:"
+msgstr "التفاعل مع المخزون:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:74
+msgid "See the entry “Basics > Inventory”."
+msgstr "راجع المقالة “Basics > Inventory”."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:76
+msgid "Camera:"
+msgstr "الكاميرا:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:77
+msgid "• F7: Toggle camera mode"
+msgstr "• F7: تغيير نمط الكاميرا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:79
+msgid "Interface:"
+msgstr "الواجهة:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:80
+msgid "• Esc: Open menu window (pauses in single-player mode) or close window"
+msgstr "• Esc: فتح نافذة القائمة (وإيقاف اللعب مؤقتًا في نمط اللاعب الواحد) أو إغلاق النافذة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:81
+msgid "• F1: Show/hide HUD"
+msgstr "• F1: إظهار واجهة HUD أو إخفاؤها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:82
+msgid "• F2: Show/hide chat"
+msgstr "• F2: إظهار الدردشة أو إخفاؤها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:83
+msgid "• F9: Toggle minimap"
+msgstr "• F9: تشغيل الخريطة المصغرة أو إيقافها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:84
+msgid "• Shift+F9: Toggle minimap rotation mode"
+msgstr "• Shift+F9: تغيير نمط دوران الخريطة المصغرة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:85
+msgid "• F10: Open/close console/chat log"
+msgstr "• F10: فتح وحدة التحكم أو سجل الدردشة وإغلاقهما."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:86
+msgid "• F12: Take a screenshot"
+msgstr "• F12: التقاط لقطة شاشة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:88
+msgid "Server interaction:"
+msgstr "التفاعل مع الخادم:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:89
+msgid "• T: Open chat window (chat requires the “shout” privilege)"
+msgstr "• T: فتح نافذة الدردشة (تتطلب الدردشة صلاحية “shout”)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:90
+msgid "• /: Start issuing a server command"
+msgstr "• /: بدء إدخال أمر للخادم."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:92
+msgid "Technical:"
+msgstr "تقني:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:93
+msgid "• +: Increase minimal viewing distance"
+msgstr "• +: زيادة أدنى مسافة للرؤية."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:94
+msgid "• -: Decrease minimal viewing distance"
+msgstr "• -: تقليل أدنى مسافة للرؤية."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:95
+msgid "• F3: Enable/disable fog"
+msgstr "• F3: تفعيل الضباب أو تعطيله."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:96
+msgid "• F5: Enable/disable debug screen which also shows your coordinates"
+msgstr "• F5: تفعيل شاشة التصحيح التي تعرض إحداثياتك أو تعطيلها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:97
+msgid "• F6: Only useful for developers. Enables/disables profiler"
+msgstr "• F6: مفيد للمطورين فقط. يفعّل أداة قياس الأداء (profiler) أو يعطلها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:101
+msgid "Pointing"
+msgstr "توجيه المؤشر"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:104
+msgid ""
+"“Pointing” means looking at something in range with the crosshair. Pointing "
+"is needed for interaction, like mining, punching, using, etc. Pointable "
+"things include blocks, players, computer enemies and objects."
+msgstr "يعني “توجيه المؤشر” النظر إلى شيء يقع ضمن المدى باستخدام علامة التصويب. يلزم توجيه المؤشر للتفاعل، مثل التعدين والضرب والاستخدام وغيرها. وتشمل الأشياء التي يمكن استهدافها الكتل واللاعبين والكائنات التي يتحكم فيها الحاسوب والأجسام."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:106
+msgid ""
+"To point something, it must be in the pointing range (also just called "
+"“range”) of your wielded item. There's a default range when you are not "
+"wielding anything. A pointed thing will be outlined or highlighted "
+"(depending on your settings). Pointing is not possible with the 3rd person "
+"front camera."
+msgstr "لكي تتمكن من توجيه المؤشر نحو شيء ما، يجب أن يقع ضمن مدى التوجيه الخاص بالعنصر الذي تحمله. يوجد مدى افتراضي عندما لا تحمل أي عنصر. سيظهر حول الهدف إطار أو تمييز (بحسب إعداداتك). لا يمكن توجيه المؤشر في نمط الكاميرا الأمامية من منظور الشخص الثالث."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:108
+msgid ""
+"A few things can not be pointed. Most blocks are pointable. A few blocks, "
+"like air, can never be pointed. Other blocks, like liquids can only be "
+"pointed by special items."
+msgstr "لا يمكن استهداف بعض الأشياء. يمكن استهداف معظم الكتل، لكن بعض الكتل، مثل الهواء، لا يمكن استهدافها مطلقًا. أما كتل أخرى، مثل السوائل، فلا يمكن استهدافها إلا باستخدام عناصر خاصة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:113
+msgid "Items"
+msgstr "العناصر"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:116
+msgid ""
+"Items are things you can carry along and store in inventories. They can be "
+"used for crafting, smelting, building, mining, and more. Types of items "
+"include blocks, tools, weapons and items only used for crafting."
+msgstr "العناصر أشياء يمكنك حملها وتخزينها في المخزون. ويمكن استخدامها في التصنيع والصهر والبناء والتعدين وغير ذلك. وتشمل أنواع العناصر الكتل والأدوات والأسلحة والعناصر المخصصة للتصنيع فقط."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:118
+msgid ""
+"An item stack is a collection of items of the same type which fits into a "
+"single item slot. Item stacks can be dropped on the ground. Items which drop "
+"into the same coordinates will form an item stack."
+msgstr "رزمة العناصر مجموعة من العناصر المتطابقة تشغل خانة واحدة في المخزون. يمكن إسقاط رزم العناصر على الأرض، والعناصر التي تسقط في الإحداثيات نفسها تتجمع في رزمة واحدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:120
+msgid "Items have several properties, including the following:"
+msgstr "للعناصر عدة خصائص، منها ما يلي:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:122
+msgid "• Maximum stack size: Number of items which fit on 1 item stack"
+msgstr "• الحد الأقصى لحجم الرزمة: عدد العناصر التي يمكن أن تضمها رزمة واحدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:123
+msgid ""
+"• Pointing range: How close things must be to be pointed while wielding this "
+"item"
+msgstr "• مدى التوجيه: مدى قرب الأشياء حتى يمكن استهدافها أثناء حمل هذا العنصر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:124
+msgid "• Group memberships: See “Basics > Groups”"
+msgstr "• عضوية المجموعات: راجع “Basics > Groups”."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:125
+msgid "• May be used for crafting or cooking"
+msgstr "• إمكانية الاستخدام في التصنيع أو الطهي."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:131
+msgid "Inventory"
+msgstr "المخزون"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:134
+msgid ""
+"Inventories are used to store item stacks. There are other uses, such as "
+"crafting. An inventory consists of a rectangular grid of item slots. Each "
+"item slot can either be empty or hold one item stack. Item stacks can be "
+"moved freely between most slots."
+msgstr "يُستخدم المخزون لتخزين رزم العناصر، وله استخدامات أخرى مثل التصنيع. يتكون المخزون من شبكة مستطيلة من خانات العناصر. يمكن أن تكون كل خانة فارغة أو تحتوي على رزمة واحدة من العناصر. ويمكن نقل رزم العناصر بحرية بين معظم الخانات."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:135
+msgid ""
+"You have your own inventory which is called your “player inventory”, you can "
+"open it with the inventory key (default: [I])."
+msgstr "لديك مخزونك الخاص، ويُسمى “مخزون اللاعب”. يمكنك فتحه باستخدام مفتاح المخزون (الافتراضي: [I])."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:136
+msgid "Blocks can also have their own inventory, e.g. chests and furnaces."
+msgstr "يمكن أن يكون للكتل مخزونها الخاص أيضًا، مثل الصناديق والأفران."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:138
+msgid "Inventory controls:"
+msgstr "عناصر التحكم في المخزون:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:140
+msgid ""
+"Taking: You can take items from an occupied slot if the cursor holds nothing."
+msgstr "أخذ العناصر: يمكنك أخذ عناصر من خانة مشغولة إذا لم يكن المؤشر يحمل أي شيء."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:141
+msgid "• Left click: take entire item stack"
+msgstr "• النقر بزر الفأرة الأيسر: أخذ رزمة العناصر كاملة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:142
+msgid "• Right click: take half from the item stack (rounded up)"
+msgstr "• النقر بزر الفأرة الأيمن: أخذ نصف الرزمة (مع التقريب إلى الأعلى)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:143
+msgid "• Middle click: take 10 items from the item stack"
+msgstr "• النقر بزر الفأرة الأوسط: أخذ 10 عناصر من الرزمة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:144
+msgid "• Mouse wheel down: take 1 item from the item stack"
+msgstr "• تدوير عجلة الفأرة إلى أسفل: أخذ عنصر واحد من الرزمة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:145
+msgid ""
+"• Mouse wheel up: put 1 item in the item stack (if you're holding an item "
+"stack of the same type)"
+msgstr "• تدوير عجلة الفأرة إلى أعلى: وضع عنصر واحد في الرزمة (إذا كنت تحمل رزمة من النوع نفسه)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:147
+msgid ""
+"Putting: You can put items onto a slot if the cursor holds 1 or more items "
+"and the slot is either empty or contains an item stack of the same item type."
+msgstr "وضع العناصر: يمكنك وضع عناصر في خانة إذا كان المؤشر يحمل عنصرًا واحدًا أو أكثر، وكانت الخانة فارغة أو تحتوي على رزمة من النوع نفسه."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:148
+msgid "• Left click: put entire item stack"
+msgstr "• النقر بزر الفأرة الأيسر: وضع رزمة العناصر كاملة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:149
+msgid "• Right click or mouse wheel up: put 1 item of the item stack"
+msgstr "• النقر بزر الفأرة الأيمن أو تدوير عجلة الفأرة إلى أعلى: وضع عنصر واحد من الرزمة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:150
+msgid "• Middle click: put 10 items of the item stack"
+msgstr "• النقر بزر الفأرة الأوسط: وضع 10 عناصر من الرزمة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:152
+msgid ""
+"Exchanging: You can exchange items if the cursor holds 1 or more items and "
+"the destination slot is occupied by a different item type."
+msgstr "التبديل: يمكنك تبديل العناصر إذا كان المؤشر يحمل عنصرًا واحدًا أو أكثر وكانت خانة الوجهة مشغولة بنوع مختلف من العناصر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:153
+msgid "• Click: exchange item stacks"
+msgstr "• النقر: تبديل رزم العناصر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:155
+msgid ""
+"Throwing away: If you hold an item stack and click with it somewhere outside "
+"the GUI, the item stack gets thrown away into the world."
+msgstr "التخلص من العناصر: إذا كنت تحمل رزمة عناصر ونقرت بها في أي مكان خارج الواجهة، فستُلقى الرزمة في العالم."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:157
+msgid ""
+"Quick transfer: You can quickly transfer an item stack between a player's "
+"inventory and a block's inventory like a furnace, chest, or any other item "
+"with an inventory slot when that block's inventory is accessed. The target "
+"inventory is generally the most relevant inventory in this context."
+msgstr "النقل السريع: يمكنك نقل رزمة عناصر بسرعة بين مخزون اللاعب ومخزون كتلة، مثل الفرن أو الصندوق أو أي عنصر آخر يحتوي على خانة مخزون، عند فتح مخزون تلك الكتلة. يكون المخزون المستهدف عادةً هو المخزون الأكثر صلة بالسياق."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:158
+msgid ""
+"• Sneak+Left click: Automatically transfer item stack (Sneak is by default "
+"[Shift])"
+msgstr "• Shift+النقر بزر الفأرة الأيسر: نقل رزمة العناصر تلقائيًا (مفتاح التسلل الافتراضي هو [Shift])."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:162
+msgid "Hotbar"
+msgstr "شريط العناصر السريع"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:165
+msgid ""
+"At the bottom of the screen you see some squares. This is called the "
+"“hotbar”, and contains the items you have put in the last row of your "
+"inventory."
+msgstr "تظهر في أسفل الشاشة مربعات صغيرة تُسمى “شريط العناصر السريع”، وتحتوي على العناصر الموجودة في الصف الأخير من مخزونك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:166
+msgid "You can change the selected item with the mouse wheel or the keyboard:"
+msgstr "يمكنك تغيير العنصر المحدد باستخدام عجلة الفأرة أو لوحة المفاتيح:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:168
+msgid "• Select previous item in hotbar: [Mouse wheel up] or [B]"
+msgstr "• اختيار العنصر السابق في شريط العناصر السريع: [Mouse wheel up] أو [B]."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:169
+msgid "• Select next item in hotbar: [Mouse wheel down] or [N]"
+msgstr "• اختيار العنصر التالي في شريط العناصر السريع: [Mouse wheel down] أو [N]."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:170
+msgid "• Select item in hotbar directly: [1]-[9]"
+msgstr "• اختيار عنصر مباشرة في شريط العناصر السريع: [1]-[9]."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:172
+msgid "The selected item is also your wielded item."
+msgstr "العنصر المحدد هو أيضًا العنصر الذي تحمله بيدك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:177
+msgid "Tools"
+msgstr "الأدوات"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:179
+msgid ""
+"Some items may serve as a tool when wielded. Any item which has some special "
+"use which can be directly used by its wielder is considered a tool."
+msgstr "يمكن استخدام بعض العناصر كأدوات عند حملها. ويُعد العنصر أداة إذا كان له استخدام خاص يستطيع حامله تنفيذه مباشرة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:181
+msgid ""
+"A common subset of tools are mining tools. These are important to quickly "
+"break different types of blocks. Weapons are a kind of tool. There are of "
+"course many other possible tools. Special actions of tools are usually done "
+"by left-click or right-click."
+msgstr "تُعد أدوات التعدين مجموعة شائعة من الأدوات، وهي مهمة لتكسير أنواع الكتل المختلفة بسرعة. والأسلحة نوع من الأدوات، وهناك بالطبع أدوات أخرى كثيرة. تُنفّذ الأفعال الخاصة بالأدوات عادةً بالنقر بزر الفأرة الأيسر أو الأيمن."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:183
+msgid ""
+"When nothing is wielded, players use their hand which also acts as a "
+"(limited) mining tool and weapon with no durability."
+msgstr "عندما لا يحمل اللاعب شيئًا، يستخدم يده التي تعمل أيضًا كأداة تعدين محدودة وسلاح لا تنقص متانته."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:185
+msgid ""
+"Usually tools have a durability which limits the amount of uses of it. The "
+"damage is displayed in a colored bar below the item icon. If no damage bar "
+"is shown, the tool is in mint condition. Tools can be repaired to increased "
+"or restore its durability."
+msgstr "تتمتع الأدوات عادةً بمتانة تحدد عدد مرات استخدامها. ويظهر التآكل في شريط ملون أسفل أيقونة العنصر. إذا لم يظهر شريط الضرر، فهذا يعني أن الأداة في حالة ممتازة. ويمكن إصلاح الأدوات لزيادة متانتها أو استعادتها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:190
+msgid "Weapons"
+msgstr "الأسلحة"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:192
+msgid ""
+"Some items are usable as a melee weapon when wielded. Weapons share most of "
+"the properties of tools."
+msgstr "يمكن استخدام بعض العناصر كأسلحة للقتال القريب عند حملها. وتشترك الأسلحة في معظم خصائص الأدوات."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:194
+msgid ""
+"Melee weapons deal damage by punching players and other animate objects. "
+"There are two ways to attack:"
+msgstr "تلحق أسلحة القتال القريب الضرر عن طريق ضرب اللاعبين والأجسام المتحركة الأخرى. وهناك طريقتان للهجوم:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:195
+msgid "• Single punch: Left-click once to deal a single punch"
+msgstr "• ضربة واحدة: انقر بزر الفأرة الأيسر مرة واحدة لتوجيه ضربة واحدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:196
+msgid ""
+"• Quick punching: Hold down the left mouse button to deal quick repeated "
+"punches"
+msgstr "• الضرب السريع: اضغط باستمرار على زر الفأرة الأيسر لتوجيه ضربات متكررة بسرعة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:198
+msgid "There are two core attributes of melee weapons:"
+msgstr "هناك خاصيتان أساسيتان لأسلحة القتال القريب:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:199
+msgid ""
+"• Maximum damage: Damage which is dealt after a hit when the weapon was "
+"fully recovered"
+msgstr "• الضرر الأقصى: مقدار الضرر الذي تسببه الضربة بعد استعادة السلاح كامل قدرته."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:200
+msgid "• Full punch interval: Time it takes for fully recovering from a punch"
+msgstr "• الفاصل الزمني الكامل بين الضربات: الوقت اللازم لاستعادة السلاح كامل قدرته بعد الضربة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:202
+msgid ""
+"A weapon only deals full damage when it has fully recovered from a previous "
+"punch. Otherwise, the weapon will deal only reduced damage. This means, "
+"quick punching is very fast, but also deals rather low damage. Note the full "
+"punch interval does not limit how fast you can attack."
+msgstr "لا يسبب السلاح ضرره الكامل إلا بعد أن يستعيد قدرته بالكامل من الضربة السابقة. وإلا فسيسبب ضررًا أقل. لذلك يكون الضرب السريع أسرع، لكنه يسبب ضررًا منخفضًا نسبيًا. لاحظ أن الفاصل الزمني الكامل بين الضربات لا يحدد أقصى سرعة يمكنك الهجوم بها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:204
+msgid ""
+"There is a rule which sometimes makes attacks impossible: Players, animate "
+"objects and weapons belong to damage groups. A weapon only deals damage to "
+"those who share at least one damage group with it. So if you're using the "
+"wrong weapon, you might not deal any damage at all."
+msgstr "هناك قاعدة قد تجعل الهجمات مستحيلة أحيانًا: ينتمي اللاعبون والأجسام المتحركة والأسلحة إلى مجموعات ضرر. ولا يسبب السلاح ضررًا إلا للأهداف التي تشترك معه في مجموعة ضرر واحدة على الأقل. لذلك إذا استخدمت سلاحًا غير مناسب، فقد لا تسبب أي ضرر على الإطلاق."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:208
+msgid "Blocks"
+msgstr "الكتل"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:211
+msgid ""
+"The world is made entirely out of blocks (voxels, to be precise). Blocks can "
+"be added or removed with the correct tools."
+msgstr "يتكون العالم بالكامل من كتل (أو وحدات فوكسل، على وجه الدقة). ويمكن إضافة الكتل أو إزالتها باستخدام الأدوات المناسبة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:213
+msgid ""
+"Blocks can have a wide range of different properties which determine mining "
+"times, behavior, looks, shape, and much more. Their properties include:"
+msgstr "قد تمتلك الكتل مجموعة واسعة من الخصائص التي تحدد أوقات التعدين والسلوك والمظهر والشكل وغير ذلك. وتشمل هذه الخصائص:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:215
+msgid ""
+"• Collidable: Collidable blocks can not be passed through; players can walk "
+"on them. Non-collidable blocks can be passed through freely"
+msgstr "• قابلية التصادم: لا يمكن المرور عبر الكتل القابلة للتصادم، ويمكن للاعبين المشي فوقها. أما الكتل غير القابلة للتصادم فيمكن المرور عبرها بحرية."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:216
+msgid ""
+"• Pointable: Pointable blocks show a wireframe or a halo box when pointed. "
+"But you will just point through non-pointable blocks. Liquids are usually "
+"non-pointable but they can be pointed at by some special tools"
+msgstr "• قابلية الاستهداف: تعرض الكتل القابلة للاستهداف إطارًا سلكيًا أو هالة عند توجيه المؤشر إليها. أما الكتل غير القابلة للاستهداف فيمكن توجيه المؤشر من خلالها. عادةً لا يمكن استهداف السوائل، لكن بعض الأدوات الخاصة تتيح ذلك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:217
+msgid ""
+"• Mining properties: By which tools it can be mined, how fast and how much "
+"it wears off tools"
+msgstr "• خصائص التعدين: الأدوات التي يمكنها تعدين الكتلة، وسرعة تعدينها، ومقدار تآكل الأدوات."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:218
+msgid ""
+"• Climbable: While you are at a climbable block, you won't fall and you can "
+"move up and down with the jump and sneak keys"
+msgstr "• قابلية التسلق: عندما تكون عند كتلة قابلة للتسلق، لن تسقط، ويمكنك التحرك إلى أعلى وأسفل باستخدام مفتاحي القفز والتسلل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:219
+msgid "• Drowning damage: See the entry “Basics > Player”"
+msgstr "• ضرر الغرق: راجع المقالة “Basics > Player”."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:220
+msgid "• Liquids: See the entry “Basics > Liquids”"
+msgstr "• السوائل: راجع المقالة “Basics > Liquids”."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:221
+msgid ""
+"• Group memberships: Group memberships are used to determine mining "
+"properties, crafting, interactions between blocks and more"
+msgstr "• عضوية المجموعات: تُستخدم عضوية المجموعات لتحديد خصائص التعدين والتصنيع والتفاعلات بين الكتل وغير ذلك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:226
+msgid "Mining"
+msgstr "التعدين"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:229
+msgid ""
+"Mining (or digging) is the process of breaking blocks to remove them. To "
+"mine a block, point it and hold down the left mouse button until it breaks."
+msgstr "التعدين (أو الحفر) هو عملية تكسير الكتل لإزالتها. لتعدين كتلة، وجّه المؤشر إليها واضغط باستمرار على زر الفأرة الأيسر حتى تنكسر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:231
+msgid ""
+"Blocks require a mining tool to be mined. Different blocks are mined by "
+"different mining tools, and some blocks can not be mined by any tool. Blocks "
+"vary in hardness and tools vary in strength. Mining tools will wear off over "
+"time. The mining time and the tool wear depend on the block and the mining "
+"tool. The fastest way to find out how efficient your mining tools are is by "
+"just trying them out on various blocks. Any items you gather by mining will "
+"drop on the ground, ready to be collected."
+msgstr "تتطلب الكتل أداة تعدين لاستخراجها. تختلف الأدوات اللازمة لتعدين الكتل، وهناك كتل لا يمكن تعدينها بأي أداة. تختلف الكتل في صلابتها وتختلف الأدوات في قوتها. وتتآكل أدوات التعدين بمرور الوقت. ويعتمد وقت التعدين وتآكل الأداة على الكتلة وأداة التعدين المستخدمة. وأسهل طريقة لمعرفة كفاءة أدواتك هي تجربتها على كتل متنوعة. ستسقط على الأرض العناصر التي تجمعها بالتعدين لتتمكن من التقاطها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:233
+msgid ""
+"After mining, a block may leave a “drop” behind. This is a number of items "
+"you get after mining. Most commonly, you will get the block itself. There "
+"are other possibilities for a drop which depends on the block type. The "
+"following drops are possible:"
+msgstr "قد تترك الكتلة بعد تعدينها “غنيمة” تسقط منها. وهي مجموعة العناصر التي تحصل عليها عند تعدين الكتلة. غالبًا ما تحصل على الكتلة نفسها، لكن هناك احتمالات أخرى تختلف بحسب نوع الكتلة. وتشمل الغنائم الممكنة ما يلي:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:234
+msgid "• Always drops itself (the usual case)"
+msgstr "• تسقط الكتلة نفسها دائمًا (وهذا هو المعتاد)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:235
+msgid "• Always drops the same items"
+msgstr "• تسقط العناصر نفسها دائمًا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:236
+msgid "• Drops items based on probability"
+msgstr "• تسقط عناصر وفقًا لاحتمال معين."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:237
+msgid "• Drops nothing"
+msgstr "• لا تسقط أي شيء."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:241
+msgid "Building"
+msgstr "البناء"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:244
+msgid ""
+"Almost all blocks can be built (or placed). Building is very simple and has "
+"no delay."
+msgstr "يمكن بناء (أو وضع) جميع الكتل تقريبًا. والبناء بسيط جدًا ولا يتطلب انتظارًا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:246
+msgid ""
+"To build your wielded block, point at a block in the world and right-click. "
+"If this is not possible because the pointed block has a special right-click "
+"action, hold down the sneak key before right-clicking."
+msgstr "لبناء الكتلة التي تحملها، وجّه المؤشر نحو كتلة في العالم وانقر بزر الفأرة الأيمن. إذا تعذّر ذلك لأن للكتلة المستهدفة وظيفة خاصة عند النقر الأيمن، فاضغط باستمرار على مفتاح التسلل قبل النقر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:248
+msgid ""
+"Blocks can almost always be built at pointable blocks. One exception are "
+"blocks attached to the floor; these can only be built on the floor."
+msgstr "يمكن دائمًا تقريبًا البناء عند الكتل القابلة للاستهداف. والاستثناء هو الكتل المثبتة بالأرض؛ فلا يمكن وضعها إلا على الأرض."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:250
+msgid ""
+"Normally, blocks are built in front of the pointed side of the pointed "
+"block. A few blocks are different: When you try to build at them, they are "
+"replaced."
+msgstr "عادةً توضع الكتل أمام الوجه الذي تشير إليه في الكتلة المستهدفة. لكن بعض الكتل تختلف عن ذلك؛ فعند محاولة البناء عليها، تُستبدل بالكتلة الجديدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:255
+msgid "Crafting"
+msgstr "التصنيع"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:258
+msgid "Crafting is the task of combining several items to form a new item."
+msgstr "التصنيع هو عملية دمج عدة عناصر لتكوين عنصر جديد."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:260
+msgid ""
+"To craft something, you need one or more items, a crafting grid (C) and a "
+"crafting recipe. A crafting grid is like a normal inventory which can also "
+"be used for crafting. Items need to be put in a certain pattern into the "
+"crafting grid. Next to the crafting grid is an output slot (O). Here the "
+"result will appear when you placed items correctly. This is just a preview, "
+"not the actual item."
+msgstr "لصناعة شيء ما، تحتاج إلى عنصر واحد أو أكثر، وشبكة تصنيع (C)، ووصفة تصنيع. تشبه شبكة التصنيع المخزون العادي، لكنها تُستخدم أيضًا للتصنيع. يجب وضع العناصر في نمط محدد داخل الشبكة. وبجوار شبكة التصنيع توجد خانة الإخراج (O)، حيث تظهر النتيجة عند وضع العناصر بالشكل الصحيح. وهذه مجرد معاينة وليست العنصر الفعلي."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:262
+msgid ""
+"The crafting grid you have inside your inventory is 2x2, limiting the amount "
+"of potential recipes you can craft. To craft recipes that require a 3x3 grid "
+"you will need a crafting table."
+msgstr "شبكة التصنيع الموجودة داخل مخزونك بحجم 2×2، ما يحد من عدد الوصفات التي يمكنك تنفيذها. ولصناعة الوصفات التي تتطلب شبكة 3×3، ستحتاج إلى طاولة تصنيع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:264
+msgid ""
+"To complete the craft, take the result item from the output slot, which will "
+"consume items from the crafting grid and creates a new item. It is not "
+"possible to place items into the output slot."
+msgstr "لإكمال التصنيع، خذ العنصر الناتج من خانة الإخراج؛ وسيؤدي ذلك إلى استهلاك العناصر من شبكة التصنيع وإنشاء عنصر جديد. لا يمكن وضع عناصر في خانة الإخراج."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:266
+msgid ""
+"A description on how to craft an item is called a “crafting recipe”. You "
+"need this knowledge to craft. You can use the recipe book to get a list of "
+"crafting recipes available from items you have obtained."
+msgstr "يُسمى وصف طريقة صناعة عنصر ما “وصفة تصنيع”. تحتاج إلى معرفة هذه الوصفة للتصنيع. ويمكنك استخدام كتاب الوصفات لعرض وصفات التصنيع المتاحة للعناصر التي حصلت عليها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:268
+msgid ""
+"Crafting recipes consist of at least one input item and exactly one stack of "
+"output items. When performing a single craft, it will consume exactly one "
+"item from each stack of the crafting grid, unless the crafting recipe "
+"defines replacements."
+msgstr "تتكون وصفات التصنيع من عنصر إدخال واحد على الأقل ورزمة إخراج واحدة بالضبط. عند تنفيذ عملية تصنيع واحدة، سيُستهلك عنصر واحد من كل رزمة في شبكة التصنيع، ما لم تحدد الوصفة عناصر بديلة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:270
+msgid "There are multiple types of crafting recipes:"
+msgstr "توجد أنواع متعددة من وصفات التصنيع:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:271
+msgid "• Shaped: Items need to be placed in a particular shape"
+msgstr "• ذات شكل محدد: يجب وضع العناصر في شكل معين."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:272
+msgid ""
+"• Shapeless: Items need to be placed somewhere in input, but shape and order "
+"is independent"
+msgstr "• بلا شكل محدد: يجب وضع العناصر في خانات الإدخال، لكن لا يهم شكلها أو ترتيبها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:273
+msgid "• Cooking: Explained in “Basics > Cooking”"
+msgstr "• الطهي: مشروح في “Basics > Cooking”."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:274
+msgid ""
+"• Repairing: Place two damaged tools into the crafting grid anywhere to get "
+"a tool which is repaired by 5%"
+msgstr "• الإصلاح: ضع أداتين متضررتين في أي مكان من شبكة التصنيع للحصول على أداة تزداد متانتها بنسبة 5%."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:276
+msgid ""
+"In some crafting recipes, some input items do not need to be a concrete "
+"item, instead they need to be a member of a group (see “Basics > Groups”). "
+"These recipes offer a bit more freedom in the input items. For instance, "
+"crafting a furnace can be used with a number of different full cobble-like "
+"stone blocks."
+msgstr "في بعض وصفات التصنيع، لا يلزم أن يكون عنصر الإدخال عنصرًا محددًا، بل يكفي أن ينتمي إلى مجموعة معينة (راجع “Basics > Groups”). تمنح هذه الوصفات مرونة أكبر في اختيار عناصر الإدخال. مثلًا، يمكن استخدام عدة أنواع مختلفة من كتل الحجر المرصوف الكاملة لصناعة فرن."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:278
+msgid ""
+"Rarely, crafting recipes have replacements. This means, whenever you perform "
+"a craft, some items in the crafting grid will not be consumed, but instead "
+"will be replaced by another item."
+msgstr "تحتوي بعض وصفات التصنيع النادرة على عناصر بديلة. وهذا يعني أن بعض العناصر الموجودة في شبكة التصنيع لا تُستهلك عند تنفيذ الوصفة، بل تُستبدل بعناصر أخرى."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:285
+msgid "Cooking"
+msgstr "الطهي"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:288
+msgid ""
+"Cooking (or smelting) is a form of crafting which does not involve a "
+"crafting grid. Cooking is done with a special block (like a furnace), an "
+"cookable item, a fuel item and time in order to yield a new item."
+msgstr "الطهي (أو الصهر) نوع من التصنيع لا يستخدم شبكة تصنيع. يتم الطهي باستخدام كتلة خاصة (مثل الفرن)، وعنصر قابل للطهي، وعنصر وقود، ووقت كافٍ لإنتاج عنصر جديد."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:290
+msgid ""
+"Each fuel item has a burning time. This is the time a single item of the "
+"fuel keeps a furnace burning."
+msgstr "لكل عنصر وقود مدة احتراق، وهي المدة التي يحافظ فيها عنصر واحد من الوقود على اشتعال الفرن."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:292
+msgid ""
+"Each cookable item requires time to be cooked. This time is specific to the "
+"item type and the item must be “on fire” for the whole cooking time to "
+"actually yield the result."
+msgstr "يحتاج كل عنصر قابل للطهي إلى وقت محدد للطهي. وتختلف هذه المدة بحسب نوع العنصر، ويجب أن يظل العنصر “مشتعلًا” طوال مدة الطهي حتى تحصل على النتيجة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:296
+msgid "Hunger"
+msgstr "الجوع"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:298
+msgid ""
+"Hunger affects your health and your ability to sprint. Hunger is not in "
+"effect when damage is disabled."
+msgstr "يؤثر الجوع في صحتك وقدرتك على الركض. ولا يكون الجوع فعالًا عند تعطيل الضرر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:300
+msgid "Core hunger rules:"
+msgstr "القواعد الأساسية للجوع:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:301
+msgid "• You start with 20/20 hunger points (more points = less hungry)"
+msgstr "• تبدأ بـ20/20 نقطة جوع (كلما زادت النقاط قلّ شعورك بالجوع)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:302
+msgid "• Actions like combat, jumping, sprinting, etc. decrease hunger points"
+msgstr "• تقلل أفعال مثل القتال والقفز والركض نقاط الجوع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:303
+msgid "• Food restores hunger points"
+msgstr "• يعيد الطعام نقاط الجوع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:304
+msgid "• If your hunger bar decreases, you're hungry"
+msgstr "• إذا انخفض شريط الجوع، فهذا يعني أنك جائع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:305
+msgid "• At 18-20 hunger points, you regenerate 1 HP every 4 seconds"
+msgstr "• عند امتلاك 18 إلى 20 نقطة جوع، تتجدد نقطة صحة واحدة كل 4 ثوانٍ."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:306
+msgid "• At 6 hunger points or less, you can't sprint"
+msgstr "• عند امتلاك 6 نقاط جوع أو أقل، لا يمكنك الركض."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:307
+msgid "• At 0 hunger points, you lose 1 HP every 4 seconds (down to 1 HP)"
+msgstr "• عند وصول نقاط الجوع إلى 0، تفقد نقطة صحة واحدة كل 4 ثوانٍ (حتى تبقى نقطة صحة واحدة)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:308
+msgid "• Poisonous food decreases your health"
+msgstr "• يقلل الطعام السام صحتك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:311
+msgid "Details:"
+msgstr "التفاصيل:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:312
+msgid ""
+"You have 0-20 hunger points, indicated by 20 drumstick half-icons above the "
+"hotbar. You also have an invisible attribute: Saturation."
+msgstr "لديك من 0 إلى 20 نقطة جوع، وتُمثّلها 20 أيقونة نصفية لأفخاذ الدجاج فوق شريط العناصر السريع. ولديك أيضًا خاصية غير مرئية تسمى التشبع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:313
+msgid ""
+"Hunger points reflect how full you are while saturation points reflect how "
+"long it takes until you're hungry again."
+msgstr "تعكس نقاط الجوع مدى امتلاء معدتك، بينما تعكس نقاط التشبع المدة التي ستستغرقها حتى تشعر بالجوع مجددًا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:315
+msgid ""
+"Each food item increases both your hunger level as well your saturation."
+msgstr "يزيد كل عنصر غذائي مستوى الجوع والتشبع لديك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:316
+msgid ""
+"Food with a high saturation boost has the advantage that it will take longer "
+"until you get hungry again."
+msgstr "يمتاز الطعام ذو قيمة التشبع العالية بأنه يؤخر شعورك بالجوع مرة أخرى."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:317
+msgid ""
+"A few food items might induce food poisoning by chance. When you're "
+"poisoned, the health and hunger symbols turn sickly green. Food poisoning "
+"drains your health by 1 HP per second, down to 1 HP. Food poisoning also "
+"drains your saturation. Food poisoning goes away after a while or when you "
+"drink milk."
+msgstr "قد تسبب بعض الأطعمة تسممًا غذائيًا باحتمال معين. عندما تُصاب بالتسمم، تتحول رموز الصحة والجوع إلى اللون الأخضر المائل إلى المرض. يستنزف التسمم الغذائي صحتك بمقدار نقطة واحدة في الثانية حتى تبقى نقطة صحة واحدة. كما يستنزف التشبع لديك. ويزول التسمم الغذائي بعد مدة أو عند شرب الحليب."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:319
+msgid ""
+"You start with 5 saturation points. The maximum saturation is equal to your "
+"current hunger level. So with 20 hunger points your maximum saturation is "
+"20. What this means is that food items which restore many saturation points "
+"are more effective the more hunger points you have. This is because at low "
+"hunger levels, a lot of the saturation boost will be lost due to the low "
+"saturation cap."
+msgstr "تبدأ بخمس نقاط تشبع. وتساوي أقصى قيمة للتشبع مستوى الجوع الحالي لديك؛ فإذا امتلكت 20 نقطة جوع، كان أقصى تشبع لديك 20. وهذا يعني أن الأطعمة التي تعيد عددًا كبيرًا من نقاط التشبع تصبح أكثر فاعلية كلما زادت نقاط الجوع لديك. والسبب أن جزءًا كبيرًا من زيادة التشبع سيضيع عند انخفاض الجوع بسبب انخفاض الحد الأقصى للتشبع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:320
+msgid ""
+"If your saturation reaches 0, you're hungry and start to lose hunger points. "
+"Whenever you see the hunger bar decrease, it is a good time to eat."
+msgstr "إذا وصل التشبع إلى 0، ستشعر بالجوع وتبدأ نقاط الجوع في الانخفاض. وعندما ترى شريط الجوع ينخفض، فهذا وقت مناسب لتناول الطعام."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:322
+msgid ""
+"Saturation decreases by doing things which exhaust you (highest exhaustion "
+"first):"
+msgstr "ينخفض التشبع عند القيام بأفعال تسبب الإرهاق (مرتبة من الأعلى إرهاقًا إلى الأقل):"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:323
+msgid "• Regenerating 1 HP"
+msgstr "• تجدد نقطة صحة واحدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:324
+msgid "• Suffering food poisoning"
+msgstr "• الإصابة بالتسمم الغذائي."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:325
+msgid "• Sprint-jumping"
+msgstr "• القفز أثناء الركض."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:326
+msgid "• Sprinting"
+msgstr "• الركض."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:327
+msgid "• Attacking"
+msgstr "• الهجوم."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:328
+msgid "• Taking damage"
+msgstr "• تلقي الضرر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:329
+msgid "• Swimming"
+msgstr "• السباحة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:330
+msgid "• Jumping"
+msgstr "• القفز."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:331
+msgid "• Mining a block"
+msgstr "• تعدين كتلة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:333
+msgid "Other actions, like walking, do not exaust you."
+msgstr "الأفعال الأخرى، مثل المشي، لا تسبب الإرهاق."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:338
+msgid "Mobs"
+msgstr "الكائنات"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:340
+msgid ""
+"Mobs are the living beings in the world. This includes animals and monsters."
+msgstr "الكائنات هي المخلوقات الحية في العالم، وتشمل الحيوانات والوحوش."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:342
+msgid ""
+"Mobs appear randomly throughout the world. This is called “spawning”. Each "
+"mob kind appears on particular block types at a given light level. The "
+"height also plays a role. Peaceful mobs tend to spawn at daylight while "
+"hostile ones prefer darkness. Most mobs can spawn on any solid block but "
+"some mobs only spawn on particular blocks (like grass blocks)."
+msgstr "تظهر الكائنات عشوائيًا في أرجاء العالم، وتسمى هذه العملية “الظهور”. يظهر كل نوع من الكائنات على أنواع معينة من الكتل وعند مستوى إضاءة محدد. ويؤثر الارتفاع أيضًا في ذلك. تميل الكائنات المسالمة إلى الظهور في ضوء النهار، بينما تفضل الكائنات المعادية الظلام. يمكن لمعظم الكائنات الظهور على أي كتلة صلبة، لكن بعضها لا يظهر إلا على كتل معينة، مثل كتل العشب."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:344
+msgid ""
+"Like players, mobs have hit points and sometimes armor points, too (which "
+"means you need better weapons to deal any damage at all). Also like players, "
+"hostile mobs can attack directly or at a distance. Mobs may drop random "
+"items after they die."
+msgstr "تمتلك الكائنات، مثل اللاعبين، نقاط صحة وأحيانًا نقاط درع أيضًا (ما يعني أنك قد تحتاج إلى أسلحة أفضل حتى تتمكن من إلحاق الضرر بها). وكما يفعل اللاعبون، يمكن للكائنات المعادية الهجوم مباشرة أو من مسافة بعيدة. وقد تسقط الكائنات عناصر عشوائية عند موتها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:346
+msgid ""
+"Most animals roam the world aimlessly while most hostile mobs hunt players. "
+"Animals can be fed, tamed and bred."
+msgstr "تتجول معظم الحيوانات في العالم دون هدف، بينما تطارد معظم الكائنات المعادية اللاعبين. ويمكن إطعام الحيوانات وترويضها وتكاثرها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:350
+msgid "Animals"
+msgstr "الحيوانات"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:352
+msgid ""
+"Animals are peaceful beings which roam the world aimlessly. You can feed, "
+"tame and breed them."
+msgstr "الحيوانات كائنات مسالمة تتجول في العالم دون هدف. يمكنك إطعامها وترويضها وجعلها تتكاثر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:354
+msgid "Feeding:"
+msgstr "الإطعام:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:355
+msgid ""
+"Each animal has its own taste for food and doesn't just accept any food. To "
+"feed, hold an item in your hand and rightclick the animal."
+msgstr "لكل حيوان طعام يفضله، ولا يقبل أي نوع من الطعام. لإطعامه، أمسك عنصرًا في يدك وانقر على الحيوان بزر الفأرة الأيمن."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:356
+msgid ""
+"Animals are attraced to the food they like and follow you as long you hold "
+"the food item in hand."
+msgstr "تنجذب الحيوانات إلى الطعام الذي تحبه وتتبعك ما دمت تحمل ذلك الطعام في يدك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:357
+msgid "Feeding an animal has three uses: Taming, healing and breeding."
+msgstr "لإطعام الحيوان ثلاثة استخدامات: الترويض والشفاء والتكاثر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:358
+msgid ""
+"Feeding heals animals instantly, depending on the quality of the food item."
+msgstr "يشفي إطعام الحيوانات إصاباتها فورًا، بحسب جودة الطعام."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:360
+msgid "Taming:"
+msgstr "الترويض:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:361
+msgid ""
+"A few animals can be tamed. You can generally do more things with tamed "
+"animals and use other items on them. For example, tame horses can be saddled "
+"and tame wolves fight on your side."
+msgstr "يمكن ترويض بعض الحيوانات. ويمكنك عمومًا فعل المزيد مع الحيوانات المروّضة واستخدام عناصر أخرى عليها. فمثلًا، يمكن وضع سرج على الخيول المروّضة، وتقاتل الذئاب المروّضة إلى جانبك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:363
+msgid "Breeding:"
+msgstr "التكاثر:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:364
+msgid ""
+"When you have fed an animal up to its maximum health, then feed it again, "
+"you will activate “Love Mode” and many hearts appear around the animal."
+msgstr "عندما تطعم الحيوان حتى يصل إلى أقصى صحته، ثم تطعمه مرة أخرى، ستفعّل “وضع الحب” وستظهر قلوب كثيرة حول الحيوان."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:365
+msgid ""
+"Two animals of the same species will start to breed if they are in Love Mode "
+"and close to each other. Soon a baby animal will pop up."
+msgstr "يبدأ حيوانان من النوع نفسه بالتكاثر إذا كانا في وضع الحب وقريبين من بعضهما. وبعد مدة سيظهر حيوان صغير."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:367
+msgid "Baby animals:"
+msgstr "الحيوانات الصغيرة:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:368
+msgid ""
+"Baby animals are just like their adult couterparts, but they can't be tamed "
+"or bred and don't drop anything when they die. They grow to adults after a "
+"short time. When fed, they grow to adults faster."
+msgstr "تشبه الحيوانات الصغيرة الحيوانات البالغة من النوع نفسه، لكنها لا يمكن ترويضها أو جعلها تتكاثر، ولا تسقط أي شيء عند موتها. وتنمو لتصبح بالغة بعد وقت قصير، ويمكن إطعامها لتكبر بسرعة أكبر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:373
+msgid "Minimap"
+msgstr "الخريطة المصغرة"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:376
+msgid ""
+"The minimap allows you to get an overhead view of your surroundings, as a "
+"HUD that appears in the top right corner."
+msgstr "تتيح لك الخريطة المصغرة رؤية محيطك من الأعلى، وتظهر كجزء من واجهة HUD في الزاوية العلوية اليمنى."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:378
+msgid ""
+"Press [F9] to make a minimap appear on the top right. The minimap helps you "
+"to find your way around the world. Press it again to select different "
+"minimap modes and zoom levels. The minimap also shows the positions of other "
+"players."
+msgstr "اضغط [F9] لإظهار الخريطة المصغرة في أعلى اليمين. تساعدك الخريطة على معرفة طريقك في العالم. اضغط المفتاح مرة أخرى لاختيار أنماط ومستويات تكبير مختلفة. كما تعرض الخريطة مواقع اللاعبين الآخرين."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:380
+msgid "There are 2 minimap modes and 3 zoom levels."
+msgstr "يوجد نمطان للخريطة المصغرة وثلاثة مستويات للتكبير."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:382
+msgid ""
+"Surface mode (image 1) is a top-down view of the world, roughly resembling "
+"the colors of the blocks this world is made of. It only shows the topmost "
+"blocks, everything below is hidden, like a satellite photo. Surface mode is "
+"useful if you got lost."
+msgstr "وضع السطح (الصورة 1) عرض للعالم من الأعلى، ويشبه تقريبًا ألوان الكتل التي يتكون منها العالم. يعرض الكتل الأعلى فقط ويخفي كل ما تحتها، مثل صورة القمر الصناعي. يفيد وضع السطح إذا ضللت طريقك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:384
+msgid ""
+"Radar mode (image 2) is more complicated. It displays the “denseness” of the "
+"area around you and changes with your height. Roughly, the more green an "
+"area is, the less “dense” it is. Black areas have many blocks. Use the radar "
+"to find caverns, hidden areas, walls and more. The rectangular shapes in "
+"image 2 clearly expose the position of a dungeon."
+msgstr "وضع الرادار (الصورة 2) أكثر تعقيدًا. يعرض “كثافة” المنطقة المحيطة بك وتتغير هذه الكثافة مع ارتفاعك. وبصورة عامة، كلما زادت المساحة الخضراء كانت المنطقة أقل كثافة. تحتوي المناطق السوداء على كتل كثيرة. استخدم الرادار للعثور على الكهوف والمناطق المخفية والجدران وغير ذلك. وتكشف الأشكال المستطيلة في الصورة 2 بوضوح عن موقع أحد الأبراج المحصنة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:386
+msgid ""
+"There are also two different rotation modes. In “square mode”, the rotation "
+"of the minimap is fixed. If you press [Shift]+[F9] to switch to “circle "
+"mode”, the minimap will instead rotate with your looking direction, so “up” "
+"is always your looking direction."
+msgstr "يوجد أيضًا نمطان مختلفان للدوران. في “النمط المربع”، يبقى دوران الخريطة المصغرة ثابتًا. وإذا ضغطت [Shift]+[F9] للتبديل إلى “النمط الدائري”، فستدور الخريطة مع اتجاه نظرك، بحيث يشير أعلاها دائمًا إلى الاتجاه الذي تنظر إليه."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:388
+msgid "• Toggle minimap mode: [F9]"
+msgstr "• تبديل نمط الخريطة المصغرة: [F9]."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:389
+msgid "• Toggle minimap rotation mode: [Shift]+[F9]"
+msgstr "• تبديل نمط دوران الخريطة المصغرة: [Shift]+[F9]."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:394
+msgid "Camera"
+msgstr "الكاميرا"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:397
+msgid ""
+"There are 3 different views which determine the way you see the world. The "
+"modes are:"
+msgstr "توجد ثلاثة مناظير مختلفة تحدد طريقة رؤيتك للعالم. وهي:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:399
+msgid "• 1: First-person view (default)"
+msgstr "• 1: منظور الشخص الأول (الافتراضي)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:400
+msgid "• 2: Third-person view from behind"
+msgstr "• 2: منظور الشخص الثالث من الخلف."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:401
+msgid "• 3: Third-person view from the front"
+msgstr "• 3: منظور الشخص الثالث من الأمام."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:403
+msgid "These camera modes can be toggled between by default pressing [F7]."
+msgstr "يمكن التبديل بين أنماط الكاميرا هذه بالضغط على [F7] افتراضيًا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:404
+msgid "To zoom in the camera, you can use the Spyglass item."
+msgstr "لتقريب الصورة في الكاميرا، يمكنك استخدام أداة المنظار."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:406
+msgid "• Switch camera mode: [F7]"
+msgstr "• تغيير نمط الكاميرا: [F7]."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:410
+msgid "Sneaking"
+msgstr "التسلل"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:412
+msgid ""
+"Sneaking makes you walk slower and prevents you from falling off the edge of "
+"a block."
+msgstr "يجعلك التسلل تمشي ببطء أكبر ويمنعك من السقوط عن حافة الكتلة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:413
+msgid ""
+"To sneak, hold down the sneak key (default: [Shift]). When you release it, "
+"you stop sneaking. Careful: When you release the sneak key at a ledge, you "
+"might fall!"
+msgstr "للتسلل، اضغط باستمرار على مفتاح التسلل (الافتراضي: [Shift]). عند تحريره، تتوقف عن التسلل. انتبه: إذا حررت مفتاح التسلل عند حافة، فقد تسقط!"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:415
+msgid ""
+"Sneaking only works when you stand on solid ground, are not in a liquid and "
+"don't climb."
+msgstr "لا يعمل التسلل إلا عند الوقوف على أرض صلبة، وخارج السوائل، ودون تسلق."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:419
+msgid "Players"
+msgstr "اللاعبون"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:422
+msgid "Players are the characters which users control."
+msgstr "اللاعبون هم الشخصيات التي يتحكم فيها المستخدمون."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:424
+msgid ""
+"Players are living beings. They start with a number of health points (HP) "
+"and a number of breath points (BP)."
+msgstr "اللاعبون كائنات حية تبدأ بعدد من نقاط الصحة (HP) ونقاط التنفس (BP)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:425
+msgid ""
+"Players are capable of walking, sneaking, jumping, climbing, swimming, "
+"diving, mining, building, fighting and using tools and blocks."
+msgstr "يستطيع اللاعبون المشي والتسلل والقفز والتسلق والسباحة والغوص والتعدين والبناء والقتال واستخدام الأدوات والكتل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:427
+msgid "Players can take damage for a variety of reasons:"
+msgstr "يمكن أن يتعرض اللاعبون للضرر لأسباب متعددة:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:429
+msgid "• Taking fall damage"
+msgstr "• تلقي ضرر السقوط."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:430
+msgid "• Touching a block which causes direct damage"
+msgstr "• لمس كتلة تسبب ضررًا مباشرًا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:431
+msgid "• Drowning"
+msgstr "• الغرق."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:432
+msgid "• Being attacked by another player"
+msgstr "• التعرض لهجوم من لاعب آخر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:433
+msgid "• Being attacked by a computer enemy"
+msgstr "• التعرض لهجوم من كائن يتحكم فيه الحاسوب."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:435
+msgid ""
+"At a health of 0, the player dies. The player can just respawn in the world, "
+"but their items will be lost at the place of death and will need to be "
+"retrieved. (unless mcl_keepInventory is enabled)"
+msgstr "عندما تصل الصحة إلى 0، يموت اللاعب. ويمكنه إعادة الظهور في العالم، لكن عناصره ستبقى في مكان موته وسيتعين عليه استعادتها (ما لم يكن الإعداد mcl_keepInventory مفعّلًا)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:437
+msgid ""
+"Some blocks reduce breath. While being with the head in a block which causes "
+"drowning, the breath points are reduced by 1 for every 2 seconds. When all "
+"breath is gone, the player starts to suffer drowning damage. Breath is "
+"quickly restored in any other block."
+msgstr "تقلل بعض الكتل نقاط التنفس. عندما يكون رأس اللاعب داخل كتلة تسبب الغرق، تنخفض نقاط التنفس بمقدار نقطة واحدة كل ثانيتين. وعند نفاد التنفس، يبدأ اللاعب بتلقي ضرر الغرق. ويُستعاد التنفس بسرعة داخل أي كتلة أخرى."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:439
+msgid ""
+"Damage can be disabled on any world. Without damage, players are immortal "
+"and health and breath are unimportant."
+msgstr "يمكن تعطيل الضرر في أي عالم. وعند تعطيله يصبح اللاعبون خالدين، ولا تعود الصحة ونقاط التنفس مهمة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:441
+msgid "In multiplayer, the name of other players is written above their head."
+msgstr "في نمط اللعب الجماعي، يظهر اسم اللاعب الآخر فوق رأسه."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:446
+msgid "Liquids"
+msgstr "السوائل"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:449
+msgid ""
+"Liquids are special dynamic blocks. Liquids like to spread and flow to their "
+"surrounding blocks. Players can swim and drown in them."
+msgstr "السوائل كتل ديناميكية خاصة. تميل إلى الانتشار والتدفق نحو الكتل المحيطة بها. ويمكن للاعبين السباحة فيها والغرق."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:451
+msgid ""
+"Liquids usually come in two forms: In source form (S) and in flowing form "
+"(F)."
+msgstr "تأتي السوائل عادةً في شكلين: شكل المصدر (S) والشكل المتدفق (F)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:452
+msgid ""
+"Liquid sources have the shape of a full cube. A liquid source will generate "
+"flowing liquids around it from time to time, and, if the liquid is "
+"renewable, it also generates liquid sources. A liquid source can sustain "
+"itself. As long it is left alone, a liquid source will normally keep its "
+"place and does not drain out."
+msgstr "تأخذ مصادر السوائل شكل مكعب كامل. ويُنشئ مصدر السائل سوائل متدفقة حوله من وقت إلى آخر، وإذا كان السائل متجددًا فإنه ينشئ مصادر سوائل جديدة أيضًا. يستطيع مصدر السائل الاستمرار بنفسه؛ فإذا تُرك دون تدخل، فسيبقى في موضعه عادةً ولن ينفد."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:453
+msgid ""
+"Flowing liquids take a sloped form. Flowing liquids spread around the world "
+"until they drain. A flowing liquid can not sustain itself and always comes "
+"from a liquid source, either directly or indirectly. Without a liquid "
+"source, a flowing liquid will eventually drain out and disappear."
+msgstr "تأخذ السوائل المتدفقة شكلًا مائلًا. وتنتشر في العالم حتى تنفد. لا يستطيع السائل المتدفق الاستمرار بنفسه، ويأتي دائمًا من مصدر سائل، بصورة مباشرة أو غير مباشرة. ومن دون مصدر، سينفد السائل المتدفق في النهاية ويختفي."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:455
+msgid "All liquids share the following properties:"
+msgstr "تشترك جميع السوائل في الخصائص التالية:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:456
+msgid "• All properties of blocks (including drowning damage)"
+msgstr "• جميع خصائص الكتل (بما فيها ضرر الغرق)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:457
+msgid "• Renewability: Renewable liquids can create new sources"
+msgstr "• قابلية التجدد: تستطيع السوائل المتجددة إنشاء مصادر جديدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:458
+msgid ""
+"• Flowing range: How many flowing liquids are created at maximum per liquid "
+"source, it determines how far the liquid will spread. Possible are ranges "
+"from 0 to 8. At 0, no flowing liquids will be created. Image 5 shows a "
+"liquid of flowing range 2"
+msgstr "• مدى التدفق: الحد الأقصى لعدد كتل السائل المتدفق التي ينشئها كل مصدر سائل، وهو ما يحدد المسافة التي ينتشر إليها السائل. تتراوح القيم الممكنة من 0 إلى 8. عند القيمة 0 لا تُنشأ أي سوائل متدفقة. تعرض الصورة 5 سائلًا بمدى تدفق يساوي 2."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:459
+msgid ""
+"• Viscosity: How slow players move through it and how slow the liquid spreads"
+msgstr "• اللزوجة: تحدد مدى بطء حركة اللاعبين خلال السائل ومدى بطء انتشاره."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:461
+msgid ""
+"Renewable liquids create new liquid sources at open spaces (image 2). A new "
+"liquid source is created when:"
+msgstr "تنشئ السوائل المتجددة مصادر جديدة في المساحات المفتوحة (الصورة 2). ويُنشأ مصدر سائل جديد عند تحقق الشروط التالية:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:462
+msgid ""
+"• Two renewable liquid blocks of the same type touch each other diagonally"
+msgstr "• تلامس كتلتان متجدّدتان من النوع نفسه بعضهما قطريًا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:463
+msgid "• These blocks are also on the same height"
+msgstr "• تكون الكتلتان على الارتفاع نفسه أيضًا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:464
+msgid ""
+"• One of the two “corners” is open space which allows liquids to flow in"
+msgstr "• تكون إحدى “الزاويتين” مساحة مفتوحة تسمح للسوائل بالتدفق إليها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:466
+msgid ""
+"When those criteria are met, the open space is filled with a new liquid "
+"source of the same type (image 3)."
+msgstr "عند تحقق هذه الشروط، تمتلئ المساحة المفتوحة بمصدر سائل جديد من النوع نفسه (الصورة 3)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:468
+msgid ""
+"Swimming in a liquid is fairly straightforward: The usual direction keys for "
+"basic movement, the jump key for rising and the sneak key for sinking."
+msgstr "السباحة في السائل بسيطة إلى حد ما: استخدم مفاتيح الاتجاه المعتادة للحركة الأساسية، ومفتاح القفز للصعود، ومفتاح التسلل للهبوط."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:470
+msgid "The physics for swimming and diving in a liquid are:"
+msgstr "تعمل فيزياء السباحة والغوص في السوائل كما يلي:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:471
+msgid "• The higher the viscosity, the slower you move"
+msgstr "• كلما زادت اللزوجة، قلت سرعة حركتك."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:472
+msgid "• If you rest, you'll slowly sink"
+msgstr "• إذا بقيت ساكنًا، فستهبط ببطء."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:473
+msgid "• There is no fall damage for falling into a liquid as such"
+msgstr "• لا تتلقى ضرر السقوط لمجرد السقوط في سائل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:474
+msgid ""
+"• If you fall into a liquid, you will be slowed down on impact (but don't "
+"stop instantly). Your impact depth is determined by your speed and the "
+"liquid viscosity. For a safe high drop into a liquid, make sure there is "
+"enough liquid above the ground, otherwise you might hit the ground and take "
+"fall damage"
+msgstr "• إذا سقطت في سائل، فستتباطأ عند الاصطدام (لكن لن تتوقف فورًا). ويتحدد عمق اختراقك للسائل بحسب سرعتك ولزوجة السائل. وللسقوط من ارتفاع كبير بأمان في سائل، تأكد من وجود كمية كافية منه فوق الأرض؛ وإلا فقد تصطدم بالأرض وتتلقى ضرر السقوط."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:476
+msgid ""
+"Liquids are often not pointable. But some special items are able to point "
+"all liquids."
+msgstr "غالبًا لا يمكن استهداف السوائل، لكن بعض العناصر الخاصة تتيح استهداف جميع السوائل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:493
+msgid "Light"
+msgstr "الضوء"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:495
+msgid ""
+"As the world is entirely block-based, so is the light in the world. Each "
+"block has its own brightness. The brightness of a block is expressed in a "
+"“light level” which ranges from 0 (total darkness) to 15 (as bright as the "
+"sun)."
+msgstr "بما أن العالم يتكون بالكامل من كتل، فإن الضوء فيه يعمل بالطريقة نفسها. لكل كتلة مستوى سطوع خاص بها، ويُعبّر عن سطوع الكتلة بـ“مستوى الإضاءة” الذي يتراوح من 0 (ظلام دامس) إلى 15 (سطوع الشمس)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:497
+msgid "There are two types of light: Sunlight and artificial light."
+msgstr "يوجد نوعان من الضوء: ضوء الشمس والضوء الاصطناعي."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:499
+msgid ""
+"Artificial light is emitted by luminous blocks. Artificial light has a light "
+"level from 1-14."
+msgstr "تنبعث الإضاءة الاصطناعية من الكتل المضيئة، ويتراوح مستوى شدتها من 1 إلى 14."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:500
+msgid ""
+"Sunlight is the brightest light and always goes perfectly straight down from "
+"the sky at each time of the day. At night, the sunlight will become "
+"moonlight instead, which still provides a small amount of light. The light "
+"level of sunlight is 15."
+msgstr "ضوء الشمس هو أشد أنواع الضوء سطوعًا، ويتجه دائمًا بشكل مستقيم إلى أسفل من السماء في جميع أوقات اليوم. وفي الليل يتحول ضوء الشمس إلى ضوء القمر، الذي لا يزال يوفر قدرًا قليلًا من الإضاءة. مستوى إضاءة ضوء الشمس هو 15."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:502
+msgid "Blocks have 3 levels of transparency:"
+msgstr "للكتل ثلاثة مستويات من الشفافية:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:504
+msgid ""
+"• Transparent: Sunlight goes through limitless, artificial light goes "
+"through with losses"
+msgstr "• شفافة: يمر ضوء الشمس من خلالها دون حد، بينما يمر الضوء الاصطناعي مع فقدان في شدته."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:505
+msgid ""
+"• Semi-transparent: Sunlight and artificial light go through with losses"
+msgstr "• شبه شفافة: يمر ضوء الشمس والضوء الاصطناعي من خلالها مع فقدان في الشدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:506
+msgid "• Opaque: No light passes through"
+msgstr "• معتمة: لا يمر أي ضوء من خلالها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:508
+msgid ""
+"Artificial light will lose one level of brightness for each transparent or "
+"semi-transparent block it passes through, until only darkness remains (image "
+"1)."
+msgstr "تفقد الإضاءة الاصطناعية مستوى واحدًا من السطوع عند مرورها عبر كل كتلة شفافة أو شبه شفافة، حتى لا يبقى منها سوى الظلام (الصورة 1)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:509
+msgid ""
+"Sunlight will preserve its brightness as long it only passes fully "
+"transparent blocks. When it passes through a semi-transparent block, it "
+"turns to artificial light. Image 2 shows the difference."
+msgstr "يحافظ ضوء الشمس على شدته ما دام يمر عبر كتل شفافة تمامًا فقط. وعندما يمر عبر كتلة شبه شفافة، يتحول إلى ضوء اصطناعي. توضح الصورة 2 الفرق."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:511
+msgid ""
+"Note that “transparency” here only means that the block is able to carry "
+"brightness from its neighboring blocks. It is possible for a block to be "
+"transparent to light but you can't see trough the other side."
+msgstr "لاحظ أن “الشفافية” هنا تعني فقط قدرة الكتلة على نقل السطوع من الكتل المجاورة. وقد تكون الكتلة شفافة للضوء مع تعذّر الرؤية عبر جانبها الآخر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:516
+msgid "Groups"
+msgstr "المجموعات"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:519
+msgid ""
+"Items, players and objects (animate and inanimate) can be members of any "
+"number of groups. Groups serve multiple purposes:"
+msgstr "يمكن أن تنتمي العناصر واللاعبون والأجسام، المتحركة منها وغير المتحركة، إلى أي عدد من المجموعات. وتؤدي المجموعات أغراضًا متعددة:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:521
+msgid ""
+"• Crafting recipes: Slots in a crafting recipe may not require a specific "
+"item, but instead an item which is a member of a particular group, or "
+"multiple groups"
+msgstr "• وصفات التصنيع: قد لا تتطلب خانات وصفة التصنيع عنصرًا محددًا، بل عنصرًا ينتمي إلى مجموعة معينة أو عدة مجموعات."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:522
+msgid ""
+"• Digging times: Diggable blocks belong to groups which are used to "
+"determine digging times. Mining tools are capable of digging blocks "
+"belonging to certain groups"
+msgstr "• أوقات التعدين: تنتمي الكتل القابلة للتعدين إلى مجموعات تُستخدم لتحديد أوقات تعدينها. ويمكن لأدوات التعدين استخراج الكتل التي تنتمي إلى مجموعات معينة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:523
+msgid ""
+"• Block behavior: Blocks may show a special behaviour and interact with "
+"other blocks when they belong to a particular group"
+msgstr "• سلوك الكتل: قد تُظهر الكتل سلوكًا خاصًا وتتفاعل مع كتل أخرى عندما تنتمي إلى مجموعة معينة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:524
+msgid ""
+"• Damage and armor: Objects and players have armor groups, weapons have "
+"damage groups. These groups determine damage. See also: “Basics > Weapons”"
+msgstr "• الضرر والدروع: للأجسام واللاعبين مجموعات دروع، وللأسلحة مجموعات ضرر. وتحدد هذه المجموعات مقدار الضرر. راجع أيضًا: “Basics > Weapons”."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:525
+msgid "• Other uses"
+msgstr "• استخدامات أخرى."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:527
+msgid ""
+"In the item help, many important groups are usually mentioned and explained."
+msgstr "تُذكر عادةً المجموعات المهمة وتُشرح في مساعدة العناصر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:531
+msgid "Glossary"
+msgstr "مسرد المصطلحات"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:534
+msgid "This is a list of commonly used terms:"
+msgstr "هذه قائمة بالمصطلحات الشائعة الاستخدام:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:536
+msgid "Controls:"
+msgstr "عناصر التحكم:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:537
+msgid "• Wielding: Holding an item in hand"
+msgstr "• الحمل باليد: إمساك عنصر في اليد."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:538
+msgid "• Pointing: Looking with the crosshair at something in range"
+msgstr "• توجيه المؤشر: النظر إلى شيء ضمن المدى باستخدام علامة التصويب."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:539
+msgid "• Dropping: Throwing an item or item stack to the ground"
+msgstr "• الإسقاط: رمي عنصر أو رزمة عناصر على الأرض."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:540
+msgid "• Punching: Attacking with left-click, is also used on blocks"
+msgstr "• الضرب: الهجوم بالنقر بزر الفأرة الأيسر، ويُستخدم أيضًا مع الكتل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:541
+msgid "• Sneaking: Walking slowly while (usually) avoiding to fall over edges"
+msgstr "• التسلل: المشي ببطء مع تجنب السقوط من الحواف عادةً."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:542
+msgid "• Climbing: Moving up or down a climbable block"
+msgstr "• التسلق: التحرك إلى أعلى أو أسفل كتلة قابلة للتسلق."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:544
+msgid "Blocks:"
+msgstr "الكتل:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:545
+msgid "• Block: Cubes that the worlds are made of"
+msgstr "• الكتلة: مكعبات يتكون منها العالم."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:546
+msgid "• Mining/digging: Using a mining tool to break a block"
+msgstr "• التعدين/الحفر: استخدام أداة تعدين لتكسير كتلة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:547
+msgid "• Building/placing: Putting a block somewhere"
+msgstr "• البناء/الوضع: وضع كتلة في مكان ما."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:548
+msgid "• Drop: Items you get after mining a block"
+msgstr "• السقوط: العناصر التي تحصل عليها بعد تعدين كتلة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:549
+msgid "• Using a block: Right-clicking a block to access its special function"
+msgstr "• استخدام كتلة: النقر عليها بزر الفأرة الأيمن للوصول إلى وظيفتها الخاصة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:551
+msgid "Items:"
+msgstr "العناصر:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:552
+msgid "• Item: A single thing that players can possess"
+msgstr "• العنصر: شيء واحد يمكن للاعب امتلاكه."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:553
+msgid "• Item stack: A collection of items of the same kind"
+msgstr "• رزمة العناصر: مجموعة من عناصر النوع نفسه."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:554
+msgid "• Maximum stack size: Maximum amount of items in an item stack"
+msgstr "• الحد الأقصى لحجم الرزمة: أكبر عدد من العناصر في رزمة واحدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:555
+msgid "• Slot / inventory slot: Can hold one item stack"
+msgstr "• الخانة / خانة المخزون: يمكن أن تحتوي على رزمة عناصر واحدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:556
+msgid "• Inventory: Provides several inventory slots for storage"
+msgstr "• المخزون: يوفر عدة خانات لتخزين العناصر."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:557
+msgid "• Player inventory: The main inventory of a player"
+msgstr "• مخزون اللاعب: المخزون الرئيسي للاعب."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:558
+msgid ""
+"• Tool: An item which you can use to do special things with when wielding"
+msgstr "• الأداة: عنصر يمكنك استخدامه لتنفيذ أفعال خاصة عند حمله."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:559
+msgid "• Range: How far away things can be to be pointed by an item"
+msgstr "• المدى: أقصى مسافة يمكن أن يكون عندها الشيء حتى يستهدفه عنصر ما."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:560
+msgid "• Mining tool: A tool which allows to break blocks"
+msgstr "• أداة التعدين: أداة تتيح تكسير الكتل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:561
+msgid "• Craftitem: An item which is (primarily or only) used for crafting"
+msgstr "• عنصر تصنيع (Craftitem): عنصر يُستخدم أساسًا أو حصريًا في التصنيع."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:563
+msgid "Gameplay:"
+msgstr "أسلوب اللعب:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:564
+msgid "• “heart”: A single health symbol, indicates 2 HP"
+msgstr "• “القلب”: رمز صحة واحد، ويشير إلى نقطتي صحة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:565
+msgid "• “bubble”: A single breath symbol, indicates 1 BP"
+msgstr "• “الفقاعة”: رمز تنفس واحد، ويشير إلى نقطة تنفس واحدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:566
+msgid "• HP: Hit point (equals half 1 “heart”)"
+msgstr "• HP: نقطة صحة (تعادل نصف “قلب” واحد)."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:567
+msgid "• BP: Breath point, indicates breath when diving"
+msgstr "• BP: نقطة تنفس، وتدل على التنفس أثناء الغوص."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:568
+msgid "• Mob: Computer-controlled enemy"
+msgstr "• الكائن: عدو يتحكم فيه الحاسوب."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:569
+msgid "• Crafting: Combining multiple items to create new ones"
+msgstr "• التصنيع: دمج عدة عناصر لإنشاء عناصر جديدة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:570
+msgid "• Crafting guide: A helper which shows available crafting recipes"
+msgstr "• دليل التصنيع: أداة مساعدة تعرض وصفات التصنيع المتاحة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:571
+msgid "• Spawning: Appearing in the world"
+msgstr "• الظهور: الظهور في العالم."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:572
+msgid "• Respawning: Appearing again in the world after death"
+msgstr "• إعادة الظهور: الظهور مجددًا في العالم بعد الموت."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:573
+msgid "• Group: Puts similar things together, often affects gameplay"
+msgstr "• المجموعة: تجمع الأشياء المتشابهة معًا، وغالبًا ما تؤثر في أسلوب اللعب."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:574
+msgid "• noclip: Allows to fly through walls"
+msgstr "• noclip: يتيح الطيران عبر الجدران."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:576
+msgid "Interface"
+msgstr "الواجهة"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:577
+msgid "• Hotbar: Inventory slots at the bottom"
+msgstr "• شريط العناصر السريع: خانات المخزون الموجودة في أسفل الشاشة."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:578
+msgid ""
+"• Statbar: Indicator made out of half-symbols, used for health and breath"
+msgstr "• شريط المؤشرات: مؤشر مكوّن من رموز نصفية، يُستخدم لعرض الصحة والتنفس."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:579
+msgid "• Minimap: The map or radar at the top right"
+msgstr "• الخريطة المصغرة: الخريطة أو الرادار في أعلى اليمين."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:580
+msgid "• Crosshair: Seen in the middle, used to point at things"
+msgstr "• علامة التصويب: تظهر في الوسط وتُستخدم لاستهداف الأشياء."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:582
+msgid "Online multiplayer:"
+msgstr "اللعب الجماعي عبر الإنترنت:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:583
+msgid ""
+"• PvP: Player vs Player. If active, players can deal damage to each other"
+msgstr "• PvP: لاعب ضد لاعب. عند تفعيله، يستطيع اللاعبون إلحاق الضرر بعضهم ببعض."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:584
+msgid ""
+"• Griefing: Destroying the buildings of other players against their will"
+msgstr "• التخريب: تدمير مباني اللاعبين الآخرين دون رغبتهم."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:585
+msgid ""
+"• Protection: Mechanism to own areas of the world, which only allows the "
+"owners to modify blocks inside"
+msgstr "• الحماية: آلية لامتلاك مناطق من العالم، بحيث لا يُسمح إلا للمالكين بتعديل الكتل داخلها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:587
+msgid "Technical terms:"
+msgstr "مصطلحات تقنية:"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:588
+msgid "• Luanti: This game engine"
+msgstr "• Luanti: محرك اللعبة هذا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:589
+msgid "• Minetest Game: A game for Luanti by the Luanti developers"
+msgstr "• Minetest Game: لعبة لـLuanti من تطوير مطوري Luanti."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:590
+msgid ""
+"• Game: A complete playing experience to be used in Luanti; such as a game "
+"or sandbox or similar"
+msgstr "• اللعبة: تجربة لعب متكاملة يمكن تشغيلها في Luanti، مثل لعبة أو عالم رملي وما شابه."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:591
+msgid ""
+"• Mod: A single subsystem which adds or modifies functionality; is the basic "
+"building block of games and can be used to further enhance or modify them"
+msgstr "• الإضافة (Mod): نظام فرعي واحد يضيف وظائف أو يعدّلها؛ وهي لبنة البناء الأساسية للألعاب ويمكن استخدامها لتعزيزها أو تعديلها."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:592
+msgid "• Privilege: Allows a player to do something"
+msgstr "• الصلاحية: تتيح للاعب تنفيذ أمر أو فعل معين."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:593
+msgid "• Node: Other word for “block”"
+msgstr "• العقدة (Node): كلمة أخرى تعني “كتلة”."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:597
+msgid "Luanti"
+msgstr "Luanti"
+
+#: mods/HELP/mcl_doc_basics/basics.lua:600
+msgid ""
+"Luanti (formely Minetest) is a free software game engine for games based on "
+"voxel gameplay, inspired by InfiniMiner, Minecraft, and the like. Luanti was "
+"originally created by Perttu Ahola (alias “celeron55”)."
+msgstr "Luanti (المعروف سابقًا باسم Minetest) محرك ألعاب حر ومفتوح المصدر للألعاب القائمة على أسلوب اللعب بالمكعبات، وقد استُلهم من InfiniMiner وMinecraft وألعاب مشابهة. أنشأ Perttu Ahola (المعروف بالاسم المستعار “celeron55”) محرك Luanti في الأصل."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:602
+msgid ""
+"A core feature of Luanti is the built-in modding capability, which all games "
+"consist of too. They can be as simple as adding a few decorational blocks or "
+"be very complex by e.g. introducing completely new gameplay concepts, "
+"generating a completely different kind of world, and many other things."
+msgstr "من الميزات الأساسية في Luanti قدرته المدمجة على دعم الإضافات، وهي ميزة تعتمد عليها جميع الألعاب المبنية عليه أيضًا. يمكن أن تكون الإضافات بسيطة، مثل إضافة بعض الكتل الزخرفية، أو معقدة للغاية، مثل تقديم مفاهيم لعب جديدة بالكامل أو إنشاء عالم مختلف تمامًا، وغير ذلك الكثير."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:604
+msgid ""
+"Luanti can be played alone or online together with multiple players. Online "
+"play will work out of the box with any mods, with no need for additional "
+"software as they are entirely provided by the server."
+msgstr "يمكن لعب Luanti منفردًا أو عبر الإنترنت مع عدة لاعبين. ويعمل اللعب عبر الإنترنت مباشرةً مع أي إضافات، دون الحاجة إلى برامج إضافية، لأن الخادم يوفرها جميعًا."
+
+#: mods/HELP/mcl_doc_basics/basics.lua:606
+msgid ""
+"MineClonia is a game that is built on top of the Luanti engine that intends "
+"to create a game that is as close to Minecraft as possible. There are many "
+"other games for Luanti however, that can be installed from the main menu "
+"content browser."
+msgstr "Mineclonia لعبة مبنية على محرك Luanti، وتهدف إلى تقديم تجربة قريبة قدر الإمكان من Minecraft. ومع ذلك، توجد ألعاب أخرى كثيرة لـLuanti يمكن تثبيتها من متصفح المحتوى في القائمة الرئيسية."
+
