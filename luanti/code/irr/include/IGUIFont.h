@@ -86,6 +86,13 @@ public:
 		return std::max<s32>(0, std::min<s32>(limit, char_index + (direction < 0 ? -1 : 1)));
 	}
 
+	//! Moves the cursor to the nearest grapheme boundary in the requested visual direction.
+	//! direction is -1 for left and +1 for right.
+	virtual s32 getVisualCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const
+	{
+		return getNextCursorPosition(text, char_index, direction);
+	}
+
 	//! Returns the type of this font
 	virtual EGUI_FONT_TYPE getType() const { return EGFT_CUSTOM; }
 
