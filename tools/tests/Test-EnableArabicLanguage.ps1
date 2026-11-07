@@ -15,7 +15,7 @@ if (!(Test-Path -LiteralPath $powerShell -PathType Leaf)) {
 $testRoot = Join-Path $env:TEMP ("Mineclonia Arabic Language Patch Test " + [guid]::NewGuid().ToString("N"))
 $lineBreak = [Environment]::NewLine
 
-function New-LuantiFixture([string]$Name, [string]$EnumLine, [string]$ArabicEntry, [string]$StoredLanguage) {
+function New-LuantiFixture([string]$Name, [string]$EnumLine, [string]$ArabicEntry, [string]$StoredLanguage, [bool]$RunInPlace = $false) {
     $root = Join-Path $testRoot $Name
     $builtin = Join-Path $root "builtin"
     $settings = Join-Path $builtin "common\settings"
@@ -133,7 +133,13 @@ function Assert-ArabicIsInstalled($Fixture, [string]$ConfigMode) {
         throw "Malformed 'arbe' language label remains: $($malformedRows -join ' | ')"
     }
 
-    $configPath = if ($ConfigMode -eq "env") { $Fixture.ConfigFile } else { Join-Path $Fixture.AppData "Minetest\minetest.conf" }
+    if ($ConfigMode -eq "env") {
+        $configPath = $Fixture.ConfigFile
+    } elseif ($ConfigMode -eq "run-in-place") {
+        $configPath = $Fixture.InPlaceConfig
+    } else {
+        $configPath = Join-Path $Fixture.AppData "Minetest\minetest.conf"
+    }
     $config = [IO.File]::ReadAllText($configPath)
     $languageRows = @(
         $config -split "\r?\n" |
@@ -173,6 +179,21 @@ try {
     [void](Invoke-Helper $partialFixture $partialFixture.Root "env")
     Assert-ArabicIsInstalled $partialFixture "env"
 
+    # Detect RUN_IN_PLACE on Windows: the user config belongs beside minetest.conf.example.
+    $portableFixture = New-LuantiFixture "Portable RUN_IN_PLACE" "language (Language) enum   ,be,bg,en,tr" '        --ar = " [ar]", blacklisted' "arbe"
+    [IO.File]::WriteAllText((Join-Path $portableFixture.Root "minetest.conf.example"), "# default config marker", [Text.UTF8Encoding]::new($false))
+    $portableConfig = Join-Path $portableFixture.Root "minetest.conf"
+    Copy-Item -LiteralPath $portableFixture.ConfigFile -Destination $portableConfig
+    $portableFixture | Add-Member -NotePropertyName InPlaceConfig -NotePropertyValue $portableConfig
+    [void](Invoke-Helper $portableFixture $portableFixture.Root "run-in-place")
+    Assert-ArabicIsInstalled $portableFixture "run-in-place"
+
+    # The APPDATA config must remain untouched when RUN_IN_PLACE selects the install root.
+    $untouchedAppDataConfig = [IO.File]::ReadAllText((Join-Path $portableFixture.AppData "Minetest\minetest.conf"))
+    if (!$untouchedAppDataConfig.Contains("language = arbe")) {
+        throw "RUN_IN_PLACE detection incorrectly modified the APPDATA config instead of the install-root config."
+    }
+
     # Insert Arabic when the option-label table has no Arabic row.
     $missingFixture = New-LuantiFixture "Missing Arabic Row" "language (Language) enum   ,be,bg,en,tr" '        de = "Deutsch [de]",' "en"
     [void](Invoke-Helper $missingFixture $missingFixture.Root "appdata")
@@ -182,7 +203,7 @@ try {
     [void](Invoke-Helper $rootFixture $rootFixture.Root "env")
     Assert-ArabicIsInstalled $rootFixture "env"
 
-    Write-Host "PASS: Windows PowerShell 5.1 tests succeeded (root/builtin/bin, malformed arbe repair, persistent config, APPDATA/LUANTI_USER_PATH lookup, preservation, and idempotency)." -ForegroundColor Green
+    Write-Host "PASS: Windows PowerShell 5.1 tests succeeded (root/builtin/bin, malformed arbe repair, RUN_IN_PLACE install-root config, APPDATA/LUANTI_USER_PATH lookup, preservation, and idempotency)." -ForegroundColor Green
 }
 finally {
     if (Test-Path -LiteralPath $testRoot) {
