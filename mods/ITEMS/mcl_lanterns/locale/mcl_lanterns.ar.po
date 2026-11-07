@@ -1,0 +1,39 @@
+# Arabic translation draft for Mineclonia component: mcl_lanterns
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_lanterns/locale/template.pot
+# Source template blob SHA: 747a2ce18266556f8c8a9a1be3cc0202fe5a9ee8
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_lanterns/register.lua:4
+msgid "Lantern"
+msgstr "فانوس"
+
+#: mods/ITEMS/mcl_lanterns/register.lua:5
+#: mods/ITEMS/mcl_lanterns/register.lua:13
+msgid ""
+"Lanterns are light sources which can be placed on the top or the bottom of "
+"most blocks."
+msgstr "الفوانيس مصادر إضاءة يمكن وضعها أعلى معظم الكتل أو أسفلها."
+
+#: mods/ITEMS/mcl_lanterns/register.lua:12
+msgid "Soul Lantern"
+msgstr "فانوس الأرواح"
+
+#: mods/ITEMS/mcl_lanterns/register.lua:41
+msgid "Chain"
+msgstr "سلسلة"
+
+#: mods/ITEMS/mcl_lanterns/register.lua:42
+msgid "Chains are metallic decoration blocks."
+msgstr "السلاسل كتل زخرفية معدنية."
