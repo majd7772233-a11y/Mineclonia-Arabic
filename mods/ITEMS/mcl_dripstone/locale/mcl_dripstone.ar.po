@@ -1,0 +1,39 @@
+# Arabic translation draft for Mineclonia component: mcl_dripstone
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_dripstone/locale/template.pot
+# Source template blob SHA: c1776b594506d11528dceddacd497c3eb9416b57
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:27+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_dripstone/init.lua:47
+msgid "Dripstone block"
+msgstr "كتلة حجر التنقيط"
+
+#: mods/ITEMS/mcl_dripstone/init.lua:48
+msgid ""
+"Dripstone is type of stone that allows stalagmites and stalagtites to grow "
+"on it"
+msgstr "حجر التنقيط نوع من الحجر يسمح بنمو الصواعد والهوابط عليه."
+
+#: mods/ITEMS/mcl_dripstone/init.lua:209
+msgid "Pointed dripstone"
+msgstr "حجر تنقيط مدبّب"
+
+#: mods/ITEMS/mcl_dripstone/init.lua:210 mods/ITEMS/mcl_dripstone/init.lua:232
+#: mods/ITEMS/mcl_dripstone/init.lua:257
+msgid "Pointed dripstone is what stalagmites and stalagtites are made of"
+msgstr "تتكوّن الصواعد والهوابط من حجر التنقيط المدبّب."
+
+#: mods/ITEMS/mcl_dripstone/init.lua:231 mods/ITEMS/mcl_dripstone/init.lua:256
+msgid "Pointed dripstone (@1/@2)"
+msgstr "حجر تنقيط مدبّب (@1/@2)"
