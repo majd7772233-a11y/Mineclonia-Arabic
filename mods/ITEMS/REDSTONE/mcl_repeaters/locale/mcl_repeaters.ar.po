@@ -1,0 +1,49 @@
+# Arabic translation for Mineclonia component: mcl_repeaters
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of https://codeberg.org/mineclonia/mineclonia)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/REDSTONE/mcl_repeaters/locale/template.pot
+# Source template blob SHA: 1cf4df605a86641b88a16e634d4ca8eeddfea285
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 14:00+0300\n"
+"Last-Translator: Mineclonia Arabic contributors\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Redstone Repeater"
+msgstr "مكرّر ريدستون"
+
+msgid "Redstone Repeater (Delay @1)"
+msgstr "مكرّر ريدستون (تأخير @1)"
+
+msgid "Transmits redstone power only in one direction"
+msgstr "ينقل طاقة ريدستون في اتجاه واحد فقط"
+
+msgid "Delays signal"
+msgstr "يؤخّر الإشارة"
+
+msgid "Output locks when getting active redstone repeater signal from the side"
+msgstr "يُقفل الخرج عند تلقي إشارة من مكرّر ريدستون نشط من الجانب"
+
+msgid "To power a redstone repeater, send a signal in “arrow” direction (the input). The signal goes out on the opposite side (the output) with a delay. To change the delay, use the redstone repeater. The delay is between 0.1 and 0.4 seconds long and can be changed in steps of 0.1 seconds. It is indicated by the position of the moving redstone torch."
+msgstr "لتشغيل مكرّر ريدستون، أرسل إشارة في اتجاه السهم (المدخل). وتخرج الإشارة من الجانب المقابل (المخرج) بعد تأخير. لتغيير مدة التأخير، استخدم المكرّر. تتراوح مدة التأخير بين 0.1 و0.4 ثانية، ويمكن تغييرها بخطوات مقدارها 0.1 ثانية. ويُشار إليها بموضع مشعل ريدستون المتحرك."
+
+msgid "To lock a repeater, send a signal from an adjacent repeater into one of its sides. While locked, the moving redstone torch disappears, the output doesn't change and the input signal is ignored."
+msgstr "لقفل المكرّر، أرسل إشارة من مكرّر مجاور إلى أحد جانبيه. وعندما يكون مقفلاً، يختفي مشعل ريدستون المتحرك، ولا تتغير إشارة الخرج، ويتم تجاهل إشارة المدخل."
+
+msgid "Redstone repeaters are versatile redstone components with multiple purposes: 1. They only allow signals to travel in one direction. 2. They delay the signal. 3. Optionally, they can lock their output in one state."
+msgstr "مكرّرات ريدستون مكوّنات متعددة الاستخدامات في دوائر ريدستون، ولها عدة وظائف: 1. تسمح للإشارات بالانتقال في اتجاه واحد فقط. 2. تؤخّر الإشارة. 3. يمكنها اختيارياً قفل الخرج على حالة واحدة."
+
+msgid "Redstone Repeater (Delay @1, Powered)"
+msgstr "مكرّر ريدستون (تأخير @1، مُشغّل)"
+
+msgid "Redstone Repeater (Locked)"
+msgstr "مكرّر ريدستون (مقفل)"
+
+msgid "Redstone Repeater (Locked, Powered)"
+msgstr "مكرّر ريدستون (مقفل، مُشغّل)"
