@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: mineclonia-arabic-runtime-package-v2
+  group: mineclonia-arabic-runtime-package-v3
   cancel-in-progress: true
 
 # Keep only one active package build; this commit refreshes a stalled runner attempt.
