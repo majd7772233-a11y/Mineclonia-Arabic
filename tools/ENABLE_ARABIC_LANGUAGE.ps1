@@ -2,6 +2,7 @@
 [CmdletBinding()]
 param(
     [string]$LuantiDir,
+    [string]$ConfigFile,
     [switch]$Elevated,
     [switch]$NonInteractive
 )
@@ -65,8 +66,8 @@ function Is-Administrator {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
-function Restart-Elevated([string]$Directory) {
-    $argsLine = '-NoProfile -ExecutionPolicy Bypass -File "' + $PSCommandPath + '" -LuantiDir "' + $Directory + '" -Elevated'
+function Restart-Elevated([string]$Directory, [string]$UserConfigFile) {
+    $argsLine = '-NoProfile -ExecutionPolicy Bypass -File "' + $PSCommandPath + '" -LuantiDir "' + $Directory + '" -ConfigFile "' + $UserConfigFile + '" -Elevated'
     Start-Process -FilePath "powershell.exe" -Verb RunAs -ArgumentList $argsLine | Out-Null
 }
 
@@ -156,13 +157,9 @@ function Set-ArabicLanguageLabel([string]$Text) {
             $probe = $probe.Substring(2).TrimStart()
         }
 
-        $isArabicKey = $false
-        if ($probe.StartsWith("ar", [StringComparison]::Ordinal) -and $probe.Length -gt 2) {
-            $remainder = $probe.Substring(2).TrimStart()
-            if ($remainder.StartsWith("=", [StringComparison]::Ordinal)) {
-                $isArabicKey = $true
-            }
-        }
+        # Remove both the proper Arabic key and the malformed legacy "arbe" key.
+        # Keep unrelated locale variants (for example ar_SA) untouched.
+        $isArabicKey = $probe -match '^(?:ar|arbe)[ \t]*='
 
         if ($isArabicKey) {
             if ($null -eq $arabicIndent) {
@@ -224,6 +221,69 @@ function Set-ArabicLanguageLabel([string]$Text) {
     $newText = $Text.Substring(0, $tableOpen + 1) + $tableBody + $Text.Substring($tableClose)
     return [pscustomobject]@{ Text = $newText; Changed = ($newText -cne $Text) }
 }
+function Get-LuantiConfigFilePath {
+    if ($ConfigFile) {
+        return [IO.Path]::GetFullPath($ConfigFile)
+    }
+
+    # Luanti 5.17.0 on Windows uses %APPDATA%\Minetest by default.
+    # The environment variables below override that path in the engine.
+    $userPath = $env:LUANTI_USER_PATH
+    if (!$userPath) {
+        $userPath = $env:MINETEST_USER_PATH
+    }
+    if (!$userPath) {
+        if (!$env:APPDATA) {
+            throw "لم أتمكن من تحديد مجلد إعدادات Luanti: متغير APPDATA غير موجود."
+        }
+        $userPath = Join-Path $env:APPDATA "Minetest"
+    }
+
+    return Join-Path ([IO.Path]::GetFullPath($userPath)) "minetest.conf"
+}
+
+function Set-ArabicLanguageConfig([string]$Text) {
+    $crlf = ([char]13).ToString() + ([char]10).ToString()
+    $separator = if ($Text.Contains($crlf)) { $crlf } else { ([char]10).ToString() }
+    $hadTrailingNewline = $Text.EndsWith($separator)
+
+    $lines = New-Object 'System.Collections.Generic.List[string]'
+    if ($Text.Length -gt 0) {
+        foreach ($line in [regex]::Split($Text, "\r\n|\n")) {
+            [void]$lines.Add($line)
+        }
+        if ($hadTrailingNewline -and $lines.Count -gt 0 -and $lines[$lines.Count - 1] -eq "") {
+            $lines.RemoveAt($lines.Count - 1)
+        }
+    }
+
+    $found = $false
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        # Replace every active declaration so a later duplicate cannot override ar.
+        if ($lines[$i] -match '^[ \t]*language[ \t]*=') {
+            $lines[$i] = "language = ar"
+            $found = $true
+        }
+    }
+
+    if (!$found) {
+        if ($lines.Count -gt 0 -and $lines[$lines.Count - 1].Trim() -ne "") {
+            [void]$lines.Add("")
+        }
+        [void]$lines.Add("language = ar")
+    }
+
+    $newText = [string]::Join($separator, $lines.ToArray())
+    if (!$newText.EndsWith($separator)) {
+        $newText += $separator
+    }
+
+    return [pscustomobject]@{
+        Text = $newText
+        Changed = ($newText -cne $Text)
+    }
+}
+
 try {
     Write-Host "تفعيل العربية في قائمة لغات Luanti 5.17.0" -ForegroundColor Cyan
     Write-Host "اختر جذر تثبيت Luanti الذي يحتوي على builtin و bin."
@@ -233,6 +293,10 @@ try {
     $settingPath = Join-Path $root "builtin\settingtypes.txt"
     $dialogPath = Join-Path $root "builtin\common\settings\dlg_settings.lua"
     $exePath = Join-Path $root "bin\luanti.exe"
+    $configPath = Get-LuantiConfigFilePath
+    $configExisted = Test-Path -LiteralPath $configPath -PathType Leaf
+    $configText = if ($configExisted) { [IO.File]::ReadAllText($configPath) } else { "" }
+    $configResult = Set-ArabicLanguageConfig $configText
 
     if (!(Test-Path -LiteralPath $settingPath -PathType Leaf)) {
         throw "لم أجد builtin\settingtypes.txt. اختر C:\Users\Magd\AppData\Local\luanti\5.17.0 أو مجلد builtin بداخله."
@@ -257,10 +321,11 @@ try {
     $settingChanged = $enumResult.Changed
     $dialogChanged = $labelResult.Changed
 
-    if (!$settingChanged -and !$dialogChanged) {
-        Write-Host "العربية [ar] مفعّلة بالفعل وفي الموضع الصحيح." -ForegroundColor Green
+    if (!$settingChanged -and !$dialogChanged -and !$configResult.Changed) {
+        Write-Host "العربية [ar] مفعّلة بالفعل، وإعداد بدء التشغيل مضبوط على ar." -ForegroundColor Green
         Write-Host "مجلد Luanti: $root"
-        Write-Host "اختر Settings > Accessibility > Language > العربية [ar]."
+        Write-Host "ملف الإعدادات: $configPath"
+        Write-Host "أعد تشغيل Luanti لتطبيق اللغة."
         Write-ExitPrompt
         exit 0
     }
@@ -281,9 +346,17 @@ try {
         Copy-Item -LiteralPath $dialogPath -Destination $backupTarget
         $backupList += "builtin\common\settings\dlg_settings.lua"
     }
+    if ($configResult.Changed -and $configExisted) {
+        $backupTarget = Join-Path $backupRoot "user\minetest.conf"
+        New-Item -ItemType Directory -Path (Split-Path $backupTarget -Parent) -Force | Out-Null
+        Copy-Item -LiteralPath $configPath -Destination $backupTarget
+        $backupList += "user\minetest.conf"
+    }
 
     $backupInfo = [ordered]@{
         install_root = $root
+        config_file = $configPath
+        config_file_existed_before = $configExisted
         created_at = (Get-Date).ToString("o")
         backup_files = $backupList
     }
@@ -301,11 +374,16 @@ try {
         if ($dialogChanged) {
             [IO.File]::WriteAllText($dialogPath, $newDialogText, $utf8)
         }
+        if ($configResult.Changed) {
+            $configDirectory = Split-Path -Parent $configPath
+            New-Item -ItemType Directory -Path $configDirectory -Force | Out-Null
+            [IO.File]::WriteAllText($configPath, $configResult.Text, $utf8)
+        }
     }
     catch [System.UnauthorizedAccessException] {
         if (!$Elevated -and !(Is-Administrator)) {
-            Write-Host "مجلد Luanti محمي. سأطلب صلاحية المسؤول لإكمال التعديل." -ForegroundColor Yellow
-            Restart-Elevated $root
+            Write-Host "هناك مجلد محمي. سأطلب صلاحية المسؤول لإكمال التعديل." -ForegroundColor Yellow
+            Restart-Elevated $root $configPath
             Write-ExitPrompt
             exit 0
         }
@@ -327,19 +405,38 @@ try {
         $checkCodes -notcontains "ar") {
         throw "فشل التحقق من ترتيب ar بعد خيار لغة النظام في enum اللغة."
     }
-    if ($checkDialog.IndexOf('ar = "العربية [ar]",', [StringComparison]::Ordinal) -lt 0) {
-        $debugArabicRows = @($checkDialog -split "\r?\n" | Where-Object { $_ -match '(^|--)ar[ \t]*=' })
-        throw ("فشل التحقق من إضافة تسمية العربية إلى قائمة اللغة. الأسطر التي تبدأ بمفتاح ar: " + ($debugArabicRows -join " | "))
+    $activeArabicRows = @(
+        $checkDialog -split "\r?\n" |
+            ForEach-Object { $_.Trim() } |
+            Where-Object { $_ -ceq 'ar = "العربية [ar]",' }
+    )
+    if ($activeArabicRows.Count -ne 1) {
+        throw "فشل التحقق: يجب أن يوجد سطر نشط واحد فقط لتسمية العربية [ar]."
+    }
+    $badArabicRows = @($checkDialog -split "\r?\n" | Where-Object { $_ -match '^[ \t]*(?:--[ \t]*)?arbe[ \t]*=' })
+    if ($badArabicRows.Count -gt 0) {
+        throw "فشل التحقق: بقي مفتاح اللغة القديم arbe في dlg_settings.lua."
+    }
+
+    $checkConfig = [IO.File]::ReadAllText($configPath)
+    $configLanguageRows = @(
+        $checkConfig -split "\r?\n" |
+            Where-Object { $_ -match '^[ \t]*language[ \t]*=' }
+    )
+    if ($configLanguageRows.Count -eq 0 -or
+        @($configLanguageRows | Where-Object { $_ -notmatch '^[ \t]*language[ \t]*=[ \t]*ar[ \t]*(?:#.*)?$' }).Count -gt 0) {
+        throw "فشل التحقق: ملف minetest.conf لا يحفظ language = ar."
     }
 
     Write-Host ""
-    Write-Host "نجح التعديل: أصبحت العربية [ar] متاحة في قائمة اللغة." -ForegroundColor Green
+    Write-Host "نجح الإصلاح: العربية [ar] مفعّلة في القائمة ومضبوطة كلغة بدء التشغيل." -ForegroundColor Green
     Write-Host "مجلد Luanti المعتمد: $root"
+    Write-Host "ملف إعدادات المستخدم: $configPath"
     Write-Host "النسخ الاحتياطية محفوظة في: $backupRoot" -ForegroundColor Yellow
-    Write-Host "افتح Luanti ثم Settings > Accessibility > Language واختر العربية [ar]."
-    Write-Host "أعد تشغيل Luanti بعد الاختيار."
+    Write-Host "أُصلحت أي قيمة قديمة arbe إلى ar، مع الإبقاء على بقية الإعدادات."
+    Write-Host "أغلق Luanti وافتحه مجدداً؛ لن تحتاج إلى اختيار اللغة يدوياً."
     Write-Host ""
-    Write-Host "تنبيه: هذه الرقعة تُظهر خيار العربية فقط؛ لا تضيف تشكيل الحروف أو تخطيط RTL إلى محرك Luanti 5.17.0."
+    Write-Host "تنبيه: هذا الإصلاح يفعّل ملفات الترجمة لكنه لا يضيف تشكيل الحروف أو تخطيط RTL الكامل للمحرك."
     Write-ExitPrompt
 }
 catch {
