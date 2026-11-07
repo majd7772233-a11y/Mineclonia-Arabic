@@ -1,0 +1,208 @@
+# Arabic translation draft for Mineclonia component: mcl_flowers
+# Source mirror: ZenonSeth/mineclonia-mirror (mirror of the official Codeberg repository)
+# Source commit: 4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da
+# Source template: https://github.com/ZenonSeth/mineclonia-mirror/blob/4ba113d1ce7afbc5b480b5b0e41b6c0037c8d8da/mods/ITEMS/mcl_flowers/locale/template.pot
+# Source template blob SHA: 73d02eed6fc3cbe7afaa29fcc548b5cda52987eb
+msgid ""
+msgstr ""
+"Project-Id-Version: Mineclonia Arabic\n"
+"PO-Revision-Date: 2026-11-07 12:00+0300\n"
+"Last-Translator: Arabic Translation Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+#: mods/ITEMS/mcl_flowers/init.lua:8
+msgid ""
+"This is a small flower. Small flowers are mainly used for dye production and "
+"can also be potted."
+msgstr "هذه زهرة صغيرة. تُستخدم الأزهار الصغيرة أساسًا في إنتاج الأصباغ، ويمكن أيضًا زراعتها في أصص."
+
+#: mods/ITEMS/mcl_flowers/init.lua:9
+msgid "It can only be placed on a block on which it would also survive."
+msgstr "لا يمكن وضعها إلا على كتلة تستطيع البقاء والنمو عليها."
+
+#: mods/ITEMS/mcl_flowers/init.lua:385
+msgid "@1 (Top Part)"
+msgstr "@1 (الجزء العلوي)"
+
+#: mods/ITEMS/mcl_flowers/register.lua:4
+msgid "Poppy"
+msgstr "خشخاش"
+
+#: mods/ITEMS/mcl_flowers/register.lua:15
+msgid "Dandelion"
+msgstr "هندباء"
+
+#: mods/ITEMS/mcl_flowers/register.lua:26
+msgid "Oxeye Daisy"
+msgstr "أقحوان"
+
+#: mods/ITEMS/mcl_flowers/register.lua:37
+msgid "Orange Tulip"
+msgstr "توليب برتقالي"
+
+#: mods/ITEMS/mcl_flowers/register.lua:48
+msgid "Pink Tulip"
+msgstr "توليب وردي"
+
+#: mods/ITEMS/mcl_flowers/register.lua:59
+msgid "Red Tulip"
+msgstr "توليب أحمر"
+
+#: mods/ITEMS/mcl_flowers/register.lua:70
+msgid "White Tulip"
+msgstr "توليب أبيض"
+
+#: mods/ITEMS/mcl_flowers/register.lua:81
+msgid "Allium"
+msgstr "آليوم"
+
+#: mods/ITEMS/mcl_flowers/register.lua:92
+msgid "Azure Bluet"
+msgstr "زهرة زرقاء سماوية"
+
+#: mods/ITEMS/mcl_flowers/register.lua:103
+msgid "Blue Orchid"
+msgstr "سحلبية زرقاء"
+
+#: mods/ITEMS/mcl_flowers/register.lua:114
+msgid "Wither Rose"
+msgstr "وردة الوذر"
+
+#: mods/ITEMS/mcl_flowers/register.lua:127
+msgid "Lily of the Valley"
+msgstr "زنبق الوادي"
+
+#: mods/ITEMS/mcl_flowers/register.lua:138
+msgid "Cornflower"
+msgstr "قنطريون أزرق"
+
+#: mods/ITEMS/mcl_flowers/register.lua:149
+msgid "Wildflowers"
+msgstr "أزهار برية"
+
+#: mods/ITEMS/mcl_flowers/register.lua:156
+msgid "Leaf Litter"
+msgstr "بقايا أوراق"
+
+#: mods/ITEMS/mcl_flowers/register.lua:166
+msgid "Pink Petals"
+msgstr "بتلات وردية"
+
+#: mods/ITEMS/mcl_flowers/register.lua:167
+msgid "Pink Petals are ground decoration of cherry grove biomes"
+msgstr "البتلات الوردية زينة أرضية في مناطق بساتين الكرز."
+
+#: mods/ITEMS/mcl_flowers/register.lua:176
+msgid "Peony"
+msgstr "فاوانيا"
+
+#: mods/ITEMS/mcl_flowers/register.lua:177
+msgid ""
+"A peony is a large plant which occupies two blocks. It is mainly used in dye "
+"production."
+msgstr "الفاوانيا نبات كبير يشغل كتلتين، ويُستخدم أساسًا في إنتاج الأصباغ."
+
+#: mods/ITEMS/mcl_flowers/register.lua:193
+msgid "Rose Bush"
+msgstr "شجيرة ورد"
+
+#: mods/ITEMS/mcl_flowers/register.lua:194
+msgid ""
+"A rose bush is a large plant which occupies two blocks. It is safe to touch "
+"it. Rose bushes are mainly used in dye production."
+msgstr "شجيرة الورد نبات كبير يشغل كتلتين، ويمكن لمسها بأمان. تُستخدم شجيرات الورد أساسًا في إنتاج الأصباغ."
+
+#: mods/ITEMS/mcl_flowers/register.lua:209
+msgid "Lilac"
+msgstr "ليلك"
+
+#: mods/ITEMS/mcl_flowers/register.lua:210
+msgid ""
+"A lilac is a large plant which occupies two blocks. It is mainly used in dye "
+"production."
+msgstr "الليلك نبات كبير يشغل كتلتين، ويُستخدم أساسًا في إنتاج الأصباغ."
+
+#: mods/ITEMS/mcl_flowers/register.lua:225
+msgid "Sunflower"
+msgstr "عباد الشمس"
+
+#: mods/ITEMS/mcl_flowers/register.lua:226
+msgid ""
+"A sunflower is a large plant which occupies two blocks. It is mainly used in "
+"dye production."
+msgstr "عباد الشمس نبات كبير يشغل كتلتين، ويُستخدم أساسًا في إنتاج الأصباغ."
+
+#: mods/ITEMS/mcl_flowers/register.lua:269
+msgid "Double Tallgrass"
+msgstr "عشب طويل مزدوج"
+
+#: mods/ITEMS/mcl_flowers/register.lua:270
+msgid ""
+"Double tallgrass a variant of tall grass and occupies two blocks. It can be "
+"harvested for wheat seeds."
+msgstr "العشب الطويل المزدوج نوع من العشب الطويل ويشغل كتلتين. يمكن حصاده للحصول على بذور القمح."
+
+#: mods/ITEMS/mcl_flowers/register.lua:286
+msgid "Large Fern"
+msgstr "سرخس كبير"
+
+#: mods/ITEMS/mcl_flowers/register.lua:287
+msgid ""
+"Large fern is a variant of fern and occupies two blocks. It can be harvested "
+"for wheat seeds."
+msgstr "السرخس الكبير نوع من السرخس ويشغل كتلتين. يمكن حصاده للحصول على بذور القمح."
+
+#: mods/ITEMS/mcl_flowers/register.lua:303
+msgid "Tall Grass"
+msgstr "عشب طويل"
+
+#: mods/ITEMS/mcl_flowers/register.lua:305
+msgid ""
+"Tall grass is a small plant which often occurs on the surface of grasslands. "
+"It can be harvested for wheat seeds. By using bone meal, tall grass can be "
+"turned into double tallgrass which is two blocks high."
+msgstr "العشب الطويل نبات صغير يظهر غالبًا على سطح الأراضي العشبية. يمكن حصاده للحصول على بذور القمح. ويمكن استخدام مسحوق العظام لتحويله إلى عشب طويل مزدوج يبلغ ارتفاعه كتلتين."
+
+#: mods/ITEMS/mcl_flowers/register.lua:349
+#: mods/ITEMS/mcl_flowers/register.lua:372
+msgid "Fern"
+msgstr "سرخس"
+
+#: mods/ITEMS/mcl_flowers/register.lua:350
+msgid ""
+"Ferns are small plants which occur naturally in jungles and taigas. They can "
+"be harvested for wheat seeds. By using bone meal, a fern can be turned into "
+"a large fern which is two blocks high."
+msgstr "السراخس نباتات صغيرة تنمو طبيعيًا في الأدغال وغابات التايغا. يمكن حصادها للحصول على بذور القمح. ويمكن استخدام مسحوق العظام لتحويل السرخس إلى سرخس كبير يبلغ ارتفاعه كتلتين."
+
+#: mods/ITEMS/mcl_flowers/register.lua:388
+msgid "Bush"
+msgstr "شجيرة"
+
+#: mods/ITEMS/mcl_flowers/register.lua:403
+msgid "Firefly Bush"
+msgstr "شجيرة اليراعات"
+
+#: mods/ITEMS/mcl_flowers/register.lua:444
+msgid "Short Dry Grass"
+msgstr "عشب جاف قصير"
+
+#: mods/ITEMS/mcl_flowers/register.lua:479
+msgid "Tall Dry Grass"
+msgstr "عشب جاف طويل"
+
+#: mods/ITEMS/mcl_flowers/register.lua:514
+msgid "Lily Pad"
+msgstr "ورقة زنبق الماء"
+
+#: mods/ITEMS/mcl_flowers/register.lua:515
+msgid ""
+"A lily pad is a flat plant block which can be walked on. They can be placed "
+"on water sources, ice and frosted ice."
+msgstr "ورقة زنبق الماء كتلة نباتية مسطحة يمكن المشي فوقها. ويمكن وضعها على مصادر الماء والجليد والجليد المتجمد."
+
