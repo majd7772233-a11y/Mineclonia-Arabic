@@ -82,6 +82,10 @@ function Invoke-Helper($Fixture, [string]$SelectedPath, [ValidateSet("env", "app
         [Environment]::SetEnvironmentVariable("MINETEST_USER_PATH", $null, "Process")
         if ($ConfigMode -eq "env") {
             [Environment]::SetEnvironmentVariable("LUANTI_USER_PATH", $Fixture.UserPath, "Process")
+        } elseif ($ConfigMode -eq "run-in-place") {
+            # Luanti's RUN_IN_PLACE branch bypasses setSystemPaths(), so the
+            # install-root minetest.conf must win even when this variable is set.
+            [Environment]::SetEnvironmentVariable("LUANTI_USER_PATH", $Fixture.UserPath, "Process")
         } else {
             [Environment]::SetEnvironmentVariable("LUANTI_USER_PATH", $null, "Process")
         }
@@ -188,10 +192,15 @@ try {
     [void](Invoke-Helper $portableFixture $portableFixture.Root "run-in-place")
     Assert-ArabicIsInstalled $portableFixture "run-in-place"
 
-    # The APPDATA config must remain untouched when RUN_IN_PLACE selects the install root.
+    # RUN_IN_PLACE must beat both APPDATA and LUANTI_USER_PATH: the engine itself
+    # ignores those system-path overrides in this compile-time mode.
     $untouchedAppDataConfig = [IO.File]::ReadAllText((Join-Path $portableFixture.AppData "Minetest\minetest.conf"))
     if (!$untouchedAppDataConfig.Contains("language = arbe")) {
         throw "RUN_IN_PLACE detection incorrectly modified the APPDATA config instead of the install-root config."
+    }
+    $untouchedOverrideConfig = [IO.File]::ReadAllText($portableFixture.ConfigFile)
+    if (!$untouchedOverrideConfig.Contains("language = arbe")) {
+        throw "RUN_IN_PLACE detection incorrectly honored LUANTI_USER_PATH even though Luanti bypasses it in this mode."
     }
 
     # Insert Arabic when the option-label table has no Arabic row.
