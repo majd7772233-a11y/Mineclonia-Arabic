@@ -42,6 +42,9 @@
 #include "irrArray.h"
 #include "path.h"
 
+#include <utility>
+#include <vector>
+
 namespace gui {
 	class IGUIEnvironment;
 }
@@ -185,6 +188,17 @@ namespace gui
 			virtual s32 getCursorPosition(const wchar_t *text, s32 char_index) const override;
 			virtual s32 getNextCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const override;
 			virtual s32 getVisualCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const override;
+
+			//! Visual pixel intervals and expanded logical range for a selection.
+			//! Multiple intervals are returned when BiDi reordering separates
+			//! the selected logical range into disjoint visual runs.
+			struct SVisualSelectionLayout {
+				std::vector<std::pair<s32, s32>> intervals;
+				s32 source_start = 0;
+				s32 source_end = 0;
+			};
+			SVisualSelectionLayout getVisualSelectionLayout(
+					const wchar_t *text, s32 start, s32 end) const;
 
 			//! Sets global kerning width for the font.
 			virtual void setKerningWidth(s32 kerning) override;
