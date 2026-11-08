@@ -86,17 +86,22 @@ output is inspected.
 - Added the complete Arabic built-in runtime catalog: 245/245 keys from `builtin/locale/template.txt`.
 - Added a byte-identical packaged copy under `luanti/5.17.0/builtin/locale/__builtin.ar.tr`.
 - Preserved `LANG_CODE=ar` in the Arabic Luanti gettext catalog.
-- Added 323 non-fuzzy Arabic translations for engine settings and UI descriptions across two batches (163 + 160) in this work session.
+- Added 840 Arabic engine gettext translations across six batches (111, 163, 160, 160, 151, 95) and reviewed all 249 previously fuzzy entries.
 - Added `tools/validate_luanti_arabic.py` and made engine builds depend on Arabic catalog validation plus `msgfmt --check --check-format`.
-- Current gettext coverage: **920 / 1,326 non-fuzzy messages (69.4%)**. There are **406 empty non-fuzzy messages** and **249 fuzzy entries**; fuzzy entries are not counted as approved translations.
-- The validation workflow checks source/bundle synchronization, template key parity, empty built-in translations, placeholders, PO metadata, `LANG_CODE`, and a non-fuzzy coverage floor of 760.
+- Current gettext coverage: **1,575 / 1,575 messages (100%)**. There are **0 empty entries** and **0 fuzzy entries**; all 249 previously fuzzy entries were individually corrected/reviewed and their fuzzy status removed.
+- The validation workflow checks source/bundle synchronization, template key parity, empty built-in translations, placeholders, PO metadata, `LANG_CODE`, and a complete gettext coverage floor of 1,575 messages.
 
 ### Still in progress / not yet accepted
 
-- Translate and review the remaining 566 non-fuzzy engine messages, especially the remaining settings descriptions from `src/settings_translation_file.cpp`.
-- Review the 249 fuzzy entries individually; do not promote them wholesale.
 - Complete Linux and Windows client builds, run the C++ unit tests, and verify all Raqm/HarfBuzz/FriBidi runtime dependencies are included in the portable packages.
 - Verify the GUI integration matrix: static labels, buttons, menus, formspecs, hypertext, chat, inventory, settings, input editing, selection, cursor movement, mixed-direction text, ligatures, diacritics, combining marks, and font fallback.
 - Capture and inspect mixed Arabic/Latin regression screenshots on actual clients. A successful PO validation alone is not evidence that Arabic rendering is correct.
 
 The current work is isolated to `work/arabic-engine-support`; it has not been merged into `main`. Android and legacy toolchain targets remain unsupported until matching Raqm, HarfBuzz, and FriBidi binaries are available and tested.
+
+
+### Complete gettext catalog — 2026-11-08
+
+The Arabic Luanti gettext catalog is now complete: **1,575/1,575 messages translated**, with no empty entries, no remaining fuzzy flags, no duplicate gettext keys, and no placeholder mismatches in the catalog scan. The 249 entries that were previously fuzzy were individually corrected or confirmed before removing their fuzzy markers. `LANG_CODE` remains `ar`.
+
+The CI coverage floor is set to 1,575 so a newly introduced untranslated engine message causes validation to fail. This is a catalog-completeness milestone only; it is not yet proof of a successful native client build or correct visual layout in every GUI surface. The Linux/Windows build, C++ regression tests, packaged runtime dependencies, and real-client RTL screenshot matrix remain outstanding until their CI and runtime results are verified.
