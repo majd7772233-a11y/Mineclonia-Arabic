@@ -49,6 +49,65 @@ inline ShapingClusterBoundaries getShapingClusterBoundaries(
 	return result;
 }
 
+inline std::vector<std::pair<int, int>> getVisualSelectionIntervals(
+		raqm_t *layout, size_t text_length, size_t selection_start,
+		size_t selection_end)
+{
+	std::vector<std::pair<int, int>> intervals;
+	if (!layout || text_length == 0 || selection_start >= selection_end)
+		return intervals;
+
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout, &glyph_count);
+	if (!glyphs || glyph_count == 0)
+		return intervals;
+
+	const auto clusters = getShapingClusterBoundaries(layout, text_length);
+	if (!clusters.available)
+		return intervals;
+
+	int pen = 0;
+	int min_pen = 0;
+	for (size_t i = 0; i < glyph_count; ++i) {
+		pen += glyphs[i].x_advance;
+		min_pen = std::min(min_pen, pen);
+	}
+
+	pen = 0;
+	for (size_t i = 0; i < glyph_count; ++i) {
+		const int before = pen;
+		pen += glyphs[i].x_advance;
+
+		const size_t cluster_start = glyphs[i].cluster;
+		if (cluster_start >= text_length)
+			continue;
+
+		const auto next_cluster = std::upper_bound(
+				clusters.starts.begin(), clusters.starts.end(), cluster_start);
+		const size_t cluster_end = next_cluster != clusters.starts.end()
+				? *next_cluster : text_length;
+		if (cluster_start >= selection_end || cluster_end <= selection_start)
+			continue;
+
+		const int left = std::min(before, pen) - min_pen;
+		const int right = std::max(before, pen) - min_pen;
+		if (right > left)
+			intervals.emplace_back(left, right);
+	}
+
+	std::sort(intervals.begin(), intervals.end());
+	std::vector<std::pair<int, int>> merged;
+	merged.reserve(intervals.size());
+	for (const auto &interval : intervals) {
+		if (merged.empty() || interval.first > merged.back().second) {
+			merged.push_back(interval);
+		} else {
+			merged.back().second = std::max(merged.back().second, interval.second);
+		}
+	}
+	return merged;
+}
+
 inline bool isAllowedCursorBoundary(raqm_t *layout, size_t boundary,
 		size_t text_length, const ShapingClusterBoundaries &shaping_clusters)
 {
