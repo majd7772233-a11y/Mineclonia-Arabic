@@ -89,7 +89,8 @@ void StaticText::draw()
 
 		IRR_DOWN_CAST<CGUITTFont *>(font)->draw(BrokenText, r,
 				false, false,
-				RestrainTextInside ? &AbsoluteClippingRect : nullptr);
+				RestrainTextInside ? &AbsoluteClippingRect : nullptr,
+				RightToLeft ? RAQM_DIRECTION_RTL : RAQM_DIRECTION_LTR);
 	}
 
 	IGUIElement::draw();
