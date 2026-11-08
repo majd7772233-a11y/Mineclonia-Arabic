@@ -512,8 +512,14 @@ void StaticText::updateAbsolutePosition()
 
 core::dimension2du StaticText::getTextDimensions() const
 {
-	if (const auto font = getActiveFont())
+	if (const auto font = getActiveFont()) {
+		if (font->getType() == EGFT_CUSTOM) {
+			auto *ttfont = static_cast<CGUITTFont *>(font);
+			return ttfont->getDimension(BrokenText.c_str(),
+					RightToLeft ? RAQM_DIRECTION_RTL : RAQM_DIRECTION_LTR);
+		}
 		return font->getDimension(BrokenText.c_str());
+	}
 	return core::dimension2du();
 }
 
