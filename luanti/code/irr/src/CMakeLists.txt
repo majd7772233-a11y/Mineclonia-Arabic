@@ -445,6 +445,10 @@ add_library(IRRGUIOBJ OBJECT
 	CGUIImageList.cpp
 )
 
+# CGUIEditBox includes the TrueType font interface for Raqm-aware editing.
+# Keep the engine extension headers available to the Irrlicht GUI object target.
+target_include_directories(IRRGUIOBJ PRIVATE "${PROJECT_SOURCE_DIR}/src/irrlicht_changes")
+
 # Library
 
 file(GLOB_RECURSE IrrlichtMt_PUBLIC_HDRS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h")
