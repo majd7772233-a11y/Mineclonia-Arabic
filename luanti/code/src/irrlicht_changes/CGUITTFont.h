@@ -188,6 +188,7 @@ namespace gui
 			virtual s32 getCursorPosition(const wchar_t *text, s32 char_index) const override;
 			virtual s32 getNextCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const override;
 			virtual s32 getVisualCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const override;
+			s32 getVisualWordCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const;
 
 			//! Visual pixel intervals and expanded logical range for a selection.
 			//! Multiple intervals are returned when BiDi reordering separates
