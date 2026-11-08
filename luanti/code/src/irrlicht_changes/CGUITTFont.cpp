@@ -1241,6 +1241,78 @@ s32 CGUITTFont::getCursorPosition(const wchar_t *text, s32 char_index) const
 }
 
 
+CGUITTFont::SVisualSelectionLayout CGUITTFont::getVisualSelectionLayout(
+		const wchar_t *text, s32 start, s32 end) const
+{
+	SVisualSelectionLayout result;
+	if (!text)
+		return result;
+
+	const size_t wide_length = wcslen(text);
+	const s32 limit = static_cast<s32>(std::min<size_t>(wide_length, 0x7fffffff));
+	start = std::max<s32>(0, std::min<s32>(start, limit));
+	end = std::max<s32>(0, std::min<s32>(end, limit));
+	if (end < start)
+		std::swap(start, end);
+	result.source_start = start;
+	result.source_end = end;
+	if (start == end || wide_length == 0)
+		return result;
+
+	const std::u32string unicode = convertWCharToU32String(text);
+	const size_t scalar_start = wideIndexToU32Index(text, static_cast<size_t>(start));
+	const size_t scalar_end = wideIndexToU32Index(text, static_cast<size_t>(end));
+	raqm_t *layout = createLayout(unicode);
+	if (!layout)
+		return result;
+
+	const auto clusters = text_layout::getShapingClusterBoundaries(layout, unicode.size());
+	if (clusters.available) {
+		// Expand the color range to whole shaped clusters. A logical selection
+		// that touches one half of a ligature must recolor the complete glyph.
+		auto first = std::lower_bound(
+				clusters.starts.begin(), clusters.starts.end(), scalar_start);
+		size_t expanded_start = 0;
+		if (first != clusters.starts.begin()) {
+			--first;
+			expanded_start = *first;
+		} else if (first != clusters.starts.end()) {
+			expanded_start = std::min(scalar_start, *first);
+		}
+
+		auto last = std::lower_bound(
+				clusters.starts.begin(), clusters.starts.end(), scalar_end);
+		const size_t expanded_end = last != clusters.starts.end()
+				? *last : unicode.size();
+		result.source_start = u32IndexToWideIndex(text, expanded_start);
+		result.source_end = u32IndexToWideIndex(text, std::max(expanded_start, expanded_end));
+
+		const auto fixed_intervals = text_layout::getVisualSelectionIntervals(
+				layout, unicode.size(), scalar_start, scalar_end);
+		const s32 line_width = fixedToSignedPixels(getLayoutWidth(layout));
+		result.intervals.reserve(fixed_intervals.size());
+		for (const auto &interval : fixed_intervals) {
+			const s32 left = std::max<s32>(0, fixedToSignedPixels(interval.first));
+			const s32 right = std::min<s32>(
+					line_width, fixedToSignedPixels(interval.second));
+			if (right > left)
+				result.intervals.emplace_back(left, right);
+		}
+	} else {
+		// Preserve a useful selection if the layout engine cannot expose glyph
+		// clusters, while normal Raqm-backed text uses exact visual intervals.
+		const s32 first_x = getCursorPosition(text, start);
+		const s32 last_x = getCursorPosition(text, end);
+		const s32 left = std::max<s32>(0, std::min(first_x, last_x));
+		const s32 right = std::max(first_x, last_x);
+		if (right > left)
+			result.intervals.emplace_back(left, right);
+	}
+
+	raqm_destroy(layout);
+	return result;
+}
+
 s32 CGUITTFont::getNextCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const
 {
 	if (!text || !*text)
