@@ -503,10 +503,16 @@ void CGUIEditBox::processKeyLR(const SEvent::SKeyInput &input, s32 &new_mark_beg
 
 	s32 new_pos;
 	if (input.Control) {
-		// Advance to next/previous word
-		new_pos = getCtrlKeyWord(CursorPos, dir);
+		// Move by word in visual order for complex-script fonts. Keep the
+		// legacy logical traversal for bitmap/other font implementations.
+		if (IGUIFont *font = getActiveFont(); font && font->getType() == EGFT_CUSTOM) {
+			auto *ttfont = static_cast<CGUITTFont *>(font);
+			new_pos = ttfont->getVisualWordCursorPosition(Text.c_str(), CursorPos, dir);
+		} else {
+			new_pos = getCtrlKeyWord(CursorPos, dir);
+		}
 	} else {
-		// Move by a complete grapheme cluster while keeping the source text logical.
+		// Move by a complete grapheme/ligature cluster in visual direction.
 		if (IGUIFont *font = getActiveFont())
 			new_pos = font->getVisualCursorPosition(Text.c_str(), CursorPos, dir);
 		else
