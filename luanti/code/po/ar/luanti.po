@@ -3235,7 +3235,7 @@ msgid ""
 "Setting this to a value greater than max_block_send_distance disables this\n"
 "optimization.\n"
 "Stated in MapBlocks (16 nodes)."
-msgstr ""
+msgstr "عند هذه المسافة، يحسّن الخادم بصورة مكثفة اختيار الكتل التي يرسلها إلى العملاء.\nقد تحسّن القيم الصغيرة الأداء بدرجة كبيرة، لكنها قد تسبب عيوباً مرئية في العرض\n(مثل عدم عرض بعض الكتل بصورة صحيحة داخل الكهوف).\nتؤدي قيمة أكبر من max_block_send_distance إلى تعطيل هذا التحسين.\nتُقاس المسافة بوحدات MapBlocks (كل وحدة تساوي 16 عقدة)."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3245,7 +3245,7 @@ msgid ""
 "client in one roundtrip.\n"
 "This is especially useful for very large viewing range (upwards of 500).\n"
 "Stated in MapBlocks (16 nodes)."
-msgstr ""
+msgstr "عند هذه المسافة، يعتبر الخادم الكتل بعيدة.\nويجري فحوصات أبسط وأقل كلفة لحجب الكتل، ويؤجل تحديثات الكتل منخفضة الأولوية،\nويحد من عدد الكتل المرسلة إلى العميل في كل جولة اتصال.\nيفيد ذلك خصوصاً عند استخدام مدى رؤية كبير جداً (أكثر من 500).\nتُقاس المسافة بوحدات MapBlocks (كل وحدة تساوي 16 عقدة)."
 
 #: src/settings_translation_file.cpp
 msgid "Audio"
@@ -3371,7 +3371,7 @@ msgstr "انسيابية حركة الكامير في الوضع السنيما�
 msgid ""
 "Caps the maximum number of layers used with array textures (if supported).\n"
 "This is only useful for debugging."
-msgstr ""
+msgstr "يحدد الحد الأقصى لعدد الطبقات المستخدمة في الأنسجة المصفوفية (إن كانت مدعومة).\nهذا الخيار مفيد لأغراض تصحيح الأخطاء فقط."
 
 #: src/settings_translation_file.cpp
 msgid "Capture Tracy zones"
@@ -3554,7 +3554,7 @@ msgstr "ظلال ملونة"
 msgid ""
 "Comma-separated list of AL and ALC extensions that should not be used.\n"
 "Useful for testing. See al_extensions.[h,cpp] for details."
-msgstr ""
+msgstr "قائمة مفصولة بفواصل بامتدادات AL وALC التي يجب عدم استخدامها.\nتفيد هذه القائمة في الاختبار. راجع al_extensions.[h,cpp] لمزيد من التفاصيل."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3565,7 +3565,7 @@ msgid ""
 "You can also specify content ratings.\n"
 "These flags are independent from Luanti versions,\n"
 "so see a full list at https://content.luanti.org/help/content_flags/"
-msgstr ""
+msgstr "قائمة مفصولة بفواصل بالعلامات التي يجب إخفاؤها في مستودع المحتوى.\nيمكن استخدام \"nonfree\" لإخفاء الحزم التي لا تستوفي تعريف «البرمجيات الحرة»\nوفقاً لمؤسسة البرمجيات الحرة.\nيمكنك أيضاً تحديد تصنيفات المحتوى.\nهذه العلامات مستقلة عن إصدارات Luanti؛ راجع القائمة الكاملة على:\nhttps://content.luanti.org/help/content_flags/"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3580,7 +3580,7 @@ msgstr ""
 msgid ""
 "Comma-separated list of trusted mods that are allowed to access insecure\n"
 "functions even when mod security is on (via request_insecure_environment())."
-msgstr ""
+msgstr "قائمة مفصولة بفواصل بالإضافات الموثوقة المسموح لها بالوصول إلى الدوال غير الآمنة\nحتى عند تفعيل أمان الإضافات، وذلك عبر request_insecure_environment()."
 
 #: src/settings_translation_file.cpp
 msgid "Command"
@@ -3733,7 +3733,7 @@ msgid ""
 "pipeline.\n"
 "Reducing this can improve performance, but some effects (e.g. debanding)\n"
 "require more than 8 bits to work."
-msgstr ""
+msgstr "يحدد عمق ألوان النسيج المستخدم في مسار المعالجة اللاحقة.\nقد يؤدي تقليله إلى تحسين الأداء، لكن بعض التأثيرات (مثل إزالة التدرجات المتقطعة)\nتحتاج إلى أكثر من 8 بتات لتعمل."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -3972,7 +3972,7 @@ msgstr "التأثيرات"
 
 #: src/settings_translation_file.cpp
 msgid "Enable Automatic Exposure"
-msgstr ""
+msgstr "تفعيل التعريض التلقائي"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -3981,7 +3981,7 @@ msgstr "فعِل الكل"
 
 #: src/settings_translation_file.cpp
 msgid "Enable Bloom Debug"
-msgstr ""
+msgstr "تفعيل تصحيح تأثير التوهج"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -4012,15 +4012,15 @@ msgid ""
 "Enable Poisson disk filtering.\n"
 "On true uses Poisson disk to make \"soft shadows\". Otherwise uses PCF "
 "filtering."
-msgstr ""
+msgstr "تفعيل ترشيح قرص بواسون.\nعند التفعيل، يُستخدم قرص بواسون لإنشاء «ظلال ناعمة»، وإلا فيُستخدم ترشيح PCF."
 
 #: src/settings_translation_file.cpp
 msgid "Enable Post Processing"
-msgstr ""
+msgstr "تفعيل المعالجة اللاحقة"
 
 #: src/settings_translation_file.cpp
 msgid "Enable Raytraced Culling"
-msgstr ""
+msgstr "تفعيل الاستبعاد باستخدام تتبع الأشعة"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -4167,7 +4167,7 @@ msgid ""
 "floatlands.\n"
 "Values < 1.0 (for example 0.25) create a more defined surface level with\n"
 "flatter lowlands, suitable for a solid floatland layer."
-msgstr ""
+msgstr "أسّ تضييق الأراضي العائمة. يغيّر طريقة تضييقها.\nالقيمة 1.0 تنشئ تضييقاً خطياً منتظماً.\nالقيم الأكبر من 1.0 تنشئ تضييقاً ناعماً يناسب الأراضي العائمة المنفصلة افتراضياً.\nأما القيم الأصغر من 1.0 (مثل 0.25) فتنشئ مستوى سطح أكثر تحديداً\nومناطق منخفضة أكثر استواءً، بما يناسب طبقة أراضٍ عائمة متصلة."
 
 #: src/settings_translation_file.cpp
 msgid "Exposure compensation"
@@ -4215,7 +4215,7 @@ msgid ""
 "File in client/serverlist/ that contains your favorite servers displayed in "
 "the\n"
 "Multiplayer Tab."
-msgstr ""
+msgstr "الملف داخل client/serverlist/ الذي يحتوي على خوادمك المفضلة المعروضة\nفي تبويب اللعب الجماعي."
 
 #: src/settings_translation_file.cpp
 msgid "Filler depth"
@@ -4236,11 +4236,11 @@ msgstr "التنعييم:"
 
 #: src/settings_translation_file.cpp
 msgid "First of 4 2D noises that together define hill/mountain range height."
-msgstr ""
+msgstr "أول ضجيج من أربعة ضوضاء ثنائية الأبعاد تحدد مجتمعة ارتفاع التلال وسلاسل الجبال."
 
 #: src/settings_translation_file.cpp
 msgid "First of two 3D noises that together define tunnels."
-msgstr ""
+msgstr "أول ضجيجين ثلاثيي الأبعاد يحددان شكل الأنفاق معاً."
 
 #: src/settings_translation_file.cpp
 msgid "Fixed map seed"
@@ -4382,7 +4382,7 @@ msgstr "عتامة خلفية النماذج بملء الشاشة (من 0 إل�
 
 #: src/settings_translation_file.cpp
 msgid "Fourth of 4 2D noises that together define hill/mountain range height."
-msgstr ""
+msgstr "رابع ضجيج من أربعة ضوضاء ثنائية الأبعاد تحدد مجتمعة ارتفاع التلال وسلاسل الجبال."
 
 #: src/settings_translation_file.cpp
 msgid "Fractal type"
@@ -4396,12 +4396,12 @@ msgstr "النسبة من مسافة الرؤية التي يبدأ عندها �
 msgid ""
 "From how far blocks are generated for clients, stated in mapblocks (16 "
 "nodes)."
-msgstr ""
+msgstr "أقصى مسافة لتوليد الكتل للعملاء، بوحدة كتل الخريطة (16 عقدة)."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "From how far blocks are sent to clients, stated in mapblocks (16 nodes)."
-msgstr ""
+msgstr "أقصى مسافة لإرسال الكتل إلى العملاء، بوحدة كتل الخريطة (16 عقدة)."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4410,82 +4410,82 @@ msgid ""
 "Setting this larger than active_block_range will also cause the server\n"
 "to maintain active objects up to this distance in the direction the\n"
 "player is looking. (This can avoid mobs suddenly disappearing from view)"
-msgstr ""
+msgstr "المسافة التي يظل العملاء على علم بالكائنات ضمنها، بوحدة كتل الخريطة (16 عقدة).\n\nإذا كانت هذه القيمة أكبر من active_block_range، فسيحتفظ الخادم أيضاً\nبالكائنات النشطة حتى هذه المسافة في اتجاه نظر اللاعب.\n(قد يمنع ذلك اختفاء الكائنات فجأة من مجال الرؤية)."
 
 #: src/settings_translation_file.cpp
 msgid "Full screen"
-msgstr ""
+msgstr "ملء الشاشة"
 
 #: src/settings_translation_file.cpp
 msgid "Fullscreen mode."
-msgstr ""
+msgstr "وضع ملء الشاشة."
 
 #: src/settings_translation_file.cpp
 msgid "GUI"
-msgstr ""
+msgstr "واجهة المستخدم الرسومية"
 
 #: src/settings_translation_file.cpp
 msgid "GUI scaling"
-msgstr ""
+msgstr "تحجيم واجهة المستخدم"
 
 #: src/settings_translation_file.cpp
 msgid "GUI scaling filter"
-msgstr ""
+msgstr "مرشح تحجيم واجهة المستخدم"
 
 #: src/settings_translation_file.cpp
 msgid "Gamepads and Joysticks"
-msgstr ""
+msgstr "وحدات التحكم وعصي التحكم"
 
 #: src/settings_translation_file.cpp
 msgid "Gamma"
-msgstr ""
+msgstr "غاما"
 
 #: src/settings_translation_file.cpp
 msgid "Global callbacks"
-msgstr ""
+msgstr "عمليات الاستدعاء العامة"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Global map generation attributes.\n"
 "In Mapgen v6 the 'decorations' flag controls all decorations except trees\n"
 "and jungle grass, in all other mapgens this flag controls all decorations."
-msgstr ""
+msgstr "سمات توليد الخريطة العامة.\nفي Mapgen v6 يتحكم الخيار 'decorations' في جميع الزخارف باستثناء الأشجار\nوعشب الأدغال؛ أما في مولدات الخرائط الأخرى فيتحكم هذا الخيار في جميع الزخارف."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Gradient of light curve at maximum light level.\n"
 "Controls the contrast of the highest light levels."
-msgstr ""
+msgstr "تدرج منحنى الإضاءة عند أعلى مستوى للضوء.\nيتحكم في تباين مستويات الإضاءة الأعلى."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Gradient of light curve at minimum light level.\n"
 "Controls the contrast of the lowest light levels."
-msgstr ""
+msgstr "تدرج منحنى الإضاءة عند أدنى مستوى للضوء.\nيتحكم في تباين مستويات الإضاءة الأدنى."
 
 #: src/settings_translation_file.cpp
 msgid "Graphics"
-msgstr ""
+msgstr "الرسومات"
 
 #: src/settings_translation_file.cpp
 msgid "Graphics and Audio"
-msgstr ""
+msgstr "الرسومات والصوت"
 
 #: src/settings_translation_file.cpp
 msgid "Gravity"
-msgstr ""
+msgstr "الجاذبية"
 
 #: src/settings_translation_file.cpp
 msgid "Ground level"
-msgstr ""
+msgstr "مستوى الأرض"
 
 #: src/settings_translation_file.cpp
 msgid "Ground noise"
-msgstr ""
+msgstr "ضجيج سطح الأرض"
 
 #: src/settings_translation_file.cpp
 msgid "HTTP mods"
-msgstr ""
+msgstr "إضافات HTTP"
 
 #: src/settings_translation_file.cpp
 msgid "HUD"
@@ -4502,7 +4502,7 @@ msgid ""
 "-    none: Do not log deprecated calls\n"
 "-    log: mimic and log backtrace of deprecated call (default).\n"
 "-    error: abort on usage of deprecated call (suggested for mod developers)."
-msgstr ""
+msgstr "طريقة التعامل مع استدعاءات واجهة Lua البرمجية المهجورة:\n-    none: عدم تسجيل الاستدعاءات المهجورة.\n-    log: محاكاة الاستدعاء المهجور وتسجيل تتبع مكدس الاستدعاء (افتراضي).\n-    error: إيقاف التنفيذ عند استخدام استدعاء مهجور (موصى به لمطوري الإضافات)."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4511,55 +4511,55 @@ msgid ""
 "This estimates the overhead, that instrumentation is adding (+1 function "
 "call).\n"
 "* Instrument the sampler being used to update the statistics."
-msgstr ""
+msgstr "اجعل محلّل الأداء يقيس كلفة عمله بنفسه:\n* قياس دالة فارغة.\nيساعد ذلك على تقدير الكلفة الإضافية التي تضيفها أدوات القياس (استدعاء دالة واحد إضافي).\n* قياس أداة أخذ العينات المستخدمة لتحديث الإحصاءات."
 
 #: src/settings_translation_file.cpp
 msgid "Heat blend noise"
-msgstr ""
+msgstr "ضجيج مزج الحرارة"
 
 #: src/settings_translation_file.cpp
 msgid "Heat noise"
-msgstr ""
+msgstr "ضجيج الحرارة"
 
 #: src/settings_translation_file.cpp
 msgid "Height component of the initial window size."
-msgstr ""
+msgstr "مكوّن الارتفاع من حجم النافذة الأولي."
 
 #: src/settings_translation_file.cpp
 msgid "Height noise"
-msgstr ""
+msgstr "ضجيج الارتفاع"
 
 #: src/settings_translation_file.cpp
 msgid "Height select noise"
-msgstr ""
+msgstr "ضجيج اختيار الارتفاع"
 
 #: src/settings_translation_file.cpp
 msgid "Hill steepness"
-msgstr ""
+msgstr "انحدار التلال"
 
 #: src/settings_translation_file.cpp
 msgid "Hill threshold"
-msgstr ""
+msgstr "عتبة التلال"
 
 #: src/settings_translation_file.cpp
 msgid "Hilliness1 noise"
-msgstr ""
+msgstr "ضجيج وعورة التلال 1"
 
 #: src/settings_translation_file.cpp
 msgid "Hilliness2 noise"
-msgstr ""
+msgstr "ضجيج وعورة التلال 2"
 
 #: src/settings_translation_file.cpp
 msgid "Hilliness3 noise"
-msgstr ""
+msgstr "ضجيج وعورة التلال 3"
 
 #: src/settings_translation_file.cpp
 msgid "Hilliness4 noise"
-msgstr ""
+msgstr "ضجيج وعورة التلال 4"
 
 #: src/settings_translation_file.cpp
 msgid "Homepage of server, to be displayed in the serverlist."
-msgstr ""
+msgstr "الصفحة الرئيسية للخادم، وتُعرض في قائمة الخوادم."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4747,11 +4747,11 @@ msgstr "مفتاح الخانة 9 في شريط الإجراءات"
 
 #: src/settings_translation_file.cpp
 msgid "Hotbar: Enable mouse wheel for selection"
-msgstr ""
+msgstr "شريط العناصر السريع: تفعيل عجلة الفأرة للاختيار"
 
 #: src/settings_translation_file.cpp
 msgid "Hotbar: Invert mouse wheel direction"
-msgstr ""
+msgstr "شريط العناصر السريع: عكس اتجاه عجلة الفأرة"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -4765,7 +4765,7 @@ msgstr "مفتاح العنصر السابق في شريط الإجراءات"
 
 #: src/settings_translation_file.cpp
 msgid "How deep to make rivers."
-msgstr ""
+msgstr "يحدد عمق الأنهار."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -4782,7 +4782,7 @@ msgid ""
 "How long the server will wait before unloading unused mapblocks, stated in "
 "seconds.\n"
 "Higher value is smoother, but will use more RAM."
-msgstr ""
+msgstr "المدة التي ينتظرها الخادم قبل إلغاء تحميل كتل الخريطة غير المستخدمة، بالثواني.\nتجعل القيمة الأعلى الأداء أكثر سلاسة، لكنها تستهلك ذاكرة RAM أكبر."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -4793,15 +4793,15 @@ msgstr "قلل منه لزيادة مقاومة الحركة في السوائل
 
 #: src/settings_translation_file.cpp
 msgid "How wide to make rivers."
-msgstr ""
+msgstr "يحدد عرض الأنهار."
 
 #: src/settings_translation_file.cpp
 msgid "Humidity blend noise"
-msgstr ""
+msgstr "ضجيج مزج الرطوبة"
 
 #: src/settings_translation_file.cpp
 msgid "Humidity noise"
-msgstr ""
+msgstr "ضجيج الرطوبة"
 
 #: src/settings_translation_file.cpp
 msgid "Humidity variation for biomes."
@@ -4838,7 +4838,7 @@ msgid ""
 "If enabled and you have ContentDB packages installed, Luanti may contact "
 "ContentDB to\n"
 "check for package updates when opening the mainmenu."
-msgstr ""
+msgstr "عند التفعيل ووجود حزم مثبتة من ContentDB، قد يتصل Luanti بـContentDB\nللتحقق من تحديثات الحزم عند فتح القائمة الرئيسية."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4853,37 +4853,37 @@ msgstr ""
 msgid ""
 "If enabled, invalid world data won't cause the server to shut down.\n"
 "Only enable this if you know what you are doing."
-msgstr ""
+msgstr "عند التفعيل، لن تؤدي بيانات العالم غير الصالحة إلى إيقاف الخادم.\nلا تفعّل هذا الخيار إلا إذا كنت تعرف ما تفعله."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, node and inventory actions are recorded for rollback.\n"
 "This option is only read on server start. Note that the engine will not\n"
 "automatically clean old entries from the rollback database."
-msgstr ""
+msgstr "عند التفعيل، تُسجل عمليات العقد والمخزون لاستخدامها في التراجع عن التغييرات.\nلا يُقرأ هذا الخيار إلا عند بدء الخادم. لاحظ أن المحرك لن يحذف تلقائياً\nالسجلات القديمة من قاعدة بيانات التراجع."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, players cannot join without a password or change theirs to an "
 "empty password."
-msgstr ""
+msgstr "عند التفعيل، لا يمكن للاعبين الانضمام دون كلمة مرور أو تغيير كلمات مرورهم إلى قيمة فارغة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, server account registration is separate from login in the UI.\n"
 "If disabled, connecting to a server will automatically register a new "
 "account."
-msgstr ""
+msgstr "عند التفعيل، يكون إنشاء حساب الخادم منفصلاً عن تسجيل الدخول في الواجهة.\nوعند تعطيله، يؤدي الاتصال بالخادم تلقائياً إلى إنشاء حساب جديد."
 
 #: src/settings_translation_file.cpp
 msgid "If enabled, the \"Aux1\" key will toggle when pressed."
-msgstr ""
+msgstr "عند التفعيل، يعمل زر \"Aux1\" كمفتاح تبديل عند الضغط عليه."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, the \"Sneak\" key will toggle when pressed.\n"
 "This functionality is ignored when fly is enabled."
-msgstr ""
+msgstr "عند التفعيل، يعمل زر \"Sneak\" كمفتاح تبديل عند الضغط عليه.\nيُتجاهل هذا الخيار عند تفعيل وضع الطيران."
 
 #: src/settings_translation_file.cpp
 #, no-c-format
@@ -4892,27 +4892,27 @@ msgid ""
 "on the eye position of the player. This can reduce the number of blocks\n"
 "sent to the client by 50-80%. Clients will no longer receive most\n"
 "invisible blocks, so that the utility of noclip mode is reduced."
-msgstr ""
+msgstr "عند التفعيل، ينفذ الخادم استبعاد الكتل المحجوبة اعتماداً على موضع عين اللاعب.\nقد يقلل ذلك عدد الكتل المرسلة إلى العميل بنسبة تتراوح بين 50 و80٪.\nلن يتلقى العملاء معظم الكتل غير المرئية، مما يقلل فائدة وضع المرور عبر الكتل (noclip)."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, you can place nodes at the position (feet + eye level) where you "
 "stand.\n"
 "This is helpful when working with nodeboxes in small areas."
-msgstr ""
+msgstr "عند التفعيل، يمكنك وضع العقد عند موضع وقوفك (مستوى القدمين والعينين).\nيفيد ذلك عند العمل مع صناديق العقد في المساحات الصغيرة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If the CSM restriction for node range is enabled, get_node calls are "
 "limited\n"
 "to this distance from the player to the node."
-msgstr ""
+msgstr "عند تفعيل تقييد نطاق العقد في CSM، تُحصر استدعاءات get_node\nبهذه المسافة بين اللاعب والعقدة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If the execution of a chat command takes longer than this specified time in\n"
 "seconds, add the time information to the chat command message"
-msgstr ""
+msgstr "إذا استغرق تنفيذ أمر دردشة وقتاً أطول من هذه المدة المحددة بالثواني،\nتُضاف معلومات المدة إلى رسالة أمر الدردشة."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4920,28 +4920,28 @@ msgid ""
 "this setting when it is opened, the file is moved to debug.txt.1,\n"
 "deleting an older debug.txt.1 if it exists.\n"
 "debug.txt is only moved if this setting is positive."
-msgstr ""
+msgstr "إذا تجاوز حجم الملف debug.txt عند فتحه عدد الميغابايتات المحدد هنا،\nفسيُنقل إلى debug.txt.1، مع حذف الملف debug.txt.1 الأقدم إن كان موجوداً.\nلا يُنقل debug.txt إلا إذا كانت قيمة هذا الإعداد موجبة."
 
 #: src/settings_translation_file.cpp
 msgid "If this is set, players will always (re)spawn at the given position."
-msgstr ""
+msgstr "عند تعيين هذا الخيار، سيظهر اللاعبون دائماً (أو يعيدون الظهور) عند الموضع المحدد."
 
 #: src/settings_translation_file.cpp
 msgid "Ignore world errors"
-msgstr ""
+msgstr "تجاهل أخطاء العالم"
 
 #: src/settings_translation_file.cpp
 msgid "In-game chat console background alpha (opaqueness, between 0 and 255)."
-msgstr ""
+msgstr "عتامة خلفية وحدة تحكم الدردشة داخل اللعبة (من 0 إلى 255)."
 
 #: src/settings_translation_file.cpp
 msgid "In-game chat console background color (R,G,B)."
-msgstr ""
+msgstr "لون خلفية وحدة تحكم الدردشة داخل اللعبة (R,G,B)."
 
 #: src/settings_translation_file.cpp
 #, no-c-format
 msgid "In-game chat console height, between 0.1 (10%) and 1.0 (100%)."
-msgstr ""
+msgstr "ارتفاع وحدة تحكم الدردشة داخل اللعبة، من 0.1 (10٪) إلى 1.0 (100٪)."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -4955,77 +4955,77 @@ msgstr "زد الحجم"
 
 #: src/settings_translation_file.cpp
 msgid "Initial vertical speed when jumping, in nodes per second."
-msgstr ""
+msgstr "السرعة الرأسية الابتدائية عند القفز، بوحدة العقد في الثانية."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Instrument builtin.\n"
 "This is usually only needed by core/builtin contributors"
-msgstr ""
+msgstr "قياس أداء مكونات builtin.\nلا تكون هذه الميزة مطلوبة عادةً إلا للمساهمين في core/builtin."
 
 #: src/settings_translation_file.cpp
 msgid "Instrument chat commands on registration."
-msgstr ""
+msgstr "قياس أداء أوامر الدردشة عند تسجيلها."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Instrument global callback functions on registration.\n"
 "(anything you pass to a core.register_*() function)"
-msgstr ""
+msgstr "قياس أداء دوال الاستدعاء العامة عند تسجيلها.\n(أي دالة تمررها إلى إحدى دوال core.register_*())."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Instrument the action function of Active Block Modifiers on registration."
-msgstr ""
+msgstr "قياس أداء دالة التنفيذ الخاصة بمعدّلات الكتل النشطة (ABM) عند تسجيلها."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Instrument the action function of Loading Block Modifiers on registration."
-msgstr ""
+msgstr "قياس أداء دالة التنفيذ الخاصة بمعدّلات تحميل الكتل عند تسجيلها."
 
 #: src/settings_translation_file.cpp
 msgid "Instrument the methods of entities on registration."
-msgstr ""
+msgstr "قياس أداء طرائق الكيانات عند تسجيلها."
 
 #: src/settings_translation_file.cpp
 msgid "Interaction style"
-msgstr ""
+msgstr "أسلوب التفاعل"
 
 #: src/settings_translation_file.cpp
 msgid "Interval of saving important changes in the world, stated in seconds."
-msgstr ""
+msgstr "الفاصل الزمني لحفظ التغييرات المهمة في العالم، بالثواني."
 
 #: src/settings_translation_file.cpp
 msgid "Inventory items animations"
-msgstr ""
+msgstr "تحريك عناصر المخزون"
 
 #: src/settings_translation_file.cpp
 msgid "Invert mouse"
-msgstr ""
+msgstr "عكس محور الفأرة"
 
 #: src/settings_translation_file.cpp
 msgid "Invert mouse wheel (scroll) direction for item selection in hotbar."
-msgstr ""
+msgstr "عكس اتجاه عجلة الفأرة (التمرير) عند اختيار العناصر في شريط العناصر السريع."
 
 #: src/settings_translation_file.cpp
 msgid "Invert vertical mouse movement."
-msgstr ""
+msgstr "عكس حركة الفأرة العمودية."
 
 #: src/settings_translation_file.cpp
 msgid "Italic font path"
-msgstr ""
+msgstr "مسار الخط المائل"
 
 #: src/settings_translation_file.cpp
 msgid "Italic monospace font path"
-msgstr ""
+msgstr "مسار الخط ثابت العرض المائل"
 
 #: src/settings_translation_file.cpp
 msgid "Item entity TTL"
-msgstr ""
+msgstr "مدة بقاء كيان العنصر (TTL)"
 
 #: src/settings_translation_file.cpp
 msgid "Iterations"
-msgstr ""
+msgstr "عدد التكرارات"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5033,23 +5033,23 @@ msgid ""
 "Increasing this increases the amount of fine detail, but also\n"
 "increases processing load.\n"
 "At iterations = 20 this mapgen has a similar load to mapgen V7."
-msgstr ""
+msgstr "عدد تكرارات الدالة递归.\nتؤدي زيادته إلى إظهار تفاصيل أدق، لكنها تزيد أيضاً حمل المعالجة.\nعند iterations = 20 يكون حمل مولّد الخريطة مشابهاً لحمل mapgen V7."
 
 #: src/settings_translation_file.cpp
 msgid "Joystick button repetition interval"
-msgstr ""
+msgstr "الفاصل الزمني لتكرار ضغط زر عصا التحكم"
 
 #: src/settings_translation_file.cpp
 msgid "Joystick frustum sensitivity"
-msgstr ""
+msgstr "حساسية مجال الرؤية لعصا التحكم"
 
 #: src/settings_translation_file.cpp
 msgid "Joystick inner dead zone"
-msgstr ""
+msgstr "منطقة الخمول الداخلية لعصا التحكم"
 
 #: src/settings_translation_file.cpp
 msgid "Joystick outer dead zone"
-msgstr ""
+msgstr "منطقة الخمول الخارجية لعصا التحكم"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5058,7 +5058,7 @@ msgid ""
 "Alters the shape of the fractal.\n"
 "Has no effect on 3D fractals.\n"
 "Range roughly -2 to 2."
-msgstr ""
+msgstr "خاص بمجموعات Julia فقط.\nمكوّن W من الثابت فائق التعقيد.\nيغيّر شكل الفراكتال.\nليس له تأثير على الفراكتالات ثلاثية الأبعاد.\nيتراوح المجال تقريباً من ‎-2 إلى 2."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5066,7 +5066,7 @@ msgid ""
 "X component of hypercomplex constant.\n"
 "Alters the shape of the fractal.\n"
 "Range roughly -2 to 2."
-msgstr ""
+msgstr "خاص بمجموعات Julia فقط.\nمكوّن X من الثابت فائق التعقيد.\nيغيّر شكل الفراكتال.\nيتراوح المجال تقريباً من ‎-2 إلى 2."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5074,7 +5074,7 @@ msgid ""
 "Y component of hypercomplex constant.\n"
 "Alters the shape of the fractal.\n"
 "Range roughly -2 to 2."
-msgstr ""
+msgstr "خاص بمجموعات Julia فقط.\nمكوّن Y من الثابت فائق التعقيد.\nيغيّر شكل الفراكتال.\nيتراوح المجال تقريباً من ‎-2 إلى 2."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5082,97 +5082,97 @@ msgid ""
 "Z component of hypercomplex constant.\n"
 "Alters the shape of the fractal.\n"
 "Range roughly -2 to 2."
-msgstr ""
+msgstr "خاص بمجموعات Julia فقط.\nمكوّن Z من الثابت فائق التعقيد.\nيغيّر شكل الفراكتال.\nيتراوح المجال تقريباً من ‎-2 إلى 2."
 
 #: src/settings_translation_file.cpp
 msgid "Julia w"
-msgstr ""
+msgstr "قيمة W لمجموعة Julia"
 
 #: src/settings_translation_file.cpp
 msgid "Julia x"
-msgstr ""
+msgstr "قيمة X لمجموعة Julia"
 
 #: src/settings_translation_file.cpp
 msgid "Julia y"
-msgstr ""
+msgstr "قيمة Y لمجموعة Julia"
 
 #: src/settings_translation_file.cpp
 msgid "Julia z"
-msgstr ""
+msgstr "قيمة Z لمجموعة Julia"
 
 #: src/settings_translation_file.cpp
 msgid "Jumping speed"
-msgstr ""
+msgstr "سرعة القفز"
 
 #: src/settings_translation_file.cpp
 msgid "Key for decrementing the selected value in Quicktune."
-msgstr ""
+msgstr "المفتاح المستخدم لتقليل القيمة المحددة في Quicktune."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Key for digging, punching or using something.\n"
 "(Note: The actual meaning might vary on a per-game basis.)"
-msgstr ""
+msgstr "المفتاح المستخدم للحفر أو الضرب أو استخدام شيء ما.\n(ملاحظة: قد يختلف المعنى الفعلي باختلاف اللعبة)."
 
 #: src/settings_translation_file.cpp
 msgid "Key for incrementing the selected value in Quicktune."
-msgstr ""
+msgstr "المفتاح المستخدم لزيادة القيمة المحددة في Quicktune."
 
 #: src/settings_translation_file.cpp
 msgid "Key for moving fast in fast mode."
-msgstr ""
+msgstr "المفتاح المستخدم للتحرك بسرعة في الوضع السريع."
 
 #: src/settings_translation_file.cpp
 msgid "Key for opening the chat window to type commands."
-msgstr ""
+msgstr "المفتاح المستخدم لفتح نافذة الدردشة لكتابة الأوامر."
 
 #: src/settings_translation_file.cpp
 msgid "Key for opening the chat window to type local commands."
-msgstr ""
+msgstr "المفتاح المستخدم لفتح نافذة الدردشة لكتابة الأوامر المحلية."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Key for opening the pause menu in-game.\n"
 "Pressing the escape key always opens the pause menu."
-msgstr ""
+msgstr "المفتاح المستخدم لفتح قائمة الإيقاف المؤقت داخل اللعبة.\nيؤدي الضغط على مفتاح Escape دائماً إلى فتح قائمة الإيقاف المؤقت."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Key for placing an item/block or for using something.\n"
 "(Note: The actual meaning might vary on a per-game basis.)"
-msgstr ""
+msgstr "المفتاح المستخدم لوضع عنصر أو كتلة أو لاستخدام شيء ما.\n(ملاحظة: قد يختلف المعنى الفعلي باختلاف اللعبة)."
 
 #: src/settings_translation_file.cpp
 msgid "Key for switching to the next entry in Quicktune."
-msgstr ""
+msgstr "المفتاح المستخدم للانتقال إلى العنصر التالي في Quicktune."
 
 #: src/settings_translation_file.cpp
 msgid "Key for switching to the previous entry in Quicktune."
-msgstr ""
+msgstr "المفتاح المستخدم للانتقال إلى العنصر السابق في Quicktune."
 
 #: src/settings_translation_file.cpp
 msgid "Key for toggling the camera update. Only usable with 'debug' privilege."
-msgstr ""
+msgstr "المفتاح المستخدم لتبديل تحديث الكاميرا. لا يمكن استخدامه إلا مع صلاحية 'debug'."
 
 #: src/settings_translation_file.cpp
 msgid "Key for toggling the display of mapblock boundaries."
-msgstr ""
+msgstr "المفتاح المستخدم لتبديل عرض حدود كتل الخريطة."
 
 #: src/settings_translation_file.cpp
 msgid "Key for toggling the display of the profiler. Used for development."
-msgstr ""
+msgstr "المفتاح المستخدم لتبديل عرض محلّل الأداء. يُستخدم لأغراض التطوير."
 
 #: src/settings_translation_file.cpp
 msgid "Keyboard and Mouse"
-msgstr ""
+msgstr "لوحة المفاتيح والفأرة"
 
 #: src/settings_translation_file.cpp
 msgid "Keyboard camera speed"
-msgstr ""
+msgstr "سرعة الكاميرا باستخدام لوحة المفاتيح"
 
 #: src/settings_translation_file.cpp
 msgid "Keyboard-controlled camera rotation speed, in degrees per second."
-msgstr ""
+msgstr "سرعة تدوير الكاميرا باستخدام لوحة المفاتيح، بالدرجات في الثانية."
 
 #: src/settings_translation_file.cpp
 msgid "Kick players who sent more than X messages per 10 seconds."
@@ -5180,11 +5180,11 @@ msgstr "اطرد اللاعبين الذين أرسلوا أكثر من X رسا
 
 #: src/settings_translation_file.cpp
 msgid "Lake steepness"
-msgstr ""
+msgstr "انحدار البحيرات"
 
 #: src/settings_translation_file.cpp
 msgid "Lake threshold"
-msgstr ""
+msgstr "عتبة البحيرات"
 
 #: src/settings_translation_file.cpp
 msgid "Language"
@@ -5204,7 +5204,7 @@ msgstr "أقل عدد للمغارات الكبيرة"
 
 #: src/settings_translation_file.cpp
 msgid "Large cave proportion flooded"
-msgstr ""
+msgstr "نسبة الكهوف الكبيرة المغمورة بالماء"
 
 #: src/settings_translation_file.cpp
 msgid "Leaves style"
@@ -5231,26 +5231,26 @@ msgid ""
 "Does not apply to sessions hosted from the client menu.\n"
 "This is a lower bound, i.e. server steps may not be shorter than this, but\n"
 "they are often longer."
-msgstr ""
+msgstr "مدة نبضة الخادم (الفاصل الزمني الذي تُحدّث عنده الأمور عموماً)، بالثواني.\nلا ينطبق ذلك على الجلسات المستضافة من قائمة العميل.\nهذه قيمة حد أدنى؛ أي إن خطوات الخادم لا يمكن أن تكون أقصر منها،\nلكنها غالباً ما تكون أطول."
 
 #: src/settings_translation_file.cpp
 msgid "Length of liquid waves."
-msgstr ""
+msgstr "طول موجات السوائل."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Length of time between Active Block Modifier (ABM) execution cycles, stated "
 "in seconds."
-msgstr ""
+msgstr "المدة بين دورات تنفيذ معدّل الكتل النشطة (ABM)، بالثواني."
 
 #: src/settings_translation_file.cpp
 msgid "Length of time between NodeTimer execution cycles, stated in seconds."
-msgstr ""
+msgstr "المدة بين دورات تنفيذ مؤقت العقدة (NodeTimer)، بالثواني."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Length of time between active block management cycles, stated in seconds."
-msgstr ""
+msgstr "المدة بين دورات إدارة الكتل النشطة، بالثواني."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5263,31 +5263,31 @@ msgid ""
 "-    info\n"
 "-    verbose\n"
 "-    trace"
-msgstr ""
+msgstr "مستوى السجل الذي سيُكتب في debug.txt:\n-    <nothing> (دون تسجيل)\n-    none (رسائل بلا مستوى)\n-    error (أخطاء)\n-    warning (تحذيرات)\n-    action (إجراءات)\n-    info (معلومات)\n-    verbose (تفصيلي)\n-    trace (تتبع)"
 
 #: src/settings_translation_file.cpp
 msgid "Light curve boost"
-msgstr ""
+msgstr "تعزيز منحنى الإضاءة"
 
 #: src/settings_translation_file.cpp
 msgid "Light curve boost center"
-msgstr ""
+msgstr "مركز تعزيز منحنى الإضاءة"
 
 #: src/settings_translation_file.cpp
 msgid "Light curve boost spread"
-msgstr ""
+msgstr "اتساع تعزيز منحنى الإضاءة"
 
 #: src/settings_translation_file.cpp
 msgid "Light curve gamma"
-msgstr ""
+msgstr "غاما منحنى الإضاءة"
 
 #: src/settings_translation_file.cpp
 msgid "Light curve high gradient"
-msgstr ""
+msgstr "تدرج الجزء الأعلى من منحنى الإضاءة"
 
 #: src/settings_translation_file.cpp
 msgid "Light curve low gradient"
-msgstr ""
+msgstr "تدرج الجزء الأدنى من منحنى الإضاءة"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -5299,7 +5299,7 @@ msgid ""
 "Limit of map generation, in nodes, in all 6 directions from (0, 0, 0).\n"
 "Only mapchunks completely within the mapgen limit are generated.\n"
 "Value is stored per-world."
-msgstr ""
+msgstr "حد توليد الخريطة بالعقد في الاتجاهات الستة انطلاقاً من (0, 0, 0).\nلا تُولّد إلا مقاطع الخريطة الواقعة بالكامل داخل هذا الحد.\nتُحفظ القيمة لكل عالم على حدة."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5308,39 +5308,39 @@ msgid ""
 "-    Serverlist download and server announcement.\n"
 "-    Downloads performed by main menu (e.g. mod manager).\n"
 "Only has an effect if compiled with cURL."
-msgstr ""
+msgstr "يحدد الحد الأقصى لعدد طلبات HTTP المتوازية. يؤثر ذلك في:\n-    جلب الوسائط إذا كان الخادم يستخدم الإعداد remote_media.\n-    تنزيل قائمة الخوادم وإعلانات الخادم.\n-    التنزيلات التي تنفذها القائمة الرئيسية (مثل مدير الإضافات).\nلا يكون لهذا الخيار تأثير إلا إذا جرى بناء المحرك مع cURL."
 
 #: src/settings_translation_file.cpp
 msgid "Liquid fluidity"
-msgstr ""
+msgstr "سيولة السوائل"
 
 #: src/settings_translation_file.cpp
 msgid "Liquid fluidity smoothing"
-msgstr ""
+msgstr "تنعيم سيولة السوائل"
 
 #: src/settings_translation_file.cpp
 msgid "Liquid loop max"
-msgstr ""
+msgstr "الحد الأقصى لحلقة السوائل"
 
 #: src/settings_translation_file.cpp
 msgid "Liquid queue purge time"
-msgstr ""
+msgstr "مدة تنظيف قائمة انتظار السوائل"
 
 #: src/settings_translation_file.cpp
 msgid "Liquid reflections"
-msgstr ""
+msgstr "انعكاسات السوائل"
 
 #: src/settings_translation_file.cpp
 msgid "Liquid sinking"
-msgstr ""
+msgstr "غوص السوائل"
 
 #: src/settings_translation_file.cpp
 msgid "Liquid update interval in seconds."
-msgstr ""
+msgstr "الفاصل الزمني لتحديث السوائل بالثواني."
 
 #: src/settings_translation_file.cpp
 msgid "Liquid update tick"
-msgstr ""
+msgstr "نبضة تحديث السوائل"
 
 #: src/settings_translation_file.cpp
 msgid "Load the game profiler"
@@ -5351,11 +5351,11 @@ msgid ""
 "Load the game profiler to collect game profiling data.\n"
 "Provides a /profiler command to access the compiled profile.\n"
 "Useful for mod developers and server operators."
-msgstr ""
+msgstr "تحميل محلّل أداء اللعبة لجمع بيانات تحليل الأداء.\nيوفر الأمر /profiler للوصول إلى ملف الأداء المُجمّع.\nيفيد ذلك مطوري الإضافات ومشغلي الخوادم."
 
 #: src/settings_translation_file.cpp
 msgid "Loading Block Modifiers"
-msgstr ""
+msgstr "معدّلات تحميل الكتل"
 
 #: src/settings_translation_file.cpp
 msgid "Local command"
@@ -5363,7 +5363,7 @@ msgstr "الأمر المحلي"
 
 #: src/settings_translation_file.cpp
 msgid "Look down"
-msgstr ""
+msgstr "النظر إلى الأسفل"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -5372,46 +5372,46 @@ msgstr "حركة"
 
 #: src/settings_translation_file.cpp
 msgid "Look right"
-msgstr ""
+msgstr "النظر إلى اليمين"
 
 #: src/settings_translation_file.cpp
 msgid "Look up"
-msgstr ""
+msgstr "النظر إلى الأعلى"
 
 #: src/settings_translation_file.cpp
 msgid "Lower Y limit of dungeons."
-msgstr ""
+msgstr "الحد الأدنى لإحداثي Y للسراديب."
 
 #: src/settings_translation_file.cpp
 msgid "Lower Y limit of floatlands."
-msgstr ""
+msgstr "الحد الأدنى لإحداثي Y للأراضي العائمة."
 
 #: src/settings_translation_file.cpp
 msgid "Main menu script"
-msgstr ""
+msgstr "برنامج نصي للقائمة الرئيسية"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Make fog and sky colors depend on daytime (dawn/sunset) and view direction."
-msgstr ""
+msgstr "جعل ألوان الضباب والسماء تعتمد على وقت اليوم (الفجر/الغروب) واتجاه النظر."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Make volumetrics weaker against closer objects to emulate physical "
 "volumetrics."
-msgstr ""
+msgstr "تقليل تأثير المؤثرات الحجمية على الأجسام القريبة لمحاكاة المؤثرات الحجمية الفيزيائية."
 
 #: src/settings_translation_file.cpp
 msgid "Makes the color of light fog more saturated."
-msgstr ""
+msgstr "يجعل لون الضباب الخفيف أكثر تشبعاً."
 
 #: src/settings_translation_file.cpp
 msgid "Map Compression Level for Disk Storage"
-msgstr ""
+msgstr "مستوى ضغط الخريطة عند التخزين على القرص"
 
 #: src/settings_translation_file.cpp
 msgid "Map Compression Level for Network Transfer"
-msgstr ""
+msgstr "مستوى ضغط الخريطة عند نقلها عبر الشبكة"
 
 #: src/settings_translation_file.cpp
 msgid "Map directory"
