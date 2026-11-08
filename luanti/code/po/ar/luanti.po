@@ -5033,7 +5033,7 @@ msgid ""
 "Increasing this increases the amount of fine detail, but also\n"
 "increases processing load.\n"
 "At iterations = 20 this mapgen has a similar load to mapgen V7."
-msgstr "عدد تكرارات الدالة递归.\nتؤدي زيادته إلى إظهار تفاصيل أدق، لكنها تزيد أيضاً حمل المعالجة.\nعند iterations = 20 يكون حمل مولّد الخريطة مشابهاً لحمل mapgen V7."
+msgstr "عدد مرات تكرار الدالة العودية.\nتؤدي زيادته إلى إظهار تفاصيل أدق، لكنها تزيد أيضاً حمل المعالجة.\nعند iterations = 20 يكون حمل مولّد الخريطة مشابهاً لحمل mapgen V7."
 
 #: src/settings_translation_file.cpp
 msgid "Joystick button repetition interval"
