@@ -1270,22 +1270,10 @@ CGUITTFont::SVisualSelectionLayout CGUITTFont::getVisualSelectionLayout(
 	if (clusters.available) {
 		// Expand the color range to whole shaped clusters. A logical selection
 		// that touches one half of a ligature must recolor the complete glyph.
-		auto first = std::lower_bound(
-				clusters.starts.begin(), clusters.starts.end(), scalar_start);
-		size_t expanded_start = 0;
-		if (first != clusters.starts.begin()) {
-			--first;
-			expanded_start = *first;
-		} else if (first != clusters.starts.end()) {
-			expanded_start = std::min(scalar_start, *first);
-		}
-
-		auto last = std::lower_bound(
-				clusters.starts.begin(), clusters.starts.end(), scalar_end);
-		const size_t expanded_end = last != clusters.starts.end()
-				? *last : unicode.size();
-		result.source_start = u32IndexToWideIndex(text, expanded_start);
-		result.source_end = u32IndexToWideIndex(text, std::max(expanded_start, expanded_end));
+		const auto expanded = text_layout::expandSelectionToShapingClusters(
+				clusters, unicode.size(), scalar_start, scalar_end);
+		result.source_start = u32IndexToWideIndex(text, expanded.first);
+		result.source_end = u32IndexToWideIndex(text, expanded.second);
 
 		const auto fixed_intervals = text_layout::getVisualSelectionIntervals(
 				layout, unicode.size(), scalar_start, scalar_end);
