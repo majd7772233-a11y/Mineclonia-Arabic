@@ -89,7 +89,7 @@ msgstr "استعرض"
 
 #: builtin/common/settings/components.lua
 msgid "Conflicts with \"$1\""
-msgstr "يختلف مع \"$١\""
+msgstr "يتعارض مع \"$1\""
 
 #: builtin/common/settings/components.lua
 msgid "Edit"
@@ -113,7 +113,7 @@ msgstr "اختار"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "$1 spread"
-msgstr "تم توزيع ١$"
+msgstr "تم توزيع $1"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "(No description of setting given)"
@@ -566,7 +566,7 @@ msgstr "نحن ندعم نسخ الميفاق ما بين $1 و $2."
 
 #: builtin/mainmenu/content/contentdb.lua
 msgid "Error installing \"$1\": $2"
-msgstr "خطأ في تثبيت \"1$\" : 2$"
+msgstr "خطأ أثناء تثبيت \"$1\": $2"
 
 #: builtin/mainmenu/content/contentdb.lua
 msgid "Failed to download \"$1\""
@@ -649,7 +649,7 @@ msgstr "حِزم الإكساء"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "The package $1 was not found."
-msgstr "لم يتم العثور على الحزمة 1$."
+msgstr "لم يتم العثور على الحزمة $1."
 
 #. TRANSLATORS: $1 = number of available updates
 #: builtin/mainmenu/content/dlg_contentdb.lua
@@ -673,7 +673,7 @@ msgstr "يحتاج $1 لكن لم يُعثر عليها."
 #. TRANSLATORS: $1 is the name of a package and $2 is a number of depencencies
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "$1 will be installed, and $2 dependencies will be skipped."
-msgstr "$1 سيُثبت، واعتماديات $1 ستُتجاهل."
+msgstr "سيتم تثبيت $1، وتخطي $2 من الاعتماديات."
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "Already installed"
@@ -1189,7 +1189,7 @@ msgstr "أكد كلمة المرور"
 #. TRANSLATORS: Message when joining a server
 #: builtin/mainmenu/dlg_register.lua
 msgid "Joining $1"
-msgstr "انضمام 1$"
+msgstr "جارٍ الانضمام إلى $1"
 
 #: builtin/mainmenu/dlg_register.lua
 msgid "Missing name"
@@ -1282,7 +1282,7 @@ msgstr "يستخدم الخادم $1 الإضافات التالية:"
 #. TRANSLATORS: $1 = name of the engine
 #: builtin/mainmenu/dlg_version_info.lua
 msgid "A new $1 version is available"
-msgstr "إصدار جديد ل 1$ متوفر"
+msgstr "يتوفر إصدار جديد من $1."
 
 #. TRANSLATORS: $1 and $2 are version numbers, $3 is a URL
 #: builtin/mainmenu/dlg_version_info.lua
@@ -1291,7 +1291,7 @@ msgid ""
 "New version: $2\n"
 "Visit $3 to find out how to get the newest version and stay up to date with "
 "features and bugfixes."
-msgstr ""
+msgstr "الإصدار المثبت: $1\nالإصدار الجديد: $2\nزُر $3 لمعرفة كيفية الحصول على أحدث إصدار والبقاء على اطلاع بالميزات وإصلاحات الأخطاء."
 "الأصدار المثبت: 1$\n"
 "الأصدار الجديد: 2$\n"
 "زر 3$ لمعرفة كيفية الحصول على الإصدار الأحدث والبقاء على اطلاع بالميزات "
