@@ -78,7 +78,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get update
-          sudo apt-get install --yes build-essential curl git pkg-config zip unzip tar ninja-build python3 autoconf autoconf-archive automake libtool libltdl-dev
+          sudo apt-get install --yes build-essential curl git pkg-config zip unzip tar ninja-build python3 autoconf autoconf-archive automake libtool libltdl-dev libgl1-mesa-dev
 
       - name: Install pinned CMake from PyPI
         uses: actions/setup-python@v6
