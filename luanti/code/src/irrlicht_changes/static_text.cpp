@@ -447,8 +447,8 @@ void StaticText::updateText()
 				{
 					// here comes the next whitespace, look if
 					// we must break the last word to the next line.
-					const s32 whitelgth = font->getDimension(whitespace.c_str()).Width;
-					const s32 wordlgth = font->getDimension(word.c_str()).Width;
+					const s32 whitelgth = measure_width(whitespace.c_str());
+					const s32 wordlgth = measure_width(word.c_str());
 
 					if (length && (length + wordlgth + whitelgth > elWidth))
 					{
