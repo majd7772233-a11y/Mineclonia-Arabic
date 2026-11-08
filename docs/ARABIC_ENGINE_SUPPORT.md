@@ -17,7 +17,8 @@ The client uses **libraqm** as the single paragraph-layout interface. Raqm combi
 - FreeType face selection and glyph metrics/rasterization.
 
 The pinned vcpkg baseline already contains libraqm, so the source uses that package rather
-than maintaining a local shaping implementation. The C++ renderer consumes Raqm's glyph
+than maintaining a local shaping implementation. Linux distribution builds additionally use
+`libraqm-dev`; the existing Homebrew CI path installs the `libraqm` formula. The C++ renderer consumes Raqm's glyph
 IDs, advances, offsets, source clusters, and selected FreeType face. It must not treat a
 Unicode scalar value as if it were a glyph ID.
 
@@ -68,6 +69,10 @@ Tests are required at three levels:
 - **Runtime/build tests:** Windows MSVC and Linux client builds; a Windows portable package
   containing all required DLLs and fonts; startup without external font installation;
   Arabic game UI and Mineclonia content; a mixed-direction regression screenshot suite.
+
+Android and the legacy MinGW/macOS-precompiled-dependency paths still require matching
+Raqm, HarfBuzz, and FriBidi binaries before those targets can be called supported. The
+standard vcpkg Windows and Linux jobs are the first supported build targets.
 
 A translation-PO validation pass is not evidence that the engine renders Arabic correctly.
 The feature is complete only when these tests run against the built client and the rendered
