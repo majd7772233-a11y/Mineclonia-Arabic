@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     env:
-      VCPKG_ROOT: ${{ runner.temp }}/vcpkg
+      VCPKG_ROOT: ${{ github.workspace }}/.vcpkg
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -63,7 +63,7 @@ jobs:
       - name: Restore vcpkg binary package cache
         uses: actions/cache@v4
         with:
-          path: ${{ runner.temp }}/vcpkg/installed
+          path: ${{ github.workspace }}/.vcpkg/installed
           key: vcpkg-luanti-linux-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
           restore-keys: |
             vcpkg-luanti-linux-x64-
@@ -112,7 +112,7 @@ jobs:
     runs-on: windows-2022
     timeout-minutes: 120
     env:
-      VCPKG_ROOT: ${{ runner.temp }}/vcpkg
+      VCPKG_ROOT: ${{ github.workspace }}/.vcpkg
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -130,7 +130,7 @@ jobs:
       - name: Restore vcpkg binary package cache
         uses: actions/cache@v4
         with:
-          path: ${{ runner.temp }}/vcpkg/installed
+          path: ${{ github.workspace }}/.vcpkg/installed
           key: vcpkg-luanti-windows-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
           restore-keys: |
             vcpkg-luanti-windows-x64-
