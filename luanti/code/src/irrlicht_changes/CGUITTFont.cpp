@@ -860,10 +860,20 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 
 core::dimension2d<u32> CGUITTFont::getDimension(const wchar_t* text) const
 {
-	return getDimension(convertWCharToU32String(text));
+	return getDimension(convertWCharToU32String(text), RAQM_DIRECTION_DEFAULT);
+}
+
+core::dimension2du CGUITTFont::getDimension(const wchar_t *text, raqm_direction_t direction) const
+{
+	return getDimension(convertWCharToU32String(text), direction);
 }
 
 core::dimension2d<u32> CGUITTFont::getDimension(const std::u32string& utext) const
+{
+	return getDimension(utext, RAQM_DIRECTION_DEFAULT);
+}
+
+core::dimension2d<u32> CGUITTFont::getDimension(const std::u32string& utext, raqm_direction_t direction) const
 {
 	const u32 line_height = getLineHeight();
 	u32 line_count = 1;
@@ -877,7 +887,7 @@ core::dimension2d<u32> CGUITTFont::getDimension(const std::u32string& utext) con
 
 		const std::u32string line = utext.substr(line_start, line_end - line_start);
 		if (!line.empty()) {
-			raqm_t *layout = createLayout(line);
+			raqm_t *layout = createLayout(line, direction);
 			if (layout) {
 				size_t glyph_count = 0;
 				raqm_glyph_t *glyphs = raqm_get_glyphs(layout, &glyph_count);
