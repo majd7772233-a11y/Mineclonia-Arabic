@@ -10,6 +10,7 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <utility>
 #include <vector>
 
 #include <raqm.h>
@@ -47,6 +48,35 @@ inline ShapingClusterBoundaries getShapingClusterBoundaries(
 			result.starts.end());
 	result.available = !result.starts.empty();
 	return result;
+}
+
+inline std::pair<size_t, size_t> expandSelectionToShapingClusters(
+		const ShapingClusterBoundaries &clusters, size_t text_length,
+		size_t selection_start, size_t selection_end)
+{
+	selection_start = std::min(selection_start, text_length);
+	selection_end = std::min(selection_end, text_length);
+	if (selection_end < selection_start)
+		std::swap(selection_start, selection_end);
+	if (!clusters.available || selection_start == selection_end)
+		return {selection_start, selection_end};
+
+	const auto first = std::lower_bound(
+			clusters.starts.begin(), clusters.starts.end(), selection_start);
+	size_t expanded_start = 0;
+	if (first != clusters.starts.end() && *first == selection_start) {
+		expanded_start = selection_start;
+	} else if (first != clusters.starts.begin()) {
+		auto previous = first;
+		--previous;
+		expanded_start = *previous;
+	}
+
+	const auto last = std::lower_bound(
+			clusters.starts.begin(), clusters.starts.end(), selection_end);
+	const size_t expanded_end = last != clusters.starts.end()
+			? *last : text_length;
+	return {expanded_start, std::max(expanded_start, expanded_end)};
 }
 
 inline std::vector<std::pair<int, int>> getVisualSelectionIntervals(
