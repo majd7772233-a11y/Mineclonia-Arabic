@@ -178,6 +178,7 @@ namespace gui
 
 			//! Returns the dimension of a text string.
 			virtual core::dimension2du getDimension(const wchar_t* text) const override;
+			core::dimension2du getDimension(const wchar_t *text, raqm_direction_t direction) const;
 
 			//! Calculates the index of the character in the text which is on a specific position.
 			virtual s32 getCharacterFromPos(const wchar_t* text, s32 pixel_x) const override;
@@ -239,6 +240,7 @@ namespace gui
 			// Helper functions for the same-named public member functions above
 			// (Since std::u32string is nicer to work with than wchar_t *)
 			core::dimension2d<u32> getDimension(const std::u32string& text) const;
+			core::dimension2d<u32> getDimension(const std::u32string& text, raqm_direction_t direction) const;
 			s32 getCharacterFromPos(const std::u32string& text, s32 pixel_x) const;
 
 			// Helper function for the above helper functions :P
