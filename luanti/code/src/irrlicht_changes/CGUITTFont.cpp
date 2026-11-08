@@ -32,6 +32,7 @@
 */
 
 #include "CGUITTFont.h"
+#include "font_text_layout.h"
 
 #include "log.h"
 #include "debug.h"
@@ -1279,17 +1280,21 @@ s32 CGUITTFont::getNextCursorPosition(const wchar_t *text, s32 char_index, s32 d
 	if (!layout)
 		return IGUIFont::getNextCursorPosition(text, char_index, direction);
 
+	const auto shaping_clusters =
+			text_layout::getShapingClusterBoundaries(layout, line.size());
 	size_t next = cursor - line_start;
 	if (direction < 0) {
 		while (next > 0) {
 			--next;
-			if (next == 0 || raqm_allowed_grapheme_boundary(layout, next - 1))
+			if (text_layout::isAllowedCursorBoundary(
+						layout, next, line.size(), shaping_clusters))
 				break;
 		}
 	} else {
 		while (next < line.size()) {
 			++next;
-			if (next == line.size() || raqm_allowed_grapheme_boundary(layout, next - 1))
+			if (text_layout::isAllowedCursorBoundary(
+						layout, next, line.size(), shaping_clusters))
 				break;
 		}
 	}
@@ -1322,11 +1327,13 @@ s32 CGUITTFont::getVisualCursorPosition(const wchar_t *text, s32 char_index, s32
 		return IGUIFont::getVisualCursorPosition(text, char_index, direction);
 
 	const size_t local_cursor = cursor - line_start;
+	const auto shaping_clusters =
+			text_layout::getShapingClusterBoundaries(layout, line.size());
 	std::vector<std::pair<s32, size_t>> stops;
 	stops.reserve(line.size() + 1);
 	for (size_t boundary = 0; boundary <= line.size(); ++boundary) {
-		if (boundary != 0 && boundary != line.size() &&
-				!raqm_allowed_grapheme_boundary(layout, boundary - 1))
+		if (!text_layout::isAllowedCursorBoundary(
+					layout, boundary, line.size(), shaping_clusters))
 			continue;
 		int x = 0;
 		if (layoutCursorX(layout, boundary, &x))
