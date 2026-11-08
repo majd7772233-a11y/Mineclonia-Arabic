@@ -77,3 +77,26 @@ standard vcpkg Windows and Linux jobs are the first supported build targets.
 A translation-PO validation pass is not evidence that the engine renders Arabic correctly.
 The feature is complete only when these tests run against the built client and the rendered
 output is inspected.
+
+
+## Implementation status — 2026-11-08
+
+### Completed in the working branch
+
+- Added the complete Arabic built-in runtime catalog: 245/245 keys from `builtin/locale/template.txt`.
+- Added a byte-identical packaged copy under `luanti/5.17.0/builtin/locale/__builtin.ar.tr`.
+- Preserved `LANG_CODE=ar` in the Arabic Luanti gettext catalog.
+- Added 163 non-fuzzy Arabic translations for engine settings and UI descriptions in this work session.
+- Added `tools/validate_luanti_arabic.py` and made engine builds depend on Arabic catalog validation plus `msgfmt --check --check-format`.
+- Current gettext coverage: **760 / 1,326 non-fuzzy messages (57.3%)**. There are **566 empty non-fuzzy messages** and **249 fuzzy entries**; fuzzy entries are not counted as approved translations.
+- The validation workflow checks source/bundle synchronization, template key parity, empty built-in translations, placeholders, PO metadata, `LANG_CODE`, and a non-fuzzy coverage floor of 760.
+
+### Still in progress / not yet accepted
+
+- Translate and review the remaining 566 non-fuzzy engine messages, especially the remaining settings descriptions from `src/settings_translation_file.cpp`.
+- Review the 249 fuzzy entries individually; do not promote them wholesale.
+- Complete Linux and Windows client builds, run the C++ unit tests, and verify all Raqm/HarfBuzz/FriBidi runtime dependencies are included in the portable packages.
+- Verify the GUI integration matrix: static labels, buttons, menus, formspecs, hypertext, chat, inventory, settings, input editing, selection, cursor movement, mixed-direction text, ligatures, diacritics, combining marks, and font fallback.
+- Capture and inspect mixed Arabic/Latin regression screenshots on actual clients. A successful PO validation alone is not evidence that Arabic rendering is correct.
+
+The current work is isolated to `work/arabic-engine-support`; it has not been merged into `main`. Android and legacy toolchain targets remain unsupported until matching Raqm, HarfBuzz, and FriBidi binaries are available and tested.
