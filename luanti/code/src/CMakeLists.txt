@@ -732,10 +732,10 @@ if(BUILD_CLIENT)
 		${LUA_BIT_LIBRARY}
 		lstrpack
 		sha256
-		${FREETYPE_LIBRARY}
 		${RAQM_LIBRARY}
 		${HARFBUZZ_LIBRARY}
 		${FRIBIDI_LIBRARY}
+		${FREETYPE_LIBRARY}
 		${PLATFORM_LIBS}
 		# on Android, Luanti depends on SDL2 directly
 		# on other platforms, only IrrlichtMt depends on SDL2
