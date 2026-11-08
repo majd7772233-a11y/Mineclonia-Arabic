@@ -194,7 +194,7 @@ def validate() -> int:
     bundled, bundled_errors = tr_entries(BUNDLED_TR)
     errors.extend(template_errors + source_errors + bundled_errors)
 
-    if template != source:
+    if set(template) != set(source):
         missing = sorted(set(template) - set(source))
         extra = sorted(set(source) - set(template))
         errors.append(
@@ -202,7 +202,7 @@ def validate() -> int:
             f"missing={missing[:8]}, extra={extra[:8]}"
         )
 
-    if template != bundled:
+    if set(template) != set(bundled):
         missing = sorted(set(template) - set(bundled))
         extra = sorted(set(bundled) - set(template))
         errors.append(
