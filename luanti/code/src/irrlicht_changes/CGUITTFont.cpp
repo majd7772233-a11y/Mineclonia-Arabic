@@ -62,7 +62,8 @@ bool isArabicScriptCodepoint(char32_t c)
 {
 	return (c >= 0x0600 && c <= 0x08FF) ||
 			(c >= 0xFB50 && c <= 0xFDFF) ||
-			(c >= 0xFE70 && c <= 0xFEFF);
+			(c >= 0xFE70 && c <= 0xFEFF) ||
+			(c >= 0x1EE00 && c <= 0x1EEFF);
 }
 
 bool isIgnorableForFontCoverage(char32_t c)
@@ -1348,11 +1349,17 @@ s32 CGUITTFont::getVisualCursorPosition(const wchar_t *text, s32 char_index, s32
 			break;
 		}
 	}
-	if (current_stop == stops.size()) {
-		for (size_t i = 0; i < stops.size(); ++i) {
-			if ((direction < 0 && stops[i].second < local_cursor) ||
-					(direction >= 0 && stops[i].second > local_cursor))
+	if (current_stop == stops.size() && !stops.empty()) {
+		int logical_cursor_x = 0;
+		if (layoutCursorX(layout, local_cursor, &logical_cursor_x)) {
+			int best_distance = std::numeric_limits<int>::max();
+			for (size_t i = 0; i < stops.size(); ++i) {
+				const int distance = std::abs(stops[i].first - fixedToSignedPixels(logical_cursor_x));
+				if (distance < best_distance) {
+					best_distance = distance;
 					current_stop = i;
+				}
+			}
 		}
 	}
 
