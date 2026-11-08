@@ -58,9 +58,9 @@ Unicode scalar value as if it were a glyph ID.
 Tests are required at three levels:
 
 - **Layout unit tests:** the current suite covers Arabic contextual joining, lam-alef and its
-  shaping-cluster cursor boundary, selected Arabic Extended letters, Arabic/Latin mixed runs,
-  BiDi isolates with Arabic-Indic digits, combining-mark grapheme boundaries, explicit
-  paragraph direction, and font fallback.
+  shaping-cluster cursor/selection boundaries, selected Arabic Extended letters, Arabic/Latin
+  mixed runs with discontiguous visual selection intervals, BiDi isolates with Arabic-Indic
+  digits, combining-mark grapheme boundaries, explicit paragraph direction, and font fallback.
   Further coverage remains for paired brackets/embeddings, emoji and supplementary-plane
   characters, invalid Unicode replacement, color spans, and additional grapheme boundaries.
 - **GUI integration tests:** measurement equals rendered advances; wrapping never detaches
@@ -114,4 +114,13 @@ The CI coverage floor is set to 1,575 so a newly introduced untranslated engine 
 - Cursor movement and deletion now respect both Unicode grapheme boundaries and Raqm glyph-cluster boundaries. This prevents the cursor from stopping between two source characters that are rendered as one mandatory ligature, such as lam-alef.
 - Added the shared helper `src/irrlicht_changes/font_text_layout.h` and regression assertions proving that the lam-alef source boundary is a valid UAX #29 grapheme boundary but not an allowed shaped-cursor boundary.
 - Edit-box selection highlighting now passes the full logical line through Raqm with per-character colors. It no longer reshapes only the selected Arabic substring, which could change joining forms at the selection edges.
-- The visual background for a mixed-direction selection is still drawn as a single interval. Multi-run/discontiguous selection geometry and copy/paste behavior still need GUI-level verification.
+- Mixed-direction selection backgrounds are now derived from Raqm glyph clusters and drawn as multiple visual intervals when required. The full logical line remains in the shaping context, and partial selections expand their foreground color to the complete ligature cluster. Copy/paste and real-client verification still need to be completed.
+
+
+### Discontiguous BiDi selection geometry — 2026-11-08
+
+- Added `getVisualSelectionIntervals` in `font_text_layout.h`. It walks Raqm's visual glyph order, maps each glyph's logical cluster range to its visual advance, then merges only adjacent/overlapping visual intervals. A logical selection can therefore produce multiple separate rectangles.
+- Added `CGUITTFont::getVisualSelectionLayout`, which returns visual pixel intervals and a cluster-expanded source range. It converts UTF-16 indices safely on Windows and keeps color selection aligned with complete shaping clusters.
+- Updated `CGUIEditBox::draw` to draw each returned highlight interval independently and render the complete enriched logical line with cluster-expanded selected colors.
+- Added a regression using `abc مرحبا def`: selecting the Latin prefix and only the first logical Arabic character must produce two separated visual intervals. Added a lam-alef regression showing that selecting only the alef expands the foreground color range to the complete lam-alef glyph.
+- This implementation still requires the current Linux and Windows CI jobs to compile and run the unit tests. It also needs interactive verification for mouse drag selection, keyboard Shift-selection, copy/paste, and scrolling.
