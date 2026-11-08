@@ -57,11 +57,11 @@ Unicode scalar value as if it were a glyph ID.
 
 Tests are required at three levels:
 
-- **Layout unit tests:** Arabic joining positions; lam-alef and other OpenType ligatures;
-  tashkeel/combining marks; Arabic Extended characters; paired brackets; isolates and
-  embeddings; Arabic and Latin mixed runs; Western and Arabic-Indic digits; emoji and
-  supplementary-plane characters; line boundaries; invalid Unicode replacement;
-  color spans; clusters and grapheme boundaries.
+- **Layout unit tests:** the current suite covers Arabic contextual joining, lam-alef,
+  selected Arabic Extended letters, Arabic/Latin mixed runs, BiDi isolates with Arabic-Indic
+  digits, combining-mark grapheme boundaries, explicit paragraph direction, and font fallback.
+  Further coverage remains for paired brackets/embeddings, emoji and supplementary-plane
+  characters, invalid Unicode replacement, color spans, and additional grapheme boundaries.
 - **GUI integration tests:** measurement equals rendered advances; wrapping never detaches
   marks or splits a grapheme; hit-testing returns logical source indices in mixed-direction
   text; editing/backspace/selection/copy/paste preserve logical Unicode; clipping, shadows,
