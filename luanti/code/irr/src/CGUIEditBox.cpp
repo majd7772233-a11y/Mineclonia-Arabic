@@ -7,6 +7,8 @@
 #include "IGUISkin.h"
 #include "IGUIEnvironment.h"
 #include "IGUIFont.h"
+#include "CGUITTFont.h"
+#include "util/enriched_string.h"
 #include "IGUIScrollBar.h"
 #include "IVideoDriver.h"
 #include "rect.h"
@@ -854,21 +856,44 @@ void CGUIEditBox::draw()
 						end_x = font->getCursorPosition(txtLine->c_str(), lineEndPos);
 					}
 
+					const core::rect<s32> lineRect = CurrentTextRect;
 					const s32 left_x = std::min(start_x, end_x);
 					const s32 right_x = std::max(start_x, end_x);
 					CurrentTextRect.UpperLeftCorner.X += left_x;
 					CurrentTextRect.LowerRightCorner.X = CurrentTextRect.UpperLeftCorner.X + (right_x - left_x);
 
-					// draw mark
+					// Draw the selection background.
 					skin->draw2DRectangle(this, skin->getColor(EGDC_HIGH_LIGHT), CurrentTextRect, &localClipRect);
 
-					// draw marked text
+					// Draw the selected foreground without reshaping an isolated
+					// substring. Re-shaping only the selection breaks Arabic joining
+					// at both selection edges. EnrichedString lets Raqm shape the
+					// complete logical line and colors the selected glyph clusters.
 					s = txtLine->subString(lineStartPos, lineEndPos - lineStartPos);
+					if (s.size()) {
+						if (font->getType() == EGFT_CUSTOM) {
+							const video::SColor normalColor = OverrideColorEnabled
+									? OverrideColor : skin->getColor(EGDC_BUTTON_TEXT);
+							const video::SColor selectedColor = OverrideColorEnabled
+									? OverrideColor : skin->getColor(EGDC_HIGH_LIGHT_TEXT);
+							std::vector<video::SColor> colors(txtLine->size(), normalColor);
+							const s32 colorStart = std::max<s32>(0, lineStartPos);
+							const s32 colorEnd = std::min<s32>(
+									static_cast<s32>(txtLine->size()), lineEndPos);
+							for (s32 p = colorStart; p < colorEnd; ++p)
+								colors[p] = selectedColor;
 
-					if (s.size())
-						font->draw(s.c_str(), CurrentTextRect,
-								OverrideColorEnabled ? OverrideColor : skin->getColor(EGDC_HIGH_LIGHT_TEXT),
-								false, true, &localClipRect);
+							EnrichedString enriched(
+									std::wstring_view(txtLine->c_str(), txtLine->size()), colors);
+							CurrentTextRect = lineRect;
+							IRR_DOWN_CAST<CGUITTFont *>(font)->draw(enriched,
+									CurrentTextRect, false, true, &localClipRect);
+						} else {
+							font->draw(s.c_str(), CurrentTextRect,
+									OverrideColorEnabled ? OverrideColor : skin->getColor(EGDC_HIGH_LIGHT_TEXT),
+									false, true, &localClipRect);
+						}
+					}
 				}
 			}
 
