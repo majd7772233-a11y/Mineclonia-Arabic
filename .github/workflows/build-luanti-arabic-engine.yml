@@ -1,6 +1,6 @@
-name: Build Arabic-capable Luanti client
+name: "Build Arabic-capable Luanti client"
 
-on:
+"on":
   push:
     branches:
       - work/arabic-engine-support
@@ -22,12 +22,20 @@ permissions:
 
 concurrency:
   group: arabic-engine-build-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 env:
   VCPKG_BASELINE: ddf0518c31a259dcc359fd4c7bcb1ce8a27e9855
 
 jobs:
+  workflow-sanity:
+    name: Verify GitHub Actions job scheduling
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Confirm workflow jobs are running
+        run: echo "The Arabic engine workflow reached a runner."
+
   linux:
     name: Linux x64 build, tests, and install package
     runs-on: ubuntu-24.04
