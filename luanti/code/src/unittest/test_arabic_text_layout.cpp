@@ -6,6 +6,7 @@
 #include "test.h"
 
 #include "porting.h"
+#include "../irrlicht_changes/font_text_layout.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -153,6 +154,18 @@ void TestArabicTextLayout::testLamAlefLigature()
 	UASSERTEQ(size_t, glyph_count, 1);
 	UASSERT(glyphs[0].index != 0);
 	UASSERTEQ(size_t, glyphs[0].cluster, 0);
+
+	// Lam-alef is two Unicode graphemes, but one shaped glyph cluster. The
+	// cursor must not stop between the two source characters.
+	UASSERT(raqm_allowed_grapheme_boundary(layout.value, 0));
+	const auto shaping_clusters =
+			gui::text_layout::getShapingClusterBoundaries(layout.value, text.size());
+	UASSERT(gui::text_layout::isAllowedCursorBoundary(
+			layout.value, 0, text.size(), shaping_clusters));
+	UASSERT(!gui::text_layout::isAllowedCursorBoundary(
+			layout.value, 1, text.size(), shaping_clusters));
+	UASSERT(gui::text_layout::isAllowedCursorBoundary(
+			layout.value, 2, text.size(), shaping_clusters));
 }
 
 void TestArabicTextLayout::testArabicExtendedLetters()
@@ -265,6 +278,12 @@ void TestArabicTextLayout::testCombiningMarkCluster()
 	UASSERT(!raqm_allowed_grapheme_boundary(layout.value, 0));
 	UASSERT(raqm_allowed_grapheme_boundary(layout.value, 1));
 	UASSERT(raqm_allowed_grapheme_boundary(layout.value, 2));
+	const auto shaping_clusters =
+			gui::text_layout::getShapingClusterBoundaries(layout.value, text.size());
+	UASSERT(!gui::text_layout::isAllowedCursorBoundary(
+			layout.value, 1, text.size(), shaping_clusters));
+	UASSERT(gui::text_layout::isAllowedCursorBoundary(
+			layout.value, 2, text.size(), shaping_clusters));
 }
 
 void TestArabicTextLayout::testExplicitParagraphDirection()
