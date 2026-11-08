@@ -10,6 +10,10 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <climits>
+#include <cstdlib>
+#include <cwctype>
+#include <string>
 #include <utility>
 #include <vector>
 
@@ -136,6 +140,152 @@ inline std::vector<std::pair<int, int>> getVisualSelectionIntervals(
 		}
 	}
 	return merged;
+}
+
+inline bool isUnicodeWordSpace(char32_t c)
+{
+	return (c <= static_cast<char32_t>(WCHAR_MAX) &&
+			std::iswspace(static_cast<std::wint_t>(c)) != 0) ||
+			c == 0x00A0 || c == 0x1680 ||
+			(c >= 0x2000 && c <= 0x200A) ||
+			c == 0x2028 || c == 0x2029 || c == 0x202F ||
+			c == 0x205F || c == 0x3000;
+}
+
+inline bool isUnicodeWordPunctuation(char32_t c)
+{
+	if (c <= static_cast<char32_t>(WCHAR_MAX) &&
+			std::iswpunct(static_cast<std::wint_t>(c)) != 0)
+		return true;
+	return (c >= 0x200B && c <= 0x206F) ||
+			(c >= 0x2E00 && c <= 0x2E7F) ||
+			(c >= 0x3001 && c <= 0x303F) ||
+			(c >= 0xFE10 && c <= 0xFE1F) ||
+			(c >= 0xFE30 && c <= 0xFE4F) ||
+			(c == 0x060C || c == 0x061B || c == 0x061F || c == 0x06D4);
+}
+
+inline size_t getVisualWordCursorBoundary(
+		raqm_t *layout, const std::u32string &text, size_t cursor, int direction)
+{
+	if (!layout || text.empty())
+		return std::min(cursor, text.size());
+
+	cursor = std::min(cursor, text.size());
+	const auto clusters = getShapingClusterBoundaries(layout, text.size());
+	std::vector<std::pair<int, size_t>> stops;
+	stops.reserve(text.size() + 1);
+
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout, &glyph_count);
+	if (!glyphs && glyph_count != 0)
+		return cursor;
+	int width = 0;
+	int pen = 0;
+	for (size_t i = 0; i < glyph_count; ++i) {
+		pen += glyphs[i].x_advance;
+		width = std::max(width, pen);
+	}
+	int min_pen = 0;
+	pen = 0;
+	for (size_t i = 0; i < glyph_count; ++i) {
+		pen += glyphs[i].x_advance;
+		min_pen = std::min(min_pen, pen);
+	}
+	width -= min_pen;
+
+	for (size_t boundary = 0; boundary <= text.size(); ++boundary) {
+		if (boundary != 0 && boundary != text.size() &&
+				!isAllowedCursorBoundary(layout, boundary, text.size(), clusters))
+			continue;
+		int x = 0;
+		bool has_position = false;
+		if (boundary == 0) {
+			x = raqm_get_par_resolved_direction(layout) == RAQM_DIRECTION_RTL
+					? width : 0;
+			has_position = true;
+		} else {
+			size_t character = boundary - 1;
+			int y = 0;
+			has_position = raqm_index_to_position(layout, &character, &x, &y);
+		}
+		if (has_position)
+			stops.emplace_back(x, boundary);
+	}
+
+	std::stable_sort(stops.begin(), stops.end(),
+		[](const auto &left, const auto &right) {
+			if (left.first != right.first)
+				return left.first < right.first;
+			return left.second < right.second;
+		});
+
+	size_t current_stop = stops.size();
+	for (size_t i = 0; i < stops.size(); ++i) {
+		if (stops[i].second == cursor) {
+			current_stop = i;
+			break;
+		}
+	}
+	if (current_stop == stops.size() && !stops.empty()) {
+		const int cursor_x = cursor == 0
+				? (raqm_get_par_resolved_direction(layout) == RAQM_DIRECTION_RTL ? width : 0)
+				: [&]() {
+					int x = 0;
+					int y = 0;
+					size_t character = cursor - 1;
+					raqm_index_to_position(layout, &character, &x, &y);
+					return x;
+				}();
+		int best_distance = INT_MAX;
+		for (size_t i = 0; i < stops.size(); ++i) {
+			const int distance = std::abs(stops[i].first - cursor_x);
+			if (distance < best_distance) {
+				best_distance = distance;
+				current_stop = i;
+			}
+		}
+	}
+	if (current_stop == stops.size())
+		return cursor;
+
+	size_t target_stop = current_stop;
+	bool previous_space = false;
+	bool previous_punctuation = false;
+	for (size_t distance = 1; distance <= stops.size(); ++distance) {
+		if (direction < 0) {
+			if (target_stop == 0)
+				break;
+		} else if (target_stop + 1 >= stops.size()) {
+			break;
+		}
+
+		const size_t next_stop = direction < 0 ? target_stop - 1 : target_stop + 1;
+		const size_t first = std::min(stops[target_stop].second, stops[next_stop].second);
+		const size_t last = std::max(stops[target_stop].second, stops[next_stop].second);
+		if (first == last) {
+			target_stop = next_stop;
+			continue;
+		}
+
+		bool current_space = true;
+		bool current_punctuation = true;
+		for (size_t i = first; i < last; ++i) {
+			current_space = current_space && isUnicodeWordSpace(text[i]);
+			current_punctuation = current_punctuation && isUnicodeWordPunctuation(text[i]);
+		}
+
+		if (distance > 2 && !previous_space && current_space)
+			break;
+		if (distance > 2 && previous_punctuation && !current_punctuation)
+			break;
+
+		target_stop = next_stop;
+		previous_space = current_space;
+		previous_punctuation = current_punctuation;
+	}
+
+	return stops[target_stop].second;
 }
 
 inline bool isAllowedCursorBoundary(raqm_t *layout, size_t boundary,
