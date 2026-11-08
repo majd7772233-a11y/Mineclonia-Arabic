@@ -211,6 +211,10 @@ namespace gui
 
 			//! Set font that should be used for glyphs not present in ours
 			void setFallback(gui::IGUIFont *font);
+			//! Draw an enriched string with an explicit paragraph base direction.
+			void draw(const EnrichedString &text, const core::rect<s32> &position,
+					bool hcenter, bool vcenter, const core::rect<s32> *clip,
+					raqm_direction_t direction);
 
 			//! Detect paragraph base direction using the Unicode Bidirectional Algorithm.
 			bool isRightToLeft(const wchar_t *text) const;
@@ -225,7 +229,7 @@ namespace gui
 			u32 batch_load_size;
 
 		private:
-			raqm_t *createLayout(const std::u32string &text) const;
+			raqm_t *createLayout(const std::u32string &text, raqm_direction_t direction = RAQM_DIRECTION_DEFAULT) const;
 			CGUITTFont *getFontForFace(FT_Face face) const;
 			CGUITTFont *getFontForCluster(const std::u32string &text, size_t start, size_t end) const;
 			SGUITTGlyph *getGlyphByIndex(u32 glyph_index) const;
