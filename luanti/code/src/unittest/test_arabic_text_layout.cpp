@@ -79,7 +79,10 @@ public:
 	void runTests(IGameDef *gamedef);
 
 	void testArabicContextualShaping();
+	void testLamAlefLigature();
+	void testArabicExtendedLetters();
 	void testMixedDirectionParagraph();
+	void testBidiIsolatesAndArabicIndicDigits();
 	void testCombiningMarkCluster();
 	void testExplicitParagraphDirection();
 	void testFallbackFontRange();
@@ -90,7 +93,10 @@ static TestArabicTextLayout g_test_instance;
 void TestArabicTextLayout::runTests(IGameDef *gamedef)
 {
 	TEST(testArabicContextualShaping);
+	TEST(testLamAlefLigature);
+	TEST(testArabicExtendedLetters);
 	TEST(testMixedDirectionParagraph);
+	TEST(testBidiIsolatesAndArabicIndicDigits);
 	TEST(testCombiningMarkCluster);
 	TEST(testExplicitParagraphDirection);
 	TEST(testFallbackFontRange);
@@ -128,6 +134,53 @@ void TestArabicTextLayout::testArabicContextualShaping()
 	UASSERT(has_contextual_form);
 }
 
+void TestArabicTextLayout::testLamAlefLigature()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+
+	RaqmLayout layout;
+	const std::u32string text = U"لا";
+	setRaqmText(layout, font.face, text);
+	UASSERT(raqm_set_language(layout.value, "ar", 0, text.size()));
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(layout.value));
+
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
+	UASSERT(glyphs != nullptr);
+	// Noto Sans Arabic applies the mandatory lam-alef contextual ligature.
+	UASSERTEQ(size_t, glyph_count, 1);
+	UASSERT(glyphs[0].index != 0);
+	UASSERTEQ(size_t, glyphs[0].cluster, 0);
+}
+
+void TestArabicTextLayout::testArabicExtendedLetters()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+
+	// Persian/extended Arabic letters must be covered by the bundled UI font.
+	for (FT_ULong codepoint : {0x067E, 0x0686, 0x0698, 0x06AF, 0x06A4})
+		UASSERT(FT_Get_Char_Index(font.face, codepoint) != 0);
+
+	RaqmLayout layout;
+	const std::u32string text = U"پچژگڤ";
+	setRaqmText(layout, font.face, text);
+	UASSERT(raqm_set_language(layout.value, "ar", 0, text.size()));
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(layout.value));
+
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
+	UASSERT(glyphs != nullptr);
+	UASSERT(glyph_count > 0);
+	for (size_t i = 0; i < glyph_count; ++i) {
+		UASSERT(glyphs[i].index != 0);
+		UASSERT(glyphs[i].cluster < text.size());
+	}
+}
+
 void TestArabicTextLayout::testMixedDirectionParagraph()
 {
 	FreeTypeFont font;
@@ -159,6 +212,39 @@ void TestArabicTextLayout::testMixedDirectionParagraph()
 	int y = 0;
 	UASSERT(raqm_index_to_position(layout.value, &cursor_index, &x, &y));
 
+	size_t hit_index = 0;
+	UASSERT(raqm_position_to_index(layout.value, x, y, &hit_index));
+	UASSERT(hit_index <= text.size());
+}
+
+void TestArabicTextLayout::testBidiIsolatesAndArabicIndicDigits()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+
+	RaqmLayout layout;
+	const std::u32string text = U"مرحبا \u2066Luanti 123\u2069 (٤٥٦)";
+	setRaqmText(layout, font.face, text);
+	UASSERT(raqm_set_language(layout.value, "ar", 0, 5));
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(layout.value));
+
+	UASSERTEQ(raqm_direction_t, raqm_get_par_resolved_direction(layout.value),
+			RAQM_DIRECTION_RTL);
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
+	UASSERT(glyphs != nullptr);
+	UASSERT(glyph_count > 0);
+	for (size_t i = 0; i < glyph_count; ++i) {
+		UASSERT(glyphs[i].index != 0);
+		UASSERT(glyphs[i].cluster < text.size());
+	}
+
+	// Insertion-point hit-testing must remain valid inside the isolated LTR run.
+	size_t cursor_index = 8;
+	int x = 0;
+	int y = 0;
+	UASSERT(raqm_index_to_position(layout.value, &cursor_index, &x, &y));
 	size_t hit_index = 0;
 	UASSERT(raqm_position_to_index(layout.value, x, y, &hit_index));
 	UASSERT(hit_index <= text.size());
