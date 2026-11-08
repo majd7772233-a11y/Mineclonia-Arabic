@@ -58,7 +58,23 @@ jobs:
           set -euo pipefail
           git clone --filter=blob:none https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
           git -C "$VCPKG_ROOT" checkout "$VCPKG_BASELINE"
-          "$VCPKG_ROOT/bootstrap-vcpkg.sh" -disableMetrics
+
+          bootstrapped=0
+          for attempt in 1 2 3 4; do
+            echo "vcpkg bootstrap attempt $attempt/4"
+            if "$VCPKG_ROOT/bootstrap-vcpkg.sh" -disableMetrics; then
+              bootstrapped=1
+              break
+            fi
+            rm -f "$VCPKG_ROOT/vcpkg"
+            if [ "$attempt" -lt 4 ]; then
+              delay=$((attempt * 20))
+              echo "Bootstrap failed; retrying in ${delay}s."
+              sleep "$delay"
+            fi
+          done
+          test "$bootstrapped" -eq 1
+          test -x "$VCPKG_ROOT/vcpkg"
 
       - name: Restore vcpkg binary package cache
         uses: actions/cache@v4
@@ -124,8 +140,23 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           git -C "$env:VCPKG_ROOT" checkout "$env:VCPKG_BASELINE"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          & "$env:VCPKG_ROOT/bootstrap-vcpkg.bat" -disableMetrics
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+          $bootstrapped = $false
+          for ($attempt = 1; $attempt -le 4; $attempt++) {
+            Write-Host "vcpkg bootstrap attempt $attempt/4"
+            Remove-Item "$env:VCPKG_ROOT/vcpkg.exe" -Force -ErrorAction SilentlyContinue
+            & "$env:VCPKG_ROOT/bootstrap-vcpkg.bat" -disableMetrics
+            if ($LASTEXITCODE -eq 0 -and (Test-Path "$env:VCPKG_ROOT/vcpkg.exe")) {
+              $bootstrapped = $true
+              break
+            }
+            if ($attempt -lt 4) {
+              $delay = 20 * $attempt
+              Write-Host "Bootstrap failed; retrying in $delay seconds."
+              Start-Sleep -Seconds $delay
+            }
+          }
+          if (-not $bootstrapped) { throw "Could not bootstrap the pinned vcpkg tool after four attempts." }
 
       - name: Restore vcpkg binary package cache
         uses: actions/cache@v4
