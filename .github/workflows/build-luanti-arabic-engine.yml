@@ -26,7 +26,7 @@ permissions:
 
 concurrency:
   group: arabic-engine-build-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   VCPKG_BASELINE: ddf0518c31a259dcc359fd4c7bcb1ce8a27e9855
