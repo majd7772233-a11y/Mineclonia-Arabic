@@ -43,10 +43,10 @@ struct RaqmLayout
 	}
 };
 
-void initializeFont(FreeTypeFont &font)
+void initializeFont(FreeTypeFont &font, const char *relative_path = "fonts/NotoSansArabic-Regular.ttf")
 {
 	UASSERT(FT_Init_FreeType(&font.library) == 0);
-	const std::string path = porting::getDataPath("fonts/NotoSansArabic-Regular.ttf");
+	const std::string path = porting::getDataPath(relative_path);
 	UASSERT(!path.empty());
 	UASSERT(FT_New_Face(font.library, path.c_str(), 0, &font.face) == 0);
 	UASSERT(FT_Set_Pixel_Sizes(font.face, 0, 32) == 0);
@@ -81,6 +81,8 @@ public:
 	void testArabicContextualShaping();
 	void testMixedDirectionParagraph();
 	void testCombiningMarkCluster();
+	void testExplicitParagraphDirection();
+	void testFallbackFontRange();
 };
 
 static TestArabicTextLayout g_test_instance;
@@ -90,6 +92,8 @@ void TestArabicTextLayout::runTests(IGameDef *gamedef)
 	TEST(testArabicContextualShaping);
 	TEST(testMixedDirectionParagraph);
 	TEST(testCombiningMarkCluster);
+	TEST(testExplicitParagraphDirection);
+	TEST(testFallbackFontRange);
 }
 
 void TestArabicTextLayout::testArabicContextualShaping()
@@ -177,3 +181,59 @@ void TestArabicTextLayout::testCombiningMarkCluster()
 	UASSERT(raqm_allowed_grapheme_boundary(layout.value, 1));
 	UASSERT(raqm_allowed_grapheme_boundary(layout.value, 2));
 }
+
+void TestArabicTextLayout::testExplicitParagraphDirection()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+
+	const std::u32string text = U"Luanti مرحبا";
+
+	RaqmLayout rtl;
+	setRaqmText(rtl, font.face, text);
+	UASSERT(raqm_set_language(rtl.value, "ar", 7, text.size() - 7));
+	UASSERT(raqm_set_par_direction(rtl.value, RAQM_DIRECTION_RTL));
+	UASSERT(raqm_layout(rtl.value));
+	UASSERTEQ(raqm_direction_t, raqm_get_par_resolved_direction(rtl.value),
+			RAQM_DIRECTION_RTL);
+
+	RaqmLayout ltr;
+	setRaqmText(ltr, font.face, text);
+	UASSERT(raqm_set_language(ltr.value, "ar", 7, text.size() - 7));
+	UASSERT(raqm_set_par_direction(ltr.value, RAQM_DIRECTION_LTR));
+	UASSERT(raqm_layout(ltr.value));
+	UASSERTEQ(raqm_direction_t, raqm_get_par_resolved_direction(ltr.value),
+			RAQM_DIRECTION_LTR);
+}
+
+void TestArabicTextLayout::testFallbackFontRange()
+{
+	FreeTypeFont arabic_font;
+	FreeTypeFont fallback_font;
+	initializeFont(arabic_font);
+	initializeFont(fallback_font, "fonts/DroidSansFallbackFull.ttf");
+
+	const std::u32string text = U"مرحبا 世界";
+	RaqmLayout layout;
+	setRaqmText(layout, arabic_font.face, text);
+	UASSERT(raqm_set_freetype_face_range(layout.value, fallback_font.face, 6, 2));
+	UASSERT(raqm_set_language(layout.value, "ar", 0, 5));
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_RTL));
+	UASSERT(raqm_layout(layout.value));
+
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
+	UASSERT(glyphs != nullptr);
+	bool found_fallback = false;
+	bool found_primary = false;
+	for (size_t i = 0; i < glyph_count; ++i) {
+		UASSERT(glyphs[i].index != 0);
+		if (glyphs[i].ftface == fallback_font.face)
+			found_fallback = true;
+		if (glyphs[i].ftface == arabic_font.face)
+			found_primary = true;
+	}
+	UASSERT(found_primary);
+	UASSERT(found_fallback);
+}
+
