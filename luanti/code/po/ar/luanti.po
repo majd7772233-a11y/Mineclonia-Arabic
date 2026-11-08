@@ -2225,85 +2225,69 @@ msgid "Numpad -"
 msgstr "لوحة الأرقام -"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad ."
-msgstr "Numpad ."
+msgstr "لوحة الأرقام ."
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad /"
-msgstr "Numpad /"
+msgstr "لوحة الأرقام /"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 0"
-msgstr "Numpad 0"
+msgstr "لوحة الأرقام 0"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 1"
-msgstr "Numpad 1"
+msgstr "لوحة الأرقام 1"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 2"
-msgstr "Numpad 2"
+msgstr "لوحة الأرقام 2"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 3"
-msgstr "Numpad 3"
+msgstr "لوحة الأرقام 3"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 4"
-msgstr "Numpad 4"
+msgstr "لوحة الأرقام 4"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 5"
-msgstr "Numpad 5"
+msgstr "لوحة الأرقام 5"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 6"
-msgstr "Numpad 6"
+msgstr "لوحة الأرقام 6"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 7"
-msgstr "Numpad 7"
+msgstr "لوحة الأرقام 7"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 8"
-msgstr "Numpad 8"
+msgstr "لوحة الأرقام 8"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad 9"
-msgstr "Numpad 9"
+msgstr "لوحة الأرقام 9"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Page Down"
-msgstr "Page down"
+msgstr "مفتاح Page Down"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Page Up"
-msgstr "Page up"
+msgstr "مفتاح Page Up"
 
 #. TRANSLATORS: Usually paired with the Break key
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Pause Key"
-msgstr "Pause"
+msgstr "مفتاح Pause"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Play"
-msgstr "Play"
+msgstr "زر التشغيل"
 
 #: src/client/keycode.cpp
 msgid "Primary Left Paddle"
@@ -2315,29 +2299,24 @@ msgstr "المجداف الأيمن الأساسي"
 
 #. TRANSLATORS: "Print screen" key
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Print"
-msgstr "Print"
+msgstr "مفتاح Print"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Return Key"
-msgstr "Return"
+msgstr "مفتاح Enter"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Arrow"
-msgstr "Right Control"
+msgstr "السهم لليمين"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Click"
-msgstr "Right Control"
+msgstr "النقر بالزر الأيمن"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Control"
-msgstr "Right Control"
+msgstr "مفتاح Ctrl الأيمن"
 
 #: src/client/keycode.cpp
 msgid "Right Face Button (Gamepad)"
@@ -2348,49 +2327,41 @@ msgid "Right Joystick Button"
 msgstr "زر عصا التحكم اليمنى"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Joystick Down"
-msgstr "Right Control"
+msgstr "عصا التحكم اليمنى - أسفل"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Joystick Left"
-msgstr "Right Control"
+msgstr "عصا التحكم اليمنى - يسار"
 
 #: src/client/keycode.cpp
 msgid "Right Joystick Right"
 msgstr "عصا التحكم اليمنى - إلى اليمين"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Joystick Up"
-msgstr "Right Control"
+msgstr "عصا التحكم اليمنى - أعلى"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Menu"
-msgstr "Right Menu"
+msgstr "زر Menu الأيمن"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Shift"
-msgstr "Right Shift"
+msgstr "مفتاح Shift الأيمن"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Shoulder"
-msgstr "Right Shift"
+msgstr "زر الكتف الأيمن"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Trigger"
-msgstr "Right Control"
+msgstr "زناد اليمين"
 
 #. TRANSLATORS: Name of key
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Windows"
-msgstr "Right Windows"
+msgstr "مفتاح Windows الأيمن"
 
 #: src/client/keycode.cpp
 #, c-format
@@ -2398,9 +2369,8 @@ msgid "Scancode: %d"
 msgstr "رمز المسح الضوئي: %d"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Scroll Lock"
-msgstr "Scroll Lock"
+msgstr "مفتاح Scroll Lock"
 
 #: src/client/keycode.cpp
 msgid "Secondary Left Paddle"
@@ -2411,33 +2381,28 @@ msgid "Secondary Right Paddle"
 msgstr "المجداف الأيمن الثانوي"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Select Key"
-msgstr "إحذف"
+msgstr "مفتاح Select"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Shift Key"
-msgstr "Shift"
+msgstr "مفتاح Shift"
 
 #: src/client/keycode.cpp
 msgid "Space"
 msgstr "مسافة"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Square (Gamepad)"
-msgstr "- اسم الخادم: "
+msgstr "زر المربع (وحدة التحكم)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Start (Gamepad)"
-msgstr "ابدأ اللعبة"
+msgstr "زر Start (وحدة التحكم)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Tab Key"
-msgstr "مفتاح الكسر"
+msgstr "مفتاح Tab"
 
 #: src/client/keycode.cpp
 msgid "Top Face Button (Gamepad)"
@@ -2452,19 +2417,16 @@ msgid "Triangle (Gamepad)"
 msgstr "زر المثلث (وحدة التحكم)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Up Arrow"
-msgstr "سهم للاعلى"
+msgstr "السهم لأعلى"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "X (Gamepad)"
-msgstr "الألعاب"
+msgstr "زر X (وحدة التحكم)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Y (Gamepad)"
-msgstr "الألعاب"
+msgstr "زر Y (وحدة التحكم)"
 
 #: src/client/minimap.cpp
 msgid "Minimap hidden"
@@ -2494,20 +2456,17 @@ msgid "Could not initialize any supported video driver!"
 msgstr "تعذرت تهيئة أي برنامج تشغيل فيديو مدعوم!"
 
 #: src/client/shader.cpp
-#, fuzzy, c-format
 msgid "Failed to compile the \"%s\" shader."
-msgstr "فشل فتح صفحة الويب"
+msgstr "فشل تجميع المظلّل \"%s\"."
 
 #: src/client/shader.cpp
-#, fuzzy, c-format
 msgid "Failed to find \"%s\" shader files."
-msgstr "فشل فتح صفحة الويب"
+msgstr "تعذر العثور على ملفات المظلّل \"%s\"."
 
 #. TRANSLATORS: GLSL = OpenGL Shading Language
 #: src/client/shader.cpp
-#, fuzzy
 msgid "GLSL is not supported by the driver"
-msgstr "نظام الصوت غير مدمج أثناء البناء"
+msgstr "برنامج تشغيل الرسومات لا يدعم GLSL."
 
 #. TRANSLATORS: Error when a mod is missing dependencies.
 #. Example: "Mod Title is missing: mod1, mod2, mod3"
@@ -2524,23 +2483,18 @@ msgstr ""
 "الأخطاء."
 
 #: src/content/mod_configuration.cpp
-#, fuzzy
 msgid ""
 "Note: this may be caused by a dependency cycle, in which case try updating "
 "the mods."
-msgstr ""
-"ملاحظة: قد يكون السبب في ذلك هو دورة التبعية، وفي هذه الحالة حاول تحديث "
-"التعديلات."
+msgstr "ملاحظة: قد يكون السبب دورة في التبعيات؛ في هذه الحالة حاول تحديث الإضافات."
 
 #: src/content/mod_configuration.cpp
-#, fuzzy
 msgid "Some mods have unsatisfied dependencies:"
-msgstr "بدون إعتماديات لازمة"
+msgstr "بعض الإضافات لديها تبعيات غير مستوفاة:"
 
 #: src/gui/guiButtonKey.h
-#, fuzzy
 msgid "Press Button"
-msgstr "الزر الأيسر"
+msgstr "اضغط الزر"
 
 #: src/gui/guiChatConsole.cpp
 msgid "Failed to open webpage"
@@ -2567,9 +2521,8 @@ msgid "Open URL?"
 msgstr "فتح عنوان URL؟"
 
 #: src/gui/guiOpenURL.cpp
-#, fuzzy
 msgid "Unable to open URL"
-msgstr "فشل فتح صفحة الويب"
+msgstr "تعذر فتح عنوان URL."
 
 #: src/gui/guiPasswordChange.cpp
 msgid "Change"
@@ -2597,19 +2550,16 @@ msgid "Sound Volume: %d%%"
 msgstr "حجم الصوت: %d%%"
 
 #: src/gui/touchscreeneditor.cpp
-#, fuzzy
 msgid "Add button"
-msgstr "الزر الأوسط"
+msgstr "إضافة زر"
 
 #: src/gui/touchscreeneditor.cpp
-#, fuzzy
 msgid "Done"
-msgstr "تم!"
+msgstr "تم"
 
 #: src/gui/touchscreeneditor.cpp
-#, fuzzy
 msgid "Remove"
-msgstr "خادوم بعيد"
+msgstr "إزالة"
 
 #: src/gui/touchscreeneditor.cpp
 msgid "Reset"
@@ -2680,9 +2630,8 @@ msgid "Toggle chat log"
 msgstr "بدّل عرض سجل المحادثة"
 
 #: src/gui/touchscreenlayout.cpp
-#, fuzzy
 msgid "Toggle debug"
-msgstr "بدّل ظهور الضباب"
+msgstr "تبديل عرض معلومات التصحيح"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Toggle fast"
@@ -2719,9 +2668,8 @@ msgid "Internal server error"
 msgstr "خطأ داخلي في الخادم"
 
 #: src/network/clientpackethandler.cpp
-#, fuzzy
 msgid "Invalid password"
-msgstr "كلمة المرور القديمة"
+msgstr "كلمة مرور غير صالحة."
 
 #. TRANSLATORS: DO NOT TRANSLATE THIS LITERALLY!
 #. This is a special string which needs to contain the translation's
@@ -2737,23 +2685,20 @@ msgid ""
 msgstr "الاسم غير مسجل. لإنشاء حساب على هذا الخادم، انقر فوق \"تسجيل\""
 
 #: src/network/clientpackethandler.cpp
-#, fuzzy
 msgid "Name is taken. Please choose another name"
-msgstr "يرجى اختيار اسم!"
+msgstr "الاسم مستخدم بالفعل. يرجى اختيار اسم آخر."
 
 #: src/network/clientpackethandler.cpp
 msgid "Player name contains disallowed characters"
 msgstr "يحتوي اسم اللاعب على محارف غير مسموح بها."
 
 #: src/network/clientpackethandler.cpp
-#, fuzzy
 msgid "Player name not allowed"
-msgstr "إسم اللاعب طويل."
+msgstr "اسم اللاعب غير مسموح به."
 
 #: src/network/clientpackethandler.cpp
-#, fuzzy
 msgid "Server shutting down"
-msgstr "يغلق…"
+msgstr "الخادم قيد الإيقاف."
 
 #: src/network/clientpackethandler.cpp
 msgid ""
@@ -2789,9 +2734,8 @@ msgid "Copied to clipboard!"
 msgstr "تم النسخ إلى الحافظة!"
 
 #: src/server.cpp
-#, fuzzy, c-format
 msgid "%s while shutting down: "
-msgstr "يغلق…"
+msgstr "%s أثناء إيقاف الخادم: "
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2940,9 +2884,8 @@ msgid "Acceleration of gravity, in nodes per second per second."
 msgstr "تسارع الجاذبية، عقدة/ثانية²."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Actions and Keybindings"
-msgstr "روابط المفاتيح"
+msgstr "الإجراءات وتعيينات المفاتيح"
 
 #: src/settings_translation_file.cpp
 msgid "Active Block Modifiers"
@@ -2981,9 +2924,8 @@ msgstr ""
 " لتكون متأكداً) ينشئ طبقة صلبة من الأراضي العائمة."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Admin name"
-msgstr "ضمّن اسم العنصر"
+msgstr "اسم المدير"
 
 #: src/settings_translation_file.cpp
 msgid "Advanced"
@@ -3010,19 +2952,13 @@ msgid ""
 msgstr "يُستخدم هذا الزر أيضاً للتسلق إلى الأسفل والهبوط في الماء عند تعطيل الإعداد aux1_descends."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Alters the light curve by applying 'gamma correction' to it.\n"
 "Higher values make middle and lower light levels brighter.\n"
 "Value '1.0' leaves the light curve unaltered.\n"
 "This only has significant effect on daylight and artificial\n"
 "light, it has very little effect on natural night light."
-msgstr ""
-"يعدل منحنى الضوء عن طريق تطبيق \"تصحيح جاما\" عليه.\n"
-"القيم الأعلى تجعل مستويات الإضاءة المتوسطة والدنيا أكثر بريقًا.\n"
-"تترك القيمة \"1.0\" منحنى الضوء على حاله.\n"
-"لها تأثير كبير فقط على ضوء النهار والضوء الصناعي ، ولها تأثير ضئيل للغاية "
-"على ضوء الليل الطبيعي."
+msgstr "يعدّل منحنى الإضاءة عبر تطبيق «تصحيح غاما» عليه.\nتجعل القيم الأعلى مستويات الإضاءة المتوسطة والمنخفضة أكثر سطوعاً.\nتُبقي القيمة '1.0' منحنى الإضاءة دون تغيير.\nيؤثر هذا الخيار بوضوح في ضوء النهار والإضاءة الاصطناعية،\nبينما يكون تأثيره محدوداً جداً في ضوء الليل الطبيعي."
 
 #: src/settings_translation_file.cpp
 msgid "Always fly fast"
@@ -3049,14 +2985,12 @@ msgid "Announce to this serverlist."
 msgstr "أدرجه في هذه القائمة."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Anti-aliasing scale"
-msgstr "التنعييم:"
+msgstr "مقياس تنعيم الحواف"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Antialiasing method"
-msgstr "التنعييم:"
+msgstr "طريقة تنعيم الحواف"
 
 #: src/settings_translation_file.cpp
 msgid "Anticheat flags"
@@ -3067,9 +3001,8 @@ msgid "Anticheat movement tolerance"
 msgstr "هامش التسامح مع الحركة في نظام مكافحة الغش"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Append item name to tooltips"
-msgstr "ضمّن اسم العنصر"
+msgstr "إضافة اسم العنصر إلى التلميحات"
 
 #: src/settings_translation_file.cpp
 msgid "Append the full item name to the tooltip of item stacks."
@@ -3172,9 +3105,8 @@ msgid "Base terrain height."
 msgstr "إرتفاع التضاريس الأساسي."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Base texture size"
-msgstr "إستعمال حزمة الإكساء"
+msgstr "حجم النسيج الأساسي"
 
 #: src/settings_translation_file.cpp
 msgid "Basic privileges"
@@ -3197,18 +3129,16 @@ msgid "Bind address"
 msgstr "ربط العنوان"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Biome API"
-msgstr "مواطن بيئية"
+msgstr "واجهة برمجة المناطق الأحيائية (Biome API)"
 
 #: src/settings_translation_file.cpp
 msgid "Biome noise"
 msgstr "ضجيج المناطق الأحيائية"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Block bounds HUD radius"
-msgstr "حدود الكتلة"
+msgstr "نصف قطر حدود الكتل في HUD"
 
 #: src/settings_translation_file.cpp
 msgid "Block cull optimize distance"
@@ -3247,9 +3177,8 @@ msgid "Builtin"
 msgstr "مدمج"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Camera"
-msgstr "غير الكاميرا"
+msgstr "الكاميرا"
 
 #: src/settings_translation_file.cpp
 msgid "Camera smoothing"
@@ -3333,9 +3262,8 @@ msgid "Chat command time message threshold"
 msgstr "الحد الزمني لعرض رسالة مدة تنفيذ أمر الدردشة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Chat commands"
-msgstr "الأوامر"
+msgstr "أوامر الدردشة"
 
 #: src/settings_translation_file.cpp
 msgid "Chat font size"
@@ -3386,9 +3314,8 @@ msgid "Client"
 msgstr "عميل"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Client Debugging"
-msgstr "تعديل العميل"
+msgstr "تصحيح أخطاء العميل"
 
 #: src/settings_translation_file.cpp
 msgid "Client Mesh Chunksize"
@@ -3628,14 +3555,12 @@ msgid ""
 msgstr "يحدد عمق ألوان النسيج المستخدم في مسار المعالجة اللاحقة.\nقد يؤدي تقليله إلى تحسين الأداء، لكن بعض التأثيرات (مثل إزالة التدرجات المتقطعة)\nتحتاج إلى أكثر من 8 بتات لتعمل."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Decrease view range"
-msgstr "قلل المدى"
+msgstr "تقليل مدى الرؤية"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Decrease volume"
-msgstr "قلل الحجم"
+msgstr "خفض مستوى الصوت"
 
 #: src/settings_translation_file.cpp
 msgid "Dedicated server step"
@@ -3761,9 +3686,8 @@ msgid "Delay showing tooltips, stated in milliseconds."
 msgstr "تأخير إظهار التلميحات، بالمللي ثانية."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Deprecated Lua API handling"
-msgstr "معالجة API Lua القديمة"
+msgstr "التعامل مع واجهة Lua البرمجية المهجورة"
 
 #: src/settings_translation_file.cpp
 msgid "Depth below which you'll find giant caverns."
@@ -3790,9 +3714,8 @@ msgid ""
 msgstr "تظهر الصحارى عندما تتجاوز قيمة np_biome هذه القيمة.\nيُتجاهل هذا الإعداد عند تفعيل الخيار 'snowbiomes'."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Developer Options"
-msgstr "المطورون الرئيسيون"
+msgstr "خيارات المطور"
 
 #: src/settings_translation_file.cpp
 msgid "Disable if you only want to instrument with Tracy."
@@ -3834,9 +3757,8 @@ msgid ""
 msgstr "ارسم المثلثات المرتبة حسب الشفافية ضمن مجموعات وفق مخازن بيانات المجسمات.\nيؤدي ذلك إلى إلغاء ترتيب الشفافية بين مخازن المجسمات، لكنه يتجنب الحالات\nالتي يصبح فيها ترتيب الشفافية بطيئاً جداً."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Drop item"
-msgstr "العنصر السابق"
+msgstr "إسقاط العنصر"
 
 #: src/settings_translation_file.cpp
 msgid "Dump the mapgen debug information."
@@ -3867,18 +3789,16 @@ msgid "Enable Automatic Exposure"
 msgstr "تفعيل التعريض التلقائي"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Enable Bloom"
-msgstr "فعِل الكل"
+msgstr "تفعيل تأثير التوهج"
 
 #: src/settings_translation_file.cpp
 msgid "Enable Bloom Debug"
 msgstr "تفعيل تصحيح تأثير التوهج"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Enable Debanding"
-msgstr "مكن الضرر"
+msgstr "تفعيل إزالة التدرجات اللونية المتقطعة"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3915,9 +3835,8 @@ msgid "Enable Raytraced Culling"
 msgstr "تفعيل الاستبعاد باستخدام تتبع الأشعة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Enable SSCSM"
-msgstr "فعِل الكل"
+msgstr "تفعيل SSCSM"
 
 #: src/settings_translation_file.cpp
 msgid "Enable a confirmation dialog before closing."
@@ -3942,9 +3861,8 @@ msgid "Enable console window"
 msgstr "تفعيل نافذة وحدة التحكم"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Enable dynamic shadows"
-msgstr "ظلال ديناميكية"
+msgstr "تفعيل الظلال الديناميكية"
 
 #: src/settings_translation_file.cpp
 msgid "Enable mod channels support."
@@ -4082,9 +4000,8 @@ msgid "Fallback font path"
 msgstr "مسار خط الاحتياط"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Fast approximate antialiasing"
-msgstr "التنعييم:"
+msgstr "تنعيم الحواف التقريبي السريع"
 
 #: src/settings_translation_file.cpp
 msgid "Fast mode acceleration"
@@ -4122,9 +4039,8 @@ msgid "Filmic tone mapping"
 msgstr "تحويل النغمات السينمائي"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Filtering and Antialiasing"
-msgstr "التنعييم:"
+msgstr "الترشيح وتنعيم الحواف"
 
 #: src/settings_translation_file.cpp
 msgid "First of 4 2D noises that together define hill/mountain range height."
@@ -4143,13 +4059,10 @@ msgid "Fixed virtual joystick"
 msgstr "عصا التحكم الافتراضية ثابتة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Fixes the position of virtual joystick.\n"
 "If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(أندرويد) ثبت موقع عصى التحكم.\n"
-"اذا عُطل ستنتقل عصى التحكم لموقع اللمسة الأولى."
+msgstr "تثبيت موضع عصا التحكم الافتراضية.\nعند التعطيل، تتمركز عصا التحكم الافتراضية عند موضع اللمسة الأولى."
 
 #: src/settings_translation_file.cpp
 msgid "Flashing of the screen when taking damage."
@@ -4192,9 +4105,8 @@ msgid "Fog start"
 msgstr "بداية الضباب"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Font"
-msgstr "حجم الخط"
+msgstr "الخط"
 
 #: src/settings_translation_file.cpp
 msgid "Font bold by default"
@@ -4384,9 +4296,8 @@ msgid "HUD"
 msgstr "هاد"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "HUD scaling"
-msgstr "الواجهة ظاهرة"
+msgstr "تحجيم واجهة العرض الأمامية (HUD)"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4478,54 +4389,44 @@ msgstr ""
 "وحدتها عقدة/ثانية²."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 1"
-msgstr "مفتاح الخانة 1 في شريط الإجراءات"
+msgstr "مفتاح خانة 1 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 10"
-msgstr "مفتاح الخانة 10 في شريط الإجراءات"
+msgstr "مفتاح خانة 10 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 11"
-msgstr "مفتاح الخانة 11 في شريط الإجراءات"
+msgstr "مفتاح خانة 11 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 12"
-msgstr "مفتاح الخانة 21 في شريط الإجراءات"
+msgstr "مفتاح خانة 12 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 13"
-msgstr "مفتاح الخانة 13 في شريط الإجراءات"
+msgstr "مفتاح خانة 13 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 14"
-msgstr "مفتاح الخانة 14 في شريط الإجراءات"
+msgstr "مفتاح خانة 14 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 15"
-msgstr "مفتاح الخانة 15 في شريط الإجراءات"
+msgstr "مفتاح خانة 15 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 16"
-msgstr "مفتاح الخانة 16 في شريط الإجراءات"
+msgstr "مفتاح خانة 16 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 17"
-msgstr "مفتاح الخانة 17 في شريط الإجراءات"
+msgstr "مفتاح خانة 17 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 18"
-msgstr "مفتاح الخانة 18 في شريط الإجراءات"
+msgstr "مفتاح خانة 18 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -7542,4 +7443,5 @@ msgstr "فشل حفظ لقطة الشاشة في \"%s\""
 #, fuzzy
 #~ msgid "Keybindings"
 #~ msgstr "روابط المفاتيح."
+
 
