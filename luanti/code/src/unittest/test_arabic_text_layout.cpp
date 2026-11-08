@@ -276,11 +276,12 @@ void TestArabicTextLayout::testMixedDirectionSelectionIntervals()
 	initializeFont(font);
 
 	RaqmLayout layout;
-	// In an LTR paragraph the Hebrew run is rendered in the opposite visual
-	// order. Selecting the first Latin word and only the first logical Hebrew
+	// In an LTR paragraph the Arabic run is rendered in the opposite visual
+	// order. Selecting the first Latin word and only the first logical Arabic
 	// letter must therefore produce two separated visual highlight intervals.
-	const std::u32string text = U"abc אבג def";
+	const std::u32string text = U"abc مرحبا def";
 	setRaqmText(layout, font.face, text);
+	UASSERT(raqm_set_language(layout.value, "ar", 4, 1));
 	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
 	UASSERT(raqm_layout(layout.value));
 	UASSERTEQ(raqm_direction_t, raqm_get_par_resolved_direction(layout.value),
