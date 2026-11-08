@@ -47,6 +47,7 @@
 #include <algorithm>
 #include <limits>
 #include <cstdint>
+#include <utility>
 #include <vector>
 #include <cwchar>
 
@@ -94,6 +95,81 @@ std::vector<size_t> makeU32ToWideIndexMap(const std::wstring &text)
 		}
 	}
 	return result;
+}
+
+
+size_t wideIndexToU32Index(const wchar_t *text, size_t index)
+{
+	if (!text)
+		return 0;
+
+	if (sizeof(wchar_t) == 4)
+		return std::min<size_t>(index, wcslen(text));
+
+	size_t wide_index = 0;
+	size_t scalar_index = 0;
+	while (text[wide_index] != 0 && wide_index < index) {
+		const uint32_t current = static_cast<uint16_t>(text[wide_index]);
+		if (current >= 0xD800 && current <= 0xDBFF &&
+				text[wide_index + 1] != 0) {
+			const uint32_t next = static_cast<uint16_t>(text[wide_index + 1]);
+			if (next >= 0xDC00 && next <= 0xDFFF) {
+				// A cursor between the surrogate pair is normalized before
+				// the scalar so UTF-16 editing never splits a code point.
+				if (wide_index + 1 >= index)
+					break;
+				wide_index += 2;
+			} else {
+				++wide_index;
+			}
+		} else {
+			++wide_index;
+		}
+		++scalar_index;
+	}
+	return scalar_index;
+}
+
+s32 fixedToSignedPixels(int value)
+{
+	return value >= 0
+			? static_cast<s32>((value + 32) / 64)
+			: -static_cast<s32>((-value + 32) / 64);
+}
+
+int getLayoutWidth(raqm_t *layout)
+{
+	size_t count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout, &count);
+	if (!glyphs && count != 0)
+		return 0;
+
+	int pen = 0;
+	int min_pen = 0;
+	int max_pen = 0;
+	for (size_t i = 0; i < count; ++i) {
+		pen += glyphs[i].x_advance;
+		min_pen = std::min(min_pen, pen);
+		max_pen = std::max(max_pen, pen);
+	}
+	return max_pen - min_pen;
+}
+
+bool layoutCursorX(raqm_t *layout, size_t boundary, int *x)
+{
+	if (!layout || !x)
+		return false;
+
+	if (boundary == 0) {
+		const int width = getLayoutWidth(layout);
+		*x = raqm_get_par_resolved_direction(layout) == RAQM_DIRECTION_RTL
+				? width : 0;
+		return true;
+	}
+
+	size_t character = boundary - 1;
+	int y = 0;
+	return raqm_index_to_position(layout, &character, x, &y);
 }
 
 s32 u32IndexToWideIndex(const wchar_t *text, size_t index)
@@ -673,6 +749,11 @@ void CGUITTFont::draw(const core::stringw& text, const core::rect<s32>& position
 
 void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& position, bool hcenter, bool vcenter, const core::rect<s32>* clip)
 {
+	draw(text, position, hcenter, vcenter, clip, RAQM_DIRECTION_DEFAULT);
+}
+
+void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& position, bool hcenter, bool vcenter, const core::rect<s32>* clip, raqm_direction_t paragraph_direction)
+{
 	if (!Driver || !tt_face)
 		return;
 
@@ -699,7 +780,7 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 
 		const std::u32string line = utext.substr(line_start, line_end - line_start);
 		if (!line.empty()) {
-			raqm_t *layout = createLayout(line);
+			raqm_t *layout = createLayout(line, paragraph_direction);
 			if (layout) {
 				size_t glyph_count = 0;
 				raqm_glyph_t *glyphs = raqm_get_glyphs(layout, &glyph_count);
@@ -739,7 +820,8 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 
 						const s32 glyph_x = static_cast<s32>((glyph_pen_x + shaped.x_offset + 32) / 64)
 								+ glyph->offset.X;
-						const s32 glyph_y = baseline - static_cast<s32>((shaped.y_offset + 32) / 64)
+						const s32 owner_baseline = base.Y + owner->font_metrics.ascender / 64;
+						const s32 glyph_y = owner_baseline - static_cast<s32>((shaped.y_offset + 32) / 64)
 								- glyph->offset.Y;
 						const core::recti glyph_rect(
 							core::position2di(glyph_x, glyph_y),
@@ -867,7 +949,7 @@ CGUITTFont *CGUITTFont::getFontForCluster(const std::u32string &text, size_t sta
 	return const_cast<CGUITTFont *>(this);
 }
 
-raqm_t *CGUITTFont::createLayout(const std::u32string &text) const
+raqm_t *CGUITTFont::createLayout(const std::u32string &text, raqm_direction_t direction) const
 {
 	if (!tt_face || text.empty())
 		return nullptr;
@@ -881,7 +963,7 @@ raqm_t *CGUITTFont::createLayout(const std::u32string &text) const
 
 	if (FT_Set_Pixel_Sizes(tt_face, 0, size) != 0 ||
 			!raqm_set_text(layout, codepoints.data(), codepoints.size()) ||
-			!raqm_set_par_direction(layout, RAQM_DIRECTION_DEFAULT) ||
+			!raqm_set_par_direction(layout, direction) ||
 			!raqm_set_freetype_face(layout, tt_face) ||
 			!raqm_set_freetype_load_flags(layout, load_flags)) {
 		raqm_destroy(layout);
@@ -1097,6 +1179,7 @@ u32 CGUITTFont::getGlyphIndexByChar(char32_t c) const
 }
 
 
+
 s32 CGUITTFont::getCharacterFromPos(const wchar_t* text, s32 pixel_x) const
 {
 	const std::u32string unicode = convertWCharToU32String(text);
@@ -1127,166 +1210,120 @@ s32 CGUITTFont::getCharacterFromPos(const std::u32string& text, s32 pixel_x) con
 
 s32 CGUITTFont::getCursorPosition(const wchar_t *text, s32 char_index) const
 {
-	if (!text || !*text)
+	if (!text || !*text || char_index <= 0)
 		return 0;
 
-	const std::wstring wide_text(text);
 	const std::u32string unicode = convertWCharToU32String(text);
-	size_t line_end = 0;
-	while (line_end < unicode.size() && !isTextLineBreak(unicode[line_end]))
-		++line_end;
-
-	const std::u32string line = unicode.substr(0, line_end);
-	if (line.empty())
-		return 0;
-
-	raqm_t *layout = createLayout(line);
+	raqm_t *layout = createLayout(unicode);
 	if (!layout)
-		return 0;
+		return IGUIFont::getCursorPosition(text, char_index);
 
-	const std::vector<size_t> index_map = makeU32ToWideIndexMap(wide_text);
-	const size_t wide_index = static_cast<size_t>(std::max<s32>(0,
-			std::min<s32>(char_index, static_cast<s32>(wide_text.size()))));
-	const auto it = std::lower_bound(index_map.begin(), index_map.end(), wide_index);
-	size_t unicode_index = static_cast<size_t>(it - index_map.begin());
-	unicode_index = std::min(unicode_index, line.size());
-
+	const size_t wide_length = wcslen(text);
+	const size_t wide_index = std::min<size_t>(static_cast<size_t>(char_index), wide_length);
+	const size_t scalar_index = wideIndexToU32Index(text, wide_index);
 	int x = 0;
-	const bool success = getRaqmCursorX(layout, line.size(), unicode_index, x);
+	const bool success = scalar_index <= unicode.size() &&
+			layoutCursorX(layout, scalar_index, &x);
 	raqm_destroy(layout);
-	return success ? static_cast<s32>((x + 32) / 64) : 0;
+	return success ? fixedToSignedPixels(x)
+			: IGUIFont::getCursorPosition(text, char_index);
 }
 
 s32 CGUITTFont::getNextCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const
 {
-	if (!text || !*text || direction == 0)
+	if (!text || !*text)
 		return 0;
 
-	const std::wstring wide_text(text);
-	const size_t length = wide_text.size();
-	size_t position = static_cast<size_t>(std::max<s32>(0,
-			std::min<s32>(char_index, static_cast<s32>(length))));
-
-	// Treat CRLF as one logical line break.
-	if (direction > 0 && position < length && isTextLineBreak(wide_text[position])) {
-		if (wide_text[position] == L'\r' && position + 1 < length &&
-				wide_text[position + 1] == L'\n')
-			return static_cast<s32>(position + 2);
-		return static_cast<s32>(position + 1);
-	}
-	if (direction < 0 && position > 0 && isTextLineBreak(wide_text[position - 1])) {
-		if (position > 1 && wide_text[position - 1] == L'\n' &&
-				wide_text[position - 2] == L'\r')
-			return static_cast<s32>(position - 2);
-		return static_cast<s32>(position - 1);
-	}
-
-	size_t line_start = position;
-	while (line_start > 0 && !isTextLineBreak(wide_text[line_start - 1]))
-		--line_start;
-	size_t line_end = position;
-	while (line_end < length && !isTextLineBreak(wide_text[line_end]))
-		++line_end;
-
-	const std::wstring line_wide = wide_text.substr(line_start, line_end - line_start);
-	const std::u32string line = convertWCharToU32String(line_wide.c_str());
-	if (line.empty())
-		return static_cast<s32>(line_start);
-
-	raqm_t *layout = createLayout(line);
+	const std::u32string unicode = convertWCharToU32String(text);
+	raqm_t *layout = createLayout(unicode);
 	if (!layout)
-		return static_cast<s32>(position);
+		return IGUIFont::getNextCursorPosition(text, char_index, direction);
 
-	const std::vector<size_t> index_map = makeU32ToWideIndexMap(line_wide);
-	const size_t local_wide = position - line_start;
-	const auto it = std::lower_bound(index_map.begin(), index_map.end(), local_wide);
-	size_t unicode_index = static_cast<size_t>(it - index_map.begin());
-	unicode_index = std::min(unicode_index, line.size());
+	const size_t wide_length = wcslen(text);
+	const size_t current = wideIndexToU32Index(text,
+			std::min<size_t>(static_cast<size_t>(std::max<s32>(0, char_index)), wide_length));
+	size_t next = current;
 
-	size_t target = unicode_index;
-	if (direction > 0) {
-		while (target < line.size() && !raqm_allowed_grapheme_boundary(layout, target))
-			++target;
-		if (target < line.size())
-			++target;
-	} else if (target > 0) {
-		--target;
-		while (target > 0 && !raqm_allowed_grapheme_boundary(layout, target - 1))
-			--target;
+	if (direction < 0) {
+		while (next > 0) {
+			--next;
+			if (next == 0 || raqm_allowed_grapheme_boundary(layout, next - 1))
+				break;
+		}
+	} else {
+		while (next < unicode.size()) {
+			++next;
+			if (next == unicode.size() || raqm_allowed_grapheme_boundary(layout, next - 1))
+				break;
+		}
 	}
 
 	raqm_destroy(layout);
-	return static_cast<s32>(line_start + u32IndexToWideIndex(line_wide.c_str(), target));
+	return u32IndexToWideIndex(text, next);
 }
 
 s32 CGUITTFont::getVisualCursorPosition(const wchar_t *text, s32 char_index, s32 direction) const
 {
-	if (!text || !*text || direction == 0)
+	if (!text || !*text)
 		return 0;
 
-	const std::wstring wide_text(text);
-	const size_t length = wide_text.size();
-	size_t position = static_cast<size_t>(std::max<s32>(0,
-			std::min<s32>(char_index, static_cast<s32>(length))));
-
-	if (direction > 0 && position < length && isTextLineBreak(wide_text[position]))
-		return getNextCursorPosition(text, char_index, direction);
-	if (direction < 0 && position > 0 && isTextLineBreak(wide_text[position - 1]))
-		return getNextCursorPosition(text, char_index, direction);
-
-	size_t line_start = position;
-	while (line_start > 0 && !isTextLineBreak(wide_text[line_start - 1]))
-		--line_start;
-	size_t line_end = position;
-	while (line_end < length && !isTextLineBreak(wide_text[line_end]))
-		++line_end;
-
-	const std::wstring line_wide = wide_text.substr(line_start, line_end - line_start);
-	const std::u32string line = convertWCharToU32String(line_wide.c_str());
-	if (line.empty())
-		return static_cast<s32>(position);
-
-	raqm_t *layout = createLayout(line);
+	const std::u32string unicode = convertWCharToU32String(text);
+	raqm_t *layout = createLayout(unicode);
 	if (!layout)
-		return getNextCursorPosition(text, char_index, direction);
+		return IGUIFont::getVisualCursorPosition(text, char_index, direction);
 
-	const std::vector<size_t> index_map = makeU32ToWideIndexMap(line_wide);
-	const size_t local_wide = position - line_start;
-	const auto it = std::lower_bound(index_map.begin(), index_map.end(), local_wide);
-	const size_t current_index = std::min<size_t>(
-			static_cast<size_t>(it - index_map.begin()), line.size());
+	const size_t wide_length = wcslen(text);
+	const size_t current = wideIndexToU32Index(text,
+			std::min<size_t>(static_cast<size_t>(std::max<s32>(0, char_index)), wide_length));
 
-	int current_x = 0;
-	if (!getRaqmCursorX(layout, line.size(), current_index, current_x)) {
-		raqm_destroy(layout);
-		return getNextCursorPosition(text, char_index, direction);
+	std::vector<std::pair<s32, size_t>> stops;
+	stops.reserve(unicode.size() + 1);
+	for (size_t boundary = 0; boundary <= unicode.size(); ++boundary) {
+		if (boundary != 0 && boundary != unicode.size() &&
+				!raqm_allowed_grapheme_boundary(layout, boundary - 1))
+			continue;
+		int x = 0;
+		if (layoutCursorX(layout, boundary, &x))
+			stops.emplace_back(fixedToSignedPixels(x), boundary);
 	}
 
-	size_t best_index = current_index;
-	int best_distance = std::numeric_limits<int>::max();
-	for (size_t candidate = 0; candidate <= line.size(); ++candidate) {
-		if (candidate != 0 && candidate != line.size() &&
-				!raqm_allowed_grapheme_boundary(layout, candidate - 1))
-			continue;
+	std::stable_sort(stops.begin(), stops.end(),
+		[](const auto &a, const auto &b) {
+			if (a.first != b.first)
+				return a.first < b.first;
+			return a.second < b.second;
+		});
 
-		int candidate_x = 0;
-		if (!getRaqmCursorX(layout, line.size(), candidate, candidate_x))
-			continue;
-		const int delta = candidate_x - current_x;
-		if ((direction > 0 && delta <= 0) || (direction < 0 && delta >= 0))
-			continue;
-
-		const int distance = std::abs(delta);
-		if (distance < best_distance) {
-			best_distance = distance;
-			best_index = candidate;
+	// A logical cursor can be on the same visual edge from either side of a
+	// directional run. Keep both insertion points; moving left/right walks
+	// visual caret stops, not Unicode storage order.
+	size_t current_stop = stops.size();
+	for (size_t i = 0; i < stops.size(); ++i) {
+		if (stops[i].second == current) {
+			current_stop = i;
+			break;
 		}
 	}
-	raqm_destroy(layout);
+	if (current_stop == stops.size()) {
+		// Snap a cursor inside an extended grapheme to its nearest legal edge.
+		for (size_t i = 0; i < stops.size(); ++i) {
+			if ((direction < 0 && stops[i].second < current) ||
+					(direction >= 0 && stops[i].second > current))
+					current_stop = i;
+		}
+	}
 
-	if (best_index == current_index)
-		return getNextCursorPosition(text, char_index, direction);
-	return static_cast<s32>(line_start + u32IndexToWideIndex(line_wide.c_str(), best_index));
+	size_t target = current_stop;
+	if (current_stop < stops.size()) {
+		if (direction < 0 && current_stop > 0)
+			target = current_stop - 1;
+		else if (direction >= 0 && current_stop + 1 < stops.size())
+			target = current_stop + 1;
+	}
+
+	const size_t result = target < stops.size() ? stops[target].second : current;
+	raqm_destroy(layout);
+	return u32IndexToWideIndex(text, result);
 }
 
 bool CGUITTFont::isRightToLeft(const wchar_t *text) const
