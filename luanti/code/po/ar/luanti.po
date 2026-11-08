@@ -162,7 +162,7 @@ msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Finally, all of the octaves will be combined to generate the noise."
-msgstr ""
+msgstr "في النهاية، تُدمج جميع الأوكتافات لتوليد الضجيج."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid ""
@@ -174,7 +174,7 @@ msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Lacunarity"
-msgstr ""
+msgstr "معامل التباعد"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid ""
@@ -199,17 +199,17 @@ msgstr "القيم الأصغر تؤدي إلى ضوضاء ناعمة و الق�
 msgid ""
 "Making 3D noise eased is not recommended because it significantly increases "
 "the load."
-msgstr ""
+msgstr "لا يُنصح بتنعيم الضجيج ثلاثي الأبعاد، لأنه يزيد الحمل بدرجة كبيرة."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid ""
 "Maps noise gradient values onto a quintic S-curve before performing "
 "interpolation."
-msgstr ""
+msgstr "يحوّل قيم تدرّج الضجيج إلى منحنى S من الدرجة الخامسة قبل إجراء الاستيفاء."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Octaves"
-msgstr ""
+msgstr "عدد الأوكتافات"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 #: src/settings_translation_file.cpp
@@ -218,11 +218,11 @@ msgstr "المُعادل"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Offsets the final noise by this value."
-msgstr ""
+msgstr "يزحزح الضجيج النهائي بهذه القيمة."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Overrides the 'eased' flag based on the noise type."
-msgstr ""
+msgstr "يتجاوز خيار التنعيم ويحدد قيمته وفق نوع الضجيج."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Persistence"
@@ -244,7 +244,7 @@ msgstr "تُنشئ كل أوكتاف بنسبة (مقياس الأوكتاف ا�
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Scales the noise in the $1 axis by this value."
-msgstr ""
+msgstr "يضبط مقياس الضجيج على المحور $1 بهذه القيمة."
 
 #. TRANSLATORS: Value for randomness
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
@@ -254,11 +254,11 @@ msgstr "البذرة"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Takes the absolute value of each octave while adding them together."
-msgstr ""
+msgstr "يأخذ القيمة المطلقة لكل أوكتاف أثناء جمعها."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "The first octave is amplified by 1."
-msgstr ""
+msgstr "تكون سعة الأوكتاف الأول مضبوطة على 1."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 #, fuzzy
@@ -267,25 +267,25 @@ msgstr "هذا الأمر معطل من الخادم."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "The multiplier for the noise before the offset is added."
-msgstr ""
+msgstr "معامل ضرب الضجيج قبل إضافة الإزاحة."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "The random seed for the noise. The same seed results in the same noise."
-msgstr ""
+msgstr "البذرة العشوائية للضجيج. تعطي البذرة نفسها الضجيج نفسه."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid ""
 "This is also the scale of the largest structures in the $1 direction of the "
 "noise."
-msgstr ""
+msgstr "يمثل هذا أيضاً مقياس أكبر التراكيب في اتجاه $1 من الضجيج."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "This results in smooth noise instead of gridlike noise."
-msgstr ""
+msgstr "ينتج عن ذلك ضجيج ناعم بدلاً من ضجيج شبكي."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "This results in spiky noise."
-msgstr ""
+msgstr "ينتج عن ذلك ضجيج حادّ القمم."
 
 #. TRANSLATORS: "absvalue" is a noise parameter flag.
 #. It is short for "absolute value".
@@ -334,7 +334,7 @@ msgstr "(استخدم لغة النظام)"
 #. TRANSLATORS: Shown when a default setting is the empty string
 #: builtin/common/settings/dlg_settings.lua
 msgid "<empty>"
-msgstr ""
+msgstr "فارغ"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Accessibility"
@@ -343,7 +343,7 @@ msgstr "إمكانية الوصول"
 #. TRANSLATORS: Automatic
 #: builtin/common/settings/dlg_settings.lua
 msgid "Auto"
-msgstr ""
+msgstr "تلقائي"
 
 #. TRANSLATORS: Button text to go back
 #: builtin/common/settings/dlg_settings.lua
@@ -355,7 +355,7 @@ msgstr "عُد"
 #. TRANSLATORS: Touchscreen interaction style
 #: builtin/common/settings/dlg_settings.lua
 msgid "Buttons with crosshair"
-msgstr ""
+msgstr "أزرار مع مؤشر التصويب"
 
 #: builtin/common/settings/dlg_settings.lua src/gui/touchscreenlayout.cpp
 #: src/settings_translation_file.cpp
@@ -393,7 +393,7 @@ msgstr "عام"
 #. TRANSLATORS: Touchscreen gesture
 #: builtin/common/settings/dlg_settings.lua
 msgid "Long tap"
-msgstr ""
+msgstr "ضغط مطوّل"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Movement"
@@ -429,7 +429,7 @@ msgstr "إبحث"
 #. TRANSLATORS: Touchscreen gesture
 #: builtin/common/settings/dlg_settings.lua
 msgid "Short tap"
-msgstr ""
+msgstr "ضغط قصير"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Show advanced settings"
@@ -449,17 +449,17 @@ msgstr "Tab"
 #. TRANSLATORS: Touchscreen interaction style
 #: builtin/common/settings/dlg_settings.lua
 msgid "Tap with crosshair"
-msgstr ""
+msgstr "نقر مع مؤشر التصويب"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid ""
 "These settings are unavailable due to your platform, hardware or in "
 "combination with the current settings."
-msgstr ""
+msgstr "هذه الإعدادات غير متاحة بسبب نظامك أو عتادك أو بسبب تعارضها مع الإعدادات الحالية."
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Touchscreen layout"
-msgstr ""
+msgstr "تخطيط شاشة اللمس"
 
 #: builtin/common/settings/dlg_settings.lua
 #, fuzzy
@@ -501,7 +501,7 @@ msgstr "واسطة"
 
 #: builtin/common/settings/shadows_component.lua
 msgid "Quality preset"
-msgstr ""
+msgstr "مستوى الجودة"
 
 #: builtin/common/settings/shadows_component.lua
 #, fuzzy
@@ -526,7 +526,7 @@ msgstr "حدث خطأ:"
 
 #: builtin/fstk/ui.lua
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "نسخ إلى الحافظة"
 
 #: builtin/fstk/ui.lua
 msgid "Main menu"
@@ -597,7 +597,7 @@ msgstr "ينزل $1..."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "All"
-msgstr ""
+msgstr "الكل"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 #, fuzzy
@@ -612,7 +612,7 @@ msgstr "يحمل..."
 #. more prominently displayed than other packages
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Featured"
-msgstr ""
+msgstr "المميّز"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Games"
@@ -691,7 +691,7 @@ msgstr "الإعتماديات:"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "Error getting dependencies for package $1"
-msgstr ""
+msgstr "حدث خطأ أثناء جلب تبعيات الحزمة $1."
 
 #: builtin/mainmenu/content/dlg_install.lua
 #: builtin/mainmenu/content/dlg_package.lua
@@ -739,11 +739,11 @@ msgstr "وصف الخادم"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Donate"
-msgstr ""
+msgstr "تبرّع"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Error loading package information"
-msgstr ""
+msgstr "تعذر تحميل معلومات الحزمة."
 
 #: builtin/mainmenu/content/dlg_package.lua
 #, fuzzy
@@ -752,7 +752,7 @@ msgstr "ينشىء عميلا…"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Forum Topic"
-msgstr ""
+msgstr "موضوع المنتدى"
 
 #: builtin/mainmenu/content/dlg_package.lua
 #, fuzzy
@@ -768,20 +768,20 @@ msgstr "ثبت $1"
 #. TRANSLATORS: Also known as 'bug tracker'
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Issue Tracker"
-msgstr ""
+msgstr "متتبّع المشكلات"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Reviews"
-msgstr ""
+msgstr "المراجعات"
 
 #. TRANSLATORS: Link to source code repository
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Source"
-msgstr ""
+msgstr "المصدر"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Translate"
-msgstr ""
+msgstr "ترجمة"
 
 #: builtin/mainmenu/content/dlg_package.lua builtin/mainmenu/tab_content.lua
 msgid "Uninstall"
@@ -807,7 +807,7 @@ msgstr "$1 بواسطة $2"
 #. $3, $4, $5 = number of positive/neutral/negative reviews
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "by $1  —  $2 downloads  —  +$3 / $4 / -$5"
-msgstr ""
+msgstr "بواسطة $1  —  $2 عملية تنزيل  —  +$3 / $4 / -$5"
 
 #: builtin/mainmenu/content/pkgmgr.lua
 msgid "$1 (Enabled)"
@@ -848,7 +848,7 @@ msgstr "إسم العالم"
 msgid ""
 "Players connected to\n"
 "$1"
-msgstr ""
+msgstr "اللاعبون المتصلون بـ\n$1"
 
 #. TRANSLATORS: Message in the mod list when a mod is enabled with error
 #: builtin/mainmenu/dlg_config_world.lua
@@ -894,7 +894,7 @@ msgstr "التعديل:"
 
 #: builtin/mainmenu/dlg_config_world.lua
 msgid "Mods located inside the world folder."
-msgstr ""
+msgstr "الإضافات الموجودة داخل مجلد العالم."
 
 #. TRANSLATORS: About mod dependencies
 #: builtin/mainmenu/dlg_config_world.lua
@@ -934,7 +934,7 @@ msgstr "مُفعل"
 
 #: builtin/mainmenu/dlg_confirm_exit.lua
 msgid "Always show this dialog."
-msgstr ""
+msgstr "اعرض مربع الحوار هذا دائماً."
 
 #: builtin/mainmenu/dlg_confirm_exit.lua
 #, fuzzy
@@ -943,7 +943,7 @@ msgstr "هل تريد حذف \"$1\" ؟"
 
 #: builtin/mainmenu/dlg_confirm_exit.lua
 msgid "Quit"
-msgstr ""
+msgstr "خروج"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "A world named \"$1\" already exists"
@@ -989,7 +989,7 @@ msgstr "تزيينات"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Desert temples"
-msgstr ""
+msgstr "المعابد الصحراوية"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Development Test is meant for developers."
@@ -999,7 +999,7 @@ msgstr "\"Development Test\" مُوَجّه للمطورين."
 msgid ""
 "Different dungeon variant generated in desert biomes (only if dungeons "
 "enabled)"
-msgstr ""
+msgstr "نوع مختلف من الزنزانات يظهر في المناطق الأحيائية الصحراوية (عند تفعيل الزنزانات فقط)."
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Dungeons"
@@ -1051,11 +1051,11 @@ msgstr "مولِد الخريطة"
 
 #: builtin/mainmenu/dlg_create_world.lua src/settings_translation_file.cpp
 msgid "Mapgen flags"
-msgstr ""
+msgstr "خيارات مولّد الخريطة"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Mapgen-specific flags"
-msgstr ""
+msgstr "خيارات خاصة بمولّد الخريطة"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Mountains"
@@ -1158,15 +1158,15 @@ msgstr "حذف العالم \"$1\"؟"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 msgid "As a result, your keybindings may have been changed."
-msgstr ""
+msgstr "نتيجة لذلك، ربما تكون تعيينات المفاتيح قد تغيّرت."
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 msgid "Check out the key settings or refer to the documentation:"
-msgstr ""
+msgstr "راجع إعدادات المفاتيح أو ارجع إلى الوثائق:"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 msgid "Close"
-msgstr ""
+msgstr "إغلاق"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 #, fuzzy
@@ -1180,7 +1180,7 @@ msgstr "إعدادات"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 msgid "The input handling system was reworked in Luanti 5.12.0."
-msgstr ""
+msgstr "أُعيدت صياغة نظام التعامل مع الإدخال في Luanti 5.12.0."
 
 #: builtin/mainmenu/dlg_register.lua src/gui/guiPasswordChange.cpp
 msgid "Confirm Password"
@@ -1269,15 +1269,15 @@ msgstr "فعِل الكل"
 #. TRANSLATORS: A checkbox; if enabled, it will group mods by their prefix
 #: builtin/mainmenu/dlg_server_list_mods.lua
 msgid "Group by prefix"
-msgstr ""
+msgstr "تجميع حسب البادئة"
 
 #: builtin/mainmenu/dlg_server_list_mods.lua
 msgid "The $1 server uses a game called $2 and the following mods:"
-msgstr ""
+msgstr "يستخدم الخادم $1 لعبة باسم $2 والإضافات التالية:"
 
 #: builtin/mainmenu/dlg_server_list_mods.lua
 msgid "The $1 server uses the following mods:"
-msgstr ""
+msgstr "يستخدم الخادم $1 الإضافات التالية:"
 
 #. TRANSLATORS: $1 = name of the engine
 #: builtin/mainmenu/dlg_version_info.lua
@@ -1311,7 +1311,7 @@ msgstr "زر الموقع"
 
 #: builtin/mainmenu/init.lua
 msgid "Debug build, expect worse performance"
-msgstr ""
+msgstr "نسخة تصحيح؛ توقّع أداءً أقل."
 
 #. TRANSLATORS: Try to keep the translation short
 #: builtin/mainmenu/init.lua src/client/game_formspec.cpp
@@ -1461,7 +1461,7 @@ msgstr "لم تعد لعبة Minetest مثبتة بشكل افتراضي"
 msgid ""
 "Luanti is a game-creation platform that allows you to play many different "
 "games."
-msgstr ""
+msgstr "Luanti منصة لإنشاء الألعاب تتيح لك تشغيل ألعاب عديدة مختلفة."
 
 #: builtin/mainmenu/tab_local.lua
 msgid "New"
@@ -1540,16 +1540,16 @@ msgstr "تسجيل الدخول"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Number of mods: $1"
-msgstr ""
+msgstr "عدد الإضافات: $1"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Open server website"
-msgstr ""
+msgstr "فتح موقع الخادم"
 
 #. TRANSLATORS: Also known as "latency"
 #: builtin/mainmenu/tab_online.lua
 msgid "Ping"
-msgstr ""
+msgstr "زمن الاستجابة"
 
 #. TRANSLATORS: $1 is a list of players
 #: builtin/mainmenu/tab_online.lua
@@ -1561,7 +1561,7 @@ msgstr "عميل"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Possible filters"
-msgstr ""
+msgstr "عوامل التصفية المتاحة"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Public Servers"
@@ -1645,7 +1645,7 @@ msgstr "فشل فتح ملف كلمة المرور المدخل: "
 
 #: src/client/clientlauncher.cpp
 msgid "World does not exist and no game selected to create one."
-msgstr ""
+msgstr "العالم غير موجود، ولم تُحدَّد لعبة لإنشائه."
 
 #: src/client/clientmedia.cpp src/client/game.cpp
 msgid "Media..."
@@ -1702,7 +1702,7 @@ msgstr "حدود الكتل القريبة ظاهرة"
 
 #: src/client/game.cpp
 msgid "Bounding boxes shown"
-msgstr ""
+msgstr "إظهار مربعات الإحاطة"
 
 #: src/client/game.cpp
 msgid "Camera update disabled"
@@ -1782,7 +1782,7 @@ msgstr "نمط السرعة مفعل (ملاحظة: لا تمتلك امتياز
 #: src/client/game.cpp
 #, c-format
 msgid "Files: %d / %d"
-msgstr ""
+msgstr "الملفات: %d / %d"
 
 #: src/client/game.cpp
 msgid "Fly mode disabled"
@@ -1849,11 +1849,11 @@ msgstr "تعريفات العقدة..."
 
 #: src/client/game.cpp
 msgid "Pitch move mode disabled"
-msgstr ""
+msgstr "تم تعطيل وضع الحركة العمودية."
 
 #: src/client/game.cpp
 msgid "Pitch move mode enabled"
-msgstr ""
+msgstr "تم تفعيل وضع الحركة العمودية."
 
 #: src/client/game.cpp
 msgid "Profiler graph shown"
@@ -1874,7 +1874,7 @@ msgstr "لاعب منفرد"
 #: src/client/game.cpp
 #, c-format
 msgid "Size: %.2f %s"
-msgstr ""
+msgstr "الحجم: %.2f %s"
 
 #: src/client/game.cpp
 msgid "Sound muted"
@@ -1960,7 +1960,7 @@ msgstr "غُير الحجم الى %d%%"
 
 #: src/client/game.cpp
 msgid "Wireframe not supported by video driver"
-msgstr ""
+msgstr "برنامج تشغيل الفيديو لا يدعم العرض الشبكي."
 
 #: src/client/game.cpp
 msgid "Wireframe shown"
@@ -2125,7 +2125,7 @@ msgstr "Backspace"
 
 #: src/client/keycode.cpp
 msgid "Bottom Face Button (Gamepad)"
-msgstr ""
+msgstr "زر الوجه السفلي (وحدة التحكم)"
 
 #. TRANSLATORS: Usually paired with the Pause key
 #: src/client/keycode.cpp
@@ -2138,7 +2138,7 @@ msgstr "Caps Lock"
 
 #: src/client/keycode.cpp
 msgid "Circle (Gamepad)"
-msgstr ""
+msgstr "زر الدائرة (وحدة التحكم)"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2162,15 +2162,15 @@ msgstr "Page down"
 
 #: src/client/keycode.cpp
 msgid "D-Pad Left"
-msgstr ""
+msgstr "لوحة الاتجاهات - يسار"
 
 #: src/client/keycode.cpp
 msgid "D-Pad Right"
-msgstr ""
+msgstr "لوحة الاتجاهات - يمين"
 
 #: src/client/keycode.cpp
 msgid "D-Pad Up"
-msgstr ""
+msgstr "لوحة الاتجاهات - أعلى"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2200,7 +2200,7 @@ msgstr "الألعاب"
 #: src/client/keycode.cpp
 #, c-format
 msgid "Gamepad Button %d"
-msgstr ""
+msgstr "زر وحدة التحكم %d"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2239,23 +2239,23 @@ msgstr "Left Control"
 
 #: src/client/keycode.cpp
 msgid "Left Face Button (Gamepad)"
-msgstr ""
+msgstr "زر الوجه الأيسر (وحدة التحكم)"
 
 #: src/client/keycode.cpp
 msgid "Left Joystick Button"
-msgstr ""
+msgstr "زر عصا التحكم اليسرى"
 
 #: src/client/keycode.cpp
 msgid "Left Joystick Down"
-msgstr ""
+msgstr "عصا التحكم اليسرى - إلى أسفل"
 
 #: src/client/keycode.cpp
 msgid "Left Joystick Left"
-msgstr ""
+msgstr "عصا التحكم اليسرى - إلى اليسار"
 
 #: src/client/keycode.cpp
 msgid "Left Joystick Right"
-msgstr ""
+msgstr "عصا التحكم اليسرى - إلى اليمين"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2294,23 +2294,23 @@ msgstr "Menu"
 
 #: src/client/keycode.cpp
 msgid "Middle Click"
-msgstr ""
+msgstr "النقر الأوسط"
 
 #. TRANSLATORS: This is for mouse buttons without an intuitive description. %d is the number of the button.
 #: src/client/keycode.cpp
 #, c-format
 msgid "Mouse Button %d"
-msgstr ""
+msgstr "زر الفأرة %d"
 
 #. TRANSLATORS: This is a mouse button.
 #: src/client/keycode.cpp
 msgid "Mouse X1"
-msgstr ""
+msgstr "زر الفأرة الجانبي X1"
 
 #. TRANSLATORS: This is a mouse button.
 #: src/client/keycode.cpp
 msgid "Mouse X2"
-msgstr ""
+msgstr "زر الفأرة الجانبي X2"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2415,11 +2415,11 @@ msgstr "Play"
 
 #: src/client/keycode.cpp
 msgid "Primary Left Paddle"
-msgstr ""
+msgstr "المجداف الأيسر الأساسي"
 
 #: src/client/keycode.cpp
 msgid "Primary Right Paddle"
-msgstr ""
+msgstr "المجداف الأيمن الأساسي"
 
 #. TRANSLATORS: "Print screen" key
 #: src/client/keycode.cpp
@@ -2449,11 +2449,11 @@ msgstr "Right Control"
 
 #: src/client/keycode.cpp
 msgid "Right Face Button (Gamepad)"
-msgstr ""
+msgstr "زر الوجه الأيمن (وحدة التحكم)"
 
 #: src/client/keycode.cpp
 msgid "Right Joystick Button"
-msgstr ""
+msgstr "زر عصا التحكم اليمنى"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2467,7 +2467,7 @@ msgstr "Right Control"
 
 #: src/client/keycode.cpp
 msgid "Right Joystick Right"
-msgstr ""
+msgstr "عصا التحكم اليمنى - إلى اليمين"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2503,7 +2503,7 @@ msgstr "Right Windows"
 #: src/client/keycode.cpp
 #, c-format
 msgid "Scancode: %d"
-msgstr ""
+msgstr "رمز المسح الضوئي: %d"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2512,11 +2512,11 @@ msgstr "Scroll Lock"
 
 #: src/client/keycode.cpp
 msgid "Secondary Left Paddle"
-msgstr ""
+msgstr "المجداف الأيسر الثانوي"
 
 #: src/client/keycode.cpp
 msgid "Secondary Right Paddle"
-msgstr ""
+msgstr "المجداف الأيمن الثانوي"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2549,15 +2549,15 @@ msgstr "مفتاح الكسر"
 
 #: src/client/keycode.cpp
 msgid "Top Face Button (Gamepad)"
-msgstr ""
+msgstr "زر الوجه العلوي (وحدة التحكم)"
 
 #: src/client/keycode.cpp
 msgid "Touchpad Button (Gamepad)"
-msgstr ""
+msgstr "زر لوحة اللمس (وحدة التحكم)"
 
 #: src/client/keycode.cpp
 msgid "Triangle (Gamepad)"
-msgstr ""
+msgstr "زر المثلث (وحدة التحكم)"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2660,7 +2660,7 @@ msgstr "يفتح صفحة الويب"
 
 #: src/gui/guiEngine.cpp
 msgid "Failed to load main menu script!"
-msgstr ""
+msgstr "فشل تحميل برنامج القائمة الرئيسية!"
 
 #: src/gui/guiFormSpecMenu.cpp
 msgid "Proceed"
@@ -2668,11 +2668,11 @@ msgstr "تابع"
 
 #: src/gui/guiOpenURL.cpp
 msgid "Open"
-msgstr ""
+msgstr "فتح"
 
 #: src/gui/guiOpenURL.cpp
 msgid "Open URL?"
-msgstr ""
+msgstr "فتح عنوان URL؟"
 
 #: src/gui/guiOpenURL.cpp
 #, fuzzy
@@ -2721,19 +2721,19 @@ msgstr "خادوم بعيد"
 
 #: src/gui/touchscreeneditor.cpp
 msgid "Reset"
-msgstr ""
+msgstr "إعادة ضبط"
 
 #: src/gui/touchscreeneditor.cpp
 msgid "Start dragging a button to add. Tap outside to cancel."
-msgstr ""
+msgstr "ابدأ بسحب زر لإضافته. انقر خارج النافذة للإلغاء."
 
 #: src/gui/touchscreeneditor.cpp
 msgid "Tap a button to select it. Drag a button to move it."
-msgstr ""
+msgstr "انقر على زر لتحديده، واسحبه لنقله."
 
 #: src/gui/touchscreeneditor.cpp
 msgid "Tap outside to deselect."
-msgstr ""
+msgstr "انقر خارج النافذة لإلغاء التحديد."
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Aux1"
@@ -2745,7 +2745,7 @@ msgstr "غير الكاميرا"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Dig/punch/use"
-msgstr ""
+msgstr "الحفر/الضرب/الاستخدام"
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Drop"
@@ -2761,7 +2761,7 @@ msgstr "المخزن"
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Joystick"
-msgstr ""
+msgstr "عصا التحكم"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Jump"
@@ -2769,11 +2769,11 @@ msgstr "اقفز"
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Overflow menu"
-msgstr ""
+msgstr "قائمة الخيارات الإضافية"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Place/use"
-msgstr ""
+msgstr "الوضع/الاستخدام"
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Range select"
@@ -2806,7 +2806,7 @@ msgstr "بدّل ظهور الخريطة المصغرة"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Toggle noclip"
-msgstr ""
+msgstr "تبديل وضع عدم التصادم"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Zoom"
@@ -2816,15 +2816,15 @@ msgstr "كبِر"
 msgid ""
 "Another client is connected with this name.  If your client closed "
 "unexpectedly, try again in a minute."
-msgstr ""
+msgstr "هناك عميل آخر متصل بهذا الاسم. إذا أُغلق عميلك بشكل غير متوقع، فحاول مجدداً بعد دقيقة."
 
 #: src/network/clientpackethandler.cpp
 msgid "Empty passwords are disallowed.  Set a password and try again."
-msgstr ""
+msgstr "لا يُسمح بكلمات المرور الفارغة. عيّن كلمة مرور ثم حاول مجدداً."
 
 #: src/network/clientpackethandler.cpp
 msgid "Internal server error"
-msgstr ""
+msgstr "خطأ داخلي في الخادم"
 
 #: src/network/clientpackethandler.cpp
 #, fuzzy
@@ -2851,7 +2851,7 @@ msgstr "يرجى اختيار اسم!"
 
 #: src/network/clientpackethandler.cpp
 msgid "Player name contains disallowed characters"
-msgstr ""
+msgstr "يحتوي اسم اللاعب على محارف غير مسموح بها."
 
 #: src/network/clientpackethandler.cpp
 #, fuzzy
@@ -2866,25 +2866,25 @@ msgstr "يغلق…"
 #: src/network/clientpackethandler.cpp
 msgid ""
 "The server has experienced an internal error.  You will now be disconnected."
-msgstr ""
+msgstr "واجه الخادم خطأ داخلياً. سيتم قطع اتصالك الآن."
 
 #: src/network/clientpackethandler.cpp
 msgid "The server is running in singleplayer mode.  You cannot connect."
-msgstr ""
+msgstr "يعمل الخادم في نمط اللاعب الفردي؛ لا يمكنك الاتصال به."
 
 #: src/network/clientpackethandler.cpp
 msgid "Too many users"
-msgstr ""
+msgstr "عدد المستخدمين كبير جداً."
 
 #: src/network/clientpackethandler.cpp
 msgid "Unknown disconnect reason."
-msgstr ""
+msgstr "سبب قطع الاتصال غير معروف."
 
 #: src/network/clientpackethandler.cpp
 msgid ""
 "Your client sent something the server didn't expect.  Try reconnecting or "
 "updating your client."
-msgstr ""
+msgstr "أرسل عميلك بيانات غير متوقعة إلى الخادم. حاول إعادة الاتصال أو تحديث عميلك."
 
 #: src/network/clientpackethandler.cpp
 msgid ""
