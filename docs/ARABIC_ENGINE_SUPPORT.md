@@ -86,9 +86,9 @@ output is inspected.
 - Added the complete Arabic built-in runtime catalog: 245/245 keys from `builtin/locale/template.txt`.
 - Added a byte-identical packaged copy under `luanti/5.17.0/builtin/locale/__builtin.ar.tr`.
 - Preserved `LANG_CODE=ar` in the Arabic Luanti gettext catalog.
-- Added 163 non-fuzzy Arabic translations for engine settings and UI descriptions in this work session.
+- Added 323 non-fuzzy Arabic translations for engine settings and UI descriptions across two batches (163 + 160) in this work session.
 - Added `tools/validate_luanti_arabic.py` and made engine builds depend on Arabic catalog validation plus `msgfmt --check --check-format`.
-- Current gettext coverage: **760 / 1,326 non-fuzzy messages (57.3%)**. There are **566 empty non-fuzzy messages** and **249 fuzzy entries**; fuzzy entries are not counted as approved translations.
+- Current gettext coverage: **920 / 1,326 non-fuzzy messages (69.4%)**. There are **406 empty non-fuzzy messages** and **249 fuzzy entries**; fuzzy entries are not counted as approved translations.
 - The validation workflow checks source/bundle synchronization, template key parity, empty built-in translations, placeholders, PO metadata, `LANG_CODE`, and a non-fuzzy coverage floor of 760.
 
 ### Still in progress / not yet accepted
