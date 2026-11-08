@@ -84,6 +84,7 @@ public:
 	void testArabicExtendedLetters();
 	void testMixedDirectionParagraph();
 	void testBidiIsolatesAndArabicIndicDigits();
+	void testMixedDirectionSelectionIntervals();
 	void testCombiningMarkCluster();
 	void testExplicitParagraphDirection();
 	void testFallbackFontRange();
@@ -98,6 +99,7 @@ void TestArabicTextLayout::runTests(IGameDef *gamedef)
 	TEST(testArabicExtendedLetters);
 	TEST(testMixedDirectionParagraph);
 	TEST(testBidiIsolatesAndArabicIndicDigits);
+	TEST(testMixedDirectionSelectionIntervals);
 	TEST(testCombiningMarkCluster);
 	TEST(testExplicitParagraphDirection);
 	TEST(testFallbackFontRange);
@@ -260,6 +262,32 @@ void TestArabicTextLayout::testBidiIsolatesAndArabicIndicDigits()
 	size_t hit_index = 0;
 	UASSERT(raqm_position_to_index(layout.value, x, y, &hit_index));
 	UASSERT(hit_index <= text.size());
+}
+
+void TestArabicTextLayout::testMixedDirectionSelectionIntervals()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+
+	RaqmLayout layout;
+	// In an LTR paragraph the Hebrew run is rendered in the opposite visual
+	// order. Selecting the first Latin word and only the first logical Hebrew
+	// letter must therefore produce two separated visual highlight intervals.
+	const std::u32string text = U"abc אבג def";
+	setRaqmText(layout, font.face, text);
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(layout.value));
+	UASSERTEQ(raqm_direction_t, raqm_get_par_resolved_direction(layout.value),
+			RAQM_DIRECTION_LTR);
+
+	const auto intervals = gui::text_layout::getVisualSelectionIntervals(
+			layout.value, text.size(), 0, 5);
+	UASSERT(intervals.size() >= 2);
+	for (size_t i = 0; i < intervals.size(); ++i) {
+		UASSERT(intervals[i].first < intervals[i].second);
+		if (i > 0)
+			UASSERT(intervals[i - 1].second < intervals[i].first);
+	}
 }
 
 void TestArabicTextLayout::testCombiningMarkCluster()
