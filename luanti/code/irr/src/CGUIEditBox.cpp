@@ -720,14 +720,29 @@ bool CGUIEditBox::onKeyBackDelete(const SEvent::SKeyInput &input)
 		s8 dir = input.Key == KEY_DELETE ? 1 : -1;
 
 		s32 endpos;
-		if (input.Control)
-			endpos = getCtrlKeyWord(CursorPos, dir);
-		else if (IGUIFont *font = getActiveFont())
+		if (input.Control) {
+			// Delete a whole word in visual order for Raqm-backed complex-script
+			// fonts. The returned logical source boundary may be on either side
+			// of CursorPos in mixed-direction text.
+			if (IGUIFont *font = getActiveFont();
+					font && font->getType() == EGFT_CUSTOM) {
+				auto *ttfont = static_cast<CGUITTFont *>(font);
+				endpos = ttfont->getVisualWordCursorPosition(
+						Text.c_str(), CursorPos, dir);
+			} else {
+				endpos = getCtrlKeyWord(CursorPos, dir);
+			}
+		} else if (IGUIFont *font = getActiveFont()) {
 			endpos = font->getNextCursorPosition(Text.c_str(), CursorPos, dir);
-		else
+		} else {
 			endpos = CursorPos + dir;
+		}
 
-		endpos = std::max<s32>(0, endpos);
+		endpos = std::min<s32>(static_cast<s32>(Text.size()),
+				std::max<s32>(0, endpos));
+		// A visual word boundary can already be at the requested edge.
+		if (endpos == CursorPos)
+			return false;
 		if (endpos < CursorPos)
 			std::swap(CursorPos, endpos);
 
