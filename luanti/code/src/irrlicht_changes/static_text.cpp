@@ -314,191 +314,82 @@ void StaticText::updateText()
 		BrokenText += l;
 	};
 
-	// We have to deal with right-to-left and left-to-right differently
-	// However, most parts of the following code is the same, it's just
-	// some order and boundaries which change.
-	if (!RightToLeft)
-	{
-		// regular (left-to-right)
-		for (s32 i=0; i<size; ++i)
-		{
-			c = cText.getString()[i];
-			bool lineBreak = false;
+	// Keep source text and wrapped lines in logical order for both paragraph
+	// directions. BiDi reorders glyphs during shaping and drawing; reversing
+	// this scan would reverse the vertical order of wrapped RTL lines.
+	for (s32 i = 0; i < size; ++i) {
+		c = cText.getString()[i];
+		bool lineBreak = false;
 
-			if (c == L'\r') // Mac or Windows breaks
-			{
-				lineBreak = true;
-				c = '\0';
-			}
-			else if (c == L'\n') // Unix breaks
-			{
-				lineBreak = true;
-				c = '\0';
-			}
+		if (c == L'\r') { // Mac or Windows breaks
+			lineBreak = true;
+			c = 0;
+			// Treat CRLF as one line break.
+			if (i + 1 < size && cText.getString()[i + 1] == L'\n')
+				++i;
+		} else if (c == L'\n') { // Unix breaks
+			lineBreak = true;
+			c = 0;
+		}
 
-			bool isWhitespace = (c == L' ' || c == 0);
-			if ( !isWhitespace )
-			{
-				// part of a word
-				word.addChar(cText, i);
-			}
+		const bool isWhitespace = c == L' ' || c == 0;
+		if (!isWhitespace)
+			word.addChar(cText, i);
 
-			if ( isWhitespace || i == (size-1))
-			{
-				if (word.size())
-				{
-					// here comes the next whitespace, look if
-					// we must break the last word to the next line.
-					const s32 whitelgth = measure_width(whitespace.c_str());
-					//const std::wstring sanitized = removeEscapes(word.c_str());
-					const s32 wordlgth = measure_width(word.c_str());
+		if (isWhitespace || i == size - 1) {
+			if (word.size()) {
+				const s32 whiteLength = measure_width(whitespace.c_str());
+				const s32 wordLength = measure_width(word.c_str());
 
-					if (wordlgth > elWidth)
-					{
-						// This word is too long to fit in the available space, look for
-						// the Unicode Soft HYphen (SHY / 00AD) character for a place to
-						// break the word at
-						int where = core::stringw(word.c_str()).findFirst( wchar_t(0x00AD) );
-						if (where != -1)
-						{
-							EnrichedString first = word.substr(0, where);
-							EnrichedString second = word.substr(where, word.size() - where);
-							first.addCharNoColor(L'-');
-							add_line(line + first);
-							const s32 secondLength = measure_width(second.c_str());
+				if (wordLength > elWidth) {
+					// Prefer a Unicode soft hyphen when a single word is too long.
+					const int where = core::stringw(word.c_str()).findFirst(wchar_t(0x00AD));
+					if (where != -1) {
+						EnrichedString first = word.substr(0, where);
+						EnrichedString second = word.substr(where, word.size() - where);
+						first.addCharNoColor(L'-');
+						add_line(line + first);
 
-							length = secondLength;
-							line = second;
-						}
-						else
-						{
-							// No soft hyphen found, so there's nothing more we can do
-							// break to next line
-							if (length)
-								add_line(line);
-							length = wordlgth;
-							line = word;
-						}
-					}
-					else if (length && (length + wordlgth + whitelgth > elWidth))
-					{
-						// break to next line
-						add_line(line);
-						length = wordlgth;
+						length = measure_width(second.c_str());
+						line = second;
+					} else {
+						if (length)
+							add_line(line);
+						length = wordLength;
 						line = word;
 					}
-					else
-					{
-						// add word to line
-						line += whitespace;
-						line += word;
-						length += whitelgth + wordlgth;
-					}
-
-					word.clear();
-					whitespace.clear();
-				}
-
-				if ( isWhitespace && c != 0)
-				{
-					whitespace.addChar(cText, i);
-				}
-
-				// compute line break
-				if (lineBreak)
-				{
+				} else if (length && length + wordLength + whiteLength > elWidth) {
+					add_line(line);
+					length = wordLength;
+					line = word;
+				} else {
 					line += whitespace;
 					line += word;
-					add_line(line);
-					line.clear();
-					word.clear();
-					whitespace.clear();
-					length = 0;
+					length += whiteLength + wordLength;
 				}
+
+				word.clear();
+				whitespace.clear();
+			}
+
+			if (isWhitespace && c != 0)
+				whitespace.addChar(cText, i);
+
+			if (lineBreak) {
+				line += whitespace;
+				line += word;
+				add_line(line);
+				line.clear();
+				word.clear();
+				whitespace.clear();
+				length = 0;
 			}
 		}
-
-		line += whitespace;
-		line += word;
-		add_line(line);
 	}
-	else
-	{
-		// right-to-left
-		for (s32 i=size; i>=0; --i)
-		{
-			c = cText.getString()[i];
-			bool lineBreak = false;
 
-			if (c == L'\r') // Mac or Windows breaks
-			{
-				lineBreak = true;
-				c = '\0';
-			}
-			else if (c == L'\n') // Unix breaks
-			{
-				lineBreak = true;
-				c = '\0';
-			}
-
-			if (c==L' ' || c==0 || i==0)
-			{
-				if (word.size())
-				{
-					// here comes the next whitespace, look if
-					// we must break the last word to the next line.
-					const s32 whitelgth = measure_width(whitespace.c_str());
-					const s32 wordlgth = measure_width(word.c_str());
-
-					if (length && (length + wordlgth + whitelgth > elWidth))
-					{
-						// break to next line
-						add_line(line);
-						length = wordlgth;
-						line = word;
-					}
-					else
-					{
-						// add word to line
-						line = whitespace + line;
-						line = word + line;
-						length += whitelgth + wordlgth;
-					}
-
-					word.clear();
-					whitespace.clear();
-				}
-
-				if (c != 0)
-				//	whitespace = core::stringw(&c, 1) + whitespace;
-				whitespace = cText.substr(i, 1) + whitespace;
-
-				// compute line break
-				if (lineBreak)
-				{
-					line = whitespace + line;
-					line = word + line;
-					add_line(line);
-					line.clear();
-					word.clear();
-					whitespace.clear();
-					length = 0;
-				}
-			}
-			else
-			{
-				// yippee this is a word..
-				//word = core::stringw(&c, 1) + word;
-				word = cText.substr(i, 1) + word;
-			}
-		}
-
-		line = whitespace + line;
-		line = word + line;
-		add_line(line);
-	}
-}
-
+	line += whitespace;
+	line += word;
+	add_line(line);
 
 //! Sets the new caption of this element.
 void StaticText::setText(const wchar_t* text)
