@@ -51,6 +51,7 @@
 #include <utility>
 #include <vector>
 #include <cwchar>
+#include <cwctype>
 
 
 namespace gui
@@ -1442,6 +1443,135 @@ s32 CGUITTFont::getVisualCursorPosition(const wchar_t *text, s32 char_index, s32
 			? stops[target].second : local_cursor;
 	raqm_destroy(layout);
 	return u32IndexToWideIndex(text, line_start + local_result);
+}
+
+s32 CGUITTFont::getVisualWordCursorPosition(
+		const wchar_t *text, s32 char_index, s32 direction) const
+{
+	if (!text || !*text)
+		return 0;
+
+	const std::u32string unicode = convertWCharToU32String(text);
+	const size_t wide_length = wcslen(text);
+	const size_t wide_cursor = std::min<size_t>(
+			static_cast<size_t>(std::max<s32>(0, char_index)), wide_length);
+	const size_t cursor = wideIndexToU32Index(text, wide_cursor);
+
+	size_t line_start = cursor;
+	while (line_start > 0 && !isTextLineBreak(unicode[line_start - 1]))
+		--line_start;
+	size_t line_end = cursor;
+	while (line_end < unicode.size() && !isTextLineBreak(unicode[line_end]))
+		++line_end;
+
+	const std::u32string line = unicode.substr(line_start, line_end - line_start);
+	raqm_t *layout = createLayout(line);
+	if (!layout)
+		return IGUIFont::getVisualCursorPosition(text, char_index, direction);
+
+	const auto shaping_clusters =
+			text_layout::getShapingClusterBoundaries(layout, line.size());
+	std::vector<std::pair<s32, size_t>> stops;
+	stops.reserve(line.size() + 1);
+	for (size_t boundary = 0; boundary <= line.size(); ++boundary) {
+		if (!text_layout::isAllowedCursorBoundary(
+					layout, boundary, line.size(), shaping_clusters))
+			continue;
+		int x = 0;
+		if (layoutCursorX(layout, boundary, &x))
+			stops.emplace_back(fixedToSignedPixels(x), boundary);
+	}
+
+	std::stable_sort(stops.begin(), stops.end(),
+		[](const auto &left, const auto &right) {
+			if (left.first != right.first)
+				return left.first < right.first;
+			return left.second < right.second;
+		});
+
+	size_t current_stop = stops.size();
+	const size_t local_cursor = cursor - line_start;
+	for (size_t i = 0; i < stops.size(); ++i) {
+		if (stops[i].second == local_cursor) {
+			current_stop = i;
+			break;
+		}
+	}
+	if (current_stop == stops.size() && !stops.empty()) {
+		int logical_cursor_x = 0;
+		if (layoutCursorX(layout, local_cursor, &logical_cursor_x)) {
+			int best_distance = std::numeric_limits<int>::max();
+			for (size_t i = 0; i < stops.size(); ++i) {
+				const int distance = std::abs(
+						stops[i].first - fixedToSignedPixels(logical_cursor_x));
+				if (distance < best_distance) {
+					best_distance = distance;
+					current_stop = i;
+				}
+			}
+		}
+	}
+
+	const auto is_unicode_space = [](char32_t c) {
+		return (c <= static_cast<char32_t>(WCHAR_MAX) &&
+				std::iswspace(static_cast<wint_t>(c)) != 0) ||
+				c == 0x00A0 || c == 0x1680 ||
+				(c >= 0x2000 && c <= 0x200A) ||
+				c == 0x2028 || c == 0x2029 || c == 0x202F ||
+				c == 0x205F || c == 0x3000;
+	};
+	const auto is_unicode_punctuation = [](char32_t c) {
+		if (c <= static_cast<char32_t>(WCHAR_MAX) &&
+				std::iswpunct(static_cast<wint_t>(c)) != 0)
+			return true;
+		return (c >= 0x2000 && c <= 0x206F) ||
+				(c >= 0x2E00 && c <= 0x2E7F) ||
+				(c >= 0x3001 && c <= 0x303F) ||
+				(c >= 0xFE10 && c <= 0xFE1F) ||
+				(c >= 0xFE30 && c <= 0xFE4F) ||
+				(c == 0x060C || c == 0x061B || c == 0x061F || c == 0x06D4);
+	};
+
+	size_t target_stop = current_stop;
+	bool previous_space = false;
+	bool previous_punctuation = false;
+	for (size_t distance = 1; current_stop < stops.size() && distance <= stops.size(); ++distance) {
+		if (direction < 0) {
+			if (target_stop == 0)
+				break;
+		} else if (target_stop + 1 >= stops.size()) {
+			break;
+		}
+
+		const size_t next_stop = direction < 0 ? target_stop - 1 : target_stop + 1;
+		const size_t first = std::min(stops[target_stop].second, stops[next_stop].second);
+		const size_t last = std::max(stops[target_stop].second, stops[next_stop].second);
+		if (first == last) {
+			target_stop = next_stop;
+			continue;
+		}
+
+		bool current_space = true;
+		bool current_punctuation = true;
+		for (size_t i = first; i < last; ++i) {
+			current_space = current_space && is_unicode_space(line[i]);
+			current_punctuation = current_punctuation && is_unicode_punctuation(line[i]);
+		}
+
+		if (distance > 2 && !previous_space && current_space)
+			break;
+		if (distance > 2 && previous_punctuation && !current_punctuation)
+			break;
+
+		target_stop = next_stop;
+		previous_space = current_space;
+		previous_punctuation = current_punctuation;
+	}
+
+	const size_t result = target_stop < stops.size()
+			? stops[target_stop].second : local_cursor;
+	raqm_destroy(layout);
+	return u32IndexToWideIndex(text, line_start + result);
 }
 
 bool CGUITTFont::isRightToLeft(const wchar_t *text) const
