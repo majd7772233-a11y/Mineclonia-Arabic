@@ -860,7 +860,7 @@ void CGUIEditBox::draw()
 
 					const core::rect<s32> lineRect = CurrentTextRect;
 					if (font->getType() == EGFT_CUSTOM) {
-						auto *ttfont = IRR_DOWN_CAST<CGUITTFont *>(font);
+						auto *ttfont = static_cast<CGUITTFont *>(font);
 						const auto selection = ttfont->getVisualSelectionLayout(
 								txtLine->c_str(), lineStartPos, lineEndPos);
 
