@@ -7363,9 +7363,3 @@ msgstr "عنوان الخادم الوكيل لـcURL"
 #, c-format
 msgid "Failed to save screenshot to \"%s\""
 msgstr "فشل حفظ لقطة الشاشة في \"%s\""
-
-#, fuzzy
-#~ msgid "Keybindings"
-#~ msgstr "روابط المفاتيح."
-
-
