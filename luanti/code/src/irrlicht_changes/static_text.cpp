@@ -289,6 +289,15 @@ void StaticText::updateText()
 	if (!font)
 		return;
 
+	const auto measure_width = [&](const wchar_t *value) -> s32 {
+		if (font->getType() == EGFT_CUSTOM) {
+			auto *ttfont = static_cast<CGUITTFont *>(font);
+			return ttfont->getDimension(value,
+					RightToLeft ? RAQM_DIRECTION_RTL : RAQM_DIRECTION_LTR).Width;
+		}
+		return font->getDimension(value).Width;
+	};
+
 	EnrichedString line;
 	EnrichedString word;
 	EnrichedString whitespace;
@@ -340,9 +349,9 @@ void StaticText::updateText()
 				{
 					// here comes the next whitespace, look if
 					// we must break the last word to the next line.
-					const s32 whitelgth = font->getDimension(whitespace.c_str()).Width;
+					const s32 whitelgth = measure_width(whitespace.c_str());
 					//const std::wstring sanitized = removeEscapes(word.c_str());
-					const s32 wordlgth = font->getDimension(word.c_str()).Width;
+					const s32 wordlgth = measure_width(word.c_str());
 
 					if (wordlgth > elWidth)
 					{
@@ -356,7 +365,7 @@ void StaticText::updateText()
 							EnrichedString second = word.substr(where, word.size() - where);
 							first.addCharNoColor(L'-');
 							add_line(line + first);
-							const s32 secondLength = font->getDimension(second.c_str()).Width;
+							const s32 secondLength = measure_width(second.c_str());
 
 							length = secondLength;
 							line = second;
