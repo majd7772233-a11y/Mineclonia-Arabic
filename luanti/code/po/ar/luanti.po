@@ -261,9 +261,8 @@ msgid "The first octave is amplified by 1."
 msgstr "تكون سعة الأوكتاف الأول مضبوطة على 1."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
-#, fuzzy
 msgid "The first octave is scaled by 1."
-msgstr "هذا الأمر معطل من الخادم."
+msgstr "يُضبط مقياس الأوكتاف الأول على 1."
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "The multiplier for the noise before the offset is added."
@@ -313,19 +312,16 @@ msgstr "مخفف"
 #. TRANSLATORS: "automatic exposure" refers to light. This note
 #. will be displayed for the graphics setting 'enable_auto_exposure'
 #: builtin/common/settings/dlg_settings.lua
-#, fuzzy
 msgid "(The game will need to enable automatic exposure as well)"
-msgstr "(ستحتاج اللعبة إلى تمكين الظلال أيضًا)"
+msgstr "(ستحتاج اللعبة أيضاً إلى تفعيل التعريض التلقائي.)"
 
 #: builtin/common/settings/dlg_settings.lua
-#, fuzzy
 msgid "(The game will need to enable bloom as well)"
-msgstr "(ستحتاج اللعبة إلى تمكين الظلال أيضًا)"
+msgstr "(ستحتاج اللعبة أيضاً إلى تفعيل تأثير التوهج.)"
 
 #: builtin/common/settings/dlg_settings.lua
-#, fuzzy
 msgid "(The game will need to enable volumetric lighting as well)"
-msgstr "(ستحتاج اللعبة إلى تمكين الظلال أيضًا)"
+msgstr "(ستحتاج اللعبة أيضاً إلى تفعيل الإضاءة الحجمية.)"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "(Use system language)"
@@ -372,9 +368,8 @@ msgid "Controls"
 msgstr "التحكم"
 
 #: builtin/common/settings/dlg_settings.lua src/settings_translation_file.cpp
-#, fuzzy
 msgid "Damage"
-msgstr "الضرر / قتال اللاعبين"
+msgstr "الضرر"
 
 #: builtin/common/settings/dlg_settings.lua
 #: builtin/common/settings/shadows_component.lua
@@ -407,20 +402,17 @@ msgstr "بدون نتائج"
 
 #. TRANSLATORS: Indicates that the action does not have a corresponding keybinding.
 #: builtin/common/settings/dlg_settings.lua
-#, fuzzy
 msgid "Not bound"
-msgstr "لم يُعثر عليه"
+msgstr "غير معيّن"
 
 #: builtin/common/settings/dlg_settings.lua
-#, fuzzy
 msgid "Reset setting to default"
-msgstr "إستعِد الإفتراضي"
+msgstr "إعادة الإعداد إلى القيمة الافتراضية"
 
 #. TRANSLATORS: $1 will be replaced with a default setting value
 #: builtin/common/settings/dlg_settings.lua
-#, fuzzy
 msgid "Reset setting to default: $1"
-msgstr "إعادة تعيين الإعداد إلى الافتراضي (1$)"
+msgstr "إعادة الإعداد $1 إلى القيمة الافتراضية."
 
 #: builtin/common/settings/dlg_settings.lua builtin/mainmenu/tab_online.lua
 msgid "Search"
@@ -442,9 +434,8 @@ msgstr "إعرض الأسماء التقنية"
 
 #. TRANSLATORS: Touchscreen interaction style
 #: builtin/common/settings/dlg_settings.lua
-#, fuzzy
 msgid "Tap"
-msgstr "Tab"
+msgstr "النقر"
 
 #. TRANSLATORS: Touchscreen interaction style
 #: builtin/common/settings/dlg_settings.lua
@@ -462,14 +453,12 @@ msgid "Touchscreen layout"
 msgstr "تخطيط شاشة اللمس"
 
 #: builtin/common/settings/dlg_settings.lua
-#, fuzzy
 msgid "Unavailable"
-msgstr "<ليس متاحًا>"
+msgstr "غير متاح"
 
 #: builtin/common/settings/settingtypes.lua
-#, fuzzy
 msgid "Client Mods"
-msgstr "اختر التعديلات"
+msgstr "إضافات العميل"
 
 #: builtin/common/settings/settingtypes.lua
 msgid "Content: Games"
@@ -504,9 +493,8 @@ msgid "Quality preset"
 msgstr "مستوى الجودة"
 
 #: builtin/common/settings/shadows_component.lua
-#, fuzzy
 msgid "Very High"
-msgstr "عالية جدا"
+msgstr "مرتفع جداً"
 
 #: builtin/common/settings/shadows_component.lua
 msgid "Very Low"
@@ -577,11 +565,10 @@ msgid "Failed to download $1"
 msgstr "فشل تحميل $1"
 
 #: builtin/mainmenu/content/contentdb.lua
-#, fuzzy
 msgid ""
 "Failed to extract \"$1\" (insufficient disk space, unsupported file type or "
 "broken archive)"
-msgstr "التثبيت: نوع الملف غير مدعوم أو أرشيف تالف"
+msgstr "تعذر استخراج \"$1\" (مساحة القرص غير كافية أو نوع الملف غير مدعوم أو الأرشيف تالف)."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid ""
@@ -600,9 +587,8 @@ msgid "All"
 msgstr "الكل"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
-#, fuzzy
 msgid "ContentDB is not available when Luanti was compiled without cURL"
-msgstr "لا يمكن استخدام ContentDB عند بناء Minetest بدون cURL"
+msgstr "لا يتوفر ContentDB عند بناء Luanti دون دعم cURL."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Downloading..."
@@ -643,9 +629,8 @@ msgid "Queued"
 msgstr "في الطابور"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
-#, fuzzy
 msgid "Texture Packs"
-msgstr "حِزم الإكساء"
+msgstr "حزم الأنسجة"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "The package $1 was not found."
@@ -715,9 +700,8 @@ msgid "Please check that the base game is correct."
 msgstr "تحقق من صحة اللعبة القاعدية."
 
 #: builtin/mainmenu/content/dlg_install.lua
-#, fuzzy
 msgid "You need to install a game before you can install a mod"
-msgstr "يجب عليك تنزيل اللعبة قبل إضافة التعديلات"
+msgstr "يجب تثبيت لعبة قبل أن تتمكن من تثبيت إضافة."
 
 #: builtin/mainmenu/content/dlg_overwrite.lua
 msgid "\"$1\" already exists. Would you like to overwrite it?"
@@ -728,14 +712,12 @@ msgid "Overwrite"
 msgstr "اكتب عليه"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "ContentDB page"
-msgstr "المحتوى: ألعاب"
+msgstr "صفحة ContentDB"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "Description"
-msgstr "وصف الخادم"
+msgstr "الوصف"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Donate"
@@ -746,24 +728,21 @@ msgid "Error loading package information"
 msgstr "تعذر تحميل معلومات الحزمة."
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "Error loading reviews"
-msgstr "ينشىء عميلا…"
+msgstr "تعذر تحميل المراجعات."
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Forum Topic"
 msgstr "موضوع المنتدى"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "Information"
-msgstr "معلومات:"
+msgstr "معلومات"
 
 #. TRANSLATORS: $1 = download size
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "Install [$1]"
-msgstr "ثبت $1"
+msgstr "تثبيت [$1]"
 
 #. TRANSLATORS: Also known as 'bug tracker'
 #: builtin/mainmenu/content/dlg_package.lua
@@ -792,14 +771,12 @@ msgid "Update"
 msgstr "حدِث"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "Website"
-msgstr "زر الموقع"
+msgstr "الموقع الإلكتروني"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "by $1"
-msgstr "$1 بواسطة $2"
+msgstr "بواسطة $1"
 
 #. TRANSLATORS: Info line for a ContentDB package:
 #. $1 = author,
@@ -830,18 +807,16 @@ msgid "Unable to find a valid mod, modpack, or game"
 msgstr "فشل إيجاد تعديل, حزمة تعديلات أو لعبة صالحة"
 
 #: builtin/mainmenu/content/pkgmgr.lua
-#, fuzzy
 msgid "Unable to install a $1 as a $2"
-msgstr "فشل تثبيت التعديل كـ $1"
+msgstr "تعذر تثبيت $1 باعتباره $2."
 
 #: builtin/mainmenu/content/pkgmgr.lua
 msgid "Unable to install a $1 as a texture pack"
 msgstr "فشل تثبيت $1 كحزمة إكساء"
 
 #: builtin/mainmenu/content/pkgmgr.lua
-#, fuzzy
 msgid "World mods"
-msgstr "إسم العالم"
+msgstr "إضافات العالم"
 
 #. TRANSLATORS: $1 = server name
 #: builtin/mainmenu/dlg_clients_list.lua
@@ -937,9 +912,8 @@ msgid "Always show this dialog."
 msgstr "اعرض مربع الحوار هذا دائماً."
 
 #: builtin/mainmenu/dlg_confirm_exit.lua
-#, fuzzy
 msgid "Are you sure you want to quit?"
-msgstr "هل تريد حذف \"$1\" ؟"
+msgstr "هل أنت متأكد أنك تريد الخروج؟"
 
 #: builtin/mainmenu/dlg_confirm_exit.lua
 msgid "Quit"
@@ -1169,14 +1143,12 @@ msgid "Close"
 msgstr "إغلاق"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
-#, fuzzy
 msgid "Keybindings changed"
-msgstr "روابط المفاتيح."
+msgstr "تم تغيير تعيينات المفاتيح."
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
-#, fuzzy
 msgid "Open settings"
-msgstr "إعدادات"
+msgstr "فتح الإعدادات"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 msgid "The input handling system was reworked in Luanti 5.12.0."
@@ -1220,13 +1192,10 @@ msgid "Dismiss"
 msgstr "رفض"
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
-#, fuzzy
 msgid ""
 "For a long time, Luanti shipped with a default game called \"Minetest "
 "Game\". Since version 5.8.0, Luanti ships without a default game."
-msgstr ""
-"لفترة طويلة، كان محرك Minetest مزودًا بلعبة افتراضية تسمى \"Minetest Game\". "
-"منذ Minetest 5.8.0، يتم شحن Minetest بدون لعبة افتراضية."
+msgstr "لفترة طويلة، كان Luanti يأتي مع لعبة افتراضية باسم \"Minetest Game\". منذ الإصدار 5.8.0، أصبح Luanti يُوزّع دون لعبة افتراضية."
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
 msgid ""
@@ -1241,9 +1210,8 @@ msgid "Minetest Game is no longer installed by default"
 msgstr "لم تعد لعبة Minetest مثبتة بشكل افتراضي"
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
-#, fuzzy
 msgid "Reinstall Minetest Game"
-msgstr "ثبت لعبة أخرى"
+msgstr "إعادة تثبيت Minetest Game"
 
 #: builtin/mainmenu/dlg_rename_modpack.lua
 msgid "Accept"
@@ -1262,9 +1230,8 @@ msgstr ""
 
 #. TRANSLATORS: Expand all entries in a tree view
 #: builtin/mainmenu/dlg_server_list_mods.lua
-#, fuzzy
 msgid "Expand all"
-msgstr "فعِل الكل"
+msgstr "توسيع الكل"
 
 #. TRANSLATORS: A checkbox; if enabled, it will group mods by their prefix
 #: builtin/mainmenu/dlg_server_list_mods.lua
@@ -1376,9 +1343,8 @@ msgstr "تصفح المحتوى عبر الانترنت"
 
 #. TRANSLATORS: $1 = number of available updates
 #: builtin/mainmenu/tab_content.lua
-#, fuzzy
 msgid "Browse online content [$1]"
-msgstr "تصفح المحتوى عبر الانترنت"
+msgstr "تصفح المحتوى عبر الإنترنت [$1]"
 
 #: builtin/mainmenu/tab_content.lua
 msgid "Content"
@@ -1386,9 +1352,8 @@ msgstr "المحتوى"
 
 #. TRANSLATORS: $1 = number of available updates
 #: builtin/mainmenu/tab_content.lua
-#, fuzzy
 msgid "Content [$1]"
-msgstr "المحتوى"
+msgstr "المحتوى [$1]"
 
 #: builtin/mainmenu/tab_content.lua
 msgid "Disable Texture Pack"
@@ -1411,9 +1376,8 @@ msgid "Rename"
 msgstr "أعد التسمية"
 
 #: builtin/mainmenu/tab_content.lua
-#, fuzzy
 msgid "Update available?"
-msgstr "<ليس متاحًا>"
+msgstr "هل يتوفر تحديث؟"
 
 #: builtin/mainmenu/tab_content.lua
 msgid "Use Texture Pack"
@@ -1424,9 +1388,8 @@ msgid "Announce Server"
 msgstr "أعلن عن الخادوم"
 
 #: builtin/mainmenu/tab_local.lua
-#, fuzzy
 msgid "Bind Address"
-msgstr "العنوان المطلوب"
+msgstr "عنوان الربط"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Creative Mode"
@@ -1453,9 +1416,8 @@ msgid "Install games from ContentDB"
 msgstr "ثبت العابا من ContentDB"
 
 #: builtin/mainmenu/tab_local.lua
-#, fuzzy
 msgid "Luanti doesn't come with a game by default."
-msgstr "لم تعد لعبة Minetest مثبتة بشكل افتراضي"
+msgstr "لا يأتي Luanti مع لعبة افتراضية."
 
 #: builtin/mainmenu/tab_local.lua
 msgid ""
@@ -1493,14 +1455,12 @@ msgid "Start Game"
 msgstr "ابدأ اللعبة"
 
 #: builtin/mainmenu/tab_local.lua
-#, fuzzy
 msgid "You need to install a game before you can create a world."
-msgstr "يجب عليك تنزيل اللعبة قبل إضافة التعديلات"
+msgstr "يجب تثبيت لعبة قبل أن تتمكن من إنشاء عالم."
 
 #: builtin/mainmenu/tab_online.lua
-#, fuzzy
 msgid "Add favorite"
-msgstr "حذف المفضلة"
+msgstr "إضافة إلى المفضلة"
 
 #. TRANSLATORS: Network address
 #: builtin/mainmenu/tab_online.lua
@@ -1521,9 +1481,8 @@ msgid "Favorites"
 msgstr "المفضلة"
 
 #: builtin/mainmenu/tab_online.lua
-#, fuzzy
 msgid "Game: $1"
-msgstr "اللعبة"
+msgstr "اللعبة: $1"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Incompatible Servers"
@@ -1553,11 +1512,10 @@ msgstr "زمن الاستجابة"
 
 #. TRANSLATORS: $1 is a list of players
 #: builtin/mainmenu/tab_online.lua
-#, fuzzy
 msgid ""
 "Players:\n"
 "$1"
-msgstr "عميل"
+msgstr "اللاعبون:\n$1"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Possible filters"
@@ -1573,18 +1531,16 @@ msgid "Refresh"
 msgstr "حدِّث"
 
 #: builtin/mainmenu/tab_online.lua
-#, fuzzy
 msgid "Remove favorite"
-msgstr "حذف المفضلة"
+msgstr "إزالة من المفضلة"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Server Description"
 msgstr "وصف الخادم"
 
 #: src/chat.cpp
-#, fuzzy
 msgid "Player names: "
-msgstr "إلعب"
+msgstr "أسماء اللاعبين: "
 
 #: src/client/client.cpp
 msgid "Connection aborted (protocol error?)."
@@ -1615,9 +1571,8 @@ msgid "Rebuilding shaders..."
 msgstr "يعيد بناء المظلِلات..."
 
 #: src/client/client.cpp src/gui/guiEngine.cpp src/util/screenshot.cpp
-#, fuzzy, c-format
 msgid "Saved screenshot to \"%s\""
-msgstr "لقطات الشاشة"
+msgstr "تم حفظ لقطة الشاشة في \"%s\""
 
 #: src/client/clientlauncher.cpp
 msgid "Could not find or load game: "
@@ -1652,9 +1607,8 @@ msgid "Media..."
 msgstr "وسائط…"
 
 #: src/client/fontengine.cpp
-#, fuzzy
 msgid "Failed to find a valid font"
-msgstr "فشل فتح صفحة الويب"
+msgstr "تعذر العثور على خط صالح."
 
 #: src/client/game.cpp src/client/render/pipeline.cpp src/client/shader.cpp
 #: src/server.cpp
@@ -1666,7 +1620,6 @@ msgstr ""
 "راجع debug.txt لمزيد من التفاصيل."
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "A serialization error occurred:"
 msgstr "حدث خطأ في التسلسل:"
 
@@ -1676,9 +1629,8 @@ msgid "Access denied. Reason: %s"
 msgstr "رُفض النفاذ. السبب: %s"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "All debug info hidden"
-msgstr "معلومات التنقيح مرئية"
+msgstr "تم إخفاء جميع معلومات التصحيح."
 
 #: src/client/game.cpp
 msgid "Automatic forward disabled"
@@ -1713,9 +1665,8 @@ msgid "Camera update enabled"
 msgstr "تحديث الكاميرا مفعل"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "Can't show block bounds (disabled by game or mod)"
-msgstr "تعذر إظهار حدود الكتل (غير مفعل من طرف تعديل أو لعبة)"
+msgstr "تعذر إظهار حدود الكتل (عطّلها أحد الألعاب أو الإضافات)."
 
 #: src/client/game.cpp
 msgid "Cinematic mode disabled"
@@ -1763,9 +1714,8 @@ msgid "Debug info shown"
 msgstr "معلومات التنقيح مرئية"
 
 #: src/client/game.cpp
-#, fuzzy, c-format
 msgid "Error creating client: %s"
-msgstr "ينشىء عميلا…"
+msgstr "خطأ أثناء إنشاء العميل: %s"
 
 #: src/client/game.cpp
 msgid "Fast mode disabled"
@@ -1805,23 +1755,20 @@ msgid "Fog enabled"
 msgstr "الضباب مفعل"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "Fog enabled by game or mod"
-msgstr "التكبير معطل من قبل لعبة أو تعديل"
+msgstr "تم تفعيل الضباب بواسطة اللعبة أو إحدى الإضافات."
 
 #: src/client/game.cpp
 msgid "Item definitions..."
 msgstr "تعريف العنصر…"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "KiB"
-msgstr "كب\\ثا"
+msgstr "KiB"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "MiB"
-msgstr "مب\\ثا"
+msgstr "MiB"
 
 #: src/client/game.cpp
 msgid "Minimap currently disabled by game or mod"
@@ -1904,31 +1851,24 @@ msgid "Unable to listen on %s because IPv6 is disabled"
 msgstr "غير قادر على الاستماع إلى %s لأن IPv6 معطل"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "Unlimited viewing range disabled"
-msgstr "مدى الرؤية غير المحدود مفعل"
+msgstr "تم تعطيل مدى الرؤية غير المحدود."
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "Unlimited viewing range enabled"
-msgstr "مدى الرؤية غير المحدود مفعل"
+msgstr "تم تفعيل مدى الرؤية غير المحدود."
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "Unlimited viewing range enabled, but forbidden by game or mod"
-msgstr "تم تمكين نطاق عرض غير محدود، ولكنه محظور بواسطة اللعبة أو التعديلة"
+msgstr "تم تفعيل مدى الرؤية غير المحدود، لكن اللعبة أو إحدى الإضافات تمنعه."
 
 #: src/client/game.cpp
-#, fuzzy, c-format
 msgid "Viewing changed to %d (the minimum)"
-msgstr "مدى الرؤية في أدنى حد: %d"
+msgstr "تم ضبط مدى الرؤية على %d (الحد الأدنى)."
 
 #: src/client/game.cpp
-#, fuzzy, c-format
 msgid "Viewing changed to %d (the minimum), but limited to %d by game or mod"
-msgstr ""
-"تم تغيير العرض إلى %d (الحد الأدنى)، ولكنه يقتصر على %d حسب اللعبة أو "
-"التعديلة"
+msgstr "تم ضبط مدى الرؤية على %d (الحد الأدنى)، لكن اللعبة أو إحدى الإضافات حصرته في %d."
 
 #: src/client/game.cpp
 #, c-format
@@ -1936,22 +1876,17 @@ msgid "Viewing range changed to %d"
 msgstr "غُيرَ مدى الرؤية الى %d"
 
 #: src/client/game.cpp
-#, fuzzy, c-format
 msgid "Viewing range changed to %d (the maximum)"
-msgstr "غُيرَ مدى الرؤية الى %d"
+msgstr "تم ضبط مدى الرؤية على %d (الحد الأقصى)."
 
 #: src/client/game.cpp
-#, fuzzy, c-format
 msgid ""
 "Viewing range changed to %d (the maximum), but limited to %d by game or mod"
-msgstr ""
-"تم تغيير نطاق العرض إلى %d (الحد الأقصى)، ولكنه يقتصر على %d حسب اللعبة أو "
-"التعديلة"
+msgstr "تم ضبط مدى الرؤية على %d (الحد الأقصى)، لكن اللعبة أو إحدى الإضافات حصرته في %d."
 
 #: src/client/game.cpp
-#, fuzzy, c-format
 msgid "Viewing range changed to %d, but limited to %d by game or mod"
-msgstr "غُيرَ مدى الرؤية الى %d"
+msgstr "تم تغيير مدى الرؤية إلى %d، لكن اللعبة أو إحدى الإضافات حصرته في %d."
 
 #: src/client/game.cpp
 #, c-format
@@ -1999,7 +1934,6 @@ msgid "Continue"
 msgstr "تابع"
 
 #: src/client/game_formspec.cpp
-#, fuzzy
 msgid ""
 "Controls:\n"
 "No menu open:\n"
@@ -2013,19 +1947,7 @@ msgid ""
 " --> move stack\n"
 "- touch&drag, tap 2nd finger\n"
 " --> place single item to slot\n"
-msgstr ""
-"اعدادات التحكم الافتراضية: \n"
-"بدون قائمة مرئية: \n"
-"- لمسة واحدة: زر تفعيل\n"
-"- لمسة مزدوجة: ضع/استخدم\n"
-"- تحريك إصبع: دوران\n"
-"المخزن أو قائمة مرئية: \n"
-"- لمسة مزدوجة (خارج القائمة): \n"
-" --> اغلق القائمة\n"
-"- لمس خانة أو تكديس: \n"
-" --> حرك التكديس\n"
-"- لمس وسحب, ولمس باصبع ثان: \n"
-" --> وضع عنصر واحد في خانة\n"
+msgstr "عناصر التحكم:\nعند عدم فتح أي قائمة:\n- تحريك الإصبع: تحريك مجال الرؤية.\n- النقر: الوضع/الضرب/الاستخدام (افتراضي).\n- الضغط المطوّل: الحفر/الاستخدام (افتراضي).\nعند فتح القائمة أو المخزون:\n- النقر مرتين خارج القائمة:\n --> إغلاق القائمة.\n- لمس رزمة ثم لمس خانة:\n --> نقل الرزمة.\n- اللمس والسحب ثم النقر بإصبع ثانٍ:\n --> وضع عنصر واحد في الخانة.\n"
 
 #. TRANSLATORS: Pause menu button, try to keep the translation short
 #: src/client/game_formspec.cpp
@@ -2075,9 +1997,8 @@ msgid "You died"
 msgstr "لقد مُتْ"
 
 #: src/client/gameui.cpp
-#, fuzzy
 msgid "Chat currently disabled by game or mod"
-msgstr "التكبير معطل من قبل لعبة أو تعديل"
+msgstr "الدردشة معطلة حالياً بواسطة اللعبة أو إحدى الإضافات."
 
 #: src/client/gameui.cpp
 msgid "Chat hidden"
@@ -2105,19 +2026,16 @@ msgid "Profiler shown (page %d of %d)"
 msgstr "محلل البيانات ظاهر ( صفحة %d من %d)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "A (Gamepad)"
-msgstr "الألعاب"
+msgstr "زر A (وحدة التحكم)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "B (Gamepad)"
-msgstr "الألعاب"
+msgstr "زر B (وحدة التحكم)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Back (Gamepad)"
-msgstr "الألعاب"
+msgstr "زر Back (وحدة التحكم)"
 
 #: src/client/keycode.cpp
 msgid "Backspace"
@@ -2141,24 +2059,20 @@ msgid "Circle (Gamepad)"
 msgstr "زر الدائرة (وحدة التحكم)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Clear Key"
-msgstr "امسح"
+msgstr "مفتاح Clear"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Control Key"
-msgstr "التحكم"
+msgstr "مفتاح Ctrl"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Cross (Gamepad)"
-msgstr "الألعاب"
+msgstr "زر × (وحدة التحكم)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "D-Pad Down"
-msgstr "Page down"
+msgstr "لوحة الاتجاهات - أسفل"
 
 #: src/client/keycode.cpp
 msgid "D-Pad Left"
@@ -2173,29 +2087,24 @@ msgid "D-Pad Up"
 msgstr "لوحة الاتجاهات - أعلى"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Delete Key"
-msgstr "إحذف"
+msgstr "مفتاح Delete"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Down Arrow"
 msgstr "السهم لأسفل"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "End Key"
-msgstr "Menu"
+msgstr "مفتاح End"
 
 #: src/client/keycode.cpp
-#, fuzzy, c-format
 msgid "Gamepad Axis %d +"
-msgstr "الألعاب"
+msgstr "محور وحدة التحكم %d +"
 
 #: src/client/keycode.cpp
-#, fuzzy, c-format
 msgid "Gamepad Axis %d -"
-msgstr "الألعاب"
+msgstr "محور وحدة التحكم %d -"
 
 #: src/client/keycode.cpp
 #, c-format
@@ -2203,39 +2112,32 @@ msgid "Gamepad Button %d"
 msgstr "زر وحدة التحكم %d"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Guide (Gamepad)"
-msgstr "الألعاب"
+msgstr "زر Guide (وحدة التحكم)"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Help Key"
-msgstr "إحذف"
+msgstr "مفتاح Help"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Home Key"
-msgstr "كبِر"
+msgstr "مفتاح Home"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Insert"
-msgstr "Insert"
+msgstr "مفتاح Insert"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Arrow"
-msgstr "Left Control"
+msgstr "السهم لليسار"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Click"
-msgstr "Left Control"
+msgstr "النقر بالزر الأيسر"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Control"
-msgstr "Left Control"
+msgstr "مفتاح Ctrl الأيسر"
 
 #: src/client/keycode.cpp
 msgid "Left Face Button (Gamepad)"
@@ -2258,39 +2160,33 @@ msgid "Left Joystick Right"
 msgstr "عصا التحكم اليسرى - إلى اليمين"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Joystick Up"
-msgstr "Left Control"
+msgstr "عصا التحكم اليسرى - أعلى"
 
 #: src/client/keycode.cpp
 msgid "Left Menu"
 msgstr "القائمة اليسرى"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Shift"
-msgstr "Left Shift"
+msgstr "مفتاح Shift الأيسر"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Shoulder"
-msgstr "Left Shift"
+msgstr "زر الكتف الأيسر"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Trigger"
-msgstr "Left Control"
+msgstr "زناد اليسار"
 
 #. TRANSLATORS: Name of key
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Windows"
-msgstr "Left Windows"
+msgstr "مفتاح Windows الأيسر"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Menu Key"
-msgstr "Menu"
+msgstr "مفتاح Menu"
 
 #: src/client/keycode.cpp
 msgid "Middle Click"
@@ -2313,22 +2209,18 @@ msgid "Mouse X2"
 msgstr "زر الفأرة الجانبي X2"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Num Lock"
 msgstr "Num Lock"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad *"
-msgstr "Numpad *"
+msgstr "لوحة الأرقام *"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad +"
-msgstr "Numpad +"
+msgstr "لوحة الأرقام +"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Numpad -"
 msgstr "لوحة الأرقام -"
 
@@ -7650,3 +7542,4 @@ msgstr "فشل حفظ لقطة الشاشة في \"%s\""
 #, fuzzy
 #~ msgid "Keybindings"
 #~ msgstr "روابط المفاتيح."
+
