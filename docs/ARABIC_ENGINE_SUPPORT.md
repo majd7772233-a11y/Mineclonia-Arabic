@@ -60,14 +60,16 @@ Tests are required at three levels:
 - **Layout unit tests:** the current suite covers Arabic contextual joining, lam-alef and its
   shaping-cluster cursor/selection boundaries, selected Arabic Extended letters, Arabic/Latin
   mixed runs with discontiguous visual selection intervals, BiDi isolates with Arabic-Indic
-  digits, combining-mark grapheme boundaries, explicit paragraph direction, and font fallback.
+  digits, combining-mark grapheme boundaries, explicit paragraph direction, font fallback,
+  visual word movement, and visual word-deletion ranges in mixed-direction text.
   Further coverage remains for paired brackets/embeddings, emoji and supplementary-plane
   characters, invalid Unicode replacement, color spans, and additional grapheme boundaries.
 - **GUI integration tests:** measurement equals rendered advances; wrapping never detaches
   marks or splits a grapheme or shaped ligature; hit-testing returns logical source indices in
   mixed-direction text; edit-box selection recolors the full shaped line rather than reshaping
-  an isolated Arabic substring. Still to verify: discontiguous visual selection backgrounds,
-  copy/paste, clipping, shadows, centering, and every alignment.
+  an isolated Arabic substring; Ctrl+Backspace/Delete use Raqm visual word boundaries.
+  Still to verify: discontiguous visual selection backgrounds, copy/paste, clipping, shadows,
+  centering, and every alignment.
 - **Runtime/build tests:** Windows MSVC and Linux client builds; a Windows portable package
   containing all required DLLs and fonts; startup without external font installation;
   Arabic game UI and Mineclonia content; a mixed-direction regression screenshot suite.
@@ -124,3 +126,16 @@ The CI coverage floor is set to 1,575 so a newly introduced untranslated engine 
 - Updated `CGUIEditBox::draw` to draw each returned highlight interval independently and render the complete enriched logical line with cluster-expanded selected colors.
 - Added a regression using `abc مرحبا def`: selecting the Latin prefix and only the first logical Arabic character must produce two separated visual intervals. Added a lam-alef regression showing that selecting only the alef expands the foreground color range to the complete lam-alef glyph.
 - This implementation still requires the current Linux and Windows CI jobs to compile and run the unit tests. It also needs interactive verification for mouse drag selection, keyboard Shift-selection, copy/paste, and scrolling.
+
+### Visual word deletion in edit boxes — 2026-11-08
+
+- `CGUIEditBox::onKeyBackDelete` now routes Ctrl+Backspace and Ctrl+Delete through
+  `CGUITTFont::getVisualWordCursorPosition` when the active font is Raqm-backed.
+  This keeps deletion aligned with the visual word navigation already used by Ctrl+Left/Right.
+- The returned boundary is a logical source index, so deletion removes the contiguous source
+  interval between that boundary and the caret even when visual order reverses logical indices.
+  Existing fallback behavior remains for other font implementations.
+- A no-op boundary at the current caret is treated as no deletion.
+- Added `testVisualWordDeletionRangesMixedDirection` to check both visual directions in
+  `abc مرحبا def`, including source-range and shaping-cluster-safe endpoints. The test
+  still needs to pass in the Linux and Windows client test runs.
