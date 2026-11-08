@@ -57,15 +57,17 @@ Unicode scalar value as if it were a glyph ID.
 
 Tests are required at three levels:
 
-- **Layout unit tests:** the current suite covers Arabic contextual joining, lam-alef,
-  selected Arabic Extended letters, Arabic/Latin mixed runs, BiDi isolates with Arabic-Indic
-  digits, combining-mark grapheme boundaries, explicit paragraph direction, and font fallback.
+- **Layout unit tests:** the current suite covers Arabic contextual joining, lam-alef and its
+  shaping-cluster cursor boundary, selected Arabic Extended letters, Arabic/Latin mixed runs,
+  BiDi isolates with Arabic-Indic digits, combining-mark grapheme boundaries, explicit
+  paragraph direction, and font fallback.
   Further coverage remains for paired brackets/embeddings, emoji and supplementary-plane
   characters, invalid Unicode replacement, color spans, and additional grapheme boundaries.
 - **GUI integration tests:** measurement equals rendered advances; wrapping never detaches
-  marks or splits a grapheme; hit-testing returns logical source indices in mixed-direction
-  text; editing/backspace/selection/copy/paste preserve logical Unicode; clipping, shadows,
-  centering, and all alignments are consistent.
+  marks or splits a grapheme or shaped ligature; hit-testing returns logical source indices in
+  mixed-direction text; edit-box selection recolors the full shaped line rather than reshaping
+  an isolated Arabic substring. Still to verify: discontiguous visual selection backgrounds,
+  copy/paste, clipping, shadows, centering, and every alignment.
 - **Runtime/build tests:** Windows MSVC and Linux client builds; a Windows portable package
   containing all required DLLs and fonts; startup without external font installation;
   Arabic game UI and Mineclonia content; a mixed-direction regression screenshot suite.
@@ -105,3 +107,11 @@ The current work is isolated to `work/arabic-engine-support`; it has not been me
 The Arabic Luanti gettext catalog is now complete: **1,575/1,575 messages translated**, with no empty entries, no remaining fuzzy flags, no duplicate gettext keys, and no placeholder mismatches in the catalog scan. The 249 entries that were previously fuzzy were individually corrected or confirmed before removing their fuzzy markers. `LANG_CODE` remains `ar`.
 
 The CI coverage floor is set to 1,575 so a newly introduced untranslated engine message causes validation to fail. This is a catalog-completeness milestone only; it is not yet proof of a successful native client build or correct visual layout in every GUI surface. The Linux/Windows build, C++ regression tests, packaged runtime dependencies, and real-client RTL screenshot matrix remain outstanding until their CI and runtime results are verified.
+
+
+### Additional edit-box shaping safeguards — 2026-11-08
+
+- Cursor movement and deletion now respect both Unicode grapheme boundaries and Raqm glyph-cluster boundaries. This prevents the cursor from stopping between two source characters that are rendered as one mandatory ligature, such as lam-alef.
+- Added the shared helper `src/irrlicht_changes/font_text_layout.h` and regression assertions proving that the lam-alef source boundary is a valid UAX #29 grapheme boundary but not an allowed shaped-cursor boundary.
+- Edit-box selection highlighting now passes the full logical line through Raqm with per-character colors. It no longer reshapes only the selected Arabic substring, which could change joining forms at the selection edges.
+- The visual background for a mixed-direction selection is still drawn as a single interval. Multi-run/discontiguous selection geometry and copy/paste behavior still need GUI-level verification.
