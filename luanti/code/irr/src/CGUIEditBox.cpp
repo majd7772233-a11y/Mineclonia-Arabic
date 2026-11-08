@@ -556,11 +556,29 @@ bool CGUIEditBox::onKeyUpDown(const SEvent::SKeyInput &input, s32 &mark_begin,
 			}
 		}
 
-		s32 offset = new_pos - BrokenTextPositions[lineNo];
-		s32 next_len = (s32)BrokenText[lineNo + dir].size();
-		// Try to go to the same position in the next line, or clamp.
-		new_pos = BrokenTextPositions[lineNo + dir] +
-			std::max<s32>(0, std::min<s32>(offset, next_len));
+		const core::stringw &current_line = BrokenText[lineNo];
+		const core::stringw &target_line = BrokenText[lineNo + dir];
+		const s32 offset = new_pos - BrokenTextPositions[lineNo];
+		const s32 next_len = static_cast<s32>(target_line.size());
+
+		// Preserve the visual horizontal caret position across lines. This is
+		// important for RTL paragraphs and mixed Arabic/Latin text, where a
+		// logical character offset does not represent the same screen position.
+		s32 target_offset = std::max<s32>(0, std::min<s32>(offset, next_len));
+		if (IGUIFont *font = getActiveFont()) {
+			const s32 cursor_x = font->getCursorPosition(current_line.c_str(), offset);
+			s32 hit = font->getCharacterFromPos(target_line.c_str(), cursor_x);
+			if (hit < 0) {
+				const s32 target_width = font->getDimension(target_line.c_str()).Width;
+				if (cursor_x <= 0)
+					hit = 0;
+				else if (cursor_x >= target_width)
+					hit = next_len;
+			}
+			if (hit >= 0)
+				target_offset = std::max<s32>(0, std::min<s32>(hit, next_len));
+		}
+		new_pos = BrokenTextPositions[lineNo + dir] + target_offset;
 	}
 
 	if (!input.Shift) {
