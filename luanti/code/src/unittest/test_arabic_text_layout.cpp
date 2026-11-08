@@ -168,6 +168,12 @@ void TestArabicTextLayout::testLamAlefLigature()
 			layout.value, 1, text.size(), shaping_clusters));
 	UASSERT(gui::text_layout::isAllowedCursorBoundary(
 			layout.value, 2, text.size(), shaping_clusters));
+
+	// A selection of only the alef still colors the complete lam-alef glyph.
+	const auto expanded = gui::text_layout::expandSelectionToShapingClusters(
+			shaping_clusters, text.size(), 1, 2);
+	UASSERTEQ(size_t, expanded.first, 0);
+	UASSERTEQ(size_t, expanded.second, 2);
 }
 
 void TestArabicTextLayout::testArabicExtendedLetters()
