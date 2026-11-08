@@ -7,6 +7,8 @@ name: "Build Arabic-capable Luanti client"
     paths:
       - "luanti/code/**"
       - "luanti/5.17.0/fonts/**"
+      - "luanti/5.17.0/builtin/locale/**"
+      - "tools/validate_luanti_arabic.py"
       - ".github/workflows/build-luanti-arabic-engine.yml"
   pull_request:
     branches:
@@ -36,8 +38,32 @@ jobs:
       - name: Confirm workflow jobs are running
         run: echo "The Arabic engine workflow reached a runner."
 
+  arabic-translation-validation:
+    name: Validate Arabic engine catalogs
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate built-in Arabic and engine gettext catalogs
+        run: python tools/validate_luanti_arabic.py
+
+      - name: Validate engine PO formatting
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install --yes gettext
+          msgfmt --check --check-format -o "$RUNNER_TEMP/luanti-ar.mo" luanti/code/po/ar/luanti.po
+
   linux:
     name: Linux x64 build, tests, and install package
+    needs: arabic-translation-validation
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     env:
@@ -135,6 +161,7 @@ jobs:
 
   windows:
     name: Windows x64 MSVC build, tests, and install package
+    needs: arabic-translation-validation
     runs-on: windows-2022
     timeout-minutes: 120
     env:
@@ -241,6 +268,14 @@ jobs:
           }
           if (-not (Test-Path (Join-Path $package "fonts/NotoSansArabic-OFL.txt"))) {
             throw "Installed package is missing the Noto Sans Arabic license."
+          }
+          $bin = Join-Path $package "bin"
+          foreach ($dependency in @("raqm", "harfbuzz", "fribidi")) {
+            $dll = Get-ChildItem -Path $bin -Filter "*$dependency*.dll" -File -ErrorAction SilentlyContinue
+            if (-not $dll) {
+              Get-ChildItem $package -Recurse
+              throw "Installed package is missing the $dependency runtime DLL."
+            }
           }
           $zip = Join-Path $env:GITHUB_WORKSPACE "artifacts/luanti-arabic-windows-x64.zip"
           Compress-Archive -Path (Join-Path $package "*") -DestinationPath $zip -Force
