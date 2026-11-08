@@ -2911,7 +2911,7 @@ msgid ""
 "sets with default parameters, it may need altering in other\n"
 "situations.\n"
 "Range roughly -2 to 2. Multiply by 'scale' for offset in nodes."
-msgstr ""
+msgstr "إزاحة الفراكتال عن مركز العالم على المحاور (X,Y,Z)، بوحدات «المقياس».\nيمكن استخدامها لنقل نقطة مرغوبة إلى (0, 0) لإنشاء نقطة ظهور مناسبة،\nأو للسماح بالتقريب إلى نقطة معينة عبر زيادة «المقياس».\nالقيمة الافتراضية مضبوطة لتوفير نقطة ظهور مناسبة لمجموعات ماندلبروت\nباستخدام المعاملات الافتراضية، وقد تحتاج إلى تعديلها في حالات أخرى.\nيتراوح المجال تقريباً من ‎-2 إلى 2. اضرب القيمة في «المقياس» لمعرفة الإزاحة بالعُقد."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2922,39 +2922,39 @@ msgid ""
 "Increase these to 'zoom' into the detail of the fractal.\n"
 "Default is for a vertically-squashed shape suitable for\n"
 "an island, set all 3 numbers equal for the raw shape."
-msgstr ""
+msgstr "مقياس الفراكتال على المحاور (X,Y,Z) بوحدة العُقد.\nسيكون الحجم الفعلي للفراكتال أكبر بمقدار ضعفين إلى ثلاثة أضعاف.\nيمكن جعل هذه القيم كبيرة جداً؛ ليس من الضروري أن يتسع الفراكتال داخل العالم.\nزد هذه القيم للتقريب وإظهار تفاصيل الفراكتال.\nالقيم الافتراضية تنتج شكلاً مفلطحاً رأسياً يناسب تكوين جزيرة؛\nاجعل القيم الثلاث متساوية للحصول على الشكل الأصلي."
 
 #: src/settings_translation_file.cpp
 msgid "2D noise that controls the shape/size of ridged mountains."
-msgstr ""
+msgstr "ضجيج ثنائي الأبعاد يتحكم في شكل الجبال ذات الحواف الحادة وحجمها."
 
 #: src/settings_translation_file.cpp
 msgid "2D noise that controls the shape/size of rolling hills."
-msgstr ""
+msgstr "ضجيج ثنائي الأبعاد يتحكم في شكل التلال المتدحرجة وحجمها."
 
 #: src/settings_translation_file.cpp
 msgid "2D noise that controls the shape/size of step mountains."
-msgstr ""
+msgstr "ضجيج ثنائي الأبعاد يتحكم في شكل الجبال المدرّجة وحجمها."
 
 #: src/settings_translation_file.cpp
 msgid "2D noise that controls the size/occurrence of ridged mountain ranges."
-msgstr ""
+msgstr "ضجيج ثنائي الأبعاد يتحكم في حجم سلاسل الجبال ذات الحواف الحادة ومدى ظهورها."
 
 #: src/settings_translation_file.cpp
 msgid "2D noise that controls the size/occurrence of rolling hills."
-msgstr ""
+msgstr "ضجيج ثنائي الأبعاد يتحكم في حجم التلال المتدحرجة ومدى ظهورها."
 
 #: src/settings_translation_file.cpp
 msgid "2D noise that controls the size/occurrence of step mountain ranges."
-msgstr ""
+msgstr "ضجيج ثنائي الأبعاد يتحكم في حجم سلاسل الجبال المدرّجة ومدى ظهورها."
 
 #: src/settings_translation_file.cpp
 msgid "2D noise that locates the river valleys and channels."
-msgstr ""
+msgstr "ضجيج ثنائي الأبعاد يحدد مواقع أودية الأنهار ومجاريها."
 
 #: src/settings_translation_file.cpp
 msgid "3D"
-msgstr ""
+msgstr "ثلاثي الأبعاد"
 
 #: src/settings_translation_file.cpp
 msgid "3D clouds"
@@ -2966,17 +2966,17 @@ msgstr "وضع الشاشة ثلاثية الأبعاد"
 
 #: src/settings_translation_file.cpp
 msgid "3D mode parallax strength"
-msgstr ""
+msgstr "قوة اختلاف المنظر في الوضع ثلاثي الأبعاد."
 
 #: src/settings_translation_file.cpp
 msgid "3D noise defining giant caverns."
-msgstr ""
+msgstr "ضجيج ثلاثي الأبعاد يحدد مواقع الكهوف العملاقة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "3D noise defining mountain structure and height.\n"
 "Also defines structure of floatland mountain terrain."
-msgstr ""
+msgstr "ضجيج ثلاثي الأبعاد يحدد بنية الجبال وارتفاعها.\nكما يحدد بنية تضاريس الجبال العائمة."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2984,23 +2984,23 @@ msgid ""
 "If altered from the default, the noise 'scale' (0.7 by default) may need\n"
 "to be adjusted, as floatland tapering functions best when this noise has\n"
 "a value range of approximately -2.0 to 2.0."
-msgstr ""
+msgstr "ضجيج ثلاثي الأبعاد يحدد بنية الأراضي العائمة.\nعند تغيير القيمة الافتراضية، قد تحتاج إلى ضبط «مقياس» الضجيج (0.7 افتراضياً)،\nإذ تعمل دوال تضييق الأراضي العائمة بأفضل صورة عندما يقع نطاق قيم هذا الضجيج\nبين ‎-2.0 و2.0 تقريباً."
 
 #: src/settings_translation_file.cpp
 msgid "3D noise defining structure of river canyon walls."
-msgstr ""
+msgstr "ضجيج ثلاثي الأبعاد يحدد بنية جدران أخاديد الأنهار."
 
 #: src/settings_translation_file.cpp
 msgid "3D noise defining terrain."
-msgstr ""
+msgstr "ضجيج ثلاثي الأبعاد يحدد تضاريس العالم."
 
 #: src/settings_translation_file.cpp
 msgid "3D noise for mountain overhangs, cliffs, etc. Usually small variations."
-msgstr ""
+msgstr "ضجيج ثلاثي الأبعاد للبروزات الجبلية والمنحدرات الصخرية وما شابهها. تكون تغيراته صغيرة عادةً."
 
 #: src/settings_translation_file.cpp
 msgid "3D noise that determines number of dungeons per mapchunk."
-msgstr ""
+msgstr "ضجيج ثلاثي الأبعاد يحدد عدد السراديب في كل مقطع من الخريطة."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3011,13 +3011,13 @@ msgid ""
 "-    topbottom: split screen top/bottom\n"
 "-    sidebyside: split screen side-by-side\n"
 "-    crossview: cross-eyed 3D"
-msgstr ""
+msgstr "دعم العرض ثلاثي الأبعاد.\nالأوضاع المدعومة حالياً:\n-    none: دون إخراج ثلاثي الأبعاد\n-    anaglyph: عرض ثلاثي الأبعاد باللونين السماوي والأرجواني\n-    topbottom: تقسيم الشاشة إلى نصف علوي ونصف سفلي\n-    sidebyside: عرض صورتين جنباً إلى جنب\n-    crossview: عرض ثلاثي الأبعاد بطريقة تقاطع العينين"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "A chosen map seed for a new map, leave empty for random.\n"
 "Will be overridden when creating a new world in the main menu."
-msgstr ""
+msgstr "بذرة محددة لخريطة جديدة؛ اترك الحقل فارغاً لاستخدام بذرة عشوائية.\nسيُتجاوز هذا الإعداد عند إنشاء عالم جديد من القائمة الرئيسية."
 
 #: src/settings_translation_file.cpp
 msgid "A message to be displayed to all clients when the server crashes."
@@ -3029,11 +3029,11 @@ msgstr "رسالة تعرض لكل العملاء عند اغلاق الخادم
 
 #: src/settings_translation_file.cpp
 msgid "ABM interval"
-msgstr ""
+msgstr "الفاصل الزمني لآلية الكتل النشطة (ABM)"
 
 #: src/settings_translation_file.cpp
 msgid "ABM time budget"
-msgstr ""
+msgstr "الميزانية الزمنية لآلية الكتل النشطة (ABM)"
 
 #: src/settings_translation_file.cpp
 msgid "Absolute limit of queued blocks to emerge"
@@ -3066,7 +3066,7 @@ msgstr "مدى الكتل النشطة"
 
 #: src/settings_translation_file.cpp
 msgid "Active object send range"
-msgstr ""
+msgstr "نطاق إرسال الكائنات النشطة"
 
 #: src/settings_translation_file.cpp
 msgid "Adjust the detected display density, used for scaling UI elements."
@@ -3101,21 +3101,21 @@ msgstr "متقدم"
 msgid ""
 "All mesh buffers with less than this number of vertices will be merged\n"
 "during map rendering. This improves rendering performance."
-msgstr ""
+msgstr "ستُدمج جميع مخازن بيانات المجسمات التي يقل عدد رؤوسها عن هذا العدد\nأثناء رسم الخريطة. يساعد ذلك على تحسين أداء العرض."
 
 #: src/settings_translation_file.cpp
 msgid "Allow clouds to look 3D instead of flat."
-msgstr ""
+msgstr "السماح بظهور السحب بشكل ثلاثي الأبعاد بدلاً من الشكل المسطح."
 
 #: src/settings_translation_file.cpp
 msgid "Allows liquids to be translucent."
-msgstr ""
+msgstr "السماح للسوائل بأن تكون شبه شفافة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Also used for climbing down and descending in water if aux1_descends is "
 "disabled."
-msgstr ""
+msgstr "يُستخدم هذا الزر أيضاً للتسلق إلى الأسفل والهبوط في الماء عند تعطيل الإعداد aux1_descends."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -3138,7 +3138,7 @@ msgstr "دائما طِرْ بسرعة"
 
 #: src/settings_translation_file.cpp
 msgid "Ambient occlusion gamma"
-msgstr ""
+msgstr "قيمة غاما للإظلال المحيطي"
 
 #: src/settings_translation_file.cpp
 msgid "Amplifies the valleys."
@@ -3168,11 +3168,11 @@ msgstr "التنعييم:"
 
 #: src/settings_translation_file.cpp
 msgid "Anticheat flags"
-msgstr ""
+msgstr "خيارات مكافحة الغش"
 
 #: src/settings_translation_file.cpp
 msgid "Anticheat movement tolerance"
-msgstr ""
+msgstr "هامش التسامح مع الحركة في نظام مكافحة الغش"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -3181,11 +3181,11 @@ msgstr "ضمّن اسم العنصر"
 
 #: src/settings_translation_file.cpp
 msgid "Append the full item name to the tooltip of item stacks."
-msgstr ""
+msgstr "إضافة الاسم الكامل للعنصر إلى التلميح الذي يظهر عند الإشارة إلى رزم العناصر."
 
 #: src/settings_translation_file.cpp
 msgid "Apple trees noise"
-msgstr ""
+msgstr "ضجيج أشجار التفاح"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3193,7 +3193,7 @@ msgid ""
 "edges.\n"
 "Provides balance between speed and image quality.\n"
 "fxaa can used in combination with the other anti-aliasing methods"
-msgstr ""
+msgstr "يطبّق مرشح معالجة لاحقة لاكتشاف الحواف عالية التباين وتنعيمها.\nيوفر توازناً بين سرعة العرض وجودة الصورة.\nيمكن استخدام FXAA مع طرق تنعيم الحواف الأخرى."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3204,21 +3204,21 @@ msgid ""
 "to 8 bits.\n"
 "With OpenGL ES, dithering only works if the shader supports high\n"
 "floating-point precision and it may have a higher performance impact."
-msgstr ""
+msgstr "تطبيق التمويه النقطي لتقليل آثار التدرجات اللونية المتقطعة.\nيزيد التمويه النقطي بدرجة ملحوظة حجم لقطات الشاشة المضغوطة دون فقدان.\nوقد يعمل بصورة غير صحيحة إذا كانت الشاشة أو نظام التشغيل يطبّق تمويهاً إضافياً،\nأو إذا لم تكن قنوات الألوان ممثلة بدقة 8 بت.\nفي OpenGL ES، لا يعمل التمويه النقطي إلا إذا كان المظلّل يدعم دقة عالية\nللأعداد ذات الفاصلة العائمة، وقد يؤثر بدرجة أكبر في الأداء."
 
 #: src/settings_translation_file.cpp
 msgid "Arm inertia"
-msgstr ""
+msgstr "قصور حركة الذراع"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Arm inertia, gives a more realistic movement of\n"
 "the arm when the camera moves."
-msgstr ""
+msgstr "قصور حركة الذراع؛ يجعل حركة الذراع أكثر واقعية\nعند تحريك الكاميرا."
 
 #: src/settings_translation_file.cpp
 msgid "Array texture max layers"
-msgstr ""
+msgstr "الحد الأقصى لطبقات نسيج المصفوفة"
 
 #: src/settings_translation_file.cpp
 msgid "Ask to reconnect after crash"
@@ -3265,7 +3265,7 @@ msgstr "الإبلاغ تلقائيا إلى قائمة الخوادم."
 
 #: src/settings_translation_file.cpp
 msgid "Autoscaling mode"
-msgstr ""
+msgstr "وضع التحجيم التلقائي"
 
 #: src/settings_translation_file.cpp
 msgid "Aux1 key for climbing/descending"
@@ -3290,11 +3290,11 @@ msgstr "الإمتيازات الأساسية"
 
 #: src/settings_translation_file.cpp
 msgid "Beach noise"
-msgstr ""
+msgstr "ضجيج الشواطئ"
 
 #: src/settings_translation_file.cpp
 msgid "Beach noise threshold"
-msgstr ""
+msgstr "عتبة ضجيج الشواطئ"
 
 #: src/settings_translation_file.cpp
 msgid "Bilinear filtering"
@@ -3311,7 +3311,7 @@ msgstr "مواطن بيئية"
 
 #: src/settings_translation_file.cpp
 msgid "Biome noise"
-msgstr ""
+msgstr "ضجيج المناطق الأحيائية"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -3320,15 +3320,15 @@ msgstr "حدود الكتلة"
 
 #: src/settings_translation_file.cpp
 msgid "Block cull optimize distance"
-msgstr ""
+msgstr "مسافة تحسين استبعاد الكتل غير المرئية"
 
 #: src/settings_translation_file.cpp
 msgid "Block send optimize distance"
-msgstr ""
+msgstr "مسافة تحسين إرسال الكتل"
 
 #: src/settings_translation_file.cpp
 msgid "Bobbing"
-msgstr ""
+msgstr "تأرجح الرؤية"
 
 #: src/settings_translation_file.cpp
 msgid "Bold and italic font path"
@@ -3375,26 +3375,26 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Capture Tracy zones"
-msgstr ""
+msgstr "تسجيل مناطق Tracy"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Capture Tracy zones with the profiler's instrumentation.\n"
 "You need to build with Tracy to use this, see doc/developing/profiling.md\n"
 "for details."
-msgstr ""
+msgstr "تسجيل مناطق Tracy باستخدام أدوات القياس في محلّل الأداء.\nيتطلب استخدام هذا الخيار بناء المحرك مع Tracy؛ راجع\n`doc/developing/profiling.md` لمزيد من التفاصيل."
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise"
-msgstr ""
+msgstr "ضجيج الكهوف"
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise #1"
-msgstr ""
+msgstr "ضجيج الكهوف رقم 1"
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise #2"
-msgstr ""
+msgstr "ضجيج الكهوف رقم 2"
 
 #: src/settings_translation_file.cpp
 msgid "Cave width"
@@ -3402,31 +3402,31 @@ msgstr "عُرض المغارة"
 
 #: src/settings_translation_file.cpp
 msgid "Cave1 noise"
-msgstr ""
+msgstr "ضجيج الكهف الأول"
 
 #: src/settings_translation_file.cpp
 msgid "Cave2 noise"
-msgstr ""
+msgstr "ضجيج الكهف الثاني"
 
 #: src/settings_translation_file.cpp
 msgid "Cavern limit"
-msgstr ""
+msgstr "حدود الكهوف"
 
 #: src/settings_translation_file.cpp
 msgid "Cavern noise"
-msgstr ""
+msgstr "ضجيج الكهوف الكبيرة"
 
 #: src/settings_translation_file.cpp
 msgid "Cavern taper"
-msgstr ""
+msgstr "تضييق الكهوف الكبيرة"
 
 #: src/settings_translation_file.cpp
 msgid "Cavern threshold"
-msgstr ""
+msgstr "عتبة الكهوف الكبيرة"
 
 #: src/settings_translation_file.cpp
 msgid "Cavern upper limit"
-msgstr ""
+msgstr "الحد العلوي للكهوف الكبيرة"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3438,7 +3438,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Chat command time message threshold"
-msgstr ""
+msgstr "الحد الزمني لعرض رسالة مدة تنفيذ أمر الدردشة"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -3463,7 +3463,7 @@ msgstr "نسقُ رسائل المحادثة"
 
 #: src/settings_translation_file.cpp
 msgid "Chat message kick threshold"
-msgstr ""
+msgstr "حد رسائل الدردشة الذي يؤدي إلى طرد اللاعب"
 
 #: src/settings_translation_file.cpp
 msgid "Chat message max length"
@@ -3475,11 +3475,11 @@ msgstr "روابط المحادثة"
 
 #: src/settings_translation_file.cpp
 msgid "Choose theme colors for the main menu background."
-msgstr ""
+msgstr "اختر ألوان سمة خلفية القائمة الرئيسية."
 
 #: src/settings_translation_file.cpp
 msgid "Chunk size"
-msgstr ""
+msgstr "حجم المقطع"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3500,7 +3500,7 @@ msgstr "تعديل العميل"
 
 #: src/settings_translation_file.cpp
 msgid "Client Mesh Chunksize"
-msgstr ""
+msgstr "حجم مقطع المجسمات لدى العميل"
 
 #: src/settings_translation_file.cpp
 msgid "Client and Server"
@@ -3540,7 +3540,7 @@ msgstr "سحب في القائمة"
 
 #: src/settings_translation_file.cpp
 msgid "Color depth for post-processing texture"
-msgstr ""
+msgstr "عمق الألوان لنسيج المعالجة اللاحقة"
 
 #: src/settings_translation_file.cpp
 msgid "Colored fog"
@@ -3612,7 +3612,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Confirmation dialog before closing"
-msgstr ""
+msgstr "عرض مربع تأكيد الحوار قبل الإغلاق"
 
 #: src/settings_translation_file.cpp
 msgid "Connect glass"
@@ -3628,7 +3628,7 @@ msgstr "زجاج متصل اذا كانت العقدة تدعمه."
 
 #: src/settings_translation_file.cpp
 msgid "Console alpha"
-msgstr ""
+msgstr "شفافية وحدة التحكم"
 
 #: src/settings_translation_file.cpp
 msgid "Console color"
@@ -3636,7 +3636,7 @@ msgstr "لون وحدة التحكم"
 
 #: src/settings_translation_file.cpp
 msgid "Console height"
-msgstr ""
+msgstr "ارتفاع وحدة التحكم"
 
 #: src/settings_translation_file.cpp
 msgid "Content Repository"
@@ -3652,7 +3652,7 @@ msgstr "الحد الأقصى للتنزيلات المتزامنة لContentDB"
 
 #: src/settings_translation_file.cpp
 msgid "ContentDB URL"
-msgstr ""
+msgstr "عنوان URL لمستودع ContentDB"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3685,7 +3685,7 @@ msgid ""
 "Controls width of tunnels, a smaller value creates wider tunnels.\n"
 "Value >= 10.0 completely disables generation of tunnels and avoids the\n"
 "intensive noise calculations."
-msgstr ""
+msgstr "يتحكم في عرض الأنفاق؛ تؤدي القيمة الأصغر إلى إنشاء أنفاق أوسع.\nالقيمة الأكبر من 10.0 أو المساوية لها تعطّل توليد الأنفاق بالكامل\nوتتجنب حسابات الضجيج المكثفة."
 
 #: src/settings_translation_file.cpp
 msgid "Crash message"
@@ -3693,39 +3693,39 @@ msgstr "رسالة الانهيار"
 
 #: src/settings_translation_file.cpp
 msgid "Crosshair alpha"
-msgstr ""
+msgstr "شفافية مؤشر التصويب"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Crosshair alpha (opaqueness, between 0 and 255).\n"
 "This also applies to the object crosshair."
-msgstr ""
+msgstr "شفافية مؤشر التصويب (قيمة العتامة بين 0 و255).\nينطبق ذلك أيضاً على مؤشر استهداف الكائنات."
 
 #: src/settings_translation_file.cpp
 msgid "Crosshair color"
-msgstr ""
+msgstr "لون مؤشر التصويب"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Crosshair color (R,G,B).\n"
 "Also controls the object crosshair color"
-msgstr ""
+msgstr "لون مؤشر التصويب (R,G,B).\nيتحكم أيضاً في لون مؤشر استهداف الكائنات."
 
 #: src/settings_translation_file.cpp
 msgid "Damage flash"
-msgstr ""
+msgstr "وميض تلقي الضرر"
 
 #: src/settings_translation_file.cpp
 msgid "Debug log file size threshold"
-msgstr ""
+msgstr "عتبة حجم ملف سجل تصحيح الأخطاء"
 
 #: src/settings_translation_file.cpp
 msgid "Debug log level"
-msgstr ""
+msgstr "مستوى سجل تصحيح الأخطاء"
 
 #: src/settings_translation_file.cpp
 msgid "Debugging"
-msgstr ""
+msgstr "تصحيح الأخطاء"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3747,7 +3747,7 @@ msgstr "قلل الحجم"
 
 #: src/settings_translation_file.cpp
 msgid "Dedicated server step"
-msgstr ""
+msgstr "مدة خطوة الخادم المخصص"
 
 #: src/settings_translation_file.cpp
 msgid "Default acceleration"
@@ -3757,7 +3757,7 @@ msgstr "التسارع الافتراضي"
 msgid ""
 "Default maximum number of forceloaded mapblocks.\n"
 "Set this to -1 to disable the limit."
-msgstr ""
+msgstr "العدد الافتراضي الأقصى لكتل الخريطة التي تُحمّل قسرياً.\nاضبط القيمة على ‎-1 لإلغاء الحد."
 
 #: src/settings_translation_file.cpp
 msgid "Default password"
@@ -3780,7 +3780,7 @@ msgid ""
 "Define shadow filtering quality.\n"
 "This simulates the soft shadows effect by applying a PCF or Poisson disk\n"
 "but also uses more resources."
-msgstr ""
+msgstr "تحديد جودة ترشيح الظلال.\nيحاكي هذا الظلال الناعمة باستخدام ترشيح PCF أو قرص بواسون،\nلكنه يستهلك موارد أكثر."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3793,7 +3793,7 @@ msgid ""
 "strict_protocol_version_checking.\n"
 "Luanti still enforces its own internal minimum, and enabling\n"
 "strict_protocol_version_checking will effectively override this."
-msgstr ""
+msgstr "تحديد أقدم إصدارات العملاء المسموح لها بالاتصال.\nتتوافق الإصدارات الأقدم من حيث إنها لا تتعطل عند الاتصال بخوادم جديدة،\nلكنها قد لا تدعم جميع الميزات الحديثة المتوقعة.\nيوفر هذا الخيار تحكماً أدق من الإعداد strict_protocol_version_checking.\nيواصل Luanti فرض الحد الأدنى الداخلي الخاص به، كما أن تفعيل\nstrict_protocol_version_checking سيتجاوز هذا الإعداد عملياً."
 
 #: src/settings_translation_file.cpp
 msgid "Defines areas where trees have apples."
@@ -3817,7 +3817,7 @@ msgstr "يضبط حجم الكهوف ، كلما قلت القيمة زاد حج
 
 #: src/settings_translation_file.cpp
 msgid "Defines large-scale river channel structure."
-msgstr ""
+msgstr "يحدد البنية واسعة النطاق لمجاري الأنهار."
 
 #: src/settings_translation_file.cpp
 msgid "Defines location and terrain of optional hills and lakes."
@@ -3833,22 +3833,22 @@ msgstr "يحدد عمق الأنهار."
 
 #: src/settings_translation_file.cpp
 msgid "Defines the maximal player transfer distance in blocks (0 = unlimited)."
-msgstr ""
+msgstr "يحدد أقصى مسافة لنقل اللاعب بوحدة الكتل (0 = بلا حد)."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Defines the size of the sampling grid for FSAA and SSAA antialiasing "
 "methods.\n"
 "Value of 2 means taking 2x2 = 4 samples."
-msgstr ""
+msgstr "يحدد حجم شبكة أخذ العينات لطرائق تنعيم الحواف FSAA وSSAA.\nالقيمة 2 تعني أخذ 2×2 = 4 عينات."
 
 #: src/settings_translation_file.cpp
 msgid "Defines the width of the river channel."
-msgstr ""
+msgstr "يحدد عرض مجرى النهر."
 
 #: src/settings_translation_file.cpp
 msgid "Defines the width of the river valley."
-msgstr ""
+msgstr "يحدد عرض وادي النهر."
 
 #: src/settings_translation_file.cpp
 msgid "Defines tree areas and tree density."
@@ -3858,7 +3858,7 @@ msgstr "يحدد مواقع الأشجار وكثافتها."
 msgid ""
 "Delay between mesh updates on the client in ms. Increasing this will slow\n"
 "down the rate of mesh updates, which can help reduce jitter."
-msgstr ""
+msgstr "الفاصل الزمني بين تحديثات المجسمات لدى العميل بالمللي ثانية. تؤدي زيادته\nإلى إبطاء وتيرة التحديثات، مما قد يساعد على تقليل الاهتزاز."
 
 #: src/settings_translation_file.cpp
 msgid "Delay in sending blocks after building"
@@ -3866,7 +3866,7 @@ msgstr "تأخير إرسال الكتل بعد البناء"
 
 #: src/settings_translation_file.cpp
 msgid "Delay showing tooltips, stated in milliseconds."
-msgstr ""
+msgstr "تأخير إظهار التلميحات، بالمللي ثانية."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -3879,23 +3879,23 @@ msgstr "بُعد الكهوف الكبيرة عن السطح."
 
 #: src/settings_translation_file.cpp
 msgid "Depth below which you'll find large caves."
-msgstr ""
+msgstr "العمق الذي تظهر أسفله الكهوف الكبيرة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Description of server, to be displayed when players join and in the "
 "serverlist."
-msgstr ""
+msgstr "وصف الخادم الذي يظهر عند انضمام اللاعبين وفي قائمة الخوادم."
 
 #: src/settings_translation_file.cpp
 msgid "Desert noise threshold"
-msgstr ""
+msgstr "عتبة ضجيج الصحراء"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Deserts occur when np_biome exceeds this value.\n"
 "When the 'snowbiomes' flag is enabled, this is ignored."
-msgstr ""
+msgstr "تظهر الصحارى عندما تتجاوز قيمة np_biome هذه القيمة.\nيُتجاهل هذا الإعداد عند تفعيل الخيار 'snowbiomes'."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -3904,34 +3904,34 @@ msgstr "المطورون الرئيسيون"
 
 #: src/settings_translation_file.cpp
 msgid "Disable if you only want to instrument with Tracy."
-msgstr ""
+msgstr "عطّل هذا الخيار إذا كنت تريد استخدام أدوات القياس في Tracy فقط."
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
-msgstr ""
+msgstr "منع كلمات المرور الفارغة"
 
 #: src/settings_translation_file.cpp
 msgid "Display Density Scaling Factor"
-msgstr ""
+msgstr "معامل تحجيم كثافة العرض"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Distance in nodes at which transparency depth sorting is enabled.\n"
 "Use this to limit the performance impact of transparency depth sorting.\n"
 "Set to 0 to disable it entirely."
-msgstr ""
+msgstr "المسافة بالعُقد التي يبدأ عندها ترتيب عمق العناصر الشفافة.\nاستخدم هذا الإعداد للحد من تأثير ترتيب عمق الشفافية على الأداء.\nاضبط القيمة على 0 لتعطيل هذه الميزة بالكامل."
 
 #: src/settings_translation_file.cpp
 msgid "Domain name of server, to be displayed in the serverlist."
-msgstr ""
+msgstr "اسم نطاق الخادم الذي يظهر في قائمة الخوادم."
 
 #: src/settings_translation_file.cpp
 msgid "Double tap jump for fly"
-msgstr ""
+msgstr "النقر المزدوج على القفز لتفعيل الطيران"
 
 #: src/settings_translation_file.cpp
 msgid "Double-tapping the jump key toggles fly mode."
-msgstr ""
+msgstr "يؤدي الضغط على زر القفز مرتين متتاليتين إلى تبديل وضع الطيران."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3939,7 +3939,7 @@ msgid ""
 "This breaks transparency sorting between mesh buffers, but avoids "
 "situations\n"
 "where transparency sorting would be very slow otherwise."
-msgstr ""
+msgstr "ارسم المثلثات المرتبة حسب الشفافية ضمن مجموعات وفق مخازن بيانات المجسمات.\nيؤدي ذلك إلى إلغاء ترتيب الشفافية بين مخازن المجسمات، لكنه يتجنب الحالات\nالتي يصبح فيها ترتيب الشفافية بطيئاً جداً."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -3948,19 +3948,19 @@ msgstr "العنصر السابق"
 
 #: src/settings_translation_file.cpp
 msgid "Dump the mapgen debug information."
-msgstr ""
+msgstr "تفريغ معلومات تصحيح أخطاء مولّد الخريطة."
 
 #: src/settings_translation_file.cpp
 msgid "Dungeon maximum Y"
-msgstr ""
+msgstr "أقصى ارتفاع Y للسراديب"
 
 #: src/settings_translation_file.cpp
 msgid "Dungeon minimum Y"
-msgstr ""
+msgstr "أدنى ارتفاع Y للسراديب"
 
 #: src/settings_translation_file.cpp
 msgid "Dungeon noise"
-msgstr ""
+msgstr "ضجيج السراديب"
 
 #: src/settings_translation_file.cpp
 msgid "Dynamic shadows"
@@ -3968,7 +3968,7 @@ msgstr "ظلال ديناميكية"
 
 #: src/settings_translation_file.cpp
 msgid "Effects"
-msgstr ""
+msgstr "التأثيرات"
 
 #: src/settings_translation_file.cpp
 msgid "Enable Automatic Exposure"
@@ -3992,20 +3992,20 @@ msgstr "مكن الضرر"
 msgid ""
 "Enable IPv6 support (for both client and server).\n"
 "Required for IPv6 connections to work at all."
-msgstr ""
+msgstr "تفعيل دعم IPv6 لكل من العميل والخادم.\nهذا الخيار ضروري لعمل اتصالات IPv6."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Enable IPv6 support for server.\n"
 "Note that clients will be able to connect with both IPv4 and IPv6.\n"
 "Ignored if bind_address is set."
-msgstr ""
+msgstr "تفعيل دعم IPv6 للخادم.\nسيتمكن العملاء من الاتصال باستخدام IPv4 وIPv6.\nيُتجاهل هذا الخيار عند تعيين bind_address."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Enable Lua modding support on client.\n"
 "This support is experimental and API can change."
-msgstr ""
+msgstr "تفعيل دعم تعديل العميل باستخدام Lua.\nهذا الدعم تجريبي وقد تتغير واجهة API الخاصة به."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4029,7 +4029,7 @@ msgstr "فعِل الكل"
 
 #: src/settings_translation_file.cpp
 msgid "Enable a confirmation dialog before closing."
-msgstr ""
+msgstr "إظهار مربع حوار للتأكيد قبل الإغلاق."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4037,17 +4037,17 @@ msgid ""
 "When enabled, the post-processing engine will\n"
 "automatically adjust to the brightness of the scene,\n"
 "simulating the behavior of human eye."
-msgstr ""
+msgstr "تفعيل التصحيح التلقائي للتعريض.\nعند تفعيله، يضبط محرك المعالجة اللاحقة التعريض تلقائياً\nوفق سطوع المشهد، لمحاكاة طريقة تكيف عين الإنسان."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Enable colored shadows for transculent nodes.\n"
 "This is expensive."
-msgstr ""
+msgstr "تفعيل الظلال الملونة للعقد الشفافة.\nتستهلك هذه الميزة موارد كبيرة."
 
 #: src/settings_translation_file.cpp
 msgid "Enable console window"
-msgstr ""
+msgstr "تفعيل نافذة وحدة التحكم"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -4056,31 +4056,31 @@ msgstr "ظلال ديناميكية"
 
 #: src/settings_translation_file.cpp
 msgid "Enable mod channels support."
-msgstr ""
+msgstr "تفعيل دعم قنوات الإضافات."
 
 #: src/settings_translation_file.cpp
 msgid "Enable mod security"
-msgstr ""
+msgstr "تفعيل أمان الإضافات"
 
 #: src/settings_translation_file.cpp
 msgid "Enable mouse wheel (scroll) for item selection in hotbar."
-msgstr ""
+msgstr "تفعيل عجلة الفأرة (التمرير) لاختيار العناصر في شريط العناصر السريع."
 
 #: src/settings_translation_file.cpp
 msgid "Enable random mod loading (mainly used for testing)."
-msgstr ""
+msgstr "تفعيل تحميل الإضافات بترتيب عشوائي (يُستخدم هذا الخيار أساساً للاختبار)."
 
 #: src/settings_translation_file.cpp
 msgid "Enable random user input (only used for testing)."
-msgstr ""
+msgstr "تفعيل إدخال المستخدم العشوائي (يُستخدم للاختبار فقط)."
 
 #: src/settings_translation_file.cpp
 msgid "Enable smooth lighting with simple ambient occlusion."
-msgstr ""
+msgstr "تفعيل الإضاءة الناعمة باستخدام الإظلال المحيطي البسيط."
 
 #: src/settings_translation_file.cpp
 msgid "Enable split login/register"
-msgstr ""
+msgstr "فصل واجهتي تسجيل الدخول وإنشاء الحساب"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4089,11 +4089,11 @@ msgid ""
 "connecting\n"
 "to new servers, but they may not support all new features that you are "
 "expecting."
-msgstr ""
+msgstr "تفعيل منع العملاء القدامى من الاتصال.\nلن تتعطل الإصدارات القديمة عند الاتصال بخوادم جديدة، لكنها قد لا تدعم\nجميع الميزات الحديثة التي تتوقعها."
 
 #: src/settings_translation_file.cpp
 msgid "Enable updates available indicator on content tab"
-msgstr ""
+msgstr "إظهار مؤشر توفر تحديثات في تبويب المحتوى"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4101,13 +4101,13 @@ msgid ""
 "Remote servers offer a significantly faster way to download media (e.g. "
 "textures)\n"
 "when connecting to the server."
-msgstr ""
+msgstr "تفعيل استخدام خادم الوسائط البعيد، إن وفره الخادم.\nتوفر الخوادم البعيدة طريقة أسرع بكثير لتنزيل الوسائط (مثل الأنسجة)\nعند الاتصال بالخادم."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Enable view bobbing and amount of view bobbing.\n"
 "For example: 0 for no view bobbing; 1.0 for normal; 2.0 for double."
-msgstr ""
+msgstr "تفعيل تأرجح الرؤية وتحديد شدته.\nمثلاً: 0 لإيقاف التأرجح، و1.0 للشدة العادية، و2.0 لمضاعفتها."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4115,23 +4115,23 @@ msgid ""
 "Simulates the tone curve of photographic film and how this approximates the\n"
 "appearance of high dynamic range images. Mid-range contrast is slightly\n"
 "enhanced, highlights and shadows are gradually compressed."
-msgstr ""
+msgstr "تفعيل تحويل النغمات السينمائي من Hable المستخدم في 'Uncharted 2'.\nيحاكي منحنى درجات الألوان في الأفلام الفوتوغرافية، ويقرب مظهر الصور\nذات المجال الديناميكي العالي. يعزز التباين في الدرجات المتوسطة قليلاً،\nويضغط المناطق الساطعة والظلال تدريجياً."
 
 #: src/settings_translation_file.cpp
 msgid "Enables animation of inventory items."
-msgstr ""
+msgstr "تفعيل تحريك العناصر داخل المخزون."
 
 #: src/settings_translation_file.cpp
 msgid "Enables debug and error-checking in the OpenGL driver."
-msgstr ""
+msgstr "تفعيل تصحيح الأخطاء وفحصها في برنامج تشغيل OpenGL."
 
 #: src/settings_translation_file.cpp
 msgid "Enables smooth scrolling."
-msgstr ""
+msgstr "تفعيل التمرير السلس."
 
 #: src/settings_translation_file.cpp
 msgid "Enables the post processing pipeline."
-msgstr ""
+msgstr "تفعيل مسار المعالجة اللاحقة."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4139,25 +4139,25 @@ msgid ""
 "touchscreen.\n"
 "\"auto\" means that the touchscreen controls will be enabled and disabled\n"
 "automatically depending on the last used input method."
-msgstr ""
+msgstr "تفعيل عناصر التحكم باللمس، مما يتيح تشغيل اللعبة باستخدام شاشة اللمس.\nتعني القيمة \"auto\" تفعيل عناصر التحكم باللمس أو تعطيلها تلقائياً\nوفق آخر طريقة إدخال مستخدمة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Enables tradeoffs that reduce CPU load or increase rendering performance\n"
 "at the expense of minor visual glitches that do not impact game playability."
-msgstr ""
+msgstr "تفعيل تحسينات تقلل حمل المعالج أو تزيد أداء العرض،\nمقابل ظهور عيوب بصرية طفيفة لا تؤثر في إمكانية اللعب."
 
 #: src/settings_translation_file.cpp
 msgid "Engine Profiler"
-msgstr ""
+msgstr "محلّل أداء المحرك"
 
 #: src/settings_translation_file.cpp
 msgid "Engine profiling data print interval"
-msgstr ""
+msgstr "الفاصل الزمني لطباعة بيانات تحليل أداء المحرك"
 
 #: src/settings_translation_file.cpp
 msgid "Entity methods"
-msgstr ""
+msgstr "طرائق الكيانات"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4171,23 +4171,23 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Exposure compensation"
-msgstr ""
+msgstr "تعويض التعريض"
 
 #: src/settings_translation_file.cpp
 msgid "FPS"
-msgstr ""
+msgstr "معدل الإطارات في الثانية"
 
 #: src/settings_translation_file.cpp
 msgid "FPS when unfocused"
-msgstr ""
+msgstr "معدل الإطارات في الثانية عند فقدان التركيز"
 
 #: src/settings_translation_file.cpp
 msgid "Factor noise"
-msgstr ""
+msgstr "ضجيج المعامل"
 
 #: src/settings_translation_file.cpp
 msgid "Fallback font path"
-msgstr ""
+msgstr "مسار خط الاحتياط"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -4196,11 +4196,11 @@ msgstr "التنعييم:"
 
 #: src/settings_translation_file.cpp
 msgid "Fast mode acceleration"
-msgstr ""
+msgstr "تسارع الوضع السريع"
 
 #: src/settings_translation_file.cpp
 msgid "Fast mode speed"
-msgstr ""
+msgstr "سرعة الوضع السريع"
 
 #: src/settings_translation_file.cpp
 msgid "Field of view"
@@ -4219,15 +4219,15 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Filler depth"
-msgstr ""
+msgstr "عمق مادة الردم"
 
 #: src/settings_translation_file.cpp
 msgid "Filler depth noise"
-msgstr ""
+msgstr "ضجيج عمق مادة الردم"
 
 #: src/settings_translation_file.cpp
 msgid "Filmic tone mapping"
-msgstr ""
+msgstr "تحويل النغمات السينمائي"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -4244,7 +4244,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Fixed map seed"
-msgstr ""
+msgstr "بذرة خريطة ثابتة"
 
 #: src/settings_translation_file.cpp
 msgid "Fixed virtual joystick"
@@ -4261,7 +4261,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Flashing of the screen when taking damage."
-msgstr ""
+msgstr "وميض الشاشة عند تلقي الضرر."
 
 #: src/settings_translation_file.cpp
 msgid "Floatland density"
@@ -4269,27 +4269,27 @@ msgstr "كثافة الأرض الطافية"
 
 #: src/settings_translation_file.cpp
 msgid "Floatland maximum Y"
-msgstr ""
+msgstr "أقصى ارتفاع Y للأراضي العائمة"
 
 #: src/settings_translation_file.cpp
 msgid "Floatland minimum Y"
-msgstr ""
+msgstr "أدنى ارتفاع Y للأراضي العائمة"
 
 #: src/settings_translation_file.cpp
 msgid "Floatland noise"
-msgstr ""
+msgstr "ضجيج الأراضي العائمة"
 
 #: src/settings_translation_file.cpp
 msgid "Floatland taper exponent"
-msgstr ""
+msgstr "أسّ تضييق الأراضي العائمة"
 
 #: src/settings_translation_file.cpp
 msgid "Floatland tapering distance"
-msgstr ""
+msgstr "مسافة تضييق الأراضي العائمة"
 
 #: src/settings_translation_file.cpp
 msgid "Floatland water level"
-msgstr ""
+msgstr "مستوى الماء في الأراضي العائمة"
 
 #: src/settings_translation_file.cpp
 msgid "Fog"
@@ -4318,7 +4318,7 @@ msgstr "ظل الخط"
 
 #: src/settings_translation_file.cpp
 msgid "Font shadow alpha"
-msgstr ""
+msgstr "عتامة ظل الخط"
 
 #: src/settings_translation_file.cpp
 msgid "Font size"
@@ -4326,21 +4326,21 @@ msgstr "حجم الخط"
 
 #: src/settings_translation_file.cpp
 msgid "Font size divisible by"
-msgstr ""
+msgstr "القيمة التي يجب أن يقبل القسمة عليها حجم الخط"
 
 #: src/settings_translation_file.cpp
 msgid "Font size of the default font where 1 unit = 1 pixel at 96 DPI"
-msgstr ""
+msgstr "حجم الخط الافتراضي، حيث تساوي الوحدة الواحدة بكسلاً واحداً عند 96 نقطة في البوصة."
 
 #: src/settings_translation_file.cpp
 msgid "Font size of the monospace font where 1 unit = 1 pixel at 96 DPI"
-msgstr ""
+msgstr "حجم الخط ثابت العرض، حيث تساوي الوحدة الواحدة بكسلاً واحداً عند 96 نقطة في البوصة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Font size of the recent chat text and chat prompt in point (pt).\n"
 "Value 0 will use the default font size."
-msgstr ""
+msgstr "حجم نص الدردشة الحديثة ومربع إدخال الدردشة بالنقطة (pt).\nتؤدي القيمة 0 إلى استخدام حجم الخط الافتراضي."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4351,34 +4351,34 @@ msgid ""
 "a pixel font 16 pixels tall should have this set to 16, so it will only ever "
 "be\n"
 "sized 16, 32, 48, etc., so a mod requesting a size of 25 will get 32."
-msgstr ""
+msgstr "بالنسبة إلى الخطوط ذات النمط البكسلي التي لا تتدرج جيداً، يضمن هذا الإعداد\nأن تكون أحجام الخط المستخدمة من مضاعفات هذه القيمة بالبكسل دائماً.\nمثلاً، إذا كان ارتفاع الخط البكسلي 16 بكسلاً، فاضبط القيمة على 16؛\nوعندها ستكون أحجامه 16 أو 32 أو 48 وهكذا. فإذا طلبت إضافة حجماً قدره 25، فسيُستخدم 32."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Format of player chat messages. The following strings are valid "
 "placeholders:\n"
 "@name, @message, @timestamp (optional)"
-msgstr ""
+msgstr "تنسيق رسائل دردشة اللاعبين. السلاسل التالية عناصر نائبة صالحة:\n@name و@message و@timestamp (اختياري)."
 
 #: src/settings_translation_file.cpp
 msgid "Format of screenshots."
-msgstr ""
+msgstr "تنسيق لقطات الشاشة."
 
 #: src/settings_translation_file.cpp
 msgid "Formspec Full-Screen Background Color"
-msgstr ""
+msgstr "لون خلفية النماذج بملء الشاشة"
 
 #: src/settings_translation_file.cpp
 msgid "Formspec Full-Screen Background Opacity"
-msgstr ""
+msgstr "عتامة خلفية النماذج بملء الشاشة"
 
 #: src/settings_translation_file.cpp
 msgid "Formspec full-screen background color (R,G,B)."
-msgstr ""
+msgstr "لون خلفية النماذج بملء الشاشة (R,G,B)."
 
 #: src/settings_translation_file.cpp
 msgid "Formspec full-screen background opacity (between 0 and 255)."
-msgstr ""
+msgstr "عتامة خلفية النماذج بملء الشاشة (من 0 إلى 255)."
 
 #: src/settings_translation_file.cpp
 msgid "Fourth of 4 2D noises that together define hill/mountain range height."
@@ -4386,11 +4386,11 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Fractal type"
-msgstr ""
+msgstr "نوع الفراكتال"
 
 #: src/settings_translation_file.cpp
 msgid "Fraction of the visible distance at which fog starts to be rendered"
-msgstr ""
+msgstr "النسبة من مسافة الرؤية التي يبدأ عندها رسم الضباب."
 
 #: src/settings_translation_file.cpp
 msgid ""
