@@ -17,7 +17,7 @@ ENGINE_PO = ROOT / "luanti/code/po/ar/luanti.po"
 
 # This is the current non-fuzzy, non-empty baseline. Fuzzy entries are not
 # compiled by msgfmt and must never inflate the effective Arabic coverage.
-MIN_ENGINE_TRANSLATIONS = 597
+MIN_ENGINE_TRANSLATIONS = 760
 
 TR_TOKENS = re.compile(r"@[0-9]+|@=|@n|<(?!empty>)[^<>]+>")
 PO_TOKENS = re.compile(
