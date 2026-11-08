@@ -4429,114 +4429,92 @@ msgid "Hotbar slot 18"
 msgstr "مفتاح خانة 18 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 19"
-msgstr "مفتاح الخانة 19 في شريط الإجراءات"
+msgstr "مفتاح خانة 19 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 2"
-msgstr "مفتاح الخانة 2 في شريط الإجراءات"
+msgstr "مفتاح خانة 2 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 20"
-msgstr "مفتاح الخانة 20 في شريط الإجراءات"
+msgstr "مفتاح خانة 20 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 21"
-msgstr "مفتاح الخانة 21 في شريط الإجراءات"
+msgstr "مفتاح خانة 21 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 22"
-msgstr "مفتاح الخانة 22 في شريط الإجراءات"
+msgstr "مفتاح خانة 22 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 23"
-msgstr "مفتاح الخانة 23 في شريط الإجراءات"
+msgstr "مفتاح خانة 23 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 24"
-msgstr "مفتاح الخانة 24 في شريط الإجراءات"
+msgstr "مفتاح خانة 24 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 25"
-msgstr "مفتاح الخانة 25 في شريط الإجراءات"
+msgstr "مفتاح خانة 25 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 26"
-msgstr "مفتاح الخانة 26 في شريط الإجراءات"
+msgstr "مفتاح خانة 26 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 27"
-msgstr "مفتاح الخانة 27 في شريط الإجراءات"
+msgstr "مفتاح خانة 27 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 28"
-msgstr "مفتاح الخانة 28 في شريط الإجراءات"
+msgstr "مفتاح خانة 28 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 29"
-msgstr "مفتاح الخانة 29 في شريط الإجراءات"
+msgstr "مفتاح خانة 29 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 3"
-msgstr "مفتاح الخانة 3 في شريط الإجراءات"
+msgstr "مفتاح خانة 3 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 30"
-msgstr "مفتاح الخانة 30 في شريط الإجراءات"
+msgstr "مفتاح خانة 30 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 31"
-msgstr "مفتاح الخانة 31 في شريط الإجراءات"
+msgstr "مفتاح خانة 31 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 32"
-msgstr "مفتاح الخانة 32 في شريط الإجراءات"
+msgstr "مفتاح خانة 32 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 4"
-msgstr "مفتاح الخانة 4 في شريط الإجراءات"
+msgstr "مفتاح خانة 4 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 5"
-msgstr "مفتاح الخانة 5 في شريط الإجراءات"
+msgstr "مفتاح خانة 5 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 6"
-msgstr "مفتاح الخانة 6 في شريط الإجراءات"
+msgstr "مفتاح خانة 6 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 7"
-msgstr "مفتاح الخانة 7 في شريط الإجراءات"
+msgstr "مفتاح خانة 7 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 8"
-msgstr "مفتاح الخانة 8 في شريط الإجراءات"
+msgstr "مفتاح خانة 8 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar slot 9"
-msgstr "مفتاح الخانة 9 في شريط الإجراءات"
+msgstr "مفتاح خانة 9 في شريط العناصر السريع"
 
 #: src/settings_translation_file.cpp
 msgid "Hotbar: Enable mouse wheel for selection"
@@ -4547,28 +4525,22 @@ msgid "Hotbar: Invert mouse wheel direction"
 msgstr "شريط العناصر السريع: عكس اتجاه عجلة الفأرة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar: select next item"
-msgstr "مفتاح العنصر التالي في شريط الإجراءات"
+msgstr "شريط العناصر السريع: اختيار العنصر التالي"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Hotbar: select previous item"
-msgstr "مفتاح العنصر السابق في شريط الإجراءات"
+msgstr "شريط العناصر السريع: اختيار العنصر السابق"
 
 #: src/settings_translation_file.cpp
 msgid "How deep to make rivers."
 msgstr "يحدد عمق الأنهار."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "How fast liquid waves will move. Higher = faster.\n"
 "If negative, liquid waves will move backwards."
-msgstr ""
-"سرعة موجات السوائل.كلما زادت القيمة زادت سرعتها.\n"
-"إذا كانت سالبة ، فإن حركة الموجات ستكون لجهة المعاكسة .\n"
-"لاستخدامها فعّل سوائل متموجة."
+msgstr "سرعة حركة موجات السوائل. كلما زادت القيمة زادت السرعة.\nإذا كانت القيمة سالبة، تتحرك الموجات في الاتجاه العكسي."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4578,11 +4550,10 @@ msgid ""
 msgstr "المدة التي ينتظرها الخادم قبل إلغاء تحميل كتل الخريطة غير المستخدمة، بالثواني.\nتجعل القيمة الأعلى الأداء أكثر سلاسة، لكنها تستهلك ذاكرة RAM أكبر."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "How much you are slowed down when moving inside a liquid.\n"
 "Decrease this to increase liquid resistance to movement."
-msgstr "قلل منه لزيادة مقاومة الحركة في السوائل."
+msgstr "مقدار التباطؤ عند الحركة داخل سائل.\nقلل هذه القيمة لزيادة مقاومة السوائل للحركة."
 
 #: src/settings_translation_file.cpp
 msgid "How wide to make rivers."
@@ -4601,7 +4572,6 @@ msgid "Humidity variation for biomes."
 msgstr "اختلاف الرطوبة في الحيوم."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "IPv6"
 msgstr "IPv6"
 
@@ -4737,14 +4707,12 @@ msgid "In-game chat console height, between 0.1 (10%) and 1.0 (100%)."
 msgstr "ارتفاع وحدة تحكم الدردشة داخل اللعبة، من 0.1 (10٪) إلى 1.0 (100٪)."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Increase view range"
-msgstr "زد المدى"
+msgstr "زيادة مدى الرؤية"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Increase volume"
-msgstr "زد الحجم"
+msgstr "زيادة مستوى الصوت"
 
 #: src/settings_translation_file.cpp
 msgid "Initial vertical speed when jumping, in nodes per second."
@@ -5004,17 +4972,12 @@ msgid "Leaves style"
 msgstr "مظهر الأوراق"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Leaves style:\n"
 "-   Fancy:  all faces visible\n"
 "-   Simple: only outer faces\n"
 "-   Opaque: disable transparency"
-msgstr ""
-"مظهر أوراق الشجر:\n"
-"- مفصل: كل الوجوه مرئية\n"
-"- بسيط: الوجوه الخارجية فقط ، إذا تم تحديد \"special_tiles\"\n"
-"- معتم: يعطل الشفافية"
+msgstr "نمط أوراق الأشجار:\n-    Fancy: إظهار جميع الأوجه.\n-    Simple: إظهار الأوجه الخارجية فقط.\n-    Opaque: تعطيل الشفافية."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5083,9 +5046,8 @@ msgid "Light curve low gradient"
 msgstr "تدرج الجزء الأدنى من منحنى الإضاءة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Lighting"
-msgstr "إضاءة سلسة"
+msgstr "الإضاءة"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5159,9 +5121,8 @@ msgid "Look down"
 msgstr "النظر إلى الأسفل"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Look left"
-msgstr "حركة"
+msgstr "النظر إلى اليسار"
 
 #: src/settings_translation_file.cpp
 msgid "Look right"
@@ -5478,9 +5439,8 @@ msgid "Maximum simultaneous block sends per client"
 msgstr "الحد الأقصى لعمليات إرسال الكتل المتزامنة لكل عميل"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Maximum size of the client's outgoing chat queue"
-msgstr "امسح طابور الرسائل الصادرة"
+msgstr "الحد الأقصى لحجم قائمة انتظار رسائل الدردشة الصادرة من العميل"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5509,9 +5469,8 @@ msgid "Measure time samples"
 msgstr "قياس عينات الوقت"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Menu theme"
-msgstr "Menu"
+msgstr "سمة القائمة"
 
 #: src/settings_translation_file.cpp
 msgid "Message of the day"
@@ -5616,28 +5575,24 @@ msgid "Mouse sensitivity multiplier."
 msgstr "مضاعف حساسية الفأرة."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Move backward"
-msgstr "للخلف"
+msgstr "التحرك للخلف"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Move forward"
-msgstr "المشي التلقائي"
+msgstr "التحرك للأمام"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Move left"
-msgstr "حركة"
+msgstr "التحرك لليسار"
 
 #: src/settings_translation_file.cpp
 msgid "Move right"
 msgstr "التحرك إلى اليمين"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Movement threshold"
-msgstr "حساسية اللمس (بكسل):"
+msgstr "عتبة الحركة"
 
 #: src/settings_translation_file.cpp
 msgid "Mud noise"
@@ -5686,9 +5641,8 @@ msgid "New users need to input this password."
 msgstr "يتعين على المستخدمين الجدد إدخال كلمة المرور هذه."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Node and Entity Highlighting"
-msgstr "إبراز العقد"
+msgstr "إبراز العقد والكيانات"
 
 #: src/settings_translation_file.cpp
 msgid "Node highlighting"
@@ -5724,9 +5678,8 @@ msgid ""
 msgstr "عدد الكتل الإضافية التي يمكن تحميلها دفعة واحدة بواسطة /clearobjects.\nيمثل ذلك موازنة بين كلفة معاملات SQLite واستهلاك الذاكرة\n(تقريباً، 4096 كتلة = 100 ميغابايت)."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Number of messages a player may send per 10 seconds."
-msgstr "عدد اارسائل المسموح بها لكل 10 ثوان."
+msgstr "عدد الرسائل التي يمكن للاعب إرسالها خلال 10 ثوانٍ."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5752,9 +5705,8 @@ msgid "Open chat"
 msgstr "فتح الدردشة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Open inventory"
-msgstr "المخزن"
+msgstr "فتح المخزون"
 
 #: src/settings_translation_file.cpp
 msgid "Open pause menu"
@@ -5890,9 +5842,8 @@ msgid "Proportion of large caves that contain liquid."
 msgstr "نسبة الكهوف الكبيرة التي تحتوي على سوائل."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Protocol version minimum"
-msgstr "لا تتطابق نسخ الميفاق. "
+msgstr "الحد الأدنى لإصدار البروتوكول"
 
 #: src/settings_translation_file.cpp
 msgid "Punch gesture"
@@ -5946,9 +5897,8 @@ msgid "Regular font path"
 msgstr "مسار الخط العادي"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Remember screen size"
-msgstr "حفظ حجم الشاشة تلقائيًا"
+msgstr "تذكّر حجم الشاشة"
 
 #: src/settings_translation_file.cpp
 msgid "Remote media"
@@ -5983,9 +5933,8 @@ msgid ""
 msgstr "يقيّد الوصول إلى بعض الدوال التي تعمل على جانب العميل في الخوادم.\nاجمع أعلام البايت التالية لتقييد ميزات العميل، أو اضبط القيمة على 0\nلعدم فرض أي قيود:\nLOAD_CLIENT_MODS: 1 (تعطيل تحميل الإضافات المقدمة من العميل)\nCHAT_MESSAGES: 2 (تعطيل استدعاء send_chat_message من جانب العميل)\nREAD_ITEMDEFS: 4 (تعطيل استدعاء get_item_def من جانب العميل)\nREAD_NODEDEFS: 8 (تعطيل استدعاء get_node_def من جانب العميل)\nLOOKUP_NODES_LIMIT: 16 (حصر استدعاء get_node من جانب العميل ضمن\ncsm_restriction_noderange)\nREAD_PLAYERINFO: 32 (تعطيل استدعاء get_player_names من جانب العميل)"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Return to Main Menu"
-msgstr "عد للقائمة الرئيسية"
+msgstr "العودة إلى القائمة الرئيسية"
 
 #: src/settings_translation_file.cpp
 msgid "Ridge mountain spread noise"
@@ -6073,9 +6022,8 @@ msgid ""
 msgstr "تحجيم واجهة المستخدم وفق قيمة يحددها المستخدم.\nاستخدم مرشح أقرب جار مع تنعيم الحواف لتحجيم الواجهة.\nيساعد ذلك على تنعيم بعض الحواف الخشنة ومزج البكسلات عند تصغير الحجم،\nلكن قد يؤدي إلى طمس بعض بكسلات الحواف عند استخدام أحجام تحجيم غير صحيحة."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Screen"
-msgstr "الشاشة:"
+msgstr "الشاشة"
 
 #: src/settings_translation_file.cpp
 msgid "Screen height"
@@ -6189,24 +6137,20 @@ msgid ""
 msgstr "إرسال أسماء اللاعبين المتصلين إلى قائمة الخوادم. عند التعطيل، لا يظهر سوى عدد اللاعبين."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Send player names to the server list"
-msgstr "أدرجه في هذه القائمة."
+msgstr "إرسال أسماء اللاعبين إلى قائمة الخوادم"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Server"
-msgstr "استضف خدوم"
+msgstr "الخادم"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Server Gameplay"
-msgstr "- اسم الخادم: "
+msgstr "إعدادات اللعب في الخادم"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Server Security"
-msgstr "وصف الخادم"
+msgstr "أمان الخادم"
 
 #: src/settings_translation_file.cpp
 msgid "Server URL"
@@ -6240,9 +6184,8 @@ msgid "Server-side occlusion culling"
 msgstr "استبعاد الكتل المحجوبة من جانب الخادم"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Server/Env Performance"
-msgstr "منفذ الخدوم"
+msgstr "أداء الخادم والبيئة"
 
 #: src/settings_translation_file.cpp
 msgid "Serverlist URL"
@@ -6392,9 +6335,8 @@ msgid ""
 msgstr "إظهار مربعات تحديد الكيانات.\nيتطلب تغيير هذا الإعداد إعادة تشغيل المحرك."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Show name tag backgrounds by default"
-msgstr "الخط عريض افتراضيًا"
+msgstr "إظهار خلفيات علامات الأسماء افتراضياً"
 
 #: src/settings_translation_file.cpp
 msgid "Shutdown message"
@@ -6458,9 +6400,8 @@ msgid "Smooth lighting"
 msgstr "إضاءة ناعمة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Smooth scrolling"
-msgstr "إضاءة سلسة"
+msgstr "التمرير السلس"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -6483,23 +6424,20 @@ msgid "Sneaking speed, in nodes per second."
 msgstr "سرعة التسلل، بوحدة العقد في الثانية."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Soft clouds"
-msgstr "سحب ثلاثية الأبعاد"
+msgstr "سحب ناعمة"
 
 #: src/settings_translation_file.cpp
 msgid "Soft shadow radius"
 msgstr "نصف قطر الظلال الناعمة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Sound"
-msgstr "الصوت مكتوم"
+msgstr "الصوت"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Sound Extensions Blacklist"
-msgstr "قائمة المحتوى السوداء الخاصة بقاعدة بيانات ContentDB"
+msgstr "قائمة حظر امتدادات الصوت"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -6817,9 +6755,8 @@ msgid "Tint sunlight during sunrise/sunset."
 msgstr "إضفاء صبغة لونية على ضوء الشمس أثناء الشروق والغروب."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Tinted fog"
-msgstr "بدّل ظهور الضباب"
+msgstr "ضباب ملوّن"
 
 #: src/settings_translation_file.cpp
 msgid "Tinted sunlight"
@@ -6833,75 +6770,64 @@ msgid ""
 msgstr "لتوفير عرض النطاق الترددي، تُبطّأ عمليات نقل الكتل عندما يبني اللاعب شيئاً.\nيحدد هذا الإعداد مدة استمرار التقييد بعد وضع عقدة."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle Aux1 key"
-msgstr "مفتاح Aux1"
+msgstr "تبديل مفتاح Aux1"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle HUD"
 msgstr "بدّل عرض الواجهة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle Sneak key"
-msgstr "بدّل حالة الطيران"
+msgstr "تبديل مفتاح التسلل (Sneak)"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle automatic forward"
-msgstr "زر المشي التلقائي"
+msgstr "تبديل التقدم التلقائي"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle block bounds"
-msgstr "حدود الكتلة"
+msgstr "تبديل عرض حدود الكتل"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle camera mode"
-msgstr "بدّل عرض سجل المحادثة"
+msgstr "تبديل وضع الكاميرا"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle camera update"
 msgstr "تبديل تحديث الكاميرا"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle cinematic mode"
-msgstr "الوضع السنيمائي"
+msgstr "تبديل الوضع السينمائي"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle debug info"
-msgstr "بدّل ظهور الضباب"
+msgstr "تبديل معلومات التصحيح"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle fog"
 msgstr "بدّل ظهور الضباب"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle fullscreen"
-msgstr "بدّل حالة الطيران"
+msgstr "تبديل وضع ملء الشاشة"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle large chat console"
-msgstr "بدّل عرض سجل المحادثة"
+msgstr "تبديل حجم وحدة تحكم الدردشة"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle pitchmove"
 msgstr "تبديل الحركة العمودية وفق زاوية النظر"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle profiler"
-msgstr "بدّل حالة الطيران"
+msgstr "تبديل محلّل الأداء"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle unlimited view range"
-msgstr "مدى الرؤية غير المحدود معطل"
+msgstr "تبديل مدى الرؤية غير المحدود"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7177,14 +7103,12 @@ msgid "Volume when unfocused"
 msgstr "مستوى الصوت عند فقدان التركيز"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Volumetric Depth Attenuation"
-msgstr "إبراز العقد"
+msgstr "توهين العمق الحجمي"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Volumetric Lighting"
-msgstr "إبراز العقد"
+msgstr "الإضاءة الحجمية"
 
 #: src/settings_translation_file.cpp
 msgid ""
