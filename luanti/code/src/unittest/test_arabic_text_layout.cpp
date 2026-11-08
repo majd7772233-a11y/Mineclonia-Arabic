@@ -85,6 +85,7 @@ public:
 	void testMixedDirectionParagraph();
 	void testBidiIsolatesAndArabicIndicDigits();
 	void testMixedDirectionSelectionIntervals();
+	void testVisualWordNavigationMixedDirection();
 	void testCombiningMarkCluster();
 	void testExplicitParagraphDirection();
 	void testFallbackFontRange();
@@ -100,6 +101,7 @@ void TestArabicTextLayout::runTests(IGameDef *gamedef)
 	TEST(testMixedDirectionParagraph);
 	TEST(testBidiIsolatesAndArabicIndicDigits);
 	TEST(testMixedDirectionSelectionIntervals);
+	TEST(testVisualWordNavigationMixedDirection);
 	TEST(testCombiningMarkCluster);
 	TEST(testExplicitParagraphDirection);
 	TEST(testFallbackFontRange);
@@ -295,6 +297,49 @@ void TestArabicTextLayout::testMixedDirectionSelectionIntervals()
 		if (i > 0)
 			UASSERT(intervals[i - 1].second < intervals[i].first);
 	}
+}
+
+void TestArabicTextLayout::testVisualWordNavigationMixedDirection()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+
+	RaqmLayout layout;
+	const std::u32string text = U"abc مرحبا def";
+	setRaqmText(layout, font.face, text);
+	UASSERT(raqm_set_language(layout.value, "ar", 4, 5));
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(layout.value));
+	UASSERTEQ(raqm_direction_t, raqm_get_par_resolved_direction(layout.value),
+			RAQM_DIRECTION_LTR);
+
+	// Ctrl+Right from the first Latin word stops at its visual end.
+	const size_t latin_end =
+			gui::text_layout::getVisualWordCursorBoundary(layout.value, text, 0, 1);
+	UASSERTEQ(size_t, latin_end, 3);
+
+	// Word movement through the embedded RTL run must follow increasing or
+	// decreasing visual x, not increasing/decreasing logical source indices.
+	const auto cursor_x = [&](size_t boundary) {
+		if (boundary == 0)
+			return 0;
+		size_t character = boundary - 1;
+		int x = 0;
+		int y = 0;
+		UASSERT(raqm_index_to_position(layout.value, &character, &x, &y));
+		return x;
+	};
+
+	const size_t from_rtl = 4;
+	const int origin_x = cursor_x(from_rtl);
+	const size_t visual_right =
+			gui::text_layout::getVisualWordCursorBoundary(layout.value, text, from_rtl, 1);
+	const size_t visual_left =
+			gui::text_layout::getVisualWordCursorBoundary(layout.value, text, from_rtl, -1);
+	UASSERT(visual_right != from_rtl);
+	UASSERT(visual_left != from_rtl);
+	UASSERT(cursor_x(visual_right) > origin_x);
+	UASSERT(cursor_x(visual_left) < origin_x);
 }
 
 void TestArabicTextLayout::testCombiningMarkCluster()
