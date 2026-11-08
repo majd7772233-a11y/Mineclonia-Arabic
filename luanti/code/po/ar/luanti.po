@@ -6165,15 +6165,15 @@ msgstr "الوسائط البعيدة"
 msgid ""
 "Remove color codes from incoming chat messages\n"
 "Use this to stop players from being able to use color in their messages"
-msgstr ""
+msgstr "إزالة رموز الألوان من رسائل الدردشة الواردة.\nاستخدم هذا الخيار لمنع اللاعبين من تلوين رسائلهم."
 
 #: src/settings_translation_file.cpp
 msgid "Replaces the default main menu with a custom one."
-msgstr ""
+msgstr "استبدال القائمة الرئيسية الافتراضية بقائمة مخصصة."
 
 #: src/settings_translation_file.cpp
 msgid "Report path"
-msgstr ""
+msgstr "مسار التقرير"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7183,22 +7183,22 @@ msgid ""
 "\"bfs\" is the new algorithm based on breadth-first-search and side culling\n"
 "\n"
 "This setting should only be changed if you have performance problems."
-msgstr ""
+msgstr "نوع خوارزمية occlusion_culler.\n\n\"loops\" هي الخوارزمية القديمة المعتمدة على حلقات متداخلة وتعقيد O(n³).\n\"bfs\" هي الخوارزمية الجديدة المعتمدة على البحث بالعرض أولاً واستبعاد الجوانب.\n\nلا تغيّر هذا الإعداد إلا إذا واجهت مشكلات في الأداء."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "URL to JSON file which provides information about the newest Luanti "
 "release.\n"
 "If this is empty the engine will never check for updates."
-msgstr ""
+msgstr "عنوان URL لملف JSON الذي يوفر معلومات عن أحدث إصدار من Luanti.\nإذا كانت القيمة فارغة، فلن يتحقق المحرك من وجود تحديثات مطلقاً."
 
 #: src/settings_translation_file.cpp
 msgid "URL to the server list displayed in the Multiplayer Tab."
-msgstr ""
+msgstr "عنوان URL لقائمة الخوادم المعروضة في تبويب اللعب الجماعي."
 
 #: src/settings_translation_file.cpp
 msgid "Undersampling"
-msgstr ""
+msgstr "تقليل عينات العرض"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7210,178 +7210,178 @@ msgid ""
 "Note: Undersampling is currently not supported if the \"3d_mode\" setting is "
 "set\n"
 "to a non-default value."
-msgstr ""
+msgstr "يشبه تقليل عينات العرض استخدام دقة شاشة أقل، لكنه يطبق على عالم اللعبة فقط\nمع الإبقاء على واجهة المستخدم دون تغيير.\nينبغي أن يمنح ذلك تحسناً ملحوظاً في الأداء مقابل صورة أقل تفصيلاً.\nتؤدي القيم الأعلى إلى صورة أقل تفصيلاً.\nملاحظة: لا يدعم المحرك حالياً تقليل عينات العرض إذا ضُبط \"3d_mode\" على قيمة غير افتراضية."
 
 #: src/settings_translation_file.cpp
 msgid "Unlimited player transfer distance"
-msgstr ""
+msgstr "مسافة نقل غير محدودة للاعبين"
 
 #: src/settings_translation_file.cpp
 msgid "Unload unused server data"
-msgstr ""
+msgstr "إلغاء تحميل بيانات الخادم غير المستخدمة"
 
 #: src/settings_translation_file.cpp
 msgid "Update information URL"
-msgstr ""
+msgstr "عنوان URL لمعلومات التحديث"
 
 #: src/settings_translation_file.cpp
 msgid "Upper Y limit of dungeons."
-msgstr ""
+msgstr "الحد الأعلى لإحداثي Y للسراديب."
 
 #: src/settings_translation_file.cpp
 msgid "Upper Y limit of floatlands."
-msgstr ""
+msgstr "الحد الأعلى لإحداثي Y للأراضي العائمة."
 
 #: src/settings_translation_file.cpp
 msgid "Use a cloud animation for the main menu background."
-msgstr ""
+msgstr "استخدام حركة السحب في خلفية القائمة الرئيسية."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Use anisotropic filtering when looking at textures from an angle.\n"
 "This provides a significant improvement when used together with mipmapping."
-msgstr ""
+msgstr "استخدام الترشيح متباين الخواص عند النظر إلى الأنسجة من زاوية مائلة.\nيوفر ذلك تحسناً ملحوظاً عند استخدامه مع خرائط Mipmap."
 
 #: src/settings_translation_file.cpp
 msgid "Use bilinear filtering when scaling textures."
-msgstr ""
+msgstr "استخدام الترشيح ثنائي الخطية عند تحجيم الأنسجة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Use mipmaps when scaling textures. May slightly increase performance,\n"
 "especially when using a high-resolution texture pack.\n"
 "Gamma-correct downscaling is not supported."
-msgstr ""
+msgstr "استخدام خرائط Mipmap عند تحجيم الأنسجة. قد يحسن ذلك الأداء قليلاً،\nخصوصاً عند استخدام حزمة أنسجة عالية الدقة.\nلا يدعم المحرك التصغير المصحح وفق غاما."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Use raytraced occlusion culling in the new culler.\n"
 "This flag enables use of raytraced occlusion culling test for\n"
 "client mesh sizes smaller than 4x4x4 map blocks."
-msgstr ""
+msgstr "استخدام استبعاد الكتل المحجوبة بتتبع الأشعة في خوارزمية الاستبعاد الجديدة.\nيفعّل هذا الخيار اختبار الاستبعاد بتتبع الأشعة عندما يكون حجم مجسمات العميل\nأصغر من 4x4x4 كتل خريطة."
 
 #: src/settings_translation_file.cpp
 msgid "Use smooth cloud shading."
-msgstr ""
+msgstr "استخدام تظليل ناعم للسحب."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Use trilinear filtering when scaling textures.\n"
 "If both bilinear and trilinear filtering are enabled, trilinear filtering\n"
 "is applied."
-msgstr ""
+msgstr "استخدام الترشيح ثلاثي الخطية عند تحجيم الأنسجة.\nإذا كان الترشيح ثنائي الخطية وثلاثي الخطية مفعّلين معاً، فسيُطبّق الترشيح ثلاثي الخطية."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Use virtual joystick to trigger \"Aux1\" button.\n"
 "If enabled, virtual joystick will also tap \"Aux1\" button when out of main "
 "circle."
-msgstr ""
+msgstr "استخدام عصا التحكم الافتراضية لتفعيل زر \"Aux1\".\nعند التفعيل، ستضغط عصا التحكم الافتراضية أيضاً على زر \"Aux1\" عند تحريكها خارج الدائرة الرئيسية."
 
 #: src/settings_translation_file.cpp
 msgid "User Interfaces"
-msgstr ""
+msgstr "واجهات المستخدم"
 
 #: src/settings_translation_file.cpp
 msgid "VSync"
-msgstr ""
+msgstr "المزامنة الرأسية (VSync)"
 
 #: src/settings_translation_file.cpp
 msgid "Valley depth"
-msgstr ""
+msgstr "عمق الوادي"
 
 #: src/settings_translation_file.cpp
 msgid "Valley fill"
-msgstr ""
+msgstr "ملء الوادي"
 
 #: src/settings_translation_file.cpp
 msgid "Valley profile"
-msgstr ""
+msgstr "مقطع الوادي"
 
 #: src/settings_translation_file.cpp
 msgid "Valley slope"
-msgstr ""
+msgstr "انحدار الوادي"
 
 #: src/settings_translation_file.cpp
 msgid "Variation of biome filler depth."
-msgstr ""
+msgstr "تباين عمق مادة ملء المنطقة الأحيائية."
 
 #: src/settings_translation_file.cpp
 msgid "Variation of maximum mountain height (in nodes)."
-msgstr ""
+msgstr "تباين أقصى ارتفاع للجبال (بوحدة العقد)."
 
 #: src/settings_translation_file.cpp
 msgid "Variation of number of caves."
-msgstr ""
+msgstr "تباين عدد الكهوف."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Variation of terrain vertical scale.\n"
 "When noise is < -0.55 terrain is near-flat."
-msgstr ""
+msgstr "تباين المقياس الرأسي للتضاريس.\nعندما تكون قيمة الضجيج أقل من ‎-0.55، تصبح التضاريس شبه مسطحة."
 
 #: src/settings_translation_file.cpp
 msgid "Varies depth of biome surface nodes."
-msgstr ""
+msgstr "يغيّر عمق عقد سطح المنطقة الأحيائية."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Varies roughness of terrain.\n"
 "Defines the 'persistence' value for terrain_base and terrain_alt noises."
-msgstr ""
+msgstr "يغيّر خشونة التضاريس.\nويحدد قيمة 'persistence' لضجيجَي terrain_base وterrain_alt."
 
 #: src/settings_translation_file.cpp
 msgid "Varies steepness of cliffs."
-msgstr ""
+msgstr "يغيّر انحدار المنحدرات الصخرية."
 
 #: src/settings_translation_file.cpp
 msgid "Vertical climbing speed, in nodes per second."
-msgstr ""
+msgstr "سرعة التسلق العمودي، بوحدة العقد في الثانية."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Vertical screen synchronization.\n"
 "Note: A restart is required after changing this!\n"
 "Your system may still force VSync and ignore this setting."
-msgstr ""
+msgstr "المزامنة الرأسية للشاشة.\nملاحظة: يتطلب تغيير هذا الإعداد إعادة تشغيل المحرك.\nقد يفرض نظامك VSync رغم ذلك ويتجاهل هذا الإعداد."
 
 #: src/settings_translation_file.cpp
 msgid "Video driver"
-msgstr ""
+msgstr "برنامج تشغيل الفيديو"
 
 #: src/settings_translation_file.cpp
 msgid "View bobbing factor"
-msgstr ""
+msgstr "معامل تأرجح الرؤية"
 
 #: src/settings_translation_file.cpp
 msgid "View distance in nodes."
-msgstr ""
+msgstr "مسافة الرؤية بوحدة العقد."
 
 #: src/settings_translation_file.cpp
 msgid "Viewing range"
-msgstr ""
+msgstr "مدى الرؤية"
 
 #: src/settings_translation_file.cpp
 msgid "Virtual joystick triggers Aux1 button"
-msgstr ""
+msgstr "عصا التحكم الافتراضية تفعّل زر Aux1"
 
 #: src/settings_translation_file.cpp
 msgid "Volume"
-msgstr ""
+msgstr "مستوى الصوت"
 
 #: src/settings_translation_file.cpp
 msgid "Volume multiplier when the window is unfocused."
-msgstr ""
+msgstr "مضاعف مستوى الصوت عند فقدان تركيز النافذة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Volume of all sounds.\n"
 "Requires the sound system to be enabled."
-msgstr ""
+msgstr "مستوى صوت جميع الأصوات.\nيتطلب ذلك تفعيل نظام الصوت."
 
 #: src/settings_translation_file.cpp
 msgid "Volume when unfocused"
-msgstr ""
+msgstr "مستوى الصوت عند فقدان التركيز"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -7400,78 +7400,78 @@ msgid ""
 "Alters the shape of the fractal.\n"
 "Has no effect on 3D fractals.\n"
 "Range roughly -2 to 2."
-msgstr ""
+msgstr "إحداثي W للمقطع ثلاثي الأبعاد المولّد من فراكتال رباعي الأبعاد.\nيحدد أي مقطع ثلاثي الأبعاد من الشكل رباعي الأبعاد سيتم توليده.\nيغيّر شكل الفراكتال.\nليس له تأثير على الفراكتالات ثلاثية الأبعاد.\nيتراوح المجال تقريباً من ‎-2 إلى 2."
 
 #: src/settings_translation_file.cpp
 msgid "Walking and flying speed, in nodes per second."
-msgstr ""
+msgstr "سرعة المشي والطيران، بوحدة العقد في الثانية."
 
 #: src/settings_translation_file.cpp
 msgid "Walking speed"
-msgstr ""
+msgstr "سرعة المشي"
 
 #: src/settings_translation_file.cpp
 msgid "Walking, flying and climbing speed in fast mode, in nodes per second."
-msgstr ""
+msgstr "سرعة المشي والطيران والتسلق في الوضع السريع، بوحدة العقد في الثانية."
 
 #: src/settings_translation_file.cpp
 msgid "Water level"
-msgstr ""
+msgstr "مستوى الماء"
 
 #: src/settings_translation_file.cpp
 msgid "Water surface level of the world."
-msgstr ""
+msgstr "مستوى سطح الماء في العالم."
 
 #: src/settings_translation_file.cpp
 msgid "Waving Nodes"
-msgstr ""
+msgstr "عقد متحركة"
 
 #: src/settings_translation_file.cpp
 msgid "Waving leaves"
-msgstr ""
+msgstr "أوراق متحركة"
 
 #: src/settings_translation_file.cpp
 msgid "Waving liquids"
-msgstr ""
+msgstr "سوائل متحركة"
 
 #: src/settings_translation_file.cpp
 msgid "Waving liquids wave height"
-msgstr ""
+msgstr "ارتفاع موجات السوائل المتحركة"
 
 #: src/settings_translation_file.cpp
 msgid "Waving liquids wave speed"
-msgstr ""
+msgstr "سرعة موجات السوائل المتحركة"
 
 #: src/settings_translation_file.cpp
 msgid "Waving liquids wavelength"
-msgstr ""
+msgstr "طول موجة السوائل المتحركة"
 
 #: src/settings_translation_file.cpp
 msgid "Waving plants"
-msgstr ""
+msgstr "نباتات متحركة"
 
 #: src/settings_translation_file.cpp
 msgid "Weblink color"
-msgstr ""
+msgstr "لون روابط الويب"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "When enabled, crude liquid reflections are simulated.\n"
 "Wave height, length and speed will affect these reflections."
-msgstr ""
+msgstr "عند التفعيل، تُحاكى انعكاسات السوائل بصورة مبسطة.\nيؤثر ارتفاع الموجة وطولها وسرعتها في هذه الانعكاسات."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "When enabled, the GUI is optimized to be more usable on touchscreens.\n"
 "Whether this is enabled by default depends on your hardware form-factor."
-msgstr ""
+msgstr "عند التفعيل، تُحسّن واجهة المستخدم لتكون أسهل استخداماً على شاشات اللمس.\nيعتمد تفعيل هذا الخيار افتراضياً على شكل جهازك وعتاده."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "When gui_scaling_filter is true, all GUI images need to be\n"
 "filtered in software, but some images are generated directly\n"
 "to hardware (e.g. render-to-texture for nodes in inventory)."
-msgstr ""
+msgstr "عند ضبط gui_scaling_filter على true، يجب ترشيح جميع صور واجهة المستخدم\nبرمجياً، لكن بعض الصور تُنشأ مباشرةً على العتاد\n(مثل الرسم إلى نسيج للعقد داخل المخزون)."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7483,84 +7483,84 @@ msgid ""
 "This setting is ONLY applied if any of the mentioned filters are enabled.\n"
 "This is also used as the base node texture size for world-aligned\n"
 "texture autoscaling."
-msgstr ""
+msgstr "عند استخدام الترشيح ثنائي أو ثلاثي الخطية، قد تصبح الأنسجة منخفضة الدقة ضبابية.\nلذلك يرفع هذا الخيار دقتها تلقائياً للحفاظ على حواف البكسلات الواضحة.\nتحدد هذه القيمة الحد الأدنى لحجم الأنسجة بعد رفع دقتها؛\nتبدو القيم الأعلى أكثر حدة، لكنها تحتاج إلى ذاكرة أكبر.\nلا يُطبّق هذا الإعداد إلا عند تفعيل أحد المرشحات المذكورة.\nويُستخدم أيضاً كحجم أساسي لنسيج العقد عند التحجيم التلقائي للأنسجة المحاذية للعالم."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Where to enable server-sent client-side modding (SSCSM).\n"
 "Warning: Experimental."
-msgstr ""
+msgstr "تحديد موضع تفعيل تعديل العميل المرسل من الخادم (SSCSM).\nتحذير: هذه الميزة تجريبية."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Whether name tag backgrounds should be shown by default.\n"
 "Mods may still set a background."
-msgstr ""
+msgstr "تحديد ما إذا كان ينبغي إظهار خلفيات علامات الأسماء افتراضياً.\nقد تضع الإضافات خلفية رغم ذلك."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Whether players are shown to clients without any range limit.\n"
 "Deprecated, use the setting player_transfer_distance instead."
-msgstr ""
+msgstr "تحديد ما إذا كان اللاعبون يظهرون للعملاء دون أي حد للمسافة.\nهذا الإعداد مهجور؛ استخدم player_transfer_distance بدلاً منه."
 
 #: src/settings_translation_file.cpp
 msgid "Whether the window is maximized."
-msgstr ""
+msgstr "تحديد ما إذا كانت النافذة مكبّرة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Whether to ask clients to reconnect after a (Lua) crash.\n"
 "Set this to true if your server is set up to restart automatically."
-msgstr ""
+msgstr "تحديد ما إذا كان ينبغي مطالبة العملاء بإعادة الاتصال بعد تعطل (Lua).\nاضبط القيمة على true إذا كان خادمك مهيأً لإعادة التشغيل تلقائياً."
 
 #: src/settings_translation_file.cpp
 msgid "Whether to fog out the end of the visible area."
-msgstr ""
+msgstr "تحديد ما إذا كان ينبغي تغطية نهاية منطقة الرؤية بالضباب."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Whether to mute sounds. You can unmute sounds at any time.\n"
 "In-game, you can toggle the mute state with the mute key or by using the\n"
 "pause menu."
-msgstr ""
+msgstr "تحديد ما إذا كان ينبغي كتم الأصوات. يمكنك إلغاء الكتم في أي وقت.\nداخل اللعبة، يمكنك تبديل حالة الكتم باستخدام مفتاح الكتم أو من قائمة الإيقاف المؤقت."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Whether to show the client debug info (has the same effect as hitting F5)."
-msgstr ""
+msgstr "تحديد ما إذا كان ينبغي إظهار معلومات تصحيح العميل (له التأثير نفسه عند الضغط على F5)."
 
 #: src/settings_translation_file.cpp
 msgid "Width component of the initial window size."
-msgstr ""
+msgstr "مكوّن العرض من حجم النافذة الأولي."
 
 #: src/settings_translation_file.cpp
 msgid "Width of the selection box lines around nodes."
-msgstr ""
+msgstr "عرض خطوط مربع التحديد حول العقد."
 
 #: src/settings_translation_file.cpp
 msgid "Will also disable autoforward, when active."
-msgstr ""
+msgstr "سيعطّل أيضاً التقدم التلقائي عند تفعيله."
 
 #: src/settings_translation_file.cpp
 msgid "Window maximized"
-msgstr ""
+msgstr "النافذة مكبّرة"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Windows systems only: Start Luanti with the command line window in the "
 "background.\n"
 "Contains the same information as the file debug.txt (default name)."
-msgstr ""
+msgstr "أنظمة Windows فقط: تشغيل Luanti مع إبقاء نافذة سطر الأوامر في الخلفية.\nتحتوي على المعلومات نفسها الموجودة في ملف debug.txt (الاسم الافتراضي)."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "World directory (everything in the world is stored here).\n"
 "Not needed if starting from the main menu."
-msgstr ""
+msgstr "مجلد العالم (تُخزّن فيه جميع بيانات العالم).\nلا يلزم تعيينه عند بدء التشغيل من القائمة الرئيسية."
 
 #: src/settings_translation_file.cpp
 msgid "World start time"
-msgstr ""
+msgstr "وقت بدء العالم"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7570,29 +7570,29 @@ msgid ""
 "to determine the scale automatically based on the texture size.\n"
 "See also texture_min_size.\n"
 "Warning: This option is EXPERIMENTAL!"
-msgstr ""
+msgstr "يمكن تحجيم الأنسجة المحاذية للعالم لتغطي عدة عقد. لكن قد لا يرسل الخادم\nمقياس التحجيم المطلوب، خصوصاً عند استخدام حزمة أنسجة مصممة خصيصاً.\nباستخدام هذا الخيار، يحاول العميل تحديد المقياس تلقائياً استناداً إلى حجم النسيج.\nراجع أيضاً texture_min_size.\nتحذير: هذا الخيار تجريبي!"
 
 #: src/settings_translation_file.cpp
 msgid "World-aligned textures mode"
-msgstr ""
+msgstr "وضع الأنسجة المحاذية للعالم"
 
 #: src/settings_translation_file.cpp
 msgid "Y of flat ground."
-msgstr ""
+msgstr "إحداثي Y للأرض المسطحة."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Y of mountain density gradient zero level. Used to shift mountains "
 "vertically."
-msgstr ""
+msgstr "إحداثي Y لمستوى الصفر لتدرج كثافة الجبال. يُستخدم لإزاحة الجبال رأسياً."
 
 #: src/settings_translation_file.cpp
 msgid "Y of upper limit of large caves."
-msgstr ""
+msgstr "إحداثي Y للحد العلوي للكهوف الكبيرة."
 
 #: src/settings_translation_file.cpp
 msgid "Y-distance over which caverns expand to full size."
-msgstr ""
+msgstr "المسافة الرأسية التي تتسع خلالها الكهوف الكبيرة حتى تصل إلى حجمها الكامل."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7600,27 +7600,27 @@ msgid ""
 "Tapering starts at this distance from the Y limit.\n"
 "For a solid floatland layer, this controls the height of hills/mountains.\n"
 "Must be less than or equal to half the distance between the Y limits."
-msgstr ""
+msgstr "المسافة الرأسية التي تتناقص خلالها كثافة الأراضي العائمة من الكثافة الكاملة إلى الصفر.\nيبدأ التضييق عند هذه المسافة من حد إحداثي Y.\nفي طبقة أراضٍ عائمة صلبة، يتحكم ذلك في ارتفاع التلال والجبال.\nيجب ألا تتجاوز القيمة نصف المسافة بين حدي Y."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of average terrain surface."
-msgstr ""
+msgstr "مستوى Y لمتوسط سطح التضاريس."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of cavern upper limit."
-msgstr ""
+msgstr "مستوى Y للحد العلوي للكهوف الكبيرة."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of higher terrain that creates cliffs."
-msgstr ""
+msgstr "مستوى Y للتضاريس المرتفعة التي تكوّن المنحدرات الصخرية."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of lower terrain and seabed."
-msgstr ""
+msgstr "مستوى Y للتضاريس المنخفضة وقاع البحر."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of seabed."
-msgstr ""
+msgstr "مستوى Y لقاع البحر."
 
 #: src/settings_translation_file.cpp
 msgid "cURL"
@@ -7628,24 +7628,24 @@ msgstr "cURL"
 
 #: src/settings_translation_file.cpp
 msgid "cURL file download timeout"
-msgstr ""
+msgstr "مهلة تنزيل الملفات عبر cURL"
 
 #: src/settings_translation_file.cpp
 msgid "cURL interactive timeout"
-msgstr ""
+msgstr "مهلة الطلبات التفاعلية عبر cURL"
 
 #: src/settings_translation_file.cpp
 msgid "cURL parallel limit"
-msgstr ""
+msgstr "الحد الأقصى لطلبات cURL المتوازية"
 
 #: src/settings_translation_file.cpp
 msgid "cURL proxy address"
-msgstr ""
+msgstr "عنوان الخادم الوكيل لـcURL"
 
 #: src/util/screenshot.cpp
 #, c-format
 msgid "Failed to save screenshot to \"%s\""
-msgstr ""
+msgstr "فشل حفظ لقطة الشاشة في \"%s\""
 
 #, fuzzy
 #~ msgid "Keybindings"
