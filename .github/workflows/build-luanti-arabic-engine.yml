@@ -16,6 +16,8 @@ name: "Build Arabic-capable Luanti client"
     paths:
       - "luanti/code/**"
       - "luanti/5.17.0/fonts/**"
+      - "luanti/5.17.0/builtin/locale/**"
+      - "tools/validate_luanti_arabic.py"
       - ".github/workflows/build-luanti-arabic-engine.yml"
   workflow_dispatch:
 
