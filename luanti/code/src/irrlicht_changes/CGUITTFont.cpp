@@ -48,6 +48,7 @@
 #include <algorithm>
 #include <limits>
 #include <cstdint>
+#include <climits>
 #include <utility>
 #include <vector>
 #include <cwchar>
@@ -1514,7 +1515,7 @@ s32 CGUITTFont::getVisualWordCursorPosition(
 
 	const auto is_unicode_space = [](char32_t c) {
 		return (c <= static_cast<char32_t>(WCHAR_MAX) &&
-				std::iswspace(static_cast<wint_t>(c)) != 0) ||
+				std::iswspace(static_cast<std::wint_t>(c)) != 0) ||
 				c == 0x00A0 || c == 0x1680 ||
 				(c >= 0x2000 && c <= 0x200A) ||
 				c == 0x2028 || c == 0x2029 || c == 0x202F ||
