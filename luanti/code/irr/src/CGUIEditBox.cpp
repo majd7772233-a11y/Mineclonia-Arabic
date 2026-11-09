@@ -3,6 +3,7 @@
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
 #include "CGUIEditBox.h"
+#include "editbox_text_edit.h"
 
 #include "IGUISkin.h"
 #include "IGUIEnvironment.h"
@@ -29,49 +30,7 @@
 namespace gui
 {
 
-namespace
-{
 
-bool buildEditTextReplacement(const core::stringw &text, s32 cursor,
-		s32 mark_begin, s32 mark_end, const core::stringw &inserted,
-		bool overwrite, u32 max_length, core::stringw &replacement,
-		s32 &new_cursor)
-{
-	if (inserted.empty())
-		return false;
-
-	const s32 text_length = static_cast<s32>(text.size());
-	cursor = std::max<s32>(0, std::min<s32>(cursor, text_length));
-	mark_begin = std::max<s32>(0, std::min<s32>(mark_begin, text_length));
-	mark_end = std::max<s32>(0, std::min<s32>(mark_end, text_length));
-
-	const bool has_selection = mark_begin != mark_end;
-	const s32 start = has_selection ? std::min(mark_begin, mark_end) : cursor;
-	s32 end = has_selection ? std::max(mark_begin, mark_end) : cursor;
-
-	if (!has_selection && overwrite) {
-		const s32 insert_length = static_cast<s32>(
-				std::min<size_t>(inserted.size(), text_length - start));
-		end = start + insert_length;
-		for (s32 i = start; i < end; ++i) {
-			if (text[i] == L'\r' || text[i] == L'\n') {
-				end = i;
-				break;
-			}
-		}
-	}
-
-	replacement = text.subString(0, start);
-	replacement.append(inserted);
-	replacement.append(text.subString(end, text_length - end));
-	if (max_length && replacement.size() > max_length)
-		return false;
-
-	new_cursor = start + static_cast<s32>(inserted.size());
-	return true;
-}
-
-} // namespace
 
 //! constructor
 CGUIEditBox::CGUIEditBox(const wchar_t *text, bool border,
@@ -683,10 +642,10 @@ bool CGUIEditBox::onKeyControlX(const SEvent &event, s32 &mark_begin, s32 &mark_
 		return false;
 
 	const s32 text_length = static_cast<s32>(Text.size());
-	const s32 mark_begin = std::max<s32>(0, std::min<s32>(MarkBegin, text_length));
-	const s32 mark_end = std::max<s32>(0, std::min<s32>(MarkEnd, text_length));
-	const s32 realmbgn = std::min(mark_begin, mark_end);
-	const s32 realmend = std::max(mark_begin, mark_end);
+	const s32 clamped_mark_begin = std::max<s32>(0, std::min<s32>(MarkBegin, text_length));
+	const s32 clamped_mark_end = std::max<s32>(0, std::min<s32>(MarkEnd, text_length));
+	const s32 realmbgn = std::min(clamped_mark_begin, clamped_mark_end);
+	const s32 realmend = std::max(clamped_mark_begin, clamped_mark_end);
 	if (realmbgn == realmend)
 		return false;
 
@@ -723,7 +682,7 @@ bool CGUIEditBox::onKeyControlV(const SEvent &event, s32 &mark_begin, s32 &mark_
 
 	core::stringw replacement;
 	s32 new_cursor = CursorPos;
-	if (!buildEditTextReplacement(Text, CursorPos, MarkBegin, MarkEnd,
+	if (!text_edit::buildEditTextReplacement(Text, CursorPos, MarkBegin, MarkEnd,
 			inserted_text, false, Max, replacement, new_cursor))
 		return false;
 
@@ -1027,10 +986,11 @@ void CGUIEditBox::draw()
 void CGUIEditBox::setText(const wchar_t *text)
 {
 	Text = text;
-	if (u32(CursorPos) > Text.size())
-		CursorPos = Text.size();
+	const s32 text_length = static_cast<s32>(Text.size());
+	CursorPos = std::max<s32>(0, std::min<s32>(CursorPos, text_length));
 	HScrollPos = 0;
 	breakText();
+	calculateScrollPos();
 }
 
 //! Enables or disables automatic scrolling with cursor position
@@ -1072,8 +1032,18 @@ void CGUIEditBox::setMax(u32 max)
 {
 	Max = max;
 
-	if (Text.size() > Max && Max != 0)
+	const bool truncated = Max != 0 && Text.size() > Max;
+	if (truncated)
 		Text = Text.subString(0, Max);
+
+	const s32 text_length = static_cast<s32>(Text.size());
+	CursorPos = std::max<s32>(0, std::min<s32>(CursorPos, text_length));
+	if (truncated) {
+		breakText();
+		calculateScrollPos();
+	} else {
+		setTextMarkers(MarkBegin, MarkEnd);
+	}
 }
 
 //! Returns maximum amount of characters, previously set by setMax();
@@ -1272,8 +1242,12 @@ bool CGUIEditBox::processMouse(const SEvent &event)
 s32 CGUIEditBox::getCursorPos(s32 x, s32 y)
 {
 	IGUIFont *font = getActiveFont();
+	if (!font)
+		return 0;
 
 	const u32 lineCount = (WordWrap || MultiLine) ? BrokenText.size() : 1;
+	if (lineCount == 0)
+		return 0;
 
 	core::stringw *txtLine = 0;
 	s32 startPos = 0;
@@ -1314,15 +1288,27 @@ s32 CGUIEditBox::getCursorPos(s32 x, s32 y)
 //! Breaks the single text line.
 void CGUIEditBox::breakText()
 {
-	if ((!WordWrap && !MultiLine))
-		return;
-
-	BrokenText.clear(); // need to reallocate :/
+	BrokenText.clear();
 	BrokenTextPositions.set_used(0);
 
-	IGUIFont *font = getActiveFont();
-	if (!font)
+	s32 normalized_mark_begin = MarkBegin;
+	s32 normalized_mark_end = MarkEnd;
+	const auto clamp_edit_state = [&]() {
+		const s32 text_length = static_cast<s32>(Text.size());
+		CursorPos = std::max<s32>(0, std::min<s32>(CursorPos, text_length));
+		setTextMarkers(normalized_mark_begin, normalized_mark_end);
+	};
+
+	if (!WordWrap && !MultiLine) {
+		clamp_edit_state();
 		return;
+	}
+
+	IGUIFont *font = getActiveFont();
+	if (!font) {
+		clamp_edit_state();
+		return;
+	}
 
 	LastBreakFont = font;
 
@@ -1344,11 +1330,15 @@ void CGUIEditBox::breakText()
 		if (c == L'\r') { // Mac or Windows breaks
 			lineBreak = true;
 			c = 0;
-			if (Text[i + 1] == L'\n') { // Windows breaks
+			if (i + 1 < size && Text[i + 1] == L'\n') { // Windows CRLF
 				Text.erase(i);
 				--size;
 				if (CursorPos > i)
 					--CursorPos;
+				if (normalized_mark_begin > i)
+					--normalized_mark_begin;
+				if (normalized_mark_end > i)
+					--normalized_mark_end;
 			}
 		} else if (c == L'\n') { // Unix breaks
 			lineBreak = true;
@@ -1408,6 +1398,7 @@ void CGUIEditBox::breakText()
 	line += word;
 	BrokenText.push_back(line);
 	BrokenTextPositions.push_back(lastLineStart);
+	clamp_edit_state();
 }
 
 // TODO: that function does interpret VAlign according to line-index (indexed line is placed on top-center-bottom)
@@ -1507,7 +1498,7 @@ void CGUIEditBox::inputString(const core::stringw &str)
 
 	core::stringw replacement;
 	s32 new_cursor = CursorPos;
-	if (!buildEditTextReplacement(Text, CursorPos, MarkBegin, MarkEnd,
+	if (!text_edit::buildEditTextReplacement(Text, CursorPos, MarkBegin, MarkEnd,
 			str, OverwriteMode, Max, replacement, new_cursor))
 		return;
 

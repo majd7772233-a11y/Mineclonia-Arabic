@@ -189,3 +189,14 @@ The project already called `find_package(ZLIB REQUIRED)`, but only after the cUR
 Run #93 still failed at CMake generation on Linux. The earlier ordering change alone did not solve the issue: the vcpkg static zlib config exports `ZLIB::ZLIBSTATIC`, while the imported cURL, FreeType, and PNG interfaces in this build require the conventional `ZLIB::ZLIB` target. Since `CMAKE_FIND_PACKAGE_PREFER_CONFIG=ON` prefers the config package, the prior unqualified lookup did not create the target expected by those dependent packages.
 
 The lookup now explicitly selects CMake's built-in `FindZLIB.cmake` module (`find_package(ZLIB MODULE REQUIRED)`). The module reads the include and library paths supplied by vcpkg and creates the standard `ZLIB::ZLIB` imported target. A configure-time guard fails immediately with a specific diagnostic if that target was not created. This preserves static linking and keeps the rest of the package lookups in config mode. Compilation and tests are still unverified.
+
+
+## Run #94 compile failure and edit-box state hardening — 2026-11-09
+
+Run #94 passed CMake configuration on both Linux and Windows and reached native compilation. Both compilers stopped at the same real source error in `CGUIEditBox::onKeyControlX`: local constants reused the names of its `mark_begin` and `mark_end` reference parameters. The local variables are now named `clamped_mark_begin` and `clamped_mark_end`.
+
+The shared replacement algorithm is extracted into `editbox_text_edit.h` and now builds into a temporary candidate, publishing it only after the maximum-length check succeeds. The Arabic text-layout test module now also tests selected-range replacement, rejection without mutating the output, overwrite behavior at newlines, stale index clamping, and empty input.
+
+A further edit-box state audit fixed three adjacent issues: replacing the caption now refreshes scroll/layout state; reducing the maximum length clamps the caret and selection and rebuilds wrapped lines; and disabling multiline/word-wrap clears stale line caches. CRLF normalization now bounds-checks the look-ahead and adjusts selection endpoints when it removes the carriage return. Mouse hit testing also safely returns when no active font or wrapped lines are available.
+
+The next CI run must still confirm the full client compiles, the now-expanded Arabic module passes, and both packages install. No compile/test/package success is inferred from these source changes.

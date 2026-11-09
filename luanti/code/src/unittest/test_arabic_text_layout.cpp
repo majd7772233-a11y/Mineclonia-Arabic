@@ -7,6 +7,7 @@
 
 #include "porting.h"
 #include "../irrlicht_changes/font_text_layout.h"
+#include "../irrlicht_changes/editbox_text_edit.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -92,6 +93,7 @@ public:
 	void testCombiningMarkCluster();
 	void testExplicitParagraphDirection();
 	void testFallbackFontRange();
+	void testEditBoxTextReplacementLimits();
 };
 
 static TestArabicTextLayout g_test_instance;
@@ -111,6 +113,7 @@ void TestArabicTextLayout::runTests(IGameDef *gamedef)
 	TEST(testCombiningMarkCluster);
 	TEST(testExplicitParagraphDirection);
 	TEST(testFallbackFontRange);
+	TEST(testEditBoxTextReplacementLimits);
 }
 
 void TestArabicTextLayout::testArabicContextualShaping()
@@ -589,3 +592,45 @@ void TestArabicTextLayout::testFallbackFontRange()
 	UASSERT(found_fallback);
 }
 
+
+
+void TestArabicTextLayout::testEditBoxTextReplacementLimits()
+{
+	using gui::text_edit::buildEditTextReplacement;
+
+	// Replacing a selected range inserts at its logical start and leaves the
+	// unselected suffix intact.
+	const core::stringw selected_text = L"abcDEFghi";
+	core::stringw replacement;
+	s32 cursor = -1;
+	UASSERT(buildEditTextReplacement(selected_text, 6, 3, 6,
+			core::stringw(L"x"), false, 0, replacement, cursor));
+	UASSERT(replacement == core::stringw(L"abcxghi"));
+	UASSERTEQ(s32, cursor, 4);
+
+	// Reject an over-limit replacement without publishing a partial result.
+	replacement = L"unchanged";
+	UASSERT(!buildEditTextReplacement(selected_text, 6, 3, 6,
+			core::stringw(L"long"), false, 8, replacement, cursor));
+	UASSERT(replacement == core::stringw(L"unchanged"));
+
+	// Overwrite mode must never consume a newline while replacing text.
+	const core::stringw multiline_text = L"ab\ncd";
+	UASSERT(buildEditTextReplacement(multiline_text, 1, 1, 1,
+			core::stringw(L"XYZ"), true, 0, replacement, cursor));
+	UASSERT(replacement == core::stringw(L"aXYZ\ncd"));
+	UASSERTEQ(s32, cursor, 4);
+
+	// Stale cursor/selection indices are clamped before applying replacement.
+	const core::stringw short_text = L"abc";
+	UASSERT(buildEditTextReplacement(short_text, 99, -10, 99,
+			core::stringw(L"Z"), false, 0, replacement, cursor));
+	UASSERT(replacement == core::stringw(L"Z"));
+	UASSERTEQ(s32, cursor, 1);
+
+	// Empty clipboard/input strings are rejected and leave the output intact.
+	replacement = L"unchanged";
+	UASSERT(!buildEditTextReplacement(short_text, 1, 0, 0,
+			core::stringw(), false, 0, replacement, cursor));
+	UASSERT(replacement == core::stringw(L"unchanged"));
+}
