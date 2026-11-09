@@ -247,3 +247,12 @@ Run #99 built the Linux client successfully and printed the expected static vcpk
 The same commit completed the full Windows path: client build, all 14 Arabic tests, portable-package dependency verification, and Windows artifact upload. This narrows the remaining issue to the Linux static Raqm/HarfBuzz/FreeType path, not to the common edit-box implementation or CMake configuration.
 
 A new regression diagnostic directly invokes HarfBuzz's FreeType integration using the same Noto Sans Arabic face and pixel size as the Raqm tests. It verifies that the OpenType shaper is available, checks contextual forms for two Beh characters, and checks lam-alef ligature formation. This isolates HarfBuzz/FreeType from Raqm's script, language, and bidi-run setup. The next CI result will tell whether the defect is already present in direct HarfBuzz shaping or is introduced by Raqm integration. This diagnostic has not yet been run; no Linux shaping fix or Linux package success is claimed.
+
+
+## Run #100 Linux HarfBuzz/FreeType diagnostic expansion — 2026-11-10
+
+Run #100 provides a strong platform split: Windows completed the client build, all 15 Arabic regression tests, portable package verification and artifact upload. Linux also built and linked the client, but failed four assertions in the Arabic module. Three failures are the same shaping defect (contextual forms, lam-alef ligature and the resulting cluster boundary); the independent direct-HarfBuzz test reproduced the incorrect output, so this is not limited to Raqm's bidi/script itemization.
+
+The test helper previously reinterpreted a `char32_t` buffer as `uint32_t` for Raqm. Those are distinct C++ types, so the read could violate strict-aliasing rules under optimized Linux builds. The helper now copies code points into a `std::vector<uint32_t>`, matching the production path and avoiding type-punning. The diagnostic also compares HarfBuzz's direct OpenType face with its FreeType face adapter using the exact same font file, and records Unicode charmap selection, FreeType glyph mapping, GSUB table visibility through FreeType and HarfBuzz, UPEM, and resulting glyph IDs/clusters.
+
+This is a targeted correctness fix plus diagnostics, not a claimed final shaping fix. The next CI result will show whether removing the type-punning defect restores Linux shaping and, if not, whether GSUB is lost specifically through the FreeType adapter. The Windows run remains a verified successful reference; Linux packaging is still blocked until the Arabic test module passes.
