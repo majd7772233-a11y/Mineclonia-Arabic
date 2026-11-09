@@ -227,3 +227,14 @@ Run #97 completed the full Windows path: the client built, all 14 Arabic layout 
 The regression is isolated to the Linux static dependency path; Windows uses the vcpkg dynamic triplet and passed the same tests. The Linux configuration previously resolved `raqm`, `harfbuzz`, and `fribidi` as independent raw library paths. The fix now uses the vcpkg-generated `raqm.pc` with `PKG_CONFIG_USE_STATIC_LIBS=ON` on Linux, constraining package discovery to the active triplet's `lib/pkgconfig` directory. This carries the Raqm archive's declared static dependency closure and prevents a mixed system/vcpkg shaping stack. Windows and non-vcpkg platforms retain their existing library discovery path.
 
 The next CI run must confirm that Linux now uses the vcpkg Raqm 0.11.0 package closure and that the contextual shaping, lam-alef, and cluster-boundary tests pass. No new test or package success is claimed from this source change alone.
+
+
+## Run #98 Linux static Raqm package-metadata correction — 2026-11-09
+
+Run #98 confirmed that both client builds and the Windows Arabic regression suite now work. Windows completed the portable package and uploaded artifact. Linux compiled the full client but failed three shaping assertions: contextual Arabic shaping, lam-alef ligature formation, and the corresponding shaping-cluster cursor boundary. The remaining 11 of 14 Arabic tests passed.
+
+The Run #97 change intended to request static pkg-config dependencies by setting `PKG_CONFIG_USE_STATIC_LIBS=ON`. Inspection of CMake 4.4.4's `FindPkgConfig.cmake` shows that this is not a supported control variable. Imported targets are built from the regular `<prefix>_LDFLAGS`, while `--static` is used only to populate the separate `<prefix>_STATIC_*` result variables. Consequently, the imported `PkgConfig::RAQM` target was not guaranteed to contain the static package's `Requires.private`/`Libs.private` dependency closure.
+
+The Linux path now appends `--static` through the documented `PKG_CONFIG_ARGN` variable for the Raqm query, restores the previous value immediately afterward, and inspects the imported target's actual link interface. Configuration fails with a diagnostic unless both HarfBuzz and FriBidi are present in that interface; the resolved closure is also printed to the job log. This keeps the correction limited to the Linux vcpkg Raqm target and leaves Windows/non-vcpkg discovery unchanged.
+
+Run #98's Linux build itself succeeded, but the Arabic test module did not; no Linux artifact was produced. The next run must show the complete static dependency closure and pass all 14 Arabic tests before Linux is considered verified.

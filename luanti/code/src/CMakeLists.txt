@@ -218,13 +218,31 @@ if(BUILD_CLIENT)
 			find_package(PkgConfig REQUIRED)
 			set(ENV{PKG_CONFIG_PATH}
 				"${_raqm_pkgconfig_dir}:$ENV{PKG_CONFIG_PATH}")
-			set(PKG_CONFIG_USE_STATIC_LIBS ON)
+			# FindPkgConfig does not implement PKG_CONFIG_USE_STATIC_LIBS.
+			# PKG_CONFIG_ARGN is passed to every pkg-config query and therefore
+			# makes the imported target include Requires.private/Libs.private.
+			set(_raqm_saved_pkg_config_argn "${PKG_CONFIG_ARGN}")
+			list(APPEND PKG_CONFIG_ARGN --static)
 			pkg_check_modules(RAQM REQUIRED IMPORTED_TARGET raqm)
+			set(PKG_CONFIG_ARGN "${_raqm_saved_pkg_config_argn}")
+			unset(_raqm_saved_pkg_config_argn)
+
+			get_target_property(_raqm_link_closure PkgConfig::RAQM
+				INTERFACE_LINK_LIBRARIES)
+			string(JOIN " " _raqm_link_closure_text ${_raqm_link_closure})
+			if(NOT _raqm_link_closure_text MATCHES "harfbuzz" OR
+					NOT _raqm_link_closure_text MATCHES "fribidi")
+				message(FATAL_ERROR
+					"vcpkg's static Raqm pkg-config target is missing its "
+					"HarfBuzz/FriBidi link closure: ${_raqm_link_closure_text}")
+			endif()
+
 			set(RAQM_LINK_TARGET PkgConfig::RAQM)
 			set(RAQM_INCLUDE_DIR ${RAQM_INCLUDE_DIRS})
 			message(STATUS
-				"Using vcpkg Raqm ${RAQM_VERSION} from ${_raqm_pkgconfig_dir} "
-				"(static pkg-config dependency closure).")
+				"Using vcpkg Raqm ${RAQM_VERSION} from ${_raqm_pkgconfig_dir}.")
+			message(STATUS
+				"Raqm static link closure: ${_raqm_link_closure_text}")
 		endif()
 	endif()
 
