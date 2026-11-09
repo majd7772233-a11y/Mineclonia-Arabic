@@ -1088,16 +1088,27 @@ bool CGUIEditBox::processMouse(const SEvent &event)
 			s32 newMarkBegin = CursorPos,
 				newMarkEnd = CursorPos;
 
-			const bool is_alnum = std::iswalnum(
-				Text[std::min<s32>(CursorPos, (s32)Text.size() - 1)]
-			);
-			for (; newMarkEnd < (s32)Text.size(); ++newMarkEnd) {
-				if (!!std::iswalnum(Text[newMarkEnd]) != is_alnum)
-					break;
-			}
-			for (; newMarkBegin > 0; --newMarkBegin) {
-				if (!!std::iswalnum(Text[newMarkBegin - 1]) != is_alnum)
-					break;
+			if (IGUIFont *font = getActiveFont();
+					font && font->getType() == EGFT_CUSTOM) {
+				// Use Unicode word categories and expand to complete grapheme/
+				// shaping clusters. iswalnum depends on the process locale and
+				// commonly fails to classify Arabic letters in the C locale.
+				auto *ttfont = static_cast<CGUITTFont *>(font);
+				const auto range = ttfont->getWordSelectionRange(
+						Text.c_str(), CursorPos);
+				newMarkBegin = range.first;
+				newMarkEnd = range.second;
+			} else {
+				const bool is_alnum = std::iswalnum(
+						Text[std::min<s32>(CursorPos, (s32)Text.size() - 1)]);
+				for (; newMarkEnd < (s32)Text.size(); ++newMarkEnd) {
+					if (!!std::iswalnum(Text[newMarkEnd]) != is_alnum)
+						break;
+				}
+				for (; newMarkBegin > 0; --newMarkBegin) {
+					if (!!std::iswalnum(Text[newMarkBegin - 1]) != is_alnum)
+						break;
+				}
 			}
 
 			setTextMarkers(newMarkBegin, newMarkEnd);
