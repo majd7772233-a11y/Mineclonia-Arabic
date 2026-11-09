@@ -206,16 +206,50 @@ if(BUILD_CLIENT)
 	endif()
 	find_package(BZip2 QUIET)
 	find_package(unofficial-brotli CONFIG QUIET)
-	find_path(RAQM_INCLUDE_DIR NAMES raqm.h)
-	find_library(RAQM_LIBRARY NAMES raqm)
-	find_library(HARFBUZZ_LIBRARY NAMES harfbuzz)
-	find_library(FRIBIDI_LIBRARY NAMES fribidi)
+	set(RAQM_LINK_TARGET)
+	if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND
+			VCPKG_INSTALLED_DIR AND VCPKG_TARGET_TRIPLET)
+		# Linux uses vcpkg's static triplet. Resolve Raqm through its own
+		# pkg-config metadata so the archive and its HarfBuzz/FriBidi/FreeType
+		# dependencies come from the same vcpkg installation.
+		set(_raqm_pkgconfig_dir
+			"${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib/pkgconfig")
+		if(EXISTS "${_raqm_pkgconfig_dir}/raqm.pc")
+			find_package(PkgConfig REQUIRED)
+			set(ENV{PKG_CONFIG_PATH}
+				"${_raqm_pkgconfig_dir}:$ENV{PKG_CONFIG_PATH}")
+			set(PKG_CONFIG_USE_STATIC_LIBS ON)
+			pkg_check_modules(RAQM REQUIRED IMPORTED_TARGET raqm)
+			set(RAQM_LINK_TARGET PkgConfig::RAQM)
+			set(RAQM_INCLUDE_DIR ${RAQM_INCLUDE_DIRS})
+			message(STATUS
+				"Using vcpkg Raqm ${RAQM_VERSION} from ${_raqm_pkgconfig_dir} "
+				"(static pkg-config dependency closure).")
+		endif()
+	endif()
 
-	if(NOT RAQM_INCLUDE_DIR OR NOT RAQM_LIBRARY OR
-			NOT HARFBUZZ_LIBRARY OR NOT FRIBIDI_LIBRARY)
+	if(NOT RAQM_LINK_TARGET)
+		find_path(RAQM_INCLUDE_DIR NAMES raqm.h)
+		find_library(RAQM_LIBRARY NAMES raqm)
+		find_library(HARFBUZZ_LIBRARY NAMES harfbuzz)
+		find_library(FRIBIDI_LIBRARY NAMES fribidi)
+		if(RAQM_LIBRARY)
+			set(RAQM_LINK_TARGET ${RAQM_LIBRARY})
+		endif()
+	endif()
+
+	if(NOT RAQM_INCLUDE_DIR OR NOT RAQM_LINK_TARGET)
 		message(FATAL_ERROR
 			"Arabic text layout requires libraqm, HarfBuzz, and FriBidi. "
 			"Install the libraqm package or provide their include/library paths.")
+	endif()
+
+	# For non-pkg-config platforms, keep the explicit shaping-library imports.
+	if(NOT TARGET PkgConfig::RAQM AND
+			(NOT HARFBUZZ_LIBRARY OR NOT FRIBIDI_LIBRARY))
+		message(FATAL_ERROR
+			"Arabic text layout dependencies are incomplete: "
+			"HarfBuzz and FriBidi must be available with libraqm.")
 	endif()
 endif()
 
@@ -817,7 +851,7 @@ if(BUILD_CLIENT)
 		${JSON_LIBRARY}
 		${LUA_BIT_LIBRARY}
 		lstrpack
-		${RAQM_LIBRARY}
+		${RAQM_LINK_TARGET}
 		${HARFBUZZ_LIBRARY}
 		${FRIBIDI_LIBRARY}
 		${FREETYPE_LINK_TARGET}

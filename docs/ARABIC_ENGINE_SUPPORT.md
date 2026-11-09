@@ -218,3 +218,12 @@ Run #96 confirmed that the Run #95 dependency-link changes moved the failure for
 On Linux, CMake still failed while importing PNG because `PNG::png_static` references `ZLIB::ZLIB`. The earlier `FindZLIB MODULE` call was in the sibling `src/` directory and its non-global imported target was not visible in `irr/src/`. Irrlicht now invokes `find_package(ZLIB MODULE REQUIRED)` locally before loading PNG and checks that `ZLIB::ZLIB` exists in that scope.
 
 Run #96 did not reach linking, Arabic tests, or package installation on either platform. The next run must verify these scope/include corrections and then continue through the final link and packaging.
+
+
+## Run #97 Linux Raqm dependency-coherence correction — 2026-11-09
+
+Run #97 completed the full Windows path: the client built, all 14 Arabic layout tests passed, the portable package passed its runtime-DLL checks, and the Windows artifact uploaded. Linux also configured and built the client successfully, but three Arabic shaping assertions failed: contextual Arabic shaping returned four glyphs for two Beh letters, lam-alef returned two glyphs instead of one, and the shaping-cluster cursor test consequently allowed the interior lam-alef boundary. The other 11 tests passed.
+
+The regression is isolated to the Linux static dependency path; Windows uses the vcpkg dynamic triplet and passed the same tests. The Linux configuration previously resolved `raqm`, `harfbuzz`, and `fribidi` as independent raw library paths. The fix now uses the vcpkg-generated `raqm.pc` with `PKG_CONFIG_USE_STATIC_LIBS=ON` on Linux, constraining package discovery to the active triplet's `lib/pkgconfig` directory. This carries the Raqm archive's declared static dependency closure and prevents a mixed system/vcpkg shaping stack. Windows and non-vcpkg platforms retain their existing library discovery path.
+
+The next CI run must confirm that Linux now uses the vcpkg Raqm 0.11.0 package closure and that the contextual shaping, lam-alef, and cluster-boundary tests pass. No new test or package success is claimed from this source change alone.
