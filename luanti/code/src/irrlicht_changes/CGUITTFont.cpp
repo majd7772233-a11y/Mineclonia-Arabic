@@ -1215,10 +1215,13 @@ s32 CGUITTFont::getCharacterFromPos(const std::u32string& text, s32 pixel_x) con
 	if (!layout)
 		return -1;
 
-	size_t index = 0;
-	const bool success = raqm_position_to_index(layout, pixel_x * 64, 0, &index);
+	const int64_t fixed_position = static_cast<int64_t>(pixel_x) * 64;
+	const int position_x = static_cast<int>(std::max<int64_t>(
+			INT_MIN, std::min<int64_t>(INT_MAX, fixed_position)));
+	const size_t boundary = text_layout::getCursorBoundaryFromPosition(
+			layout, line.size(), position_x);
 	raqm_destroy(layout);
-	return success ? static_cast<s32>(index) : -1;
+	return static_cast<s32>(boundary);
 }
 
 s32 CGUITTFont::getCursorPosition(const wchar_t *text, s32 char_index) const
@@ -1269,16 +1272,18 @@ CGUITTFont::SVisualSelectionLayout CGUITTFont::getVisualSelectionLayout(
 		return result;
 
 	const auto clusters = text_layout::getShapingClusterBoundaries(layout, unicode.size());
-	if (clusters.available) {
-		// Expand the color range to whole shaped clusters. A logical selection
-		// that touches one half of a ligature must recolor the complete glyph.
-		const auto expanded = text_layout::expandSelectionToShapingClusters(
-				clusters, unicode.size(), scalar_start, scalar_end);
-		result.source_start = u32IndexToWideIndex(text, expanded.first);
-		result.source_end = u32IndexToWideIndex(text, expanded.second);
+	const auto expanded = text_layout::expandSelectionToCursorBoundaries(
+			layout, clusters, unicode.size(), scalar_start, scalar_end);
+	const s32 expanded_start = u32IndexToWideIndex(text, expanded.first);
+	const s32 expanded_end = u32IndexToWideIndex(text, expanded.second);
+	result.source_start = expanded_start;
+	result.source_end = expanded_end;
 
+	if (clusters.available) {
+		// Use the same grapheme- and shaping-safe range for both the visual
+		// highlight geometry and the selected foreground-color spans.
 		const auto fixed_intervals = text_layout::getVisualSelectionIntervals(
-				layout, unicode.size(), scalar_start, scalar_end);
+				layout, unicode.size(), expanded.first, expanded.second);
 		const s32 line_width = fixedToSignedPixels(getLayoutWidth(layout));
 		result.intervals.reserve(fixed_intervals.size());
 		for (const auto &interval : fixed_intervals) {
@@ -1289,10 +1294,9 @@ CGUITTFont::SVisualSelectionLayout CGUITTFont::getVisualSelectionLayout(
 				result.intervals.emplace_back(left, right);
 		}
 	} else {
-		// Preserve a useful selection if the layout engine cannot expose glyph
-		// clusters, while normal Raqm-backed text uses exact visual intervals.
-		const s32 first_x = getCursorPosition(text, start);
-		const s32 last_x = getCursorPosition(text, end);
+		// Preserve a useful selection if Raqm cannot expose glyph clusters.
+		const s32 first_x = getCursorPosition(text, expanded_start);
+		const s32 last_x = getCursorPosition(text, expanded_end);
 		const s32 left = std::max<s32>(0, std::min(first_x, last_x));
 		const s32 right = std::max(first_x, last_x);
 		if (right > left)
@@ -1474,6 +1478,41 @@ s32 CGUITTFont::getVisualWordCursorPosition(
 			layout, line, cursor - line_start, direction);
 	raqm_destroy(layout);
 	return u32IndexToWideIndex(text, line_start + local_result);
+}
+
+std::pair<s32, s32> CGUITTFont::getWordSelectionRange(
+		const wchar_t *text, s32 char_index) const
+{
+	if (!text || !*text)
+		return {0, 0};
+
+	const std::u32string unicode = convertWCharToU32String(text);
+	const size_t wide_length = wcslen(text);
+	const size_t wide_cursor = std::min<size_t>(
+			static_cast<size_t>(std::max<s32>(0, char_index)), wide_length);
+	const size_t cursor = wideIndexToU32Index(text, wide_cursor);
+
+	size_t line_start = cursor;
+	while (line_start > 0 && !isTextLineBreak(unicode[line_start - 1]))
+		--line_start;
+	size_t line_end = cursor;
+	while (line_end < unicode.size() && !isTextLineBreak(unicode[line_end]))
+		++line_end;
+
+	const std::u32string line = unicode.substr(line_start, line_end - line_start);
+	auto range = text_layout::getLogicalWordSelectionRange(line, cursor - line_start);
+	if (raqm_t *layout = createLayout(line)) {
+		const auto clusters =
+				text_layout::getShapingClusterBoundaries(layout, line.size());
+		range = text_layout::expandSelectionToCursorBoundaries(
+				layout, clusters, line.size(), range.first, range.second);
+		raqm_destroy(layout);
+	}
+
+	return {
+		u32IndexToWideIndex(text, line_start + range.first),
+		u32IndexToWideIndex(text, line_start + range.second)
+	};
 }
 
 bool CGUITTFont::isRightToLeft(const wchar_t *text) const
