@@ -68,6 +68,11 @@ if(PRECOMPILE_HEADERS)
 endif()
 
 
+# cURL, FreeType and PNG's vcpkg package configs refer to ZLIB::ZLIB.
+# Create that imported target before loading any of those package configs.
+find_package(ZLIB REQUIRED)
+
+
 option(ENABLE_CURL "Enable cURL support" TRUE)
 set(USE_CURL FALSE)
 
@@ -334,7 +339,7 @@ if(ENABLE_OPENSSL)
 endif(ENABLE_OPENSSL)
 
 
-find_package(ZLIB REQUIRED)
+
 find_package(Zstd REQUIRED)
 
 

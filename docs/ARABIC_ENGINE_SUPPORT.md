@@ -175,3 +175,10 @@ These are source/configuration corrections only. A new Linux and Windows run mus
 The Run #91 Linux configure log confirms that the vcpkg Vorbis correction is effective: CMake reports `Vorbis found through imported CMake targets` and `Sound enabled with OpenAL and Vorbis`. Configuration then exposed a separate CMake contract violation: the `luanti` target's original `target_link_libraries` call uses the plain signature, while four newly added calls used the keyword signature (`PRIVATE`). CMake rejects mixing the two signatures for one target.
 
 The four imported-dependency calls (BZip2/Brotli, fmt, and cURL) are now normalized to the target's existing plain signature. This preserves the imported targets and their static transitive dependencies without changing unrelated targets. The Linux configure did not proceed to compilation, unit tests, or packaging in Run #91; Windows was still installing manifest dependencies when this correction was prepared. Those outcomes therefore remain unverified.
+
+
+## Run #92 diagnosis and imported Zlib target ordering — 2026-11-09
+
+The Run #92 Linux configure log confirms both preceding fixes: Vorbis and OpenAL are found, and the plain/keyword `target_link_libraries` signature errors are gone. CMake then reported that imported targets from vcpkg's cURL, FreeType, and PNG packages reference `ZLIB::ZLIB` before that target exists.
+
+The project already called `find_package(ZLIB REQUIRED)`, but only after the cURL and FreeType package configs were loaded. The existing lookup is moved ahead of those config packages so the imported `ZLIB::ZLIB` target exists at the moment their target interfaces are declared. This is an ordering fix; it does not add a dependency, disable cURL/audio, or replace imported targets. Run #92 did not reach compilation, Arabic tests, or packaging, so those remain pending verification.
