@@ -200,3 +200,12 @@ The shared replacement algorithm is extracted into `editbox_text_edit.h` and now
 A further edit-box state audit fixed three adjacent issues: replacing the caption now refreshes scroll/layout state; reducing the maximum length clamps the caret and selection and rebuilds wrapped lines; and disabling multiline/word-wrap clears stale line caches. CRLF normalization now bounds-checks the look-ahead and adjusts selection endpoints when it removes the carriage return. Mouse hit testing also safely returns when no active font or wrapped lines are available.
 
 The next CI run must still confirm the full client compiles, the now-expanded Arabic module passes, and both packages install. No compile/test/package success is inferred from these source changes.
+
+
+## Run #95 linker diagnosis and imported dependency corrections — 2026-11-09
+
+Run #95 used commit `6a2ac99`. Both platforms completed vcpkg installation, CMake configuration, and all C++ compilation. The Linux executable failed only at the final link because the fallback `libsha256.a` and static OpenSSL `libcrypto.a` both exported the same SHA256 symbols. The source explicitly selects OpenSSL's EVP implementation when `USE_OPENSSL` is true, so the in-tree `sha256` library is now linked only in the non-OpenSSL fallback branch for EngineCommon, client, and server.
+
+The Windows link exposed two dependencies that the previous variable-based linkage did not preserve. Zstd's vcpkg x64-windows package uses DLL-import declarations and its `zstd::libzstd` target carries the matching import library. IrrlichtMt's static archive also needs libpng, but the old `${PNG_LIBRARY}` variable did not carry the vcpkg config target into the final executable. The project now prefers `zstd::libzstd` and `PNG::PNG` imported targets, retaining module-based fallbacks for non-vcpkg environments. Both target selections fail during configure with a direct message if neither a usable target nor fallback library is available.
+
+No test module or package step ran in Run #95 because the final link failed. The new corrections still require a fresh Linux and Windows build, Arabic regression test execution, and package verification.

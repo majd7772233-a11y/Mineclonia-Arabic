@@ -346,7 +346,18 @@ endif(ENABLE_OPENSSL)
 
 
 
-find_package(Zstd REQUIRED)
+# vcpkg exports an imported target that carries static/shared details.
+# In particular, x64-windows headers use dllimport and require its import library.
+find_package(zstd CONFIG QUIET)
+if(TARGET zstd::libzstd)
+	set(ZSTD_LINK_TARGET zstd::libzstd)
+else()
+	find_package(Zstd MODULE REQUIRED)
+	set(ZSTD_LINK_TARGET ${ZSTD_LIBRARY})
+endif()
+if(NOT ZSTD_LINK_TARGET)
+	message(FATAL_ERROR "Zstandard was found without a usable link target.")
+endif()
 
 
 if(NOT MSVC)
@@ -713,11 +724,10 @@ add_library(EngineCommon OBJECT
 	${independent_SRCS}
 )
 add_dependencies(EngineCommon GenerateVersion GenerateBuiltinFilesCpp)
-target_link_libraries(EngineCommon
-	sha256
-)
 if(USE_OPENSSL)
 	target_link_libraries(EngineCommon OpenSSL::Crypto)
+else()
+	target_link_libraries(EngineCommon sha256)
 endif()
 get_target_property(
 	IRRLICHT_INCLUDES IrrlichtMt::IrrlichtMt INTERFACE_INCLUDE_DIRECTORIES)
@@ -793,7 +803,7 @@ if(BUILD_CLIENT)
 		${PROJECT_NAME}
 		${ZLIB_LIBRARIES}
 		IrrlichtMt::IrrlichtMt
-		${ZSTD_LIBRARY}
+		${ZSTD_LINK_TARGET}
 		${SOUND_LIBRARIES}
 		${SQLITE3_LIBRARY}
 		${LUA_LIBRARY}
@@ -801,7 +811,6 @@ if(BUILD_CLIENT)
 		${JSON_LIBRARY}
 		${LUA_BIT_LIBRARY}
 		lstrpack
-		sha256
 		${RAQM_LIBRARY}
 		${HARFBUZZ_LIBRARY}
 		${FRIBIDI_LIBRARY}
@@ -871,6 +880,8 @@ if(BUILD_CLIENT)
 	endif()
 	if (USE_OPENSSL)
 		target_link_libraries(${PROJECT_NAME} OpenSSL::Crypto)
+	else()
+		target_link_libraries(${PROJECT_NAME} sha256)
 	endif()
 	if(BUILD_UNITTESTS OR BUILD_BENCHMARKS)
 		target_link_libraries(${PROJECT_NAME} Catch2::Catch2)
@@ -902,13 +913,12 @@ if(BUILD_SERVER)
 	target_link_libraries(
 		${PROJECT_NAME}server
 		${ZLIB_LIBRARIES}
-		${ZSTD_LIBRARY}
+		${ZSTD_LINK_TARGET}
 		${SQLITE3_LIBRARY}
 		${JSON_LIBRARY}
 		${LUA_LIBRARY}
 		${LUA_BIT_LIBRARY}
 		lstrpack
-		sha256
 		${GMP_LIBRARY}
 		${PLATFORM_LIBS}
 	)
@@ -944,6 +954,8 @@ if(BUILD_SERVER)
 	endif()
 	if (USE_OPENSSL)
 		target_link_libraries(${PROJECT_NAME}server OpenSSL::Crypto)
+	else()
+		target_link_libraries(${PROJECT_NAME}server sha256)
 	endif()
 	if(USE_CURL)
 		target_link_libraries(

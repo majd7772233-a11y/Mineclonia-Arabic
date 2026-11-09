@@ -154,7 +154,17 @@ message(STATUS "OpenGL ES 2: ${ENABLE_GLES2}")
 
 find_package(ZLIB REQUIRED)
 find_package(JPEG REQUIRED)
-find_package(PNG REQUIRED)
+find_package(PNG CONFIG QUIET)
+if(NOT TARGET PNG::PNG)
+	find_package(PNG MODULE REQUIRED)
+endif()
+if(TARGET PNG::PNG)
+	set(PNG_LINK_TARGET PNG::PNG)
+elseif(PNG_LIBRARY)
+	set(PNG_LINK_TARGET ${PNG_LIBRARY})
+else()
+	message(FATAL_ERROR "PNG was found without a usable link target.")
+endif()
 
 if(OPENGL_DIRECT_LINK)
 	find_package(OpenGL REQUIRED)
@@ -513,7 +523,7 @@ target_link_libraries(IrrlichtMt PRIVATE
 	tiniergltf::tiniergltf
 	${ZLIB_LIBRARY}
 	${JPEG_LIBRARY}
-	${PNG_LIBRARY}
+	${PNG_LINK_TARGET}
 	"$<$<BOOL:${USE_SDL2_SHARED}>:SDL2::SDL2>"
 	"$<$<BOOL:${USE_SDL2_STATIC}>:SDL2::SDL2-static>"
 
