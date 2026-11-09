@@ -238,3 +238,12 @@ The Run #97 change intended to request static pkg-config dependencies by setting
 The Linux path now appends `--static` through the documented `PKG_CONFIG_ARGN` variable for the Raqm query, restores the previous value immediately afterward, and inspects the imported target's actual link interface. Configuration fails with a diagnostic unless both HarfBuzz and FriBidi are present in that interface; the resolved closure is also printed to the job log. This keeps the correction limited to the Linux vcpkg Raqm target and leaves Windows/non-vcpkg discovery unchanged.
 
 Run #98's Linux build itself succeeded, but the Arabic test module did not; no Linux artifact was produced. The next run must show the complete static dependency closure and pass all 14 Arabic tests before Linux is considered verified.
+
+
+## Run #99 Linux shaping isolation — 2026-11-10
+
+Run #99 built the Linux client successfully and printed the expected static vcpkg Raqm link closure (libraqm, HarfBuzz, FreeType, BZip2, PNG, zlib, Brotli, FriBidi). The Linux Arabic regression module nevertheless failed three assertions: contextual Arabic shaping (4 glyphs for two Beh characters), lam-alef ligature formation (2 glyphs instead of 1), and the dependent shaping-cluster caret boundary. The other 11 tests passed.
+
+The same commit completed the full Windows path: client build, all 14 Arabic tests, portable-package dependency verification, and Windows artifact upload. This narrows the remaining issue to the Linux static Raqm/HarfBuzz/FreeType path, not to the common edit-box implementation or CMake configuration.
+
+A new regression diagnostic directly invokes HarfBuzz's FreeType integration using the same Noto Sans Arabic face and pixel size as the Raqm tests. It verifies that the OpenType shaper is available, checks contextual forms for two Beh characters, and checks lam-alef ligature formation. This isolates HarfBuzz/FreeType from Raqm's script, language, and bidi-run setup. The next CI result will tell whether the defect is already present in direct HarfBuzz shaping or is introduced by Raqm integration. This diagnostic has not yet been run; no Linux shaping fix or Linux package success is claimed.

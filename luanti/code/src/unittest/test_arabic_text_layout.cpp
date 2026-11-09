@@ -13,6 +13,8 @@
 #include FT_FREETYPE_H
 
 #include <raqm.h>
+#include <harfbuzz/hb.h>
+#include <harfbuzz/hb-ft.h>
 
 #include <cstdint>
 #include <string>
@@ -42,6 +44,20 @@ struct RaqmLayout
 	{
 		if (value)
 			raqm_destroy(value);
+	}
+};
+
+struct HarfBuzzObjects
+{
+	hb_font_t *font = nullptr;
+	hb_buffer_t *buffer = nullptr;
+
+	~HarfBuzzObjects()
+	{
+		if (buffer)
+			hb_buffer_destroy(buffer);
+		if (font)
+			hb_font_destroy(font);
 	}
 };
 
@@ -81,6 +97,7 @@ public:
 	void runTests(IGameDef *gamedef);
 
 	void testArabicContextualShaping();
+	void testHarfBuzzOpenTypeArabicShaping();
 	void testLamAlefLigature();
 	void testArabicExtendedLetters();
 	void testMixedDirectionParagraph();
@@ -101,6 +118,7 @@ static TestArabicTextLayout g_test_instance;
 void TestArabicTextLayout::runTests(IGameDef *gamedef)
 {
 	TEST(testArabicContextualShaping);
+	TEST(testHarfBuzzOpenTypeArabicShaping);
 	TEST(testLamAlefLigature);
 	TEST(testArabicExtendedLetters);
 	TEST(testMixedDirectionParagraph);
@@ -146,6 +164,74 @@ void TestArabicTextLayout::testArabicContextualShaping()
 			has_contextual_form = true;
 	}
 	UASSERT(has_contextual_form);
+}
+
+void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+
+	HarfBuzzObjects harfbuzz;
+	harfbuzz.font = hb_ft_font_create_referenced(font.face);
+	harfbuzz.buffer = hb_buffer_create();
+	UASSERT(harfbuzz.font != nullptr);
+	UASSERT(harfbuzz.buffer != nullptr);
+	hb_ft_font_set_load_flags(harfbuzz.font, FT_LOAD_DEFAULT);
+
+	// Confirm that the linked HarfBuzz build exposes its OpenType shaper.
+	bool has_ot_shaper = false;
+	const char **shapers = hb_shape_list_shapers();
+	if (shapers) {
+		for (const char **shaper = shapers; *shaper; ++shaper) {
+			if (std::string(*shaper) == "ot") {
+				has_ot_shaper = true;
+				break;
+			}
+		}
+	}
+	UASSERT(has_ot_shaper);
+
+	const auto shape_arabic = [&](const std::u32string &text) {
+		hb_buffer_reset(harfbuzz.buffer);
+		hb_buffer_add_utf32(harfbuzz.buffer,
+				reinterpret_cast<const uint32_t *>(text.data()),
+				static_cast<int>(text.size()), 0,
+				static_cast<int>(text.size()));
+		hb_buffer_set_direction(harfbuzz.buffer, HB_DIRECTION_RTL);
+		hb_buffer_set_script(harfbuzz.buffer, HB_SCRIPT_ARABIC);
+		hb_buffer_set_language(harfbuzz.buffer,
+				hb_language_from_string("ar", -1));
+		return hb_shape_full(harfbuzz.font, harfbuzz.buffer, nullptr, 0,
+				nullptr) && hb_buffer_allocation_successful(harfbuzz.buffer);
+	};
+
+	// This deliberately bypasses Raqm. If it passes while the matching Raqm
+	// tests fail, the defect is in Raqm's script/language/run setup rather than
+	// the FreeType face or HarfBuzz's OpenType shaping implementation.
+	const std::u32string contextual_text = U"بب";
+	UASSERT(shape_arabic(contextual_text));
+	UASSERTEQ(unsigned int, hb_buffer_get_length(harfbuzz.buffer),
+			static_cast<unsigned int>(contextual_text.size()));
+
+	const FT_UInt isolated_beh = FT_Get_Char_Index(font.face, 0x0628);
+	UASSERT(isolated_beh != 0);
+	const hb_glyph_info_t *glyphs =
+			hb_buffer_get_glyph_infos(harfbuzz.buffer, nullptr);
+	UASSERT(glyphs != nullptr);
+	bool has_contextual_form = false;
+	for (unsigned int i = 0; i < hb_buffer_get_length(harfbuzz.buffer); ++i) {
+		UASSERT(glyphs[i].codepoint != 0);
+		if (glyphs[i].codepoint != isolated_beh)
+			has_contextual_form = true;
+	}
+	UASSERT(has_contextual_form);
+
+	const std::u32string lam_alef_text = U"لا";
+	UASSERT(shape_arabic(lam_alef_text));
+	UASSERTEQ(unsigned int, hb_buffer_get_length(harfbuzz.buffer), 1);
+	glyphs = hb_buffer_get_glyph_infos(harfbuzz.buffer, nullptr);
+	UASSERT(glyphs != nullptr);
+	UASSERT(glyphs[0].codepoint != 0);
 }
 
 void TestArabicTextLayout::testLamAlefLigature()
