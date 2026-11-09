@@ -157,3 +157,14 @@ The CI coverage floor is set to 1,575 so a newly introduced untranslated engine 
 - The run-in-place texture marker is now tracked and explicitly unignored, matching the existing CMake install rule.
 - Static vcpkg builds now prefer imported CMake targets for cURL, OpenAL, FreeType, fmt, BZip2 and Brotli so their static transitive libraries are linked rather than silently omitted.
 - The next CI run still needs to confirm the toolchain-specific imported target names, both native builds, the dedicated Arabic module and both packages.
+
+
+## Run #87 diagnosis and follow-up corrections — 2026-11-09
+
+Run #87 passed catalog validation and completed vcpkg manifest installation on both platforms, but both native jobs stopped during CMake configuration. Neither compiler build, Arabic regression test, nor package installation ran. The shared failure was the legacy `VORBIS_FOUND` check after `CMAKE_FIND_PACKAGE_PREFER_CONFIG=ON` selected vcpkg's `VorbisConfig.cmake`, which exports imported targets and the canonical mixed-case package result instead of the legacy variables expected by the old code.
+
+The correction prefers the vcpkg `Vorbis::vorbisfile`, `Vorbis::vorbis`, and `Ogg::ogg` imported targets, with an explicitly forced `MODULE` fallback for the repository's legacy `FindVorbis.cmake`. Sound configuration now also requires a non-empty Vorbis link list. The client subdirectory no longer overwrites the parent link list, preserving `OpenAL::OpenAL`, `fmt::fmt`, and their transitive link requirements.
+
+The follow-up review also guarded automatic paragraph-direction detection in `StaticText`: Raqm detection is now called only for the custom TrueType font, rather than casting every GUI font to `CGUITTFont`. Both CI configurations explicitly keep sound enabled, and the Windows package check now verifies the OpenAL/Ogg/Vorbis runtime DLLs as well as the Arabic shaping DLLs.
+
+These are source/configuration corrections only. A new Linux and Windows run must still prove that the client compiles, all 13 Arabic layout tests pass, and the portable packages contain their runtime requirements. The upstream full unit-test suite and real-client visual/clipboard verification are not covered by the dedicated Arabic test-module gate.

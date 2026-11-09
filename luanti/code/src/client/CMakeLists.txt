@@ -12,14 +12,13 @@ if(USE_SOUND)
 		${CMAKE_CURRENT_SOURCE_DIR}/sound/sound_openal.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/sound/sound_singleton.cpp
 	)
+	# Sound libraries are resolved in the parent directory. Do not reset
+	# SOUND_LIBRARIES here: that would discard imported targets such as
+	# OpenAL::OpenAL and their transitive static-link dependencies.
 	set(SOUND_INCLUDE_DIRS
 		${OPENAL_INCLUDE_DIR}
 		${VORBIS_INCLUDE_DIR}
 		${OGG_INCLUDE_DIR}
-		PARENT_SCOPE)
-	set(SOUND_LIBRARIES
-		${OPENAL_LIBRARY}
-		${VORBIS_LIBRARIES}
 		PARENT_SCOPE)
 endif()
 

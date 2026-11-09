@@ -274,8 +274,12 @@ void StaticText::updateText()
 	IGUIFont* font = getActiveFont();
 	if (font) {
 		LastBreakFont = font;
-		if (!RightToLeftOverride)
-			RightToLeft = IRR_DOWN_CAST<CGUITTFont *>(font)->isRightToLeft(cText.c_str());
+		if (!RightToLeftOverride) {
+			// Only the custom TrueType font exposes Raqm's paragraph-direction
+			// detection. Bitmap fonts must not be cast to CGUITTFont.
+			RightToLeft = font->getType() == EGFT_CUSTOM &&
+					static_cast<CGUITTFont *>(font)->isRightToLeft(cText.c_str());
+		}
 	}
 
 	if (!WordWrap) {

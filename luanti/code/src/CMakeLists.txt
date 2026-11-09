@@ -128,16 +128,43 @@ if(BUILD_CLIENT AND ENABLE_SOUND)
 	if(OpenAL_FOUND OR TARGET OpenAL::OpenAL)
 		set(OPENAL_FOUND TRUE)
 	endif()
-	find_package(Vorbis)
+	# Prefer vcpkg's imported targets so static linking retains the Ogg and
+	# Vorbis dependency graph. The vcpkg config package exports imported targets,
+	# while the legacy Luanti module exposes VORBIS_FOUND and raw library paths.
+	find_package(Vorbis CONFIG QUIET)
+	if(TARGET Vorbis::vorbisfile AND TARGET Vorbis::vorbis AND TARGET Ogg::ogg)
+		set(VORBIS_FOUND TRUE)
+		set(VORBIS_LIBRARIES
+			Vorbis::vorbisfile
+			Vorbis::vorbis
+			Ogg::ogg)
+		message(STATUS "Vorbis found through imported CMake targets.")
+	else()
+		# Explicit MODULE is important: CMAKE_FIND_PACKAGE_PREFER_CONFIG=ON
+		# must not bypass this project's legacy FindVorbis.cmake.
+		find_package(Vorbis MODULE QUIET)
+		if(Vorbis_FOUND)
+			set(VORBIS_FOUND TRUE)
+		endif()
+		# Normalize the legacy module's result and libraries if only the
+		# canonical mixed-case result variable was populated.
+		if(VORBIS_FOUND AND NOT VORBIS_LIBRARIES AND
+				VORBISFILE_LIBRARY AND VORBIS_LIBRARY AND OGG_LIBRARY)
+			set(VORBIS_LIBRARIES
+				${VORBISFILE_LIBRARY}
+				${VORBIS_LIBRARY}
+				${OGG_LIBRARY})
+		endif()
+	endif()
 	if(NOT OPENAL_FOUND)
 		message(STATUS "Sound enabled, but OpenAL not found!")
 		mark_as_advanced(CLEAR OPENAL_LIBRARY OPENAL_INCLUDE_DIR)
 	endif()
-	if(NOT VORBIS_FOUND)
+	if(NOT VORBIS_FOUND OR NOT VORBIS_LIBRARIES)
 		message(STATUS "Sound enabled, but Vorbis libraries not found!")
 		mark_as_advanced(CLEAR OGG_INCLUDE_DIR VORBIS_INCLUDE_DIR OGG_LIBRARY VORBIS_LIBRARY VORBISFILE_LIBRARY)
 	endif()
-	if(OPENAL_FOUND AND VORBIS_FOUND)
+	if(OPENAL_FOUND AND VORBIS_FOUND AND VORBIS_LIBRARIES)
 		set(USE_SOUND TRUE)
 		if(TARGET OpenAL::OpenAL)
 			list(APPEND SOUND_LIBRARIES OpenAL::OpenAL)
@@ -148,7 +175,7 @@ if(BUILD_CLIENT AND ENABLE_SOUND)
 			list(APPEND SOUND_LIBRARIES fmt::fmt)
 		endif()
 		list(APPEND SOUND_LIBRARIES ${VORBIS_LIBRARIES})
-		message(STATUS "Sound enabled.")
+		message(STATUS "Sound enabled with OpenAL and Vorbis.")
 	else()
 		message(FATAL_ERROR "Sound enabled, but cannot be used.\n"
 			"To continue, either fill in the required paths or disable sound. (-DENABLE_SOUND=0)")
