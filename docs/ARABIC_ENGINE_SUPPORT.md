@@ -168,3 +168,10 @@ The correction prefers the vcpkg `Vorbis::vorbisfile`, `Vorbis::vorbis`, and `Og
 The follow-up review also guarded automatic paragraph-direction detection in `StaticText`: Raqm detection is now called only for the custom TrueType font, rather than casting every GUI font to `CGUITTFont`. Both CI configurations explicitly keep sound enabled, and the Windows package check now verifies the OpenAL/Ogg/Vorbis runtime DLLs as well as the Arabic shaping DLLs.
 
 These are source/configuration corrections only. A new Linux and Windows run must still prove that the client compiles, all 13 Arabic layout tests pass, and the portable packages contain their runtime requirements. The upstream full unit-test suite and real-client visual/clipboard verification are not covered by the dedicated Arabic test-module gate.
+
+
+## Run #91 diagnosis and CMake signature normalization — 2026-11-09
+
+The Run #91 Linux configure log confirms that the vcpkg Vorbis correction is effective: CMake reports `Vorbis found through imported CMake targets` and `Sound enabled with OpenAL and Vorbis`. Configuration then exposed a separate CMake contract violation: the `luanti` target's original `target_link_libraries` call uses the plain signature, while four newly added calls used the keyword signature (`PRIVATE`). CMake rejects mixing the two signatures for one target.
+
+The four imported-dependency calls (BZip2/Brotli, fmt, and cURL) are now normalized to the target's existing plain signature. This preserves the imported targets and their static transitive dependencies without changing unrelated targets. The Linux configure did not proceed to compilation, unit tests, or packaging in Run #91; Windows was still installing manifest dependencies when this correction was prepared. Those outcomes therefore remain unverified.
