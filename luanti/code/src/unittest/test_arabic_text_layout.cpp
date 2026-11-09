@@ -87,6 +87,8 @@ public:
 	void testMixedDirectionSelectionIntervals();
 	void testVisualWordNavigationMixedDirection();
 	void testVisualWordDeletionRangesMixedDirection();
+	void testMouseHitTestingRespectsShapingClusters();
+	void testUnicodeWordSelectionRanges();
 	void testCombiningMarkCluster();
 	void testExplicitParagraphDirection();
 	void testFallbackFontRange();
@@ -104,6 +106,8 @@ void TestArabicTextLayout::runTests(IGameDef *gamedef)
 	TEST(testMixedDirectionSelectionIntervals);
 	TEST(testVisualWordNavigationMixedDirection);
 	TEST(testVisualWordDeletionRangesMixedDirection);
+	TEST(testMouseHitTestingRespectsShapingClusters);
+	TEST(testUnicodeWordSelectionRanges);
 	TEST(testCombiningMarkCluster);
 	TEST(testExplicitParagraphDirection);
 	TEST(testFallbackFontRange);
@@ -178,6 +182,10 @@ void TestArabicTextLayout::testLamAlefLigature()
 			shaping_clusters, text.size(), 1, 2);
 	UASSERTEQ(size_t, expanded.first, 0);
 	UASSERTEQ(size_t, expanded.second, 2);
+	const auto safe_expanded = gui::text_layout::expandSelectionToCursorBoundaries(
+			layout.value, shaping_clusters, text.size(), 1, 2);
+	UASSERTEQ(size_t, safe_expanded.first, 0);
+	UASSERTEQ(size_t, safe_expanded.second, 2);
 }
 
 void TestArabicTextLayout::testArabicExtendedLetters()
@@ -388,11 +396,108 @@ void TestArabicTextLayout::testVisualWordDeletionRangesMixedDirection()
 		UASSERT(gui::text_layout::isAllowedCursorBoundary(
 				layout.value, source_end, text.size(), clusters));
 
-		if (direction < 0)
+		if (direction < 0) {
 			UASSERT(cursor_x(target) < cursor_x(cursor));
-		else
+		} else {
 			UASSERT(cursor_x(target) > cursor_x(cursor));
+		}
 	}
+}
+
+
+void TestArabicTextLayout::testMouseHitTestingRespectsShapingClusters()
+{
+	const auto verify_hits = [](RaqmLayout &layout, const std::u32string &text,
+			size_t forbidden_boundary) {
+		const auto clusters =
+				gui::text_layout::getShapingClusterBoundaries(layout.value, text.size());
+		size_t glyph_count = 0;
+		raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
+		UASSERT(glyphs != nullptr || glyph_count == 0);
+
+		int pen = 0;
+		int min_pen = 0;
+		int max_pen = 0;
+		for (size_t i = 0; i < glyph_count; ++i) {
+			pen += glyphs[i].x_advance;
+			min_pen = std::min(min_pen, pen);
+			max_pen = std::max(max_pen, pen);
+		}
+
+		// Probe both sides and every quarter pixel across the shaped line.
+		for (int x = -64; x <= max_pen - min_pen + 64; x += 16) {
+			const size_t boundary =
+					gui::text_layout::getCursorBoundaryFromPosition(
+							layout.value, text.size(), x);
+			UASSERT(boundary <= text.size());
+			UASSERT(gui::text_layout::isAllowedCursorBoundary(
+					layout.value, boundary, text.size(), clusters));
+			UASSERT(boundary != forbidden_boundary);
+		}
+	};
+
+	FreeTypeFont font;
+	initializeFont(font);
+
+	// Lam-alef is rendered as one glyph but contains two Unicode scalars.
+	RaqmLayout ligature;
+	const std::u32string lam_alef = U"لا";
+	setRaqmText(ligature, font.face, lam_alef);
+	UASSERT(raqm_set_language(ligature.value, "ar", 0, lam_alef.size()));
+	UASSERT(raqm_set_par_direction(ligature.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(ligature.value));
+	const auto ligature_clusters =
+			gui::text_layout::getShapingClusterBoundaries(
+					ligature.value, lam_alef.size());
+	UASSERT(!gui::text_layout::isAllowedCursorBoundary(
+				ligature.value, 1, lam_alef.size(), ligature_clusters));
+	verify_hits(ligature, lam_alef, 1);
+
+	// A combining shadda must stay attached to its base letter during hit tests.
+	RaqmLayout combining;
+	const std::u32string combining_text = U"ا\u0651A";
+	setRaqmText(combining, font.face, combining_text);
+	UASSERT(raqm_set_language(combining.value, "ar", 0, 2));
+	UASSERT(raqm_set_par_direction(combining.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(combining.value));
+	const auto combining_clusters =
+			gui::text_layout::getShapingClusterBoundaries(
+					combining.value, combining_text.size());
+	UASSERT(!gui::text_layout::isAllowedCursorBoundary(
+				combining.value, 1, combining_text.size(), combining_clusters));
+	verify_hits(combining, combining_text, 1);
+
+	// Mixed-direction hit testing must still return logical, safe source indices.
+	RaqmLayout mixed;
+	const std::u32string mixed_text = U"abc مرحبا def";
+	setRaqmText(mixed, font.face, mixed_text);
+	UASSERT(raqm_set_language(mixed.value, "ar", 4, 5));
+	UASSERT(raqm_set_par_direction(mixed.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(mixed.value));
+	UASSERTEQ(raqm_direction_t, raqm_get_par_resolved_direction(mixed.value),
+			RAQM_DIRECTION_LTR);
+	verify_hits(mixed, mixed_text, mixed_text.size() + 1);
+}
+
+void TestArabicTextLayout::testUnicodeWordSelectionRanges()
+{
+	const std::u32string mixed_text = U"abc مرحبا def";
+	const auto arabic_word =
+			gui::text_layout::getLogicalWordSelectionRange(mixed_text, 6);
+	UASSERTEQ(size_t, arabic_word.first, 4);
+	UASSERTEQ(size_t, arabic_word.second, 9);
+
+	const std::u32string punctuation_text = U"مرحبا، عالم";
+	const auto comma = gui::text_layout::getLogicalWordSelectionRange(
+			punctuation_text, 5);
+	UASSERTEQ(size_t, comma.first, 5);
+	UASSERTEQ(size_t, comma.second, 6);
+
+	const std::u32string whitespace_text = U"abc   def";
+	const auto whitespace = gui::text_layout::getLogicalWordSelectionRange(
+			whitespace_text, 4);
+	UASSERTEQ(size_t, whitespace.first, 3);
+	UASSERTEQ(size_t, whitespace.second, 6);
 }
 
 void TestArabicTextLayout::testCombiningMarkCluster()
@@ -417,6 +522,10 @@ void TestArabicTextLayout::testCombiningMarkCluster()
 			layout.value, 1, text.size(), shaping_clusters));
 	UASSERT(gui::text_layout::isAllowedCursorBoundary(
 			layout.value, 2, text.size(), shaping_clusters));
+	const auto safe_expanded = gui::text_layout::expandSelectionToCursorBoundaries(
+			layout.value, shaping_clusters, text.size(), 1, 2);
+	UASSERTEQ(size_t, safe_expanded.first, 0);
+	UASSERTEQ(size_t, safe_expanded.second, 2);
 }
 
 void TestArabicTextLayout::testExplicitParagraphDirection()

@@ -390,6 +390,7 @@ void StaticText::updateText()
 	line += whitespace;
 	line += word;
 	add_line(line);
+}
 
 //! Sets the new caption of this element.
 void StaticText::setText(const wchar_t* text)

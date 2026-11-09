@@ -61,13 +61,13 @@ Tests are required at three levels:
   shaping-cluster cursor/selection boundaries, selected Arabic Extended letters, Arabic/Latin
   mixed runs with discontiguous visual selection intervals, BiDi isolates with Arabic-Indic
   digits, combining-mark grapheme boundaries, explicit paragraph direction, font fallback,
-  visual word movement, and visual word-deletion ranges in mixed-direction text.
+  visual word movement, visual word-deletion ranges in mixed-direction text, mouse hit-testing at safe cursor boundaries, and Unicode-aware word-selection ranges.
   Further coverage remains for paired brackets/embeddings, emoji and supplementary-plane
   characters, invalid Unicode replacement, color spans, and additional grapheme boundaries.
 - **GUI integration tests:** measurement equals rendered advances; wrapping never detaches
   marks or splits a grapheme or shaped ligature; hit-testing returns logical source indices in
   mixed-direction text; edit-box selection recolors the full shaped line rather than reshaping
-  an isolated Arabic substring; Ctrl+Backspace/Delete use Raqm visual word boundaries.
+  an isolated Arabic substring; Ctrl+Backspace/Delete use Raqm visual word boundaries; mouse hit-testing returns only safe grapheme/shaping-cluster boundaries; double-click selection uses Unicode word categories.
   Still to verify: discontiguous visual selection backgrounds, copy/paste, clipping, shadows,
   centering, and every alignment.
 - **Runtime/build tests:** Windows MSVC and Linux client builds; a Windows portable package
@@ -139,3 +139,12 @@ The CI coverage floor is set to 1,575 so a newly introduced untranslated engine 
 - Added `testVisualWordDeletionRangesMixedDirection` to check both visual directions in
   `abc مرحبا def`, including source-range and shaping-cluster-safe endpoints. The test
   still needs to pass in the Linux and Windows client test runs.
+
+### Safe edit-box hit testing and Unicode word selection — 2026-11-09
+
+- Replaced raw `raqm_position_to_index` mouse hit results with nearest visual caret-stop selection. Candidate stops are filtered through both Unicode grapheme boundaries and Raqm shaping-cluster boundaries, so clicks cannot place the caret inside a combining sequence or a mandatory ligature such as lam-alef.
+- Preserved the logical source-index model and the UTF-16-to-UTF-32 index conversion used by Windows.
+- Added a Unicode-aware logical word-range helper for double-click selection. It classifies whitespace and punctuation independently of the process locale, so Arabic letters are not mistaken for non-alphanumeric punctuation under the default C locale.
+- Word ranges and selected-color ranges are expanded to complete grapheme and shaping clusters. The same expanded range now drives both visual selection rectangles and foreground selection colors.
+- Added regression coverage for hit-testing across lam-alef, combining marks and mixed BiDi text, as well as Arabic words, Arabic punctuation and repeated whitespace.
+- These changes, together with the include-path, helper declaration-order, edit-box scope and unit-test macro fixes identified in run #81, require the next complete Linux/Windows build and C++ unit-test run. Interactive clipboard round trips and real-client mouse/selection checks remain outstanding.

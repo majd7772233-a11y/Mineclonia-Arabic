@@ -537,3 +537,12 @@
 - The common compiler error was `util/enriched_string.h: No such file or directory`. The header is located at `luanti/code/src/util/enriched_string.h`; the Irrlicht GUI object target had only the `src/irrlicht_changes` include path.
 - Added `luanti/code/src` to `IRRGUIOBJ` private include directories while retaining the `src/irrlicht_changes` path. This makes both `util/enriched_string.h` and the Raqm-specific Irrlicht headers resolvable from the same target.
 - The fix is committed on `work/arabic-engine-support`. A new Linux/Windows CI result is required before treating the build or the C++ regression suite as passing.
+
+### تدقيق شامل لمسارات المؤشر والتحديد — 2026-11-09
+
+- كشف Run #81 أن إضافة مسار `luanti/code/src` عالجت تضمين `util/enriched_string.h`، لكن البناء وصل إلى ملفات المحرك وكشف أخطاء C++ أخرى لم تكن قد روجعت قبل التشغيل: استدعاء `isAllowedCursorBoundary` قبل إعلانها، وقوس إغلاق ناقص في `StaticText::updateText`، واستخدام `UASSERT` داخل `if/else` دون أقواس حول الفرعين.
+- أُضيف تصريح أمامي للمساعد المشترك، وأُغلق نطاق `StaticText::updateText`، وأُحيط فرعا اختبار الحذف بأقواس لتجنب تعارض ماكرو التأكيد مع `else`.
+- تدقيق مسار التحرير كشف أن hit-testing كان يعيد فهرس Raqm خاماً قد يقع داخل grapheme أو shaping cluster. أصبح اختيار المؤشر من أقرب حد مرئي مسموح، مع الحفاظ على الفهارس المنطقية وتحويل UTF-16 على Windows.
+- أضيف تحديد كلمة Unicode للنقر المزدوج حتى لا يعتمد تحديد العربية على `iswalnum` وحالة locale، وأصبح توسيع التحديد يضمن حدود grapheme وعناقيد التشكيل معاً.
+- أضيفت اختبارات hit-testing للام-ألف والتشكيل المختلط والاتجاهين، واختبارات حدود الكلمات العربية وعلامات الترقيم والمسافات.
+- لم يُشغّل CI بعد هذه الدفعة بعد؛ يجب مراجعة الفروقات وسلامة البناء أولاً، ثم تشغيل Linux وWindows مرة واحدة. لم ينجح أي build أو C++ unit test بعد.
