@@ -530,3 +530,10 @@
 - أثبت سجل تشغيل CI رقم 76 أن `PROJECT_SOURCE_DIR` داخل `luanti/code/irr/src/CMakeLists.txt` يشير إلى مشروع Irrlicht الفرعي، وليس جذر Luanti؛ لذلك لم يكن مسار `CGUITTFont.h` الذي أضيف سابقاً صحيحاً. استُبدل بمسار نسبي من `CMAKE_CURRENT_SOURCE_DIR`.
 - بعد إضافة `libgl1-mesa-dev` تجاوز Linux فحص OpenGL، ثم أوقف إعداد SDL بسبب فقدان `Xext.h`. أضيفت `libxext-dev` إلى اعتماديات runner.
 - يظل فشل Windows السابق مثبتاً حتى تشغيل النسخة الجديدة من CI؛ لا يُعتبر إصلاح المسار ناجحاً لمجرد تعديل CMake.
+
+### Irrlicht GUI include-path correction — 2026-11-09
+
+- GitHub Actions run #80 passed catalog validation but both Linux and Windows client builds stopped while compiling `CGUIEditBox.cpp`.
+- The common compiler error was `util/enriched_string.h: No such file or directory`. The header is located at `luanti/code/src/util/enriched_string.h`; the Irrlicht GUI object target had only the `src/irrlicht_changes` include path.
+- Added `luanti/code/src` to `IRRGUIOBJ` private include directories while retaining the `src/irrlicht_changes` path. This makes both `util/enriched_string.h` and the Raqm-specific Irrlicht headers resolvable from the same target.
+- The fix is committed on `work/arabic-engine-support`. A new Linux/Windows CI result is required before treating the build or the C++ regression suite as passing.
