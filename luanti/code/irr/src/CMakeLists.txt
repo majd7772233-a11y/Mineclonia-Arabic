@@ -152,7 +152,12 @@ message(STATUS "OpenGL ES 2: ${ENABLE_GLES2}")
 
 # Required libs
 
-find_package(ZLIB REQUIRED)
+# PNG's vcpkg config refers to ZLIB::ZLIB. This is a sibling CMake
+# directory from src/, so create the imported target in this scope as well.
+find_package(ZLIB MODULE REQUIRED)
+if(NOT TARGET ZLIB::ZLIB)
+	message(FATAL_ERROR "Irrlicht PNG dependencies require the ZLIB::ZLIB target.")
+endif()
 find_package(JPEG REQUIRED)
 find_package(PNG CONFIG QUIET)
 if(NOT TARGET PNG::PNG)

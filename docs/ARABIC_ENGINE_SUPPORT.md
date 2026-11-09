@@ -209,3 +209,12 @@ Run #95 used commit `6a2ac99`. Both platforms completed vcpkg installation, CMak
 The Windows link exposed two dependencies that the previous variable-based linkage did not preserve. Zstd's vcpkg x64-windows package uses DLL-import declarations and its `zstd::libzstd` target carries the matching import library. IrrlichtMt's static archive also needs libpng, but the old `${PNG_LIBRARY}` variable did not carry the vcpkg config target into the final executable. The project now prefers `zstd::libzstd` and `PNG::PNG` imported targets, retaining module-based fallbacks for non-vcpkg environments. Both target selections fail during configure with a direct message if neither a usable target nor fallback library is available.
 
 No test module or package step ran in Run #95 because the final link failed. The new corrections still require a fresh Linux and Windows build, Arabic regression test execution, and package verification.
+
+
+## Run #96 scope-specific Zlib and SRP header corrections — 2026-11-09
+
+Run #96 confirmed that the Run #95 dependency-link changes moved the failure forward. On Windows, Zstd/PNG configuration passed and the compiler reached `src/util/srp.cpp`, but that source includes `my_sha256.h` unconditionally even when OpenSSL provides the SHA implementation. The header directory had previously arrived transitively through linking the fallback `sha256` target; removing that target from OpenSSL builds correctly avoids duplicate SHA symbols but also removed the include path. `EngineCommon` now receives the header directory explicitly, independently of whether the fallback library is linked.
+
+On Linux, CMake still failed while importing PNG because `PNG::png_static` references `ZLIB::ZLIB`. The earlier `FindZLIB MODULE` call was in the sibling `src/` directory and its non-global imported target was not visible in `irr/src/`. Irrlicht now invokes `find_package(ZLIB MODULE REQUIRED)` locally before loading PNG and checks that `ZLIB::ZLIB` exists in that scope.
+
+Run #96 did not reach linking, Arabic tests, or package installation on either platform. The next run must verify these scope/include corrections and then continue through the final link and packaging.

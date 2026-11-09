@@ -731,7 +731,13 @@ else()
 endif()
 get_target_property(
 	IRRLICHT_INCLUDES IrrlichtMt::IrrlichtMt INTERFACE_INCLUDE_DIRECTORIES)
-target_include_directories(EngineCommon PRIVATE ${IRRLICHT_INCLUDES})
+# srp.cpp keeps using the bundled SHA-compatible context declarations even
+# when OpenSSL supplies the implementation. The header path is independent
+# from linking the fallback sha256 library (which would duplicate symbols).
+target_include_directories(EngineCommon PRIVATE
+	${IRRLICHT_INCLUDES}
+	"${CMAKE_SOURCE_DIR}/lib/sha256"
+)
 if(PRECOMPILE_HEADERS)
 	target_precompile_headers(EngineCommon PRIVATE ${PRECOMPILED_HEADERS_LIST})
 endif()
