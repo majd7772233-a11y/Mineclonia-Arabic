@@ -70,7 +70,7 @@ Tests are required at three levels:
   an isolated Arabic substring; Ctrl+Backspace/Delete use Raqm visual word boundaries; mouse hit-testing returns only safe grapheme/shaping-cluster boundaries; double-click selection uses Unicode word categories.
   Still to verify: discontiguous visual selection backgrounds, copy/paste, clipping, shadows,
   centering, and every alignment.
-- **Runtime/build tests:** Windows MSVC and Linux client builds; a Windows portable package
+- **Runtime/build tests:** Windows MSVC and Linux client builds; the dedicated Arabic layout regression module on both platforms; a Windows portable package
   containing all required DLLs and fonts; startup without external font installation;
   Arabic game UI and Mineclonia content; a mixed-direction regression screenshot suite.
 
@@ -148,3 +148,12 @@ The CI coverage floor is set to 1,575 so a newly introduced untranslated engine 
 - Word ranges and selected-color ranges are expanded to complete grapheme and shaping clusters. The same expanded range now drives both visual selection rectangles and foreground selection colors.
 - Added regression coverage for hit-testing across lam-alef, combining marks and mixed BiDi text, as well as Arabic words, Arabic punctuation and repeated whitespace.
 - These changes, together with the include-path, helper declaration-order, edit-box scope and unit-test macro fixes identified in run #81, require the next complete Linux/Windows build and C++ unit-test run. Interactive clipboard round trips and real-client mouse/selection checks remain outstanding.
+
+
+### Cross-platform test and packaging hardening — 2026-11-09
+
+- MSVC now receives `/utf-8` for every source file, so Arabic UTF-8 string literals in the native shaping tests are decoded consistently with Linux.
+- Linux and Windows CI invoke `TestArabicTextLayout` directly and require both a zero exit code and an explicit zero-failure module summary.
+- The run-in-place texture marker is now tracked and explicitly unignored, matching the existing CMake install rule.
+- Static vcpkg builds now prefer imported CMake targets for cURL, OpenAL, FreeType, fmt, BZip2 and Brotli so their static transitive libraries are linked rather than silently omitted.
+- The next CI run still needs to confirm the toolchain-specific imported target names, both native builds, the dedicated Arabic module and both packages.

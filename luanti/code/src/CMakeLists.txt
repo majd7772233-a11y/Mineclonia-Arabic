@@ -72,7 +72,11 @@ option(ENABLE_CURL "Enable cURL support" TRUE)
 set(USE_CURL FALSE)
 
 if(ENABLE_CURL)
-	find_package(CURL 7.28.0)
+	# Prefer package configs so static vcpkg builds retain transitive dependencies.
+	find_package(CURL CONFIG QUIET)
+	if(NOT CURL_FOUND)
+		find_package(CURL 7.28.0)
+	endif()
 	if (CURL_FOUND)
 		message(STATUS "cURL support enabled.")
 		set(USE_CURL TRUE)
@@ -114,8 +118,16 @@ option(ENABLE_SOUND "Enable sound" TRUE)
 set(USE_SOUND FALSE)
 
 if(BUILD_CLIENT AND ENABLE_SOUND)
-	# Sound libraries
-	find_package(OpenAL)
+	# OpenAL Soft's vcpkg config target carries its fmt dependency.
+	set(SOUND_LIBRARIES)
+	find_package(fmt CONFIG QUIET)
+	find_package(OpenAL CONFIG QUIET)
+	if(NOT OpenAL_FOUND AND NOT OPENAL_FOUND AND NOT TARGET OpenAL::OpenAL)
+		find_package(OpenAL)
+	endif()
+	if(OpenAL_FOUND OR TARGET OpenAL::OpenAL)
+		set(OPENAL_FOUND TRUE)
+	endif()
 	find_package(Vorbis)
 	if(NOT OPENAL_FOUND)
 		message(STATUS "Sound enabled, but OpenAL not found!")
@@ -127,6 +139,15 @@ if(BUILD_CLIENT AND ENABLE_SOUND)
 	endif()
 	if(OPENAL_FOUND AND VORBIS_FOUND)
 		set(USE_SOUND TRUE)
+		if(TARGET OpenAL::OpenAL)
+			list(APPEND SOUND_LIBRARIES OpenAL::OpenAL)
+		elseif(OPENAL_LIBRARY)
+			list(APPEND SOUND_LIBRARIES ${OPENAL_LIBRARY})
+		endif()
+		if(TARGET fmt::fmt)
+			list(APPEND SOUND_LIBRARIES fmt::fmt)
+		endif()
+		list(APPEND SOUND_LIBRARIES ${VORBIS_LIBRARIES})
 		message(STATUS "Sound enabled.")
 	else()
 		message(FATAL_ERROR "Sound enabled, but cannot be used.\n"
@@ -135,7 +156,18 @@ if(BUILD_CLIENT AND ENABLE_SOUND)
 endif()
 
 if(BUILD_CLIENT)
-	find_package(Freetype REQUIRED)
+	# Use vcpkg's imported target for static transitive Brotli/BZip2 libraries.
+	find_package(Freetype CONFIG QUIET)
+	if(NOT TARGET Freetype::Freetype)
+		find_package(Freetype REQUIRED)
+	endif()
+	if(TARGET Freetype::Freetype)
+		set(FREETYPE_LINK_TARGET Freetype::Freetype)
+	else()
+		set(FREETYPE_LINK_TARGET ${FREETYPE_LIBRARIES})
+	endif()
+	find_package(BZip2 QUIET)
+	find_package(unofficial-brotli CONFIG QUIET)
 	find_path(RAQM_INCLUDE_DIR NAMES raqm.h)
 	find_library(RAQM_LIBRARY NAMES raqm)
 	find_library(HARFBUZZ_LIBRARY NAMES harfbuzz)
@@ -735,12 +767,24 @@ if(BUILD_CLIENT)
 		${RAQM_LIBRARY}
 		${HARFBUZZ_LIBRARY}
 		${FRIBIDI_LIBRARY}
-		${FREETYPE_LIBRARY}
+		${FREETYPE_LINK_TARGET}
 		${PLATFORM_LIBS}
 		# on Android, Luanti depends on SDL2 directly
 		# on other platforms, only IrrlichtMt depends on SDL2
 		"$<$<PLATFORM_ID:Android>:${SDL2_LIBRARIES}>"
 	)
+	# Complete static vcpkg dependency links when imported targets are available.
+	foreach(_dependency_target IN ITEMS
+			BZip2::BZip2
+			unofficial::brotli::brotlidec
+			unofficial::brotli::brotlicommon)
+		if(TARGET ${_dependency_target})
+			target_link_libraries(${PROJECT_NAME} PRIVATE ${_dependency_target})
+		endif()
+	endforeach()
+	if(TARGET fmt::fmt)
+		target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
+	endif()
 	target_compile_definitions(${PROJECT_NAME} PRIVATE "MT_BUILDTARGET=1")
 	if(NOT USE_LUAJIT)
 		set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -757,10 +801,11 @@ if(BUILD_CLIENT)
 		)
 	endif()
 	if(USE_CURL)
-		target_link_libraries(
-			${PROJECT_NAME}
-			${CURL_LIBRARY}
-		)
+		if(TARGET CURL::libcurl)
+			target_link_libraries(${PROJECT_NAME} PRIVATE CURL::libcurl)
+		else()
+			target_link_libraries(${PROJECT_NAME} PRIVATE ${CURL_LIBRARY})
+		endif()
 	endif()
 	if(FREETYPE_PKGCONFIG_FOUND)
 		set_target_properties(${PROJECT_NAME}

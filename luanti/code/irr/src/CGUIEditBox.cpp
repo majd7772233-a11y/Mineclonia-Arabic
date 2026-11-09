@@ -16,6 +16,7 @@
 #include "Keycodes.h"
 #include <cwctype> // std::iswspace, std::iswpunct, std::iswalnum
 #include <cstdlib> // std::abs
+#include <algorithm>
 #include <string_view>
 #include <vector>
 
@@ -27,6 +28,50 @@
 
 namespace gui
 {
+
+namespace
+{
+
+bool buildEditTextReplacement(const core::stringw &text, s32 cursor,
+		s32 mark_begin, s32 mark_end, const core::stringw &inserted,
+		bool overwrite, u32 max_length, core::stringw &replacement,
+		s32 &new_cursor)
+{
+	if (inserted.empty())
+		return false;
+
+	const s32 text_length = static_cast<s32>(text.size());
+	cursor = std::max<s32>(0, std::min<s32>(cursor, text_length));
+	mark_begin = std::max<s32>(0, std::min<s32>(mark_begin, text_length));
+	mark_end = std::max<s32>(0, std::min<s32>(mark_end, text_length));
+
+	const bool has_selection = mark_begin != mark_end;
+	const s32 start = has_selection ? std::min(mark_begin, mark_end) : cursor;
+	s32 end = has_selection ? std::max(mark_begin, mark_end) : cursor;
+
+	if (!has_selection && overwrite) {
+		const s32 insert_length = static_cast<s32>(
+				std::min<size_t>(inserted.size(), text_length - start));
+		end = start + insert_length;
+		for (s32 i = start; i < end; ++i) {
+			if (text[i] == L'\r' || text[i] == L'\n') {
+				end = i;
+				break;
+			}
+		}
+	}
+
+	replacement = text.subString(0, start);
+	replacement.append(inserted);
+	replacement.append(text.subString(end, text_length - end));
+	if (max_length && replacement.size() > max_length)
+		return false;
+
+	new_cursor = start + static_cast<s32>(inserted.size());
+	return true;
+}
+
+} // namespace
 
 //! constructor
 CGUIEditBox::CGUIEditBox(const wchar_t *text, bool border,
@@ -321,7 +366,7 @@ bool CGUIEditBox::processKey(const SEvent &event)
 			if (event.KeyInput.Shift) {
 				newMarkBegin = CursorPos;
 				newMarkEnd = Text.size();
-				CursorPos = 0;
+				CursorPos = Text.size();
 			} else {
 				CursorPos = Text.size();
 				newMarkBegin = 0;
@@ -613,8 +658,13 @@ void CGUIEditBox::onKeyControlC(const SEvent &event)
 	if (PasswordBox || !Operator || MarkBegin == MarkEnd)
 		return;
 
-	const s32 realmbgn = MarkBegin < MarkEnd ? MarkBegin : MarkEnd;
-	const s32 realmend = MarkBegin < MarkEnd ? MarkEnd : MarkBegin;
+	const s32 text_length = static_cast<s32>(Text.size());
+	const s32 mark_begin = std::max<s32>(0, std::min<s32>(MarkBegin, text_length));
+	const s32 mark_end = std::max<s32>(0, std::min<s32>(MarkEnd, text_length));
+	const s32 realmbgn = std::min(mark_begin, mark_end);
+	const s32 realmend = std::max(mark_begin, mark_end);
+	if (realmbgn == realmend)
+		return;
 
 	core::stringc s;
 	wStringToUTF8(s, Text.subString(realmbgn, realmend - realmbgn));
@@ -632,8 +682,13 @@ bool CGUIEditBox::onKeyControlX(const SEvent &event, s32 &mark_begin, s32 &mark_
 	if (PasswordBox || !Operator || MarkBegin == MarkEnd)
 		return false;
 
-	const s32 realmbgn = MarkBegin < MarkEnd ? MarkBegin : MarkEnd;
-	const s32 realmend = MarkBegin < MarkEnd ? MarkEnd : MarkBegin;
+	const s32 text_length = static_cast<s32>(Text.size());
+	const s32 mark_begin = std::max<s32>(0, std::min<s32>(MarkBegin, text_length));
+	const s32 mark_end = std::max<s32>(0, std::min<s32>(MarkEnd, text_length));
+	const s32 realmbgn = std::min(mark_begin, mark_end);
+	const s32 realmend = std::max(mark_begin, mark_end);
+	if (realmbgn == realmend)
+		return false;
 
 	// Now remove from box if enabled
 	if (isEnabled()) {
@@ -654,48 +709,31 @@ bool CGUIEditBox::onKeyControlX(const SEvent &event, s32 &mark_begin, s32 &mark_
 
 bool CGUIEditBox::onKeyControlV(const SEvent &event, s32 &mark_begin, s32 &mark_end)
 {
-	if (!isEnabled() || !IsWritable)
+	if (!isEnabled() || !IsWritable || !Operator)
 		return false;
 
-	// paste from the clipboard
-	if (!Operator)
+	const c8 *clipboard_text = Operator->getTextFromClipboard();
+	if (!clipboard_text || !*clipboard_text)
 		return false;
 
-	const s32 realmbgn = MarkBegin < MarkEnd ? MarkBegin : MarkEnd;
-	const s32 realmend = MarkBegin < MarkEnd ? MarkEnd : MarkBegin;
+	core::stringw inserted_text;
+	core::utf8ToWString(inserted_text, clipboard_text);
+	if (inserted_text.empty())
+		return false;
 
-	// add new character
-	if (const c8 *p = Operator->getTextFromClipboard()) {
-		core::stringw inserted_text;
-		core::utf8ToWString(inserted_text, p);
-		if (MarkBegin == MarkEnd) {
-			// insert text
-			core::stringw s = Text.subString(0, CursorPos);
-			s.append(inserted_text);
-			s.append(Text.subString(
-					CursorPos, Text.size() - CursorPos));
+	core::stringw replacement;
+	s32 new_cursor = CursorPos;
+	if (!buildEditTextReplacement(Text, CursorPos, MarkBegin, MarkEnd,
+			inserted_text, false, Max, replacement, new_cursor))
+		return false;
 
-			if (!Max || s.size() <= Max) {
-				Text = s;
-				CursorPos += inserted_text.size();
-			}
-		} else {
-			// replace text
-
-			core::stringw s = Text.subString(0, realmbgn);
-			s.append(inserted_text);
-			s.append(Text.subString(realmend, Text.size() - realmend));
-
-			if (!Max || s.size() <= Max) {
-				Text = s;
-				CursorPos = realmbgn + inserted_text.size();
-			}
-		}
-	}
-
+	const bool changed = replacement != Text;
+	if (changed)
+		Text = replacement;
+	CursorPos = new_cursor;
 	mark_begin = 0;
 	mark_end = 0;
-	return true;
+	return changed;
 }
 
 bool CGUIEditBox::onKeyBackDelete(const SEvent::SKeyInput &input)
@@ -703,12 +741,19 @@ bool CGUIEditBox::onKeyBackDelete(const SEvent::SKeyInput &input)
 	if (!isEnabled() || Text.empty() || !IsWritable)
 		return false;
 
+	const s32 text_length = static_cast<s32>(Text.size());
+	CursorPos = std::max<s32>(0, std::min<s32>(CursorPos, text_length));
+
 	core::stringw s;
 
 	if (MarkBegin != MarkEnd) {
 		// delete marked text
-		const s32 realmbgn = MarkBegin < MarkEnd ? MarkBegin : MarkEnd;
-		const s32 realmend = MarkBegin < MarkEnd ? MarkEnd : MarkBegin;
+		const s32 mark_begin = std::max<s32>(0, std::min<s32>(MarkBegin, text_length));
+		const s32 mark_end = std::max<s32>(0, std::min<s32>(MarkEnd, text_length));
+		const s32 realmbgn = std::min(mark_begin, mark_end);
+		const s32 realmend = std::max(mark_begin, mark_end);
+		if (realmbgn == realmend)
+			return false;
 
 		s = Text.subString(0, realmbgn);
 		s.append(Text.subString(realmend, Text.size() - realmend));
@@ -1457,67 +1502,26 @@ void CGUIEditBox::inputChar(wchar_t c)
 
 void CGUIEditBox::inputString(const core::stringw &str)
 {
-	if (!isEnabled() || !IsWritable)
+	if (!isEnabled() || !IsWritable || str.empty())
 		return;
 
-	core::stringw s;
-	u32 len = str.size();
+	core::stringw replacement;
+	s32 new_cursor = CursorPos;
+	if (!buildEditTextReplacement(Text, CursorPos, MarkBegin, MarkEnd,
+			str, OverwriteMode, Max, replacement, new_cursor))
+		return;
 
-	if (MarkBegin != MarkEnd) {
-		// replace marked text
-		const s32 realmbgn = MarkBegin < MarkEnd ? MarkBegin : MarkEnd;
-		const s32 realmend = MarkBegin < MarkEnd ? MarkEnd : MarkBegin;
-
-		s = Text.subString(0, realmbgn);
-		s.append(str);
-		s.append(Text.subString(realmend, Text.size() - realmend));
-		Text = s;
-		CursorPos = realmbgn + len;
-	} else if (OverwriteMode) {
-		// check to see if we are at the end of the text
-		if ((u32)CursorPos + len < Text.size()) {
-			bool isEOL = false;
-			s32 EOLPos;
-			for (u32 i = CursorPos; i < CursorPos + len && i < Max; i++) {
-				if (Text[i] == L'\n' || Text[i] == L'\r') {
-					isEOL = true;
-					EOLPos = i;
-					break;
-				}
-			}
-			if (!isEOL || Text.size() + len <= Max || Max == 0) {
-				s = Text.subString(0, CursorPos);
-				s.append(str);
-				if (isEOL) {
-					// just keep appending to the current line
-					// This follows the behavior of other gui libraries behaviors
-					s.append(Text.subString(EOLPos, Text.size() - EOLPos));
-				} else {
-					// replace the next character
-					s.append(Text.subString(CursorPos + len, Text.size() - CursorPos - len));
-				}
-				Text = s;
-				CursorPos += len;
-			}
-		} else if (Text.size() + len <= Max || Max == 0) {
-			// add new character because we are at the end of the string
-			s = Text.subString(0, CursorPos);
-			s.append(str);
-			s.append(Text.subString(CursorPos + len, Text.size() - CursorPos - len));
-			Text = s;
-			CursorPos += len;
-		}
-	} else if (Text.size() + len <= Max || Max == 0) {
-		// add new character
-		s = Text.subString(0, CursorPos);
-		s.append(str);
-		s.append(Text.subString(CursorPos, Text.size() - CursorPos));
-		Text = s;
-		CursorPos += len;
-	}
-
+	const bool changed = replacement != Text;
+	if (changed)
+		Text = replacement;
+	CursorPos = new_cursor;
 	BlinkStartTime = os::Timer::getTime();
 	setTextMarkers(0, 0);
+
+	if (!changed) {
+		calculateScrollPos();
+		return;
+	}
 
 	breakText();
 	calculateScrollPos();
@@ -1649,6 +1653,9 @@ void CGUIEditBox::calculateFrameRect()
 //! set text markers
 void CGUIEditBox::setTextMarkers(s32 begin, s32 end)
 {
+	const s32 text_length = static_cast<s32>(Text.size());
+	begin = std::max<s32>(0, std::min<s32>(begin, text_length));
+	end = std::max<s32>(0, std::min<s32>(end, text_length));
 	if (begin != MarkBegin || end != MarkEnd) {
 		MarkBegin = begin;
 		MarkEnd = end;

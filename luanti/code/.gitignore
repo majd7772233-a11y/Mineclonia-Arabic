@@ -66,6 +66,7 @@ AppDir
 /cache
 /textures/*
 !/textures/base/
+!/textures/texture_packs_here.txt
 /screenshots
 /sounds
 /mods/*

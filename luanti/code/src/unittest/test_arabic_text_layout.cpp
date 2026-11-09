@@ -481,6 +481,12 @@ void TestArabicTextLayout::testMouseHitTestingRespectsShapingClusters()
 
 void TestArabicTextLayout::testUnicodeWordSelectionRanges()
 {
+	// Arabic letters must remain word characters regardless of the C locale.
+	UASSERT(!gui::text_layout::isUnicodeWordPunctuation(U'م'));
+	UASSERT(!gui::text_layout::isUnicodeWordPunctuation(U'ح'));
+	UASSERT(gui::text_layout::isUnicodeWordPunctuation(U'،'));
+	UASSERT(gui::text_layout::isUnicodeWordSpace(U'\t'));
+	UASSERT(gui::text_layout::isUnicodeWordSpace(U'\u00A0'));
 	const std::u32string mixed_text = U"abc مرحبا def";
 	const auto arabic_word =
 			gui::text_layout::getLogicalWordSelectionRange(mixed_text, 6);

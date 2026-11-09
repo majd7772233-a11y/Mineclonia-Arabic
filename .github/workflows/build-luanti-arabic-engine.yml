@@ -131,15 +131,24 @@ jobs:
       - name: Configure client and unit tests
         working-directory: luanti/code
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux -DCMAKE_BUILD_TYPE=Release -DBUILD_CLIENT=ON -DBUILD_SERVER=OFF -DBUILD_UNITTESTS=ON -DBUILD_DOCUMENTATION=OFF -DENABLE_POSTGRESQL=OFF -DENABLE_CURSES=OFF -DRUN_IN_PLACE=ON
+          cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux -DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_CLIENT=ON -DBUILD_SERVER=OFF -DBUILD_UNITTESTS=ON -DBUILD_DOCUMENTATION=OFF -DENABLE_POSTGRESQL=OFF -DENABLE_CURSES=OFF -DRUN_IN_PLACE=ON
 
       - name: Build client
         working-directory: luanti/code
         run: cmake --build build --parallel 2
 
-      - name: Run C++ unit tests, including Arabic shaping regressions
+      - name: Run Arabic text-layout regression module
         working-directory: luanti/code
-        run: ./bin/luanti --run-unittests
+        run: |
+          set -euo pipefail
+          log="$RUNNER_TEMP/arabic-layout-tests.log"
+          set +e
+          ./bin/luanti --run-unittests --test-module TestArabicTextLayout > "$log" 2>&1
+          status=$?
+          set -e
+          cat "$log"
+          test "$status" -eq 0
+          grep -Eq 'Module TestArabicTextLayout passed \(0 failures / [0-9]+ tests\)' "$log"
 
       - name: Install and verify portable Linux package
         working-directory: luanti/code
@@ -230,7 +239,7 @@ jobs:
         shell: pwsh
         run: |
           $toolchain = Join-Path $env:VCPKG_ROOT "scripts/buildsystems/vcpkg.cmake"
-          $cmakeArgs = @("-S", ".", "-B", "build", "-G", "Visual Studio 17 2022", "-A", "x64", "-DCMAKE_TOOLCHAIN_FILE=$toolchain", "-DVCPKG_TARGET_TRIPLET=x64-windows", "-DBUILD_CLIENT=ON", "-DBUILD_SERVER=OFF", "-DBUILD_UNITTESTS=ON", "-DBUILD_DOCUMENTATION=OFF", "-DENABLE_POSTGRESQL=OFF", "-DENABLE_CURSES=OFF", "-DRUN_IN_PLACE=ON")
+          $cmakeArgs = @("-S", ".", "-B", "build", "-G", "Visual Studio 17 2022", "-A", "x64", "-DCMAKE_TOOLCHAIN_FILE=$toolchain", "-DVCPKG_TARGET_TRIPLET=x64-windows", "-DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON", "-DBUILD_CLIENT=ON", "-DBUILD_SERVER=OFF", "-DBUILD_UNITTESTS=ON", "-DBUILD_DOCUMENTATION=OFF", "-DENABLE_POSTGRESQL=OFF", "-DENABLE_CURSES=OFF", "-DRUN_IN_PLACE=ON")
           & cmake @cmakeArgs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
@@ -241,7 +250,7 @@ jobs:
           cmake --build build --config Release --parallel 2
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-      - name: Run C++ unit tests, including Arabic shaping regressions
+      - name: Run Arabic text-layout regression module
         working-directory: luanti/code
         shell: pwsh
         run: |
@@ -249,8 +258,14 @@ jobs:
             Get-ChildItem bin -Recurse
             throw "The Luanti client executable was not produced."
           }
-          & "bin/Release/luanti.exe" --run-unittests
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $log = Join-Path $env:RUNNER_TEMP "arabic-layout-tests.log"
+          $testOutput = & "bin/Release/luanti.exe" --run-unittests --test-module TestArabicTextLayout 2>&1
+          $testExitCode = $LASTEXITCODE
+          $testOutput | Tee-Object -FilePath $log
+          if ($testExitCode -ne 0) { exit $testExitCode }
+          if (-not (Select-String -Path $log -Pattern 'Module TestArabicTextLayout passed \(0 failures / [0-9]+ tests\)' -Quiet)) {
+            throw "Arabic text-layout tests did not report a zero-failure summary."
+          }
 
       - name: Install and verify portable Windows package
         working-directory: luanti/code

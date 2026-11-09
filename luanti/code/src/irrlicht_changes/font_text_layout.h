@@ -12,7 +12,6 @@
 #include <cstddef>
 #include <climits>
 #include <cstdlib>
-#include <cwctype>
 #include <string>
 #include <utility>
 #include <vector>
@@ -147,25 +146,34 @@ inline std::vector<std::pair<int, int>> getVisualSelectionIntervals(
 
 inline bool isUnicodeWordSpace(char32_t c)
 {
-	return (c <= static_cast<char32_t>(WCHAR_MAX) &&
-			std::iswspace(static_cast<std::wint_t>(c)) != 0) ||
-			c == 0x00A0 || c == 0x1680 ||
-			(c >= 0x2000 && c <= 0x200A) ||
+	// Unicode White_Space property, independent of process locale.
+	return (c >= 0x0009 && c <= 0x000D) ||
+			c == 0x0020 || c == 0x0085 || c == 0x00A0 ||
+			c == 0x1680 || (c >= 0x2000 && c <= 0x200A) ||
 			c == 0x2028 || c == 0x2029 || c == 0x202F ||
 			c == 0x205F || c == 0x3000;
 }
 
 inline bool isUnicodeWordPunctuation(char32_t c)
 {
-	if (c <= static_cast<char32_t>(WCHAR_MAX) &&
-			std::iswpunct(static_cast<std::wint_t>(c)) != 0)
+	if ((c >= 0x0021 && c <= 0x002F) ||
+			(c >= 0x003A && c <= 0x0040) ||
+			(c >= 0x005B && c <= 0x0060) ||
+			(c >= 0x007B && c <= 0x007E))
 		return true;
+
 	return (c >= 0x200B && c <= 0x206F) ||
 			(c >= 0x2E00 && c <= 0x2E7F) ||
 			(c >= 0x3001 && c <= 0x303F) ||
 			(c >= 0xFE10 && c <= 0xFE1F) ||
 			(c >= 0xFE30 && c <= 0xFE4F) ||
-			(c == 0x060C || c == 0x061B || c == 0x061F || c == 0x06D4);
+			(c >= 0xFF01 && c <= 0xFF0F) ||
+			(c >= 0xFF1A && c <= 0xFF20) ||
+			(c >= 0xFF3B && c <= 0xFF40) ||
+			(c >= 0xFF5B && c <= 0xFF65) ||
+			(c >= 0x0609 && c <= 0x060D) ||
+			c == 0x061B || (c >= 0x061D && c <= 0x061F) ||
+			(c >= 0x066A && c <= 0x066D) || c == 0x06D4;
 }
 
 

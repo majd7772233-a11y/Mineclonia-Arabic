@@ -5,6 +5,11 @@ endif()
 
 # This can be read from ${PROJECT_NAME} after project() is called
 project(luanti)
+
+# Source files and user-facing translations are stored as UTF-8.
+if(MSVC)
+	add_compile_options(/utf-8)
+endif()
 set(PROJECT_NAME_CAPITALIZED "Luanti")
 
 set(CMAKE_CXX_STANDARD 17)
