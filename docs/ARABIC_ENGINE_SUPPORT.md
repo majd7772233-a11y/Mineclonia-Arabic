@@ -182,3 +182,10 @@ The four imported-dependency calls (BZip2/Brotli, fmt, and cURL) are now normali
 The Run #92 Linux configure log confirms both preceding fixes: Vorbis and OpenAL are found, and the plain/keyword `target_link_libraries` signature errors are gone. CMake then reported that imported targets from vcpkg's cURL, FreeType, and PNG packages reference `ZLIB::ZLIB` before that target exists.
 
 The project already called `find_package(ZLIB REQUIRED)`, but only after the cURL and FreeType package configs were loaded. The existing lookup is moved ahead of those config packages so the imported `ZLIB::ZLIB` target exists at the moment their target interfaces are declared. This is an ordering fix; it does not add a dependency, disable cURL/audio, or replace imported targets. Run #92 did not reach compilation, Arabic tests, or packaging, so those remain pending verification.
+
+
+## Run #93 diagnosis and static Zlib target normalization — 2026-11-09
+
+Run #93 still failed at CMake generation on Linux. The earlier ordering change alone did not solve the issue: the vcpkg static zlib config exports `ZLIB::ZLIBSTATIC`, while the imported cURL, FreeType, and PNG interfaces in this build require the conventional `ZLIB::ZLIB` target. Since `CMAKE_FIND_PACKAGE_PREFER_CONFIG=ON` prefers the config package, the prior unqualified lookup did not create the target expected by those dependent packages.
+
+The lookup now explicitly selects CMake's built-in `FindZLIB.cmake` module (`find_package(ZLIB MODULE REQUIRED)`). The module reads the include and library paths supplied by vcpkg and creates the standard `ZLIB::ZLIB` imported target. A configure-time guard fails immediately with a specific diagnostic if that target was not created. This preserves static linking and keeps the rest of the package lookups in config mode. Compilation and tests are still unverified.

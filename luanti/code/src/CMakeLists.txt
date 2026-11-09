@@ -70,7 +70,13 @@ endif()
 
 # cURL, FreeType and PNG's vcpkg package configs refer to ZLIB::ZLIB.
 # Create that imported target before loading any of those package configs.
-find_package(ZLIB REQUIRED)
+# The vcpkg static zlib config exports ZLIB::ZLIBSTATIC, but several
+# dependent package configs expect the conventional ZLIB::ZLIB target.
+# Use FindZLIB explicitly; it creates that target from vcpkg's selected files.
+find_package(ZLIB MODULE REQUIRED)
+if(NOT TARGET ZLIB::ZLIB)
+	message(FATAL_ERROR "FindZLIB did not create the required ZLIB::ZLIB target.")
+endif()
 
 
 option(ENABLE_CURL "Enable cURL support" TRUE)
