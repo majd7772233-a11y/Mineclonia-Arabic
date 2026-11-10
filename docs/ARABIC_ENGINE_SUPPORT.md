@@ -282,3 +282,20 @@ The repeated `No SHA256 known for builtin file` messages are emitted by `ScriptA
 Run #101 used commit `5412b95bf891000b783aa1acff23709512d957e5`. Windows completed the client build, the 15 Arabic layout tests, portable-package checks, and uploaded artifact `luanti-arabic-windows-x64` (artifact ID `13716251277`). Linux completed the client build but failed 4 of 15 Arabic tests: direct HarfBuzz contextual shaping, Arabic contextual shaping through Raqm, lam-alef ligature formation, and the resulting shaping-cluster caret boundary. The other 11 tests passed. Linux has no package artifact from that run.
 
 The four Linux failures are independent from the Lua comma defect. Keep the Linux HarfBuzz/FreeType investigation open; do not weaken the shaping assertions or treat Windows success as proof that the Linux shaping path works.
+
+
+## Windows builtin SHA-256 path normalization — 2026-11-10
+
+The generated builtin manifest uses forward-slash keys such as common/math.lua. On Windows, fs::MakePathRelativeTo() returns native backslash-separated paths, so the previous direct map lookup missed valid entries and emitted repeated No SHA256 known warnings.
+
+The runtime now normalizes the relative path to forward slashes before looking it up. The new test coverage checks POSIX, Windows, and mixed-separator paths against actual entries in g_builtin_file_sha256_map. The warning remains active; this is a lookup fix, not warning suppression.
+
+Run #102 (ID 42774549330, HEAD 9bdd876eea9ab8087906b4d067d76fd587e84fc8):
+- Catalog and Lua syntax validation: passed.
+- Windows client build: passed.
+- Windows Arabic module: 16 tests, zero failures.
+- Windows portable package: passed; artifact ID 13742874657.
+- Linux client build: passed.
+- Linux Arabic module: 4 failures / 16 tests; no Linux package.
+
+The outstanding Linux failures are contextual Arabic shaping through Raqm, direct HarfBuzz shaping, lam-alef ligature formation, and the cursor boundary within that shaping cluster. Do not weaken these assertions. The separator-normalization change still needs a fresh Windows CI run and a real-client test with a newly downloaded matching artifact.

@@ -44,3 +44,15 @@ The Linux shaping problem is independent of the Lua syntax error and remains ope
 - The Windows GUI must be tested using the new artifact; verify the language selector opens.
 - Check whether the SHA warnings remain with the matching new executable and builtin files.
 - Linux Arabic shaping must still be investigated and fixed without weakening the failing assertions.
+
+
+## 2026-11-10 — Normalize Windows builtin SHA-256 paths
+
+**Starting commit:** 9bdd876eea9ab8087906b4d067d76fd587e84fc8  
+**Run reviewed:** #102, ID 42774549330.
+
+Run #102 passed the quick catalog/Lua validation. Windows compiled, passed all 16 Arabic tests, passed portable-package verification, and uploaded artifact 13742874657. Linux compiled but failed four of 16 Arabic shaping tests; the Linux package step did not run.
+
+The Windows startup warnings were traced to a path-key mismatch. HashBuiltinFiles.cmake emits forward-slash keys, while fs::MakePathRelativeTo() returns Windows backslashes. The runtime now normalizes before looking up the SHA manifest, and the existing manifest test covers POSIX, Windows, and mixed separators. The warning is deliberately not suppressed.
+
+This change awaits a fresh Windows CI result and real-client confirmation with a newly downloaded artifact. The Linux HarfBuzz/Raqm shaping failures remain open and their assertions remain unchanged.

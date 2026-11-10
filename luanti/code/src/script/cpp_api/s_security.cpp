@@ -736,7 +736,8 @@ bool ScriptApiSecurity::safeLoadFile(lua_State *L, const char *path, const char 
 	// Check sha256 if it's a builtin file
 	do {
 		assert(path != nullptr);
-		auto path_local = fs::MakePathRelativeTo(path, Server::getBuiltinLuaPath());
+		auto path_local = normalizeBuiltinFileSha256Path(
+				fs::MakePathRelativeTo(path, Server::getBuiltinLuaPath()));
 		if (path_local.empty())
 			break; // not in builtin
 

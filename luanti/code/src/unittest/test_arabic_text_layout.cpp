@@ -816,4 +816,19 @@ void TestArabicTextLayout::testBuiltinFileSha256Manifest()
 					(digit >= 'A' && digit <= 'F'));
 		}
 	}
+
+	// Runtime paths are native on Windows, while generated manifest keys
+	// always use forward slashes.
+	const std::string posix_path =
+			normalizeBuiltinFileSha256Path("common/math.lua");
+	const std::string windows_path =
+			normalizeBuiltinFileSha256Path("common\\math.lua");
+	const std::string mixed_path =
+			normalizeBuiltinFileSha256Path("common/settings\\dlg_settings.lua");
+	UASSERTEQ(std::string, windows_path, posix_path);
+	UASSERTEQ(std::string, mixed_path, "common/settings/dlg_settings.lua");
+	UASSERT(g_builtin_file_sha256_map.find(windows_path) !=
+			g_builtin_file_sha256_map.end());
+	UASSERT(g_builtin_file_sha256_map.find(mixed_path) !=
+			g_builtin_file_sha256_map.end());
 }
