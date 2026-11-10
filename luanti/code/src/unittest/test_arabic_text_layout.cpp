@@ -19,6 +19,7 @@
 #include <harfbuzz/hb-ft.h>
 #include <harfbuzz/hb-ot.h>
 
+#include <algorithm>
 #include <cstdint>
 #include <cstdlib>
 #include <iostream>
@@ -93,6 +94,32 @@ void initializeFont(FreeTypeFont &font, const char *relative_path = "fonts/NotoS
 	UASSERT(FT_Set_Pixel_Sizes(font.face, 0, 32) == 0);
 }
 
+std::string getGlyphName(FT_Face face, FT_UInt glyph_index)
+{
+	if (!face || !FT_HAS_GLYPH_NAMES(face))
+		return {};
+
+	char name[128] = {};
+	if (FT_Get_Glyph_Name(face, glyph_index, name,
+			static_cast<FT_UInt>(sizeof(name))) != 0)
+		return {};
+	return name;
+}
+
+size_t countGlyphName(const std::vector<std::string> &glyph_names,
+		const char *expected_name)
+{
+	return static_cast<size_t>(std::count(glyph_names.begin(),
+			glyph_names.end(), expected_name));
+}
+
+struct HarfBuzzShapeResult
+{
+	bool success = false;
+	std::vector<std::string> glyph_names;
+	std::vector<unsigned int> clusters;
+};
+
 void setRaqmText(RaqmLayout &layout, FT_Face face, const std::u32string &text)
 {
 	static_assert(sizeof(char32_t) == sizeof(uint32_t),
@@ -121,7 +148,8 @@ public:
 
 	void testArabicContextualShaping();
 	void testHarfBuzzOpenTypeArabicShaping();
-	void testLamAlefLigature();
+	void testLamAlefPreservesSeparateClusters();
+	void testArabicAllahLigatureCluster();
 	void testArabicExtendedLetters();
 	void testMixedDirectionParagraph();
 	void testBidiIsolatesAndArabicIndicDigits();
@@ -143,7 +171,8 @@ void TestArabicTextLayout::runTests(IGameDef *gamedef)
 {
 	TEST(testArabicContextualShaping);
 	TEST(testHarfBuzzOpenTypeArabicShaping);
-	TEST(testLamAlefLigature);
+	TEST(testLamAlefPreservesSeparateClusters);
+	TEST(testArabicAllahLigatureCluster);
 	TEST(testArabicExtendedLetters);
 	TEST(testMixedDirectionParagraph);
 	TEST(testBidiIsolatesAndArabicIndicDigits);
@@ -163,6 +192,7 @@ void TestArabicTextLayout::testArabicContextualShaping()
 {
 	FreeTypeFont font;
 	initializeFont(font);
+	UASSERT(FT_HAS_GLYPH_NAMES(font.face));
 
 	RaqmLayout layout;
 	const std::u32string text = U"بب";
@@ -177,24 +207,29 @@ void TestArabicTextLayout::testArabicContextualShaping()
 	size_t glyph_count = 0;
 	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
 	UASSERT(glyphs != nullptr);
-	UASSERTEQ(size_t, glyph_count, text.size());
 
-	const FT_UInt isolated_beh = FT_Get_Char_Index(font.face, 0x0628);
-	UASSERT(isolated_beh != 0);
-	bool has_contextual_form = false;
+	// Noto Sans Arabic decomposes each Beh into a contextual base and a
+	// separately positioned dot-below mark. Four glyphs are correct for
+	// two source characters; verify the actual OpenType glyph identities.
+	std::vector<std::string> glyph_names;
+	glyph_names.reserve(glyph_count);
 	for (size_t i = 0; i < glyph_count; ++i) {
 		UASSERT(glyphs[i].index != 0);
 		UASSERTEQ(FT_Face, glyphs[i].ftface, font.face);
-		if (glyphs[i].index != isolated_beh)
-			has_contextual_form = true;
+		glyph_names.push_back(getGlyphName(glyphs[i].ftface, glyphs[i].index));
+		UASSERT(!glyph_names.back().empty());
 	}
-	UASSERT(has_contextual_form);
+	UASSERTEQ(size_t, glyph_count, 4);
+	UASSERTEQ(size_t, countGlyphName(glyph_names, "dotbelowar"), 2);
+	UASSERTEQ(size_t, countGlyphName(glyph_names, "uni066E.init"), 1);
+	UASSERTEQ(size_t, countGlyphName(glyph_names, "uni066E.fina"), 1);
 }
 
 void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 {
 	FreeTypeFont font;
 	initializeFont(font);
+	UASSERT(FT_HAS_GLYPH_NAMES(font.face));
 
 	HarfBuzzObjects harfbuzz;
 	harfbuzz.font = hb_ft_font_create_referenced(font.face);
@@ -204,7 +239,7 @@ void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 	hb_ft_font_set_load_flags(harfbuzz.font, FT_LOAD_DEFAULT);
 
 	// Compare the FreeType adapter against HarfBuzz's direct OpenType face
-	// using the same data path, then report the exact GSUB script/features.
+	// using the same bundled font and report the exact GSUB script/features.
 	const std::string font_path =
 			porting::getDataPath("fonts/NotoSansArabic-Regular.ttf");
 	UASSERT(!font_path.empty());
@@ -257,6 +292,13 @@ void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 				&default_feature_capacity, default_features.data());
 		default_features.resize(default_feature_capacity);
 	}
+	const auto has_feature = [&](hb_tag_t wanted) {
+		return std::find(default_features.begin(), default_features.end(),
+				wanted) != default_features.end();
+	};
+	UASSERT(has_feature(HB_TAG('i', 'n', 'i', 't')));
+	UASSERT(has_feature(HB_TAG('f', 'i', 'n', 'a')));
+	UASSERT(has_feature(HB_TAG('l', 'i', 'g', 'a')));
 	const auto format_tags = [](const std::vector<hb_tag_t> &tags) {
 		std::string result;
 		for (hb_tag_t tag : tags) {
@@ -342,13 +384,15 @@ void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 		hb_buffer_reset(harfbuzz.buffer);
 		hb_buffer_add_utf32(harfbuzz.buffer, codepoints.data(),
 				static_cast<int>(codepoints.size()), 0,
-				static_cast<int>(codepoints.size()));
+					static_cast<int>(codepoints.size()));
 		const unsigned int input_count = hb_buffer_get_length(harfbuzz.buffer);
 		hb_buffer_set_direction(harfbuzz.buffer, HB_DIRECTION_RTL);
 		hb_buffer_set_script(harfbuzz.buffer, HB_SCRIPT_ARABIC);
 		hb_buffer_set_language(harfbuzz.buffer,
 				hb_language_from_string("ar", -1));
-		const bool shaped = hb_shape_full(shape_font, harfbuzz.buffer,
+
+		HarfBuzzShapeResult result;
+		result.success = hb_shape_full(shape_font, harfbuzz.buffer,
 				nullptr, 0, shaper_list) &&
 				hb_buffer_allocation_successful(harfbuzz.buffer);
 		const unsigned int output_count = hb_buffer_get_length(harfbuzz.buffer);
@@ -362,62 +406,84 @@ void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 				<< " language=" << hb_language_to_string(
 						hb_buffer_get_language(harfbuzz.buffer))
 				<< " glyphs=";
-		for (unsigned int i = 0; glyphs && i < output_count; ++i)
-			std::cerr << glyphs[i].codepoint << '@' << glyphs[i].cluster << ' ';
+		for (unsigned int i = 0; glyphs && i < output_count; ++i) {
+			const std::string name = getGlyphName(font.face, glyphs[i].codepoint);
+			result.glyph_names.push_back(name);
+			result.clusters.push_back(glyphs[i].cluster);
+			std::cerr << glyphs[i].codepoint << '[' << name << "]@"
+					<< glyphs[i].cluster << ' ';
+		}
 		std::cerr << std::endl;
-		return shaped;
+		return result;
+	};
+
+	const auto verify_contextual_beh = [&](const HarfBuzzShapeResult &result) {
+		UASSERT(result.success);
+		UASSERTEQ(size_t, result.glyph_names.size(), 4);
+		UASSERTEQ(size_t, countGlyphName(result.glyph_names, "dotbelowar"), 2);
+		UASSERTEQ(size_t, countGlyphName(result.glyph_names, "uni066E.init"), 1);
+		UASSERTEQ(size_t, countGlyphName(result.glyph_names, "uni066E.fina"), 1);
+	};
+	const auto verify_separate_lam_alef = [&](const HarfBuzzShapeResult &result) {
+		UASSERT(result.success);
+		UASSERTEQ(size_t, result.glyph_names.size(), 2);
+		UASSERTEQ(size_t, countGlyphName(result.glyph_names,
+				"uni0644.init.rlig"), 1);
+		UASSERTEQ(size_t, countGlyphName(result.glyph_names,
+				"uni0627.fina.rlig"), 1);
+	};
+	const auto verify_allah_ligature = [&](const HarfBuzzShapeResult &result) {
+		UASSERT(result.success);
+		UASSERTEQ(size_t, result.glyph_names.size(), 1);
+		UASSERTEQ(size_t, countGlyphName(result.glyph_names, "uniFDF2"), 1);
+		UASSERTEQ(size_t, result.clusters.size(), 1);
+		UASSERTEQ(unsigned int, result.clusters[0], 0);
 	};
 
 	static const char *const ot_shaper[] = {"ot", nullptr};
 	const std::u32string contextual_text = U"بب";
-	const bool direct_default_contextual = shape_arabic(direct.font,
-			contextual_text, nullptr, "direct-default-contextual");
-	const unsigned int direct_default_contextual_count =
-			hb_buffer_get_length(harfbuzz.buffer);
-	const bool direct_ot_contextual = shape_arabic(direct.font,
-			contextual_text, ot_shaper, "direct-ot-contextual");
-	const unsigned int direct_ot_contextual_count =
-			hb_buffer_get_length(harfbuzz.buffer);
-	const bool hb_ft_contextual = shape_arabic(harfbuzz.font,
-			contextual_text, nullptr, "hb-ft-default-contextual");
-	const unsigned int hb_ft_contextual_count =
-			hb_buffer_get_length(harfbuzz.buffer);
+	const HarfBuzzShapeResult direct_default_contextual = shape_arabic(
+			direct.font, contextual_text, nullptr, "direct-default-contextual");
+	const HarfBuzzShapeResult direct_ot_contextual = shape_arabic(
+			direct.font, contextual_text, ot_shaper, "direct-ot-contextual");
+	const HarfBuzzShapeResult hb_ft_contextual = shape_arabic(
+			harfbuzz.font, contextual_text, nullptr, "hb-ft-default-contextual");
 
 	const std::u32string lam_alef_text = U"لا";
-	const bool direct_default_lam_alef = shape_arabic(direct.font,
-			lam_alef_text, nullptr, "direct-default-lam-alef");
-	const unsigned int direct_default_lam_alef_count =
-			hb_buffer_get_length(harfbuzz.buffer);
-	const bool direct_ot_lam_alef = shape_arabic(direct.font,
-			lam_alef_text, ot_shaper, "direct-ot-lam-alef");
-	const unsigned int direct_ot_lam_alef_count =
-			hb_buffer_get_length(harfbuzz.buffer);
-	const bool hb_ft_lam_alef = shape_arabic(harfbuzz.font,
-			lam_alef_text, nullptr, "hb-ft-default-lam-alef");
-	const unsigned int hb_ft_lam_alef_count =
-			hb_buffer_get_length(harfbuzz.buffer);
+	const HarfBuzzShapeResult direct_default_lam_alef = shape_arabic(
+			direct.font, lam_alef_text, nullptr, "direct-default-lam-alef");
+	const HarfBuzzShapeResult direct_ot_lam_alef = shape_arabic(
+			direct.font, lam_alef_text, ot_shaper, "direct-ot-lam-alef");
+	const HarfBuzzShapeResult hb_ft_lam_alef = shape_arabic(
+			harfbuzz.font, lam_alef_text, nullptr, "hb-ft-default-lam-alef");
 
-	UASSERT(direct_default_contextual);
-	UASSERTEQ(unsigned int, direct_default_contextual_count,
-			static_cast<unsigned int>(contextual_text.size()));
-	UASSERT(direct_ot_contextual);
-	UASSERTEQ(unsigned int, direct_ot_contextual_count,
-			static_cast<unsigned int>(contextual_text.size()));
-	UASSERT(hb_ft_contextual);
-	UASSERTEQ(unsigned int, hb_ft_contextual_count,
-			static_cast<unsigned int>(contextual_text.size()));
-	UASSERT(direct_default_lam_alef);
-	UASSERTEQ(unsigned int, direct_default_lam_alef_count, 1);
-	UASSERT(direct_ot_lam_alef);
-	UASSERTEQ(unsigned int, direct_ot_lam_alef_count, 1);
-	UASSERT(hb_ft_lam_alef);
-	UASSERTEQ(unsigned int, hb_ft_lam_alef_count, 1);
+	const std::u32string supported_ligature_text = U"اللّٰه";
+	const HarfBuzzShapeResult direct_default_ligature = shape_arabic(
+			direct.font, supported_ligature_text, nullptr,
+			"direct-default-supported-ligature");
+	const HarfBuzzShapeResult direct_ot_ligature = shape_arabic(
+			direct.font, supported_ligature_text, ot_shaper,
+			"direct-ot-supported-ligature");
+	const HarfBuzzShapeResult hb_ft_ligature = shape_arabic(
+			harfbuzz.font, supported_ligature_text, nullptr,
+			"hb-ft-default-supported-ligature");
+
+	verify_contextual_beh(direct_default_contextual);
+	verify_contextual_beh(direct_ot_contextual);
+	verify_contextual_beh(hb_ft_contextual);
+	verify_separate_lam_alef(direct_default_lam_alef);
+	verify_separate_lam_alef(direct_ot_lam_alef);
+	verify_separate_lam_alef(hb_ft_lam_alef);
+	verify_allah_ligature(direct_default_ligature);
+	verify_allah_ligature(direct_ot_ligature);
+	verify_allah_ligature(hb_ft_ligature);
 }
 
-void TestArabicTextLayout::testLamAlefLigature()
+void TestArabicTextLayout::testLamAlefPreservesSeparateClusters()
 {
 	FreeTypeFont font;
 	initializeFont(font);
+	UASSERT(FT_HAS_GLYPH_NAMES(font.face));
 
 	RaqmLayout layout;
 	const std::u32string text = U"لا";
@@ -429,34 +495,160 @@ void TestArabicTextLayout::testLamAlefLigature()
 	size_t glyph_count = 0;
 	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
 	UASSERT(glyphs != nullptr);
-	// Noto Sans Arabic applies the mandatory lam-alef contextual ligature.
-	UASSERTEQ(size_t, glyph_count, 1);
-	UASSERT(glyphs[0].index != 0);
-	UASSERTEQ(size_t, glyphs[0].cluster, 0);
+	UASSERTEQ(size_t, glyph_count, 2);
 
-	// Lam-alef is two Unicode graphemes, but one shaped glyph cluster. The
-	// cursor must not stop between the two source characters.
-	UASSERT(raqm_allowed_grapheme_boundary(layout.value, 0));
-	const auto shaping_clusters =
+	std::vector<std::string> glyph_names;
+	glyph_names.reserve(glyph_count);
+	for (size_t i = 0; i < glyph_count; ++i) {
+		glyph_names.push_back(getGlyphName(glyphs[i].ftface, glyphs[i].index));
+		UASSERT(!glyph_names.back().empty());
+	}
+	UASSERTEQ(size_t, countGlyphName(glyph_names, "uni0644.init.rlig"), 1);
+	UASSERTEQ(size_t, countGlyphName(glyph_names, "uni0627.fina.rlig"), 1);
+
+	const auto clusters =
 			gui::text_layout::getShapingClusterBoundaries(layout.value, text.size());
-	UASSERT(gui::text_layout::isAllowedCursorBoundary(
-			layout.value, 0, text.size(), shaping_clusters));
-	UASSERT(!gui::text_layout::isAllowedCursorBoundary(
-			layout.value, 1, text.size(), shaping_clusters));
-	UASSERT(gui::text_layout::isAllowedCursorBoundary(
-			layout.value, 2, text.size(), shaping_clusters));
+	for (size_t boundary = 0; boundary <= text.size(); ++boundary) {
+		UASSERT(gui::text_layout::isAllowedCursorBoundary(
+				layout.value, boundary, text.size(), clusters));
+	}
 
-	// A selection of only the alef still colors the complete lam-alef glyph.
 	const auto expanded = gui::text_layout::expandSelectionToShapingClusters(
-			shaping_clusters, text.size(), 1, 2);
-	UASSERTEQ(size_t, expanded.first, 0);
+			clusters, text.size(), 1, 2);
+	UASSERTEQ(size_t, expanded.first, 1);
 	UASSERTEQ(size_t, expanded.second, 2);
 	const auto safe_expanded = gui::text_layout::expandSelectionToCursorBoundaries(
-			layout.value, shaping_clusters, text.size(), 1, 2);
-	UASSERTEQ(size_t, safe_expanded.first, 0);
+			layout.value, clusters, text.size(), 1, 2);
+	UASSERTEQ(size_t, safe_expanded.first, 1);
 	UASSERTEQ(size_t, safe_expanded.second, 2);
 }
 
+void TestArabicTextLayout::testArabicAllahLigatureCluster()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+	UASSERT(FT_HAS_GLYPH_NAMES(font.face));
+
+	RaqmLayout layout;
+	const std::u32string text = U"اللّٰه";
+	setRaqmText(layout, font.face, text);
+	UASSERT(raqm_set_language(layout.value, "ar", 0, text.size()));
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(layout.value));
+
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
+	UASSERT(glyphs != nullptr);
+	UASSERTEQ(size_t, glyph_count, 1);
+	UASSERTEQ(size_t, glyphs[0].cluster, 0);
+	UASSERTEQ(std::string, getGlyphName(glyphs[0].ftface, glyphs[0].index),
+			"uniFDF2");
+
+	const auto clusters =
+			gui::text_layout::getShapingClusterBoundaries(layout.value, text.size());
+	for (size_t boundary = 1; boundary < text.size(); ++boundary) {
+		UASSERT(!gui::text_layout::isAllowedCursorBoundary(
+				layout.value, boundary, text.size(), clusters));
+	}
+	UASSERT(gui::text_layout::isAllowedCursorBoundary(
+			layout.value, 0, text.size(), clusters));
+	UASSERT(gui::text_layout::isAllowedCursorBoundary(
+			layout.value, text.size(), text.size(), clusters));
+
+	const auto expanded = gui::text_layout::expandSelectionToShapingClusters(
+			clusters, text.size(), 2, 3);
+	UASSERTEQ(size_t, expanded.first, 0);
+	UASSERTEQ(size_t, expanded.second, text.size());
+	const auto safe_expanded = gui::text_layout::expandSelectionToCursorBoundaries(
+			layout.value, clusters, text.size(), 2, 3);
+	UASSERTEQ(size_t, safe_expanded.first, 0);
+	UASSERTEQ(size_t, safe_expanded.second, text.size());
+}
+void TestArabicTextLayout::testLamAlefPreservesSeparateClusters()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+	UASSERT(FT_HAS_GLYPH_NAMES(font.face));
+
+	RaqmLayout layout;
+	const std::u32string text = U"لا";
+	setRaqmText(layout, font.face, text);
+	UASSERT(raqm_set_language(layout.value, "ar", 0, text.size()));
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(layout.value));
+
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
+	UASSERT(glyphs != nullptr);
+	UASSERTEQ(size_t, glyph_count, 2);
+
+	std::vector<std::string> glyph_names;
+	glyph_names.reserve(glyph_count);
+	for (size_t i = 0; i < glyph_count; ++i) {
+		glyph_names.push_back(getGlyphName(glyphs[i].ftface, glyphs[i].index));
+		UASSERT(!glyph_names.back().empty());
+	}
+	UASSERTEQ(size_t, countGlyphName(glyph_names, "uni0644.init.rlig"), 1);
+	UASSERTEQ(size_t, countGlyphName(glyph_names, "uni0627.fina.rlig"), 1);
+
+	const auto clusters =
+			gui::text_layout::getShapingClusterBoundaries(layout.value, text.size());
+	for (size_t boundary = 0; boundary <= text.size(); ++boundary) {
+		UASSERT(gui::text_layout::isAllowedCursorBoundary(
+				layout.value, boundary, text.size(), clusters));
+	}
+
+	const auto expanded = gui::text_layout::expandSelectionToShapingClusters(
+			clusters, text.size(), 1, 2);
+	UASSERTEQ(size_t, expanded.first, 1);
+	UASSERTEQ(size_t, expanded.second, 2);
+	const auto safe_expanded = gui::text_layout::expandSelectionToCursorBoundaries(
+			layout.value, clusters, text.size(), 1, 2);
+	UASSERTEQ(size_t, safe_expanded.first, 1);
+	UASSERTEQ(size_t, safe_expanded.second, 2);
+}
+
+void TestArabicTextLayout::testArabicAllahLigatureCluster()
+{
+	FreeTypeFont font;
+	initializeFont(font);
+	UASSERT(FT_HAS_GLYPH_NAMES(font.face));
+
+	RaqmLayout layout;
+	const std::u32string text = U"اللّٰه";
+	setRaqmText(layout, font.face, text);
+	UASSERT(raqm_set_language(layout.value, "ar", 0, text.size()));
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(layout.value));
+
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
+	UASSERT(glyphs != nullptr);
+	UASSERTEQ(size_t, glyph_count, 1);
+	UASSERTEQ(size_t, glyphs[0].cluster, 0);
+	UASSERTEQ(std::string, getGlyphName(glyphs[0].ftface, glyphs[0].index),
+			"uniFDF2");
+
+	const auto clusters =
+			gui::text_layout::getShapingClusterBoundaries(layout.value, text.size());
+	for (size_t boundary = 1; boundary < text.size(); ++boundary) {
+		UASSERT(!gui::text_layout::isAllowedCursorBoundary(
+				layout.value, boundary, text.size(), clusters));
+	}
+	UASSERT(gui::text_layout::isAllowedCursorBoundary(
+			layout.value, 0, text.size(), clusters));
+	UASSERT(gui::text_layout::isAllowedCursorBoundary(
+			layout.value, text.size(), text.size(), clusters));
+
+	const auto expanded = gui::text_layout::expandSelectionToShapingClusters(
+			clusters, text.size(), 2, 3);
+	UASSERTEQ(size_t, expanded.first, 0);
+	UASSERTEQ(size_t, expanded.second, text.size());
+	const auto safe_expanded = gui::text_layout::expandSelectionToCursorBoundaries(
+			layout.value, clusters, text.size(), 2, 3);
+	UASSERTEQ(size_t, safe_expanded.first, 0);
+	UASSERTEQ(size_t, safe_expanded.second, text.size());
+}
 void TestArabicTextLayout::testArabicExtendedLetters()
 {
 	FreeTypeFont font;
@@ -677,7 +869,7 @@ void TestArabicTextLayout::testVisualWordDeletionRangesMixedDirection()
 void TestArabicTextLayout::testMouseHitTestingRespectsShapingClusters()
 {
 	const auto verify_hits = [](RaqmLayout &layout, const std::u32string &text,
-			size_t forbidden_boundary) {
+			const std::vector<size_t> &forbidden_boundaries) {
 		const auto clusters =
 				gui::text_layout::getShapingClusterBoundaries(layout.value, text.size());
 		size_t glyph_count = 0;
@@ -701,26 +893,26 @@ void TestArabicTextLayout::testMouseHitTestingRespectsShapingClusters()
 			UASSERT(boundary <= text.size());
 			UASSERT(gui::text_layout::isAllowedCursorBoundary(
 					layout.value, boundary, text.size(), clusters));
-			UASSERT(boundary != forbidden_boundary);
+			for (size_t forbidden : forbidden_boundaries)
+				UASSERT(boundary != forbidden);
 		}
 	};
 
 	FreeTypeFont font;
 	initializeFont(font);
 
-	// Lam-alef is rendered as one glyph but contains two Unicode scalars.
+	// Noto Sans Arabic has a real six-codepoint Allah ligature (uniFDF2).
+	// Mouse hit testing must never return a caret inside that single glyph cluster.
 	RaqmLayout ligature;
-	const std::u32string lam_alef = U"لا";
-	setRaqmText(ligature, font.face, lam_alef);
-	UASSERT(raqm_set_language(ligature.value, "ar", 0, lam_alef.size()));
+	const std::u32string allah_ligature = U"اللّٰه";
+	setRaqmText(ligature, font.face, allah_ligature);
+	UASSERT(raqm_set_language(ligature.value, "ar", 0, allah_ligature.size()));
 	UASSERT(raqm_set_par_direction(ligature.value, RAQM_DIRECTION_DEFAULT));
 	UASSERT(raqm_layout(ligature.value));
-	const auto ligature_clusters =
-			gui::text_layout::getShapingClusterBoundaries(
-					ligature.value, lam_alef.size());
-	UASSERT(!gui::text_layout::isAllowedCursorBoundary(
-				ligature.value, 1, lam_alef.size(), ligature_clusters));
-	verify_hits(ligature, lam_alef, 1);
+	std::vector<size_t> forbidden_ligature_boundaries;
+	for (size_t boundary = 1; boundary < allah_ligature.size(); ++boundary)
+		forbidden_ligature_boundaries.push_back(boundary);
+	verify_hits(ligature, allah_ligature, forbidden_ligature_boundaries);
 
 	// A combining shadda must stay attached to its base letter during hit tests.
 	RaqmLayout combining;
@@ -734,7 +926,7 @@ void TestArabicTextLayout::testMouseHitTestingRespectsShapingClusters()
 					combining.value, combining_text.size());
 	UASSERT(!gui::text_layout::isAllowedCursorBoundary(
 				combining.value, 1, combining_text.size(), combining_clusters));
-	verify_hits(combining, combining_text, 1);
+	verify_hits(combining, combining_text, {1});
 
 	// Mixed-direction hit testing must still return logical, safe source indices.
 	RaqmLayout mixed;
@@ -745,7 +937,7 @@ void TestArabicTextLayout::testMouseHitTestingRespectsShapingClusters()
 	UASSERT(raqm_layout(mixed.value));
 	UASSERTEQ(raqm_direction_t, raqm_get_par_resolved_direction(mixed.value),
 			RAQM_DIRECTION_LTR);
-	verify_hits(mixed, mixed_text, mixed_text.size() + 1);
+	verify_hits(mixed, mixed_text, {});
 }
 
 void TestArabicTextLayout::testUnicodeWordSelectionRanges()

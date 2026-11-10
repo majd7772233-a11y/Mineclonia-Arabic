@@ -315,3 +315,24 @@ To isolate Linux shaping, the next diagnostic adds the font path/family, HarfBuz
 Run #104 (ID `42781584482`, HEAD `8f65db053c48e78c7bfe208b3f8c15562b7706a8`) passed quick validation and CMake configuration. Linux compilation then stopped because HarfBuzz deliberately rejects direct inclusion of `hb-shape-plan.h`; the supported `hb.h` umbrella header is already included and exposes those declarations. The direct include has been removed.
 
 The diagnostic's GSUB feature enumeration now uses the total count returned by `hb_ot_layout_language_get_feature_tags()` to allocate storage, then passes that capacity to retrieve the tags. The prior zero-capacity query produced an empty copied-count and therefore an empty list. Run #105 must verify the correction and provide the first usable shaping diagnostic.
+
+
+## Run #105 review and font-accurate shaping verification — 2026-11-10
+
+Starting HEAD: `9eda41ba6285afb6ef0891a4493ac9cf35b32d99`. Run #105 ID: `42782985200`.
+
+The user's Lua startup parser error was the missing comma after the Arabic language label. It is present in the current source and passed the pinned Lua parser gate in Run #105. The user's reported log timestamp (2026-11-09 23:41) predates the Run #105 Windows artifact (2026-11-10 08:39 UTC), so the old installation must be replaced with the matching artifact to verify the menu fix and SHA warnings.
+
+Run #105:
+- Catalog and embedded Lua validation: passed.
+- Linux: CMake configure and full client compilation passed; Arabic module failed 4/16; no Linux package.
+- Windows: CMake configure and full client compilation passed; Arabic module passed 16/16; portable package checks passed; artifact ID `13747836271`, digest `4a9a73c22c6c1f3d1b818472d22eaf0abf6549357b6cf26c43b0a336c4636890`.
+
+Analysis of the exact bundled Noto Sans Arabic font explains the four Linux assertions:
+- The sequence `بب` produces two contextual base glyphs (`uni066E.init`, `uni066E.fina`) plus two separately positioned `dotbelowar` marks. Counting one output glyph per input scalar was incorrect.
+- The plain Lam-Alef sequence `لا` has no GSUB ligature in this bundled font. It is rendered as `uni0644.init.rlig` plus `uni0627.fina.rlig`, with two distinct clusters.
+- The bundled font does contain a supported six-codepoint ligature: `اللّٰه` shapes to the single glyph `uniFDF2`. This is now the real multi-scalar ligature used to test caret and mouse-hit-test cluster protection.
+
+The revised regression suite checks the actual glyph names and clusters instead of imposing ligatures that the selected font does not contain. It preserves strict assertions: both contextual forms and both dot marks must be present; plain Lam-Alef must keep two independent caret stops; the supported Allah ligature must be one glyph cluster with no interior caret positions. CI now requires exactly 17 tests and a zero-failure summary on both platforms.
+
+No production shaping code was changed as part of this correction. Run #106 must prove all 17 tests and both portable packages before claiming completion. The user's installed copy still needs a real GUI launch using artifact ID `13747836271` or a newer matching Windows artifact.

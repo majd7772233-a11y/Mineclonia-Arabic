@@ -165,7 +165,7 @@ jobs:
           set -e
           cat "$log"
           test "$status" -eq 0
-          grep -Eq 'Module TestArabicTextLayout passed \(0 failures / [0-9]+ tests\)' "$log"
+          grep -Eq 'Module TestArabicTextLayout passed \(0 failures / 17 tests\)' "$log"
 
       - name: Install and verify portable Linux package
         working-directory: luanti/code
@@ -293,9 +293,12 @@ jobs:
           $testExitCode = $LASTEXITCODE
           $testOutput | Tee-Object -FilePath $log
           if ($testExitCode -ne 0) { exit $testExitCode }
-          if (-not (Select-String -Path $log -Pattern 'Module TestArabicTextLayout passed \(0 failures / [0-9]+ tests\)' -Quiet)) {
-            throw "Arabic text-layout tests did not report a zero-failure summary."
+          $summary = Select-String -Path $log -Pattern 'Module TestArabicTextLayout passed \(0 failures / 17 tests\)' | Select-Object -First 1
+          if (-not $summary) {
+            Get-Content $log
+            throw "Arabic text-layout tests did not report the expected 17-test zero-failure summary."
           }
+          Write-Host "Verified Arabic regression result: $($summary.Line)"
 
       - name: Install and verify portable Windows package
         working-directory: luanti/code

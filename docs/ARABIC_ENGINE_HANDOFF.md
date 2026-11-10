@@ -110,3 +110,40 @@ Run #104 ID `42781584482`, HEAD `8f65db053c48e78c7bfe208b3f8c15562b7706a8`, pass
 Reviewing the diagnostic against HarfBuzz's API implementation exposed a second issue: `hb_ot_layout_language_get_feature_tags()` returns the total available feature count, whereas its in/out `feature_count` argument is a caller-supplied output capacity and becomes the number copied. The previous code passed zero capacity and then incorrectly used the output count as the vector size, making the feature list empty. It now uses the function's return value to allocate the vector, then reads the tags with matching capacity.
 
 The Windows job in Run #104 was still building when this correction was prepared. The push of the follow-up commit supersedes that run through the workflow's `cancel-in-progress` policy. Run #105 must verify both compilation and the new diagnostic output; no shaping fix is claimed yet.
+
+
+## 2026-11-10 — Run #105 review and next continuation point
+
+**Current starting HEAD before this patch:** `9eda41ba6285afb6ef0891a4493ac9cf35b32d99`  
+**Protected main observed:** `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`  
+**Run reviewed:** #105, ID `42782985200`.
+
+### User startup error and SHA warnings
+
+The user's Lua parser error was caused by a missing comma after `ar = "العربية [ar]"`. The comma is present in `luanti/code/builtin/common/settings/dlg_settings.lua`, the reference-tree copy was already correct, and Run #105 passed the Lua parser across both builtin trees. The user's reported log was timestamped 2026-11-09 23:41, before the Run #105 artifact was produced on 2026-11-10. Test with the matching updated package; do not diagnose the current source from that older binary.
+
+The SHA warnings have a separate fix: `normalizeBuiltinFileSha256Path()` maps Windows backslashes to the forward-slash keys generated for the builtin SHA manifest. The Windows regression test passed in Run #105. A real launch with a current matching artifact is still required to confirm the warning is gone from the user's setup.
+
+### Run #105 results
+
+- Catalog and Lua validation: passed.
+- Linux configure/build: passed; Arabic module failed 4/16, so no Linux artifact.
+- Windows configure/build: passed; Arabic module passed 16/16; package checks and upload passed.
+- Windows artifact: ID `13747836271`, digest `sha256:4a9a73c22c6c1f3d1b818472d22eaf0abf6549357b6cf26c43b0a336c4636890`.
+
+### Why the four Linux assertions were invalid for the bundled font
+
+The tested file is the repository's bundled `NotoSansArabic-Regular.ttf` (844,676 bytes; Git blob `f1d01edce4ebaedcbe9a06fc75fec07b304ec3df`). Its GSUB table has Arabic contextual features and separate dot-below glyph composition:
+- `بب` becomes `uni066E.init` and `uni066E.fina`, plus two `dotbelowar` glyphs. Four output glyphs are expected for these two source scalars.
+- Plain `لا` is not a GSUB ligature in this font; it yields `uni0644.init.rlig` and `uni0627.fina.rlig` with separate clusters. The test had incorrectly demanded one glyph.
+- The font does have a real six-codepoint ligature: `اللّٰه` shapes to the single glyph `uniFDF2`.
+
+The test patch therefore verifies the exact contextual glyph names, tests plain Lam-Alef as two glyph/cluster stops, and uses the real `uniFDF2` ligature for cluster-safe keyboard/mouse boundaries. These changes correct the test assumptions; they do not alter the production Raqm/Harfbuzz shaping path.
+
+### Next steps after this patch
+
+1. Run the quick catalog/Lua gate and inspect its result.
+2. Run Linux and Windows once; require `TestArabicTextLayout passed (0 failures / 17 tests)` on both.
+3. Confirm both packages and runtime dependencies, and retain the Windows artifact URL/digest.
+4. Have the user replace the old installed folder with the matching Windows artifact, open Settings/Language, and verify no Lua startup error or SHA warnings.
+5. Continue real-client checks for clipboard, drag/Shift selection, clipping/alignment; keep the handoff and worklog current with every commit.

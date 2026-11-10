@@ -88,3 +88,27 @@ The Lua/catalog validation and both CMake configurations passed. Linux failed wh
 A second issue was found during API review: the feature-tag query returns the total number of GSUB feature tags as its function result, while its in/out count parameter specifies output capacity and then the number copied. The diagnostic had mistakenly used the copied count from a zero-capacity query, so it printed an empty feature list. The revised code allocates from the returned total and fetches the actual tags.
 
 Run #104's Windows build was still running at the time of this patch. The new commit supersedes that run via the workflow's branch concurrency policy. Run #105 must confirm the diagnostic builds on both platforms, record the selected HarfBuzz shaper/Arabic GSUB features, and determine whether forced OpenType shaping behaves differently. Linux shaping assertions remain unchanged.
+
+
+## 2026-11-10 — Run #105 font analysis and regression-test correction
+
+**Starting HEAD:** `9eda41ba6285afb6ef0891a4493ac9cf35b32d99`  
+**Run reviewed:** #105, ID `42782985200`.
+
+The user's Lua startup syntax issue was already fixed in the current source, and the Lua parser gate passed in Run #105. The user's log timestamp (2026-11-09 23:41) predates the matching Windows package produced by Run #105 (2026-11-10 08:39 UTC). The old installation is not evidence that the latest fixed package still fails.
+
+The SHA-256 warnings are independent. Path normalization from native separators to the generated forward-slash manifest keys is already implemented and its Windows unit test passed in Run #105. The user still needs to test with the matching artifact to verify the warnings disappear in their installed environment.
+
+Run #105 result:
+- Linux: catalog/Lua validation, CMake configure and client compilation passed; Arabic test module failed 4/16; no Linux package.
+- Windows: catalog/Lua validation, configure, build, 16/16 Arabic tests, package verification and upload passed.
+- Windows artifact ID `13747836271`, SHA-256 `4a9a73c22c6c1f3d1b818472d22eaf0abf6549357b6cf26c43b0a336c4636890`.
+
+A direct inspection of the exact bundled Noto Sans Arabic font demonstrated that the failed glyph-count assumptions were not portable font requirements:
+- `بب` uses two contextual glyph forms and two separately drawn dot-below marks. Four glyphs are correct, not a failure.
+- The font's GSUB does not define a plain `لا` ligature; it shapes the two characters as `uni0644.init.rlig` and `uni0627.fina.rlig`.
+- The font does define a real Allah ligature: the six codepoints in `اللّٰه` are replaced by `uniFDF2`, a single glyph/cluster.
+
+The revised tests preserve strong validation while matching the bundled font's actual OpenType tables. Contextual tests require exact initial/final base glyphs and both dot marks. Plain Lam-Alef tests preserve two legal cursor stops. A real `uniFDF2` ligature exercises indivisible cluster selection and mouse hit-testing. The Windows and Linux workflow guards now require an exact 17-test zero-failure summary, reducing ambiguity about whether the intended module actually ran.
+
+This correction modifies tests, CI assertions, and handoff documentation only; no production shaping workaround or weakened runtime logic is introduced. Run #106 must validate compilation and all 17 tests on both systems before packaging and completion are claimed.
