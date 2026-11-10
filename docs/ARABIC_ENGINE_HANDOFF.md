@@ -101,3 +101,12 @@ Run #103's diagnostics show matching 5,854-byte GSUB tables through FreeType, hb
 3. Re-run Linux and Windows once the shaping patch is complete; require all 16 Arabic tests to pass and verify both packages.
 4. Ask the user to test the matching Windows artifact linked in the conversation: launch the menu, open Settings/Language, and confirm the SHA warnings no longer appear.
 5. Continue real-client checks for clipboard, drag/Shift selection, and text clipping/alignment.
+
+
+## Run #104 correction — public HarfBuzz header and GSUB feature count
+
+Run #104 ID `42781584482`, HEAD `8f65db053c48e78c7bfe208b3f8c15562b7706a8`, passed catalog/Lua validation and CMake configuration. Linux stopped compiling the diagnostic test at `#include <harfbuzz/hb-shape-plan.h>`: HarfBuzz 14.3.1 deliberately rejects direct inclusion of that internal header and requires the public `<hb.h>` umbrella header. The test already included `<harfbuzz/hb.h>`, which exports the shape-plan declarations, so the direct internal include has been removed.
+
+Reviewing the diagnostic against HarfBuzz's API implementation exposed a second issue: `hb_ot_layout_language_get_feature_tags()` returns the total available feature count, whereas its in/out `feature_count` argument is a caller-supplied output capacity and becomes the number copied. The previous code passed zero capacity and then incorrectly used the output count as the vector size, making the feature list empty. It now uses the function's return value to allocate the vector, then reads the tags with matching capacity.
+
+The Windows job in Run #104 was still building when this correction was prepared. The push of the follow-up commit supersedes that run through the workflow's `cancel-in-progress` policy. Run #105 must verify both compilation and the new diagnostic output; no shaping fix is claimed yet.

@@ -76,3 +76,15 @@ Run #103 results:
 - Windows artifact ID: `13745910497`, size 20,663,963 bytes, SHA-256 `e8a6e012915bed39de21d23cce6d8afb1639bf5744d86217512a06b5b9255ddb`.
 
 The Linux shaping failures are reproducible in direct HarfBuzz as well as Raqm, so they are not merely a selection/caret mapping issue. The source-level diagnostic now reports the selected HarfBuzz plan shaper, `HB_SHAPER_LIST`, actual font path/family, nominal Beh glyph, Arabic GSUB Script/default LangSys features, and forced-OpenType versus default shaping results for contextual Beh and lam-alef. Existing glyph-count and cursor-boundary assertions remain unchanged.
+
+
+## 2026-11-10 — Run #104 diagnostic compile correction
+
+**Starting commit:** `8f65db053c48e78c7bfe208b3f8c15562b7706a8`  
+**Run reviewed:** #104, ID `42781584482`.
+
+The Lua/catalog validation and both CMake configurations passed. Linux failed while compiling the new diagnostic because HarfBuzz 14.3.1 forbids direct inclusion of `hb-shape-plan.h`; `hb.h` is the supported public umbrella and already declares the shape-plan functions. The direct internal-header include was removed.
+
+A second issue was found during API review: the feature-tag query returns the total number of GSUB feature tags as its function result, while its in/out count parameter specifies output capacity and then the number copied. The diagnostic had mistakenly used the copied count from a zero-capacity query, so it printed an empty feature list. The revised code allocates from the returned total and fetches the actual tags.
+
+Run #104's Windows build was still running at the time of this patch. The new commit supersedes that run via the workflow's branch concurrency policy. Run #105 must confirm the diagnostic builds on both platforms, record the selected HarfBuzz shaper/Arabic GSUB features, and determine whether forced OpenType shaping behaves differently. Linux shaping assertions remain unchanged.

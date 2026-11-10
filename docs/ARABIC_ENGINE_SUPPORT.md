@@ -308,3 +308,10 @@ Run #103 (ID `42777977334`, HEAD `baa79571161b0558afb3185ee7bbab3f349a4c44`) pas
 The application startup syntax defect is already repaired: the source language-label table now has the comma after Arabic before the Belarusian `be` entry. The fast builtin Lua parser gate passed in Run #103. The Windows SHA warning fix normalizes the filesystem path separators before querying the generated SHA-256 manifest; its regression test passed in the Windows 16-test module. Real GUI verification still requires launching the newly uploaded artifact.
 
 To isolate Linux shaping, the next diagnostic adds the font path/family, HarfBuzz version/environment, selected shaping-plan shaper, direct nominal glyph mapping, Arabic GSUB Script/default-LangSys features, and side-by-side default versus forced-OpenType shaping results. Do not weaken the four failing Linux assertions.
+
+
+## Run #104 — diagnostic header/count correction
+
+Run #104 (ID `42781584482`, HEAD `8f65db053c48e78c7bfe208b3f8c15562b7706a8`) passed quick validation and CMake configuration. Linux compilation then stopped because HarfBuzz deliberately rejects direct inclusion of `hb-shape-plan.h`; the supported `hb.h` umbrella header is already included and exposes those declarations. The direct include has been removed.
+
+The diagnostic's GSUB feature enumeration now uses the total count returned by `hb_ot_layout_language_get_feature_tags()` to allocate storage, then passes that capacity to retrieve the tags. The prior zero-capacity query produced an empty copied-count and therefore an empty list. Run #105 must verify the correction and provide the first usable shaping diagnostic.

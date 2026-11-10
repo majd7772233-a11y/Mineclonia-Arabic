@@ -18,7 +18,6 @@
 #include <harfbuzz/hb.h>
 #include <harfbuzz/hb-ft.h>
 #include <harfbuzz/hb-ot.h>
-#include <harfbuzz/hb-shape-plan.h>
 
 #include <cstdint>
 #include <cstdlib>
@@ -242,19 +241,21 @@ void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 	const bool has_arabic_gsub_script = hb_ot_layout_table_find_script(
 			direct.face, HB_OT_TAG_GSUB, HB_TAG('a', 'r', 'a', 'b'),
 			&arabic_gsub_script_index);
-	unsigned int default_feature_count = 0;
-	if (has_arabic_gsub_script) {
+	unsigned int default_feature_capacity = 0;
+	const unsigned int total_default_features = has_arabic_gsub_script
+			? hb_ot_layout_language_get_feature_tags(direct.face,
+					HB_OT_TAG_GSUB, arabic_gsub_script_index,
+					HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX, 0,
+					&default_feature_capacity, nullptr)
+			: 0;
+	std::vector<hb_tag_t> default_features(total_default_features);
+	if (total_default_features) {
+		default_feature_capacity = total_default_features;
 		hb_ot_layout_language_get_feature_tags(direct.face, HB_OT_TAG_GSUB,
 				arabic_gsub_script_index,
 				HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX, 0,
-				&default_feature_count, nullptr);
-	}
-	std::vector<hb_tag_t> default_features(default_feature_count);
-	if (default_feature_count) {
-		hb_ot_layout_language_get_feature_tags(direct.face, HB_OT_TAG_GSUB,
-				arabic_gsub_script_index,
-				HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX, 0,
-				&default_feature_count, default_features.data());
+				&default_feature_capacity, default_features.data());
+		default_features.resize(default_feature_capacity);
 	}
 	const auto format_tags = [](const std::vector<hb_tag_t> &tags) {
 		std::string result;
