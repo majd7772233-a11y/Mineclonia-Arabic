@@ -256,3 +256,29 @@ Run #100 provides a strong platform split: Windows completed the client build, a
 The test helper previously reinterpreted a `char32_t` buffer as `uint32_t` for Raqm. Those are distinct C++ types, so the read could violate strict-aliasing rules under optimized Linux builds. The helper now copies code points into a `std::vector<uint32_t>`, matching the production path and avoiding type-punning. The diagnostic also compares HarfBuzz's direct OpenType face with its FreeType face adapter using the exact same font file, and records Unicode charmap selection, FreeType glyph mapping, GSUB table visibility through FreeType and HarfBuzz, UPEM, and resulting glyph IDs/clusters.
 
 This is a targeted correctness fix plus diagnostics, not a claimed final shaping fix. The next CI result will show whether removing the type-punning defect restores Linux shaping and, if not, whether GSUB is lost specifically through the FreeType adapter. The Windows run remains a verified successful reference; Linux packaging is still blocked until the Arabic test module passes.
+
+
+## Main-menu startup failure report — 2026-11-10
+
+### Confirmed Lua syntax defect
+
+The user's Windows startup log reports:
+
+```
+builtin/common/settings/dlg_settings.lua:179:
+'}' expected (to close '{' at line 176) near 'be'
+```
+
+The Arabic option in the language-label table lacked a trailing comma before the Belarusian option. The source copy under `luanti/code/builtin` is corrected. The separate bundled reference copy under `luanti/5.17.0/builtin` already contained the comma and was left unchanged.
+
+A fast syntax-validation script now parses every `.lua` file in both builtin trees before Linux/Windows native compilation. It uses pinned `luaparser==4.2.0`; parser success is a grammar check, not a substitute for loading the menu in the real Luanti executable.
+
+### SHA-256 warnings
+
+The repeated `No SHA256 known for builtin file` messages are emitted by `ScriptApiSecurity::safeLoadFile` when a loaded builtin path has no matching key in `g_builtin_file_sha256_map`. That branch logs a warning and continues loading the file; it is not the fatal error in the supplied log. A separate C++ regression assertion now verifies that the generated manifest contains valid 64-hex-digit SHA entries for `common/math.lua`, `common/vector.lua`, `common/settings/dlg_settings.lua`, and `mainmenu/init.lua`. This verifies those map entries in the CI-built executable; if the warning persists in a newly downloaded matching artifact, the next check must compare its executable with its installed builtin tree and reproduce the runtime relative-path lookup. The warning is not suppressed.
+
+### Run #101 status carried forward
+
+Run #101 used commit `5412b95bf891000b783aa1acff23709512d957e5`. Windows completed the client build, the 15 Arabic layout tests, portable-package checks, and uploaded artifact `luanti-arabic-windows-x64` (artifact ID `13716251277`). Linux completed the client build but failed 4 of 15 Arabic tests: direct HarfBuzz contextual shaping, Arabic contextual shaping through Raqm, lam-alef ligature formation, and the resulting shaping-cluster caret boundary. The other 11 tests passed. Linux has no package artifact from that run.
+
+The four Linux failures are independent from the Lua comma defect. Keep the Linux HarfBuzz/FreeType investigation open; do not weaken the shaping assertions or treat Windows success as proof that the Linux shaping path works.

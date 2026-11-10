@@ -4,6 +4,7 @@
 // Regression tests for native Unicode shaping and bidirectional layout.
 
 #include "test.h"
+#include "builtin_files.h"
 
 #include "porting.h"
 #include "../irrlicht_changes/font_text_layout.h"
@@ -132,6 +133,7 @@ public:
 	void testExplicitParagraphDirection();
 	void testFallbackFontRange();
 	void testEditBoxTextReplacementLimits();
+	void testBuiltinFileSha256Manifest();
 };
 
 static TestArabicTextLayout g_test_instance;
@@ -153,6 +155,7 @@ void TestArabicTextLayout::runTests(IGameDef *gamedef)
 	TEST(testExplicitParagraphDirection);
 	TEST(testFallbackFontRange);
 	TEST(testEditBoxTextReplacementLimits);
+	TEST(testBuiltinFileSha256Manifest);
 }
 
 void TestArabicTextLayout::testArabicContextualShaping()
@@ -789,4 +792,28 @@ void TestArabicTextLayout::testEditBoxTextReplacementLimits()
 	UASSERT(!buildEditTextReplacement(short_text, 1, 0, 0,
 			core::stringw(), false, 0, replacement, cursor));
 	UASSERT(replacement == core::stringw(L"unchanged"));
+}
+
+
+void TestArabicTextLayout::testBuiltinFileSha256Manifest()
+{
+	// These files are loaded by the main menu during startup. Their SHA-256
+	// entries must be present in the build-generated builtin manifest.
+	static constexpr const char *required_files[] = {
+		"common/math.lua",
+		"common/vector.lua",
+		"common/settings/dlg_settings.lua",
+		"mainmenu/init.lua",
+	};
+
+	for (const char *relative_path : required_files) {
+		const auto entry = g_builtin_file_sha256_map.find(relative_path);
+		UASSERT(entry != g_builtin_file_sha256_map.end());
+		UASSERTEQ(size_t, entry->second.size(), 64);
+		for (const char digit : entry->second) {
+			UASSERT((digit >= '0' && digit <= '9') ||
+					(digit >= 'a' && digit <= 'f') ||
+					(digit >= 'A' && digit <= 'F'));
+		}
+	}
 }
