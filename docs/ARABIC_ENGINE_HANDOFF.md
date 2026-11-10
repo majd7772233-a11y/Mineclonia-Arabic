@@ -3,7 +3,7 @@
 **Last updated:** 2026-11-10  
 **Repository:** majd7772233-a11y/Mineclonia-Arabic  
 **Active branch:** work/arabic-engine-support  
-**Starting HEAD for this follow-up:** 9bdd876eea9ab8087906b4d067d76fd587e84fc8  
+**Starting HEAD for this follow-up:** baa79571161b0558afb3185ee7bbab3f349a4c44  
 **Protected main HEAD observed:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d
 
 ## Safety and workflow rules
@@ -69,3 +69,35 @@ Run #102 diagnostics showed a Unicode charmap, a valid Beh glyph, and a 5,854-by
 ## Documentation maintenance
 
 For every code commit, append a dated entry to docs/ARABIC_ENGINE_WORKLOG.md, update this handoff, PROGRESS.md, and docs/ARABIC_ENGINE_SUPPORT.md. Record exact commit SHA, workflow run ID, job conclusions, test counts, and artifact IDs.
+
+
+## Run #103 checkpoint — current continuation state
+
+Run #103 ID `42777977334`, HEAD `baa79571161b0558afb3185ee7bbab3f349a4c44`:
+
+- Catalog validation: passed.
+- Lua syntax validation: passed for both builtin trees, including the corrected language-label table.
+- Linux client build: passed; Arabic regression module failed 4/16 tests, so no Linux package was produced.
+- Windows client build: passed.
+- Windows Arabic regression module: passed (16 tests; the workflow's zero-failure summary guard succeeded).
+- Windows portable package checks: passed.
+- Windows artifact: `luanti-arabic-windows-x64`, ID `13745910497`, size 20,663,963 bytes, SHA-256 `e8a6e012915bed39de21d23cce6d8afb1639bf5744d86217512a06b5b9255ddb`.
+
+The user-reported Lua parser error is confirmed fixed: the Arabic option now ends with a comma before the Belarusian `be` entry. The fast parser validates every builtin Lua file in both trees, and the Windows package installation log confirms that the corrected `dlg_settings.lua` is included.
+
+The Windows SHA path-normalization test also passes as part of the 16-test module. The code normalizes native backslashes before the generated forward-slash manifest lookup. A real desktop launch with the matching artifact is still needed to verify that the original warnings disappear in the user's installed environment.
+
+The Linux client compiles, but its four shaping failures remain:
+- two Beh characters produce four glyphs instead of two in both Raqm and direct HarfBuzz paths;
+- lam-alef produces two glyphs instead of the expected ligature;
+- the corresponding interior caret boundary remains allowed.
+
+Run #103's diagnostics show matching 5,854-byte GSUB tables through FreeType, hb-ft, and direct HarfBuzz; the resolved static link closure contains vcpkg's Raqm, HarfBuzz, FreeType, and FriBidi archives. The next test revision now records the exact font path/family, HarfBuzz version and environment override, chosen shape-plan shaper, nominal Beh glyph, Arabic GSUB Script/default-LangSys feature tags, and compares the default shaper with an explicitly selected OpenType shaper for Beh and lam-alef. The four existing correctness assertions remain enforced.
+
+### Immediate next steps
+
+1. Run the expanded Linux shaping diagnostic and compare its output with the passing Windows result.
+2. Fix the actual Linux shaping discrepancy without weakening the contextual, lam-alef, or cluster-boundary assertions.
+3. Re-run Linux and Windows once the shaping patch is complete; require all 16 Arabic tests to pass and verify both packages.
+4. Ask the user to test the matching Windows artifact linked in the conversation: launch the menu, open Settings/Language, and confirm the SHA warnings no longer appear.
+5. Continue real-client checks for clipboard, drag/Shift selection, and text clipping/alignment.

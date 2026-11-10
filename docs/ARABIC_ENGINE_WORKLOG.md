@@ -56,3 +56,23 @@ Run #102 passed the quick catalog/Lua validation. Windows compiled, passed all 1
 The Windows startup warnings were traced to a path-key mismatch. HashBuiltinFiles.cmake emits forward-slash keys, while fs::MakePathRelativeTo() returns Windows backslashes. The runtime now normalizes before looking up the SHA manifest, and the existing manifest test covers POSIX, Windows, and mixed separators. The warning is deliberately not suppressed.
 
 This change awaits a fresh Windows CI result and real-client confirmation with a newly downloaded artifact. The Linux HarfBuzz/Raqm shaping failures remain open and their assertions remain unchanged.
+
+
+## 2026-11-10 — Run #103 verified Windows artifact; expand Linux shaping diagnostics
+
+**Starting commit:** `baa79571161b0558afb3185ee7bbab3f349a4c44`  
+**Run reviewed:** #103, ID `42777977334`.
+
+The reported startup syntax error was a missing comma after the Arabic language-label entry in `luanti/code/builtin/common/settings/dlg_settings.lua`. It was already fixed in commit `9bdd876eea9ab8087906b4d067d76fd587e84fc8`; Run #103's pinned Lua parser successfully parsed all files in both builtin trees. The Windows install log confirms the corrected file is included in the produced package.
+
+The repeated Windows SHA warnings were a separate native-path separator mismatch. The current source normalizes backslashes to forward slashes before looking up generated builtin manifest keys. The Windows manifest regression test passed in Run #103's 16-test module. This validates the normalizer in CI but does not replace a real launch test with the newly generated package.
+
+Run #103 results:
+- Catalog and Lua validation: passed.
+- Linux client build: passed; 4/16 Arabic shaping assertions failed, no Linux artifact.
+- Windows client build: passed.
+- Windows Arabic module: 16/16 passed.
+- Windows package verification: passed.
+- Windows artifact ID: `13745910497`, size 20,663,963 bytes, SHA-256 `e8a6e012915bed39de21d23cce6d8afb1639bf5744d86217512a06b5b9255ddb`.
+
+The Linux shaping failures are reproducible in direct HarfBuzz as well as Raqm, so they are not merely a selection/caret mapping issue. The source-level diagnostic now reports the selected HarfBuzz plan shaper, `HB_SHAPER_LIST`, actual font path/family, nominal Beh glyph, Arabic GSUB Script/default LangSys features, and forced-OpenType versus default shaping results for contextual Beh and lam-alef. Existing glyph-count and cursor-boundary assertions remain unchanged.

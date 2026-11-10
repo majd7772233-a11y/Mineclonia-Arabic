@@ -299,3 +299,12 @@ Run #102 (ID 42774549330, HEAD 9bdd876eea9ab8087906b4d067d76fd587e84fc8):
 - Linux Arabic module: 4 failures / 16 tests; no Linux package.
 
 The outstanding Linux failures are contextual Arabic shaping through Raqm, direct HarfBuzz shaping, lam-alef ligature formation, and the cursor boundary within that shaping cluster. Do not weaken these assertions. The separator-normalization change still needs a fresh Windows CI run and a real-client test with a newly downloaded matching artifact.
+
+
+## Run #103 — current Windows verification and Linux shaping checkpoint
+
+Run #103 (ID `42777977334`, HEAD `baa79571161b0558afb3185ee7bbab3f349a4c44`) passed catalog and Lua syntax validation. Both native clients compiled. Windows passed all 16 `TestArabicTextLayout` tests, portable package validation, and artifact upload (ID `13745910497`). Linux passed client compilation but failed four shaping assertions (contextual Beh through Raqm, direct HarfBuzz, lam-alef ligature, and the dependent caret boundary); it did not produce a Linux artifact.
+
+The application startup syntax defect is already repaired: the source language-label table now has the comma after Arabic before the Belarusian `be` entry. The fast builtin Lua parser gate passed in Run #103. The Windows SHA warning fix normalizes the filesystem path separators before querying the generated SHA-256 manifest; its regression test passed in the Windows 16-test module. Real GUI verification still requires launching the newly uploaded artifact.
+
+To isolate Linux shaping, the next diagnostic adds the font path/family, HarfBuzz version/environment, selected shaping-plan shaper, direct nominal glyph mapping, Arabic GSUB Script/default-LangSys features, and side-by-side default versus forced-OpenType shaping results. Do not weaken the four failing Linux assertions.

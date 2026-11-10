@@ -18,8 +18,10 @@
 #include <harfbuzz/hb.h>
 #include <harfbuzz/hb-ft.h>
 #include <harfbuzz/hb-ot.h>
+#include <harfbuzz/hb-shape-plan.h>
 
 #include <cstdint>
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -202,23 +204,12 @@ void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 	UASSERT(harfbuzz.buffer != nullptr);
 	hb_ft_font_set_load_flags(harfbuzz.font, FT_LOAD_DEFAULT);
 
-	// Check whether FreeType and HarfBuzz's FreeType adapter can both read the
-	// font's OpenType substitution table.
-	FT_ULong freetype_gsub_length = 0;
-	const FT_Error freetype_gsub_error = FT_Load_Sfnt_Table(font.face,
-			FT_MAKE_TAG('G', 'S', 'U', 'B'), 0, nullptr,
-			&freetype_gsub_length);
-	hb_blob_t *ft_gsub = hb_face_reference_table(
-			hb_font_get_face(harfbuzz.font), HB_TAG('G', 'S', 'U', 'B'));
-	const unsigned int ft_gsub_length = hb_blob_get_length(ft_gsub);
-	hb_blob_destroy(ft_gsub);
-
-	// Compare against HarfBuzz's direct OpenType face for the exact same file,
-	// bypassing FreeType's table adapter.
-	HarfBuzzFileObjects direct;
+	// Compare the FreeType adapter against HarfBuzz's direct OpenType face
+	// using the same data path, then report the exact GSUB script/features.
 	const std::string font_path =
 			porting::getDataPath("fonts/NotoSansArabic-Regular.ttf");
 	UASSERT(!font_path.empty());
+	HarfBuzzFileObjects direct;
 	direct.blob = hb_blob_create_from_file(font_path.c_str());
 	UASSERT(direct.blob != nullptr);
 	direct.face = hb_face_create(direct.blob, 0);
@@ -231,37 +222,121 @@ void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 	hb_font_set_scale(direct.font, static_cast<int>(upem),
 			static_cast<int>(upem));
 
+	FT_ULong freetype_gsub_length = 0;
+	const FT_Error freetype_gsub_error = FT_Load_Sfnt_Table(font.face,
+			FT_MAKE_TAG('G', 'S', 'U', 'B'), 0, nullptr,
+			&freetype_gsub_length);
+	hb_blob_t *ft_gsub = hb_face_reference_table(
+			hb_font_get_face(harfbuzz.font), HB_TAG('G', 'S', 'U', 'B'));
+	const unsigned int ft_gsub_length = hb_blob_get_length(ft_gsub);
+	hb_blob_destroy(ft_gsub);
 	hb_blob_t *direct_gsub = hb_face_reference_table(
 			direct.face, HB_TAG('G', 'S', 'U', 'B'));
 	const unsigned int direct_gsub_length = hb_blob_get_length(direct_gsub);
 	hb_blob_destroy(direct_gsub);
 
-	std::cerr << "[Arabic shaping diagnostic] charmap="
-			<< (font.face->charmap ? font.face->charmap->encoding : FT_Encoding(0))
+	hb_codepoint_t direct_nominal_beh = 0;
+	const bool direct_has_nominal_beh = hb_font_get_nominal_glyph(
+			direct.font, 0x0628, &direct_nominal_beh);
+	unsigned int arabic_gsub_script_index = HB_OT_LAYOUT_NO_SCRIPT_INDEX;
+	const bool has_arabic_gsub_script = hb_ot_layout_table_find_script(
+			direct.face, HB_OT_TAG_GSUB, HB_TAG('a', 'r', 'a', 'b'),
+			&arabic_gsub_script_index);
+	unsigned int default_feature_count = 0;
+	if (has_arabic_gsub_script) {
+		hb_ot_layout_language_get_feature_tags(direct.face, HB_OT_TAG_GSUB,
+				arabic_gsub_script_index,
+				HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX, 0,
+				&default_feature_count, nullptr);
+	}
+	std::vector<hb_tag_t> default_features(default_feature_count);
+	if (default_feature_count) {
+		hb_ot_layout_language_get_feature_tags(direct.face, HB_OT_TAG_GSUB,
+				arabic_gsub_script_index,
+				HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX, 0,
+				&default_feature_count, default_features.data());
+	}
+	const auto format_tags = [](const std::vector<hb_tag_t> &tags) {
+		std::string result;
+		for (hb_tag_t tag : tags) {
+			char buffer[5] = {};
+			hb_tag_to_string(tag, buffer);
+			if (!result.empty())
+				result += ',';
+			result += buffer;
+		}
+		return result;
+	};
+
+	// Ask HarfBuzz which shaper its default plan really selects for Arabic.
+	hb_buffer_t *plan_buffer = hb_buffer_create();
+	const std::vector<uint32_t> plan_codepoints = {0x0628, 0x0628};
+	hb_buffer_add_utf32(plan_buffer, plan_codepoints.data(),
+			static_cast<int>(plan_codepoints.size()), 0,
+			static_cast<int>(plan_codepoints.size()));
+	hb_buffer_set_direction(plan_buffer, HB_DIRECTION_RTL);
+	hb_buffer_set_script(plan_buffer, HB_SCRIPT_ARABIC);
+	hb_buffer_set_language(plan_buffer, hb_language_from_string("ar", -1));
+	hb_segment_properties_t plan_properties{};
+	hb_buffer_get_segment_properties(plan_buffer, &plan_properties);
+	hb_shape_plan_t *default_plan = hb_shape_plan_create(direct.face,
+			&plan_properties, nullptr, 0, nullptr);
+	const char *selected_shaper = default_plan
+			? hb_shape_plan_get_shaper(default_plan) : nullptr;
+	const char *shaper_environment = std::getenv("HB_SHAPER_LIST");
+
+	std::cerr << "[Arabic shaping diagnostic] font_path=" << font_path
+			<< " family=" << (font.face->family_name ?
+					font.face->family_name : "<null>")
+			<< " style=" << (font.face->style_name ?
+					font.face->style_name : "<null>")
+			<< " hb_version=" << hb_version_string()
+			<< " HB_SHAPER_LIST="
+			<< (shaper_environment ? shaper_environment : "<unset>")
+			<< " default_plan_shaper="
+			<< (selected_shaper ? selected_shaper : "<none>")
+			<< " charmap=" << (font.face->charmap ?
+					font.face->charmap->encoding : FT_Encoding(0))
 			<< " num_charmaps=" << font.face->num_charmaps
 			<< " glyph_count=" << font.face->num_glyphs
 			<< " FT_Get_Char_Index(U+0628)="
 			<< FT_Get_Char_Index(font.face, 0x0628)
-			<< " FT_Load_Sfnt_Table(GSUB)=" << freetype_gsub_error
-			<< " bytes=" << freetype_gsub_length
-			<< " hb-ft GSUB bytes=" << ft_gsub_length
-			<< " direct-HB GSUB bytes=" << direct_gsub_length
-			<< " direct-HB upem=" << upem << std::endl;
+			<< " direct-HB-nominal(U+0628)="
+			<< (direct_has_nominal_beh ? direct_nominal_beh : 0)
+			<< " FT_GSUB_error=" << freetype_gsub_error
+			<< " FT_GSUB_bytes=" << freetype_gsub_length
+			<< " hb-ft_GSUB_bytes=" << ft_gsub_length
+			<< " direct-HB_GSUB_bytes=" << direct_gsub_length
+			<< " direct-HB_upem=" << upem
+			<< " arab_GSUB_script=" << has_arabic_gsub_script
+			<< " arab_default_features=" << format_tags(default_features)
+			<< std::endl;
+
+	if (default_plan)
+		hb_shape_plan_destroy(default_plan);
+	hb_buffer_destroy(plan_buffer);
 
 	bool has_ot_shaper = false;
+	std::string available_shapers;
 	const char **shapers = hb_shape_list_shapers();
 	if (shapers) {
 		for (const char **shaper = shapers; *shaper; ++shaper) {
-			if (std::string(*shaper) == "ot") {
+			if (!available_shapers.empty())
+				available_shapers += ',';
+			available_shapers += *shaper;
+			if (std::string(*shaper) == "ot")
 				has_ot_shaper = true;
-				break;
-			}
 		}
 	}
+	std::cerr << "[Arabic shaping diagnostic] available_shapers="
+			<< available_shapers << std::endl;
 	UASSERT(has_ot_shaper);
+	UASSERT(direct_has_nominal_beh);
+	UASSERT(has_arabic_gsub_script);
 
 	const auto shape_arabic = [&](hb_font_t *shape_font,
-			const std::u32string &text) {
+			const std::u32string &text, const char *const *shaper_list,
+			const char *label) {
 		const std::vector<uint32_t> codepoints(text.begin(), text.end());
 		hb_buffer_reset(harfbuzz.buffer);
 		hb_buffer_add_utf32(harfbuzz.buffer, codepoints.data(),
@@ -273,15 +348,18 @@ void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 		hb_buffer_set_language(harfbuzz.buffer,
 				hb_language_from_string("ar", -1));
 		const bool shaped = hb_shape_full(shape_font, harfbuzz.buffer,
-				nullptr, 0, nullptr) &&
+				nullptr, 0, shaper_list) &&
 				hb_buffer_allocation_successful(harfbuzz.buffer);
 		const unsigned int output_count = hb_buffer_get_length(harfbuzz.buffer);
 		const hb_glyph_info_t *glyphs =
 				hb_buffer_get_glyph_infos(harfbuzz.buffer, nullptr);
-		std::cerr << "[Arabic shaping diagnostic] input=" << codepoints.size()
+		std::cerr << "[Arabic shaping diagnostic] case=" << label
+				<< " input=" << codepoints.size()
 				<< " buffered=" << input_count << " output=" << output_count
 				<< " direction=" << hb_buffer_get_direction(harfbuzz.buffer)
 				<< " script=" << hb_buffer_get_script(harfbuzz.buffer)
+				<< " language=" << hb_language_to_string(
+						hb_buffer_get_language(harfbuzz.buffer))
 				<< " glyphs=";
 		for (unsigned int i = 0; glyphs && i < output_count; ++i)
 			std::cerr << glyphs[i].codepoint << '@' << glyphs[i].cluster << ' ';
@@ -289,22 +367,50 @@ void TestArabicTextLayout::testHarfBuzzOpenTypeArabicShaping()
 		return shaped;
 	};
 
+	static const char *const ot_shaper[] = {"ot", nullptr};
 	const std::u32string contextual_text = U"بب";
-	// Shape using HarfBuzz's native OpenType face first, then the hb-ft path
-	// used by Raqm. The first failing assertion identifies the integration.
-	UASSERT(shape_arabic(direct.font, contextual_text));
-	UASSERTEQ(unsigned int, hb_buffer_get_length(harfbuzz.buffer),
-			static_cast<unsigned int>(contextual_text.size()));
-
-	UASSERT(shape_arabic(harfbuzz.font, contextual_text));
-	UASSERTEQ(unsigned int, hb_buffer_get_length(harfbuzz.buffer),
-			static_cast<unsigned int>(contextual_text.size()));
+	const bool direct_default_contextual = shape_arabic(direct.font,
+			contextual_text, nullptr, "direct-default-contextual");
+	const unsigned int direct_default_contextual_count =
+			hb_buffer_get_length(harfbuzz.buffer);
+	const bool direct_ot_contextual = shape_arabic(direct.font,
+			contextual_text, ot_shaper, "direct-ot-contextual");
+	const unsigned int direct_ot_contextual_count =
+			hb_buffer_get_length(harfbuzz.buffer);
+	const bool hb_ft_contextual = shape_arabic(harfbuzz.font,
+			contextual_text, nullptr, "hb-ft-default-contextual");
+	const unsigned int hb_ft_contextual_count =
+			hb_buffer_get_length(harfbuzz.buffer);
 
 	const std::u32string lam_alef_text = U"لا";
-	UASSERT(shape_arabic(direct.font, lam_alef_text));
-	UASSERTEQ(unsigned int, hb_buffer_get_length(harfbuzz.buffer), 1);
-	UASSERT(shape_arabic(harfbuzz.font, lam_alef_text));
-	UASSERTEQ(unsigned int, hb_buffer_get_length(harfbuzz.buffer), 1);
+	const bool direct_default_lam_alef = shape_arabic(direct.font,
+			lam_alef_text, nullptr, "direct-default-lam-alef");
+	const unsigned int direct_default_lam_alef_count =
+			hb_buffer_get_length(harfbuzz.buffer);
+	const bool direct_ot_lam_alef = shape_arabic(direct.font,
+			lam_alef_text, ot_shaper, "direct-ot-lam-alef");
+	const unsigned int direct_ot_lam_alef_count =
+			hb_buffer_get_length(harfbuzz.buffer);
+	const bool hb_ft_lam_alef = shape_arabic(harfbuzz.font,
+			lam_alef_text, nullptr, "hb-ft-default-lam-alef");
+	const unsigned int hb_ft_lam_alef_count =
+			hb_buffer_get_length(harfbuzz.buffer);
+
+	UASSERT(direct_default_contextual);
+	UASSERTEQ(unsigned int, direct_default_contextual_count,
+			static_cast<unsigned int>(contextual_text.size()));
+	UASSERT(direct_ot_contextual);
+	UASSERTEQ(unsigned int, direct_ot_contextual_count,
+			static_cast<unsigned int>(contextual_text.size()));
+	UASSERT(hb_ft_contextual);
+	UASSERTEQ(unsigned int, hb_ft_contextual_count,
+			static_cast<unsigned int>(contextual_text.size()));
+	UASSERT(direct_default_lam_alef);
+	UASSERTEQ(unsigned int, direct_default_lam_alef_count, 1);
+	UASSERT(direct_ot_lam_alef);
+	UASSERTEQ(unsigned int, direct_ot_lam_alef_count, 1);
+	UASSERT(hb_ft_lam_alef);
+	UASSERTEQ(unsigned int, hb_ft_lam_alef_count, 1);
 }
 
 void TestArabicTextLayout::testLamAlefLigature()
