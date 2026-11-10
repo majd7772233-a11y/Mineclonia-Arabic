@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -13,6 +14,10 @@ ROOT = Path(__file__).resolve().parents[1]
 BUILTIN_ROOTS = (
     ROOT / "luanti" / "code" / "builtin",
     ROOT / "luanti" / "5.17.0" / "builtin",
+)
+
+LANGUAGE_ARABIC_ENTRY = re.compile(
+    r'(?m)^\s*ar\s*=\s*"العربية \\[ar\\]",\s*\r?\n\s*be\s*='
 )
 
 
@@ -35,6 +40,11 @@ def main() -> int:
             try:
                 source = path.read_text(encoding="utf-8-sig")
                 ast.parse(source)
+                if path.name == "dlg_settings.lua" and path.parent.name == "settings":
+                    if not LANGUAGE_ARABIC_ENTRY.search(source):
+                        raise ValueError(
+                            'Arabic language option must end with a comma before the "be" entry'
+                        )
             except Exception as error:  # parser exposes several ANTLR exception types
                 failures.append((path, str(error).strip() or type(error).__name__))
 
