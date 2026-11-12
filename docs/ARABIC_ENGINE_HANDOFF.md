@@ -2,46 +2,41 @@
 
 التاريخ: 2026-11-12
 Repository: majd7772233-a11y/Mineclonia-Arabic
-Branch: work/arabic-engine-support فقط
-رأس الكود قبل دفعة التوثيق: 6e8511ef4f7b437e0ce7c6769a3405ba68c077b2
+Branch الوحيد: work/arabic-engine-support
+رأس البداية: 1c5bab319be89eb2aeba40f6626c1333dd495a7a
 main الذي تم فحصه: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (لم يُعدّل).
 
-## اقرأ قبل العمل
-AGENTS.md، docs/PROJECT_STATE.md، docs/NEXT_SESSION_PROMPT.md، docs/ROADMAP.md، docs/BUILD_TESTING.md، docs/ARCHITECTURE.md، docs/FILE_MAP.md، docs/DOCUMENTATION_RULES.md، docs/ARABIC_ENGINE_WORKLOG.md، docs/ARABIC_ENGINE_SUPPORT.md، README.md، PROGRESS.md، SOURCE_VERSION.md، SOURCE_TEMPLATES.md، GLOSSARY.md.
+## ما تم التحقق منه
 
-## الملخص
-- تعريب Mineclonia: 163 PO files و5,018 نصاً مترجماً + مفتاح تنسيقي.
-- Native Luanti Arabic: Raqm + HarfBuzz + FriBidi + FreeType + Noto Sans Arabic.
-- النص المنطقي محفوظ؛ shaping/BiDi ينتج ترتيب glyph مرئياً.
-- editbox: cursor clusters، visual word navigation/deletion، selection intervals، hit testing، max/overwrite/paste protections.
-- builtin SHA path normalization موجود.
-- خطأ الفاصلة في Lua مصحح بالمصدر في الشجرتين، لكن regex validator يحتاج إصلاحاً.
+- Run #108، ID 43201985097، على SHA 1c5bab319be89eb2aeba40f6626c1333dd495a7a: completed/failure، لكن API أعاد Jobs=0 وArtifacts=0 وcheck-runs=0؛ لا توجد job logs تحدد سبباً مباشراً.
+- تمت قراءة Workflow كاملاً: تضمن grep غير مغلق، وPowerShell condition مبتوراً، وpackage tails مكررة، وWindows jobs مكررة.
+- كلا ملفي dlg_settings.lua يحتويان فاصلة العربية قبل be.
+- regex داخل validate_lua_syntax.py كان يهرب الأقواس المربعة مرتين؛ تم تصحيحه.
+- C++ source يحوي 17 declarations و17 registrations و17 definitions بلا تكرار.
+- normalizeBuiltinFileSha256Path موجود ويستخدم قبل manifest lookup في safeLoadFile.
 
-## نقطة التوقف
-Run106 ID 42798177083 فشل في Build client على Linux/Windows بسبب duplicate definitions:
-- testLamAlefPreservesSeparateClusters
-- testArabicAllahLigatureCluster
+## إصلاح Workflow والفاحص
 
-Commit 6e8511e حذف التكرارات وأضاف validate_arabic_test_source.py. الفحص النصي الحالي وجد 17/17/17 دون duplicate، لكن لم يثبت build بعد.
+Workflow أصبح بأربع Jobs: workflow-sanity وcatalog-validation وlinux وwindows. تم الحفاظ على cancel-in-progress وvcpkg cache restore/save للمنصتين وENABLE_SOUND=ON. هناك شرط صريح لنتيجة 17/17 قبل التغليف، والتحقق من builtin/font/license والاعتماديات.
 
-Run107 ID 42805300100 failure، jobs=0 وartifacts=0 في API، ولا توجد job logs.
+Preflight: YAML parse وbash -n وregex نجحت. actionlint وPowerShell parser وmsgfmt غير متاحة محلياً. تعذر تثبيت luaparser بسبب DNS؛ يجب أن يثبت CI فحص Lua قبل البناء.
 
-## العوائق الفورية
-1. .github/workflows/build-luanti-arabic-engine.yml:
-   - line 187 Linux grep غير مغلق.
-   - line 332 PowerShell Select-String مبتور.
-   - line 539 orphan -Quiet)).
-   - مقاطع package مكررة وتعريف windows job ثاني عند line 591.
-2. tools/validate_lua_syntax.py: regex يستخدم double escaping للأقواس المربعة؛ أصلحه واختبره على الشجرتين.
-3. لا يوجد CI حديث يثبت إزالة C++ duplicates.
-4. لا يوجد Artifact حديث من HEAD الحالي ولا اختبار GUI جديد من المستخدم.
+## غير مثبت
 
-## قواعد لا تنسها
-- لا تلمس main ولا تنشئ branches.
-- حافظ على vcpkg cache restore/save.
-- CI مكلف؛ اجمع الإصلاحات ثم شغل مرة واحدة.
-- لا تخف SHA warnings؛ تحقق من package matching exe/builtin.
-- اشترط 17/17 على النظامين.
-- تحديث Markdown لكل تعديل وفي commit نفسه إلزامي.
+- لا CMake configure أو client build حديث.
+- لا اختبارات C++ فعلية 17/17 على Linux أو Windows.
+- لا install package أو Artifact حديث.
+- لا اختبار GUI من المستخدم ولا تحقق من SHA warnings على جهازه.
 
-ابدأ بقراءة PROJECT_STATE.md وNEXT_SESSION_PROMPT.md. التفاصيل الكاملة والأوامر في BUILD_TESTING.md.
+## الخطوة التالية
+
+بعد وصول دفعة الإصلاح إلى GitHub:
+1. افحص HEAD وmain مباشرة.
+2. افحص Run الجديد المطابق لـHEAD، لا Run108.
+3. راجع كل Jobs وlogs، وأول خطوة فاشلة، ثم Catalog/Lua/PO وConfigure/Build/17 tests/Package.
+4. لا تدفع أثناء تشغيل CI لأن cancel-in-progress=true.
+5. أصلح السبب الجذري في دفعة متماسكة مع تحديث Markdown في نفس commit.
+6. بعد Artifact Windows حديث، اختبر الحزمة الكاملة والقائمة وSettings > Language وسجل SHA.
+7. تابع clipboard/drag/Shift/rendering، ثم Android بعد استقرار Desktop.
+
+لا دمج إلى main ولا فروع جديدة ولا Force Push.

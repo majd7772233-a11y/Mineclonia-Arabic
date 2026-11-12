@@ -1,45 +1,48 @@
 # خارطة الطريق
 
-الأولوية: استعادة workflow صالح، ثم إثبات build والاختبارات.
+## P0 — CI وLua validator
 
-## P0 — CI configuration
-- [ ] إعادة بناء .github/workflows/build-luanti-arabic-engine.yml.
-- [ ] إزالة المقاطع اليتيمة بعد Windows upload والـjob windows المكرر.
-- [ ] إغلاق Linux grep عند line 187.
-- [ ] إكمال PowerShell Select-String عند line 332.
-- [ ] التأكد من وجود workflow-sanity وcatalog-validation وLinux وWindows مرة واحدة فقط.
-- [ ] الحفاظ على vcpkg cache restore/save.
-- [ ] YAML validation/actionlint قبل push.
-- [ ] إصلاح Lua regex واختباره على الشجرتين.
+- [x] تحليل Run108 من GitHub: failure دون Jobs/Artifacts/check-runs؛ لا logs تحدد الفشل.
+- [x] مراجعة workflow كاملاً ورصد Bash/PowerShell المبتور وpackage tails وWindows jobs المكررة.
+- [x] تنظيم Workflow بأربع Jobs: workflow-sanity وcatalog-validation وLinux وWindows.
+- [x] الحفاظ على cancel-in-progress وكاش vcpkg restore/save للمنصتين.
+- [x] إصلاح double escaping في Arabic option regex دون تغيير Lua source السليم.
+- [x] PyYAML وbash -n وregex preflight.
+- [ ] actionlint وPowerShell parser وmsgfmt عندما تتوفر الأدوات.
+- [ ] تأكيد catalog/Lua/PO validation في CI الجديد.
 
 ## P1 — build verification
-- [ ] validators: catalogs، PO formatting، Lua syntax، Arabic test source.
-- [ ] Linux وWindows compile كامل.
-- [ ] تأكيد source validator 17/17/17.
-- [ ] لا تضعف assertions.
+
+- [ ] Linux وWindows CMake configure.
+- [ ] Linux وWindows client build.
+- [ ] إصلاح compile/link errors من السجلات دون تغيير assertions.
+- [ ] إثبات source validator 17/17/17 وC++ compilation الفعلي.
 
 ## P2 — tests and packaging
+
 - [ ] 17/17 Arabic tests على Linux وWindows.
-- [ ] معالجة أي compile/link/test errors من logs.
-- [ ] verify packaged builtin file matches source.
-- [ ] verify runtime DLLs/fonts/license.
-- [ ] Artifact لكل منصة مع IDs وSHA-256.
+- [ ] Verify packaged builtin matches source.
+- [ ] Verify Noto Sans Arabic font and license.
+- [ ] Verify Linux runtime dependencies وWindows DLLs.
+- [ ] Artifact لكل منصة مع ID وSHA-256/digest.
 
 ## P3 — Windows user verification
-- [ ] تسليم Artifact Windows حديث.
-- [ ] فتح القائمة/Settings/Language.
-- [ ] التأكد من عدم وجود Lua parser error.
-- [ ] التأكد من اختفاء SHA warnings مع exe وbuiltin من الحزمة نفسها.
-- [ ] إذا بقي التحذير، سجل أول مسار وhash للملفات.
+
+- [ ] تسليم Windows artifact حديث مطابق لرأس البناء.
+- [ ] فتح القائمة الرئيسية وSettings > Language.
+- [ ] التأكد من عدم ظهور Lua parser error.
+- [ ] تجربة SHA warnings مع exe وbuiltin من الحزمة نفسها.
+- [ ] جمع log جديد إذا استمر التحذير.
 
 ## P4 — real-client interaction
-- [ ] copy/cut/paste round-trip.
-- [ ] mouse drag selection.
-- [ ] Shift selection.
-- [ ] Ctrl+Left/Right وCtrl+Backspace/Delete في BiDi.
-- [ ] clipping/shadows/centering/alignment/scroll.
-- [ ] fallback glyphs وemoji وsupplementary Unicode.
-- [ ] Android toolchain بعد تثبيت desktop.
+
+- [ ] Clipboard copy/cut/paste round-trip.
+- [ ] Mouse drag وShift selection.
+- [ ] Ctrl+Left/Right وCtrl+Backspace/Delete للنص المختلط.
+- [ ] clipping/shadows/centering/alignment/scrolling.
+- [ ] fallback glyphs وemoji وsupplementary Unicode وcombining marks.
+- [ ] Android بعد استقرار Desktop.
 
 ## Definition of Done
-workflow صالح، validators passed، Linux/Windows builds passed، 17/17 tests على المنصتين، artifacts package checks passed، تجربة Windows فعلية، وفحوص التحرير التفاعلية موثقة أو المتبقي محدد.
+
+Validators، وLinux/Windows builds، و17/17 على النظامين، وpackages verified، وArtifacts مبصومة ومطابقة، ثم تجربة GUI فعلية. فحص الترجمة أو YAML لا يكفي لإعلان اكتمال دعم العربية.

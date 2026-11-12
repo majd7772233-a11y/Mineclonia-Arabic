@@ -1,13 +1,13 @@
 # تعريب Mineclonia
 
 
-## حالة مسار دعم العربية الأصلي داخل Luanti — 2026-11-12
+## حالة دعم العربية الأصلي داخل Luanti — 2026-11-12
 
-يُطوّر دعم المحرك في الفرع work/arabic-engine-support، وهو منفصل عن حزمة ترجمة Mineclonia. رأس الكود الذي تمت مراجعته قبل دفعة التوثيق هو 6e8511ef4f7b437e0ce7c6769a3405ba68c077b2. لا يوجد build حديث ناجح مثبت لهذا الرأس: Run #106 فشل أثناء compilation بسبب duplicate test definitions، والـcommit الأخير حذفها لكنه لم يُبن بعد. Run #107 فشل دون Jobs أو Artifacts، وملف workflow يحتاج إصلاحاً.
+يُطوّر دعم المحرك في الفرع work/arabic-engine-support، منفصلاً عن حزمة ترجمة Mineclonia. Run #108 (ID 43201985097) انتهى failure على SHA 1c5bab319be89eb2aeba40f6626c1333dd495a7a لكن GitHub أعاد Jobs=0 وArtifacts=0 وcheck-runs=0؛ لذلك لا يثبت فشل compilation أو الاختبارات.
 
-**اقرأ أولاً:** [حالة المشروع](docs/PROJECT_STATE.md)، [رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md)، [قواعد العمل](AGENTS.md)، [البنية](docs/ARCHITECTURE.md)، [خريطة الملفات](docs/FILE_MAP.md)، [البناء والاختبار](docs/BUILD_TESTING.md)، و[خارطة الطريق](docs/ROADMAP.md). كل تعديل لاحق يجب أن يحدث Markdown المناسب في commit نفسه.
+تمت مراجعة Workflow وإعادة تنظيمه إلى أربع Jobs، وصُحح regex في Lua validator. اجتاز الملف المرشح YAML parsing وbash -n وفحص regex. هذه فحوص ساكنة فقط؛ لم يثبت بعد build أو 17/17 أو package. لا يُعلن دعم المحرك مكتملاً قبل نجاح Linux وWindows والحزم وتجربة GUI.
 
-مشروع تعريب لعبة **Mineclonia** إلى العربية، مع الحفاظ على توافق ملفات الترجمة مع بنية اللعبة ومحرك Luanti.
+راجع [حالة المشروع](docs/PROJECT_STATE.md)، [رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md)، [التسليم](docs/ARABIC_ENGINE_HANDOFF.md)، [البناء والاختبار](docs/BUILD_TESTING.md)، و[خارطة الطريق](docs/ROADMAP.md). كل تعديل برمجي يجب أن يصاحبه تحديث Markdown المناسب في commit نفسه.
 
 ## حالة المشروع
 

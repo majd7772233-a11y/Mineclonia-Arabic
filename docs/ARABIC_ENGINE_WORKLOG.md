@@ -140,3 +140,47 @@ main الذي تم فحصه: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (لم يُ
 
 ### نقطة الاستئناف
 إصلاح workflow وLua validator regex في دفعة برمجية واحدة، تشغيل validators السريعة، ثم CI واحد شامل مع المحافظة على cache. انظر PROJECT_STATE.md وNEXT_SESSION_PROMPT.md.
+
+
+## 2026-11-12 — Run #108 analysis and workflow/Lua validator repair
+
+Starting HEAD: 1c5bab319be89eb2aeba40f6626c1333dd495a7a
+Branch: work/arabic-engine-support
+main checked: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged).
+
+### Run #108
+
+- ID 43201985097, run #108, push event, head SHA 1c5bab319be89eb2aeba40f6626c1333dd495a7a, completed/failure at 2026-11-12T10:37:19Z.
+- GitHub Jobs API returned total_count=0; Artifacts API returned total_count=0; commit check-runs returned total_count=0.
+- Combined status returned pending with no statuses. No per-job logs exist in the API response, so the failure cannot be assigned to compilation, tests, or packaging.
+
+### Source review
+
+- The 748-line workflow contained malformed grep quoting, a truncated PowerShell Select-String condition, orphaned/mixed package fragments, and repeated Windows jobs.
+- Both source and bundled dlg_settings.lua files already contain the Arabic option comma before be; no source Lua edit was needed.
+- validate_lua_syntax.py had a double-escaped square-bracket regex. This batch reduces it to one regex escape and retains full-tree parsing and non-zero failure behavior.
+- C++ test source was read directly: 17 declarations, 17 registrations, 17 definitions, no duplicate names.
+- normalizeBuiltinFileSha256Path exists and is used before SHA manifest lookup in ScriptApiSecurity::safeLoadFile. It was not modified.
+
+### Repair batch
+
+- Rebuild the workflow with exactly workflow-sanity, catalog-validation, linux, and windows jobs.
+- Preserve cancel-in-progress, vcpkg baseline, and cache restore/save in both platform jobs.
+- Keep the strict 17-test zero-failure gates before packaging on both systems.
+- Verify installed Lua builtin against source, font/license presence, Linux ldd resolution, and Windows runtime DLLs.
+- Change only the Lua validator regex; do not change Lua source, C++ assertions, or production shaping code.
+- Update PROJECT_STATE, HANDOFF, SUPPORT, BUILD_TESTING, ROADMAP, NEXT_SESSION_PROMPT, README, and PROGRESS in the same changeset.
+
+### Preflight evidence and limitations
+
+- YAML parsing with PyYAML: passed.
+- bash -n for each Bash run block: passed.
+- Workflow structure: four unique jobs; two cache restore and two cache save steps; cancel-in-progress retained.
+- Arabic option regex: passed against the actual source-line form and rejects a missing comma.
+- actionlint, PowerShell parser, and msgfmt were unavailable locally.
+- Installing luaparser==4.2.0 failed due DNS resolution; full Lua parser remains to be run by pinned CI validation.
+- No CMake configure, native build, C++ tests, package install/archive, Artifact upload, or GUI runtime test was performed locally.
+
+### Next evidence required
+
+Inspect the next run on the exact repair commit SHA. Record catalog/Lua/PO results, Linux and Windows configure/build/17-test/package results, Artifact IDs and digests. A workflow repair is not a build or test success.

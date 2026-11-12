@@ -17,7 +17,7 @@ BUILTIN_ROOTS = (
 )
 
 LANGUAGE_ARABIC_ENTRY = re.compile(
-    r'(?m)^\s*ar\s*=\s*"العربية \\[ar\\]",\s*\r?\n\s*be\s*='
+    r'(?m)^\s*ar\s*=\s*"العربية \[ar\]",\s*\r?\n\s*be\s*='
 )
 
 

@@ -41,43 +41,42 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:
-      - name: Confirm workflow jobs are running
+      - name: Confirm workflow jobs are scheduled
         run: echo "The Arabic engine workflow reached a runner."
 
-  arabic-translation-validation:
-    name: Validate Arabic engine catalogs
+  catalog-validation:
+    name: Validate Arabic engine catalogs and sources
+    needs: workflow-sanity
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-
       - name: Validate built-in Arabic and engine gettext catalogs
         run: python tools/validate_luanti_arabic.py
-
       - name: Validate engine PO formatting
+        shell: bash
         run: |
           set -euo pipefail
           sudo apt-get update
           sudo apt-get install --yes gettext
           msgfmt --check --check-format -o "$RUNNER_TEMP/luanti-ar.mo" luanti/code/po/ar/luanti.po
-
       - name: Validate embedded Lua syntax
+        shell: bash
         run: |
+          set -euo pipefail
           python -m pip install --disable-pip-version-check --no-cache-dir luaparser==4.2.0
           python tools/validate_lua_syntax.py
-
       - name: Validate Arabic C++ test declarations and registrations
         run: python tools/validate_arabic_test_source.py
 
   linux:
     name: Linux x64 build, tests, and install package
-    needs: arabic-translation-validation
+    needs: catalog-validation
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     env:
@@ -86,30 +85,28 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
       - name: Install vcpkg host tools
+        shell: bash
         run: |
           set -euo pipefail
           sudo apt-get update
           sudo apt-get install --yes build-essential curl git pkg-config zip unzip tar ninja-build python3 autoconf autoconf-archive automake libtool libltdl-dev libgl1-mesa-dev libxext-dev
-
-      - name: Install pinned CMake from PyPI
+      - name: Set up Python for CMake
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - name: Install CMake 4.4.4 wheel
+      - name: Install pinned CMake wheel
+        shell: bash
         run: |
-          python -m pip install --no-cache-dir cmake==4.4.4
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir cmake==4.4.4
           cmake --version
-          python -c "import cmake; print('CMake Python package:', cmake.__version__)" 2>/dev/null || true
-
       - name: Bootstrap pinned vcpkg baseline
         shell: bash
         run: |
           set -euo pipefail
           git clone --filter=blob:none https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
           git -C "$VCPKG_ROOT" checkout "$VCPKG_BASELINE"
-
           bootstrapped=0
           for attempt in 1 2 3 4; do
             echo "vcpkg bootstrap attempt $attempt/4"
@@ -119,14 +116,12 @@ jobs:
             fi
             rm -f "$VCPKG_ROOT/vcpkg"
             if [ "$attempt" -lt 4 ]; then
-              delay=$((attempt * 20))
-              echo "Bootstrap failed; retrying in ${delay}s."
-              sleep "$delay"
+              echo "Bootstrap failed; retrying before the next attempt."
+              sleep 20
             fi
           done
           test "$bootstrapped" -eq 1
           test -x "$VCPKG_ROOT/vcpkg"
-
       - name: Restore vcpkg binary package cache
         id: vcpkg-cache
         uses: actions/cache/restore@v4
@@ -135,34 +130,48 @@ jobs:
           key: vcpkg-luanti-linux-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
           restore-keys: |
             vcpkg-luanti-linux-x64-
-
       - name: Prepare vcpkg binary cache directory
+        shell: bash
         run: mkdir -p "$VCPKG_DEFAULT_BINARY_CACHE"
-
       - name: Install manifest dependencies
         working-directory: luanti/code
+        shell: bash
         run: |
           set -euo pipefail
           "$VCPKG_ROOT/vcpkg" install --triplet x64-linux
-
       - name: Save vcpkg binary package cache
         if: steps.vcpkg-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: ${{ github.workspace }}/.vcpkg-binary-cache
           key: vcpkg-luanti-linux-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
-
       - name: Configure client and unit tests
         working-directory: luanti/code
+        shell: bash
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux -DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_CLIENT=ON -DBUILD_SERVER=OFF -DBUILD_UNITTESTS=ON -DBUILD_DOCUMENTATION=OFF -DENABLE_SOUND=ON -DENABLE_POSTGRESQL=OFF -DENABLE_CURSES=OFF -DRUN_IN_PLACE=ON
-
+          set -euo pipefail
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" \
+            -DVCPKG_TARGET_TRIPLET=x64-linux \
+            -DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_CLIENT=ON \
+            -DBUILD_SERVER=OFF \
+            -DBUILD_UNITTESTS=ON \
+            -DBUILD_DOCUMENTATION=OFF \
+            -DENABLE_SOUND=ON \
+            -DENABLE_POSTGRESQL=OFF \
+            -DENABLE_CURSES=OFF \
+            -DRUN_IN_PLACE=ON
       - name: Build client
         working-directory: luanti/code
-        run: cmake --build build --parallel 2
-
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --build build --parallel 2
       - name: Run Arabic text-layout regression module
         working-directory: luanti/code
+        shell: bash
         run: |
           set -euo pipefail
           log="$RUNNER_TEMP/arabic-layout-tests.log"
@@ -171,24 +180,31 @@ jobs:
           status=$?
           set -e
           cat "$log"
-          test "$status" -eq 0
-          grep -Eq 'Module TestArabicTextLayout passed \(0 failures / 17 tests\)' "$log"
-
+          if [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
+          grep -Fq 'Module TestArabicTextLayout passed (0 failures / 17 tests)' "$log"
       - name: Install and verify portable Linux package
         working-directory: luanti/code
+        shell: bash
         run: |
           set -euo pipefail
           package="$GITHUB_WORKSPACE/artifacts/linux"
           mkdir -p "$package"
           cmake --install build --prefix "$package"
           test -x "$package/bin/luanti"
-          test -s "$package/builtin/common/settings/dlg_settings.lua"
-          cmp --silent builtin/common/settings/dlg_settings.lua "$package/builtin/common/settings/dlg_settings.lua"
-          grep -Eq '^[[:space:]]*ar[[:space:]]*=[[:space:]]*"العربية \\[ar\\]",[[:space:]]*
+          menu_source="builtin/common/settings/dlg_settings.lua"
+          menu_installed="$package/builtin/common/settings/dlg_settings.lua"
+          test -s "$menu_installed"
+          cmp --silent "$menu_source" "$menu_installed"
+          grep -Eq '^[[:space:]]*ar[[:space:]]*=[[:space:]]*"العربية \[ar\]",[[:space:]]*$' "$menu_installed"
           test -s "$package/fonts/NotoSansArabic-Regular.ttf"
           test -s "$package/fonts/NotoSansArabic-OFL.txt"
+          ldd "$package/bin/luanti" | tee "$RUNNER_TEMP/luanti-linux-ldd.txt"
+          if grep -Fq 'not found' "$RUNNER_TEMP/luanti-linux-ldd.txt"; then
+            exit 1
+          fi
           tar -czf "$GITHUB_WORKSPACE/artifacts/luanti-arabic-linux-x64.tar.gz" -C "$package" .
-
       - name: Upload Linux package
         uses: actions/upload-artifact@v4
         with:
@@ -199,7 +215,7 @@ jobs:
 
   windows:
     name: Windows x64 MSVC build, tests, and install package
-    needs: arabic-translation-validation
+    needs: catalog-validation
     runs-on: windows-2022
     timeout-minutes: 120
     env:
@@ -208,20 +224,17 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Install pinned CMake from PyPI
+      - name: Set up Python for CMake
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-
-      - name: Install CMake 4.4.4 wheel
+      - name: Install pinned CMake wheel
         shell: pwsh
         run: |
-          python -m pip install --no-cache-dir cmake==4.4.4
+          python -m pip install --disable-pip-version-check --no-cache-dir cmake==4.4.4
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           cmake --version
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
       - name: Bootstrap pinned vcpkg baseline
         shell: pwsh
         run: |
@@ -229,7 +242,6 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           git -C "$env:VCPKG_ROOT" checkout "$env:VCPKG_BASELINE"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
           $bootstrapped = $false
           for ($attempt = 1; $attempt -le 4; $attempt++) {
             Write-Host "vcpkg bootstrap attempt $attempt/4"
@@ -246,7 +258,6 @@ jobs:
             }
           }
           if (-not $bootstrapped) { throw "Could not bootstrap the pinned vcpkg tool after four attempts." }
-
       - name: Restore vcpkg binary package cache
         id: vcpkg-cache
         uses: actions/cache/restore@v4
@@ -255,46 +266,54 @@ jobs:
           key: vcpkg-luanti-windows-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
           restore-keys: |
             vcpkg-luanti-windows-x64-
-
       - name: Prepare vcpkg binary cache directory
         shell: pwsh
         run: New-Item -ItemType Directory -Force -Path $env:VCPKG_DEFAULT_BINARY_CACHE | Out-Null
-
       - name: Install manifest dependencies
         working-directory: luanti/code
         shell: pwsh
         run: |
           & "$env:VCPKG_ROOT/vcpkg.exe" install --triplet x64-windows
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
       - name: Save vcpkg binary package cache
         if: steps.vcpkg-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: ${{ github.workspace }}/.vcpkg-binary-cache
           key: vcpkg-luanti-windows-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
-
       - name: Configure client and unit tests
         working-directory: luanti/code
         shell: pwsh
         run: |
           $toolchain = Join-Path $env:VCPKG_ROOT "scripts/buildsystems/vcpkg.cmake"
-          $cmakeArgs = @("-S", ".", "-B", "build", "-G", "Visual Studio 17 2022", "-A", "x64", "-DCMAKE_TOOLCHAIN_FILE=$toolchain", "-DVCPKG_TARGET_TRIPLET=x64-windows", "-DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON", "-DBUILD_CLIENT=ON", "-DBUILD_SERVER=OFF", "-DBUILD_UNITTESTS=ON", "-DBUILD_DOCUMENTATION=OFF", "-DENABLE_SOUND=ON", "-DENABLE_POSTGRESQL=OFF", "-DENABLE_CURSES=OFF", "-DRUN_IN_PLACE=ON")
+          $cmakeArgs = @(
+            "-S", ".", "-B", "build",
+            "-G", "Visual Studio 17 2022", "-A", "x64",
+            "-DCMAKE_TOOLCHAIN_FILE=$toolchain",
+            "-DVCPKG_TARGET_TRIPLET=x64-windows",
+            "-DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON",
+            "-DBUILD_CLIENT=ON",
+            "-DBUILD_SERVER=OFF",
+            "-DBUILD_UNITTESTS=ON",
+            "-DBUILD_DOCUMENTATION=OFF",
+            "-DENABLE_SOUND=ON",
+            "-DENABLE_POSTGRESQL=OFF",
+            "-DENABLE_CURSES=OFF",
+            "-DRUN_IN_PLACE=ON"
+          )
           & cmake @cmakeArgs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
       - name: Build client
         working-directory: luanti/code
         shell: pwsh
         run: |
           cmake --build build --config Release --parallel 2
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
       - name: Run Arabic text-layout regression module
         working-directory: luanti/code
         shell: pwsh
         run: |
-          if (-not (Test-Path "bin/Release/luanti.exe")) {
+          if (-not (Test-Path -LiteralPath "bin/Release/luanti.exe" -PathType Leaf)) {
             Get-ChildItem bin -Recurse
             throw "The Luanti client executable was not produced."
           }
@@ -303,13 +322,12 @@ jobs:
           $testExitCode = $LASTEXITCODE
           $testOutput | Tee-Object -FilePath $log
           if ($testExitCode -ne 0) { exit $testExitCode }
-          $summary = Select-String -Path $log -Pattern 'Module TestArabicTextLayout passed \(0 failures / 17 tests\)' | Select-Object -First 1
-          if (-not $summary) {
+          $expectedSummary = "Module TestArabicTextLayout passed (0 failures / 17 tests)"
+          if (-not (Select-String -Path $log -SimpleMatch -Pattern $expectedSummary -Quiet)) {
             Get-Content $log
             throw "Arabic text-layout tests did not report the expected 17-test zero-failure summary."
           }
-          Write-Host "Verified Arabic regression result: $($summary.Line)"
-
+          Write-Host "Verified Arabic regression result: $expectedSummary"
       - name: Install and verify portable Windows package
         working-directory: luanti/code
         shell: pwsh
@@ -320,37 +338,40 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $menuSource = Join-Path $PWD "builtin/common/settings/dlg_settings.lua"
           $menuInstalled = Join-Path $package "builtin/common/settings/dlg_settings.lua"
-          if (-not (Test-Path $menuInstalled)) {
+          if (-not (Test-Path -LiteralPath $menuInstalled -PathType Leaf)) {
             Get-ChildItem $package -Recurse
             throw "Installed package is missing builtin/common/settings/dlg_settings.lua."
           }
-          $sourceMenuHash = (Get-FileHash -Algorithm SHA256 $menuSource).Hash
-          $installedMenuHash = (Get-FileHash -Algorithm SHA256 $menuInstalled).Hash
+          $sourceMenuHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $menuSource).Hash
+          $installedMenuHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $menuInstalled).Hash
           if ($sourceMenuHash -ne $installedMenuHash) {
             throw "Packaged dlg_settings.lua differs from the syntax-validated source file."
           }
-          if (-not (Select-String -Path $menuInstalled -Pattern '^\s*ar\s*=\s*"العربية \[ar\]",\s*
-          if (-not (Test-Path (Join-Path $package "bin/luanti.exe"))) {
+          $menuText = [System.IO.File]::ReadAllText($menuInstalled, [System.Text.Encoding]::UTF8)
+          if ($menuText -notmatch '(?m)^\s*ar\s*=\s*"العربية \[ar\]",\s*\r?\n\s*be\s*=') {
+            throw "Packaged language selector is missing the comma-terminated Arabic option before be."
+          }
+          $executable = Join-Path $package "bin/luanti.exe"
+          if (-not (Test-Path -LiteralPath $executable -PathType Leaf)) {
             Get-ChildItem $package -Recurse
             throw "Installed package is missing bin/luanti.exe."
           }
-          if (-not (Test-Path (Join-Path $package "fonts/NotoSansArabic-Regular.ttf"))) {
-            Get-ChildItem $package -Recurse
+          if (-not (Test-Path -LiteralPath (Join-Path $package "fonts/NotoSansArabic-Regular.ttf") -PathType Leaf)) {
             throw "Installed package is missing Noto Sans Arabic."
           }
-          if (-not (Test-Path (Join-Path $package "fonts/NotoSansArabic-OFL.txt"))) {
+          if (-not (Test-Path -LiteralPath (Join-Path $package "fonts/NotoSansArabic-OFL.txt") -PathType Leaf)) {
             throw "Installed package is missing the Noto Sans Arabic license."
           }
           $bin = Join-Path $package "bin"
           foreach ($dependency in @("raqm", "harfbuzz", "fribidi")) {
-            $dll = Get-ChildItem -Path $bin -Filter "*$dependency*.dll" -File -ErrorAction SilentlyContinue
+            $dll = Get-ChildItem -Path $bin -Filter "*$dependency*.dll" -File -ErrorAction SilentlyContinue | Select-Object -First 1
             if (-not $dll) {
               Get-ChildItem $package -Recurse
               throw "Installed package is missing the $dependency runtime DLL."
             }
           }
           foreach ($dependency in @("OpenAL32.dll", "ogg.dll", "vorbis.dll", "vorbisfile.dll")) {
-            $dll = Get-ChildItem -Path $bin -Filter $dependency -File -ErrorAction SilentlyContinue
+            $dll = Get-ChildItem -Path $bin -Filter $dependency -File -ErrorAction SilentlyContinue | Select-Object -First 1
             if (-not $dll) {
               Get-ChildItem $package -Recurse
               throw "Installed package is missing the $dependency audio runtime dependency."
@@ -358,386 +379,6 @@ jobs:
           }
           $zip = Join-Path $env:GITHUB_WORKSPACE "artifacts/luanti-arabic-windows-x64.zip"
           Compress-Archive -Path (Join-Path $package "*") -DestinationPath $zip -Force
-
-      - name: Upload Windows package
-        uses: actions/upload-artifact@v4
-        with:
-          name: luanti-arabic-windows-x64
-          path: artifacts/luanti-arabic-windows-x64.zip
-          if-no-files-found: error
-          retention-days: 30
- "$package/builtin/common/settings/dlg_settings.lua"
-          test -s "$package/fonts/NotoSansArabic-Regular.ttf"
-          test -s "$package/fonts/NotoSansArabic-OFL.txt"
-          tar -czf "$GITHUB_WORKSPACE/artifacts/luanti-arabic-linux-x64.tar.gz" -C "$package" .
-
-      - name: Upload Linux package
-        uses: actions/upload-artifact@v4
-        with:
-          name: luanti-arabic-linux-x64
-          path: artifacts/luanti-arabic-linux-x64.tar.gz
-          if-no-files-found: error
-          retention-days: 30
-
-  windows:
-    name: Windows x64 MSVC build, tests, and install package
-    needs: arabic-translation-validation
-    runs-on: windows-2022
-    timeout-minutes: 120
-    env:
-      VCPKG_ROOT: ${{ github.workspace }}/.vcpkg
-      VCPKG_DEFAULT_BINARY_CACHE: ${{ github.workspace }}/.vcpkg-binary-cache
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Install pinned CMake from PyPI
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-
-      - name: Install CMake 4.4.4 wheel
-        shell: pwsh
-        run: |
-          python -m pip install --no-cache-dir cmake==4.4.4
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          cmake --version
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-      - name: Bootstrap pinned vcpkg baseline
-        shell: pwsh
-        run: |
-          git clone --filter=blob:none https://github.com/microsoft/vcpkg.git "$env:VCPKG_ROOT"
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          git -C "$env:VCPKG_ROOT" checkout "$env:VCPKG_BASELINE"
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-          $bootstrapped = $false
-          for ($attempt = 1; $attempt -le 4; $attempt++) {
-            Write-Host "vcpkg bootstrap attempt $attempt/4"
-            Remove-Item "$env:VCPKG_ROOT/vcpkg.exe" -Force -ErrorAction SilentlyContinue
-            & "$env:VCPKG_ROOT/bootstrap-vcpkg.bat" -disableMetrics
-            if ($LASTEXITCODE -eq 0 -and (Test-Path "$env:VCPKG_ROOT/vcpkg.exe")) {
-              $bootstrapped = $true
-              break
-            }
-            if ($attempt -lt 4) {
-              $delay = 20 * $attempt
-              Write-Host "Bootstrap failed; retrying in $delay seconds."
-              Start-Sleep -Seconds $delay
-            }
-          }
-          if (-not $bootstrapped) { throw "Could not bootstrap the pinned vcpkg tool after four attempts." }
-
-      - name: Restore vcpkg binary package cache
-        id: vcpkg-cache
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ github.workspace }}/.vcpkg-binary-cache
-          key: vcpkg-luanti-windows-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
-          restore-keys: |
-            vcpkg-luanti-windows-x64-
-
-      - name: Prepare vcpkg binary cache directory
-        shell: pwsh
-        run: New-Item -ItemType Directory -Force -Path $env:VCPKG_DEFAULT_BINARY_CACHE | Out-Null
-
-      - name: Install manifest dependencies
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          & "$env:VCPKG_ROOT/vcpkg.exe" install --triplet x64-windows
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-      - name: Save vcpkg binary package cache
-        if: steps.vcpkg-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: ${{ github.workspace }}/.vcpkg-binary-cache
-          key: vcpkg-luanti-windows-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
-
-      - name: Configure client and unit tests
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          $toolchain = Join-Path $env:VCPKG_ROOT "scripts/buildsystems/vcpkg.cmake"
-          $cmakeArgs = @("-S", ".", "-B", "build", "-G", "Visual Studio 17 2022", "-A", "x64", "-DCMAKE_TOOLCHAIN_FILE=$toolchain", "-DVCPKG_TARGET_TRIPLET=x64-windows", "-DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON", "-DBUILD_CLIENT=ON", "-DBUILD_SERVER=OFF", "-DBUILD_UNITTESTS=ON", "-DBUILD_DOCUMENTATION=OFF", "-DENABLE_SOUND=ON", "-DENABLE_POSTGRESQL=OFF", "-DENABLE_CURSES=OFF", "-DRUN_IN_PLACE=ON")
-          & cmake @cmakeArgs
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-      - name: Build client
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          cmake --build build --config Release --parallel 2
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-      - name: Run Arabic text-layout regression module
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          if (-not (Test-Path "bin/Release/luanti.exe")) {
-            Get-ChildItem bin -Recurse
-            throw "The Luanti client executable was not produced."
-          }
-          $log = Join-Path $env:RUNNER_TEMP "arabic-layout-tests.log"
-          $testOutput = & "bin/Release/luanti.exe" --run-unittests --test-module TestArabicTextLayout 2>&1
-          $testExitCode = $LASTEXITCODE
-          $testOutput | Tee-Object -FilePath $log
-          if ($testExitCode -ne 0) { exit $testExitCode }
-          $summary = Select-String -Path $log -Pattern 'Module TestArabicTextLayout passed \(0 failures / 17 tests\)' | Select-Object -First 1
-          if (-not $summary) {
-            Get-Content $log
-            throw "Arabic text-layout tests did not report the expected 17-test zero-failure summary."
-          }
-          Write-Host "Verified Arabic regression result: $($summary.Line)"
-
-      - name: Install and verify portable Windows package
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          $package = Join-Path $env:GITHUB_WORKSPACE "artifacts/windows"
-          New-Item -ItemType Directory -Force -Path $package | Out-Null
-          cmake --install build --config Release --prefix $package
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          if (-not (Test-Path (Join-Path $package "bin/luanti.exe"))) {
-            Get-ChildItem $package -Recurse
-            throw "Installed package is missing bin/luanti.exe."
-          }
-          if (-not (Test-Path (Join-Path $package "fonts/NotoSansArabic-Regular.ttf"))) {
-            Get-ChildItem $package -Recurse
-            throw "Installed package is missing Noto Sans Arabic."
-          }
-          if (-not (Test-Path (Join-Path $package "fonts/NotoSansArabic-OFL.txt"))) {
-            throw "Installed package is missing the Noto Sans Arabic license."
-          }
-          $bin = Join-Path $package "bin"
-          foreach ($dependency in @("raqm", "harfbuzz", "fribidi")) {
-            $dll = Get-ChildItem -Path $bin -Filter "*$dependency*.dll" -File -ErrorAction SilentlyContinue
-            if (-not $dll) {
-              Get-ChildItem $package -Recurse
-              throw "Installed package is missing the $dependency runtime DLL."
-            }
-          }
-          foreach ($dependency in @("OpenAL32.dll", "ogg.dll", "vorbis.dll", "vorbisfile.dll")) {
-            $dll = Get-ChildItem -Path $bin -Filter $dependency -File -ErrorAction SilentlyContinue
-            if (-not $dll) {
-              Get-ChildItem $package -Recurse
-              throw "Installed package is missing the $dependency audio runtime dependency."
-            }
-          }
-          $zip = Join-Path $env:GITHUB_WORKSPACE "artifacts/luanti-arabic-windows-x64.zip"
-          Compress-Archive -Path (Join-Path $package "*") -DestinationPath $zip -Force
-
-      - name: Upload Windows package
-        uses: actions/upload-artifact@v4
-        with:
-          name: luanti-arabic-windows-x64
-          path: artifacts/luanti-arabic-windows-x64.zip
-          if-no-files-found: error
-          retention-days: 30
- -Quiet)) {
-            throw "Installed language selector is missing the comma-terminated Arabic option."
-          }
-          if (-not (Test-Path (Join-Path $package "bin/luanti.exe"))) {
-            Get-ChildItem $package -Recurse
-            throw "Installed package is missing bin/luanti.exe."
-          }
-          if (-not (Test-Path (Join-Path $package "fonts/NotoSansArabic-Regular.ttf"))) {
-            Get-ChildItem $package -Recurse
-            throw "Installed package is missing Noto Sans Arabic."
-          }
-          if (-not (Test-Path (Join-Path $package "fonts/NotoSansArabic-OFL.txt"))) {
-            throw "Installed package is missing the Noto Sans Arabic license."
-          }
-          $bin = Join-Path $package "bin"
-          foreach ($dependency in @("raqm", "harfbuzz", "fribidi")) {
-            $dll = Get-ChildItem -Path $bin -Filter "*$dependency*.dll" -File -ErrorAction SilentlyContinue
-            if (-not $dll) {
-              Get-ChildItem $package -Recurse
-              throw "Installed package is missing the $dependency runtime DLL."
-            }
-          }
-          foreach ($dependency in @("OpenAL32.dll", "ogg.dll", "vorbis.dll", "vorbisfile.dll")) {
-            $dll = Get-ChildItem -Path $bin -Filter $dependency -File -ErrorAction SilentlyContinue
-            if (-not $dll) {
-              Get-ChildItem $package -Recurse
-              throw "Installed package is missing the $dependency audio runtime dependency."
-            }
-          }
-          $zip = Join-Path $env:GITHUB_WORKSPACE "artifacts/luanti-arabic-windows-x64.zip"
-          Compress-Archive -Path (Join-Path $package "*") -DestinationPath $zip -Force
-
-      - name: Upload Windows package
-        uses: actions/upload-artifact@v4
-        with:
-          name: luanti-arabic-windows-x64
-          path: artifacts/luanti-arabic-windows-x64.zip
-          if-no-files-found: error
-          retention-days: 30
- "$package/builtin/common/settings/dlg_settings.lua"
-          test -s "$package/fonts/NotoSansArabic-Regular.ttf"
-          test -s "$package/fonts/NotoSansArabic-OFL.txt"
-          tar -czf "$GITHUB_WORKSPACE/artifacts/luanti-arabic-linux-x64.tar.gz" -C "$package" .
-
-      - name: Upload Linux package
-        uses: actions/upload-artifact@v4
-        with:
-          name: luanti-arabic-linux-x64
-          path: artifacts/luanti-arabic-linux-x64.tar.gz
-          if-no-files-found: error
-          retention-days: 30
-
-  windows:
-    name: Windows x64 MSVC build, tests, and install package
-    needs: arabic-translation-validation
-    runs-on: windows-2022
-    timeout-minutes: 120
-    env:
-      VCPKG_ROOT: ${{ github.workspace }}/.vcpkg
-      VCPKG_DEFAULT_BINARY_CACHE: ${{ github.workspace }}/.vcpkg-binary-cache
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Install pinned CMake from PyPI
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-
-      - name: Install CMake 4.4.4 wheel
-        shell: pwsh
-        run: |
-          python -m pip install --no-cache-dir cmake==4.4.4
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          cmake --version
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-      - name: Bootstrap pinned vcpkg baseline
-        shell: pwsh
-        run: |
-          git clone --filter=blob:none https://github.com/microsoft/vcpkg.git "$env:VCPKG_ROOT"
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          git -C "$env:VCPKG_ROOT" checkout "$env:VCPKG_BASELINE"
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-          $bootstrapped = $false
-          for ($attempt = 1; $attempt -le 4; $attempt++) {
-            Write-Host "vcpkg bootstrap attempt $attempt/4"
-            Remove-Item "$env:VCPKG_ROOT/vcpkg.exe" -Force -ErrorAction SilentlyContinue
-            & "$env:VCPKG_ROOT/bootstrap-vcpkg.bat" -disableMetrics
-            if ($LASTEXITCODE -eq 0 -and (Test-Path "$env:VCPKG_ROOT/vcpkg.exe")) {
-              $bootstrapped = $true
-              break
-            }
-            if ($attempt -lt 4) {
-              $delay = 20 * $attempt
-              Write-Host "Bootstrap failed; retrying in $delay seconds."
-              Start-Sleep -Seconds $delay
-            }
-          }
-          if (-not $bootstrapped) { throw "Could not bootstrap the pinned vcpkg tool after four attempts." }
-
-      - name: Restore vcpkg binary package cache
-        id: vcpkg-cache
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ github.workspace }}/.vcpkg-binary-cache
-          key: vcpkg-luanti-windows-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
-          restore-keys: |
-            vcpkg-luanti-windows-x64-
-
-      - name: Prepare vcpkg binary cache directory
-        shell: pwsh
-        run: New-Item -ItemType Directory -Force -Path $env:VCPKG_DEFAULT_BINARY_CACHE | Out-Null
-
-      - name: Install manifest dependencies
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          & "$env:VCPKG_ROOT/vcpkg.exe" install --triplet x64-windows
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-      - name: Save vcpkg binary package cache
-        if: steps.vcpkg-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: ${{ github.workspace }}/.vcpkg-binary-cache
-          key: vcpkg-luanti-windows-x64-${{ hashFiles('luanti/code/vcpkg.json') }}-${{ env.VCPKG_BASELINE }}
-
-      - name: Configure client and unit tests
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          $toolchain = Join-Path $env:VCPKG_ROOT "scripts/buildsystems/vcpkg.cmake"
-          $cmakeArgs = @("-S", ".", "-B", "build", "-G", "Visual Studio 17 2022", "-A", "x64", "-DCMAKE_TOOLCHAIN_FILE=$toolchain", "-DVCPKG_TARGET_TRIPLET=x64-windows", "-DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON", "-DBUILD_CLIENT=ON", "-DBUILD_SERVER=OFF", "-DBUILD_UNITTESTS=ON", "-DBUILD_DOCUMENTATION=OFF", "-DENABLE_SOUND=ON", "-DENABLE_POSTGRESQL=OFF", "-DENABLE_CURSES=OFF", "-DRUN_IN_PLACE=ON")
-          & cmake @cmakeArgs
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-      - name: Build client
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          cmake --build build --config Release --parallel 2
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-      - name: Run Arabic text-layout regression module
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          if (-not (Test-Path "bin/Release/luanti.exe")) {
-            Get-ChildItem bin -Recurse
-            throw "The Luanti client executable was not produced."
-          }
-          $log = Join-Path $env:RUNNER_TEMP "arabic-layout-tests.log"
-          $testOutput = & "bin/Release/luanti.exe" --run-unittests --test-module TestArabicTextLayout 2>&1
-          $testExitCode = $LASTEXITCODE
-          $testOutput | Tee-Object -FilePath $log
-          if ($testExitCode -ne 0) { exit $testExitCode }
-          $summary = Select-String -Path $log -Pattern 'Module TestArabicTextLayout passed \(0 failures / 17 tests\)' | Select-Object -First 1
-          if (-not $summary) {
-            Get-Content $log
-            throw "Arabic text-layout tests did not report the expected 17-test zero-failure summary."
-          }
-          Write-Host "Verified Arabic regression result: $($summary.Line)"
-
-      - name: Install and verify portable Windows package
-        working-directory: luanti/code
-        shell: pwsh
-        run: |
-          $package = Join-Path $env:GITHUB_WORKSPACE "artifacts/windows"
-          New-Item -ItemType Directory -Force -Path $package | Out-Null
-          cmake --install build --config Release --prefix $package
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          if (-not (Test-Path (Join-Path $package "bin/luanti.exe"))) {
-            Get-ChildItem $package -Recurse
-            throw "Installed package is missing bin/luanti.exe."
-          }
-          if (-not (Test-Path (Join-Path $package "fonts/NotoSansArabic-Regular.ttf"))) {
-            Get-ChildItem $package -Recurse
-            throw "Installed package is missing Noto Sans Arabic."
-          }
-          if (-not (Test-Path (Join-Path $package "fonts/NotoSansArabic-OFL.txt"))) {
-            throw "Installed package is missing the Noto Sans Arabic license."
-          }
-          $bin = Join-Path $package "bin"
-          foreach ($dependency in @("raqm", "harfbuzz", "fribidi")) {
-            $dll = Get-ChildItem -Path $bin -Filter "*$dependency*.dll" -File -ErrorAction SilentlyContinue
-            if (-not $dll) {
-              Get-ChildItem $package -Recurse
-              throw "Installed package is missing the $dependency runtime DLL."
-            }
-          }
-          foreach ($dependency in @("OpenAL32.dll", "ogg.dll", "vorbis.dll", "vorbisfile.dll")) {
-            $dll = Get-ChildItem -Path $bin -Filter $dependency -File -ErrorAction SilentlyContinue
-            if (-not $dll) {
-              Get-ChildItem $package -Recurse
-              throw "Installed package is missing the $dependency audio runtime dependency."
-            }
-          }
-          $zip = Join-Path $env:GITHUB_WORKSPACE "artifacts/luanti-arabic-windows-x64.zip"
-          Compress-Archive -Path (Join-Path $package "*") -DestinationPath $zip -Force
-
       - name: Upload Windows package
         uses: actions/upload-artifact@v4
         with:

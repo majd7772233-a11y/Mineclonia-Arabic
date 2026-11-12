@@ -352,3 +352,16 @@ No production shaping code was changed as part of this correction. Run #106 must
 - خطأ الفاصلة في Lua وSHA path normalization تم إصلاحهما سابقاً؛ تجربة المستخدم على حزمة حديثة مطابقة لم تُثبت بعد.
 
 راجع PROJECT_STATE.md وNEXT_SESSION_PROMPT.md. احتفظ بالتاريخ السابق كمرجع ولا تجعله بديلاً عن الحالة الحالية.
+
+
+## إصلاح Workflow وفاحص Lua — 2026-11-12
+
+Run108 انتهى بالفشل دون Jobs أو Artifacts أو check-runs؛ لذلك لا يثبت فشل compilation أو الاختبارات ولا توجد job logs تحدد السبب. فحص الملف نفسه كشف Bash grep مبتوراً وPowerShell condition غير مكتمل ومقاطع Package مكررة وتعريفات Windows متكررة.
+
+أُعيد تنظيم Workflow إلى workflow-sanity وcatalog-validation وLinux وWindows، مع الحفاظ على cancel-in-progress وvcpkg cache restore/save في كل منصة، وإعداد الصوت، واشتراط ملخص 17/17 قبل package. تشمل فحوص الحزمة مطابقة builtin مع المصدر، والخط والترخيص، وldd على Linux، وDLLs على Windows.
+
+في validate_lua_syntax.py تم تصحيح double escaping في regex خيار العربية. الفاحص ما زال يمسح كل Lua files في الشجرتين، ويعيد exit code غير صفري عند الخطأ. الفاصلة الصحيحة موجودة بالفعل في نسختي dlg_settings.lua؛ لذلك لم تُعدّل ملفات Lua.
+
+فحص المصدر C++ وجد 17 declarations و17 registrations و17 definitions دون تكرار، لكن ذلك لا يثبت compilation. إصلاح SHA path normalizer لا يزال في builtin_files.h ويُستخدم في safeLoadFile؛ لم يتم إخفاء التحذير أو تعديل مسار الإنتاج.
+
+Preflight محلي: YAML وbash -n وregex نجحت. actionlint وPowerShell parser وmsgfmt غير متاحة محلياً، وتعذر تثبيت luaparser بسبب DNS. لا يوجد build أو test أو package نجاح مثبت بعد هذه الدفعة.
