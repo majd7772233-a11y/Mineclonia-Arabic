@@ -3,40 +3,47 @@
 التاريخ: 2026-11-12
 Repository: majd7772233-a11y/Mineclonia-Arabic
 Branch الوحيد: work/arabic-engine-support
-رأس البداية: 1c5bab319be89eb2aeba40f6626c1333dd495a7a
-main الذي تم فحصه: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (لم يُعدّل).
+رأس تنفيذ Workflow/Lua: 69c62784baf96e3456239d5b954055be5e855501
+main المفحوص: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (لم يُعدّل).
+Run الأخير: #109 / 43212062926 على SHA 69c62784baf96e3456239d5b954055be5e855501 — completed/success.
 
-## ما تم التحقق منه
+## ما اكتمل
 
-- Run #108، ID 43201985097، على SHA 1c5bab319be89eb2aeba40f6626c1333dd495a7a: completed/failure، لكن API أعاد Jobs=0 وArtifacts=0 وcheck-runs=0؛ لا توجد job logs تحدد سبباً مباشراً.
-- تمت قراءة Workflow كاملاً: تضمن grep غير مغلق، وPowerShell condition مبتوراً، وpackage tails مكررة، وWindows jobs مكررة.
-- كلا ملفي dlg_settings.lua يحتويان فاصلة العربية قبل be.
-- regex داخل validate_lua_syntax.py كان يهرب الأقواس المربعة مرتين؛ تم تصحيحه.
-- C++ source يحوي 17 declarations و17 registrations و17 definitions بلا تكرار.
-- normalizeBuiltinFileSha256Path موجود ويستخدم قبل manifest lookup في safeLoadFile.
+- أُصلح Workflow في commit 69c62784baf96e3456239d5b954055be5e855501: أربع Jobs فريدة sanity/catalog/Linux/Windows؛ أزيلت المقاطع اليتيمة والتعريفات المكررة؛ اكتملت شروط Bash وPowerShell.
+- صُحح double escaping في tools/validate_lua_syntax.py.
+- حُفظ cancel-in-progress=true وvcpkg cache restore/save في Linux وWindows.
+- Run #109 نجح بكل وظائفه الأربع.
+- catalog: 245/245 builtin keys و1,575/1,575 gettext translations؛ 0 empty و0 fuzzy.
+- msgfmt: success.
+- Lua parser: 210 ملفات builtin عبر الشجرتين.
+- Arabic source validator: 17 declarations / 17 registrations / 17 definitions.
+- Linux وWindows: CMake configure، client build، اختبار TestArabicTextLayout (17/17 و0 failures)، install/package/upload — كلها success.
+- Linux artifact ID 13941099252، SHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
+- Windows artifact ID 13941743588، SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
 
-## إصلاح Workflow والفاحص
+## Run #109 وروابط الحزم
 
-Workflow أصبح بأربع Jobs: workflow-sanity وcatalog-validation وlinux وwindows. تم الحفاظ على cancel-in-progress وvcpkg cache restore/save للمنصتين وENABLE_SOUND=ON. هناك شرط صريح لنتيجة 17/17 قبل التغليف، والتحقق من builtin/font/license والاعتماديات.
+Run: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926
 
-Preflight: YAML parse وbash -n وregex نجحت. actionlint وPowerShell parser وmsgfmt غير متاحة محلياً. تعذر تثبيت luaparser بسبب DNS؛ يجب أن يثبت CI فحص Lua قبل البناء.
+- Linux ZIP/tar.gz artifact: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926/artifacts/13941099252
+  - ID 13941099252; 22,718,197 bytes; SHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
+- Windows ZIP artifact: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926/artifacts/13941743588
+  - ID 13941743588; 20,672,848 bytes; SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
 
-## غير مثبت
+## ما لم يختبر بعد
 
-- لا CMake configure أو client build حديث.
-- لا اختبارات C++ فعلية 17/17 على Linux أو Windows.
-- لا install package أو Artifact حديث.
-- لا اختبار GUI من المستخدم ولا تحقق من SHA warnings على جهازه.
+- لم يُشغّل المستخدم Windows artifact على جهازه بعد.
+- لا يوجد إثبات فعلي حتى الآن لاختفاء خطأ قائمة Lua أو تحذيرات SHA-256 على جهاز المستخدم.
+- clipboard copy/cut/paste، mouse drag، Shift selection، Ctrl+Left/Right، Ctrl+Backspace/Delete بالنص المختلط، scrolling، clipping، shadows، centering/alignment، emoji، supplementary Unicode وcombining marks تحتاج اختبار GUI.
+- Android مؤجل إلى ما بعد استقرار Desktop.
 
-## الخطوة التالية
+## نقطة التوقف التالية بدقة
 
-بعد وصول دفعة الإصلاح إلى GitHub:
-1. افحص HEAD وmain مباشرة.
-2. افحص Run الجديد المطابق لـHEAD، لا Run108.
-3. راجع كل Jobs وlogs، وأول خطوة فاشلة، ثم Catalog/Lua/PO وConfigure/Build/17 tests/Package.
-4. لا تدفع أثناء تشغيل CI لأن cancel-in-progress=true.
-5. أصلح السبب الجذري في دفعة متماسكة مع تحديث Markdown في نفس commit.
-6. بعد Artifact Windows حديث، اختبر الحزمة الكاملة والقائمة وSettings > Language وسجل SHA.
-7. تابع clipboard/drag/Shift/rendering، ثم Android بعد استقرار Desktop.
+1. استخدم Windows artifact 13941743588 كحزمة كاملة مستقلة؛ لا تنقل exe وحده إلى تثبيت قديم.
+2. شغّل التطبيق وافتح القائمة الرئيسية.
+3. افتح Settings > Language وتحقق من ظهور العربية واختيارها.
+4. التقط log جديداً وابحث عن `Failed to load and run script` و`No SHA256 known for builtin file`. لا تفترض اختفاء التحذير قبل وجود log المستخدم.
+5. ابدأ اختبارات التحرير التفاعلية المذكورة أعلاه، ثم Rendering GUI.
+6. إذا ظهر فشل جديد، اقرأ السجل والكود المحيط أولاً، وجمّع الإصلاحات مع توثيق Markdown في commit واحد. لا تدفع أثناء CI بسبب cancel-in-progress=true.
 
-لا دمج إلى main ولا فروع جديدة ولا Force Push.
+هذا التحديث بعد Run #109 توثيقي فقط؛ لا يعدل كود المحرك أو Workflow.

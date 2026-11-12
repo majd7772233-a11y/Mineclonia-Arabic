@@ -1,15 +1,23 @@
 # تقدم التعريب
 
 
-> ## نقطة حالة محرك Luanti — 2026-11-12
+> ## نقطة حالة محرك Luanti — 2026-11-12 · Run #109 SUCCESS
 >
-> Run #108 ID 43201985097 على SHA 1c5bab319be89eb2aeba40f6626c1333dd495a7a انتهى failure، لكن GitHub أعاد Jobs=0 وArtifacts=0 وcheck-runs=0؛ لا يوجد دليل على فشل build بعينه.
-> تم فحص Workflow وإعادة تنظيمه بأربع Jobs: workflow-sanity وcatalog-validation وLinux وWindows. حُفظ vcpkg cache restore/save وcancel-in-progress.
-> صُحح double escaping في tools/validate_lua_syntax.py. مصدر Lua يحتوي الفاصلة، ومصدر C++ فيه 17 declarations و17 registrations و17 definitions دون تكرار.
-> preflight محلي: YAML parsing وbash -n وregex نجحت. actionlint وPowerShell parser وmsgfmt غير متاحة؛ وتعذر تثبيت luaparser بسبب DNS. لا توجد نتيجة build أو 17/17 أو Artifact حديث بعد.
-> راجع [PROJECT_STATE](docs/PROJECT_STATE.md) و[NEXT_SESSION_PROMPT](docs/NEXT_SESSION_PROMPT.md) و[BUILD_TESTING](docs/BUILD_TESTING.md).
+> HEAD التنفيذ: 69c62784baf96e3456239d5b954055be5e855501 على work/arabic-engine-support؛ main بقي a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d دون تعديل.
 >
-> **قاعدة دائمة:** كل تعديل كود يجب أن يصاحبه تحديث Markdown المناسب في commit نفسه.
+> اكتملت Jobs الأربع في Run #109 (ID 43212062926) بنجاح: workflow sanity، catalog/source validation، Linux x64، Windows x64 MSVC.
+>
+> تحقق CI من 245/245 builtin keys، و1,575/1,575 gettext translations، و210 ملفات Lua، وmsgfmt، و17 test-source declarations/registrations/definitions. نجح configure/build وTestArabicTextLayout (17/17، صفر إخفاقات) على Linux وWindows، ثم install/package/upload على النظامين.
+>
+> Linux Artifact: 13941099252 — SHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
+> Windows Artifact: 13941743588 — SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
+>
+> هذا يثبت Desktop CI والحزم، لكنه لا يثبت تشغيل GUI على جهاز المستخدم أو اختفاء SHA warnings. استخدم Windows artifact كاملاً وافحص القائمة وSettings > Language وسجل التشغيل.
+>
+> التفاصيل: [PROJECT_STATE](docs/PROJECT_STATE.md)، [HANDOFF](docs/ARABIC_ENGINE_HANDOFF.md)، [NEXT_SESSION_PROMPT](docs/NEXT_SESSION_PROMPT.md)، [BUILD_TESTING](docs/BUILD_TESTING.md).
+>
+> **قاعدة دائمة:** أي تغيير برمجي أو workflow يجب أن يصاحبه تحديث Markdown المناسب في commit نفسه.
+
 
 آخر تحديث: 2026-11-07
 

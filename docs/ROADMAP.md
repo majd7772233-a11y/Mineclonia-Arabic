@@ -3,38 +3,37 @@
 ## P0 — CI وLua validator
 
 - [x] تحليل Run108 من GitHub: failure دون Jobs/Artifacts/check-runs؛ لا logs تحدد الفشل.
-- [x] مراجعة workflow كاملاً ورصد Bash/PowerShell المبتور وpackage tails وWindows jobs المكررة.
-- [x] تنظيم Workflow بأربع Jobs: workflow-sanity وcatalog-validation وLinux وWindows.
+- [x] إعادة بناء Workflow بأربع Jobs فريدة: workflow-sanity وcatalog-validation وLinux وWindows.
+- [x] إزالة package fragments وWindows jobs المكررة وإكمال Bash/PowerShell conditions.
 - [x] الحفاظ على cancel-in-progress وكاش vcpkg restore/save للمنصتين.
 - [x] إصلاح double escaping في Arabic option regex دون تغيير Lua source السليم.
 - [x] PyYAML وbash -n وregex preflight.
-- [ ] actionlint وPowerShell parser وmsgfmt عندما تتوفر الأدوات.
-- [ ] تأكيد catalog/Lua/PO validation في CI الجديد.
+- [x] CI: catalog/Lua/PO/source validation نجحت في Run #109.
 
-## P1 — build verification
+## P1 — Desktop build verification
 
-- [ ] Linux وWindows CMake configure.
-- [ ] Linux وWindows client build.
-- [ ] إصلاح compile/link errors من السجلات دون تغيير assertions.
-- [ ] إثبات source validator 17/17/17 وC++ compilation الفعلي.
+- [x] Linux وWindows CMake configure.
+- [x] Linux وWindows client build.
+- [x] مصدر اختبارات C++: 17/17/17 بلا تكرار.
+- [x] C++ compilation الفعلي على النظامين.
+- [x] TestArabicTextLayout: 17/17 و0 failures على النظامين.
 
-## P2 — tests and packaging
+## P2 — Tests and packaging
 
-- [ ] 17/17 Arabic tests على Linux وWindows.
-- [ ] Verify packaged builtin matches source.
-- [ ] Verify Noto Sans Arabic font and license.
-- [ ] Verify Linux runtime dependencies وWindows DLLs.
-- [ ] Artifact لكل منصة مع ID وSHA-256/digest.
+- [x] Install/package verification على Linux وWindows.
+- [x] Linux executable وbuiltin/font/license وldd dependency check.
+- [x] Windows executable وbuiltin SHA/comma/font/license وDLL checks.
+- [x] Linux Artifact ID 13941099252 وSHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
+- [x] Windows Artifact ID 13941743588 وSHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
 
 ## P3 — Windows user verification
 
-- [ ] تسليم Windows artifact حديث مطابق لرأس البناء.
-- [ ] فتح القائمة الرئيسية وSettings > Language.
-- [ ] التأكد من عدم ظهور Lua parser error.
-- [ ] تجربة SHA warnings مع exe وbuiltin من الحزمة نفسها.
-- [ ] جمع log جديد إذا استمر التحذير.
+- [ ] تسليم واختبار Windows artifact 13941743588 كحزمة كاملة.
+- [ ] فتح القائمة الرئيسية وSettings > Language واختيار العربية.
+- [ ] فحص Lua parser errors وSHA-256 warnings في سجل مستخدم جديد.
+- [ ] إصلاح أي مشكلة باقية من log جديد وسياق المصدر، لا بتعطيل التحذيرات.
 
-## P4 — real-client interaction
+## P4 — Real-client interaction and rendering
 
 - [ ] Clipboard copy/cut/paste round-trip.
 - [ ] Mouse drag وShift selection.
@@ -45,4 +44,4 @@
 
 ## Definition of Done
 
-Validators، وLinux/Windows builds، و17/17 على النظامين، وpackages verified، وArtifacts مبصومة ومطابقة، ثم تجربة GUI فعلية. فحص الترجمة أو YAML لا يكفي لإعلان اكتمال دعم العربية.
+الـDesktop CI والحزمتان اجتازتا Run #109، لكن دعم العربية لا يكتمل إلا بعد GUI/interaction verification فعلي وتوثيق النتائج أو الأخطاء المتبقية.

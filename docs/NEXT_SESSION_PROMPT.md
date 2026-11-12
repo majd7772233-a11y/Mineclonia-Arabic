@@ -1,33 +1,65 @@
-# رسالة استئناف محدثة — Mineclonia-Arabic
+# رسالة الاستئناف الرسمية — Mineclonia-Arabic
 
-تابع المستودع majd7772233-a11y/Mineclonia-Arabic من GitHub HEAD الحالي فقط. الفرع المسموح الوحيد work/arabic-engine-support. ممنوع تعديل main أو إنشاء فروع أو Force Push.
+## مرجع GitHub عند آخر تدقيق — 2026-11-12
 
-## الفحص الأول
-- اقرأ رأسي work/arabic-engine-support وmain من GitHub مباشرة.
-- أعد قراءة وثائق المشروع الإلزامية كاملة، ثم تحقق من العدد الحالي لملفات Markdown (كان 66).
-- راجع Run108 ID 43201985097 على SHA 1c5bab319be89eb2aeba40f6626c1333dd495a7a: completed/failure، لكن Jobs=0 وArtifacts=0 وcheck-runs=0، ولا توجد logs لوظيفة.
+- Repository: majd7772233-a11y/Mineclonia-Arabic
+- Branch الوحيد: work/arabic-engine-support
+- آخر commit تنفيذ: 69c62784baf96e3456239d5b954055be5e855501 — Repair Arabic engine CI workflow and Lua validator.
+- main: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d — بقي دون تعديل.
+- هذا التحديث يوثق Run #109؛ اقرأ HEAD الحالي من GitHub قبل أي عمل جديد ولا تفترض أن SHA لم يتغير.
+- لا تعديل على main، لا فرع جديد، لا merge، لا Force Push.
 
-## حالة المصدر
-- آخر commit برمجي سابق: 6e8511ef4f7b437e0ce7c6769a3405ba68c077b2.
-- آخر commit توثيق سابق: 1c5bab319be89eb2aeba40f6626c1333dd495a7a.
-- اختبارات C++: 17 declarations و17 registrations و17 definitions بلا تكرار.
-- فاصلة العربية قبل be موجودة في نسختي dlg_settings.lua.
-- normalizeBuiltinFileSha256Path موجود ويستخدم قبل SHA manifest lookup.
-- Lua validator regex كان double-escaped للأقواس المربعة، وتم تصحيحه في دفعة الإصلاح الحالية.
+## Run #109 — SUCCESS
 
-## Workflow
-أعيد تنظيمه بأربع Jobs: workflow-sanity، catalog-validation، linux، windows. حُفظ vcpkg cache restore/save على المنصتين وcancel-in-progress=true وENABLE_SOUND=ON. يشترط ملخص 0 failures / 17 tests قبل package. يتحقق من Lua builtin/font/license والـruntime dependencies.
+- Run ID: 43212062926; run number 109; HEAD SHA 69c62784baf96e3456239d5b954055be5e855501.
+- بدأ 2026-11-12T11:46:47Z، اكتمل 2026-11-12T11:57:15Z.
+- Workflow sanity — Job 131161916735: success.
+- Catalog/source validation — Job 131161957086: success.
+- Linux x64 build/tests/package — Job 131162246258: success.
+- Windows x64 MSVC build/tests/package — Job 131162246670: success.
 
-## Preflight مسجل
-- YAML parsing: PASS.
-- bash -n لكل كتل Bash: PASS.
-- Jobs الأربع مرة واحدة، cache restore/save مرتين لكل action: PASS.
-- regex يطابق النص الفعلي ويرفض غياب الفاصلة: PASS.
-- actionlint وPowerShell parser وmsgfmt غير متاحة محلياً.
-- تعذر تنزيل luaparser==4.2.0 بسبب DNS؛ Lua parsing الكامل يجب أن يحدث في CI.
-- لا build أو C++ test أو package محلي حتى الآن.
+### Validation evidence
+- builtin: 245/245 keys، 0 empty، source/bundle byte-identical.
+- gettext: 1,575/1,575 effective، 0 untranslated، 0 fuzzy، LANG_CODE=ar.
+- msgfmt check-format: success.
+- Lua syntax: 210 builtin Lua files parsed across both trees.
+- C++ source validator: 17 declarations / 17 registrations / 17 definitions.
+- vcpkg cache restore succeeded on both platforms; cache save skipped on both because cache hit.
+- CMake configure and client builds succeeded on both.
+- TestArabicTextLayout: exact zero-failure 17-test gate passed on both.
+- Linux package: executable, matching builtin, Noto font/license, ldd runtime resolution checked.
+- Windows package: executable, source/package builtin SHA match, Arabic comma check, Noto font/license, Raqm/HarfBuzz/FriBidi/OpenAL/Ogg/Vorbis DLLs checked.
 
-## المطلوب تالياً
-افحص Run الجديد على SHA الإصلاح تحديداً. تحقق من Catalog/Lua/PO ثم CMake configure/build والاختبارات 17/17 على كل منصة والحزم. لا تنسب Run108 إلى compilation لأنه لم يحتو Jobs. عند أي فشل، اقرأ السجل والكود المحيط به وأصلح السبب الجذري، ثم وثّق في commit نفسه. لا تدفع أثناء تشغيل CI.
+### Artifacts
+Linux:
+- ID 13941099252; size 22,718,197 bytes.
+- SHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
+- https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926/artifacts/13941099252
 
-Definition of Done: Validators ناجحة، Linux وWindows build ناجحان، 17/17 على كليهما، packages verified مع Artifact IDs وSHA-256، ثم تجربة GUI فعلية من المستخدم. تبقى clipboard/drag/Shift/rendering أعمالاً لاحقة.
+Windows:
+- ID 13941743588; size 20,672,848 bytes.
+- SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
+- https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926/artifacts/13941743588
+
+Run: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926
+
+## قواعد العمل الإلزامية
+
+1. اقرأ branch HEAD وmain من GitHub مباشرة قبل أي كتابة.
+2. اعمل حصراً على work/arabic-engine-support؛ استخدم expected_sha عند تحريك المرجع.
+3. كل تعديل كود/Workflow/CMake/Lua/Python/Asset يتطلب تحديث Markdown المناسب في commit نفسه، على الأقل PROJECT_STATE وWORKLOG append-only وHANDOFF وSUPPORT وPROGRESS وNEXT_SESSION_PROMPT؛ README وBUILD_TESTING/ROADMAP حسب الحاجة.
+4. لا تخفف assertions ولا تحذف اختبارات.
+5. لا تدفع أثناء CI؛ cancel-in-progress=true قد يلغي التشغيل.
+6. احفظ cache restore/save على المنصتين.
+7. عند فشل جديد، اقرأ log الأصلي والكود المحيط قبل تغيير السبب.
+
+## الخطوة التالية
+
+1. المستخدم يختبر Windows artifact أعلاه كحزمة كاملة، لا exe منفرداً فوق تثبيت قديم.
+2. تحقق من فتح القائمة الرئيسية ثم Settings > Language واختيار العربية.
+3. اطلب/افحص log حديثاً للتحقق من Lua parser errors وSHA warnings؛ لم يُثبت اختفاؤها على جهاز المستخدم بعد.
+4. تابع clipboard copy/cut/paste round-trip، mouse drag، Shift selection، Ctrl+Left/Right وCtrl+Backspace/Delete للنص المختلط.
+5. تابع clipping/shadows/centering/alignment/scrolling/fallback/emoji/supplementary Unicode/combining marks.
+6. Android يبقى مؤجلاً بعد Desktop.
+
+لا تعلن اكتمال دعم العربية قبل إغلاق تحقق GUI والتفاعل الفعلي.

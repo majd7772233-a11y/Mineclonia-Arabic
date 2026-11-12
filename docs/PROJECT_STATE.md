@@ -3,71 +3,99 @@
 آخر تدقيق: 2026-11-12
 المستودع: majd7772233-a11y/Mineclonia-Arabic
 فرع العمل الوحيد: work/arabic-engine-support
-رأس بداية دفعة الإصلاح: 1c5bab319be89eb2aeba40f6626c1333dd495a7a
-main الذي تم فحصه: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (لم يُعدّل).
+رأس تنفيذ إصلاح Workflow وLua validator: 69c62784baf96e3456239d5b954055be5e855501
+رأس main المفحوص: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (لم يُعدّل).
+الأب المباشر لدفعة الإصلاح: 1c5bab319be89eb2aeba40f6626c1333dd495a7a.
+هذا التحديث توثيقي فقط، مبني فوق رأس التنفيذ أعلاه؛ اقرأ HEAD النهائي من GitHub بعد تسجيله.
 
-## 1. GitHub وRun 108
+## 1. الخلاصة التنفيذية
 
-- Run #108، ID 43201985097، event push، head SHA 1c5bab319be89eb2aeba40f6626c1333dd495a7a، completed/failure عند 2026-11-12T10:37:19Z.
-- Jobs API: total_count=0. Artifacts API: total_count=0. check-runs: total_count=0.
-- Combined status أعاد pending بلا statuses؛ لا توجد job logs تشرح الفشل. لا يمكن تصنيفه كفشل Compilation أو Tests أو Packaging.
-- آخر commit موثق: 1c5bab319be89eb2aeba40f6626c1333dd495a7a — Document authoritative project state and continuation workflow.
-- آخر commit برمجي سابق: 6e8511ef4f7b437e0ce7c6769a3405ba68c077b2 — Remove duplicate Arabic tests and verify packaged builtin integrity.
-- لا يوجد بناء حديث أو اختبار فعلي أو Artifact مطابق لرأس الفرع حتى الآن.
+المستودع يحتوي مسارين منفصلين:
+- تعريب Mineclonia: 163 ملف PO و5,018 ترجمة غير فارغة ومفتاح تنسيقي واحد. حزمة v7 Pre-release تاريخية ولم تُدمج في Weblate.
+- دعم العربية الأصلي داخل Luanti 5.17.0 باستخدام Raqm وHarfBuzz وFriBidi وFreeType وNoto Sans Arabic. أصبحت أول دفعة Desktop build/test/package ناجحة معاً على Linux وWindows. ما زال اختبار GUI والتفاعل على عميل فعلي غير مكتمل.
 
-## 2. المساران المستقلان
+## 2. Run #109 — الدليل الكامل
 
-### تعريب Mineclonia
-163 ملف PO، و5,018 ترجمة غير فارغة ومفتاح تنسيقي واحد. المصدر والقوالب في SOURCE_VERSION.md وSOURCE_TEMPLATES.md. حزمة v7 Pre-release تاريخية، غير مدمجة في Weblate.
+- Run number: 109
+- Run ID: 43212062926
+- HEAD SHA: 69c62784baf96e3456239d5b954055be5e855501
+- الحدث: push
+- بدأ: 2026-11-12T11:46:47Z
+- اكتمل: 2026-11-12T11:57:15Z
+- الحالة: completed / success
+- رابط التشغيل: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926
 
-### دعم العربية الأصلي داخل Luanti 5.17.0
-يعتمد Raqm وHarfBuzz وFriBidi وFreeType وNoto Sans Arabic. يغطي المصدر shaping وBiDi/RTL والتحويلات النصية ومؤشر/تحديد/editbox. هذا المسار غير مكتمل حتى نجاح Linux وWindows build و17/17 والـpackage والتحقق الفعلي.
+### نتائج الوظائف الأربع
 
-## 3. ما تم فحصه مباشرة في المصدر
+| الوظيفة | Job ID | النتيجة |
+|---|---:|---|
+| Verify GitHub Actions job scheduling | 131161916735 | success |
+| Validate Arabic engine catalogs and sources | 131161957086 | success |
+| Linux x64 build, tests, and install package | 131162246258 | success |
+| Windows x64 MSVC build, tests, and install package | 131162246670 | success |
 
-- Workflow القديم طوله 748 سطراً، ويحتوي grep مقتبساً بشكل غير مكتمل، وشرط PowerShell مبتوراً، ومقاطع Package يتيمة ومكررة، وتعريف Windows jobs مكرر.
-- الفاصلة بعد ar موجودة فعلياً في نسختي dlg_settings.lua؛ لم يتم تعديل مصدر Lua السليم.
-- validate_lua_syntax.py احتوى double escaping للأقواس المربعة؛ صُحح النمط إلى escaping واحد.
-- test_arabic_text_layout.cpp: 17 declarations و17 registrations و17 definitions بلا أسماء مكررة.
-- normalizeBuiltinFileSha256Path موجود ويُستخدم قبل البحث في g_builtin_file_sha256_map داخل safeLoadFile.
-- لم يتم تعديل C++ tests أو assertions أو CMake أو كود الإنتاج في دفعة الإصلاح الحالية.
+### Catalog / Lua / PO / C++ source
+- builtin: 245 template keys و245 Arabic keys، صفر فارغ، والنسخة المعبأة byte-identical.
+- Luanti gettext: 1,575 رسالة، 1,575 فعالة، 0 غير مترجمة، 0 fuzzy، وLANG_CODE='ar'.
+- msgfmt --check --check-format: success.
+- Lua parser: 210 ملفات builtin تم تحليلها بنجاح عبر شجرتي المصدر والنسخة المرجعية.
+- validate_arabic_test_source.py: 17 اختباراً معلناً ومسجلاً ومُعرّفاً مرة واحدة.
 
-## 4. Workflow والإثبات الساكن
+### Linux
+- vcpkg bootstrap/cache restore/install: success؛ save cache تخطى لأن cache hit كان true.
+- CMake Configure: success.
+- Client Build: success.
+- TestArabicTextLayout: 17/17، 0 failures. سجل الوظيفة يحتوي 17 سطر PASS والملخص الحرفي:
+  `Module TestArabicTextLayout passed (0 failures / 17 tests)`.
+- cmake --install: success.
+- تم فحص وجود executable وbuiltin؛ ملف dlg_settings.lua المعبأ مطابق للمصدر بـcmp.
+- تم فحص Noto Sans Arabic والترخيص؛ ldd لم يُظهر dependency بحالة not found.
+- Package/Artifact upload: success.
 
-أعيد تنظيم Workflow بأربع Jobs فقط: workflow-sanity، catalog-validation، linux، windows. حُفظ cancel-in-progress=true وكاش vcpkg restore/save لكل منصة وbaseline الأصلي وإعداد ENABLE_SOUND=ON. يرفض الاختبار أي ملخص غير 0 failures / 17 tests. يتحقق Linux من ldd، والنسختان من ملف builtin والخط والترخيص، وWindows من DLLs.
+**Linux Artifact**
+- الاسم: luanti-arabic-linux-x64
+- ID: 13941099252
+- الحجم: 22,718,197 bytes
+- SHA-256: `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`
+- الرابط: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926/artifacts/13941099252
 
-Preflight محلي للنسخة المرشحة:
-- YAML parsing عبر PyYAML: PASS.
-- bash -n لجميع Bash run blocks: PASS.
-- بنية Jobs الأربع وعدم التكرار: PASS.
-- زوجا actions/cache/restore@v4 وactions/cache/save@v4: محفوظان.
-- regex خيار العربية يطابق السطرين الحاليين ويرفض غياب الفاصلة: PASS.
-- actionlint وPowerShell parser وmsgfmt غير متاحة محلياً.
-- تعذر تثبيت luaparser==4.2.0 بسبب DNS؛ لم يُشغل Lua parser محلياً.
-- لم يُجر CMake configure/build أو C++ tests أو package install.
+### Windows
+- vcpkg bootstrap/cache restore/install: success؛ save cache تخطى لأن cache hit كان true.
+- CMake Configure: success.
+- MSVC Client Build: success.
+- خطوة TestArabicTextLayout: success. PowerShell step لا تعتبر الاختبار ناجحاً إلا بعد exit code صفر والعثور على النص الحرفي `Module TestArabicTextLayout passed (0 failures / 17 tests)`.
+- cmake --install: success.
+- تم فحص تطابق SHA-256 للـbuiltin المصدر والمعبأ، والفاصلة بعد خيار العربية قبل be، ووجود exe وخط Noto والترخيص وDLLs الخاصة بـRaqm/HarfBuzz/FriBidi/OpenAL/Ogg/Vorbis.
+- ZIP/Artifact upload: success.
 
-هذه فحوص ساكنة وليست دليلاً على CI أو بناء ناجح.
+**Windows Artifact**
+- الاسم: luanti-arabic-windows-x64
+- ID: 13941743588
+- الحجم: 20,672,848 bytes
+- SHA-256: `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`
+- الرابط: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926/artifacts/13941743588
 
-## 5. نتائج CI التاريخية
+لم يُرفع artifact جديد أثناء Run #109 إلا الحزمتان أعلاه. لا تستخدم artifacts الأقدم لتمثيل HEAD 69c62784baf96e3456239d5b954055be5e855501.
 
-| Run | SHA | الأدلة |
-|---|---|---|
-| #102 / 42774549330 | 9bdd876eea9ab8087906b4d067d76fd587e84fc8 | Windows build و16/16 وpackage نجحت؛ Linux build نجح و4/16 shaping tests فشلت |
-| #105 / 42782985200 | 9eda41ba6285afb6ef0891a4493ac9cf35b32d99 | Windows build و16/16 وpackage نجحت؛ Linux build نجح و4/16 فشلت |
-| #106 / 42798177083 | 3a6fe0e7e179e01c3562869cb590c6cdb6d14131 | Catalog نجح؛ compilation فشل على Linux وWindows بسبب duplicate test definitions |
-| #107 / 42805300100 | 6e8511ef4f7b437e0ce7c6769a3405ba68c077b2 | failure، jobs=0 وartifacts=0 |
-| #108 / 43201985097 | 1c5bab319be89eb2aeba40f6626c1333dd495a7a | failure، jobs=0 وartifacts=0 وcheck-runs=0؛ لا logs |
+## 3. إصلاحات دفعة التنفيذ
 
-لا تستخدم Artifacts التاريخية على أنها تمثل HEAD الحالي.
+Commit التنفيذ 69c62784baf96e3456239d5b954055be5e855501 (Repair Arabic engine CI workflow and Lua validator) أصلح بنية Workflow إلى أربع Jobs فريدة، وأزال package fragments/Windows jobs المكررة، وأكمل شروط Bash/PowerShell. حافظ على cancel-in-progress=true وعلى cache restore/save في النظامين. وصُحح double escaping في regex الخاص بـtools/validate_lua_syntax.py. لم تُخفّض assertions ولم يُحذف اختبار ولم يتغير C++ production shaping في هذه الدفعة.
 
-## 6. نقطة التوقف التالية
+## 4. الحالة غير المنجزة
 
-1. تأكد من الرأس الجديد على GitHub ومن ثبات main.
-2. افحص Run الناتج عن دفعة الإصلاح على SHA المطابق.
-3. تحقق من catalog/Lua/PO ثم configure/build وملخص 17/17 وpackage على المنصتين.
-4. استخرج السبب الأصلي من أي Job فاشل واقرأ سياق الكود قبل الإصلاح.
-5. لا تدفع commit أثناء Run بسبب cancel-in-progress=true.
-6. بعد Windows Artifact حديث، يختبر المستخدم القائمة واللغة وتحذيرات SHA مع الحزمة الكاملة.
-7. تظل clipboard/drag/Shift/rendering وAndroid أعمالاً لاحقة.
+- لم يُختبر تشغيل Windows GUI على جهاز المستخدم.
+- لم يُثبت بعد اختفاء Lua menu error أو SHA warnings في تشغيل فعلي من الحزمة الجديدة.
+- لم تكتمل اختبارات EditBox للحافظة/السحب/Shift/اختصارات الكلمات على عميل فعلي.
+- لم تكتمل اختبارات عرض clipping/shadows/centering/alignment/scrolling وemoji/supplementary Unicode.
+- Android مؤجل بعد تثبيت Desktop.
 
-لا تعديل على main ولا فروع جديدة ولا Force Push.
+## 5. نقطة العمل التالية
+
+1. استخدم حزمة Windows الحديثة أعلاه كاملة، لا تستبدل exe وحده في تثبيت قديم.
+2. افتح القائمة الرئيسية ثم Settings > Language وتحقق من خيار العربية.
+3. راقب سجل التشغيل بحثاً عن Lua parser errors وNo SHA256 known warnings؛ أرسل السجل إذا ظهر شيء.
+4. نفذ/وثّق اختبارات clipboard copy/cut/paste وmouse drag وShift selection والتنقل والحذف بالنص المختلط.
+5. تابع مصفوفة Rendering GUI، ثم Android بعد استقرار Desktop.
+6. أي تعديل جديد يجب أن يضم تحديث Markdown في commit نفسه، وألا يدفع أثناء CI لأن cancel-in-progress=true.
+
+لا يُعد دعم العربية مكتملاً بعد؛ نجاح Desktop build و17/17 والحزمتين إنجاز مهم لكنه لا يعوض تجربة GUI والتفاعل على عميل فعلي.

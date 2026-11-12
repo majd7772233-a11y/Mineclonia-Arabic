@@ -76,3 +76,21 @@ Module TestArabicTextLayout passed (0 failures / 17 tests)
 ## قراءة CI
 
 سجل HEAD SHA، وكل Jobs وlogs، ونتائج configure/build/test/package، وعدد الاختبارات، وArtifact IDs وSHA/digest. Run108 ID 43201985097 على SHA 1c5bab319be89eb2aeba40f6626c1333dd495a7a انتهى failure لكنه لم يحوِ Jobs أو Artifacts أو check-runs؛ لا تنسبه إلى فشل compiler أو tests. لا ترفع درجة الدليل: configure ليس build، وbuild ليس test، وtest ليس package أو runtime.
+
+
+## Run #109 — verified CI baseline (2026-11-12)
+
+Run ID 43212062926, HEAD 69c62784baf96e3456239d5b954055be5e855501, completed/success. All four jobs passed: workflow sanity, catalog/source validation, Linux x64 build/tests/package, and Windows x64 MSVC build/tests/package.
+
+Validation job:
+- 245/245 builtin keys, no empty strings, source/bundle byte-identical.
+- 1,575/1,575 effective gettext translations, 0 untranslated, 0 fuzzy, LANG_CODE=ar.
+- `msgfmt --check --check-format`: passed.
+- `luaparser==4.2.0`: 210 builtin Lua files parsed across both trees.
+- Arabic test-source validator: 17 declarations, 17 registrations, 17 definitions.
+
+Linux job 131162246258: vcpkg bootstrap/cache restore/install and CMake configure passed; cache save was skipped on cache hit. Client build passed. TestArabicTextLayout passed with 0 failures / 17 tests. Install/package checks passed: executable, source-matched builtin, Noto font/license, and no unresolved runtime dependencies from `ldd`. Artifact ID 13941099252, 22,718,197 bytes, SHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
+
+Windows job 131162246670: vcpkg bootstrap/cache restore/install and CMake configure passed; cache save was skipped on cache hit. MSVC client build passed. TestArabicTextLayout step passed its exact 17-test zero-failure gate. Install/package checks passed: executable, source/package builtin SHA equality and comma check, Noto font/license, and Raqm/HarfBuzz/FriBidi/OpenAL/Ogg/Vorbis runtime DLL presence. Artifact ID 13941743588, 20,672,848 bytes, SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
+
+This is CI desktop build/test/package evidence, not user-side GUI evidence. The full Windows artifact must still be launched to verify the main menu, Settings > Language, and SHA warning behavior. Interactive edit-box and rendering tests remain open.

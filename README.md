@@ -3,12 +3,11 @@
 
 ## حالة دعم العربية الأصلي داخل Luanti — 2026-11-12
 
-يُطوّر دعم المحرك في الفرع work/arabic-engine-support، منفصلاً عن حزمة ترجمة Mineclonia. Run #108 (ID 43201985097) انتهى failure على SHA 1c5bab319be89eb2aeba40f6626c1333dd495a7a لكن GitHub أعاد Jobs=0 وArtifacts=0 وcheck-runs=0؛ لذلك لا يثبت فشل compilation أو الاختبارات.
+يُطوّر دعم المحرك في الفرع `work/arabic-engine-support` وهو منفصل عن حزمة ترجمة Mineclonia. رأس التنفيذ الحالي `69c62784baf96e3456239d5b954055be5e855501`؛ لم يُعدّل `main` وبقي عند `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
 
-تمت مراجعة Workflow وإعادة تنظيمه إلى أربع Jobs، وصُحح regex في Lua validator. اجتاز الملف المرشح YAML parsing وbash -n وفحص regex. هذه فحوص ساكنة فقط؛ لم يثبت بعد build أو 17/17 أو package. لا يُعلن دعم المحرك مكتملاً قبل نجاح Linux وWindows والحزم وتجربة GUI.
+Run #109 (ID 43212062926) اكتمل `success` على Linux وWindows. نجحت فحوص catalog/PO/Lua/C++ source، وتم تحليل 210 ملفات Lua، ثم اكتمل CMake configure وبناء العميل واختبار `TestArabicTextLayout` بنتيجة 17/17 دون إخفاقات على النظامين. اكتملت كذلك install/package checks ورُفعت حزمتا Linux وWindows. تفاصيل Run ومعرفات الحزم وبصماتها في [حالة المشروع](docs/PROJECT_STATE.md) و[البناء والاختبار](docs/BUILD_TESTING.md).
 
-راجع [حالة المشروع](docs/PROJECT_STATE.md)، [رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md)، [التسليم](docs/ARABIC_ENGINE_HANDOFF.md)، [البناء والاختبار](docs/BUILD_TESTING.md)، و[خارطة الطريق](docs/ROADMAP.md). كل تعديل برمجي يجب أن يصاحبه تحديث Markdown المناسب في commit نفسه.
-
+**ما زال الدعم غير مقبول نهائياً على GUI حتى الآن:** لم يختبر المستخدم الحزمة الجديدة بعد، ولا يوجد سجل منه يثبت اختفاء خطأ Lua أو تحذيرات SHA-256. لا يزال يلزم اختبار القائمة وSettings > Language والتحرير التفاعلي والعرض المرئي على عميل فعلي. راجع [رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md) و[التسليم](docs/ARABIC_ENGINE_HANDOFF.md).
 ## حالة المشروع
 
 - اللغة المستهدفة: العربية (ar).

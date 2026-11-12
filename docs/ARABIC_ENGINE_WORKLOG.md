@@ -184,3 +184,60 @@ main checked: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged).
 ### Next evidence required
 
 Inspect the next run on the exact repair commit SHA. Record catalog/Lua/PO results, Linux and Windows configure/build/17-test/package results, Artifact IDs and digests. A workflow repair is not a build or test success.
+
+
+## 2026-11-12 — Run #109 full Linux/Windows Desktop verification
+
+**Starting implementation HEAD:** 69c62784baf96e3456239d5b954055be5e855501  
+**Parent commit:** 1c5bab319be89eb2aeba40f6626c1333dd495a7a  
+**Branch:** work/arabic-engine-support  
+**Protected main checked:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged).  
+**Run:** #109, ID 43212062926, push event, head SHA 69c62784baf96e3456239d5b954055be5e855501.  
+**Completed:** 2026-11-12T11:57:15Z — completed/success.
+
+### Jobs
+
+- Workflow sanity — job 131161916735: success.
+- Arabic catalog/source validation — job 131161957086: success.
+- Linux x64 build/tests/package — job 131162246258: success.
+- Windows x64 MSVC build/tests/package — job 131162246670: success.
+
+### Catalog and validator evidence
+
+- Builtin catalog: 245/245 keys, 0 empty; source and bundled files byte-identical.
+- Engine gettext: 1,575/1,575 effective translations, 0 untranslated, 0 fuzzy; LANG_CODE='ar'.
+- `msgfmt --check --check-format`: success.
+- Pinned Lua parser processed 210 builtin Lua files across the two trees successfully.
+- Arabic C++ source validator confirmed 17 declarations, 17 registrations, and 17 definitions exactly once.
+
+### Linux native path
+
+- vcpkg bootstrap, binary-cache restore, manifest install and CMake configure: success.
+- vcpkg cache save was skipped because restore reported a cache hit; restore/save actions remain in the workflow.
+- Full client build: success.
+- TestArabicTextLayout: 17 PASS lines, 0 failures; exact summary `Module TestArabicTextLayout passed (0 failures / 17 tests)`.
+- cmake --install: success.
+- Executable and builtin checked; installed dlg_settings.lua byte-identical to source; Arabic comma check passed.
+- Noto Sans Arabic font and OFL license present; `ldd` output contained no missing runtime dependency.
+- Linux package uploaded successfully.
+
+Artifact `luanti-arabic-linux-x64`: ID 13941099252, size 22,718,197 bytes, SHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`. URL: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926/artifacts/13941099252
+
+### Windows native path
+
+- vcpkg bootstrap, binary-cache restore, manifest install and CMake configure: success.
+- vcpkg cache save was skipped because restore reported a cache hit.
+- MSVC client build: success.
+- Arabic text-layout regression step: success. The step required the process exit code to be zero and used PowerShell `Select-String -SimpleMatch` to require the exact 17-test zero-failure summary before continuing.
+- cmake --install: success.
+- Packaged dlg_settings.lua SHA-256 matched source; Arabic option comma before `be` was checked.
+- Executable, Noto Sans Arabic font/license, Raqm/HarfBuzz/FriBidi DLLs, and OpenAL/Ogg/Vorbis DLLs checked successfully.
+- ZIP package upload completed.
+
+Artifact `luanti-arabic-windows-x64`: ID 13941743588, size 20,672,848 bytes, SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`. URL: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062926/artifacts/13941743588
+
+### Remaining acceptance work
+
+The successful CI establishes desktop compilation, the dedicated 17-test module on both platforms, and package contents/dependency checks. It does not prove that the user's real GUI starts correctly or that SHA warnings are absent on their machine. The user must launch the complete Windows artifact, open Settings > Language, and provide a new log if startup or SHA warnings remain. Clipboard round-trip, mouse drag, Shift selection, mixed-direction keyboard deletion/navigation, clipping/shadows/alignment/scrolling and broader Unicode rendering remain to be verified. Android remains deferred.
+
+No assertions were weakened and no tests were deleted in the workflow repair. No code change is part of this follow-up documentation commit.

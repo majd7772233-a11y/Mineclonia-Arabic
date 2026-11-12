@@ -365,3 +365,22 @@ Run108 انتهى بالفشل دون Jobs أو Artifacts أو check-runs؛ لذ
 فحص المصدر C++ وجد 17 declarations و17 registrations و17 definitions دون تكرار، لكن ذلك لا يثبت compilation. إصلاح SHA path normalizer لا يزال في builtin_files.h ويُستخدم في safeLoadFile؛ لم يتم إخفاء التحذير أو تعديل مسار الإنتاج.
 
 Preflight محلي: YAML وbash -n وregex نجحت. actionlint وPowerShell parser وmsgfmt غير متاحة محلياً، وتعذر تثبيت luaparser بسبب DNS. لا يوجد build أو test أو package نجاح مثبت بعد هذه الدفعة.
+
+
+## Run #109 — Desktop build, 17-test regression suite, and packages verified — 2026-11-12
+
+Run #109 (ID 43212062926) used implementation HEAD 69c62784baf96e3456239d5b954055be5e855501 on `work/arabic-engine-support` and completed successfully. The workflow sanity, catalog/source validation, Linux native build/package, and Windows MSVC native build/package jobs all concluded `success`.
+
+Catalog and validator evidence:
+- Builtin Arabic catalog: 245/245 template keys, 0 empty, source/bundled byte-identical.
+- Luanti gettext: 1,575/1,575 effective translations, 0 untranslated, 0 fuzzy; `LANG_CODE=ar`.
+- PO formatting with `msgfmt --check --check-format`: passed.
+- Pinned Lua parser: 210 builtin Lua files parsed across source and bundled trees.
+- Arabic test source validator: 17 declarations, 17 registrations, 17 definitions, unique.
+
+Both desktop targets completed CMake configure and full client build, ran the dedicated `TestArabicTextLayout` gate requiring `Module TestArabicTextLayout passed (0 failures / 17 tests)`, installed and validated their portable package, and uploaded an artifact. Linux additionally checked `ldd` for unresolved runtime dependencies; Windows checked the packaged builtin hash/comma, executable, Noto font/license, and Raqm/HarfBuzz/FriBidi/OpenAL/Ogg/Vorbis DLLs.
+
+- Linux artifact ID 13941099252; size 22,718,197 bytes; SHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
+- Windows artifact ID 13941743588; size 20,672,848 bytes; SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
+
+The successful native jobs establish the desktop compile, the 17-test regression module on both CI platforms, and the package checks. They do not establish a real GUI launch on the user's machine. The menu startup and SHA warning outcomes must still be confirmed by running the complete Windows artifact and inspecting a fresh user log. Clipboard interaction, drag/Shift selection, mixed-direction keyboard editing, and broad GUI rendering remain open acceptance items. Android remains deferred.
