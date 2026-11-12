@@ -145,3 +145,19 @@ The corrective batch:
 - Tests an already-existing portable profile and verifies no legacy AppData merge/overwrite.
 
 Inspect the patch and run static checks before writing. Re-check both refs just before commit, then push one atomic source/workflow + Markdown commit using expected_sha. Run one full CI and inspect every step and artifact. Do not claim migration success until Windows smoke and artifact upload pass. Phase 4 still requires the user to test the actual full ZIP on Windows: ContentDB downloads, new worlds, config/log/screenshot/cache data, no new AppData writes, a removable/non-system drive, and existing-profile upgrade behavior. Keep font/UI work deferred until this is complete.
+
+
+## Continuation after Run #112 — fix the Luanti CLI option invocation
+
+Repository: `majd7772233-a11y/Mineclonia-Arabic`; work only on `work/arabic-engine-support`. Do not edit `main`, create branches, or force-push. Run #112 tested HEAD `cc9ff808542bafd0d5849203684798d74eaf2fcf`; protected main is `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+
+Run #112 (ID 43245244962) passed catalog validation and the Linux build/test/package/upload. Linux TestArabicTextLayout 17/17, TestFileSys 15/15; artifact 13957061595, 22,727,482 bytes, SHA-256 `660232c9ddeae37fabe2e9a2264be3fa0d0493145b96c8da8cfd76a0306a756f`. Windows configure/build passed; TestArabicTextLayout 17/17 and TestFileSys 15/15 also passed. Windows package smoke failed because the workflow used `--worldlist=path`; the client printed `Unknown command-line parameter "--worldlist=path"`. Its help output shows `--worldlist <value>`, so the option and value must be separate arguments. Parser rejection occurred before portable-path initialization; no migration was attempted, and the missing `minetest.conf` assertion was expected. No Windows artifact was uploaded.
+
+The current prepared correction changes all three calls to:
+- `& $probeExe --worldlist path` (first startup)
+- `& $probeExe --worldlist path` (second startup)
+- `& $existingProbeExe --worldlist path` (existing portable profile case)
+
+The output-capture assertion remains removed because the Windows client uses `/SUBSYSTEM:WINDOWS`. Keep on-disk content/hash checks, source AppData immutability, cache tag location/signature, staging cleanup, path-with-spaces, second launch and no-merge assertions.
+
+After committing the workflow syntax correction with all Run #112 docs, run exactly one complete CI. Inspect Linux and Windows, require 15/15 FileSys on both, and wait for Windows smoke to pass before claiming portability. Then inspect the Windows artifact's ID/size/digest. Phase 4 still requires actual Windows use: ContentDB downloads, world creation, config/log/screenshot/texture/cache writes, no further AppData writes, and a removable/non-system drive. Do not start font/UI work before those tests pass.

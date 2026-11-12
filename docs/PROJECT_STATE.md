@@ -208,3 +208,24 @@ See ROADMAP.md for the four phases. Next exact step: commit this workflow correc
 
 ### Validation boundary
 The corrective source/workflow batch still requires a full Run after commit. Until the Windows package smoke checks and artifact upload pass, portable migration is not CI-validated. Even after that, Phase 4 requires real Windows acceptance for Content Tab downloads, world creation, config/log/screenshot/cache writes, a removable/non-system drive, and no new AppData writes. Do not call the package fully portable before those user-side checks.
+
+
+## Current portable-profile status — after Run #112 (2026-11-12)
+
+**Branch:** `work/arabic-engine-support`  
+**Run:** [Run #112](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43245244962), HEAD `cc9ff808542bafd0d5849203684798d74eaf2fcf`.  
+**Protected main:** `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d` (unchanged).
+
+### Run #112 evidence
+- Workflow scheduling and Arabic engine catalog/source validation: passed.
+- Linux x64 configure/build: passed; TestArabicTextLayout 17/17; TestFileSys 15/15; portable package install and upload: passed.
+- Linux artifact 13957061595: 22,727,482 bytes; SHA-256 `660232c9ddeae37fabe2e9a2264be3fa0d0493145b96c8da8cfd76a0306a756f`.
+- Windows configure/build: passed; TestArabicTextLayout 17/17; TestFileSys 15/15.
+- Windows package smoke: failed because the test passed `--worldlist=path`. The executable explicitly reported `Unknown command-line parameter "--worldlist=path"`; help lists `--worldlist <value>`. The process did not reach initialization, so the missing portable `minetest.conf` was the expected result of invalid CLI syntax, not a confirmed migration bug.
+- Windows artifact upload: skipped; no Windows artifact was produced.
+
+### Corrective action
+Use `& $exe --worldlist path` (two PowerShell arguments) for both first/second startup and the existing-profile scenario. Keep the filesystem/content checks and no-merge assertions. Do not rely on captured stdout from the Windows GUI executable. The full CI run after this correction is pending.
+
+### Validation boundary
+The Linux portable package and both platforms' 15-test C++ modules passed. Windows package migration is still unverified until its smoke test passes and the Windows artifact uploads. Phase 4 still needs real Windows acceptance: ContentDB download, world creation, settings/log/screenshot/texture/cache writes, no new AppData writes, and launch from a removable/non-system drive.

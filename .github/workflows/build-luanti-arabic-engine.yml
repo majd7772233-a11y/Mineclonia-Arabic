@@ -435,13 +435,13 @@ jobs:
           $env:APPDATA = $appDataProbe
           try {
             $probeExe = Join-Path $probePackage "bin/luanti.exe"
-            & $probeExe --worldlist=path
+            & $probeExe --worldlist path
             $firstLaunchExitCode = $LASTEXITCODE
             if ($firstLaunchExitCode -ne 0) {
               throw "The first portable profile initialization failed (exit code $firstLaunchExitCode)."
             }
 
-            & $probeExe --worldlist=path
+            & $probeExe --worldlist path
             $secondLaunchExitCode = $LASTEXITCODE
             if ($secondLaunchExitCode -ne 0) {
               throw "The second portable profile initialization failed (exit code $secondLaunchExitCode)."
@@ -522,7 +522,7 @@ jobs:
           $env:APPDATA = $existingAppDataProbe
           try {
             $existingProbeExe = Join-Path $existingProbePackage "bin/luanti.exe"
-            & $existingProbeExe --worldlist=path
+            & $existingProbeExe --worldlist path
             $existingLaunchExitCode = $LASTEXITCODE
             if ($existingLaunchExitCode -ne 0) {
               throw "Startup with a pre-existing portable profile failed (exit code $existingLaunchExitCode)."

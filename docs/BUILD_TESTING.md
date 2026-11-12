@@ -118,19 +118,19 @@ A successful extracted Linux artifact test is still not a substitute for the use
 
 ## Windows portable profile regression coverage
 
-The build-tree TestFileSys module now has 15 cases and is required on both Linux and Windows:
+The build-tree TestFileSys module has 15 cases and is required on both Linux and Windows:
 `Module TestFileSys passed (0 failures / 15 tests)`.
 
 Portable-profile C++ coverage checks the path builder with whitespace and temporarily assigns `porting::path_user` to a path containing spaces. It creates a fixture world and user-installed game beneath that profile, then directly verifies that `getAvailableWorlds()` and `getAvailableGameIds()` discover them. This avoids depending on console output from the Windows GUI executable.
 
-The Windows package smoke test runs against an isolated copy of the install tree:
+The Windows package smoke test runs against isolated copies of the install tree:
 1. The package copy is placed under a directory containing spaces.
 2. A synthetic `%APPDATA%/Minetest` profile is created with a config, world, game and cache marker.
-3. The package executable is launched twice; the workflow checks process exit status, then verifies migrated file existence and contents under the portable `Minetest` directory.
+3. The package executable is launched twice using the valid two-argument syntax `--worldlist path`; the workflow checks process exit status, then verifies migrated file existence and contents under the portable `Minetest` directory.
 4. The check validates the CACHEDIR.TAG signature/location, hashes the legacy AppData files before/after, and checks that the migration staging directory is gone.
 5. A second package copy begins with an existing `Minetest` directory plus a distinct AppData profile. The test checks that the portable config and marker remain unchanged, legacy-only files are not merged, and the source AppData remains intact.
 
-The test deliberately does not parse `stdout` from `--worldlist=path`: the MSVC Release client is linked with `/SUBSYSTEM:WINDOWS`, so a captured console stream is not a dependable assertion surface in a headless PowerShell job.
+Never use `--worldlist=path`: Luanti's option parser expects an option value as a separate argument (`--worldlist <value>`). Run #112 rejected the equals form before initialization; the subsequent missing-file assertion exposed that invalid invocation. The test also deliberately does not parse `stdout` from the GUI-subsystem executable, which is linked with `/SUBSYSTEM:WINDOWS`.
 
 These expanded checks are pending the next complete Linux/Windows CI run. They do not replace real Windows GUI/user acceptance.
 

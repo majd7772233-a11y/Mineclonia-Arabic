@@ -362,3 +362,30 @@ The independent build-tree TestFileSys runs remain mandatory on Linux and Window
 - C++ compile/tests, PowerShell parse, complete workflow YAML validation, and new full CI run are pending this commit.
 - No Windows Artifact is available from Run #111.
 - Manual testing on the user's Windows installation remains mandatory for the rest of Phase 4, especially ContentDB downloads, new worlds, settings/log/screenshot/cache writes, removable/non-system drive, and no AppData writes.
+
+
+## 2026-11-12 — Run #112: corrected option syntax exposed by Windows smoke test
+
+**Starting HEAD:** cc9ff808542bafd0d5849203684798d74eaf2fcf  
+**Branch:** work/arabic-engine-support  
+**Protected main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d  
+**Run:** #112 — ID 43245244962  
+**Overall:** Linux job passed; Windows compile/tests passed; package smoke did not reach initialization.
+
+### CI evidence
+- Workflow scheduling and source/catalog validation: passed.
+- Linux configure/build, TestArabicTextLayout 17/17, TestFileSys 15/15, package install and upload: passed.
+- Linux artifact 13957061595: 22,727,482 bytes; SHA-256 `660232c9ddeae37fabe2e9a2264be3fa0d0493145b96c8da8cfd76a0306a756f`.
+- Windows configure/build: passed; TestArabicTextLayout 17/17; TestFileSys 15/15.
+- Windows package step failed at its first filesystem assertion. The log shows `Unknown command-line parameter "--worldlist=path"` (repeated for both launches); the help output lists `--worldlist <value>`. The test passed the option and its value as one equals-form argument, but the engine parser requires two arguments.
+- Because argument parsing rejected the command before `initializePaths()`, the migration code did not run. The missing `Minetest/minetest.conf` is therefore expected with that invalid invocation; Run #112 does not establish a defect in profile migration.
+- Windows artifact upload was skipped; no Windows package was produced.
+
+### Corrective change now prepared
+- Replace all three invocations with `& $exe --worldlist path`.
+- Retain the filesystem/content assertions, legacy AppData hash comparison, staging cleanup, package path with spaces, second launch, and existing-profile/no-merge scenario.
+- Keep stdout parsing removed; this executable uses `/SUBSYSTEM:WINDOWS`.
+- Record the valid CLI form in the testing and architecture docs to prevent recurrence.
+
+### Validation still pending
+A new full CI run is required after this workflow/doc-only correction. Linux packaging should remain unchanged; the key gate is that Windows actually enters initialization, migrates the synthetic AppData profile, passes every on-disk assertion, and uploads the Windows artifact. Real-device Phase 4 acceptance remains separate.

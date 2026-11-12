@@ -108,3 +108,20 @@ Next steps after this commit:
 3. If Windows fails, diagnose the exact failed assertion and do not weaken assertions just to make CI green.
 4. After CI success, provide the newly uploaded Windows artifact and request real-device Phase 4 acceptance. Test Content tab downloads, creating worlds, config/log/screenshot/cache paths, no new AppData writes, and a removable/non-system drive.
 5. Do not move to font/UI or RTL rendering work until portable-profile acceptance is verified. Android stays deferred.
+
+
+## Handoff after Run #112 — fix the command-line option form
+
+Run #112 (43245244962; HEAD cc9ff808542bafd0d5849203684798d74eaf2fcf) confirms the new 15-test C++ suite compiles and passes on both hosts: Windows TestArabicTextLayout 17/17 and TestFileSys 15/15; Linux passed the same suites plus package install/upload. Linux Artifact 13957061595 (22,727,482 bytes; SHA-256 660232c9ddeae37fabe2e9a2264be3fa0d0493145b96c8da8cfd76a0306a756f) is available. Windows package smoke failed because `--worldlist=path` is not valid syntax for this engine; the parser expects `--worldlist path` as two arguments and logged `Unknown command-line parameter "--worldlist=path"`. The app therefore never reached path initialization or profile migration, and the missing config check was expected. No Windows artifact was uploaded.
+
+The current workflow correction replaces all three invocations:
+- first launch: `& $probeExe --worldlist path`
+- second launch: `& $probeExe --worldlist path`
+- existing-profile launch: `& $existingProbeExe --worldlist path`
+
+Next steps:
+1. Re-check live refs; commit the workflow syntax correction together with the Run #112 Markdown updates, fast-forwarding only `work/arabic-engine-support`.
+2. Wait for the new full CI run to finish. Confirm TestFileSys 15/15 on both hosts, Windows first-run migration and second-start filesystem assertions, existing-profile/no-merge, AppData file hashes, and Windows artifact upload.
+3. If the smoke still fails, diagnose the exact command output and filesystem state; do not weaken assertions.
+4. After successful upload, provide the Windows ZIP and continue Phase 4 real-device acceptance: ContentDB download, world creation, config/log/screenshot/texture/cache paths, no new AppData writes, and removable/non-system drive.
+5. Keep font/UI work deferred until the portable-profile acceptance is complete.
