@@ -362,6 +362,9 @@ jobs:
         shell: pwsh
         run: |
           $package = Join-Path $env:GITHUB_WORKSPACE "artifacts/windows"
+          if (Test-Path -LiteralPath $package) {
+            Remove-Item -LiteralPath $package -Recurse -Force
+          }
           New-Item -ItemType Directory -Force -Path $package | Out-Null
           cmake --install build --config Release --prefix $package
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
@@ -412,8 +415,25 @@ jobs:
           # --worldlist is not a reliable assertion surface in this headless job.
           # Validate the resulting profile on disk instead.
           $probePackage = Join-Path $env:RUNNER_TEMP "luanti portable migration probe"
+          if (Test-Path -LiteralPath $probePackage) {
+            Remove-Item -LiteralPath $probePackage -Recurse -Force
+          }
           New-Item -ItemType Directory -Force -Path $probePackage | Out-Null
           Copy-Item -Path (Join-Path $package "*") -Destination $probePackage -Recurse -Force
+
+          # The fresh installation must not carry user data or a partial stage.
+          $packagedProfiles = @(Get-ChildItem -LiteralPath $package -Force -Directory |
+            Where-Object { $_.Name -like "Minetest*" })
+          if ($packagedProfiles.Count -gt 0) {
+            throw "The installed package unexpectedly contains profile/staging directories: $($packagedProfiles.Name -join ', ')"
+          }
+
+          # Simulate a stale staging directory left by an older or interrupted run.
+          # Migration must preserve this folder and use a distinct process-specific sibling.
+          $staleStagingPath = Join-Path $probePackage "Minetest.migration-tmp"
+          New-Item -ItemType Directory -Force -Path $staleStagingPath | Out-Null
+          $staleStagingMarker = Join-Path $staleStagingPath "preserve-stale-staging.marker"
+          [System.IO.File]::WriteAllText($staleStagingMarker, "keep-stale-staging")
 
           $appDataProbe = Join-Path $env:RUNNER_TEMP "luanti legacy AppData probe"
           if (Test-Path -LiteralPath $appDataProbe) {
@@ -494,12 +514,20 @@ jobs:
           if (Compare-Object -ReferenceObject $legacyFilesBefore -DifferenceObject $legacyFilesAfter) {
             throw "Legacy AppData profile contents changed during the portable startup probe."
           }
-          if (Test-Path -LiteralPath (Join-Path $probePackage "Minetest.migration-tmp")) {
-            throw "Portable profile migration left a staging directory behind."
+          if (-not (Test-Path -LiteralPath $staleStagingMarker -PathType Leaf) -or
+              [System.IO.File]::ReadAllText($staleStagingMarker) -ne "keep-stale-staging") {
+            throw "A pre-existing migration staging directory was removed or modified."
           }
-          Write-Host "Verified first-run migration, second launch, path-with-spaces handling, and AppData preservation at: $portableProfile"
+          $generatedStaging = @(Get-ChildItem -LiteralPath $probePackage -Force -Directory -Filter "Minetest.migration-tmp-*")
+          if ($generatedStaging.Count -gt 0) {
+            throw "A process-specific staging directory was left behind: $($generatedStaging.Name -join ', ')"
+          }
+          Write-Host "Verified migration, second launch, path-with-spaces, stale-staging preservation, and AppData immutability at: $portableProfile"
 
           $existingProbePackage = Join-Path $env:RUNNER_TEMP "luanti existing profile path with spaces"
+          if (Test-Path -LiteralPath $existingProbePackage) {
+            Remove-Item -LiteralPath $existingProbePackage -Recurse -Force
+          }
           New-Item -ItemType Directory -Force -Path $existingProbePackage | Out-Null
           Copy-Item -Path (Join-Path $package "*") -Destination $existingProbePackage -Recurse -Force
           $existingPortableProfile = Join-Path $existingProbePackage "Minetest"
@@ -555,8 +583,9 @@ jobs:
           if (Compare-Object -ReferenceObject $existingLegacyFilesBefore -DifferenceObject $existingLegacyFilesAfter) {
             throw "The skipped legacy AppData profile changed during startup."
           }
-          if (Test-Path -LiteralPath (Join-Path $existingProbePackage "Minetest.migration-tmp")) {
-            throw "The existing-profile startup unexpectedly created a migration staging directory."
+          $existingGeneratedStaging = @(Get-ChildItem -LiteralPath $existingProbePackage -Force -Directory -Filter "Minetest.migration-tmp-*")
+          if ($existingGeneratedStaging.Count -gt 0) {
+            throw "The existing-profile startup unexpectedly created a process-specific staging directory."
           }
           Write-Host "Verified that an existing portable profile is preserved without merging legacy AppData files."
           $zip = Join-Path $env:GITHUB_WORKSPACE "artifacts/luanti-arabic-windows-x64.zip"

@@ -125,3 +125,22 @@ Next steps:
 3. If the smoke still fails, diagnose the exact command output and filesystem state; do not weaken assertions.
 4. After successful upload, provide the Windows ZIP and continue Phase 4 real-device acceptance: ContentDB download, world creation, config/log/screenshot/texture/cache paths, no new AppData writes, and removable/non-system drive.
 5. Keep font/UI work deferred until the portable-profile acceptance is complete.
+
+
+## Handoff after Run #113 — normalize Windows profile path and avoid staging collisions
+
+Run #113 (43247942695; tested HEAD e0b1fc5bf517f216523f5a53d3d6b049673432d0) passed catalog validation and the complete Linux build/test/package/upload job. Linux TestArabicTextLayout 17/17; TestFileSys 15/15; Artifact 13957134160 (22,723,769 bytes; SHA-256 9b4178bba4ac2e284e51b85b170a3311b5d8f4adb753cd9323be6f67eb290ee6). Windows configure/build, Arabic tests 17/17 and FileSys 15/15 passed, but its package smoke failed after the valid `--worldlist path` command reached initialization. The engine reported an already-existing fixed staging path `...in\..\Minetest.migration-tmp`, could not activate the portable profile, and the later file check found no `minetest.conf`. The origin of the already-existing stage was not proven. No Windows artifact was uploaded.
+
+The current corrective batch:
+- normalizes existing share paths with `fs::AbsolutePath()` before appending the portable `Minetest` directory, eliminating the executable-derived `bin/..` components from the writable profile path;
+- uses a process-specific sibling staging path with collision suffixes, preserving any old staging directory;
+- includes the underlying rename error in logs;
+- tests the `bin/..` normalization in TestFileSys;
+- cleans CI install/probe paths and seeds a known old-style staging directory whose marker must remain unchanged, while confirming no newly generated staging directory remains after migration.
+
+Next:
+1. Re-check refs before writing. Only advance `work/arabic-engine-support` from the recorded expected HEAD; keep `main` unchanged.
+2. Review the complete code/workflow/docs diff; run YAML/source/static preflight.
+3. Run one full CI. Verify 15/15 TestFileSys on Linux and Windows; the Windows package must migrate all synthetic AppData files, preserve the stale-stage marker, leave no PID staging folder, keep AppData hashes unchanged, pass the existing-profile/no-merge case, and upload the Windows artifact.
+4. On failure, inspect exact log/error code; don't weaken assertions or delete unknown data.
+5. If CI succeeds, provide the Windows ZIP and continue Phase 4 real-device acceptance. Keep font/UI work deferred until portability is accepted on the actual Windows machine.

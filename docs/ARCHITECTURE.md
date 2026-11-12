@@ -74,3 +74,10 @@ The Windows package probe runs against isolated copies of the installed tree. On
 The probe starts the executable with the valid option syntax `--worldlist path` (two separate arguments). Run #112 showed that `--worldlist=path` is rejected as an unknown command-line parameter before the application initializes; the subsequent missing-config assertion was therefore a consequence of the invalid invocation, not proof of a migration defect. The workflow does not parse stdout from the GUI client linked with `/SUBSYSTEM:WINDOWS`; it validates the files and contents produced after a valid command. TestFileSys also exercises `getAvailableWorlds()` and `getAvailableGameIds()` with a temporary `path_user` containing spaces.
 
 These automated checks do not prove ContentDB, screenshots, settings saves, or removable-drive behavior on the user's real Windows installation.
+
+
+### Windows portable path normalization and staging recovery — pending CI
+
+The installed Windows executable can derive `path_share` through an executable location containing `bin/..`. The portable path helper now resolves an existing share directory with `fs::AbsolutePath()` before deriving `path_user`, retaining the original value as a fallback if canonicalization is unavailable.
+
+First-launch migration keeps its staging folder next to the final profile for a same-volume rename, but names each attempt `Minetest.migration-tmp-<pid>` and adds a numeric suffix if that path exists. It never deletes or overwrites a pre-existing legacy staging path. A staging folder created by the current attempt is cleaned if its copy or rename activation fails; rename errors include the CRT error code/message. The Windows CI probe seeds a known old fixed-name staging directory and checks preservation plus cleanup of the current attempt's uniquely named staging directory. This correction is pending a full CI run.

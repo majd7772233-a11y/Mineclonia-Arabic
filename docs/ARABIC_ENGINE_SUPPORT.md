@@ -429,3 +429,17 @@ The replacement validation uses the GUI executable only to exercise initializati
 The Windows package step reached the new on-disk migration assertions but did not actually initialize the application. Its log explicitly reports `Unknown command-line parameter "--worldlist=path"`; the allowed-options help lists `--worldlist <value>`. The engine argument parser expects the option name and value as separate arguments, so the PowerShell call must be `& $exe --worldlist path`, not `--worldlist=path`.
 
 This is distinct from the earlier stdout issue: Run #111's captured-output assertion was unsuitable for the GUI-subsystem executable, while Run #112 demonstrated that the equals-form option itself was invalid. The subsequent missing `minetest.conf` check was a correct failure because option parsing ended before `initializePaths()` could migrate the old profile. The smoke test now uses the documented two-argument syntax and continues to verify files, content hashes, AppData preservation, and no-merge behavior. Windows package validation and artifact upload remain pending a new full CI run.
+
+
+## Run #113 — Windows migration failed at the fixed staging path
+
+Run #113 reached Windows path initialization with the corrected `--worldlist path` syntax, then logged that the fixed sibling staging path `...in\..\Minetest.migration-tmp` already existed. It did not activate the portable profile, and the subsequent check found no portable `minetest.conf`. This shows that staging-path collision/activation failed, but it does not prove who created the path.
+
+The remediation hardens both path formation and staging:
+- `getPortableUserPath()` normalizes an existing share directory through `fs::AbsolutePath()` before adding `Minetest`, removing `bin/..` components from the writable profile path. It falls back to the supplied share path if canonicalization fails.
+- Each migration attempt uses a same-directory staging name `.migration-tmp-<process-id>`. If it already exists, numeric suffixes are tried; prior staging directories are preserved, never deleted or overwritten. A new staging directory created by the current attempt is cleaned up if copying or rename activation fails.
+- Rename failure logs the CRT `errno` code and message.
+- TestFileSys covers a share path under an existing directory referenced via `bin/..`.
+- The Windows package test seeds an old fixed-name staging directory with a marker; successful migration must preserve that marker and remove only the unique staging directory created by the current process.
+
+Run #113 passed Linux build/tests/package/upload and Windows build/tests, but Windows package validation failed; no Windows artifact was created. The corrective source/workflow batch still requires a new complete CI run and does not replace real Windows GUI acceptance.

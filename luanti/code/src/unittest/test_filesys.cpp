@@ -114,6 +114,22 @@ void TestFileSys::testPortableUserPath()
 	const std::string share_path_with_spaces = p("/portable/Luanti Distribution");
 	UASSERTEQ(std::string, porting::getPortableUserPath(share_path_with_spaces),
 			share_path_with_spaces + DIR_DELIM "Minetest");
+
+	const std::string normalization_root = getTestTempDirectory() +
+			DIR_DELIM "portable share root with spaces";
+	struct ScopedShareRoot {
+		std::string path;
+		~ScopedShareRoot() { fs::RecursiveDelete(path); }
+	} scoped_share_root{normalization_root};
+
+	const std::string nested_path = normalization_root + DIR_DELIM "bin";
+	fs::RecursiveDelete(normalization_root);
+	UASSERT(fs::CreateAllDirs(nested_path));
+	const std::string share_path_with_parent = nested_path + DIR_DELIM "..";
+	const std::string absolute_share_path = fs::AbsolutePath(normalization_root);
+	UASSERT(!absolute_share_path.empty());
+	UASSERTEQ(std::string, porting::getPortableUserPath(share_path_with_parent),
+			absolute_share_path + DIR_DELIM "Minetest");
 }
 
 void TestFileSys::testPortableProfileDiscovery()

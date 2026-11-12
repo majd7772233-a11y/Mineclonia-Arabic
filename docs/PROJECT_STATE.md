@@ -229,3 +229,28 @@ Use `& $exe --worldlist path` (two PowerShell arguments) for both first/second s
 
 ### Validation boundary
 The Linux portable package and both platforms' 15-test C++ modules passed. Windows package migration is still unverified until its smoke test passes and the Windows artifact uploads. Phase 4 still needs real Windows acceptance: ContentDB download, world creation, settings/log/screenshot/texture/cache writes, no new AppData writes, and launch from a removable/non-system drive.
+
+
+## Current portable-profile status — after Run #113 (2026-11-12)
+
+**Branch:** `work/arabic-engine-support`  
+**Run:** [Run #113](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43247942695), tested HEAD `e0b1fc5bf517f216523f5a53d3d6b049673432d0`.  
+**Protected main:** `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d` (unchanged).
+
+### Run #113 evidence
+- Workflow scheduling and Arabic catalog/source validation: passed.
+- Linux x64 configure/build: passed; TestArabicTextLayout 17/17; TestFileSys 15/15; portable package install and upload: passed.
+- Linux Artifact 13957134160: 22,723,769 bytes; SHA-256 `9b4178bba4ac2e284e51b85b170a3311b5d8f4adb753cd9323be6f67eb290ee6`.
+- Windows x64 configure/build: passed; TestArabicTextLayout 17/17; TestFileSys 15/15.
+- Windows package smoke: failed during first-launch profile migration. The client accepted `--worldlist path` and reached path initialization. The log reported a pre-existing fixed staging path ending in `bin\..\Minetest.migration-tmp`, then reported it could not activate the portable profile. The subsequent file assertion found `Minetest/minetest.conf` absent. This establishes a staging-path collision/activation failure; the log does not establish the origin of the old staging directory.
+- Windows artifact upload: skipped; no Windows ZIP was produced.
+
+### Corrective implementation in the current batch
+- Normalize the existing Windows share path with `fs::AbsolutePath()` before deriving `path_user`, so installed `bin/luanti.exe` no longer produces a writable profile path containing `bin\..`. If normalization cannot be performed, retain the original path rather than returning an empty profile path.
+- Replace the single fixed `.migration-tmp` staging directory with a process-specific sibling name and numeric collision suffix. Existing staging data is preserved; the temporary directory created by this attempt is removed if copy/activation fails.
+- Include the underlying CRT rename error code and message in activation failures.
+- Add a TestFileSys assertion for path normalization from a share path containing `bin/..`.
+- Make the Windows smoke test start with clean package/probe folders, explicitly seed a stale legacy staging folder and marker, verify it remains unchanged, and verify no process-specific temporary staging folder remains after migration.
+
+### Validation boundary and next action
+This source/workflow batch is not yet compiled or tested. Re-run the full Linux and Windows workflow after this commit. Require both 15-test FileSys suites, first-run migration/content checks, stale-stage preservation, existing-profile/no-merge, AppData hash preservation, and Windows artifact upload. Even after CI passes, Phase 4 requires real Windows acceptance for Content tab downloads, world creation, config/log/screenshot/cache writes, no new AppData writes, and launch from a removable/non-system drive. Do not call the package fully portable until those user-side checks pass.

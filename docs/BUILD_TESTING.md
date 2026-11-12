@@ -145,3 +145,16 @@ Run #110 (43231076763, commit 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427) verified
 - Linux artifact 13950892008 (22,717,628 bytes), SHA-256 ac9c301921e1443b0bd89383a1b2a0d58bbeb0def9e5a404a293ebdb12eaee1b. Windows artifact was not uploaded.
 
 The Run #110 follow-up used first/second `--worldlist=path` output as part of the package assertion. Run #111 showed that parsing this GUI-subsystem process output is invalid; the script stopped before verifying the copied profile. The replacement checks on-disk content and no-merge behavior, and adds a direct C++ world/game discovery test.
+
+
+## Run #113 migration/staging regression correction — pending CI
+
+Run #113 passed both C++ test modules (Arabic layout 17/17 and FileSys 15/15) on Linux and Windows, and Linux packaging/upload. Windows package smoke reached profile initialization but failed when the fixed `Minetest.migration-tmp` sibling already existed at the executable-derived `bin/..` path; no portable config was activated.
+
+The current corrective batch adds:
+- a TestFileSys assertion that `getPortableUserPath()` resolves an existing share path containing `bin/..` and spaces to its absolute package root;
+- process-specific migration staging names with collision suffixes, preserving old staging directories;
+- a Windows package smoke test that starts with a clean install copy and a synthetic stale fixed-name staging directory containing a marker, verifies the marker survives migration, and verifies no process-specific staging directory remains afterward;
+- a clean existing-profile probe, plus assertions for no-merge behavior and unchanged legacy AppData.
+
+The migration implementation now logs the actual CRT rename error code and message when activation fails. These changes have not yet been compiled or tested; the next complete CI must rerun both platforms and the Windows smoke.

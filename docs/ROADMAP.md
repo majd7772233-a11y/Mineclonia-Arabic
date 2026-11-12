@@ -58,7 +58,7 @@ This work is scoped to the Windows RUN_IN_PLACE / ZIP distribution used for desk
 - [x] Set Windows RUN_IN_PLACE path_user to <package>/Minetest through getPortableUserPath().
 - [x] Let all path_user-derived data (games, worlds, config, logs, cache, screenshots/content profile data) resolve under that profile.
 - [x] Add a TestFileSys contract assertion for the portable profile path.
-- [x] Confirm Windows and Linux base builds and the 14-test FileSys suite in CI (Run #111); the expanded 15-test suite awaits the next run.
+- [x] Confirm Windows and Linux base builds and the 15-test FileSys suite in CI (Runs #112 and #113).
 
 ### Phase 2 — First-launch migration and path isolation
 - [x] On Windows, copy the existing %APPDATA%/Minetest profile into the portable profile only when the destination does not exist.
@@ -110,3 +110,19 @@ The correction replaces stdout parsing with process exit-code and filesystem/con
 Run #112 (ID 43245244962, HEAD cc9ff808542bafd0d5849203684798d74eaf2fcf) passed scheduling, catalog/source validation, Linux build/tests/package/upload, and Windows Configure/Build plus TestArabicTextLayout 17/17 and TestFileSys 15/15. The Linux artifact was 13957061595 (22,727,482 bytes; SHA-256 `660232c9ddeae37fabe2e9a2264be3fa0d0493145b96c8da8cfd76a0306a756f`). The Windows package smoke test failed because the client reported `Unknown command-line parameter "--worldlist=path"`. Its help text lists `--worldlist <value>`, so the correct invocation is two separate arguments: `--worldlist path`. Since option parsing rejected the command, startup did not reach path initialization/migration; the subsequent file check correctly found no portable `minetest.conf`. The Windows artifact was therefore skipped.
 
 The follow-up changes all three package invocations to `& $exe --worldlist path`. It retains both first-run migration and existing-profile/no-merge filesystem checks. The invalid stdout assertion remains removed because this client is linked with `/SUBSYSTEM:WINDOWS`; package acceptance is based on generated files and contents after a valid command invocation. This correction requires another full CI run.
+
+
+## Run #113 — staging-path collision during Windows first-launch migration
+
+Run #113 (ID 43247942695, HEAD e0b1fc5bf517f216523f5a53d3d6b049673432d0) passed scheduling and catalog/source validation. Linux configure/build, TestArabicTextLayout 17/17, TestFileSys 15/15, package install/upload all passed. Linux Artifact 13957134160: 22,723,769 bytes; SHA-256 `9b4178bba4ac2e284e51b85b170a3311b5d8f4adb753cd9323be6f67eb290ee6`.
+
+Windows configure/build and both C++ suites passed (Arabic layout 17/17; FileSys 15/15), but the package smoke failed after valid `--worldlist path` invocations. The log reported that the fixed staging path `...in\..\Minetest.migration-tmp` already existed, then could not activate the portable profile; `minetest.conf` consequently remained absent. The log proves a staging-path collision and failed activation, but does not establish who or what originally created that path. No Windows artifact was uploaded.
+
+The next corrective batch:
+- normalizes an existing Windows RUN_IN_PLACE share path through `fs::AbsolutePath()` before deriving the portable profile, removing the `bin\..` path component from the writable destination;
+- allocates a process-specific sibling staging path (`Minetest.migration-tmp-<pid>`, with a numeric suffix on collision), preserving older staging directories instead of deleting or overwriting them;
+- reports the CRT rename error code/text if activation fails;
+- adds a FileSys regression for a share path containing `bin/..`;
+- cleans CI package/probe directories and injects an explicit old-style staging directory with a marker, then checks it remains unchanged and that no new temporary staging directory remains.
+
+Phase 2/3 migration verification remains incomplete until a new Windows package smoke succeeds and the Windows artifact uploads. Phase 4 still requires testing the ZIP on a real Windows installation; do not begin font/UI work yet.

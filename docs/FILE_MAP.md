@@ -84,8 +84,8 @@ tools/
 | File | Responsibility |
 |---|---|
 | luanti/code/src/porting.h | Portable writable profile path API |
-| luanti/code/src/porting.cpp | Windows RUN_IN_PLACE path split and first-launch AppData profile copy |
+| luanti/code/src/porting.cpp | Normalized Windows portable profile path, first-launch AppData copy and collision-safe process-specific staging |
 | luanti/code/src/main.cpp | Windows config path restricted to the portable profile |
 | luanti/code/src/unittest/test_filesys.cpp | Portable path plus world/game discovery checks under a whitespace-containing profile |
-| .github/workflows/build-luanti-arabic-engine.yml | TestFileSys 15-case gates; Windows migration, second-start, path-with-spaces and no-merge package probes |
+| .github/workflows/build-luanti-arabic-engine.yml | TestFileSys 15-case gates; clean Windows probes for migration, stale-stage preservation, second-start, path-with-spaces and no-merge |
 | luanti/code/README.md | Windows ZIP path layout reference |

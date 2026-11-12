@@ -389,3 +389,34 @@ The independent build-tree TestFileSys runs remain mandatory on Linux and Window
 
 ### Validation still pending
 A new full CI run is required after this workflow/doc-only correction. Linux packaging should remain unchanged; the key gate is that Windows actually enters initialization, migrates the synthetic AppData profile, passes every on-disk assertion, and uploads the Windows artifact. Real-device Phase 4 acceptance remains separate.
+
+
+## 2026-11-12 — Run #113 staging-path collision and portable-profile hardening
+
+**Starting HEAD:** e0b1fc5bf517f216523f5a53d3d6b049673432d0  
+**Branch:** work/arabic-engine-support  
+**Protected main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d  
+**Run:** #113 — ID 43247942695  
+**Overall:** Linux job passed; Windows compile/tests passed; Windows package smoke failed in profile staging/activation.
+
+### Actual CI evidence
+- Workflow scheduling and catalog/source validation: passed.
+- Linux: configure/build passed; TestArabicTextLayout 17/17; TestFileSys 15/15; package install/upload passed.
+- Linux Artifact 13957134160: 22,723,769 bytes; SHA-256 `9b4178bba4ac2e284e51b85b170a3311b5d8f4adb753cd9323be6f67eb290ee6`.
+- Windows: configure/build passed; TestArabicTextLayout 17/17; TestFileSys 15/15.
+- Windows smoke used the valid two-argument form `--worldlist path`, so option parsing proceeded into path initialization. The log then reported `Cannot migrate legacy profile because staging path already exists` at `...in\..\Minetest.migration-tmp`, followed by failure to activate the portable profile. The file check found no portable `minetest.conf`.
+- This log establishes a collision at the fixed staging path and failed migration activation. It does **not** establish why the staging path existed before the migration function checked it; don't describe its origin as proven.
+- Windows artifact upload was skipped. No Windows artifact was produced.
+
+### Corrective code/test/workflow batch
+- Normalize an existing share directory with `fs::AbsolutePath()` in `getPortableUserPath()`, which removes the installed executable's `bin/..` path components before forming the writable profile path. If normalization fails, preserve the input path as fallback.
+- Use a process-specific staging sibling `.migration-tmp-<pid>`; add a numeric suffix if that name already exists. Preserve old staging folders. This avoids the old fixed-name collision without deleting unknown data.
+- Report CRT `errno` and its text when staging activation via rename fails.
+- Extend TestFileSys path contract to cover a real existing directory referenced through a nested `bin/..` path containing spaces.
+- Windows CI deletes prior install/probe folders, checks that the installed package is free of profile/staging directories, creates an explicit legacy `Minetest.migration-tmp` folder with a preservation marker in the test copy, and checks that the marker remains while any newly generated process-specific stage is cleaned up. It also keeps the existing-profile/no-merge scenario.
+
+### Validation pending
+- No C++ configure/build or unit tests have run for this corrective batch yet.
+- No PowerShell/YAML preflight or full CI run has run for this corrective batch yet.
+- No Windows Artifact exists from Run #113.
+- Real Windows GUI acceptance remains outstanding: ContentDB download, new world, settings/log/screenshot/cache paths, no new AppData writes, and removable/non-system drive.

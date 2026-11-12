@@ -161,3 +161,24 @@ The current prepared correction changes all three calls to:
 The output-capture assertion remains removed because the Windows client uses `/SUBSYSTEM:WINDOWS`. Keep on-disk content/hash checks, source AppData immutability, cache tag location/signature, staging cleanup, path-with-spaces, second launch and no-merge assertions.
 
 After committing the workflow syntax correction with all Run #112 docs, run exactly one complete CI. Inspect Linux and Windows, require 15/15 FileSys on both, and wait for Windows smoke to pass before claiming portability. Then inspect the Windows artifact's ID/size/digest. Phase 4 still requires actual Windows use: ContentDB downloads, world creation, config/log/screenshot/texture/cache writes, no further AppData writes, and a removable/non-system drive. Do not start font/UI work before those tests pass.
+
+
+## Continuation after Run #113 — normalize the package path and preserve stale staging
+
+Repository: `majd7772233-a11y/Mineclonia-Arabic`. Work only on `work/arabic-engine-support`; never modify `main`, create branches, or force-push. Starting HEAD for the current corrective batch: `e0b1fc5bf517f216523f5a53d3d6b049673432d0`. Protected main: `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+
+Run #113 (43247942695) passed source/catalog validation, Linux configure/build, TestArabicTextLayout 17/17, TestFileSys 15/15, package install/upload. Linux Artifact 13957134160, 22,723,769 bytes, SHA-256 `9b4178bba4ac2e284e51b85b170a3311b5d8f4adb753cd9323be6f67eb290ee6`. Windows configure/build and both test suites passed (17/17 and 15/15). Windows package smoke reached path initialization with valid `--worldlist path`, but the log reported an existing fixed staging path `...in\..\Minetest.migration-tmp`; it couldn't activate the profile, then the config-file assertion failed. The log doesn't prove where the old staging path came from. Windows artifact upload skipped.
+
+Current corrective blobs prepared (not committed yet):
+- porting.cpp: `7aa3e0dd0a6ea664347b5e1e45db2937119e9a6d`
+- porting.h: `e5a9fd6cd97fc39a50860ec365861fe053162623`
+- TestFileSys: `9f3d2a90b8af8d09bc67edb34eb75c12c1749de4`
+- Windows workflow: `35ac21e00700e3b05deb2b2bb325af83b201745b`
+
+Changes included:
+- normalize existing `path_share` with `fs::AbsolutePath()` when computing `path_user`, removing `bin/..` components on Windows; preserve the original share path as fallback if canonicalization fails;
+- use a process-specific sibling staging path and numeric suffix on collision, preserve unknown old staging directories, add rename errno diagnostics;
+- add a TestFileSys `bin/..` normalization regression;
+- clean install/probe dirs in the Windows workflow, seed a stale `Minetest.migration-tmp` marker, verify it is preserved, and verify no PID staging folder remains after migration.
+
+Re-fetch branch/main refs immediately before committing. Use base tree from the live `e0b1fc5...` commit, create one source/workflow+docs commit parented to `e0b1fc5...`, and update only the working branch with expected_sha. Then run one full CI and inspect every job and artifact. Do not claim portable migration succeeds until Windows package checks and artifact upload pass. Real-device Phase 4 acceptance remains separate.
