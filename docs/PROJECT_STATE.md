@@ -164,13 +164,23 @@ Commit التنفيذ 69c62784baf96e3456239d5b954055be5e855501 (Repair Arabic en
 - .github/workflows/build-luanti-arabic-engine.yml: Linux/Windows TestFileSys gates and Windows synthetic AppData migration smoke test.
 - luanti/code/README.md and project Markdown: path and workflow documentation.
 
-### Evidence status
+### Evidence status after Run #110
 
 - Source review: completed.
-- C++ build: pending.
-- TestFileSys 14/14 on Linux and Windows: pending.
-- Windows package migration smoke test: pending.
-- Artifact/runtime on the user's Windows machine: pending.
-- No claim of complete portability or successful CI is made yet.
+- Catalog/Lua/C++ source validation: passed in Run #110.
+- Linux Configure and Build: passed.
+- Linux TestArabicTextLayout: passed, 0 failures / 17 tests.
+- Linux TestFileSys: passed, 0 failures / 14 tests.
+- Linux install/package checks: passed.
+- Linux artifact: ID 13950892008, 22,717,628 bytes, SHA-256 ac9c301921e1443b0bd89383a1b2a0d58bbeb0def9e5a404a293ebdb12eaee1b.
+- Windows Configure and Build: passed.
+- Windows TestArabicTextLayout: passed, 0 failures / 17 tests.
+- Windows TestFileSys: passed, 0 failures / 14 tests.
+- Windows install and runtime DLL checks: passed.
+- Windows package migration smoke test: failed at the extra installed-package TestFileSys invocation; output was empty in the job log, so the cause is not proven. The preceding installed-package `--worldlist=path` command exited 0.
+- Windows artifact: not uploaded because package verification failed.
+- vcpkg cache restore: successful on both platforms; cache save skipped on both because the restore was a hit.
 
-See ROADMAP.md for the four phases. Next exact step: preflight changed C++/YAML/PowerShell, commit the source and documentation together, then run one full Linux/Windows CI workflow.
+The package smoke test was revised to check packaged world discovery on first and second starts, migrated-file presence/content, portable cache tag location, and legacy AppData immutability. The independent build-tree TestFileSys checks on both platforms remain mandatory and unchanged.
+
+See ROADMAP.md for the four phases. Next exact step: commit this workflow correction and its Markdown updates together, run the next complete workflow, and inspect the Windows package smoke test and artifact result. Do not call Windows portable verified until the package smoke test passes.

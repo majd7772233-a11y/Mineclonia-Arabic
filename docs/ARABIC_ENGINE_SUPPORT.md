@@ -411,3 +411,7 @@ On first launch, if %APPDATA%/Minetest exists and the portable destination does 
 Windows RUN_IN_PLACE config lookup uses only Minetest/minetest.conf. It does not fall back to minetest.conf in the application root or a parent directory. Explicit --config remains an intentional user override.
 
 The current CI coverage includes a path helper unit test, TestFileSys on both platforms, and a Windows smoke test with a synthetic AppData profile. Real user acceptance remains necessary for launches from paths containing spaces/removable drives and checking ContentDB downloads, new worlds, screenshots, logs, and config saves.
+
+### Run #110 validation boundary
+
+The Windows CI build compiled the portable path implementation and passed both C++ test modules (Arabic text layout 17/17; TestFileSys 14/14). The Windows install path and DLL checks also passed. The package smoke test failed at a duplicate TestFileSys invocation against the copied install package; the job log did not capture its process output, while the preceding packaged `--worldlist=path` command exited successfully. No Windows artifact was uploaded. The follow-up smoke test runs world discovery twice and validates migrated config/world/game/cache files and contents, cache tag location, and that the old AppData profile is unchanged. This still awaits a successful Windows CI run and real-machine acceptance.

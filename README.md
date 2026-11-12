@@ -77,3 +77,7 @@ mods/<CATEGORY>/<MOD>/locale/<MOD>.ar.po
 ## Windows portable profile work — in progress
 
 The Windows portable build is being changed so the writable profile lives at luanti/Minetest beside the bin directory, instead of using %APPDATA%/Minetest. Existing AppData data is copied on first launch and retained at its original location. The source and workflow tests are prepared, but this change is not yet built or CI-verified. Do not treat it as complete until Linux/Windows CI and the real Windows package test pass. See docs/ROADMAP.md for the four phases.
+
+## Windows portable profile work — validation update
+
+The Windows ZIP implementation places the writable profile at luanti/Minetest and copies existing %APPDATA%/Minetest data on first launch without deleting the original. Run #110 passed Linux build/tests/package and Windows build plus both C++ test suites, but the Windows installed-package smoke test failed before artifact upload. The workflow smoke test has been refined and needs a new successful Windows run before a package can be offered for testing. See docs/ROADMAP.md and docs/PROJECT_STATE.md.

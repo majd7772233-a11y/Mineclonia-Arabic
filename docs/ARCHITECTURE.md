@@ -66,3 +66,7 @@ For Windows RUN_IN_PLACE ZIP builds, path_share remains the application/share ro
 The first-launch migration copies the legacy %APPDATA%/Minetest tree into a staging directory beside the target and activates it only after the copy succeeds. The old profile remains untouched. Existing portable data is not merged with AppData automatically. Windows RUN_IN_PLACE config discovery is restricted to path_user/minetest.conf; parent-level legacy config discovery remains only on non-Windows RUN_IN_PLACE builds.
 
 This change is intentionally Windows-specific. Other platforms keep their prior RUN_IN_PLACE path behavior. The Windows workflow's package probe is intended to prove migration and prevent accidental writes back to AppData.
+
+### Portable package smoke-test boundary
+
+The Windows install-package smoke test runs against a temporary copy of the installed tree, never the artifact staging directory itself. It seeds a synthetic AppData profile and launches the installed executable twice with `--worldlist=path`. Both launches must discover the world in the package's Minetest/worlds directory. It then verifies migrated config, world, game and cache file contents, confirms CACHEDIR.TAG is inside the portable cache, and compares the legacy profile's file inventory before/after. TestFileSys is run separately against the configured Windows build tree before package installation.

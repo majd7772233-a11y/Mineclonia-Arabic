@@ -108,3 +108,25 @@ The current source batch adds:
 This batch is not yet validated: no C++ build, TestFileSys execution, YAML/PowerShell parser, or CI result is recorded. Before commit, preflight all changed files, especially the PowerShell block in build-luanti-arabic-engine.yml. Then verify the branch and main heads again, commit all code and Markdown in one commit, and trigger one full workflow. Do not push an extra change while CI runs because cancel-in-progress=true.
 
 After CI, inspect its complete Linux and Windows jobs. Only if the package smoke test succeeds should the Windows artifact be given to the user. User acceptance still must verify the actual directory, settings, downloaded games/worlds, logs, cache and absence of new AppData writes. Do not claim fully portable before the actual Windows test.
+
+## Continuation after Run #110 — Windows package smoke-test refinement
+
+Repository: majd7772233-a11y/Mineclonia-Arabic. Work only on work/arabic-engine-support. Never modify main, create branches, or force-push. Before writes, fetch the live refs and verify protected main remains unchanged.
+
+Previous code HEAD: 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427.
+
+Run #110 (ID 43231076763, same SHA) completed with overall failure:
+- Workflow sanity and catalog validation passed.
+- Linux Configure/Build passed; Arabic text-layout 17/17; TestFileSys 14/14; package checks and artifact upload passed. Artifact 13950892008, 22,717,628 bytes, SHA-256 ac9c301921e1443b0bd89383a1b2a0d58bbeb0def9e5a404a293ebdb12eaee1b.
+- Windows Configure/Build passed; Arabic text-layout 17/17; TestFileSys 14/14; install and DLL checks passed.
+- Windows package smoke failed during a duplicate TestFileSys invocation from the copied install directory. The job log contained no captured native output, so its underlying process reason is unknown. The preceding package `--worldlist=path` invocation returned success.
+- Windows artifact was not uploaded.
+- vcpkg cache restore passed on both hosts; save was skipped because cache restore was a hit.
+
+The current workflow correction keeps the mandatory build-tree TestFileSys checks unchanged and removes only the duplicate TestFileSys invocation inside the package smoke test. It now runs `--worldlist=path` twice against the installed package and validates:
+- world discovery beneath package/Minetest/worlds on both starts;
+- migrated minetest.conf and cache marker contents;
+- world.mt, game.conf, cache marker, and CACHEDIR.TAG presence under Minetest;
+- the legacy AppData profile's file inventory remains unchanged.
+
+This refinement and its Markdown updates are committed together in the follow-up code commit. Inspect branch HEAD directly rather than relying on a copied SHA in this prompt. After the push, inspect the new full workflow by exact HEAD SHA, all jobs/steps/logs and artifacts. Do not claim portability until Windows package smoke and upload both pass. A real Windows GUI acceptance test is still required.

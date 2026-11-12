@@ -81,3 +81,16 @@ The batch also adds a portable path unit test and Windows package integration te
 **Validation status:** not built or run yet. Workflow YAML, PowerShell and C++ still need preflight and the full CI run. Do not claim the application is portable until the Windows smoke test and the user's Windows GUI acceptance both pass.
 
 **Next step:** inspect the final diff, run available YAML/Bash/PowerShell/C++ preflight, re-check branch refs, commit all code and Markdown together, then wait for one complete CI. After CI, test the Windows artifact on the user's computer.
+
+## Handoff update after Run #110
+
+Run #110 (43231076763) for commit 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427:
+- Linux build, Arabic tests 17/17, TestFileSys 14/14, install verification and artifact upload passed.
+- Windows configure/build, Arabic tests 17/17, TestFileSys 14/14 and install/runtime DLL checks passed.
+- Windows packaging failed only in the package smoke step, during a duplicate TestFileSys invocation from the copied install tree. Its process output was empty in the job log; do not claim a specific C++ or migration root cause from this.
+- The first packaged `--worldlist=path` process returned exit code 0.
+- Linux artifact exists (ID 13950892008); Windows artifact was not uploaded.
+
+The follow-up workflow correction removes only the duplicate package-level TestFileSys invocation. It keeps the mandatory build-tree TestFileSys checks on both platforms and strengthens the actual package probe with first- and second-launch world discovery, migrated-file content checks, and AppData immutability.
+
+Next: inspect the exact patch, verify branch/main refs, commit the correction with all documentation in the same commit, then inspect the new CI run. If Windows smoke passes, inspect Artifact ID, size and digest before giving the Windows ZIP to the user.

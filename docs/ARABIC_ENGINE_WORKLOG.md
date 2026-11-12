@@ -309,3 +309,24 @@ luanti/code/src/porting.h; luanti/code/src/porting.cpp; luanti/code/src/main.cpp
 - The old AppData profile is copied, not deleted; any migration failure logs an error and leaves the original intact.
 
 **Next:** run preflight, then commit this complete source+Markdown batch atomically and start one full CI run.
+
+## 2026-11-12 — Run #110 result and Windows package smoke-test correction
+
+**Code commit under test:** 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427  
+**Run:** #110 — ID 43231076763 — HEAD SHA 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427  
+**Overall:** failure (Linux job passed; Windows package verification step failed).
+
+### Actual CI evidence
+- Workflow sanity: passed.
+- Catalog validation: passed (Arabic catalog, PO format, Lua syntax, C++ test-source validator).
+- Linux: Configure passed; Build passed; TestArabicTextLayout passed (0 failures / 17 tests); TestFileSys passed (0 failures / 14 tests); install checks passed; Linux artifact uploaded.
+- Linux artifact ID: 13950892008; 22,717,628 bytes; SHA-256 digest ac9c301921e1443b0bd89383a1b2a0d58bbeb0def9e5a404a293ebdb12eaee1b.
+- Windows: Configure passed; Build passed; TestArabicTextLayout passed (0 failures / 17 tests); TestFileSys passed (0 failures / 14 tests).
+- Windows install checks and runtime DLL checks passed. The package smoke test's first `--worldlist=path` process exited successfully. The subsequent duplicate TestFileSys invocation from the copied install package did not produce the expected summary and caused the PowerShell step to fail. The captured output was empty in the job log, so the underlying native-process reason is not established.
+- Windows artifact upload was skipped; no Windows ZIP exists for Run #110.
+- vcpkg cache restore succeeded on both platforms; save steps were skipped because restore returned a cache hit.
+
+### Corrective action
+The independent build-tree TestFileSys runs remain mandatory on Linux and Windows (both passed 14/14 in Run #110). The Windows install smoke test no longer repeats that suite inside the copied package. It now checks first and second `--worldlist=path` launches, verifies the migrated world remains under Minetest across launches, checks config/cache file contents plus world/game/cache files and CACHEDIR.TAG, and confirms the legacy AppData profile file inventory is unchanged.
+
+**Next:** run one new full CI for this workflow correction. Treat Windows portability as unverified until its package smoke test and artifact upload succeed.

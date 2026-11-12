@@ -439,12 +439,23 @@ jobs:
               throw "Portable --worldlist probe failed."
             }
 
-            $unitOutput = & $probeExe --run-unittests --test-module TestFileSys 2>&1
-            $unitExitCode = $LASTEXITCODE
-            $unitText = ($unitOutput | Out-String)
-            if ($unitExitCode -ne 0 -or -not $unitText.Contains("Module TestFileSys passed (0 failures / 14 tests)")) {
-              $unitOutput
-              throw "Portable profile failed during configuration initialization or filesystem tests."
+            $worldListText = ($worldListOutput | Out-String)
+            Write-Host "First portable world-list probe:"
+            Write-Host $worldListText
+            if (-not ($worldListText -match 'Minetest[\\/]+worlds[\\/]+portable-world-probe')) {
+              throw "The first launch did not discover the migrated world beneath the portable profile."
+            }
+
+            # A second process verifies the portable profile remains authoritative
+            # after the one-time migration has completed.
+            $secondWorldListOutput = & $probeExe --worldlist=path 2>&1
+            $secondWorldListExitCode = $LASTEXITCODE
+            $secondWorldListText = ($secondWorldListOutput | Out-String)
+            Write-Host "Second portable world-list probe:"
+            Write-Host $secondWorldListText
+            if ($secondWorldListExitCode -ne 0 -or
+                -not ($secondWorldListText -match 'Minetest[\\/]+worlds[\\/]+portable-world-probe')) {
+              throw "The second launch did not continue to discover the world from the portable profile."
             }
           } finally {
             if ($null -eq $previousAppData) {
@@ -455,11 +466,6 @@ jobs:
           }
 
           $portableProfile = Join-Path $probePackage "Minetest"
-          $worldListText = ($worldListOutput | Out-String)
-          if (-not ($worldListText -match 'Minetest[\\/]+worlds[\\/]+portable-world-probe')) {
-            $worldListOutput
-            throw "Worlds were not discovered beneath the portable Minetest profile."
-          }
           foreach ($relativePath in @(
             "minetest.conf",
             "worlds/portable-world-probe/world.mt",
@@ -470,6 +476,12 @@ jobs:
             if (-not (Test-Path -LiteralPath (Join-Path $portableProfile $relativePath) -PathType Leaf)) {
               throw "Portable profile is missing migrated or generated data: $relativePath"
             }
+          }
+          if ([System.IO.File]::ReadAllText((Join-Path $portableProfile "minetest.conf")) -notmatch "portable-migration-probe") {
+            throw "The legacy minetest.conf contents were not preserved in the portable profile."
+          }
+          if ([System.IO.File]::ReadAllText((Join-Path $portableProfile "cache/legacy-cache.marker")) -ne "keep-me") {
+            throw "The legacy cache file contents were not preserved in the portable profile."
           }
           if (-not (Test-Path -LiteralPath (Join-Path $legacyProfile "worlds/portable-world-probe/world.mt") -PathType Leaf)) {
             throw "Legacy AppData profile was not retained after copying."

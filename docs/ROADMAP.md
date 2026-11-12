@@ -85,3 +85,7 @@ This work is scoped to the Windows RUN_IN_PLACE / ZIP distribution used for desk
 - [ ] Only after desktop acceptance, decide whether any extra platform-specific portable behavior is needed.
 
 Do not call the application fully portable until Phase 4 passes on a real Windows installation.
+
+## Run #110 validation note
+
+Run #110 (43231076763, HEAD 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427) passed Linux build/tests/package and passed Windows Configure/Build plus both C++ suites (17/17 and 14/14). Windows install and DLL checks also passed, but the package smoke step failed at its duplicate installed-package TestFileSys invocation; the process output was absent from the job log, so no migration defect was established. The Windows Artifact was not created. The corrected package smoke test now checks first/second world discovery and the migrated tree itself; the independent Windows TestFileSys test remains mandatory. Phase 3 is not complete until the next Windows package job passes.

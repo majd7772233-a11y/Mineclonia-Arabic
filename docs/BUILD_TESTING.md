@@ -129,3 +129,13 @@ The Windows package job also performs an isolated first-launch smoke test:
 5. Verify config, world, game and cache files exist beneath the portable profile, CACHEDIR.TAG was generated there, and the original AppData profile's file list did not change.
 
 This workflow logic is part of the pending portable implementation batch. It has not passed CI until a new complete run succeeds. A CI smoke test does not replace the user's Windows GUI acceptance.
+
+## Windows portable profile — Run #110 and smoke-test correction
+
+Run #110 (43231076763, commit 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427) verified:
+- Linux build, Arabic layout 17/17, TestFileSys 14/14, package install and upload all passed.
+- Windows build, Arabic layout 17/17, TestFileSys 14/14 and install/runtime DLL checks passed.
+- Windows package smoke failed during the duplicate TestFileSys invocation against the copied install package; its native process output was not captured in the log. The preceding `--worldlist=path` process returned success. Do not infer an unproven migration defect.
+- Linux artifact 13950892008 (22,717,628 bytes), SHA-256 ac9c301921e1443b0bd89383a1b2a0d58bbeb0def9e5a404a293ebdb12eaee1b. Windows artifact was not uploaded.
+
+The package smoke test retains the separate build-tree TestFileSys gate and tests installed-package migration using first and second `--worldlist=path` launches, file/content assertions for config/world/game/cache, CACHEDIR.TAG under the portable profile, and a before/after comparison of the old AppData tree. It no longer repeats TestFileSys inside the installed package.
