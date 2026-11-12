@@ -99,3 +99,44 @@ Commit التنفيذ 69c62784baf96e3456239d5b954055be5e855501 (Repair Arabic en
 6. أي تعديل جديد يجب أن يضم تحديث Markdown في commit نفسه، وألا يدفع أثناء CI لأن cancel-in-progress=true.
 
 لا يُعد دعم العربية مكتملاً بعد؛ نجاح Desktop build و17/17 والحزمتين إنجاز مهم لكنه لا يعوض تجربة GUI والتفاعل على عميل فعلي.
+
+
+## 6. فحص مستقل للحزم بعد تنزيل Artifacts — 2026-11-12
+
+تم تنزيل الـArtifactين من Run #109 إلى بيئة الفحص، ثم فك أرشيف GitHub الخارجي والأرشيف الداخلي.
+
+### مطابقة Artifact SHA-256
+
+- Linux Artifact 13941099252: بصمة الملف المنزّل `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`، مطابقة تماماً لبصمة upload action في سجل Run #109. الأرشيف الخارجي ZIP سليم، ويحتوي tar.gz داخلياً.
+- Windows Artifact 13941743588: بصمة الملف المنزّل `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`، مطابقة تماماً لبصمة upload action في سجل Run #109. الأرشيف الخارجي ZIP سليم، ويحتوي ZIP الحزمة المحمولة داخلياً.
+- لم يفشل اختبار سلامة أعضاء ZIP الخارجي؛ `ZipFile.testzip()` أعاد `None` لكليهما.
+
+### Linux extracted package
+
+- `bin/luanti`: ELF 64-bit x86-64.
+- `ldd bin/luanti`: لا توجد مكتبة runtime بحالة `not found`.
+- تشغيل `./bin/luanti --version` من جذر الحزمة نجح exit code 0، وأظهر Luanti 5.17.0 / Release / RUN_IN_PLACE=1 / USE_CURL=1 / USE_GETTEXT=1 / USE_SOUND=1.
+- `builtin/common/settings/dlg_settings.lua` موجود ويحوي السطر `ar = "العربية [ar]",`.
+- `builtin/locale/__builtin.ar.tr` موجود.
+- `fonts/NotoSansArabic-Regular.ttf` موجود (844,676 bytes)، و`fonts/NotoSansArabic-OFL.txt` موجود (4,382 bytes).
+- شغّلت الاختبارات من النسخة المستخرجة نفسها: `./bin/luanti --run-unittests --test-module TestArabicTextLayout`.
+- النتيجة الفعلية: 17 سطراً PASS، والملخص `Module TestArabicTextLayout passed (0 failures / 17 tests)`، ثم `Unit Test Results: PASSED` و`0 / 17 failed tests`.
+
+### Windows extracted package
+
+تم فك ZIP وفحص وجود الملفات التالية وأحجامها:
+- `bin/luanti.exe` (9,920,000 bytes).
+- DLLs: `raqm-0.dll`، `harfbuzz.dll`، `fribidi-0.dll`، `freetype.dll`، `OpenAL32.dll`، `ogg.dll`، `vorbis.dll`، `vorbisfile.dll`.
+- `builtin/common/settings/dlg_settings.lua` ويحوي خيار العربية مع الفاصلة.
+- `fonts/NotoSansArabic-Regular.ttf` و`fonts/NotoSansArabic-OFL.txt`.
+
+هذا الفحص يثبت سلامة تنزيل Artifact وحضور الملفات المحددة، لكنه **لا** يثبت تشغيل exe على Windows أو فتح GUI؛ لم يُنفّذ تشغيل Windows محلياً.
+
+## 7. نقطة التوقف الحالية
+
+1. الاختبار المستقل للحزمة Linux و17/17 اكتمل.
+2. الاختبار المستقل للحزمة Windows يقتصر على سلامة الأرشيف وفحص محتويات الملفات؛ التشغيل الفعلي لم يُختبر.
+3. الخطوة الخارجية التالية هي تشغيل حزمة Windows كاملة على جهاز المستخدم، فتح القائمة ثم Settings > Language، وجمع log جديد للتحقق من Lua parser وSHA warnings.
+4. بعد ذلك تستكمل اختبارات clipboard/drag/Shift/keyboard والـrendering. Android يظل مؤجلاً.
+
+هذا التحديث توثيقي فقط، مبني على تنفيذ 69c62784baf96e3456239d5b954055be5e855501؛ HEAD الوثائقي السابق كان 596c9dd10e98f37057f87a92873d77a21ebc4a95. اقرأ HEAD النهائي مباشرة من GitHub بعد هذا التحديث.

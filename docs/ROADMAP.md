@@ -25,6 +25,9 @@
 - [x] Windows executable وbuiltin SHA/comma/font/license وDLL checks.
 - [x] Linux Artifact ID 13941099252 وSHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
 - [x] Windows Artifact ID 13941743588 وSHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
+- [x] تنزيل ZIPs المنصتين والتحقق من SHA-256 المطابق لـupload action وسلامة الأرشيف الخارجي.
+- [x] تشغيل Linux executable من الحزمة المستخرجة والتحقق من الإصدار وldd.
+- [x] تشغيل TestArabicTextLayout من Linux package نفسه: 17/17، صفر إخفاقات.
 
 ## P3 — Windows user verification
 

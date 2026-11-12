@@ -12,7 +12,9 @@
 > Linux Artifact: 13941099252 — SHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
 > Windows Artifact: 13941743588 — SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
 >
-> هذا يثبت Desktop CI والحزم، لكنه لا يثبت تشغيل GUI على جهاز المستخدم أو اختفاء SHA warnings. استخدم Windows artifact كاملاً وافحص القائمة وSettings > Language وسجل التشغيل.
+> أُعيد تنزيل Artifactَي Linux وWindows؛ SHA-256 مطابق لبصمة upload action وسلامة ZIP الخارجي سليمة. شُغّلت الحزمة Linux المستخرجة فعلياً: `--version` نجح وTestArabicTextLayout اجتاز 17/17. حزمة Windows فُحصت محتوياتها لكن لم تُشغّل على Windows بعد.
+>
+> هذا لا يثبت تشغيل GUI على جهاز المستخدم أو اختفاء SHA warnings. استخدم Windows artifact كاملاً وافحص القائمة وSettings > Language وسجل التشغيل.
 >
 > التفاصيل: [PROJECT_STATE](docs/PROJECT_STATE.md)، [HANDOFF](docs/ARABIC_ENGINE_HANDOFF.md)، [NEXT_SESSION_PROMPT](docs/NEXT_SESSION_PROMPT.md)، [BUILD_TESTING](docs/BUILD_TESTING.md).
 >

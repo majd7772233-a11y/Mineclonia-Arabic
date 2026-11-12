@@ -384,3 +384,14 @@ Both desktop targets completed CMake configure and full client build, ran the de
 - Windows artifact ID 13941743588; size 20,672,848 bytes; SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
 
 The successful native jobs establish the desktop compile, the 17-test regression module on both CI platforms, and the package checks. They do not establish a real GUI launch on the user's machine. The menu startup and SHA warning outcomes must still be confirmed by running the complete Windows artifact and inspecting a fresh user log. Clipboard interaction, drag/Shift selection, mixed-direction keyboard editing, and broad GUI rendering remain open acceptance items. Android remains deferred.
+
+
+## Independent inspection of Run #109 portable artifacts — 2026-11-12
+
+The actual GitHub Actions artifacts were downloaded and their outer ZIP SHA-256 values were independently calculated. Both match the digest printed by the upload action:
+- Linux artifact 13941099252: `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
+- Windows artifact 13941743588: `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
+
+The outer ZIP archives passed integrity checks and contained the expected inner archives. The Linux inner tarball was extracted. Its x86-64 `bin/luanti` reports Luanti 5.17.0 / Release / RUN_IN_PLACE=1 under `--version`; all `ldd` dependencies resolved. The extracted runtime contains the corrected Arabic language-label entry, Arabic builtin translation, Noto Sans Arabic Regular and OFL license. Running the dedicated test module from this exact extracted package passed all 17 tests with zero failures and the explicit module summary.
+
+The Windows inner ZIP was extracted and inspected. It contains `bin/luanti.exe`, Raqm/HarfBuzz/FriBidi/FreeType DLLs, OpenAL/Ogg/Vorbis DLLs, the Arabic language-label builtin, and Noto Sans Arabic with its OFL license. This is archive/file-presence verification only; the Windows executable was not launched in this environment. User-side Windows GUI and SHA-warning verification remain required.

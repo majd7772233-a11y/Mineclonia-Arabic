@@ -94,3 +94,24 @@ Linux job 131162246258: vcpkg bootstrap/cache restore/install and CMake configur
 Windows job 131162246670: vcpkg bootstrap/cache restore/install and CMake configure passed; cache save was skipped on cache hit. MSVC client build passed. TestArabicTextLayout step passed its exact 17-test zero-failure gate. Install/package checks passed: executable, source/package builtin SHA equality and comma check, Noto font/license, and Raqm/HarfBuzz/FriBidi/OpenAL/Ogg/Vorbis runtime DLL presence. Artifact ID 13941743588, 20,672,848 bytes, SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
 
 This is CI desktop build/test/package evidence, not user-side GUI evidence. The full Windows artifact must still be launched to verify the main menu, Settings > Language, and SHA warning behavior. Interactive edit-box and rendering tests remain open.
+
+
+## Post-download artifact verification — Run #109
+
+The GitHub artifacts were downloaded and unpacked independently after the CI run:
+- Outer Linux artifact ZIP ID 13941099252: digest `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`, matching the upload action.
+- Outer Windows artifact ZIP ID 13941743588: digest `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`, matching the upload action.
+- Both outer ZIPs passed integrity checks and contained their inner package archive.
+
+Linux inner package:
+- `file bin/luanti`: ELF 64-bit x86-64.
+- `ldd bin/luanti`: no `not found` dependencies.
+- `./bin/luanti --version`: exit code 0; Luanti 5.17.0, Release, RUN_IN_PLACE=1.
+- Arabic language-label Lua, `__builtin.ar.tr`, Noto Sans Arabic Regular and OFL license present.
+- `./bin/luanti --run-unittests --test-module TestArabicTextLayout` run from the extracted package: 17 PASS, 0 failures, exact expected summary.
+
+Windows inner package:
+- Confirmed `bin/luanti.exe`, Raqm/HarfBuzz/FriBidi/FreeType, OpenAL/Ogg/Vorbis DLLs, language selector Lua file, Noto Sans Arabic and OFL license.
+- This was not a Windows execution; launch and GUI checks still need the user's Windows environment.
+
+A successful extracted Linux artifact test is still not a substitute for the user's GUI test. Do not claim Windows runtime or Lua menu startup success without a Windows run/log.

@@ -47,3 +47,21 @@ Run: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062
 6. إذا ظهر فشل جديد، اقرأ السجل والكود المحيط أولاً، وجمّع الإصلاحات مع توثيق Markdown في commit واحد. لا تدفع أثناء CI بسبب cancel-in-progress=true.
 
 هذا التحديث بعد Run #109 توثيقي فقط؛ لا يعدل كود المحرك أو Workflow.
+
+
+## فحص الـArtifacts بعد التنزيل
+
+بعد Run #109 تم تنزيل الحزمتين وفحصهما بشكل مستقل:
+- Linux Artifact 13941099252: SHA-256 المنزّل يطابق `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`. الأرشيف سليم، وELF يعمل من جذر الحزمة، و`--version` يعرض Luanti 5.17.0. `ldd` بلا مكتبات مفقودة.
+- من نفس الحزمة المستخرجة، نجح `TestArabicTextLayout` بنتيجة 17/17 وصفر إخفاقات.
+- ملف builtin الخاص باختيار اللغة وخط Noto والترخيص موجودة.
+- Windows Artifact 13941743588: SHA-256 المنزّل يطابق `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`، وZIP الداخلي سليم، ووجدت exe وDLLs وbuiltin وخط Noto والترخيص. لم يتم تشغيل exe على Windows في هذه البيئة.
+
+## نقطة الاستئناف الآن
+
+1. Windows artifact 13941743588 هو الخطوة التالية على جهاز المستخدم: استخرج الحزمة كاملة وشغّل `bin/luanti.exe` منها.
+2. افتح القائمة الرئيسية ثم Settings > Language، واختر العربية.
+3. احتفظ بسجل تشغيل جديد؛ لا تعتبر Lua menu error أو SHA warnings منتهية قبل التحقق من السجل.
+4. استكمل اختبارات clipboard round-trip وmouse drag وShift selection والتنقل والحذف المختلط، ثم Rendering GUI.
+5. لا تبدأ Android قبل استقرار Desktop.
+

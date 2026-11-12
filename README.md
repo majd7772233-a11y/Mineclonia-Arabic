@@ -7,6 +7,8 @@
 
 Run #109 (ID 43212062926) اكتمل `success` على Linux وWindows. نجحت فحوص catalog/PO/Lua/C++ source، وتم تحليل 210 ملفات Lua، ثم اكتمل CMake configure وبناء العميل واختبار `TestArabicTextLayout` بنتيجة 17/17 دون إخفاقات على النظامين. اكتملت كذلك install/package checks ورُفعت حزمتا Linux وWindows. تفاصيل Run ومعرفات الحزم وبصماتها في [حالة المشروع](docs/PROJECT_STATE.md) و[البناء والاختبار](docs/BUILD_TESTING.md).
 
+بعد ذلك نُزّلت الـArtifacts وفُحصت بصماتها ومحتوياتها. شُغّل Linux executable من الحزمة المستخرجة، واجتاز اختبار العربية 17/17 من الحزمة نفسها. حزمة Windows تحتوي الملفات المتوقعة، لكنها ما زالت تنتظر تشغيل GUI على Windows فعلياً.
+
 **ما زال الدعم غير مقبول نهائياً على GUI حتى الآن:** لم يختبر المستخدم الحزمة الجديدة بعد، ولا يوجد سجل منه يثبت اختفاء خطأ Lua أو تحذيرات SHA-256. لا يزال يلزم اختبار القائمة وSettings > Language والتحرير التفاعلي والعرض المرئي على عميل فعلي. راجع [رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md) و[التسليم](docs/ARABIC_ENGINE_HANDOFF.md).
 ## حالة المشروع
 

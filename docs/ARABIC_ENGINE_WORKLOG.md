@@ -241,3 +241,40 @@ Artifact `luanti-arabic-windows-x64`: ID 13941743588, size 20,672,848 bytes, SHA
 The successful CI establishes desktop compilation, the dedicated 17-test module on both platforms, and package contents/dependency checks. It does not prove that the user's real GUI starts correctly or that SHA warnings are absent on their machine. The user must launch the complete Windows artifact, open Settings > Language, and provide a new log if startup or SHA warnings remain. Clipboard round-trip, mouse drag, Shift selection, mixed-direction keyboard deletion/navigation, clipping/shadows/alignment/scrolling and broader Unicode rendering remain to be verified. Android remains deferred.
 
 No assertions were weakened and no tests were deleted in the workflow repair. No code change is part of this follow-up documentation commit.
+
+
+## 2026-11-12 — Independent verification of Run #109 downloadable artifacts
+
+**Starting HEAD:** 596c9dd10e98f37057f87a92873d77a21ebc4a95 (documentation-only commit after Run #109).  
+**Implementation HEAD represented by the artifacts:** 69c62784baf96e3456239d5b954055be5e855501.  
+**Branch:** `work/arabic-engine-support`.  
+**Run:** #109, ID 43212062926. No new CI was launched for this audit.
+
+### Download and digest verification
+
+Downloaded Linux artifact 13941099252 and Windows artifact 13941743588 from the GitHub Actions run. SHA-256 was calculated over the downloaded outer artifact ZIP files:
+- Linux: `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999` — exact match with the digest printed by `actions/upload-artifact@v4`.
+- Windows: `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6` — exact match with the digest printed by `actions/upload-artifact@v4`.
+
+Both outer ZIPs passed the archive integrity check (`ZipFile.testzip() == None`) and contained the expected inner package archive.
+
+### Linux package execution
+
+The extracted Linux package contains an x86-64 ELF executable. `ldd` reported no `not found` dependencies. Running `./bin/luanti --version` from the package root exited 0 and reported Luanti 5.17.0, Release, RUN_IN_PLACE=1, USE_CURL=1, USE_GETTEXT=1, and USE_SOUND=1.
+
+The extracted package contains the language selector builtin with `ar = "العربية [ar]",`, `builtin/locale/__builtin.ar.tr`, Noto Sans Arabic Regular (844,676 bytes), and the Noto OFL license (4,382 bytes).
+
+The test suite was run directly from the extracted package:
+`./bin/luanti --run-unittests --test-module TestArabicTextLayout`
+
+Result: 17 PASS lines; exact summary `Module TestArabicTextLayout passed (0 failures / 17 tests)`; `Unit Test Results: PASSED`; `0 / 17 failed tests`.
+
+### Windows package inspection
+
+The extracted inner ZIP contains `bin/luanti.exe` (9,920,000 bytes), the expected Raqm/HarfBuzz/FriBidi/FreeType and OpenAL/Ogg/Vorbis DLLs, the language selector Lua file with the Arabic comma, Noto Sans Arabic Regular, and its OFL license.
+
+This was a file/archive inspection only. The Windows executable was not run in this environment, and no Windows GUI/runtime success is claimed.
+
+### Remaining next step
+
+The Linux package has independent extracted-artifact execution evidence. Windows still needs a real launch on the user's machine using the whole extracted package, followed by Settings > Language and a fresh log inspection for Lua parser and SHA-256 warnings. Interactive EditBox and rendering checks remain open. Android remains deferred.
