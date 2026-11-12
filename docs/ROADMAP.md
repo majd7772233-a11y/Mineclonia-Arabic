@@ -126,3 +126,19 @@ The next corrective batch:
 - cleans CI package/probe directories and injects an explicit old-style staging directory with a marker, then checks it remains unchanged and that no new temporary staging directory remains.
 
 Phase 2/3 migration verification remains incomplete until a new Windows package smoke succeeds and the Windows artifact uploads. Phase 4 still requires testing the ZIP on a real Windows installation; do not begin font/UI work yet.
+
+## Run #114 — world discovery passed; root-level minetest.conf still missing
+
+Run #114 (ID 43289640898, tested HEAD 334f6fba00c9a093b2e5511a2987f45aab91296e) passed workflow scheduling and Arabic catalog/source validation. Linux configure/build, TestArabicTextLayout 17/17, TestFileSys 15/15, install/package and upload all passed. Linux Artifact 13976243943: 22,728,834 bytes; SHA-256 5966c9a2f7be474973eaa12881970ae71778b76a8aee77b6549f8d933a5ef1bb.
+
+Windows configure/build passed; TestArabicTextLayout 17/17 and TestFileSys 15/15 passed. The Windows package command used the corrected --worldlist path syntax, and its output listed the synthetic world twice beneath the portable Minetest/worlds path. The subsequent filesystem assertion failed because Minetest/minetest.conf was missing. No Windows artifact was uploaded.
+
+This shows the package initialized and world data was visible in the portable profile, but it does not yet establish that every root-level and nested file was copied. The current workflow did not print the source and destination inventories when the assertion failed, so the missing root-level config's exact cause remains undetermined. Do not change the production migration implementation based solely on that incomplete diagnostic.
+
+### Current corrective batch — diagnostic and copy regression
+- Add a 16th TestFileSys case that calls fs::CopyDir() on a source directory containing a root-level minetest.conf and a nested world.mt, with spaces in the source/destination paths, then compares both copied file contents.
+- The Windows smoke test now explicitly verifies the synthetic AppData config fixture exists before launch, logs the seeded source inventory, and on failure reports missing paths plus full source/destination file inventories.
+- Update both Linux and Windows CI gates to require TestFileSys 16/16.
+- Keep the package's existing assertions for first/second launch, migrated file contents, cache tag, AppData file hashes, stale-staging marker preservation, no process staging leftovers, and existing-profile/no-merge.
+
+**Phase status:** still in Phase 3 (package regression coverage and documentation). Automated checks from Phase 4 (path spaces, second launch, stale staging, and no-merge) are also under test. Phase 3 cannot be marked complete until the Windows package smoke and artifact upload pass. Phase 4 still requires real Windows acceptance for ContentDB, new worlds, config/log/screenshot/texture/cache writes, no new AppData writes, and removable/non-system drive behavior.

@@ -420,3 +420,29 @@ A new full CI run is required after this workflow/doc-only correction. Linux pac
 - No PowerShell/YAML preflight or full CI run has run for this corrective batch yet.
 - No Windows Artifact exists from Run #113.
 - Real Windows GUI acceptance remains outstanding: ContentDB download, new world, settings/log/screenshot/cache paths, no new AppData writes, and removable/non-system drive.
+
+## 2026-11-12 — Run #114: world migrated, root config assertion failed
+
+**Starting HEAD:** 334f6fba00c9a093b2e5511a2987f45aab91296e  
+**Branch:** work/arabic-engine-support  
+**Protected main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d  
+**Run:** #114 — ID 43289640898  
+**Overall:** Linux job passed; Windows build/tests passed; Windows package smoke failed at the portable minetest.conf presence check.
+
+### Actual CI evidence
+- Workflow scheduling and source/catalog validation: success.
+- Linux configure/build: success; TestArabicTextLayout 17/17; TestFileSys 15/15; package install/upload success.
+- Linux Artifact 13976243943: 22,728,834 bytes; SHA-256 5966c9a2f7be474973eaa12881970ae71778b76a8aee77b6549f8d933a5ef1bb.
+- Windows configure/build: success; TestArabicTextLayout 17/17; TestFileSys 15/15.
+- Windows package: valid --worldlist path invocation ran twice and printed the expected world path under the probe package's Minetest/worlds/portable-world-probe. The job then failed because Minetest/minetest.conf was absent.
+- Windows Artifact upload was skipped; no Windows package is available.
+- This proves initialization reached world discovery and the world was present under the portable profile. It does not prove all root-level profile files were copied. The current output does not show the source and destination directory inventories, so the missing config's exact cause remains unknown.
+
+### Corrective test changes in the current batch
+- Add testCopyDir() as TestFileSys case 16. It creates a source profile under a path containing spaces, writes a root-level minetest.conf and a nested worlds/world with spaces/world.mt, copies the directory with fs::CopyDir(), and verifies exact bytes/content for both files.
+- Require TestFileSys 16/16 on Linux and Windows.
+- Before launch, assert that the PowerShell fixture really contains its synthetic minetest.conf and print the seeded source file inventory.
+- On package assertion failure, print all missing required paths and the complete source and destination inventories. Retain the other profile migration, cache, AppData hash, staging, and no-merge checks.
+
+### Phase position
+The work is still in **Phase 3 — Package regression coverage and documentation**. Phase 4 automation is being exercised as part of the Windows package test, but real-device acceptance is still outstanding. No production migration change is justified until the direct CopyDir test and next diagnostic run establish the failure cause.

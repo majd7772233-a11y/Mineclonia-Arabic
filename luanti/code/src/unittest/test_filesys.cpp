@@ -34,6 +34,7 @@ public:
 	void testAbsolutePath();
 	void testSafeWriteToFile();
 	void testCopyFileContents();
+	void testCopyDir();
 	void testNonExist();
 	void testRecursiveDelete();
 	void testGetRecursiveSubPaths();
@@ -55,6 +56,7 @@ void TestFileSys::runTests(IGameDef *gamedef)
 	TEST(testAbsolutePath);
 	TEST(testSafeWriteToFile);
 	TEST(testCopyFileContents);
+	TEST(testCopyDir);
 	TEST(testNonExist);
 	TEST(testRecursiveDelete);
 	TEST(testGetRecursiveSubPaths);
@@ -562,6 +564,48 @@ void TestFileSys::testCopyFileContents()
 	contents_actual.clear();
 	UASSERT(fs::ReadFile(file2, contents_actual));
 	UASSERTEQ(auto, contents_actual, test_data);
+}
+
+void TestFileSys::testCopyDir()
+{
+	const std::string base_path = getTestTempDirectory() +
+			DIR_DELIM "portable profile copy with spaces";
+
+	struct ScopedCopyDirectory {
+		std::string path;
+		~ScopedCopyDirectory() { fs::RecursiveDelete(path); }
+	} scoped_directory{base_path};
+
+	fs::RecursiveDelete(base_path);
+	const std::string source = base_path + DIR_DELIM "source profile";
+	const std::string destination = base_path + DIR_DELIM "portable profile";
+	const std::string source_world = source + DIR_DELIM "worlds" +
+			DIR_DELIM "world with spaces";
+	UASSERT(fs::CreateAllDirs(source_world));
+
+	const std::string config_contents = "name = portable-copy-dir-probe\\n";
+	{
+		auto config = open_ofstream((source + DIR_DELIM "minetest.conf").c_str(), false);
+		UASSERT(config.good());
+		config << config_contents;
+	}
+	const std::string world_contents = "gameid = minetest\\nworld_name = Copy Dir Probe\\n";
+	{
+		auto world_mt = open_ofstream((source_world + DIR_DELIM "world.mt").c_str(), false);
+		UASSERT(world_mt.good());
+		world_mt << world_contents;
+	}
+
+	UASSERT(fs::CopyDir(source, destination));
+
+	std::string actual;
+	UASSERT(fs::ReadFile(destination + DIR_DELIM "minetest.conf", actual));
+	UASSERTEQ(auto, actual, config_contents);
+
+	actual.clear();
+	UASSERT(fs::ReadFile(destination + DIR_DELIM "worlds" + DIR_DELIM
+			"world with spaces" + DIR_DELIM "world.mt", actual));
+	UASSERTEQ(auto, actual, world_contents);
 }
 
 void TestFileSys::testNonExist()

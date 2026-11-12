@@ -1,16 +1,15 @@
 # تقدم التعريب
 
-
-> ## نقطة حالة محرك Luanti — 2026-11-12 · Run #113 (Windows staging collision correction pending)
+> ## نقطة حالة محرك Luanti — 2026-11-12 · Run #114 (Windows root-config copy diagnosis pending)
 >
-> Branch: `work/arabic-engine-support`; tested HEAD: `e0b1fc5bf517f216523f5a53d3d6b049673432d0`; `main` remains `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+> Branch: `work/arabic-engine-support`; tested HEAD: `334f6fba00c9a093b2e5511a2987f45aab91296e`; `main` remains `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
 >
-> Run #113 نجح في scheduling/catalog validation. Linux: configure/build، اختبار العربية 17/17، TestFileSys 15/15، package/install/upload كلها نجحت. Artifact Linux: 13957134160، الحجم 22,723,769 bytes، SHA-256 `9b4178bba4ac2e284e51b85b170a3311b5d8f4adb753cd9323be6f67eb290ee6`.
+> Run #114 نجح في scheduling/catalog validation. Linux: configure/build، اختبار العربية 17/17، TestFileSys 15/15، package/install/upload كلها نجحت. Artifact Linux: 13976243943، الحجم 22,728,834 bytes، SHA-256 `5966c9a2f7be474973eaa12881970ae71778b76a8aee77b6549f8d933a5ef1bb`.
 >
-> Windows: configure/build واختبار العربية 17/17 وTestFileSys 15/15 نجحت. فشل package smoke بعد الوصول لتهيئة المسارات لأن staging الثابت `Minetest.migration-tmp` كان موجوداً بجانب مسار `bin/..`؛ لم يُفعّل ملف المستخدم ولم يُرفع Windows Artifact. لا يثبت سجل التشغيل مصدر المجلد القديم.
+> Windows: configure/build واختبار العربية 17/17 وTestFileSys 15/15 نجحت. أمر `--worldlist path` أظهر العالم التجريبي مرتين تحت `Minetest/worlds`، لكن فحص الملفات لم يجد `Minetest/minetest.conf`؛ لم يُرفع Windows Artifact. لا يحدد سجل Run #114 إن كان الملف غير موجود في مصدر AppData التجريبي أم لم يُنسخ.
 >
-> التصحيح الحالي يطبّع مسار الحزمة إلى مسار مطلق، ويستخدم staging فريداً لكل عملية مع suffix عند التصادم ويحافظ على المجلد القديم، ويضيف اختبار C++ لمسار `bin/..` وفحص Windows لبقاء marker وعدم ترك staging جديد.
+> الإصلاح التالي يضيف اختبار `fs::CopyDir` مباشر لملف إعداد جذري وعالم متداخل داخل مسارات بها مسافات، ويرفع TestFileSys إلى 16/16، ويطبع قائمة ملفات المصدر والوجهة عند الفشل. لا تغيّر كود الترحيل قبل معرفة مكان ضياع الملف.
 >
-> لا تعتبر قابلية النقل مثبتة قبل نجاح CI جديد ورفع Windows Artifact ثم الاختبار اليدوي على Windows. أبقِ إصلاح الخطوط/UI مؤجلاً.
+> ما زلنا في Phase 3 — اختبارات الحزمة والتوثيق. تبقى Phase 4 بحاجة لاختبار ZIP على Windows حقيقي. أبقِ إصلاح الخطوط/UI مؤجلاً.
 >
 > التفاصيل في [خارطة الطريق](docs/ROADMAP.md)، [حالة المشروع](docs/PROJECT_STATE.md)، [سجل العمل](docs/ARABIC_ENGINE_WORKLOG.md)، و[رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md).

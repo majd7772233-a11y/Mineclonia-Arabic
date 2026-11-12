@@ -144,3 +144,22 @@ Next:
 3. Run one full CI. Verify 15/15 TestFileSys on Linux and Windows; the Windows package must migrate all synthetic AppData files, preserve the stale-stage marker, leave no PID staging folder, keep AppData hashes unchanged, pass the existing-profile/no-merge case, and upload the Windows artifact.
 4. On failure, inspect exact log/error code; don't weaken assertions or delete unknown data.
 5. If CI succeeds, provide the Windows ZIP and continue Phase 4 real-device acceptance. Keep font/UI work deferred until portability is accepted on the actual Windows machine.
+
+## Handoff after Run #114 — isolate missing root-level config copy
+
+Run #114 (43289640898; tested HEAD 334f6fba00c9a093b2e5511a2987f45aab91296e) passed the full Linux job, including TestArabicTextLayout 17/17, TestFileSys 15/15, package and upload. Linux Artifact 13976243943 (22,728,834 bytes; SHA-256 5966c9a2f7be474973eaa12881970ae71778b76a8aee77b6549f8d933a5ef1bb) exists. Windows configure/build and both C++ suites passed (17/17 and 15/15). Windows --worldlist path ran twice and printed the world inside the portable profile. The smoke test then failed because Minetest/minetest.conf was absent. No Windows Artifact was uploaded.
+
+Current evidence says world discovery is using the portable path, but the complete root profile copy remains unverified. The workflow did not emit a full source/target file inventory, so do not infer the cause of the missing config yet.
+
+The current patch adds:
+- testCopyDir() as TestFileSys case 16, verifying a root minetest.conf and a nested world.mt are copied with exact contents under paths containing spaces;
+- the expected TestFileSys summary 16/16 on both CI hosts;
+- a preflight assertion that the synthetic AppData config exists before process launch;
+- missing-file diagnostics that print the missing list and full source/destination inventories.
+
+Next:
+1. Re-fetch live refs and preserve the new HEAD; do not touch main.
+2. Commit the test/workflow/doc updates atomically.
+3. Run one complete CI. Check Linux and Windows build, Arabic 17/17, FileSys 16/16, then Windows package migration, stale staging, AppData hashes, no-merge and artifact upload.
+4. If the new diagnostic says minetest.conf was seeded but not copied while root-level CopyDir test passes, trace the path/fixture used by the migration function before changing production code.
+5. Continue Phase 3 until the Windows artifact uploads; then ask for real-device Phase 4 acceptance. Keep font/UI work deferred.

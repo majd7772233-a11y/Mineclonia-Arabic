@@ -118,10 +118,12 @@ A successful extracted Linux artifact test is still not a substitute for the use
 
 ## Windows portable profile regression coverage
 
-The build-tree TestFileSys module has 15 cases and is required on both Linux and Windows:
-`Module TestFileSys passed (0 failures / 15 tests)`.
+The build-tree TestFileSys module has 16 cases and is required on both Linux and Windows:
+`Module TestFileSys passed (0 failures / 16 tests)`.
 
 Portable-profile C++ coverage checks the path builder with whitespace and temporarily assigns `porting::path_user` to a path containing spaces. It creates a fixture world and user-installed game beneath that profile, then directly verifies that `getAvailableWorlds()` and `getAvailableGameIds()` discover them. This avoids depending on console output from the Windows GUI executable.
+
+The additional `testCopyDir()` case calls `fs::CopyDir()` for a source profile whose path contains spaces. It verifies exact contents for both a root-level `minetest.conf` and a nested `worlds/world with spaces/world.mt`. This isolates the directory-copy helper from the Windows startup/migration environment.
 
 The Windows package smoke test runs against isolated copies of the install tree:
 1. The package copy is placed under a directory containing spaces.
@@ -131,6 +133,8 @@ The Windows package smoke test runs against isolated copies of the install tree:
 5. A second package copy begins with an existing `Minetest` directory plus a distinct AppData profile. The test checks that the portable config and marker remain unchanged, legacy-only files are not merged, and the source AppData remains intact.
 
 Never use `--worldlist=path`: Luanti's option parser expects an option value as a separate argument (`--worldlist <value>`). Run #112 rejected the equals form before initialization; the subsequent missing-file assertion exposed that invalid invocation. The test also deliberately does not parse `stdout` from the GUI-subsystem executable, which is linked with `/SUBSYSTEM:WINDOWS`.
+
+The Run #114 Windows package log showed that the synthetic world was visible under the portable profile, but the required root-level `minetest.conf` was absent. The current check now verifies that the fixture file is present before launch and, on a missing-file failure, prints the seeded source and portable destination inventories. This avoids changing production migration logic until the new `CopyDir` test and inventories identify the cause.
 
 These expanded checks are pending the next complete Linux/Windows CI run. They do not replace real Windows GUI/user acceptance.
 

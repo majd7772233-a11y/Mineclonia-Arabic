@@ -254,3 +254,30 @@ The Linux portable package and both platforms' 15-test C++ modules passed. Windo
 
 ### Validation boundary and next action
 This source/workflow batch is not yet compiled or tested. Re-run the full Linux and Windows workflow after this commit. Require both 15-test FileSys suites, first-run migration/content checks, stale-stage preservation, existing-profile/no-merge, AppData hash preservation, and Windows artifact upload. Even after CI passes, Phase 4 requires real Windows acceptance for Content tab downloads, world creation, config/log/screenshot/cache writes, no new AppData writes, and launch from a removable/non-system drive. Do not call the package fully portable until those user-side checks pass.
+
+## Current portable-profile status — after Run #114 (2026-11-12)
+
+**Branch:** work/arabic-engine-support  
+**Run:** [Run #114](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43289640898), tested HEAD 334f6fba00c9a093b2e5511a2987f45aab91296e.  
+**Protected main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged at the latest pre-edit check).
+
+### Run #114 evidence
+- Workflow scheduling and Arabic catalog/source validation: passed.
+- Linux x64 configure/build: passed; TestArabicTextLayout 17/17; TestFileSys 15/15; package install and upload passed.
+- Linux Artifact 13976243943: 22,728,834 bytes; SHA-256 5966c9a2f7be474973eaa12881970ae71778b76a8aee77b6549f8d933a5ef1bb.
+- Windows x64 configure/build: passed; TestArabicTextLayout 17/17; TestFileSys 15/15.
+- Windows package smoke: accepted --worldlist path and printed the synthetic world beneath the portable Minetest/worlds directory on both invocations. It then failed because Minetest/minetest.conf was absent.
+- Windows artifact upload: skipped; no Windows artifact was produced.
+
+### Interpretation
+The application reached path initialization, and the world was discoverable beneath the portable profile. However, the package check does not yet prove a complete profile copy because a root-level configuration file was missing. The Run #114 log does not include a source/destination file inventory, so the reason for that one missing file is not proven. The production migration code is not changed in this corrective batch; first isolate fs::CopyDir behavior and print the actual fixture/destination inventories.
+
+### Current corrective batch
+- Add a 16th TestFileSys case. It calls fs::CopyDir() on a temporary source profile containing a root-level minetest.conf and a nested world file, both under paths containing spaces, then verifies exact contents.
+- Raise the TestFileSys CI expectation to 16/16 on Linux and Windows.
+- Assert that the synthetic AppData config file exists before launching the package and print the seeded source inventory.
+- When the package's required files are missing, report the missing paths together with the complete source and destination inventories so the next CI result identifies whether the fixture or copy operation is responsible.
+- Preserve the current first/second start, cache signature, AppData hashes, stale staging, process-specific staging cleanup, and existing-profile/no-merge checks.
+
+### Validation boundary and next action
+This corrective batch still needs a full CI run. Phase 3 remains open until Windows file migration/content assertions and Windows artifact upload succeed. Phase 4 still requires real-device Windows acceptance: ContentDB download, world creation, config/log/screenshot/texture/cache writes, no new AppData writes, and launch from a removable/non-system drive. Do not start font/UI work until portability has passed those checks.

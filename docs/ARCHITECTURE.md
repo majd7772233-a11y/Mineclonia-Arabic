@@ -73,6 +73,8 @@ The Windows package probe runs against isolated copies of the installed tree. On
 
 The probe starts the executable with the valid option syntax `--worldlist path` (two separate arguments). Run #112 showed that `--worldlist=path` is rejected as an unknown command-line parameter before the application initializes; the subsequent missing-config assertion was therefore a consequence of the invalid invocation, not proof of a migration defect. The workflow does not parse stdout from the GUI client linked with `/SUBSYSTEM:WINDOWS`; it validates the files and contents produced after a valid command. TestFileSys also exercises `getAvailableWorlds()` and `getAvailableGameIds()` with a temporary `path_user` containing spaces.
 
+Run #114 reached world discovery and listed the synthetic world beneath the portable profile twice, but the package assertion found no root-level `minetest.conf`. The Windows workflow now logs the synthetic source inventory and the portable destination inventory when required paths are missing. A direct 16th TestFileSys case exercises `fs::CopyDir()` with a root-level config file and nested world file, both under paths with spaces, to distinguish a directory-copy defect from a startup/migration fixture issue. The next CI result must identify which file set reached the destination before any production migration change is considered.
+
 These automated checks do not prove ContentDB, screenshots, settings saves, or removable-drive behavior on the user's real Windows installation.
 
 

@@ -182,3 +182,16 @@ Changes included:
 - clean install/probe dirs in the Windows workflow, seed a stale `Minetest.migration-tmp` marker, verify it is preserved, and verify no PID staging folder remains after migration.
 
 Re-fetch branch/main refs immediately before committing. Use base tree from the live `e0b1fc5...` commit, create one source/workflow+docs commit parented to `e0b1fc5...`, and update only the working branch with expected_sha. Then run one full CI and inspect every job and artifact. Do not claim portable migration succeeds until Windows package checks and artifact upload pass. Real-device Phase 4 acceptance remains separate.
+
+## Continuation after Run #114 — diagnose incomplete root-level profile copy
+
+Repository: majd7772233-a11y/Mineclonia-Arabic. Work only on work/arabic-engine-support; don't edit main, create branches, or force-push. Current HEAD at this diagnosis: 334f6fba00c9a093b2e5511a2987f45aab91296e. Protected main remains a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d.
+
+Run #114 (43289640898) passed source/catalog validation, Linux configure/build, TestArabicTextLayout 17/17, TestFileSys 15/15, package install/upload. Linux Artifact 13976243943, 22,728,834 bytes, SHA-256 5966c9a2f7be474973eaa12881970ae71778b76a8aee77b6549f8d933a5ef1bb. Windows configure/build and both suites passed (Arabic 17/17, FileSys 15/15). The package command with valid --worldlist path ran twice and printed the synthetic world beneath the portable Minetest folder. The next assertion failed because Minetest/minetest.conf was absent; Windows Artifact upload was skipped.
+
+The current corrective blobs:
+- TestFileSys adds testCopyDir(), checking a root minetest.conf and a nested world.mt under a path containing spaces, copied by fs::CopyDir() with exact contents.
+- TestFileSys expected summary is 16/16 on both platforms.
+- The Windows smoke asserts the synthetic source config exists before launch, prints the seeded source inventory, and reports the missing paths plus complete source and portable destination inventories on a failure.
+
+Before committing, re-fetch live branch/main refs and ensure the branch remains at the expected HEAD. Commit source/test, workflow, and docs together. Run one full CI and inspect all logs. If CopyDir's direct test passes but the workflow still misses the config, inspect the inventories and trace which source path the migration actually reads before modifying production migration logic. Continue Phase 3 until Windows smoke and Windows artifact upload pass. Phase 4 real-user checks remain pending; do not start font/UI work.

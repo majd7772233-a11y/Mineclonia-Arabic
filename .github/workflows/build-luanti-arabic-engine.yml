@@ -198,7 +198,7 @@ jobs:
           if [ "$status" -ne 0 ]; then
             exit "$status"
           fi
-          grep -Fq 'Module TestFileSys passed (0 failures / 15 tests)' "$log"
+          grep -Fq 'Module TestFileSys passed (0 failures / 16 tests)' "$log"
       - name: Install and verify portable Linux package
         working-directory: luanti/code
         shell: bash
@@ -352,10 +352,10 @@ jobs:
           $fsTestExitCode = $LASTEXITCODE
           $fsTestOutput | Tee-Object -FilePath $fsTestLog
           if ($fsTestExitCode -ne 0) { exit $fsTestExitCode }
-          $fsTestSummary = "Module TestFileSys passed (0 failures / 15 tests)"
+          $fsTestSummary = "Module TestFileSys passed (0 failures / 16 tests)"
           if (-not (Select-String -Path $fsTestLog -SimpleMatch -Pattern $fsTestSummary -Quiet)) {
             Get-Content $fsTestLog
-            throw "Filesystem path regression module did not pass its 15 tests."
+            throw "Filesystem path regression module did not pass its 16 tests."
           }
       - name: Install and verify portable Windows package
         working-directory: luanti/code
@@ -448,6 +448,13 @@ jobs:
           [System.IO.File]::WriteAllText((Join-Path $legacyWorld "world.mt"), "gameid = portable-game-probe`r`nworld_name = Portable World Probe`r`n")
           [System.IO.File]::WriteAllText((Join-Path $legacyGame "game.conf"), "title = Portable Game Probe" + [Environment]::NewLine)
           [System.IO.File]::WriteAllText((Join-Path $legacyCache "legacy-cache.marker"), "keep-me")
+          $legacyConfigPath = Join-Path $legacyProfile "minetest.conf"
+          if (-not (Test-Path -LiteralPath $legacyConfigPath -PathType Leaf)) {
+            throw "The synthetic legacy profile was not seeded with minetest.conf."
+          }
+          $legacySeedFiles = @(Get-ChildItem -LiteralPath $legacyProfile -Force -Recurse -File |
+            ForEach-Object { $_.FullName.Substring($legacyProfile.Length) } | Sort-Object)
+          Write-Host "Synthetic AppData profile contains: $($legacySeedFiles -join ', ')"
           $legacyFilesBefore = @(Get-ChildItem -LiteralPath $legacyProfile -Force -Recurse -File |
             ForEach-Object { "{0}|{1}" -f $_.FullName.Substring($legacyProfile.Length), (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash } | Sort-Object)
 
@@ -475,16 +482,25 @@ jobs:
           }
 
           $portableProfile = Join-Path $probePackage "Minetest"
-          foreach ($relativePath in @(
+          $requiredPortablePaths = @(
             "minetest.conf",
             "worlds/portable-world-probe/world.mt",
             "games/portable-game-probe/game.conf",
             "cache/legacy-cache.marker",
             "cache/CACHEDIR.TAG"
-          )) {
-            if (-not (Test-Path -LiteralPath (Join-Path $portableProfile $relativePath) -PathType Leaf)) {
-              throw "Portable profile is missing migrated or generated data: $relativePath"
+          )
+          $missingPortablePaths = @($requiredPortablePaths | Where-Object {
+            -not (Test-Path -LiteralPath (Join-Path $portableProfile $_) -PathType Leaf)
+          })
+          if ($missingPortablePaths.Count -gt 0) {
+            $legacyEntries = @(Get-ChildItem -LiteralPath $legacyProfile -Force -Recurse -File |
+              ForEach-Object { $_.FullName.Substring($legacyProfile.Length) } | Sort-Object)
+            $portableEntries = @()
+            if (Test-Path -LiteralPath $portableProfile -PathType Container) {
+              $portableEntries = @(Get-ChildItem -LiteralPath $portableProfile -Force -Recurse -File |
+                ForEach-Object { $_.FullName.Substring($portableProfile.Length) } | Sort-Object)
             }
+            throw "Portable profile is missing: $($missingPortablePaths -join ', '). Legacy source files: $($legacyEntries -join ', '). Portable destination files: $($portableEntries -join ', ')."
           }
           if ([System.IO.File]::ReadAllText((Join-Path $portableProfile "minetest.conf")) -notmatch "portable-migration-probe") {
             throw "The legacy minetest.conf contents were not preserved in the portable profile."

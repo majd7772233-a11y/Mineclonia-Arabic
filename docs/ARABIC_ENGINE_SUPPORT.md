@@ -443,3 +443,9 @@ The remediation hardens both path formation and staging:
 - The Windows package test seeds an old fixed-name staging directory with a marker; successful migration must preserve that marker and remove only the unique staging directory created by the current process.
 
 Run #113 passed Linux build/tests/package/upload and Windows build/tests, but Windows package validation failed; no Windows artifact was created. The corrective source/workflow batch still requires a new complete CI run and does not replace real Windows GUI acceptance.
+
+## Run #114 — partial profile contents after the valid world-list invocation
+
+Run #114's Windows package log proves the corrected command --worldlist path was accepted: the process printed the synthetic world's path beneath the portable Minetest/worlds directory on both invocations. The smoke step nevertheless failed because Minetest/minetest.conf was absent. This is later in startup than the Run #112 CLI parse failure and distinct from the earlier Run #113 staging-name collision.
+
+The current evidence does not show whether the synthetic source config reached the legacy profile, or whether a root-level file failed to appear in the staging copy. Do not change the migration implementation based only on the one missing-file assertion. The next run adds a direct TestFileSys CopyDir regression for a root config file plus nested world data, confirms the synthetic source file exists before launch, and prints the full source/destination inventories if any portable file is missing. TestFileSys is expected to report 16 tests. Linux passed its 15-test suite and package on Run #114; Windows has no uploaded artifact yet.

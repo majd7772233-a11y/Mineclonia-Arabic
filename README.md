@@ -7,7 +7,7 @@
 
 ### حالة آخر CI للمحرك
 
-Run #113 (ID 43247942695) اجتاز بناء Linux وWindows واختباري العربية 17/17 وFileSys 15/15 على النظامين. نجح Linux package/upload (Artifact 13957134160). فشل Windows package smoke عند تهيئة مسار النقل لأن مسار staging الثابت `Minetest.migration-tmp` كان موجوداً مسبقاً؛ لم يكتمل تفعيل ملف المستخدم ولم يُرفع Windows Artifact. الإصلاح الحالي يطبّع مسار الحزمة، ويستخدم staging فريداً مع الحفاظ على المجلدات القديمة، ويضيف اختباراً لهذه الحالة.
+Run #114 (ID 43289640898) اجتاز بناء Linux وWindows واختبار العربية 17/17 وFileSys 15/15 على النظامين. اكتملت حزمة Linux ورفعها (Artifact 13976243943، بصمة SHA-256 `5966c9a2f7be474973eaa12881970ae71778b76a8aee77b6549f8d933a5ef1bb`). في Windows ظهر العالم التجريبي مرتين تحت `Minetest/worlds`، لكن smoke test لم يجد ملف `Minetest/minetest.conf` ولم يُرفع Windows Artifact. يجري عزل السبب باختبار `CopyDir` مباشر وإظهار قوائم ملفات المصدر والوجهة قبل تغيير كود الترحيل.
 
 ### مسار Windows المحمول
 
