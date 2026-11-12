@@ -58,7 +58,7 @@ This work is scoped to the Windows RUN_IN_PLACE / ZIP distribution used for desk
 - [x] Set Windows RUN_IN_PLACE path_user to <package>/Minetest through getPortableUserPath().
 - [x] Let all path_user-derived data (games, worlds, config, logs, cache, screenshots/content profile data) resolve under that profile.
 - [x] Add a TestFileSys contract assertion for the portable profile path.
-- [ ] Confirm Windows and Linux build/test results in CI.
+- [x] Confirm Windows and Linux base builds and the 14-test FileSys suite in CI (Run #111); the expanded 15-test suite awaits the next run.
 
 ### Phase 2 — First-launch migration and path isolation
 - [x] On Windows, copy the existing %APPDATA%/Minetest profile into the portable profile only when the destination does not exist.
@@ -71,16 +71,23 @@ This work is scoped to the Windows RUN_IN_PLACE / ZIP distribution used for desk
 ### Phase 3 — Package regression coverage and documentation
 - [x] Add TestFileSys to both Linux and Windows CI.
 - [x] Add a Windows portable-package integration probe using a cloned package and a synthetic AppData profile.
-- [x] Check that worlds are discovered from Minetest/worlds and games/config/cache are copied into Minetest.
-- [x] Check that the original AppData profile is retained and not modified.
+- [ ] Confirm migrated world/game/config/cache files and contents under Minetest; the corrected smoke test and direct discovery test await CI.
+- [ ] Confirm that the legacy AppData profile remains content-identical after migration.
 - [x] Document the Windows ZIP directory layout in Luanti's README.
 - [ ] Wait for CI evidence before marking the implementation validated.
 
 ### Phase 4 — Windows user acceptance and portability audit
+Automated CI coverage being added before the real-device acceptance:
+- [ ] Launch the package from a directory containing spaces and verify that the legacy profile is copied to the portable directory.
+- [ ] Launch again and verify that the portable profile remains authoritative.
+- [ ] Start with an existing portable Minetest directory and verify that AppData is not merged or allowed to overwrite it.
+- [ ] Verify that both worlds and downloaded-game discovery resolve beneath a path_user directory containing spaces.
+
+Real Windows acceptance still required:
 - [ ] Run the new Windows ZIP on the user's machine and verify the profile appears at luanti/Minetest.
 - [ ] Verify Content tab game downloads, world creation, config saves, logs, screenshots, texture packs, and cache are written inside the portable tree.
 - [ ] Verify no new data is written to %APPDATA%/Minetest after migration.
-- [ ] Test launch from a path containing spaces and from a removable/non-system drive.
+- [ ] Test launch from a removable/non-system drive.
 - [ ] Confirm upgrade behavior when Minetest already exists and preserve both profiles safely.
 - [ ] Only after desktop acceptance, decide whether any extra platform-specific portable behavior is needed.
 
@@ -88,4 +95,11 @@ Do not call the application fully portable until Phase 4 passes on a real Window
 
 ## Run #110 validation note
 
-Run #110 (43231076763, HEAD 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427) passed Linux build/tests/package and passed Windows Configure/Build plus both C++ suites (17/17 and 14/14). Windows install and DLL checks also passed, but the package smoke step failed at its duplicate installed-package TestFileSys invocation; the process output was absent from the job log, so no migration defect was established. The Windows Artifact was not created. The corrected package smoke test now checks first/second world discovery and the migrated tree itself; the independent Windows TestFileSys test remains mandatory. Phase 3 is not complete until the next Windows package job passes.
+Run #110 (43231076763, HEAD 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427) passed Linux build/tests/package and passed Windows Configure/Build plus both C++ suites (17/17 and 14/14). Windows install and DLL checks also passed, but the package smoke step failed at its duplicate installed-package TestFileSys invocation; the process output was absent from the job log, so no migration defect was established. The Windows Artifact was not created. The follow-up smoke test then asserted captured first/second `--worldlist=path` output. Run #111 showed that assertion was invalid for the GUI-subsystem client; its process returned 0, but the workflow stopped before checking the profile on disk. The replacement checks disk contents and no-merge behavior. Phase 3 is not complete until the next Windows package job passes.
+
+
+## Run #111 failure analysis and corrective test design
+
+Run #111 (ID 43236622672, implementation HEAD bb3df102f129b2ef11b50f16911f292e20881f74) passed workflow sanity, catalog validation, Linux build/tests/package/upload, and Windows configure/build plus TestArabicTextLayout 17/17 and TestFileSys 14/14. The Windows package job failed because the smoke test required captured stdout from `luanti.exe --worldlist=path`. The MSVC release link flags explicitly use `/SUBSYSTEM:WINDOWS`, so this GUI executable does not provide a dependable console-output stream in the headless PowerShell runner. The blank output is an invalid test assertion, not evidence that profile migration failed. The run stopped before checking the migrated profile on disk. Linux Artifact 13953262107 was uploaded (22,719,344 bytes; SHA-256 `86dd6ecab7085bcde58b03fbd2225e347bed4326e86c46753fbf28070bc6889d`); no Windows artifact was uploaded.
+
+The correction replaces stdout parsing with process exit-code and filesystem/content assertions, adds a C++ regression test that calls `getAvailableWorlds()` and `getAvailableGameIds()` with a temporary user profile path containing spaces, and adds an isolated second-package test for the existing-profile/no-merge rule. The Windows GUI, removable-drive and real user-data checks remain manual Phase 4 acceptance items.

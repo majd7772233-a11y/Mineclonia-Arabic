@@ -198,7 +198,7 @@ jobs:
           if [ "$status" -ne 0 ]; then
             exit "$status"
           fi
-          grep -Fq 'Module TestFileSys passed (0 failures / 14 tests)' "$log"
+          grep -Fq 'Module TestFileSys passed (0 failures / 15 tests)' "$log"
       - name: Install and verify portable Linux package
         working-directory: luanti/code
         shell: bash
@@ -352,10 +352,10 @@ jobs:
           $fsTestExitCode = $LASTEXITCODE
           $fsTestOutput | Tee-Object -FilePath $fsTestLog
           if ($fsTestExitCode -ne 0) { exit $fsTestExitCode }
-          $fsTestSummary = "Module TestFileSys passed (0 failures / 14 tests)"
+          $fsTestSummary = "Module TestFileSys passed (0 failures / 15 tests)"
           if (-not (Select-String -Path $fsTestLog -SimpleMatch -Pattern $fsTestSummary -Quiet)) {
             Get-Content $fsTestLog
-            throw "Filesystem path regression module did not pass its 14 tests."
+            throw "Filesystem path regression module did not pass its 15 tests."
           }
       - name: Install and verify portable Windows package
         working-directory: luanti/code
@@ -407,12 +407,15 @@ jobs:
             }
           }
 
-          # Exercise first-run migration in an isolated package copy.
-          $probePackage = Join-Path $env:RUNNER_TEMP "luanti-portable-package-probe"
+          # Exercise first-run migration from a package path containing spaces.
+          # The Windows client is linked with /SUBSYSTEM:WINDOWS, so stdout from
+          # --worldlist is not a reliable assertion surface in this headless job.
+          # Validate the resulting profile on disk instead.
+          $probePackage = Join-Path $env:RUNNER_TEMP "luanti portable migration probe"
           New-Item -ItemType Directory -Force -Path $probePackage | Out-Null
           Copy-Item -Path (Join-Path $package "*") -Destination $probePackage -Recurse -Force
 
-          $appDataProbe = Join-Path $env:RUNNER_TEMP "luanti-portable-appdata-probe"
+          $appDataProbe = Join-Path $env:RUNNER_TEMP "luanti legacy AppData probe"
           if (Test-Path -LiteralPath $appDataProbe) {
             Remove-Item -LiteralPath $appDataProbe -Recurse -Force
           }
@@ -422,40 +425,26 @@ jobs:
           $legacyCache = Join-Path $legacyProfile "cache"
           New-Item -ItemType Directory -Force -Path $legacyWorld, $legacyGame, $legacyCache | Out-Null
           [System.IO.File]::WriteAllText((Join-Path $legacyProfile "minetest.conf"), "name = portable-migration-probe" + [Environment]::NewLine)
-          [System.IO.File]::WriteAllText((Join-Path $legacyWorld "world.mt"), "gameid = portable-game-probe" + [Environment]::NewLine)
-          [System.IO.File]::WriteAllText((Join-Path $legacyGame "game.conf"), "name = Portable Game Probe" + [Environment]::NewLine)
+          [System.IO.File]::WriteAllText((Join-Path $legacyWorld "world.mt"), "gameid = portable-game-probe`r`nworld_name = Portable World Probe`r`n")
+          [System.IO.File]::WriteAllText((Join-Path $legacyGame "game.conf"), "title = Portable Game Probe" + [Environment]::NewLine)
           [System.IO.File]::WriteAllText((Join-Path $legacyCache "legacy-cache.marker"), "keep-me")
           $legacyFilesBefore = @(Get-ChildItem -LiteralPath $legacyProfile -Force -Recurse -File |
-            ForEach-Object { $_.FullName.Substring($legacyProfile.Length) } | Sort-Object)
+            ForEach-Object { "{0}|{1}" -f $_.FullName.Substring($legacyProfile.Length), (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash } | Sort-Object)
 
           $previousAppData = $env:APPDATA
           $env:APPDATA = $appDataProbe
           try {
             $probeExe = Join-Path $probePackage "bin/luanti.exe"
-            $worldListOutput = & $probeExe --worldlist=path 2>&1
-            $worldListExitCode = $LASTEXITCODE
-            if ($worldListExitCode -ne 0) {
-              $worldListOutput
-              throw "Portable --worldlist probe failed."
+            & $probeExe --worldlist=path
+            $firstLaunchExitCode = $LASTEXITCODE
+            if ($firstLaunchExitCode -ne 0) {
+              throw "The first portable profile initialization failed (exit code $firstLaunchExitCode)."
             }
 
-            $worldListText = ($worldListOutput | Out-String)
-            Write-Host "First portable world-list probe:"
-            Write-Host $worldListText
-            if (-not ($worldListText -match 'Minetest[\\/]+worlds[\\/]+portable-world-probe')) {
-              throw "The first launch did not discover the migrated world beneath the portable profile."
-            }
-
-            # A second process verifies the portable profile remains authoritative
-            # after the one-time migration has completed.
-            $secondWorldListOutput = & $probeExe --worldlist=path 2>&1
-            $secondWorldListExitCode = $LASTEXITCODE
-            $secondWorldListText = ($secondWorldListOutput | Out-String)
-            Write-Host "Second portable world-list probe:"
-            Write-Host $secondWorldListText
-            if ($secondWorldListExitCode -ne 0 -or
-                -not ($secondWorldListText -match 'Minetest[\\/]+worlds[\\/]+portable-world-probe')) {
-              throw "The second launch did not continue to discover the world from the portable profile."
+            & $probeExe --worldlist=path
+            $secondLaunchExitCode = $LASTEXITCODE
+            if ($secondLaunchExitCode -ne 0) {
+              throw "The second portable profile initialization failed (exit code $secondLaunchExitCode)."
             }
           } finally {
             if ($null -eq $previousAppData) {
@@ -480,8 +469,19 @@ jobs:
           if ([System.IO.File]::ReadAllText((Join-Path $portableProfile "minetest.conf")) -notmatch "portable-migration-probe") {
             throw "The legacy minetest.conf contents were not preserved in the portable profile."
           }
+          $migratedWorldText = [System.IO.File]::ReadAllText((Join-Path $portableProfile "worlds/portable-world-probe/world.mt"))
+          if ($migratedWorldText -notmatch "gameid = portable-game-probe" -or
+              $migratedWorldText -notmatch "world_name = Portable World Probe") {
+            throw "The migrated world.mt contents were not preserved."
+          }
+          if ([System.IO.File]::ReadAllText((Join-Path $portableProfile "games/portable-game-probe/game.conf")) -notmatch "title = Portable Game Probe") {
+            throw "The downloaded-game metadata was not preserved in the portable profile."
+          }
           if ([System.IO.File]::ReadAllText((Join-Path $portableProfile "cache/legacy-cache.marker")) -ne "keep-me") {
             throw "The legacy cache file contents were not preserved in the portable profile."
+          }
+          if ([System.IO.File]::ReadAllText((Join-Path $portableProfile "cache/CACHEDIR.TAG")) -notmatch "Signature: 8a477f597d28d172789f06886806bc55") {
+            throw "The portable cache directory tag is missing its required signature."
           }
           if (-not (Test-Path -LiteralPath (Join-Path $legacyProfile "worlds/portable-world-probe/world.mt") -PathType Leaf)) {
             throw "Legacy AppData profile was not retained after copying."
@@ -490,11 +490,75 @@ jobs:
             throw "Portable startup unexpectedly wrote the cache tag into AppData."
           }
           $legacyFilesAfter = @(Get-ChildItem -LiteralPath $legacyProfile -Force -Recurse -File |
-            ForEach-Object { $_.FullName.Substring($legacyProfile.Length) } | Sort-Object)
+            ForEach-Object { "{0}|{1}" -f $_.FullName.Substring($legacyProfile.Length), (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash } | Sort-Object)
           if (Compare-Object -ReferenceObject $legacyFilesBefore -DifferenceObject $legacyFilesAfter) {
-            throw "Legacy AppData profile changed during the portable startup probe."
+            throw "Legacy AppData profile contents changed during the portable startup probe."
           }
-          Write-Host "Verified portable writable profile at: $portableProfile"
+          if (Test-Path -LiteralPath (Join-Path $probePackage "Minetest.migration-tmp")) {
+            throw "Portable profile migration left a staging directory behind."
+          }
+          Write-Host "Verified first-run migration, second launch, path-with-spaces handling, and AppData preservation at: $portableProfile"
+
+          $existingProbePackage = Join-Path $env:RUNNER_TEMP "luanti existing profile path with spaces"
+          New-Item -ItemType Directory -Force -Path $existingProbePackage | Out-Null
+          Copy-Item -Path (Join-Path $package "*") -Destination $existingProbePackage -Recurse -Force
+          $existingPortableProfile = Join-Path $existingProbePackage "Minetest"
+          New-Item -ItemType Directory -Force -Path $existingPortableProfile | Out-Null
+          [System.IO.File]::WriteAllText((Join-Path $existingPortableProfile "minetest.conf"), "name = existing-portable-profile" + [Environment]::NewLine)
+          [System.IO.File]::WriteAllText((Join-Path $existingPortableProfile "portable-only.marker"), "keep-portable")
+
+          $existingAppDataProbe = Join-Path $env:RUNNER_TEMP "luanti existing legacy AppData probe"
+          if (Test-Path -LiteralPath $existingAppDataProbe) {
+            Remove-Item -LiteralPath $existingAppDataProbe -Recurse -Force
+          }
+          $existingLegacyProfile = Join-Path $existingAppDataProbe "Minetest"
+          New-Item -ItemType Directory -Force -Path $existingLegacyProfile | Out-Null
+          [System.IO.File]::WriteAllText((Join-Path $existingLegacyProfile "minetest.conf"), "name = legacy-appdata-profile" + [Environment]::NewLine)
+          [System.IO.File]::WriteAllText((Join-Path $existingLegacyProfile "legacy-only.marker"), "do-not-merge")
+          $existingLegacyFilesBefore = @(Get-ChildItem -LiteralPath $existingLegacyProfile -Force -Recurse -File |
+            ForEach-Object { "{0}|{1}" -f $_.FullName.Substring($existingLegacyProfile.Length), (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash } | Sort-Object)
+
+          $previousAppData = $env:APPDATA
+          $env:APPDATA = $existingAppDataProbe
+          try {
+            $existingProbeExe = Join-Path $existingProbePackage "bin/luanti.exe"
+            & $existingProbeExe --worldlist=path
+            $existingLaunchExitCode = $LASTEXITCODE
+            if ($existingLaunchExitCode -ne 0) {
+              throw "Startup with a pre-existing portable profile failed (exit code $existingLaunchExitCode)."
+            }
+          } finally {
+            if ($null -eq $previousAppData) {
+              Remove-Item Env:APPDATA -ErrorAction SilentlyContinue
+            } else {
+              $env:APPDATA = $previousAppData
+            }
+          }
+
+          if ([System.IO.File]::ReadAllText((Join-Path $existingPortableProfile "minetest.conf")) -notmatch "existing-portable-profile") {
+            throw "Legacy AppData settings overwrote the pre-existing portable configuration."
+          }
+          if ([System.IO.File]::ReadAllText((Join-Path $existingPortableProfile "portable-only.marker")) -ne "keep-portable") {
+            throw "The pre-existing portable profile was changed unexpectedly."
+          }
+          if (Test-Path -LiteralPath (Join-Path $existingPortableProfile "legacy-only.marker")) {
+            throw "Legacy AppData content was silently merged into an existing portable profile."
+          }
+          if (-not (Test-Path -LiteralPath (Join-Path $existingPortableProfile "cache/CACHEDIR.TAG") -PathType Leaf)) {
+            throw "The existing portable profile did not receive its cache directory tag."
+          }
+          if (-not (Test-Path -LiteralPath (Join-Path $existingLegacyProfile "legacy-only.marker") -PathType Leaf)) {
+            throw "The skipped legacy AppData profile was not retained."
+          }
+          $existingLegacyFilesAfter = @(Get-ChildItem -LiteralPath $existingLegacyProfile -Force -Recurse -File |
+            ForEach-Object { "{0}|{1}" -f $_.FullName.Substring($existingLegacyProfile.Length), (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash } | Sort-Object)
+          if (Compare-Object -ReferenceObject $existingLegacyFilesBefore -DifferenceObject $existingLegacyFilesAfter) {
+            throw "The skipped legacy AppData profile changed during startup."
+          }
+          if (Test-Path -LiteralPath (Join-Path $existingProbePackage "Minetest.migration-tmp")) {
+            throw "The existing-profile startup unexpectedly created a migration staging directory."
+          }
+          Write-Host "Verified that an existing portable profile is preserved without merging legacy AppData files."
           $zip = Join-Path $env:GITHUB_WORKSPACE "artifacts/luanti-arabic-windows-x64.zip"
           Compress-Archive -Path (Join-Path $package "*") -DestinationPath $zip -Force
       - name: Upload Windows package

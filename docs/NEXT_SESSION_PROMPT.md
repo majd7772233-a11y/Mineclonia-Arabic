@@ -130,3 +130,18 @@ The current workflow correction keeps the mandatory build-tree TestFileSys check
 - the legacy AppData profile's file inventory remains unchanged.
 
 This refinement and its Markdown updates are committed together in the follow-up code commit. Inspect branch HEAD directly rather than relying on a copied SHA in this prompt. After the push, inspect the new full workflow by exact HEAD SHA, all jobs/steps/logs and artifacts. Do not claim portability until Windows package smoke and upload both pass. A real Windows GUI acceptance test is still required.
+
+
+## Continuation after Run #111 — Windows portable profile Phase 4 audit
+
+Repository: `majd7772233-a11y/Mineclonia-Arabic`. Work only on `work/arabic-engine-support`; do not touch `main`, create branches, or force-push. Previous HEAD before the corrective batch: `bb3df102f129b2ef11b50f16911f292e20881f74`. Protected `main` was `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+
+Run #111 (43236622672) passed catalog validation and the complete Linux build/test/package job. Linux: TestArabicTextLayout 17/17; TestFileSys 14/14; artifact 13953262107, 22,719,344 bytes, SHA-256 `86dd6ecab7085bcde58b03fbd2225e347bed4326e86c46753fbf28070bc6889d`. Windows configure/build, TestArabicTextLayout 17/17, TestFileSys 14/14, install and DLL checks all passed. The Windows package smoke failed because the script demanded captured stdout from `--worldlist=path`; the process returned 0 but the GUI client is linked with `/SUBSYSTEM:WINDOWS`. The test stopped before inspecting the profile; migration success/failure was not established. No Windows artifact was uploaded.
+
+The corrective batch:
+- Adds a 15th TestFileSys case that points `porting::path_user` at a temporary profile path containing spaces, writes a fixture world and game, and checks `getAvailableWorlds()` and `getAvailableGameIds()`.
+- Removes the invalid stdout-content assertion. Package verification checks exit codes and exact files/contents under package/Minetest, the CACHEDIR.TAG signature and location, AppData file hashes, and staging cleanup.
+- Uses package paths containing spaces.
+- Tests an already-existing portable profile and verifies no legacy AppData merge/overwrite.
+
+Inspect the patch and run static checks before writing. Re-check both refs just before commit, then push one atomic source/workflow + Markdown commit using expected_sha. Run one full CI and inspect every step and artifact. Do not claim migration success until Windows smoke and artifact upload pass. Phase 4 still requires the user to test the actual full ZIP on Windows: ContentDB downloads, new worlds, config/log/screenshot/cache data, no new AppData writes, a removable/non-system drive, and existing-profile upgrade behavior. Keep font/UI work deferred until this is complete.

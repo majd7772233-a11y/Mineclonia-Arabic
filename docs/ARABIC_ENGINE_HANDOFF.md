@@ -94,3 +94,17 @@ Run #110 (43231076763) for commit 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427:
 The follow-up workflow correction removes only the duplicate package-level TestFileSys invocation. It keeps the mandatory build-tree TestFileSys checks on both platforms and strengthens the actual package probe with first- and second-launch world discovery, migrated-file content checks, and AppData immutability.
 
 Next: inspect the exact patch, verify branch/main refs, commit the correction with all documentation in the same commit, then inspect the new CI run. If Windows smoke passes, inspect Artifact ID, size and digest before giving the Windows ZIP to the user.
+
+
+## Handoff after Run #111 — fix the Windows smoke harness and advance the portable audit
+
+Run #111 (43236622672, HEAD bb3df102f129b2ef11b50f16911f292e20881f74) compiled and tested both native targets. Linux passed TestArabicTextLayout 17/17, TestFileSys 14/14, package checks, and upload (Artifact 13953262107; 22,719,344 bytes; SHA-256 86dd6ecab7085bcde58b03fbd2225e347bed4326e86c46753fbf28070bc6889d). Windows passed configure/build, 17/17 Arabic tests, 14/14 FileSys tests, install and DLL checks, but failed the package smoke test because it expected stdout from a Windows GUI executable linked with `/SUBSYSTEM:WINDOWS`. The process returned 0 and output was empty; the script stopped before checking the copied profile. Do not describe this as a proven migration bug. No Windows artifact was uploaded.
+
+This follow-up changes the package test to rely on exit codes and on-disk content, adds a 15th TestFileSys case to verify that the actual world/game discovery functions use a path_user containing spaces, and tests both first-run migration and the existing-profile/no-merge case from package directories containing spaces.
+
+Next steps after this commit:
+1. Re-fetch live refs; only move `work/arabic-engine-support` from the expected previous SHA, and leave `main` untouched.
+2. Run one full CI workflow. Check catalog validation, configure/build, TestArabicTextLayout 17/17, TestFileSys 15/15, Windows smoke checks, and both artifact uploads.
+3. If Windows fails, diagnose the exact failed assertion and do not weaken assertions just to make CI green.
+4. After CI success, provide the newly uploaded Windows artifact and request real-device Phase 4 acceptance. Test Content tab downloads, creating worlds, config/log/screenshot/cache paths, no new AppData writes, and a removable/non-system drive.
+5. Do not move to font/UI or RTL rendering work until portable-profile acceptance is verified. Android stays deferred.

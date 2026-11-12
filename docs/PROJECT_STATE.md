@@ -184,3 +184,27 @@ Commit التنفيذ 69c62784baf96e3456239d5b954055be5e855501 (Repair Arabic en
 The package smoke test was revised to check packaged world discovery on first and second starts, migrated-file presence/content, portable cache tag location, and legacy AppData immutability. The independent build-tree TestFileSys checks on both platforms remain mandatory and unchanged.
 
 See ROADMAP.md for the four phases. Next exact step: commit this workflow correction and its Markdown updates together, run the next complete workflow, and inspect the Windows package smoke test and artifact result. Do not call Windows portable verified until the package smoke test passes.
+
+
+## Current portable-profile status — after Run #111 (2026-11-12)
+
+**Branch:** `work/arabic-engine-support`  
+**Run under review:** [Run #111](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43236622672), HEAD `bb3df102f129b2ef11b50f16911f292e20881f74`.  
+**Protected main:** `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d` (unchanged).
+
+### Run #111 evidence
+- Workflow scheduling and Arabic catalog/source validation: passed.
+- Linux x64: configure/build passed; TestArabicTextLayout 17/17; TestFileSys 14/14; package checks and artifact upload passed.
+- Linux artifact 13953262107: 22,719,344 bytes; SHA-256 `86dd6ecab7085bcde58b03fbd2225e347bed4326e86c46753fbf28070bc6889d`.
+- Windows x64: configure/build passed; TestArabicTextLayout 17/17; TestFileSys 14/14; install and runtime DLL checks passed.
+- Windows package smoke test failed at the stdout assertion after `--worldlist=path`; the command returned exit code 0 but the GUI-subsystem executable provided no captured output. Source review found the MSVC Release linker flag `/SUBSYSTEM:WINDOWS`. The job stopped before its post-launch filesystem checks, so migration itself was not confirmed or disproven by Run #111.
+- Windows artifact upload was skipped. No Windows package from Run #111 is available.
+
+### Corrective work in the current batch
+- Do not parse stdout from `luanti.exe` in this Windows GUI build. Require a successful process exit and verify the resulting portable directory and all migrated file contents on disk.
+- Expand TestFileSys from 14 to 15 tests. The added test calls `getAvailableWorlds()` and `getAvailableGameIds()` against a temporary profile containing spaces, so world and user-installed game discovery are tested directly by engine code rather than inferred from console output.
+- Run the package migration probe from a path containing spaces, verify first and second startup, cache tag location/signature, original AppData file hashes, and absence of staging leftovers.
+- Add a second isolated package scenario where `Minetest` already exists. It verifies that existing portable settings remain unchanged, legacy-only content is not merged, and the source profile is retained.
+
+### Validation boundary
+The corrective source/workflow batch still requires a full Run after commit. Until the Windows package smoke checks and artifact upload pass, portable migration is not CI-validated. Even after that, Phase 4 requires real Windows acceptance for Content Tab downloads, world creation, config/log/screenshot/cache writes, a removable/non-system drive, and no new AppData writes. Do not call the package fully portable before those user-side checks.

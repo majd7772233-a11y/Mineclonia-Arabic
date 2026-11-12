@@ -118,17 +118,23 @@ A successful extracted Linux artifact test is still not a substitute for the use
 
 ## Windows portable profile regression coverage
 
-Both Linux and Windows now run TestFileSys after the Arabic layout suite. The expected result is:
-Module TestFileSys passed (0 failures / 14 tests)
+The build-tree TestFileSys module now has 15 cases and is required on both Linux and Windows:
+`Module TestFileSys passed (0 failures / 15 tests)`.
 
-The Windows package job also performs an isolated first-launch smoke test:
-1. Copy the just-installed package to a temporary probe directory so test data cannot enter the published artifact.
-2. Create a synthetic %APPDATA%/Minetest profile containing minetest.conf, worlds/portable-world-probe, games/portable-game-probe and a cache marker.
-3. Launch the copied luanti.exe with --worldlist=path and verify the portable world is listed beneath the Minetest profile.
-4. Run TestFileSys with the same APPDATA override to force normal path/config initialization.
-5. Verify config, world, game and cache files exist beneath the portable profile, CACHEDIR.TAG was generated there, and the original AppData profile's file list did not change.
+Portable-profile C++ coverage checks the path builder with whitespace and temporarily assigns `porting::path_user` to a path containing spaces. It creates a fixture world and user-installed game beneath that profile, then directly verifies that `getAvailableWorlds()` and `getAvailableGameIds()` discover them. This avoids depending on console output from the Windows GUI executable.
 
-This workflow logic is part of the pending portable implementation batch. It has not passed CI until a new complete run succeeds. A CI smoke test does not replace the user's Windows GUI acceptance.
+The Windows package smoke test runs against an isolated copy of the install tree:
+1. The package copy is placed under a directory containing spaces.
+2. A synthetic `%APPDATA%/Minetest` profile is created with a config, world, game and cache marker.
+3. The package executable is launched twice; the workflow checks process exit status, then verifies migrated file existence and contents under the portable `Minetest` directory.
+4. The check validates the CACHEDIR.TAG signature/location, hashes the legacy AppData files before/after, and checks that the migration staging directory is gone.
+5. A second package copy begins with an existing `Minetest` directory plus a distinct AppData profile. The test checks that the portable config and marker remain unchanged, legacy-only files are not merged, and the source AppData remains intact.
+
+The test deliberately does not parse `stdout` from `--worldlist=path`: the MSVC Release client is linked with `/SUBSYSTEM:WINDOWS`, so a captured console stream is not a dependable assertion surface in a headless PowerShell job.
+
+These expanded checks are pending the next complete Linux/Windows CI run. They do not replace real Windows GUI/user acceptance.
+
+
 
 ## Windows portable profile — Run #110 and smoke-test correction
 
@@ -138,4 +144,4 @@ Run #110 (43231076763, commit 3ca51d4b8ffeb8f06bec4a3a52aa761310d1c427) verified
 - Windows package smoke failed during the duplicate TestFileSys invocation against the copied install package; its native process output was not captured in the log. The preceding `--worldlist=path` process returned success. Do not infer an unproven migration defect.
 - Linux artifact 13950892008 (22,717,628 bytes), SHA-256 ac9c301921e1443b0bd89383a1b2a0d58bbeb0def9e5a404a293ebdb12eaee1b. Windows artifact was not uploaded.
 
-The package smoke test retains the separate build-tree TestFileSys gate and tests installed-package migration using first and second `--worldlist=path` launches, file/content assertions for config/world/game/cache, CACHEDIR.TAG under the portable profile, and a before/after comparison of the old AppData tree. It no longer repeats TestFileSys inside the installed package.
+The Run #110 follow-up used first/second `--worldlist=path` output as part of the package assertion. Run #111 showed that parsing this GUI-subsystem process output is invalid; the script stopped before verifying the copied profile. The replacement checks on-disk content and no-merge behavior, and adds a direct C++ world/game discovery test.

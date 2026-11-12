@@ -3,6 +3,8 @@
 // Copyright (C) 2013 celeron55, Perttu Ahola <celeron55@gmail.com>
 
 #include "test.h"
+#include "content/subgames.h"
+#include "porting.h"
 
 #include <sstream>
 #include <algorithm>
@@ -22,6 +24,7 @@ public:
 
 	void testIsDirDelimiter();
 	void testPortableUserPath();
+	void testPortableProfileDiscovery();
 	void testPathsEqual();
 	void testPathStartsWith();
 	void testMakePathRelativeTo();
@@ -42,6 +45,7 @@ void TestFileSys::runTests(IGameDef *gamedef)
 {
 	TEST(testIsDirDelimiter);
 	TEST(testPortableUserPath);
+	TEST(testPortableProfileDiscovery);
 	TEST(testPathsEqual);
 	TEST(testPathStartsWith);
 	TEST(testMakePathRelativeTo);
@@ -106,6 +110,63 @@ void TestFileSys::testPortableUserPath()
 	const std::string share_path = p("/portable/Luanti");
 	UASSERTEQ(std::string, porting::getPortableUserPath(share_path),
 			share_path + DIR_DELIM "Minetest");
+
+	const std::string share_path_with_spaces = p("/portable/Luanti Distribution");
+	UASSERTEQ(std::string, porting::getPortableUserPath(share_path_with_spaces),
+			share_path_with_spaces + DIR_DELIM "Minetest");
+}
+
+void TestFileSys::testPortableProfileDiscovery()
+{
+	const std::string profile_path = getTestTempDirectory() +
+			DIR_DELIM "portable profile with spaces";
+
+	struct ScopedProfilePath {
+		std::string previous_path;
+		std::string test_path;
+
+		explicit ScopedProfilePath(const std::string &path) :
+				previous_path(porting::path_user), test_path(path)
+		{
+			fs::RecursiveDelete(test_path);
+			porting::path_user = test_path;
+		}
+
+		~ScopedProfilePath()
+		{
+			porting::path_user = previous_path;
+			fs::RecursiveDelete(test_path);
+		}
+	} scoped_profile(profile_path);
+
+	const std::string world_path = profile_path + DIR_DELIM "worlds" +
+			DIR_DELIM "world with spaces";
+	const std::string game_path = profile_path + DIR_DELIM "games" +
+			DIR_DELIM "portable-path-probe";
+	UASSERT(fs::CreateAllDirs(world_path));
+	UASSERT(fs::CreateAllDirs(game_path));
+
+	{
+		auto world_mt = open_ofstream((world_path + DIR_DELIM "world.mt").c_str(), false);
+		UASSERT(world_mt.good());
+		world_mt << "gameid = portable-path-probe\n"
+				"world_name = Portable Path World\n";
+	}
+	{
+		auto game_conf = open_ofstream((game_path + DIR_DELIM "game.conf").c_str(), false);
+		UASSERT(game_conf.good());
+		game_conf << "title = Portable Path Probe\n";
+	}
+
+	const auto worlds = getAvailableWorlds();
+	UASSERT(std::any_of(worlds.begin(), worlds.end(), [&](const WorldSpec &world) {
+		return world.gameid == "portable-path-probe" &&
+				world.name == "Portable Path World" &&
+				fs::PathsEqual(world.path, world_path);
+	}));
+
+	const auto game_ids = getAvailableGameIds();
+	UASSERT(game_ids.find("portable-path-probe") != game_ids.end());
 }
 
 

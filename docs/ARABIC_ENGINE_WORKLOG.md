@@ -330,3 +330,35 @@ luanti/code/src/porting.h; luanti/code/src/porting.cpp; luanti/code/src/main.cpp
 The independent build-tree TestFileSys runs remain mandatory on Linux and Windows (both passed 14/14 in Run #110). The Windows install smoke test no longer repeats that suite inside the copied package. It now checks first and second `--worldlist=path` launches, verifies the migrated world remains under Minetest across launches, checks config/cache file contents plus world/game/cache files and CACHEDIR.TAG, and confirms the legacy AppData profile file inventory is unchanged.
 
 **Next:** run one new full CI for this workflow correction. Treat Windows portability as unverified until its package smoke test and artifact upload succeed.
+
+
+## 2026-11-12 — Run #111 smoke-test diagnosis and Phase 4 portability audit
+
+**Starting HEAD:** bb3df102f129b2ef11b50f16911f292e20881f74  
+**Branch:** work/arabic-engine-support  
+**Protected main checked:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d  
+**Run:** #111 — ID 43236622672 — implementation HEAD bb3df102f129b2ef11b50f16911f292e20881f74  
+**Overall:** failure in the Windows package smoke assertion only.
+
+### Actual CI evidence
+- Workflow scheduling: success.
+- Catalog/source validation: success.
+- Linux: configure/build success; TestArabicTextLayout 17/17; TestFileSys 14/14; install/package and upload success.
+- Linux artifact 13953262107: 22,719,344 bytes; SHA-256 `86dd6ecab7085bcde58b03fbd2225e347bed4326e86c46753fbf28070bc6889d`.
+- Windows: configure/build success; TestArabicTextLayout 17/17; TestFileSys 14/14; install checks and required DLL checks success.
+- Windows smoke test failed because it expected `--worldlist=path` output on captured stdout. The process returned exit code 0, while captured output was empty. Windows Release links the client with `/SUBSYSTEM:WINDOWS`; the GUI target cannot be treated as a console-output process in this CI invocation. The workflow threw before checking whether migration files existed, so Run #111 does not prove either success or failure of migration.
+- Windows artifact upload was skipped; no Windows artifact was produced.
+- vcpkg cache restore was successful; cache save was skipped on cache hit.
+
+### Corrective implementation in this commit
+- TestFileSys adds a direct profile-consumer regression test: with path_user set to a temporary directory containing spaces, it creates a world and a game and checks that `getAvailableWorlds()` and `getAvailableGameIds()` discover both there. TestFileSys is now expected to report 15 tests.
+- The Windows package probe no longer treats stdout as evidence. It requires a zero process exit and checks the migrated profile, settings/world/game/cache contents, CACHEDIR.TAG signature/location, unchanged legacy AppData file hashes and no leftover staging folder.
+- The migration package is copied under a path with spaces.
+- A second isolated package starts with an existing Minetest profile and a legacy AppData profile. It checks that existing portable files are not overwritten, legacy-only content is not merged, and AppData remains intact.
+- No production migration/path implementation is changed unless a later CI failure provides evidence requiring it.
+
+### Validation status at commit preparation
+- Code/source and workflow patch reviewed against the Run #111 logs and MSVC subsystem linker flags.
+- C++ compile/tests, PowerShell parse, complete workflow YAML validation, and new full CI run are pending this commit.
+- No Windows Artifact is available from Run #111.
+- Manual testing on the user's Windows installation remains mandatory for the rest of Phase 4, especially ContentDB downloads, new worlds, settings/log/screenshot/cache writes, removable/non-system drive, and no AppData writes.

@@ -1,27 +1,19 @@
 # تقدم التعريب
 
 
-> ## نقطة حالة محرك Luanti — 2026-11-12 · Run #109 SUCCESS
+> ## نقطة حالة محرك Luanti — 2026-11-12 · Run #111 (Windows package smoke correction pending)
 >
-> HEAD التنفيذ: 69c62784baf96e3456239d5b954055be5e855501 على work/arabic-engine-support؛ main بقي a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d دون تعديل.
+> Branch: `work/arabic-engine-support`; tested HEAD: `bb3df102f129b2ef11b50f16911f292e20881f74`; `main` remains `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
 >
-> اكتملت Jobs الأربع في Run #109 (ID 43212062926) بنجاح: workflow sanity، catalog/source validation، Linux x64، Windows x64 MSVC.
+> Run #111 اجتاز workflow scheduling وcatalog validation. اجتاز Linux configure/build واختبار العربية 17/17 وTestFileSys 14/14 وفحوص الحزمة والرفع. Artifact Linux: 13953262107، الحجم 22,719,344 bytes، SHA-256 `86dd6ecab7085bcde58b03fbd2225e347bed4326e86c46753fbf28070bc6889d`.
 >
-> تحقق CI من 245/245 builtin keys، و1,575/1,575 gettext translations، و210 ملفات Lua، وmsgfmt، و17 test-source declarations/registrations/definitions. نجح configure/build وTestArabicTextLayout (17/17، صفر إخفاقات) على Linux وWindows، ثم install/package/upload على النظامين.
+> على Windows نجح configure/build واختبار العربية 17/17 وTestFileSys 14/14 والتثبيت وفحوص DLLs. فشل smoke test لأنه افترض وجود stdout قابل للالتقاط من تطبيق GUI مرتبط بـ`/SUBSYSTEM:WINDOWS`. العملية عادت برمز 0 لكن المخرجات النصية فارغة؛ توقف الاختبار قبل فحص المجلد المحمول. لم يثبت Run #111 نجاح الترحيل أو فشله، ولم يُرفع Windows Artifact.
 >
-> Linux Artifact: 13941099252 — SHA-256 `8c845dcb78a8c7d1d201da457b54178582326c31b47d952eab6a25bc292a5999`.
-> Windows Artifact: 13941743588 — SHA-256 `112edd28d9dbbf8e2694198317a912afb97a0f4db8e4e4a482cceee17cf897d6`.
+> الإصلاح التالي يجعل التحقق مبنياً على ملفات `Minetest` ومحتوياتها، ويضيف اختبار C++ مباشر لاكتشاف worlds/games من مسار يحوي مسافات، وفحص no-merge عندما يكون مجلد Minetest موجوداً مسبقاً. لا تبدأ إصلاح الخطوط/UI قبل اجتياز portable-profile acceptance.
 >
-> أُعيد تنزيل Artifactَي Linux وWindows؛ SHA-256 مطابق لبصمة upload action وسلامة ZIP الخارجي سليمة. شُغّلت الحزمة Linux المستخرجة فعلياً: `--version` نجح وTestArabicTextLayout اجتاز 17/17. حزمة Windows فُحصت محتوياتها لكن لم تُشغّل على Windows بعد.
->
-> هذا لا يثبت تشغيل GUI على جهاز المستخدم أو اختفاء SHA warnings. استخدم Windows artifact كاملاً وافحص القائمة وSettings > Language وسجل التشغيل.
->
-> التفاصيل: [PROJECT_STATE](docs/PROJECT_STATE.md)، [HANDOFF](docs/ARABIC_ENGINE_HANDOFF.md)، [NEXT_SESSION_PROMPT](docs/NEXT_SESSION_PROMPT.md)، [BUILD_TESTING](docs/BUILD_TESTING.md).
->
-> **قاعدة دائمة:** أي تغيير برمجي أو workflow يجب أن يصاحبه تحديث Markdown المناسب في commit نفسه.
+> التفاصيل في [خارطة الطريق](docs/ROADMAP.md)، [حالة المشروع](docs/PROJECT_STATE.md)، [سجل العمل](docs/ARABIC_ENGINE_WORKLOG.md)، و[رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md).
 
-
-آخر تحديث: 2026-11-07
+آخر تحديث: 2026-11-12
 
 ## الملخص
 
