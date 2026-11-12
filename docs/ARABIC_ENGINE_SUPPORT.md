@@ -1,4 +1,7 @@
-# Arabic and complex-script text support
+# دعم العربية في محرك Luanti
+
+> **الحالة الحالية 2026-11-12:** هذه الصفحة تحتفظ بالتاريخ التقني. المرجع التنفيذي هو [PROJECT_STATE.md](PROJECT_STATE.md)، وخارطة العمل [ROADMAP.md](ROADMAP.md)، وتعليمات البناء [BUILD_TESTING.md](BUILD_TESTING.md)، ونقطة التسليم [ARABIC_ENGINE_HANDOFF.md](ARABIC_ENGINE_HANDOFF.md). لا تستخدم تشغيلات تاريخية لإثبات HEAD الحالي.
+
 
 ## Objective
 
@@ -336,3 +339,16 @@ Analysis of the exact bundled Noto Sans Arabic font explains the four Linux asse
 The revised regression suite checks the actual glyph names and clusters instead of imposing ligatures that the selected font does not contain. It preserves strict assertions: both contextual forms and both dot marks must be present; plain Lam-Alef must keep two independent caret stops; the supported Allah ligature must be one glyph cluster with no interior caret positions. CI now requires exactly 17 tests and a zero-failure summary on both platforms.
 
 No production shaping code was changed as part of this correction. Run #106 must prove all 17 tests and both portable packages before claiming completion. The user's installed copy still needs a real GUI launch using artifact ID `13747836271` or a newer matching Windows artifact.
+
+
+## حالة أحدث من السجل التاريخي — 2026-11-12
+
+- رأس الكود الذي تمت مراجعته 6e8511ef4f7b437e0ce7c6769a3405ba68c077b2.
+- Run #106 فشل في compilation بسبب تعريفين مكررين على Linux وWindows.
+- commit 6e8511e حذف النسخ المكررة وأضاف source validator؛ فحص نصي وجد 17/17/17، لكن لا يوجد build جديد يثبت compilation.
+- Run #107 فشل دون Jobs أو Artifacts في API.
+- workflow الحالي يحتوي أوامر تحقق مبتورة ومقاطع jobs مكررة.
+- validate_lua_syntax.py يحتوي regex Arabic option double-escaped.
+- خطأ الفاصلة في Lua وSHA path normalization تم إصلاحهما سابقاً؛ تجربة المستخدم على حزمة حديثة مطابقة لم تُثبت بعد.
+
+راجع PROJECT_STATE.md وNEXT_SESSION_PROMPT.md. احتفظ بالتاريخ السابق كمرجع ولا تجعله بديلاً عن الحالة الحالية.

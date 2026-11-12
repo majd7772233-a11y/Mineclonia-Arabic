@@ -1,5 +1,12 @@
 # تعريب Mineclonia
 
+
+## حالة مسار دعم العربية الأصلي داخل Luanti — 2026-11-12
+
+يُطوّر دعم المحرك في الفرع work/arabic-engine-support، وهو منفصل عن حزمة ترجمة Mineclonia. رأس الكود الذي تمت مراجعته قبل دفعة التوثيق هو 6e8511ef4f7b437e0ce7c6769a3405ba68c077b2. لا يوجد build حديث ناجح مثبت لهذا الرأس: Run #106 فشل أثناء compilation بسبب duplicate test definitions، والـcommit الأخير حذفها لكنه لم يُبن بعد. Run #107 فشل دون Jobs أو Artifacts، وملف workflow يحتاج إصلاحاً.
+
+**اقرأ أولاً:** [حالة المشروع](docs/PROJECT_STATE.md)، [رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md)، [قواعد العمل](AGENTS.md)، [البنية](docs/ARCHITECTURE.md)، [خريطة الملفات](docs/FILE_MAP.md)، [البناء والاختبار](docs/BUILD_TESTING.md)، و[خارطة الطريق](docs/ROADMAP.md). كل تعديل لاحق يجب أن يحدث Markdown المناسب في commit نفسه.
+
 مشروع تعريب لعبة **Mineclonia** إلى العربية، مع الحفاظ على توافق ملفات الترجمة مع بنية اللعبة ومحرك Luanti.
 
 ## حالة المشروع

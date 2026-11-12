@@ -112,3 +112,31 @@ A direct inspection of the exact bundled Noto Sans Arabic font demonstrated that
 The revised tests preserve strong validation while matching the bundled font's actual OpenType tables. Contextual tests require exact initial/final base glyphs and both dot marks. Plain Lam-Alef tests preserve two legal cursor stops. A real `uniFDF2` ligature exercises indivisible cluster selection and mouse hit-testing. The Windows and Linux workflow guards now require an exact 17-test zero-failure summary, reducing ambiguity about whether the intended module actually ran.
 
 This correction modifies tests, CI assertions, and handoff documentation only; no production shaping workaround or weakened runtime logic is introduced. Run #106 must validate compilation and all 17 tests on both systems before packaging and completion are claimed.
+
+
+## 2026-11-12 — تدقيق رأس الفرع واستعادة نقطة الاستئناف
+
+Repository: majd7772233-a11y/Mineclonia-Arabic
+Branch: work/arabic-engine-support
+HEAD البرمجي الذي تم تدقيقه: 6e8511ef4f7b437e0ce7c6769a3405ba68c077b2
+main الذي تم فحصه: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (لم يُعدّل).
+أحدث run: #107، ID 42805300100.
+
+### ما فُحص
+- راجعت 13 commit أحدث من نقطة المحادثة القديمة 79df4158d5ccd78308fab653170b207e98c4ae93.
+- راجعت انتقالات CMake/static linking وRaqm static closure وتشخيص HarfBuzz، تحليل خصائص الخط، إصلاح Lua القائمة، SHA path normalization، وحذف duplicate tests.
+- Run106 logs على المنصتين: GCC/MSVC أبلغا عن duplicate definitions لـtestLamAlefPreservesSeparateClusters وtestArabicAllahLigatureCluster؛ فشل build قبل tests/packages.
+- فحص نصي مستقل للمصدر الحالي: 17 declaration و17 TEST registration و17 definition دون duplicates أو اختلافات مجموعات. هذا ليس compilation proof.
+- Run107 conclusion=failure، لكن jobs endpoint أعاد 0 jobs وartifacts endpoint فارغ. لا توجد job logs.
+
+### العوائق
+1. build-luanti-arabic-engine.yml: grep/Select-String غير مغلقين، orphan -Quiet))، package blocks مكررة، وwindows job ثانية.
+2. validate_lua_syntax.py: double escaping في regex للأقواس المربعة؛ يجب اختباره على النص الصحيح.
+3. لا يوجد CI حديث يثبت إزالة duplicate C++ methods.
+4. لا يوجد Artifact من HEAD الحالي ولا تأكيد فعلي من المستخدم حول اختفاء SHA warnings.
+
+### دفعة التوثيق
+أُنشئت وثائق PROJECT_OVERVIEW وPROJECT_STATE وARCHITECTURE وFILE_MAP وBUILD_TESTING وROADMAP وDOCUMENTATION_RULES وNEXT_SESSION_PROMPT، وتم تحديث HANDOFF وSUPPORT وREADME وPROGRESS. هذه دفعة توثيق فقط؛ لم يُعدل كود أو workflow.
+
+### نقطة الاستئناف
+إصلاح workflow وLua validator regex في دفعة برمجية واحدة، تشغيل validators السريعة، ثم CI واحد شامل مع المحافظة على cache. انظر PROJECT_STATE.md وNEXT_SESSION_PROMPT.md.

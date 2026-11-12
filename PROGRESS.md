@@ -1,5 +1,15 @@
 # تقدم التعريب
 
+
+> ## نقطة حالة محرك Luanti — 2026-11-12
+>
+> هذه كتلة حالة حديثة منفصلة عن سجل ترجمة Mineclonia التاريخي أدناه. رأس الكود الذي تمت مراجعته: 6e8511ef4f7b437e0ce7c6769a3405ba68c077b2 على work/arabic-engine-support. Run #106 فشل على Linux وWindows في compilation بسبب duplicate test definitions؛ commit 6e8511e حذف النسخ المكررة وأثبت الفحص النصي 17/17/17، لكنه لم يثبت build بعد. Run #107 فشل دون Jobs أو Artifacts. workflow الحالي يحتاج إصلاحاً قبل التشغيل الجديد.
+>
+> أول عمل لاحق: إصلاح .github/workflows/build-luanti-arabic-engine.yml وregex في tools/validate_lua_syntax.py، ثم validators سريعة وCI واحد شامل. راجع [PROJECT_STATE](docs/PROJECT_STATE.md) و[NEXT_SESSION_PROMPT](docs/NEXT_SESSION_PROMPT.md) و[ROADMAP](docs/ROADMAP.md).
+>
+> **قاعدة دائمة:** كل تعديل يجب أن يصاحبه تحديث Markdown المناسب في commit نفسه؛ راجع [DOCUMENTATION_RULES](docs/DOCUMENTATION_RULES.md) و[AGENTS.md](AGENTS.md).
+
+
 آخر تحديث: 2026-11-07
 
 ## الملخص
