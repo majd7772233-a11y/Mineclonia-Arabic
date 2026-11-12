@@ -58,3 +58,11 @@ vcpkg.json يثبت الاعتماديات. Linux triplet x64-linux static، و�
 
 ## 6. ما يحتاج اختباراً يدوياً
 فتح قوائم العميل وإعدادات اللغة، عدم ظهور Lua parser error، اختفاء SHA warnings مع exe/builtin من حزمة واحدة، clipboard round-trip، mouse drag وShift selection، clipping/shadows/centering/alignment، scroll، fallback/emoji/supplementary Unicode.
+
+## 7. Windows portable path model
+
+For Windows RUN_IN_PLACE ZIP builds, path_share remains the application/share root containing builtin, fonts, textures, locale and binaries. path_user is now derived as path_share/Minetest. The engine's existing path_user consumers therefore place worlds, user-installed games, config, logs and other writable profile data below that directory; path_cache is path_user/cache.
+
+The first-launch migration copies the legacy %APPDATA%/Minetest tree into a staging directory beside the target and activates it only after the copy succeeds. The old profile remains untouched. Existing portable data is not merged with AppData automatically. Windows RUN_IN_PLACE config discovery is restricted to path_user/minetest.conf; parent-level legacy config discovery remains only on non-Windows RUN_IN_PLACE builds.
+
+This change is intentionally Windows-specific. Other platforms keep their prior RUN_IN_PLACE path behavior. The Windows workflow's package probe is intended to prove migration and prevent accidental writes back to AppData.

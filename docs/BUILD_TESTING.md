@@ -115,3 +115,17 @@ Windows inner package:
 - This was not a Windows execution; launch and GUI checks still need the user's Windows environment.
 
 A successful extracted Linux artifact test is still not a substitute for the user's GUI test. Do not claim Windows runtime or Lua menu startup success without a Windows run/log.
+
+## Windows portable profile regression coverage
+
+Both Linux and Windows now run TestFileSys after the Arabic layout suite. The expected result is:
+Module TestFileSys passed (0 failures / 14 tests)
+
+The Windows package job also performs an isolated first-launch smoke test:
+1. Copy the just-installed package to a temporary probe directory so test data cannot enter the published artifact.
+2. Create a synthetic %APPDATA%/Minetest profile containing minetest.conf, worlds/portable-world-probe, games/portable-game-probe and a cache marker.
+3. Launch the copied luanti.exe with --worldlist=path and verify the portable world is listed beneath the Minetest profile.
+4. Run TestFileSys with the same APPDATA override to force normal path/config initialization.
+5. Verify config, world, game and cache files exist beneath the portable profile, CACHEDIR.TAG was generated there, and the original AppData profile's file list did not change.
+
+This workflow logic is part of the pending portable implementation batch. It has not passed CI until a new complete run succeeds. A CI smoke test does not replace the user's Windows GUI acceptance.

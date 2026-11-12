@@ -88,7 +88,7 @@ Where each location is on each platform:
 * Windows .zip / RUN_IN_PLACE source:
     * `bin`   = `bin`
     * `share` = `.`
-    * `user`  = `.`
+    * `user`  = `Minetest` (portable writable profile beside `bin`)
 * Windows installed:
     * `bin`   = `C:\Program Files\Minetest\bin (Depends on the install location)`
     * `share` = `C:\Program Files\Minetest (Depends on the install location)`

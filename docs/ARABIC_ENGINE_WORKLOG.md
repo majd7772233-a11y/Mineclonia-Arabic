@@ -278,3 +278,34 @@ This was a file/archive inspection only. The Windows executable was not run in t
 ### Remaining next step
 
 The Linux package has independent extracted-artifact execution evidence. Windows still needs a real launch on the user's machine using the whole extracted package, followed by Settings > Language and a fresh log inspection for Lua parser and SHA-256 warnings. Interactive EditBox and rendering checks remain open. Android remains deferred.
+
+## 2026-11-12 — Windows portable user profile, legacy migration, and CI probe
+
+**Starting HEAD:** 01a3dbbb196da678448211f818f9f5ab0a99f8d0  
+**Branch:** work/arabic-engine-support  
+**Protected main checked:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged before edits).  
+**Reason:** User needs all writable game data under the portable Luanti package rather than %APPDATA%/Minetest.
+
+### Changes prepared
+- Windows RUN_IN_PLACE keeps path_share at the package root and derives path_user as path_share/Minetest.
+- Added getPortableUserPath() and a TestFileSys assertion.
+- Added first-launch copy of %APPDATA%/Minetest into a staging directory beneath the package; it activates only after a complete copy and retains the original profile.
+- If the portable profile already exists, migration does not merge or overwrite it.
+- path_cache remains derived from path_user, so cache/CACHEDIR.TAG is inside the portable profile.
+- Windows RUN_IN_PLACE no longer searches for minetest.conf one or two levels above the portable profile.
+- Added TestFileSys CI regression steps for Linux and Windows, with the expected summary 0 failures / 14 tests.
+- Added a Windows integration smoke test using an isolated package clone and synthetic legacy profile. It checks discovery of a migrated world, migrated game/config/cache files, portable cache tag creation, and that the old AppData profile file set is unchanged.
+- Updated Luanti's path table and four-phase project roadmap.
+
+### Files
+luanti/code/src/porting.h; luanti/code/src/porting.cpp; luanti/code/src/main.cpp; luanti/code/src/unittest/test_filesys.cpp; .github/workflows/build-luanti-arabic-engine.yml; luanti/code/README.md; docs/ROADMAP.md; docs/PROJECT_STATE.md; docs/ARABIC_ENGINE_WORKLOG.md; docs/ARABIC_ENGINE_HANDOFF.md; docs/ARABIC_ENGINE_SUPPORT.md; docs/NEXT_SESSION_PROMPT.md; docs/BUILD_TESTING.md; docs/ARCHITECTURE.md; docs/FILE_MAP.md; README.md; PROGRESS.md.
+
+### Validation at authoring time
+- GitHub source review completed for porting path initialization, user-path config lookup, filesystem copy helpers, TestFileSys, and the full Windows/Linux packaging workflow.
+- C++ compilation and all runtime tests: not run yet.
+- YAML/actionlint/PowerShell parser: not run yet in a local shell.
+- Full CI: not started yet.
+- No Artifact is produced by this documentation/source preparation step; wait for CI.
+- The old AppData profile is copied, not deleted; any migration failure logs an error and leaves the original intact.
+
+**Next:** run preflight, then commit this complete source+Markdown batch atomically and start one full CI run.

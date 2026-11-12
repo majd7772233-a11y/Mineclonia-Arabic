@@ -140,3 +140,37 @@ Commit التنفيذ 69c62784baf96e3456239d5b954055be5e855501 (Repair Arabic en
 4. بعد ذلك تستكمل اختبارات clipboard/drag/Shift/keyboard والـrendering. Android يظل مؤجلاً.
 
 هذا التحديث توثيقي فقط، مبني على تنفيذ 69c62784baf96e3456239d5b954055be5e855501؛ HEAD الوثائقي السابق كان 596c9dd10e98f37057f87a92873d77a21ebc4a95. اقرأ HEAD النهائي مباشرة من GitHub بعد هذا التحديث.
+
+## 8. Windows portable profile implementation — in progress
+
+**Starting HEAD:** 01a3dbbb196da678448211f818f9f5ab0a99f8d0  
+**Branch:** work/arabic-engine-support  
+**main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged at pre-edit check).  
+**Implementation status:** code and CI regression coverage have been prepared in the current commit; CI has not yet run for this change.
+
+### Intended Windows ZIP layout
+
+- Application/share data remains at the package root: builtin, fonts, textures, locale, client resources, and binaries.
+- Writable profile becomes <package>/Minetest.
+- Therefore worlds are <package>/Minetest/worlds, downloaded games are <package>/Minetest/games, and config/log/cache/content data rooted in path_user stay under this profile.
+- Windows RUN_IN_PLACE will not read minetest.conf from the package parent or its parent.
+- Existing %APPDATA%/Minetest is copied on first launch only if the portable destination is absent. The source is retained; an existing destination is never automatically merged.
+
+### Files changed in the implementation batch
+
+- luanti/code/src/porting.h and porting.cpp: portable profile path and safe first-launch profile copy.
+- luanti/code/src/main.cpp: Windows config lookup remains inside path_user.
+- luanti/code/src/unittest/test_filesys.cpp: portable profile path unit test (TestFileSys now has 14 cases).
+- .github/workflows/build-luanti-arabic-engine.yml: Linux/Windows TestFileSys gates and Windows synthetic AppData migration smoke test.
+- luanti/code/README.md and project Markdown: path and workflow documentation.
+
+### Evidence status
+
+- Source review: completed.
+- C++ build: pending.
+- TestFileSys 14/14 on Linux and Windows: pending.
+- Windows package migration smoke test: pending.
+- Artifact/runtime on the user's Windows machine: pending.
+- No claim of complete portability or successful CI is made yet.
+
+See ROADMAP.md for the four phases. Next exact step: preflight changed C++/YAML/PowerShell, commit the source and documentation together, then run one full Linux/Windows CI workflow.

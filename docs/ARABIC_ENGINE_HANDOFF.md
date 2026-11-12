@@ -65,3 +65,19 @@ Run: https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43212062
 4. استكمل اختبارات clipboard round-trip وmouse drag وShift selection والتنقل والحذف المختلط، ثم Rendering GUI.
 5. لا تبدأ Android قبل استقرار Desktop.
 
+## 2026-11-12 — Windows portable profile work
+
+Starting point: 01a3dbbb196da678448211f818f9f5ab0a99f8d0 on work/arabic-engine-support. The protected main head checked before edits was a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d.
+
+The Windows RUN_IN_PLACE profile is being separated from the app/share root:
+- share stays at the Luanti package root.
+- user data moves to <package>/Minetest.
+- path_cache remains under path_user.
+- Windows config search is restricted to Minetest/minetest.conf.
+- Existing %APPDATA%/Minetest is copied on first launch using a staging directory; the source remains untouched. If the portable directory already exists, no automatic merge occurs.
+
+The batch also adds a portable path unit test and Windows package integration test in the build workflow. TestFileSys is expected to report 14 tests on both platforms.
+
+**Validation status:** not built or run yet. Workflow YAML, PowerShell and C++ still need preflight and the full CI run. Do not claim the application is portable until the Windows smoke test and the user's Windows GUI acceptance both pass.
+
+**Next step:** inspect the final diff, run available YAML/Bash/PowerShell/C++ preflight, re-check branch refs, commit all code and Markdown together, then wait for one complete CI. After CI, test the Windows artifact on the user's computer.

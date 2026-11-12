@@ -184,6 +184,21 @@ jobs:
             exit "$status"
           fi
           grep -Fq 'Module TestArabicTextLayout passed (0 failures / 17 tests)' "$log"
+      - name: Run filesystem path regression module
+        working-directory: luanti/code
+        shell: bash
+        run: |
+          set -euo pipefail
+          log="$RUNNER_TEMP/filesystem-tests.log"
+          set +e
+          ./bin/luanti --run-unittests --test-module TestFileSys > "$log" 2>&1
+          status=$?
+          set -e
+          cat "$log"
+          if [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
+          grep -Fq 'Module TestFileSys passed (0 failures / 14 tests)' "$log"
       - name: Install and verify portable Linux package
         working-directory: luanti/code
         shell: bash
@@ -328,6 +343,20 @@ jobs:
             throw "Arabic text-layout tests did not report the expected 17-test zero-failure summary."
           }
           Write-Host "Verified Arabic regression result: $expectedSummary"
+      - name: Run filesystem path regression module
+        working-directory: luanti/code
+        shell: pwsh
+        run: |
+          $fsTestLog = Join-Path $env:RUNNER_TEMP "filesystem-tests.log"
+          $fsTestOutput = & "bin/Release/luanti.exe" --run-unittests --test-module TestFileSys 2>&1
+          $fsTestExitCode = $LASTEXITCODE
+          $fsTestOutput | Tee-Object -FilePath $fsTestLog
+          if ($fsTestExitCode -ne 0) { exit $fsTestExitCode }
+          $fsTestSummary = "Module TestFileSys passed (0 failures / 14 tests)"
+          if (-not (Select-String -Path $fsTestLog -SimpleMatch -Pattern $fsTestSummary -Quiet)) {
+            Get-Content $fsTestLog
+            throw "Filesystem path regression module did not pass its 14 tests."
+          }
       - name: Install and verify portable Windows package
         working-directory: luanti/code
         shell: pwsh
@@ -377,6 +406,83 @@ jobs:
               throw "Installed package is missing the $dependency audio runtime dependency."
             }
           }
+
+          # Exercise first-run migration in an isolated package copy.
+          $probePackage = Join-Path $env:RUNNER_TEMP "luanti-portable-package-probe"
+          New-Item -ItemType Directory -Force -Path $probePackage | Out-Null
+          Copy-Item -Path (Join-Path $package "*") -Destination $probePackage -Recurse -Force
+
+          $appDataProbe = Join-Path $env:RUNNER_TEMP "luanti-portable-appdata-probe"
+          if (Test-Path -LiteralPath $appDataProbe) {
+            Remove-Item -LiteralPath $appDataProbe -Recurse -Force
+          }
+          $legacyProfile = Join-Path $appDataProbe "Minetest"
+          $legacyWorld = Join-Path $legacyProfile "worlds/portable-world-probe"
+          $legacyGame = Join-Path $legacyProfile "games/portable-game-probe"
+          $legacyCache = Join-Path $legacyProfile "cache"
+          New-Item -ItemType Directory -Force -Path $legacyWorld, $legacyGame, $legacyCache | Out-Null
+          [System.IO.File]::WriteAllText((Join-Path $legacyProfile "minetest.conf"), "name = portable-migration-probe" + [Environment]::NewLine)
+          [System.IO.File]::WriteAllText((Join-Path $legacyWorld "world.mt"), "gameid = portable-game-probe" + [Environment]::NewLine)
+          [System.IO.File]::WriteAllText((Join-Path $legacyGame "game.conf"), "name = Portable Game Probe" + [Environment]::NewLine)
+          [System.IO.File]::WriteAllText((Join-Path $legacyCache "legacy-cache.marker"), "keep-me")
+          $legacyFilesBefore = @(Get-ChildItem -LiteralPath $legacyProfile -Force -Recurse -File |
+            ForEach-Object { $_.FullName.Substring($legacyProfile.Length) } | Sort-Object)
+
+          $previousAppData = $env:APPDATA
+          $env:APPDATA = $appDataProbe
+          try {
+            $probeExe = Join-Path $probePackage "bin/luanti.exe"
+            $worldListOutput = & $probeExe --worldlist=path 2>&1
+            $worldListExitCode = $LASTEXITCODE
+            if ($worldListExitCode -ne 0) {
+              $worldListOutput
+              throw "Portable --worldlist probe failed."
+            }
+
+            $unitOutput = & $probeExe --run-unittests --test-module TestFileSys 2>&1
+            $unitExitCode = $LASTEXITCODE
+            $unitText = ($unitOutput | Out-String)
+            if ($unitExitCode -ne 0 -or -not $unitText.Contains("Module TestFileSys passed (0 failures / 14 tests)")) {
+              $unitOutput
+              throw "Portable profile failed during configuration initialization or filesystem tests."
+            }
+          } finally {
+            if ($null -eq $previousAppData) {
+              Remove-Item Env:APPDATA -ErrorAction SilentlyContinue
+            } else {
+              $env:APPDATA = $previousAppData
+            }
+          }
+
+          $portableProfile = Join-Path $probePackage "Minetest"
+          $worldListText = ($worldListOutput | Out-String)
+          if (-not ($worldListText -match 'Minetest[\\/]+worlds[\\/]+portable-world-probe')) {
+            $worldListOutput
+            throw "Worlds were not discovered beneath the portable Minetest profile."
+          }
+          foreach ($relativePath in @(
+            "minetest.conf",
+            "worlds/portable-world-probe/world.mt",
+            "games/portable-game-probe/game.conf",
+            "cache/legacy-cache.marker",
+            "cache/CACHEDIR.TAG"
+          )) {
+            if (-not (Test-Path -LiteralPath (Join-Path $portableProfile $relativePath) -PathType Leaf)) {
+              throw "Portable profile is missing migrated or generated data: $relativePath"
+            }
+          }
+          if (-not (Test-Path -LiteralPath (Join-Path $legacyProfile "worlds/portable-world-probe/world.mt") -PathType Leaf)) {
+            throw "Legacy AppData profile was not retained after copying."
+          }
+          if (Test-Path -LiteralPath (Join-Path $legacyProfile "cache/CACHEDIR.TAG")) {
+            throw "Portable startup unexpectedly wrote the cache tag into AppData."
+          }
+          $legacyFilesAfter = @(Get-ChildItem -LiteralPath $legacyProfile -Force -Recurse -File |
+            ForEach-Object { $_.FullName.Substring($legacyProfile.Length) } | Sort-Object)
+          if (Compare-Object -ReferenceObject $legacyFilesBefore -DifferenceObject $legacyFilesAfter) {
+            throw "Legacy AppData profile changed during the portable startup probe."
+          }
+          Write-Host "Verified portable writable profile at: $portableProfile"
           $zip = Join-Path $env:GITHUB_WORKSPACE "artifacts/luanti-arabic-windows-x64.zip"
           Compress-Archive -Path (Join-Path $package "*") -DestinationPath $zip -Force
       - name: Upload Windows package

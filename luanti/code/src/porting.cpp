@@ -208,6 +208,11 @@ std::string getDataPath(const char *subpath)
 	return path_share + DIR_DELIM + subpath;
 }
 
+std::string getPortableUserPath(const std::string &share_path)
+{
+	return share_path + DIR_DELIM "Minetest";
+}
+
 [[maybe_unused]] static void pathRemoveFile(char *path, char delim)
 {
 	// Remove filename and path delimiter
@@ -658,6 +663,68 @@ bool setSystemPaths()
 	}
 }
 
+#ifdef _WIN32
+// Copy the previous roaming profile into the portable profile on first launch.
+// The source is deliberately retained: users can verify or restore it manually.
+static void migrateWindowsProfileToPortablePath()
+{
+	const DWORD appdata_size = GetEnvironmentVariableA("APPDATA", nullptr, 0);
+	if (appdata_size == 0)
+		return;
+
+	std::string appdata(appdata_size, '\0');
+	const DWORD written = GetEnvironmentVariableA(
+			"APPDATA", appdata.data(), appdata_size);
+	if (written == 0 || written >= appdata_size) {
+		warningstream << "Could not read APPDATA; skipping legacy profile migration."
+				<< std::endl;
+		return;
+	}
+	appdata.resize(written);
+	while (!appdata.empty() && fs::IsDirDelimiter(appdata.back()))
+		appdata.pop_back();
+
+	const std::string legacy_path = appdata + DIR_DELIM "Minetest";
+	if (!fs::IsDir(legacy_path))
+		return;
+
+	if (fs::PathExists(path_user)) {
+		infostream << "Portable profile already exists at \"" << path_user
+				<< "\"; legacy profile remains at \"" << legacy_path
+				<< "\" and will not be merged automatically." << std::endl;
+		return;
+	}
+
+	const std::string staging_path = path_user + ".migration-tmp";
+	if (fs::PathExists(staging_path)) {
+		errorstream << "Cannot migrate legacy profile because staging path already exists: "
+				<< staging_path << std::endl;
+		return;
+	}
+	if (!fs::CreateAllDirs(staging_path)) {
+		errorstream << "Could not create portable profile staging directory: "
+				<< staging_path << std::endl;
+		return;
+	}
+	if (!fs::CopyDir(legacy_path, staging_path)) {
+		fs::RecursiveDelete(staging_path);
+		errorstream << "Could not copy legacy profile from \"" << legacy_path
+				<< "\". The original profile was left unchanged." << std::endl;
+		return;
+	}
+	if (!fs::Rename(staging_path, path_user)) {
+		fs::RecursiveDelete(staging_path);
+		errorstream << "Could not activate portable profile at \"" << path_user
+				<< "\". The original profile was left unchanged." << std::endl;
+		return;
+	}
+
+	infostream << "Copied legacy user profile from \"" << legacy_path
+			<< "\" to portable profile \"" << path_user
+			<< "\". The original profile was retained." << std::endl;
+}
+#endif
+
 // Create tag in cache folder according to <https://bford.info/cachedir/> spec
 static void createCacheDirTag()
 {
@@ -691,13 +758,10 @@ void initializePaths()
 		std::string execpath(buf);
 
 		path_share = execpath + DIR_DELIM "..";
-		path_user  = execpath + DIR_DELIM "..";
 
 #ifdef _WIN32
-		if (detectMSVCBuildDir(execpath)) {
+		if (detectMSVCBuildDir(execpath))
 			path_share += DIR_DELIM "..";
-			path_user  += DIR_DELIM "..";
-		}
 #endif
 	} else {
 		errorstream << "Failed to get paths by executable location, "
@@ -718,8 +782,16 @@ void initializePaths()
 		std::string execpath(buf);
 
 		path_share = execpath;
-		path_user  = execpath;
 	}
+
+#ifdef _WIN32
+	// Keep writable data separate from the read-only application files.
+	path_user = getPortableUserPath(path_share);
+	migrateWindowsProfileToPortablePath();
+#else
+	// Preserve existing RUN_IN_PLACE behavior on other desktop platforms.
+	path_user = path_share;
+#endif
 	path_cache = path_user + DIR_DELIM "cache";
 
 #else

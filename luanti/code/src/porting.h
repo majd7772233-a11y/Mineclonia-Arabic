@@ -93,6 +93,13 @@ extern std::string path_share;
 extern std::string path_user;
 
 /*
+	Return the writable profile directory for a portable distribution.
+	Read-only application files stay in share_path.
+*/
+[[nodiscard]]
+std::string getPortableUserPath(const std::string &share_path);
+
+/*
 	Path to gettext locale files
 */
 extern std::string path_locale;

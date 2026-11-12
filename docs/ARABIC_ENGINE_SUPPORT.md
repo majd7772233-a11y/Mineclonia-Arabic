@@ -395,3 +395,19 @@ The actual GitHub Actions artifacts were downloaded and their outer ZIP SHA-256 
 The outer ZIP archives passed integrity checks and contained the expected inner archives. The Linux inner tarball was extracted. Its x86-64 `bin/luanti` reports Luanti 5.17.0 / Release / RUN_IN_PLACE=1 under `--version`; all `ldd` dependencies resolved. The extracted runtime contains the corrected Arabic language-label entry, Arabic builtin translation, Noto Sans Arabic Regular and OFL license. Running the dedicated test module from this exact extracted package passed all 17 tests with zero failures and the explicit module summary.
 
 The Windows inner ZIP was extracted and inspected. It contains `bin/luanti.exe`, Raqm/HarfBuzz/FriBidi/FreeType DLLs, OpenAL/Ogg/Vorbis DLLs, the Arabic language-label builtin, and Noto Sans Arabic with its OFL license. This is archive/file-presence verification only; the Windows executable was not launched in this environment. User-side Windows GUI and SHA-warning verification remain required.
+
+## Windows portable RUN_IN_PLACE profile
+
+The Windows portable ZIP keeps read-only data at the package root while setting the writable user profile to a sibling directory named Minetest:
+
+- path_share: <package>
+- path_user: <package>/Minetest
+- path_cache: <package>/Minetest/cache
+
+This central path change relocates worlds, installed games, settings, logs, cache and other data built from path_user without moving builtin, fonts, textures, locale or engine resources. The Linux/other desktop RUN_IN_PLACE path policy is unchanged by this Windows-only change.
+
+On first launch, if %APPDATA%/Minetest exists and the portable destination does not, its contents are copied into a staging sibling and then renamed into Minetest. The original AppData profile is retained. If the destination already exists, the implementation does not merge profiles automatically. A stale migration staging directory is not deleted automatically; the startup logs the conflict rather than risking user data. The copied cache is preserved, and a CACHEDIR.TAG is created/read within the portable profile.
+
+Windows RUN_IN_PLACE config lookup uses only Minetest/minetest.conf. It does not fall back to minetest.conf in the application root or a parent directory. Explicit --config remains an intentional user override.
+
+The current CI coverage includes a path helper unit test, TestFileSys on both platforms, and a Windows smoke test with a synthetic AppData profile. Real user acceptance remains necessary for launches from paths containing spaces/removable drives and checking ContentDB downloads, new worlds, screenshots, logs, and config saves.

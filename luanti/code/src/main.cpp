@@ -832,13 +832,15 @@ static bool read_config_file(const Settings &cmd_args)
 	} else {
 		std::vector<std::string> filenames;
 		filenames.push_back(porting::path_user + DIR_DELIM + CONFIGFILE);
-		// Legacy configuration file location
+
+#if RUN_IN_PLACE && !defined(_WIN32)
+		// Legacy locations are retained for non-Windows RUN_IN_PLACE builds.
+		// Windows portable builds never read configuration outside Minetest.
 		filenames.push_back(porting::path_user +
 				DIR_DELIM + ".." + DIR_DELIM + CONFIGFILE);
 
-#if RUN_IN_PLACE
 		// Try also from a lower level (to aid having the same configuration
-		// for many RUN_IN_PLACE installs)
+		// for many RUN_IN_PLACE installs).
 		filenames.push_back(porting::path_user +
 				DIR_DELIM + ".." + DIR_DELIM + ".." + DIR_DELIM + CONFIGFILE);
 #endif

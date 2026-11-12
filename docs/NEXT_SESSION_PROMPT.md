@@ -85,3 +85,26 @@ Windows extracted package:
 ## Updated immediate next step
 
 Run Windows artifact 13941743588 on the user's Windows machine as a complete extracted portable package. Open the main menu, then Settings > Language, select Arabic, and retain the new log to check for Lua parser errors and `No SHA256 known for builtin file` warnings. Do not overwrite an older install with only the EXE. Then proceed to clipboard, drag/Shift selection, mixed-direction keyboard tests and rendering. Android remains deferred.
+
+## Windows portable profile — active implementation batch
+
+Current work starts from parent commit 01a3dbbb196da678448211f818f9f5ab0a99f8d0 on work/arabic-engine-support. Re-read the live branch and main refs before any writes. main was a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d at the pre-edit check and must remain untouched.
+
+The intended Windows ZIP layout is:
+- Read-only application files: package root.
+- Writable profile: package/Minetest.
+- Worlds: package/Minetest/worlds.
+- Downloaded games: package/Minetest/games.
+- Config, logs, cache, content/profile data derived from path_user: inside package/Minetest.
+
+The current source batch adds:
+- getPortableUserPath() in porting.h/porting.cpp.
+- Windows RUN_IN_PLACE path_user separation and a copy-first migration from %APPDATA%/Minetest using a staging sibling; legacy data is retained, and an existing portable directory is never merged automatically.
+- Windows config lookup isolation so it does not read minetest.conf above the portable profile.
+- TestFileSys portable-path assertion; expected module total 14 tests.
+- Linux/Windows TestFileSys workflow gates and a Windows package smoke test for synthetic AppData migration.
+- Four phase plan in docs/ROADMAP.md.
+
+This batch is not yet validated: no C++ build, TestFileSys execution, YAML/PowerShell parser, or CI result is recorded. Before commit, preflight all changed files, especially the PowerShell block in build-luanti-arabic-engine.yml. Then verify the branch and main heads again, commit all code and Markdown in one commit, and trigger one full workflow. Do not push an extra change while CI runs because cancel-in-progress=true.
+
+After CI, inspect its complete Linux and Windows jobs. Only if the package smoke test succeeds should the Windows artifact be given to the user. User acceptance still must verify the actual directory, settings, downloaded games/worlds, logs, cache and absence of new AppData writes. Do not claim fully portable before the actual Windows test.

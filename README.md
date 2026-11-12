@@ -73,3 +73,7 @@ mods/<CATEGORY>/<MOD>/locale/<MOD>.ar.po
 في Luanti 5.17.0 كانت `ar` محجوبة من قائمة اللغات في `builtin/settingtypes.txt` و`builtin/common/settings/dlg_settings.lua`، كما كانت ضمن `src/unsupported_language_list.txt` بسبب محدودية دعم اتجاه الكتابة RTL. لذلك لا يكفي وضع ملفات Mineclonia `.tr` داخل اللعبة. يتضمن الإصدار الجديد مشغّل `ENABLE_ARABIC_LANGUAGE.bat` لإظهار الخيار في الواجهة مع نسخ احتياطية. هذا لا يضيف دعم RTL كاملاً لمحرك Luanti؛ وقد تبقى بعض قوائم المحرك باللغة الإنجليزية أو يظهر ترتيب العربية غير مثالي.
 
 مرجع قوالب الإنجليزية الاحتياطي: [mineclonia-en/mcl_core/mods](https://github.com/majd7772233-a11y/gpts/tree/main/mineclonia-en/mcl_core/mods).
+
+## Windows portable profile work — in progress
+
+The Windows portable build is being changed so the writable profile lives at luanti/Minetest beside the bin directory, instead of using %APPDATA%/Minetest. Existing AppData data is copied on first launch and retained at its original location. The source and workflow tests are prepared, but this change is not yet built or CI-verified. Do not treat it as complete until Linux/Windows CI and the real Windows package test pass. See docs/ROADMAP.md for the four phases.

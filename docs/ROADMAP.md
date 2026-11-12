@@ -48,3 +48,40 @@
 ## Definition of Done
 
 الـDesktop CI والحزمتان اجتازتا Run #109، لكن دعم العربية لا يكتمل إلا بعد GUI/interaction verification فعلي وتوثيق النتائج أو الأخطاء المتبقية.
+
+## Windows portable profile — four implementation phases
+
+This work is scoped to the Windows RUN_IN_PLACE / ZIP distribution used for desktop testing. Linux and other platform path behavior remains unchanged in this first implementation.
+
+### Phase 1 — Separate application files from writable data
+- [x] Keep path_share at the package root (read-only builtin, fonts, textures, locale, and engine resources).
+- [x] Set Windows RUN_IN_PLACE path_user to <package>/Minetest through getPortableUserPath().
+- [x] Let all path_user-derived data (games, worlds, config, logs, cache, screenshots/content profile data) resolve under that profile.
+- [x] Add a TestFileSys contract assertion for the portable profile path.
+- [ ] Confirm Windows and Linux build/test results in CI.
+
+### Phase 2 — First-launch migration and path isolation
+- [x] On Windows, copy the existing %APPDATA%/Minetest profile into the portable profile only when the destination does not exist.
+- [x] Use a staging directory and activate the copy only after a complete copy; leave the old profile untouched.
+- [x] Do not silently merge AppData into an existing portable profile.
+- [x] Keep the cache inside the portable profile and copy the existing cache with the rest of the profile.
+- [x] Prevent Windows RUN_IN_PLACE config lookup from falling back to files above the portable profile.
+- [ ] Verify migration and non-modification of the legacy profile in the Windows package smoke test.
+
+### Phase 3 — Package regression coverage and documentation
+- [x] Add TestFileSys to both Linux and Windows CI.
+- [x] Add a Windows portable-package integration probe using a cloned package and a synthetic AppData profile.
+- [x] Check that worlds are discovered from Minetest/worlds and games/config/cache are copied into Minetest.
+- [x] Check that the original AppData profile is retained and not modified.
+- [x] Document the Windows ZIP directory layout in Luanti's README.
+- [ ] Wait for CI evidence before marking the implementation validated.
+
+### Phase 4 — Windows user acceptance and portability audit
+- [ ] Run the new Windows ZIP on the user's machine and verify the profile appears at luanti/Minetest.
+- [ ] Verify Content tab game downloads, world creation, config saves, logs, screenshots, texture packs, and cache are written inside the portable tree.
+- [ ] Verify no new data is written to %APPDATA%/Minetest after migration.
+- [ ] Test launch from a path containing spaces and from a removable/non-system drive.
+- [ ] Confirm upgrade behavior when Minetest already exists and preserve both profiles safely.
+- [ ] Only after desktop acceptance, decide whether any extra platform-specific portable behavior is needed.
+
+Do not call the application fully portable until Phase 4 passes on a real Windows installation.

@@ -21,6 +21,7 @@ public:
 	void runTests(IGameDef *gamedef);
 
 	void testIsDirDelimiter();
+	void testPortableUserPath();
 	void testPathsEqual();
 	void testPathStartsWith();
 	void testMakePathRelativeTo();
@@ -40,6 +41,7 @@ static TestFileSys g_test_instance;
 void TestFileSys::runTests(IGameDef *gamedef)
 {
 	TEST(testIsDirDelimiter);
+	TEST(testPortableUserPath);
 	TEST(testPathsEqual);
 	TEST(testPathStartsWith);
 	TEST(testMakePathRelativeTo);
@@ -96,6 +98,14 @@ void TestFileSys::testIsDirDelimiter()
 			continue;
 		UASSERT(my_tolower((char)c) != DIR_DELIM_CHAR); // this would be very funny
 	}
+}
+
+
+void TestFileSys::testPortableUserPath()
+{
+	const std::string share_path = p("/portable/Luanti");
+	UASSERTEQ(std::string, porting::getPortableUserPath(share_path),
+			share_path + DIR_DELIM "Minetest");
 }
 
 
