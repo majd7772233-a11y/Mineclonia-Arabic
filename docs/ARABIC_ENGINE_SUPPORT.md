@@ -469,3 +469,10 @@ Run #116 (43376273868, source HEAD b0c486db3a0960c7779c2f341198fe267356f61b) pas
 The Windows trace proves CopyFileEx copied the legacy profile's cache marker, downloaded-game metadata, root config and world metadata into a process-specific sibling staging path. The engine then renamed/activated it as the package-root `Minetest` profile. A second launch recognized the destination and skipped automatic AppData merging. The smoke additionally checked exact file contents, CACHEDIR.TAG, AppData path/content hashes unchanged, stale fixed-name staging preservation, cleanup of the current PID stage, path-with-spaces handling and no-merge behavior when a portable profile already exists.
 
 This closes all automated tests in Phases 1–3 and the four automated Phase 4 checks. It does not establish that GUI workflows such as ContentDB download, creating a world, saving preferences, screenshots or texture-pack selection write correctly in a real Windows installation; that is the remaining user-side Phase 4 acceptance.
+
+
+## Run #117 — stdout assertion regressed; do not infer a migration failure
+
+Run #117 (43382276907) passed Windows configure/build and both C++ modules in that commit (Arabic layout 17/17; FileSys 14/14), but failed at the first world-list stdout match. The captured output from the Windows GUI-subsystem executable was empty; the test stopped before examining the package profile. Linux package/upload succeeded (Artifact 14017277623; 22,717,242 bytes; SHA-256 `0f6e51221dbf526c6898d4897f4bf729e7569a5540bf1c8d1f6e75e874a2fc8c`). No Windows artifact was uploaded.
+
+The HEAD compared with the successful Run #116 version had also dropped absolute share-path normalization, PID-specific staging collision recovery, and the direct CopyDir/path tests. The corrective batch restores the entire previously passing source/workflow set rather than trying to make stdout available. Run #118 must prove it on both platforms again.

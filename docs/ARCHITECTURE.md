@@ -94,3 +94,10 @@ The latest package smoke (Run #115) showed an apparent discrepancy: two valid wo
 The successful Windows CI trace shows the production migration copying each seeded profile file with CopyFileEx into a process-specific staging sibling, then activating it as the package-root `Minetest` profile. This is tested from a package path containing spaces. A second launch reuses the portable profile; an injected stale `Minetest.migration-tmp` directory remains untouched while the PID-specific stage is cleaned. Legacy AppData files are hash-identical before/after migration. A second package scenario with an existing portable profile confirms that legacy AppData is neither merged nor allowed to overwrite existing portable files.
 
 Run #116 also passed direct C++ world/game discovery and CopyDir regression checks under paths with spaces, TestFileSys 16/16, and Arabic layout 17/17 on both Windows and Linux. Real GUI behavior and all user-data routes still require Phase 4 tests on the user's Windows installation.
+
+
+## Run #117 regression and restored migration invariants
+
+The tested Run #116 implementation normalized the Windows executable-derived share path with `fs::AbsolutePath()` before forming the writable profile. This removes the non-canonical `bin/..` component before filesystem operations such as directory activation. Its migration helper used a unique `Minetest.migration-tmp-<pid>` sibling (adding a suffix on collision), preserving stale directories and avoiding a fixed-name conflict. Run #117's later HEAD dropped both safeguards and the package test reverted to parsing GUI-subsystem stdout.
+
+The corrective batch restores the exact Run #116 source and workflow files. The test gate again verifies the normalization and CopyDir behavior directly; the package test uses trace and file-system evidence instead of captured stdout. Require successful Run #118 before treating the restored HEAD as validated.

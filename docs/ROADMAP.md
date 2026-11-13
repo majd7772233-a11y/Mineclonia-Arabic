@@ -153,3 +153,30 @@ Both hosts passed TestArabicTextLayout 17/17 and TestFileSys 16/16. The Windows 
 Artifacts and exact hashes are recorded in `docs/PROJECT_STATE.md` and `docs/ARABIC_ENGINE_WORKLOG.md`.
 
 **Phase boundary:** Phases 1–3 and all four automated Phase 4 checks are complete. The remaining Phase 4 items require actual use on the user's Windows installation: Content tab downloads, creating a world, config/log/screenshot/texture/cache writes, no new AppData writes, and a non-system/removable-drive launch if available. Do not declare full real-world portability until those checks pass.
+
+
+
+## Run #117 — Windows smoke regression after Run #116
+
+**Current tested HEAD:** `efbf5dc3b1d73b99df3ec1a14a30666540d729ca`  
+**Run:** [#117 / 43382276907](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43382276907) — completed / failure  
+**Protected main:** `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d` (unchanged).
+
+### Actual results
+- Scheduling and Arabic catalog/source validation: passed.
+- Linux x64: configure/build, TestArabicTextLayout 17/17, TestFileSys, package install/upload all passed. Linux Artifact 14017277623: 22,717,242 bytes; SHA-256 `0f6e51221dbf526c6898d4897f4bf729e7569a5540bf1c8d1f6e75e874a2fc8c`.
+- Windows x64: configure/build, TestArabicTextLayout 17/17 and the then-current 14-case TestFileSys passed.
+- Windows package smoke failed immediately after the first `--worldlist=path` invocation because the workflow tried to match a path in captured stdout. The GUI-subsystem executable returned without captured console text; the logged output was blank, and the script threw at the stdout assertion before checking the migrated files. Windows Artifact upload was skipped.
+- Therefore Run #117 does **not** prove that the production copy failed. It demonstrates that the stdout-based smoke assertion was reintroduced and was invalid for this Windows GUI executable.
+
+### Regression found by comparing Run #116's tested HEAD with Run #117's HEAD
+The latest commit changed four validated files relative to `b0c486db3a0960c7779c2f341198fe267356f61b`:
+- `getPortableUserPath()` no longer normalizes the executable-derived `bin/..` share path with `fs::AbsolutePath()`.
+- Migration staging reverted from a PID-specific sibling with collision suffixes to the fixed `Minetest.migration-tmp` name.
+- TestFileSys lost the direct `CopyDir` root/nested-file regression and the path-normalization assertions; the suite returned from 16 to 14 cases.
+- The package workflow lost the trace-based on-disk migration diagnostics and reverted to matching world paths from captured stdout.
+
+### Corrective batch
+Restore the exact four source/workflow files from the successful Run #116 tested commit. That version passed both platform builds and suites (Arabic layout 17/17; FileSys 16/16), and the Windows trace proved first/second launch, file copying, activation, staging collision recovery, AppData immutability and no-merge. This is a restoration of already-tested code, not a new production rewrite.
+
+**Current validation boundary:** Run #116 remains valid evidence for its own HEAD, but Run #117 tested a later, regressed HEAD. The restored batch must pass a fresh full Run #118 before the current branch is treated as CI-accepted again. Keep the Windows real-device acceptance and font/UI work deferred until that run succeeds.

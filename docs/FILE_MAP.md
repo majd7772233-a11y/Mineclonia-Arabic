@@ -94,3 +94,14 @@ tools/
 ## Run #116 verified portable-profile evidence
 
 The Windows package smoke and both platform test suites passed Run #116. The remaining real-device acceptance is tracked in `docs/ROADMAP.md` and `docs/ARABIC_ENGINE_HANDOFF.md`.
+
+
+## Run #117 rollback / restoration note
+
+The Windows portable-path implementation, 16-case TestFileSys suite, and trace-based package workflow are restored from the successful Run #116 tested HEAD. The exact restored files are recorded in the corrective commit:
+- `luanti/code/src/porting.cpp`
+- `luanti/code/src/porting.h`
+- `luanti/code/src/unittest/test_filesys.cpp`
+- `.github/workflows/build-luanti-arabic-engine.yml`
+
+Run #118 is required to validate the new branch head again.

@@ -182,3 +182,16 @@ The Windows package smoke test passed:
 Both package uploads completed. Windows Artifact 14015073206 (20,682,182 bytes; SHA-256 66e58c0a28de9b99215fb348a70f80a77a7f186875b6b97646119e348bf32ecc); Linux Artifact 14014987601 (22,731,184 bytes; SHA-256 d9ee80d7af0a291bc83479870598634b530f68b301818c903efdd83e6c7428d9).
 
 The Windows ZIP therefore clears the automated package gate. Actual GUI/user acceptance on Windows remains outstanding, including Content tab download, world creation, settings/log/screenshot/texture/cache output paths, AppData immutability during use, and a non-system/removable drive.
+
+
+## Run #117 — regression in the Windows package test
+
+Run #117 (43382276907) passed Windows configure/build, TestArabicTextLayout 17/17 and the then-current TestFileSys 14/14. The package test failed because it again parsed captured stdout from `luanti.exe --worldlist=path`. The GUI-subsystem process produced no captured console text, so the first world-list assertion failed before the workflow checked the profile files. Linux build/tests/package/upload passed; there was no Windows artifact.
+
+The latest change is restoring the Run #116 tested versions of `porting.cpp`, `porting.h`, `test_filesys.cpp`, and the workflow:
+- TestFileSys returns to 16 cases, including the `bin/..` path normalization regression and direct CopyDir root/nested file test.
+- The path helper normalizes the share directory before deriving the portable profile.
+- Migration uses process-specific staging paths with collision suffixes and retains stale staging folders.
+- The Windows package job uses `--trace --worldlist path`, inspects on-disk files and file contents, compares AppData hashes, and tests stale staging and existing-profile/no-merge.
+
+This is the exact file set from successful Run #116. Run #118 must rebuild/test both systems and repeat the Windows integration before this branch head is accepted.

@@ -3,6 +3,8 @@
 // Copyright (C) 2013 celeron55, Perttu Ahola <celeron55@gmail.com>
 
 #include "test.h"
+#include "content/subgames.h"
+#include "porting.h"
 
 #include <sstream>
 #include <algorithm>
@@ -22,6 +24,7 @@ public:
 
 	void testIsDirDelimiter();
 	void testPortableUserPath();
+	void testPortableProfileDiscovery();
 	void testPathsEqual();
 	void testPathStartsWith();
 	void testMakePathRelativeTo();
@@ -31,6 +34,7 @@ public:
 	void testAbsolutePath();
 	void testSafeWriteToFile();
 	void testCopyFileContents();
+	void testCopyDir();
 	void testNonExist();
 	void testRecursiveDelete();
 	void testGetRecursiveSubPaths();
@@ -42,6 +46,7 @@ void TestFileSys::runTests(IGameDef *gamedef)
 {
 	TEST(testIsDirDelimiter);
 	TEST(testPortableUserPath);
+	TEST(testPortableProfileDiscovery);
 	TEST(testPathsEqual);
 	TEST(testPathStartsWith);
 	TEST(testMakePathRelativeTo);
@@ -51,6 +56,7 @@ void TestFileSys::runTests(IGameDef *gamedef)
 	TEST(testAbsolutePath);
 	TEST(testSafeWriteToFile);
 	TEST(testCopyFileContents);
+	TEST(testCopyDir);
 	TEST(testNonExist);
 	TEST(testRecursiveDelete);
 	TEST(testGetRecursiveSubPaths);
@@ -106,6 +112,79 @@ void TestFileSys::testPortableUserPath()
 	const std::string share_path = p("/portable/Luanti");
 	UASSERTEQ(std::string, porting::getPortableUserPath(share_path),
 			share_path + DIR_DELIM "Minetest");
+
+	const std::string share_path_with_spaces = p("/portable/Luanti Distribution");
+	UASSERTEQ(std::string, porting::getPortableUserPath(share_path_with_spaces),
+			share_path_with_spaces + DIR_DELIM "Minetest");
+
+	const std::string normalization_root = getTestTempDirectory() +
+			DIR_DELIM "portable share root with spaces";
+	struct ScopedShareRoot {
+		std::string path;
+		~ScopedShareRoot() { fs::RecursiveDelete(path); }
+	} scoped_share_root{normalization_root};
+
+	const std::string nested_path = normalization_root + DIR_DELIM "bin";
+	fs::RecursiveDelete(normalization_root);
+	UASSERT(fs::CreateAllDirs(nested_path));
+	const std::string share_path_with_parent = nested_path + DIR_DELIM "..";
+	const std::string absolute_share_path = fs::AbsolutePath(normalization_root);
+	UASSERT(!absolute_share_path.empty());
+	UASSERTEQ(std::string, porting::getPortableUserPath(share_path_with_parent),
+			absolute_share_path + DIR_DELIM "Minetest");
+}
+
+void TestFileSys::testPortableProfileDiscovery()
+{
+	const std::string profile_path = getTestTempDirectory() +
+			DIR_DELIM "portable profile with spaces";
+
+	struct ScopedProfilePath {
+		std::string previous_path;
+		std::string test_path;
+
+		explicit ScopedProfilePath(const std::string &path) :
+				previous_path(porting::path_user), test_path(path)
+		{
+			fs::RecursiveDelete(test_path);
+			porting::path_user = test_path;
+		}
+
+		~ScopedProfilePath()
+		{
+			porting::path_user = previous_path;
+			fs::RecursiveDelete(test_path);
+		}
+	} scoped_profile(profile_path);
+
+	const std::string world_path = profile_path + DIR_DELIM "worlds" +
+			DIR_DELIM "world with spaces";
+	const std::string game_path = profile_path + DIR_DELIM "games" +
+			DIR_DELIM "portable-path-probe";
+	UASSERT(fs::CreateAllDirs(world_path));
+	UASSERT(fs::CreateAllDirs(game_path));
+
+	{
+		auto world_mt = open_ofstream((world_path + DIR_DELIM "world.mt").c_str(), false);
+		UASSERT(world_mt.good());
+		world_mt << "gameid = portable-path-probe\n"
+				"world_name = Portable Path World\n";
+	}
+	{
+		auto game_conf = open_ofstream((game_path + DIR_DELIM "game.conf").c_str(), false);
+		UASSERT(game_conf.good());
+		game_conf << "title = Portable Path Probe\n";
+	}
+
+	const auto worlds = getAvailableWorlds();
+	UASSERT(std::any_of(worlds.begin(), worlds.end(), [&](const WorldSpec &world) {
+		return world.gameid == "portable-path-probe" &&
+				world.name == "Portable Path World" &&
+				fs::PathsEqual(world.path, world_path);
+	}));
+
+	const auto game_ids = getAvailableGameIds();
+	UASSERT(game_ids.find("portable-path-probe") != game_ids.end());
 }
 
 
@@ -485,6 +564,52 @@ void TestFileSys::testCopyFileContents()
 	contents_actual.clear();
 	UASSERT(fs::ReadFile(file2, contents_actual));
 	UASSERTEQ(auto, contents_actual, test_data);
+}
+
+void TestFileSys::testCopyDir()
+{
+	const std::string base_path = getTestTempDirectory() +
+			DIR_DELIM "portable profile copy with spaces";
+
+	struct ScopedCopyDirectory {
+		std::string path;
+		~ScopedCopyDirectory() { fs::RecursiveDelete(path); }
+	} scoped_directory{base_path};
+
+	fs::RecursiveDelete(base_path);
+	const std::string source = base_path + DIR_DELIM "source profile";
+	const std::string destination = base_path + DIR_DELIM "portable profile";
+	const std::string source_world = source + DIR_DELIM "worlds" +
+			DIR_DELIM "world with spaces";
+	UASSERT(fs::CreateAllDirs(source_world));
+
+	const std::string config_contents = "name = portable-copy-dir-probe\\n";
+	{
+		auto config = open_ofstream((source + DIR_DELIM "minetest.conf").c_str(), false);
+		UASSERT(config.good());
+		config << config_contents;
+	}
+	const std::string world_contents = "gameid = minetest\\nworld_name = Copy Dir Probe\\n";
+	{
+		auto world_mt = open_ofstream((source_world + DIR_DELIM "world.mt").c_str(), false);
+		UASSERT(world_mt.good());
+		world_mt << world_contents;
+	}
+
+	// The migration function creates its staging directory before calling CopyDir().
+	// Exercise that same pre-existing-target case, not only a missing target.
+	UASSERT(fs::CreateAllDirs(destination));
+	UASSERT(fs::IsDir(destination));
+	UASSERT(fs::CopyDir(source, destination));
+
+	std::string actual;
+	UASSERT(fs::ReadFile(destination + DIR_DELIM "minetest.conf", actual));
+	UASSERTEQ(auto, actual, config_contents);
+
+	actual.clear();
+	UASSERT(fs::ReadFile(destination + DIR_DELIM "worlds" + DIR_DELIM
+			"world with spaces" + DIR_DELIM "world.mt", actual));
+	UASSERTEQ(auto, actual, world_contents);
 }
 
 void TestFileSys::testNonExist()

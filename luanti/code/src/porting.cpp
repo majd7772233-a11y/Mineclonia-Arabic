@@ -64,6 +64,8 @@
 #include <vector>
 #include <csignal>
 #include <cstdarg>
+#include <cerrno>
+#include <cstring>
 #include <cstdio>
 #include <optional>
 #include <signal.h>
@@ -210,7 +212,13 @@ std::string getDataPath(const char *subpath)
 
 std::string getPortableUserPath(const std::string &share_path)
 {
-	return share_path + DIR_DELIM "Minetest";
+	// GetModuleFileNameA-based RUN_IN_PLACE paths can contain a "bin/.."
+	// component. Normalize an existing share directory before deriving paths
+	// that will later be renamed (Windows rename is sensitive to path form).
+	const std::string absolute_share_path = fs::AbsolutePath(share_path);
+	const std::string &normalized_share_path = absolute_share_path.empty() ?
+			share_path : absolute_share_path;
+	return normalized_share_path + DIR_DELIM "Minetest";
 }
 
 [[maybe_unused]] static void pathRemoveFile(char *path, char delim)
@@ -695,11 +703,18 @@ static void migrateWindowsProfileToPortablePath()
 		return;
 	}
 
-	const std::string staging_path = path_user + ".migration-tmp";
-	if (fs::PathExists(staging_path)) {
-		errorstream << "Cannot migrate legacy profile because staging path already exists: "
-				<< staging_path << std::endl;
-		return;
+	// Keep the staging directory beside the destination so activation remains
+	// a same-volume rename. A process-specific name avoids collisions with a
+	// previous interrupted migration; existing staging data is preserved.
+	const std::string staging_prefix = path_user + ".migration-tmp-" +
+			std::to_string(GetCurrentProcessId());
+	std::string staging_path = staging_prefix;
+	for (unsigned int suffix = 1; fs::PathExists(staging_path); ++suffix)
+		staging_path = staging_prefix + "-" + std::to_string(suffix);
+	if (staging_path != staging_prefix) {
+		warningstream << "An earlier migration staging directory already exists; "
+				"preserving it and using " << staging_path << " instead."
+				<< std::endl;
 	}
 	if (!fs::CreateAllDirs(staging_path)) {
 		errorstream << "Could not create portable profile staging directory: "
@@ -713,9 +728,15 @@ static void migrateWindowsProfileToPortablePath()
 		return;
 	}
 	if (!fs::Rename(staging_path, path_user)) {
-		fs::RecursiveDelete(staging_path);
+		const int rename_error = errno;
+		const std::string rename_error_text = std::strerror(rename_error);
+		if (!fs::RecursiveDelete(staging_path)) {
+			warningstream << "Could not remove failed migration staging directory: "
+					<< staging_path << std::endl;
+		}
 		errorstream << "Could not activate portable profile at \"" << path_user
-				<< "\". The original profile was left unchanged." << std::endl;
+				<< "\" (rename error " << rename_error << ": " << rename_error_text
+				<< "). The original profile was left unchanged." << std::endl;
 		return;
 	}
 

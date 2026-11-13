@@ -77,10 +77,12 @@ mods/<CATEGORY>/<MOD>/locale/<MOD>.ar.po
 
 مرجع قوالب الإنجليزية الاحتياطي: [mineclonia-en/mcl_core/mods](https://github.com/majd7772233-a11y/gpts/tree/main/mineclonia-en/mcl_core/mods).
 
-## Windows portable profile work — in progress
+## Windows portable profile — latest validation status (2026-11-13)
 
-The Windows portable build is being changed so the writable profile lives at luanti/Minetest beside the bin directory, instead of using %APPDATA%/Minetest. Existing AppData data is copied on first launch and retained at its original location. The source and workflow tests are prepared, but this change is not yet built or CI-verified. Do not treat it as complete until Linux/Windows CI and the real Windows package test pass. See docs/ROADMAP.md for the four phases.
+Run #116 (tested HEAD `b0c486db3a0960c7779c2f341198fe267356f61b`) passed Linux and Windows build, Arabic 17/17, FileSys 16/16, package smoke and both uploads. Its Windows trace verified first-launch CopyFileEx migration into a collision-safe process staging directory, activation of `Minetest`, second-launch reuse, exact file contents, AppData SHA-256 immutability, stale staging preservation and existing-profile/no-merge.
 
-## Windows portable profile work — validation update
+Run #117 tested a later HEAD and failed only in the Windows package test because it again tried to read a world path from captured stdout of a Windows GUI-subsystem process. The first assertion saw empty output and stopped before checking disk contents; this does not prove migration failed. Its Linux build/package passed, but no Windows artifact was uploaded.
 
-The Windows ZIP implementation places the writable profile at luanti/Minetest and copies existing %APPDATA%/Minetest data on first launch without deleting the original. Run #110 passed Linux build/tests/package and Windows build plus both C++ test suites, but the Windows installed-package smoke test failed before artifact upload. The workflow smoke test has been refined and needs a new successful Windows run before a package can be offered for testing. See docs/ROADMAP.md and docs/PROJECT_STATE.md.
+The current correction restores the exact source, tests and trace-based package workflow from the successful Run #116 tree. It restores absolute share-path normalization, process-specific staging with collision recovery, 16 TestFileSys cases, and on-disk/trace checks instead of stdout matching. A new complete CI run is required before using a package from the current branch head.
+
+See [ROADMAP](docs/ROADMAP.md), [PROJECT_STATE](docs/PROJECT_STATE.md), and [HANDOFF](docs/ARABIC_ENGINE_HANDOFF.md). Real Windows 10 acceptance is still required after the corrected CI produces a Windows ZIP: GUI launch, Content tab download, new world, saved settings, logs/screenshots/texture/cache paths, no new AppData writes, and a non-system/removable-drive launch if available. Do not start font/UI work until those checks are recorded.

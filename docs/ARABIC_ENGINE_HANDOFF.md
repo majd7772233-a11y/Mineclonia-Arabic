@@ -192,3 +192,20 @@ Artifacts:
 - The actual inner Windows ZIP has been extracted and validated locally: `luanti-arabic-windows-x64-portable.zip`, 20,792,245 bytes, SHA-256 b14c92260b6c9a315f63594d71c5008df24a95a229f8bf4d6b7bd33d65bd146f.
 
 **Phase 1, Phase 2, Phase 3 and all automated Phase 4 checks are complete.** The remaining task is actual Windows acceptance. Extract the full ZIP into a new empty folder, preferably one containing spaces and outside the existing installation. Launch `bin/luanti.exe`. Do not delete or rename the existing `%APPDATA%/Minetest` profile: the first-launch migration must copy it and leave the source intact. Confirm the new `Minetest` folder is next to the package's bin directory. Then verify Content tab download, create a world, save settings, inspect logs/screenshots/texture packs/cache output, confirm no new writes under AppData, and if practical test from a non-system/removable drive. Record the result and any logs before beginning font/UI work. Never merge the working branch into main without the user's explicit direction.
+
+
+## Handoff after Run #117 — restore the tested portable migration baseline
+
+Current branch before the corrective commit: `work/arabic-engine-support`, HEAD `efbf5dc3b1d73b99df3ec1a14a30666540d729ca`. Protected `main` remains `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+
+Run #117 (43382276907) failed in the Windows package step only. Windows configure/build and Arabic 17/17 plus TestFileSys 14/14 passed. The first `--worldlist=path` launch returned, but the workflow captured no console output from the Windows GUI executable and failed its stdout match before inspecting disk contents. Linux passed and uploaded Artifact 14017277623; Windows upload was skipped. Do not infer a migration CopyDir failure from this log.
+
+A comparison against the passing Run #116 HEAD (`b0c486db3a0960c7779c2f341198fe267356f61b`) found a later commit had removed path normalization, process-specific collision-safe staging, CopyDir/path regression tests (16 cases), and trace/filesystem-based assertions.
+
+The current corrective commit restores exactly these four files from the Run #116 tested HEAD:
+- `luanti/code/src/porting.cpp`
+- `luanti/code/src/porting.h`
+- `luanti/code/src/unittest/test_filesys.cpp`
+- `.github/workflows/build-luanti-arabic-engine.yml`
+
+Next: run one complete Run #118 against the restored commit. Require both Linux and Windows configure/build, Arabic 17/17, FileSys 16/16, Windows trace/file-content/AppData/staging/no-merge checks, and both artifact uploads. If the run passes, provide that Windows artifact and resume real Windows 10 acceptance. Do not modify `main`, create branches, or start UI/font work before the user's filesystem workflow is tested.

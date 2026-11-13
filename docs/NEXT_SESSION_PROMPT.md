@@ -221,3 +221,20 @@ Run #116 (43376273868) is fully successful. Four jobs passed: scheduling, catalo
 Windows artifact wrapper: 14015073206, 20,682,182 bytes, SHA-256 `66e58c0a28de9b99215fb348a70f80a77a7f186875b6b97646119e348bf32ecc`. The actual inner portable ZIP is `luanti-arabic-windows-x64-portable.zip`, 20,792,245 bytes, SHA-256 `b14c92260b6c9a315f63594d71c5008df24a95a229f8bf4d6b7bd33d65bd146f`. This ZIP was integrity-tested and contains 533 entries including `bin/luanti.exe`, builtin, Noto Sans Arabic and its license.
 
 **Portable four-phase automation is complete. Phase 4 real-device GUI acceptance is pending.** Continue by having the user extract the full ZIP into a new empty folder, preferably a path with spaces and outside their existing installation. Run `bin/luanti.exe`. Do not remove the old `%APPDATA%/Minetest` source; verify the copy appears in package-root `Minetest` and the source remains intact. Test Content tab download, create a world, save config, inspect logs/screenshots/texture packs/cache, ensure no new AppData writes, and test a non-system/removable drive if possible. Ask for screenshots/logs/results and diagnose actual failures. Keep font/UI and clipboard/text interaction work deferred until this acceptance is complete.
+
+
+## Resume after Run #117 — restore and revalidate the known-good portable baseline
+
+Repository: `majd7772233-a11y/Mineclonia-Arabic`. Only work on `work/arabic-engine-support`; leave `main` at `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`. Starting correction parent: `efbf5dc3b1d73b99df3ec1a14a30666540d729ca`.
+
+Run #116 (43376273868) passed both platforms and all package checks on source HEAD `b0c486db3a0960c7779c2f341198fe267356f61b`. Run #117 (43382276907) was then triggered by a newer commit and failed only because its Windows smoke test again matched captured stdout from a Windows GUI-subsystem executable. Windows build, Arabic 17/17 and then-current FileSys 14/14 passed; the package test stopped at the empty stdout assertion before disk checks. Linux passed and uploaded Artifact 14017277623. No Windows artifact was uploaded in #117.
+
+A diff against the successful Run #116 source revealed regressions introduced after it: `fs::AbsolutePath()` normalization was removed from `getPortableUserPath`, process-specific/collision-safe staging reverted to a fixed name, FileSys lost its path-normalization and CopyDir tests (dropping from 16 to 14), and the workflow reverted from trace/filesystem checks to stdout parsing.
+
+The current corrective commit restores these exact four files from the Run #116 tested tree:
+- `luanti/code/src/porting.cpp`
+- `luanti/code/src/porting.h`
+- `luanti/code/src/unittest/test_filesys.cpp`
+- `.github/workflows/build-luanti-arabic-engine.yml`
+
+Next step: inspect this commit's diff and refs, run one full CI (Run #118), and inspect all jobs. Required: Linux and Windows build; TestArabicTextLayout 17/17; TestFileSys 16/16; Windows `--trace --worldlist path` migration and file-content checks; AppData SHA-256 immutability; stale staging preservation; PID-stage cleanup; existing-profile/no-merge; both artifact uploads. Do not infer migration failure from stdout. After a successful Run #118, deliver the Windows artifact and continue Phase 4 actual Windows 10 GUI acceptance. Keep fonts/UI deferred until the user's storage workflows have been tested.
