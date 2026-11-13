@@ -163,3 +163,16 @@ Next:
 3. Run one complete CI. Check Linux and Windows build, Arabic 17/17, FileSys 16/16, then Windows package migration, stale staging, AppData hashes, no-merge and artifact upload.
 4. If the new diagnostic says minetest.conf was seeded but not copied while root-level CopyDir test passes, trace the path/fixture used by the migration function before changing production code.
 5. Continue Phase 3 until the Windows artifact uploads; then ask for real-device Phase 4 acceptance. Keep font/UI work deferred.
+
+## Handoff after Run #115 — trace the profile copy and match CopyDir's staging conditions
+
+Run #115 (43297133596; HEAD dab127e225c2083f37255ed4d829d207506aad4d) passed catalog validation and Linux/Windows configure/build. Both hosts passed TestArabicTextLayout 17/17 and TestFileSys 16/16. Linux package/upload passed (Artifact 13979992497; 22,730,451 bytes; SHA-256 6f00827ab6f3de6dca56f195e857881116993271838d03c279d6ec4b0685c579). Windows package smoke still failed; no Windows artifact was uploaded.
+
+The synthetic AppData source contained four verified files. The packaged executable ran twice with valid `--worldlist path` syntax and printed a world under the portable `Minetest/worlds` path. The post-launch assertion nevertheless found all five required files missing and a zero-file destination inventory. Run #115 did not enable trace output, so the reason remains unresolved. Do not weaken these assertions.
+
+The current batch changes only the test harness and a unit test:
+1. Pre-create the test destination before `fs::CopyDir()`, matching the actual migration flow where the staging directory exists before the copy call.
+2. Launch each Windows profile scenario with `--trace --worldlist path` and capture combined output. This should expose info/verbose/trace logging from path initialization and file copy operations (including the per-file CopyFileEx traces) before `worldlist` returns.
+3. If any expected file is still missing, print PowerShell and .NET file inventories plus directory inventories independently.
+
+After CI, inspect the trace and determine whether the application skips migration due to an existing profile, whether CopyDir sees the source entries, whether CopyFileEx succeeds, and whether rename activation reaches the final path. Change production migration code only after those facts identify the cause. Phase 3 remains open until Windows smoke and upload pass; then continue real-device Phase 4. Keep fonts/UI deferred.

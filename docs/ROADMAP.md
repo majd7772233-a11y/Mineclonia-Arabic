@@ -58,7 +58,7 @@ This work is scoped to the Windows RUN_IN_PLACE / ZIP distribution used for desk
 - [x] Set Windows RUN_IN_PLACE path_user to <package>/Minetest through getPortableUserPath().
 - [x] Let all path_user-derived data (games, worlds, config, logs, cache, screenshots/content profile data) resolve under that profile.
 - [x] Add a TestFileSys contract assertion for the portable profile path.
-- [x] Confirm Windows and Linux base builds and the 15-test FileSys suite in CI (Runs #112 and #113).
+- [x] Confirm Windows and Linux base builds and the 16-test FileSys suite in CI (Run #115).
 
 ### Phase 2 — First-launch migration and path isolation
 - [x] On Windows, copy the existing %APPDATA%/Minetest profile into the portable profile only when the destination does not exist.

@@ -462,14 +462,18 @@ jobs:
           $env:APPDATA = $appDataProbe
           try {
             $probeExe = Join-Path $probePackage "bin/luanti.exe"
-            & $probeExe --worldlist path
+            $firstLaunchOutput = & $probeExe --trace --worldlist path 2>&1 | Out-String
             $firstLaunchExitCode = $LASTEXITCODE
+            Write-Host "First portable startup trace:"
+            Write-Host $firstLaunchOutput
             if ($firstLaunchExitCode -ne 0) {
               throw "The first portable profile initialization failed (exit code $firstLaunchExitCode)."
             }
 
-            & $probeExe --worldlist path
+            $secondLaunchOutput = & $probeExe --trace --worldlist path 2>&1 | Out-String
             $secondLaunchExitCode = $LASTEXITCODE
+            Write-Host "Second portable startup trace:"
+            Write-Host $secondLaunchOutput
             if ($secondLaunchExitCode -ne 0) {
               throw "The second portable profile initialization failed (exit code $secondLaunchExitCode)."
             }
@@ -496,11 +500,17 @@ jobs:
             $legacyEntries = @(Get-ChildItem -LiteralPath $legacyProfile -Force -Recurse -File |
               ForEach-Object { $_.FullName.Substring($legacyProfile.Length) } | Sort-Object)
             $portableEntries = @()
+            $portableDirectories = @()
+            $portableDotNetFiles = @()
             if (Test-Path -LiteralPath $portableProfile -PathType Container) {
               $portableEntries = @(Get-ChildItem -LiteralPath $portableProfile -Force -Recurse -File |
                 ForEach-Object { $_.FullName.Substring($portableProfile.Length) } | Sort-Object)
+              $portableDirectories = @(Get-ChildItem -LiteralPath $portableProfile -Force -Recurse -Directory |
+                ForEach-Object { $_.FullName.Substring($portableProfile.Length) } | Sort-Object)
+              $portableDotNetFiles = @([System.IO.Directory]::GetFiles($portableProfile, "*", [System.IO.SearchOption]::AllDirectories) |
+                ForEach-Object { $_.Substring($portableProfile.Length) } | Sort-Object)
             }
-            throw "Portable profile is missing: $($missingPortablePaths -join ', '). Legacy source files: $($legacyEntries -join ', '). Portable destination files: $($portableEntries -join ', ')."
+            throw "Portable profile is missing: $($missingPortablePaths -join ', '). Legacy source files: $($legacyEntries -join ', '). Portable files (PowerShell): $($portableEntries -join ', '). Portable directories: $($portableDirectories -join ', '). Portable files (.NET): $($portableDotNetFiles -join ', ')."
           }
           if ([System.IO.File]::ReadAllText((Join-Path $portableProfile "minetest.conf")) -notmatch "portable-migration-probe") {
             throw "The legacy minetest.conf contents were not preserved in the portable profile."
@@ -566,8 +576,10 @@ jobs:
           $env:APPDATA = $existingAppDataProbe
           try {
             $existingProbeExe = Join-Path $existingProbePackage "bin/luanti.exe"
-            & $existingProbeExe --worldlist path
+            $existingLaunchOutput = & $existingProbeExe --trace --worldlist path 2>&1 | Out-String
             $existingLaunchExitCode = $LASTEXITCODE
+            Write-Host "Existing-profile startup trace:"
+            Write-Host $existingLaunchOutput
             if ($existingLaunchExitCode -ne 0) {
               throw "Startup with a pre-existing portable profile failed (exit code $existingLaunchExitCode)."
             }

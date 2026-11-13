@@ -446,3 +446,30 @@ A new full CI run is required after this workflow/doc-only correction. Linux pac
 
 ### Phase position
 The work is still in **Phase 3 — Package regression coverage and documentation**. Phase 4 automation is being exercised as part of the Windows package test, but real-device acceptance is still outstanding. No production migration change is justified until the direct CopyDir test and next diagnostic run establish the failure cause.
+
+## 2026-11-13 — Run #115 diagnostic and destination-precreated regression
+
+**Starting HEAD:** dab127e225c2083f37255ed4d829d207506aad4d  
+**Branch:** work/arabic-engine-support  
+**Protected main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d  
+**Run:** #115 — ID 43297133596  
+**Overall:** Linux job passed; Windows build/tests passed; Windows package smoke failed after world-list initialization.
+
+### Actual CI evidence
+- Scheduling and catalog/source validation: passed.
+- Linux: configure/build passed; TestArabicTextLayout 17/17; TestFileSys 16/16; install/package/upload passed.
+- Linux Artifact 13979992497: 22,730,451 bytes; SHA-256 `6f00827ab6f3de6dca56f195e857881116993271838d03c279d6ec4b0685c579`.
+- Windows: configure/build passed; TestArabicTextLayout 17/17; TestFileSys 16/16.
+- The synthetic AppData source profile was confirmed to contain `minetest.conf`, `worlds/portable-world-probe/world.mt`, `games/portable-game-probe/game.conf`, and `cache/legacy-cache.marker`.
+- Both `--worldlist path` launches printed the world path under the probe package's portable `Minetest/worlds` directory.
+- The later PowerShell checks reported all required files absent; the recursively enumerated portable file list was empty. The old AppData source remained available. No Windows artifact was uploaded.
+- Run #115 did not use `--trace`, so the job did not expose the full initialization/copy logs needed to reconcile the world listing and empty file inventory.
+
+### Corrective changes in this commit
+- The direct `testCopyDir()` case now pre-creates its destination directory before calling `fs::CopyDir()`, matching the migration function, which creates a process-specific staging directory before copying into it.
+- Each Windows package startup probe runs with `--trace` and captures combined output. Because `setup_log_params()` registers info, verbose and trace levels to stderr before `porting::initializePaths()`, this should expose the selected `path_share/path_user`, whether migration skips, every successful CopyFileEx operation, and activation/rename errors.
+- Missing-file diagnostics print PowerShell files, .NET files and destination directories separately to avoid conflating provider enumeration with actual filesystem state.
+- No production migration implementation is changed in this batch; the new evidence must identify whether the defect lies in the helper, source selection, destination/staging handling, or post-copy activation before production code is changed.
+
+### Validation boundary
+The new source/workflow changes still require a new complete CI run. Require 16/16 FileSys on both platforms, inspect every trace line in the Windows smoke, pass first-run/second-run and existing-profile/no-merge assertions, and upload the Windows artifact. Phase 3 remains open. Real-device Phase 4 and UI/font work remain deferred.

@@ -449,3 +449,14 @@ Run #113 passed Linux build/tests/package/upload and Windows build/tests, but Wi
 Run #114's Windows package log proves the corrected command --worldlist path was accepted: the process printed the synthetic world's path beneath the portable Minetest/worlds directory on both invocations. The smoke step nevertheless failed because Minetest/minetest.conf was absent. This is later in startup than the Run #112 CLI parse failure and distinct from the earlier Run #113 staging-name collision.
 
 The current evidence does not show whether the synthetic source config reached the legacy profile, or whether a root-level file failed to appear in the staging copy. Do not change the migration implementation based only on the one missing-file assertion. The next run adds a direct TestFileSys CopyDir regression for a root config file plus nested world data, confirms the synthetic source file exists before launch, and prints the full source/destination inventories if any portable file is missing. TestFileSys is expected to report 16 tests. Linux passed its 15-test suite and package on Run #114; Windows has no uploaded artifact yet.
+
+## Run #115 — incomplete destination inventory and trace-enabled follow-up
+
+Run #115 passed Windows build, TestArabicTextLayout 17/17 and TestFileSys 16/16, but the package smoke still failed. The synthetic source profile had four confirmed files. Two valid `--worldlist path` invocations printed the world path below the portable profile. The later check found all five required files missing and an empty PowerShell file inventory. No Windows Artifact was uploaded. This discrepancy is not yet explained.
+
+The next diagnostic is intentionally non-invasive to production code:
+- invoke the package with `--trace` to enable info/verbose/trace output before `initializePaths()`, exposing source and destination paths, migration-skip messages, CopyFileEx success/failure messages and rename errors;
+- make the direct CopyDir test pre-create its destination directory, matching the migration's existing staging folder;
+- enumerate destination files using both PowerShell and .NET and list directories separately.
+
+Do not substitute stdout-parsing, skip checks, or silently accept a partial profile. Wait for the trace to identify the failing boundary.

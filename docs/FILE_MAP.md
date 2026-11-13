@@ -86,6 +86,6 @@ tools/
 | luanti/code/src/porting.h | Portable writable profile path API |
 | luanti/code/src/porting.cpp | Normalized Windows portable profile path, first-launch AppData copy and collision-safe process-specific staging |
 | luanti/code/src/main.cpp | Windows config path restricted to the portable profile |
-| luanti/code/src/unittest/test_filesys.cpp | Portable path normalization, world/game discovery and CopyDir root/nested file checks under paths with spaces |
-| .github/workflows/build-luanti-arabic-engine.yml | TestFileSys 16-case gates; Windows source/destination inventory diagnostics, migration, stale-stage, second-start, path-with-spaces and no-merge probes |
+| luanti/code/src/unittest/test_filesys.cpp | Portable path normalization, world/game discovery and CopyDir root/nested file checks under paths with spaces and pre-created destination |
+| .github/workflows/build-luanti-arabic-engine.yml | TestFileSys 16-case gates; Windows --trace startup diagnostics, PowerShell/.NET source/destination inventories, migration, stale-stage, second-start, path-with-spaces and no-merge probes |
 | luanti/code/README.md | Windows ZIP path layout reference |

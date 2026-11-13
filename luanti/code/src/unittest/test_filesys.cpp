@@ -596,6 +596,10 @@ void TestFileSys::testCopyDir()
 		world_mt << world_contents;
 	}
 
+	// The migration function creates its staging directory before calling CopyDir().
+	// Exercise that same pre-existing-target case, not only a missing target.
+	UASSERT(fs::CreateAllDirs(destination));
+	UASSERT(fs::IsDir(destination));
 	UASSERT(fs::CopyDir(source, destination));
 
 	std::string actual;

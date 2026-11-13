@@ -123,9 +123,9 @@ The build-tree TestFileSys module has 16 cases and is required on both Linux and
 
 Portable-profile C++ coverage checks the path builder with whitespace and temporarily assigns `porting::path_user` to a path containing spaces. It creates a fixture world and user-installed game beneath that profile, then directly verifies that `getAvailableWorlds()` and `getAvailableGameIds()` discover them. This avoids depending on console output from the Windows GUI executable.
 
-The additional `testCopyDir()` case calls `fs::CopyDir()` for a source profile whose path contains spaces. It verifies exact contents for both a root-level `minetest.conf` and a nested `worlds/world with spaces/world.mt`. This isolates the directory-copy helper from the Windows startup/migration environment.
+The additional `testCopyDir()` case calls `fs::CopyDir()` for a source profile whose path contains spaces. It pre-creates the destination root first, exactly as first-launch migration pre-creates its staging directory, then verifies exact contents for both a root-level `minetest.conf` and a nested `worlds/world with spaces/world.mt`.
 
-The Windows package smoke test runs against isolated copies of the install tree:
+The Windows package smoke test runs against isolated copies of the install tree and launches its startup probes with `--trace`, capturing combined output so path initialization, CopyFileEx operations and staging activation can be diagnosed:
 1. The package copy is placed under a directory containing spaces.
 2. A synthetic `%APPDATA%/Minetest` profile is created with a config, world, game and cache marker.
 3. The package executable is launched twice using the valid two-argument syntax `--worldlist path`; the workflow checks process exit status, then verifies migrated file existence and contents under the portable `Minetest` directory.
@@ -134,7 +134,7 @@ The Windows package smoke test runs against isolated copies of the install tree:
 
 Never use `--worldlist=path`: Luanti's option parser expects an option value as a separate argument (`--worldlist <value>`). Run #112 rejected the equals form before initialization; the subsequent missing-file assertion exposed that invalid invocation. The test also deliberately does not parse `stdout` from the GUI-subsystem executable, which is linked with `/SUBSYSTEM:WINDOWS`.
 
-The Run #114 Windows package log showed that the synthetic world was visible under the portable profile, but the required root-level `minetest.conf` was absent. The current check now verifies that the fixture file is present before launch and, on a missing-file failure, prints the seeded source and portable destination inventories. This avoids changing production migration logic until the new `CopyDir` test and inventories identify the cause.
+The Run #115 Windows package log showed the synthetic world path under the portable profile twice, but all required files were then reported absent and the recursive PowerShell file inventory was empty. The exact cause remains unknown. The trace-enabled invocation and .NET/PowerShell inventories are the next evidence gate; do not change migration code until they identify the failure boundary.
 
 These expanded checks are pending the next complete Linux/Windows CI run. They do not replace real Windows GUI/user acceptance.
 

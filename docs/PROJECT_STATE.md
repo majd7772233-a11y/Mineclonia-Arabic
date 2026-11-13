@@ -281,3 +281,26 @@ The application reached path initialization, and the world was discoverable bene
 
 ### Validation boundary and next action
 This corrective batch still needs a full CI run. Phase 3 remains open until Windows file migration/content assertions and Windows artifact upload succeed. Phase 4 still requires real-device Windows acceptance: ContentDB download, world creation, config/log/screenshot/texture/cache writes, no new AppData writes, and launch from a removable/non-system drive. Do not start font/UI work until portability has passed those checks.
+
+## Current portable-profile status — after Run #115 (2026-11-13)
+
+**Branch:** `work/arabic-engine-support`  
+**Current HEAD:** `dab127e225c2083f37255ed4d829d207506aad4d`  
+**Run:** [Run #115](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43297133596)  
+**Protected main:** `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d` (unchanged).
+
+### Run #115 evidence
+- Workflow scheduling and catalog/source validation: passed.
+- Linux x64: configure/build passed; TestArabicTextLayout 17/17; TestFileSys 16/16; package install/upload passed.
+- Linux Artifact 13979992497: 22,730,451 bytes; SHA-256 `6f00827ab6f3de6dca56f195e857881116993271838d03c279d6ec4b0685c579`.
+- Windows x64: configure/build passed; TestArabicTextLayout 17/17; TestFileSys 16/16.
+- Windows package: valid `--worldlist path` invocation ran twice and printed a world path below the copied package's `Minetest/worlds`. The synthetic AppData profile was verified to contain four files before launch. After both launches, all five required portable files were reported missing and the PowerShell recursive file inventory was empty. Windows Artifact upload was skipped.
+- The trace-level copy/activation path was not enabled in Run #115, so the underlying mismatch remains unresolved. Do not infer a production CopyDir defect or a successful complete profile migration from the current log.
+
+### Corrective batch prepared after Run #115
+- Pre-create the TestFileSys `CopyDir` destination before invoking `fs::CopyDir()`, reproducing migration's staging-root setup.
+- Run both first/second and existing-profile package probes with `--trace`; capture combined output so the info/verbose/trace streams expose path initialization and file-copy/rename operations.
+- On missing files, report PowerShell file inventory, .NET file inventory and destination directories separately.
+
+### Phase status
+Still in **Phase 3 — package regression coverage and documentation**. Do not mark Phase 2/3 complete or move to real-device Phase 4 until the Windows migration checks and Windows Artifact upload pass. Font/UI work remains deferred.

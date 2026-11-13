@@ -195,3 +195,18 @@ The current corrective blobs:
 - The Windows smoke asserts the synthetic source config exists before launch, prints the seeded source inventory, and reports the missing paths plus complete source and portable destination inventories on a failure.
 
 Before committing, re-fetch live branch/main refs and ensure the branch remains at the expected HEAD. Commit source/test, workflow, and docs together. Run one full CI and inspect all logs. If CopyDir's direct test passes but the workflow still misses the config, inspect the inventories and trace which source path the migration actually reads before modifying production migration logic. Continue Phase 3 until Windows smoke and Windows artifact upload pass. Phase 4 real-user checks remain pending; do not start font/UI work.
+
+
+## Continuation after Run #115 — trace incomplete Windows profile copy
+
+Repository: `majd7772233-a11y/Mineclonia-Arabic`. Work only on `work/arabic-engine-support`; do not change `main`, create another branch, or force-push. Current starting HEAD: `dab127e225c2083f37255ed4d829d207506aad4d`. Protected `main`: `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+
+Run #115 (43297133596) passed source/catalog validation, Linux/Windows configure/build, Arabic tests 17/17 on both hosts, and TestFileSys 16/16 on both hosts. Linux package and upload succeeded: Artifact 13979992497, 22,730,451 bytes, SHA-256 `6f00827ab6f3de6dca56f195e857881116993271838d03c279d6ec4b0685c579`. Windows package smoke failed after two valid `--worldlist path` invocations printed the world path under the portable profile. The synthetic legacy AppData source contained four verified files; the subsequent file assertion found all five required portable files missing and a zero-file destination inventory. Windows artifact upload was skipped.
+
+Current batch changes:
+- The 16-case `testCopyDir()` now pre-creates its target root before invoking `fs::CopyDir()`, matching the migration's pre-created staging directory.
+- First/second and existing-profile package invocations use `--trace` and capture combined output. `setup_log_params()` handles `--trace` before path initialization, so this should reveal info/verbose/trace events from path selection, migration skip/copy, each CopyFileEx call and activation/rename.
+- Missing-file diagnostics list PowerShell files, .NET files and directories separately.
+- No production migration implementation is changed unless the next trace establishes the exact failure.
+
+Before committing, re-check current branch/main refs and use the fresh live base tree; commit C++ test, workflow and all Markdown updates atomically. Run one full CI, then inspect the complete Windows trace. Require 16/16 FileSys on both platforms, successful first-run migration, second launch, AppData hash preservation, stale-staging marker preservation, existing-profile/no-merge, and Windows artifact upload. Phase 3 remains open until these pass. Phase 4 real Windows GUI acceptance is still pending. Keep font/UI work deferred.
