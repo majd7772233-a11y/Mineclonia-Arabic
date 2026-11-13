@@ -93,7 +93,7 @@ extern std::string path_share;
 extern std::string path_user;
 
 /*
-	Return the writable profile directory for a portable distribution. Existing share paths are normalized to absolute paths when possible.
+	Return the writable profile directory for a portable distribution.
 	Read-only application files stay in share_path.
 */
 [[nodiscard]]

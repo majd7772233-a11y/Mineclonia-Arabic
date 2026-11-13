@@ -58,7 +58,7 @@ This work is scoped to the Windows RUN_IN_PLACE / ZIP distribution used for desk
 - [x] Set Windows RUN_IN_PLACE path_user to <package>/Minetest through getPortableUserPath().
 - [x] Let all path_user-derived data (games, worlds, config, logs, cache, screenshots/content profile data) resolve under that profile.
 - [x] Add a TestFileSys contract assertion for the portable profile path.
-- [x] Confirm Windows and Linux base builds and the 16-test FileSys suite in CI (Run #115).
+- [x] Confirm Windows and Linux base builds and the 16-test FileSys suite in CI (Run #116).
 
 ### Phase 2 — First-launch migration and path isolation
 - [x] On Windows, copy the existing %APPDATA%/Minetest profile into the portable profile only when the destination does not exist.
@@ -66,22 +66,22 @@ This work is scoped to the Windows RUN_IN_PLACE / ZIP distribution used for desk
 - [x] Do not silently merge AppData into an existing portable profile.
 - [x] Keep the cache inside the portable profile and copy the existing cache with the rest of the profile.
 - [x] Prevent Windows RUN_IN_PLACE config lookup from falling back to files above the portable profile.
-- [ ] Verify migration and non-modification of the legacy profile in the Windows package smoke test.
+- [x] Verify first-run migration and legacy AppData immutability in the Windows package smoke test (Run #116).
 
 ### Phase 3 — Package regression coverage and documentation
 - [x] Add TestFileSys to both Linux and Windows CI.
 - [x] Add a Windows portable-package integration probe using a cloned package and a synthetic AppData profile.
-- [ ] Confirm migrated world/game/config/cache files and contents under Minetest; the corrected smoke test and direct discovery test await CI.
-- [ ] Confirm that the legacy AppData profile remains content-identical after migration.
+- [x] Confirm migrated world/game/config/cache files and contents under Minetest (Run #116).
+- [x] Confirm that the legacy AppData profile remains content-identical after migration (Run #116 SHA-256 file inventory comparison).
 - [x] Document the Windows ZIP directory layout in Luanti's README.
-- [ ] Wait for CI evidence before marking the implementation validated.
+- [x] Wait for CI evidence before marking the automated implementation validated (Run #116).
 
 ### Phase 4 — Windows user acceptance and portability audit
-Automated CI coverage being added before the real-device acceptance:
-- [ ] Launch the package from a directory containing spaces and verify that the legacy profile is copied to the portable directory.
-- [ ] Launch again and verify that the portable profile remains authoritative.
-- [ ] Start with an existing portable Minetest directory and verify that AppData is not merged or allowed to overwrite it.
-- [ ] Verify that both worlds and downloaded-game discovery resolve beneath a path_user directory containing spaces.
+**Automated CI coverage — completed in Run #116:**
+- [x] Launch the package from a directory containing spaces and verify that the legacy profile is copied to the portable directory.
+- [x] Launch again and verify that the portable profile remains authoritative.
+- [x] Start with an existing portable Minetest directory and verify that AppData is not merged or allowed to overwrite it.
+- [x] Verify that both worlds and downloaded-game discovery resolve beneath a path_user directory containing spaces (TestFileSys 16/16).
 
 Real Windows acceptance still required:
 - [ ] Run the new Windows ZIP on the user's machine and verify the profile appears at luanti/Minetest.
@@ -142,3 +142,14 @@ This shows the package initialized and world data was visible in the portable pr
 - Keep the package's existing assertions for first/second launch, migrated file contents, cache tag, AppData file hashes, stale-staging marker preservation, no process staging leftovers, and existing-profile/no-merge.
 
 **Phase status:** still in Phase 3 (package regression coverage and documentation). Automated checks from Phase 4 (path spaces, second launch, stale staging, and no-merge) are also under test. Phase 3 cannot be marked complete until the Windows package smoke and artifact upload pass. Phase 4 still requires real Windows acceptance for ContentDB, new worlds, config/log/screenshot/texture/cache writes, no new AppData writes, and removable/non-system drive behavior.
+
+
+## Run #116 — automated portable-profile acceptance passed
+
+Run #116 (ID 43376273868) tested HEAD `b0c486db3a0960c7779c2f341198fe267356f61b` and completed successfully on both operating systems. All four workflow jobs passed: scheduling, Arabic catalog/source validation, Windows x64 build/tests/package, and Linux x64 build/tests/package.
+
+Both hosts passed TestArabicTextLayout 17/17 and TestFileSys 16/16. The Windows trace proves that CopyFileEx copied the synthetic legacy cache marker, downloaded-game metadata, root-level `minetest.conf`, and world metadata into a unique process-specific staging directory, then activated the portable `Minetest` profile. The second launch detected that profile and skipped another merge. The smoke test passed content comparisons, AppData before/after SHA-256 inventory comparison, stale-staging marker preservation, cleanup of the new process staging directory, and the existing-profile/no-merge scenario. Package paths containing spaces and direct world/game discovery checks also passed.
+
+Artifacts and exact hashes are recorded in `docs/PROJECT_STATE.md` and `docs/ARABIC_ENGINE_WORKLOG.md`.
+
+**Phase boundary:** Phases 1–3 and all four automated Phase 4 checks are complete. The remaining Phase 4 items require actual use on the user's Windows installation: Content tab downloads, creating a world, config/log/screenshot/texture/cache writes, no new AppData writes, and a non-system/removable-drive launch if available. Do not declare full real-world portability until those checks pass.

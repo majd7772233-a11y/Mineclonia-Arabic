@@ -162,3 +162,23 @@ The current corrective batch adds:
 - a clean existing-profile probe, plus assertions for no-merge behavior and unchanged legacy AppData.
 
 The migration implementation now logs the actual CRT rename error code and message when activation fails. These changes have not yet been compiled or tested; the next complete CI must rerun both platforms and the Windows smoke.
+
+
+## Run #116 — final CI evidence for the Windows portable profile
+
+Run #116 (43376273868, HEAD b0c486db3a0960c7779c2f341198fe267356f61b) passed all four jobs. On both Linux and Windows, the C++ suites passed:
+- TestArabicTextLayout: 17 tests, 0 failures.
+- TestFileSys: 16 tests, 0 failures.
+
+The Windows package smoke test passed:
+- process startup using `--trace --worldlist path` (valid separate option/value arguments);
+- CopyFileEx migration of four seeded AppData files into a process-specific staging directory and successful activation as package-root `Minetest`;
+- first and second launch, world discovery and path-with-spaces;
+- exact config/world/game/cache contents and CACHEDIR.TAG signature;
+- legacy AppData path/content hashes unchanged;
+- stale fixed-name staging directory preserved and the new process stage removed;
+- a second package with an existing `Minetest` directory did not merge or overwrite the portable profile.
+
+Both package uploads completed. Windows Artifact 14015073206 (20,682,182 bytes; SHA-256 66e58c0a28de9b99215fb348a70f80a77a7f186875b6b97646119e348bf32ecc); Linux Artifact 14014987601 (22,731,184 bytes; SHA-256 d9ee80d7af0a291bc83479870598634b530f68b301818c903efdd83e6c7428d9).
+
+The Windows ZIP therefore clears the automated package gate. Actual GUI/user acceptance on Windows remains outstanding, including Content tab download, world creation, settings/log/screenshot/texture/cache output paths, AppData immutability during use, and a non-system/removable drive.

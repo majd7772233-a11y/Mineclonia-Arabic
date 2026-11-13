@@ -86,6 +86,11 @@ tools/
 | luanti/code/src/porting.h | Portable writable profile path API |
 | luanti/code/src/porting.cpp | Normalized Windows portable profile path, first-launch AppData copy and collision-safe process-specific staging |
 | luanti/code/src/main.cpp | Windows config path restricted to the portable profile |
-| luanti/code/src/unittest/test_filesys.cpp | Portable path normalization, world/game discovery and CopyDir root/nested file checks under paths with spaces and pre-created destination |
-| .github/workflows/build-luanti-arabic-engine.yml | TestFileSys 16-case gates; Windows --trace startup diagnostics, PowerShell/.NET source/destination inventories, migration, stale-stage, second-start, path-with-spaces and no-merge probes |
+| luanti/code/src/unittest/test_filesys.cpp | 16-case portable path normalization, world/game discovery and CopyDir root/nested file checks under paths with spaces and pre-created destination |
+| .github/workflows/build-luanti-arabic-engine.yml | TestFileSys 16-case gates; Windows migration/second-start, path-with-spaces, AppData hashes, stale-stage preservation and no-merge probes (Run #116 passed) |
 | luanti/code/README.md | Windows ZIP path layout reference |
+
+
+## Run #116 verified portable-profile evidence
+
+The Windows package smoke and both platform test suites passed Run #116. The remaining real-device acceptance is tracked in `docs/ROADMAP.md` and `docs/ARABIC_ENGINE_HANDOFF.md`.

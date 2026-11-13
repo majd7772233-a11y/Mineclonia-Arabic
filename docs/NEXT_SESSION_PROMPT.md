@@ -210,3 +210,14 @@ Current batch changes:
 - No production migration implementation is changed unless the next trace establishes the exact failure.
 
 Before committing, re-check current branch/main refs and use the fresh live base tree; commit C++ test, workflow and all Markdown updates atomically. Run one full CI, then inspect the complete Windows trace. Require 16/16 FileSys on both platforms, successful first-run migration, second launch, AppData hash preservation, stale-staging marker preservation, existing-profile/no-merge, and Windows artifact upload. Phase 3 remains open until these pass. Phase 4 real Windows GUI acceptance is still pending. Keep font/UI work deferred.
+
+
+## Continue from Run #116 — begin real Windows acceptance on the user's machine
+
+Repository: `majd7772233-a11y/Mineclonia-Arabic`. Branch: `work/arabic-engine-support`. Tested source HEAD: `b0c486db3a0960c7779c2f341198fe267356f61b`. Protected main: `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`. Do not change main, create branches, or force-push.
+
+Run #116 (43376273868) is fully successful. Four jobs passed: scheduling, catalog validation, Windows x64, Linux x64. Both platforms passed configure/build, TestArabicTextLayout 17/17 and TestFileSys 16/16; both packages uploaded successfully. Windows first-run migration copied the four synthetic AppData files through CopyFileEx into a process-specific staging directory and activated `Minetest`. The second launch detected and reused it. Assertions passed for file contents, cache tag, AppData SHA-256 inventory unchanged, stale staging marker preservation, no process stage left behind, paths containing spaces, world/game discovery, and existing-profile/no-merge. Linux and Windows Artifacts: 14014987601 and 14015073206 respectively.
+
+Windows artifact wrapper: 14015073206, 20,682,182 bytes, SHA-256 `66e58c0a28de9b99215fb348a70f80a77a7f186875b6b97646119e348bf32ecc`. The actual inner portable ZIP is `luanti-arabic-windows-x64-portable.zip`, 20,792,245 bytes, SHA-256 `b14c92260b6c9a315f63594d71c5008df24a95a229f8bf4d6b7bd33d65bd146f`. This ZIP was integrity-tested and contains 533 entries including `bin/luanti.exe`, builtin, Noto Sans Arabic and its license.
+
+**Portable four-phase automation is complete. Phase 4 real-device GUI acceptance is pending.** Continue by having the user extract the full ZIP into a new empty folder, preferably a path with spaces and outside their existing installation. Run `bin/luanti.exe`. Do not remove the old `%APPDATA%/Minetest` source; verify the copy appears in package-root `Minetest` and the source remains intact. Test Content tab download, create a world, save config, inspect logs/screenshots/texture packs/cache, ensure no new AppData writes, and test a non-system/removable drive if possible. Ask for screenshots/logs/results and diagnose actual failures. Keep font/UI and clipboard/text interaction work deferred until this acceptance is complete.

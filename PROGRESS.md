@@ -1,17 +1,15 @@
 # تقدم التعريب
 
-> ## نقطة حالة محرك Luanti — 2026-11-13 · Run #115 (Windows copy/trace diagnosis pending)
+> ## نقطة حالة محرك Luanti — 2026-11-13 · Run #116 ناجح؛ Phase 4 الفعلية قيد الاختبار
 >
-> Branch: `work/arabic-engine-support`; tested HEAD: `dab127e225c2083f37255ed4d829d207506aad4d`; `main` remains `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+> Branch: `work/arabic-engine-support`; tested HEAD: `b0c486db3a0960c7779c2f341198fe267356f61b`; `main` remains `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
 >
-> Run #115 اجتاز scheduling/catalog validation. اجتاز Linux configure/build واختبار العربية 17/17 وTestFileSys 16/16 وpackage/upload. Artifact Linux: 13979992497، الحجم 22,730,451 bytes، SHA-256 `6f00827ab6f3de6dca56f195e857881116993271838d03c279d6ec4b0685c579`.
+> Run #116 (ID 43376273868) اجتاز Jobs الأربعة: scheduling، catalog validation، Windows x64، Linux x64. اجتاز Windows وLinux CMake/build وTestArabicTextLayout 17/17 وTestFileSys 16/16، كما نجح install/package/upload على النظامين.
 >
-> اجتاز Windows configure/build واختبار العربية 17/17 وTestFileSys 16/16. شغّل فحص الحزمة `--worldlist path` مرتين وأظهر مسار العالم تحت `Minetest/worlds`، لكن فحص ما بعد التشغيل لم يجد الملفات الخمسة المطلوبة وكانت قائمة ملفات الوجهة فارغة. مصدر AppData التجريبي احتوى الملفات الأربعة كما هو متوقع؛ لم يُرفع Windows Artifact.
+> أثبت سجل Windows `--trace` نسخ ملفات AppData الأربعة بواسطة CopyFileEx إلى staging خاص بالعملية، وتفعيل `Minetest`، ثم استخدامه في التشغيل الثاني. نجحت فحوص محتوى config/world/game/cache وCACHEDIR.TAG، تطابق SHA-256 لمصدر AppData قبل/بعد، الحفاظ على staging القديم، تنظيف staging الجديد، المسارات ذات المسافات، واختبار عدم الدمج عند وجود Minetest مسبقاً.
 >
-> التصحيح التالي يطابق اختبار `CopyDir` مع staging موجود مسبقاً، ويفعّل `--trace` أثناء تشغيل الحزمة لكشف مسارات التهيئة وعمليات CopyFileEx وتفعيل rename، ويقارن جرد PowerShell و.NET للمجلد الوجهة.
+> Windows Artifact: 14015073206، 20,682,182 bytes، SHA-256 `66e58c0a28de9b99215fb348a70f80a77a7f186875b6b97646119e348bf32ecc`. Linux Artifact: 14014987601، 22,731,184 bytes، SHA-256 `d9ee80d7af0a291bc83479870598634b530f68b301818c903efdd83e6c7428d9`.
 >
-> ما زلنا في Phase 3 — اختبارات الحزمة والتوثيق. لا تبدأ Phase 4 الفعلية أو إصلاح الخطوط/UI قبل نجاح Windows smoke ورفع Windows Artifact.
+> اكتملت Phases 1–3 والاختبارات الآلية الأربع في Phase 4. بقي تشغيل الحزمة واختبار GUI وتدفقات التخزين الفعلية على Windows 10، واختبار قرص غير النظام إن أمكن. لا تبدأ إصلاح الخطوط/UI قبل تسجيل نتائج هذه الخطوة.
 >
-> التفاصيل في [خارطة الطريق](docs/ROADMAP.md)، [حالة المشروع](docs/PROJECT_STATE.md)، [سجل العمل](docs/ARABIC_ENGINE_WORKLOG.md)، و[رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md).
-
 > التفاصيل في [خارطة الطريق](docs/ROADMAP.md)، [حالة المشروع](docs/PROJECT_STATE.md)، [سجل العمل](docs/ARABIC_ENGINE_WORKLOG.md)، و[رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md).

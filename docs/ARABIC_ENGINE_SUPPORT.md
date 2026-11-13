@@ -460,3 +460,12 @@ The next diagnostic is intentionally non-invasive to production code:
 - enumerate destination files using both PowerShell and .NET and list directories separately.
 
 Do not substitute stdout-parsing, skip checks, or silently accept a partial profile. Wait for the trace to identify the failing boundary.
+
+
+## Run #116 — Windows portable profile migration is CI-verified
+
+Run #116 (43376273868, source HEAD b0c486db3a0960c7779c2f341198fe267356f61b) passed the full workflow on Linux and Windows. Both hosts passed TestArabicTextLayout 17/17 and TestFileSys 16/16. The Windows package smoke also passed.
+
+The Windows trace proves CopyFileEx copied the legacy profile's cache marker, downloaded-game metadata, root config and world metadata into a process-specific sibling staging path. The engine then renamed/activated it as the package-root `Minetest` profile. A second launch recognized the destination and skipped automatic AppData merging. The smoke additionally checked exact file contents, CACHEDIR.TAG, AppData path/content hashes unchanged, stale fixed-name staging preservation, cleanup of the current PID stage, path-with-spaces handling and no-merge behavior when a portable profile already exists.
+
+This closes all automated tests in Phases 1–3 and the four automated Phase 4 checks. It does not establish that GUI workflows such as ContentDB download, creating a world, saving preferences, screenshots or texture-pack selection write correctly in a real Windows installation; that is the remaining user-side Phase 4 acceptance.

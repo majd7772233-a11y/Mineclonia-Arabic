@@ -111,11 +111,8 @@ Configuration file
 - This file is created by closing Luanti for the first time.
 - A specific file can be specified on the command line:
     `--config <path-to-file>`
-- Windows ZIP / RUN_IN_PLACE builds use only `user/minetest.conf` inside the
-  portable `Minetest` profile. They do not fall back to a configuration file
-  in the package root or a parent directory.
-- Non-Windows run-in-place builds retain their existing parent-directory
-  configuration lookup behavior.
+- A run-in-place build will look for the configuration file in
+    `location_of_exe/../minetest.conf` and also `location_of_exe/../../minetest.conf`
 
 Command-line options
 --------------------

@@ -176,3 +176,19 @@ The current batch changes only the test harness and a unit test:
 3. If any expected file is still missing, print PowerShell and .NET file inventories plus directory inventories independently.
 
 After CI, inspect the trace and determine whether the application skips migration due to an existing profile, whether CopyDir sees the source entries, whether CopyFileEx succeeds, and whether rename activation reaches the final path. Change production migration code only after those facts identify the cause. Phase 3 remains open until Windows smoke and upload pass; then continue real-device Phase 4. Keep fonts/UI deferred.
+
+
+## Handoff after Run #116 — automated portable phases complete; Windows device test next
+
+Current tested source HEAD: `b0c486db3a0960c7779c2f341198fe267356f61b` on `work/arabic-engine-support`. Protected `main` remains `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+
+Run #116 (ID 43376273868) completed successfully. Scheduling and source/catalog validation passed. Linux Job 131723573700 and Windows Job 131723573694 both passed configure/build, TestArabicTextLayout 17/17, TestFileSys 16/16, install/package and artifact upload.
+
+Windows trace proves the first-launch profile migration copied cache marker, game.conf, root minetest.conf and world.mt using CopyFileEx into a unique process-specific staging folder, then activated the portable Minetest profile. The second launch used the portable profile. All file-content and cache tag checks passed; the legacy AppData file hashes were unchanged. The stale fixed-name staging marker survived, the new process staging directory was cleaned, and the existing-profile/no-merge scenario passed. Package paths containing spaces and direct world/game discovery checks also passed.
+
+Artifacts:
+- Windows Artifact 14015073206 — 20,682,182 bytes — SHA-256 66e58c0a28de9b99215fb348a70f80a77a7f186875b6b97646119e348bf32ecc.
+- Linux Artifact 14014987601 — 22,731,184 bytes — SHA-256 d9ee80d7af0a291bc83479870598634b530f68b301818c903efdd83e6c7428d9.
+- The actual inner Windows ZIP has been extracted and validated locally: `luanti-arabic-windows-x64-portable.zip`, 20,792,245 bytes, SHA-256 b14c92260b6c9a315f63594d71c5008df24a95a229f8bf4d6b7bd33d65bd146f.
+
+**Phase 1, Phase 2, Phase 3 and all automated Phase 4 checks are complete.** The remaining task is actual Windows acceptance. Extract the full ZIP into a new empty folder, preferably one containing spaces and outside the existing installation. Launch `bin/luanti.exe`. Do not delete or rename the existing `%APPDATA%/Minetest` profile: the first-launch migration must copy it and leave the source intact. Confirm the new `Minetest` folder is next to the package's bin directory. Then verify Content tab download, create a world, save settings, inspect logs/screenshots/texture packs/cache output, confirm no new writes under AppData, and if practical test from a non-system/removable drive. Record the result and any logs before beginning font/UI work. Never merge the working branch into main without the user's explicit direction.

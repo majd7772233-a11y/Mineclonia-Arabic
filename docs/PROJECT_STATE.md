@@ -1,9 +1,9 @@
 # الحالة التنفيذية الحالية للمشروع
 
-آخر تدقيق: 2026-11-12
+آخر تدقيق: 2026-11-13
 المستودع: majd7772233-a11y/Mineclonia-Arabic
 فرع العمل الوحيد: work/arabic-engine-support
-رأس تنفيذ إصلاح Workflow وLua validator: 69c62784baf96e3456239d5b954055be5e855501
+رأس الفرع الحالي: b0c486db3a0960c7779c2f341198fe267356f61b
 رأس main المفحوص: a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (لم يُعدّل).
 الأب المباشر لدفعة الإصلاح: 1c5bab319be89eb2aeba40f6626c1333dd495a7a.
 هذا التحديث توثيقي فقط، مبني فوق رأس التنفيذ أعلاه؛ اقرأ HEAD النهائي من GitHub بعد تسجيله.
@@ -304,3 +304,47 @@ This corrective batch still needs a full CI run. Phase 3 remains open until Wind
 
 ### Phase status
 Still in **Phase 3 — package regression coverage and documentation**. Do not mark Phase 2/3 complete or move to real-device Phase 4 until the Windows migration checks and Windows Artifact upload pass. Font/UI work remains deferred.
+
+
+## الحالة الحالية — Run #116 وبدء قبول Windows الفعلي (2026-11-13)
+
+**المستودع:** `majd7772233-a11y/Mineclonia-Arabic`  
+**الفرع:** `work/arabic-engine-support`  
+**رأس التنفيذ المختبَر:** `b0c486db3a0960c7779c2f341198fe267356f61b` ([commit](https://github.com/majd7772233-a11y/Mineclonia-Arabic/commit/b0c486db3a0960c7779c2f341198fe267356f61b))  
+**رأس main:** `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d` — لم يُعدّل.  
+**Run #116:** [43376273868](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43376273868) — completed / success.
+
+### وظائف CI
+| Job | Job ID | النتيجة |
+|---|---:|---|
+| Verify GitHub Actions job scheduling | 131723388273 | success |
+| Validate Arabic engine catalogs and sources | 131723410331 | success |
+| Windows x64 MSVC build, tests, and install package | 131723573694 | success |
+| Linux x64 build, tests, and install package | 131723573700 | success |
+
+### الاختبارات والحزمة
+- Windows: configure/build نجح؛ TestArabicTextLayout **17/17**؛ TestFileSys **16/16**؛ portable package smoke ورفع Windows Artifact نجحا.
+- Linux: configure/build نجح؛ TestArabicTextLayout **17/17**؛ TestFileSys **16/16**؛ install/package ورفع Linux Artifact نجحا.
+- vcpkg binary cache restore نجح على النظامين؛ save تخطى على cache hit، وليس إخفاقاً.
+
+### دليل Windows migration من سجل --trace
+- نسخت عملية التشغيل الأولى ملفات AppData الأربع (cache marker، game.conf، minetest.conf، world.mt) بواسطة CopyFileEx إلى `Minetest.migration-tmp-<pid>`.
+- سجل المحرك تفعيل المسار المحمول `<package>/Minetest` مع الإبقاء على ملف AppData الأصلي.
+- تشغيل ثانٍ تعرف على `Minetest` المحمول وصرّح بأنه لن يدمج AppData مرة أخرى.
+- نجحت مقارنة محتويات config/world/game/cache وCACHEDIR.TAG، ومقارنة SHA-256 لقائمة ملفات AppData قبل وبعد التشغيل.
+- احتُفظ بمجلد staging قديم وعلامته كما هي، ولم يتبق مجلد staging جديد خاص بالعملية.
+- نجح أيضاً اختبار وجود Minetest مسبقاً: الإعداد الموجود لم يُستبدل، وملفات AppData القديمة لم تُدمج، وبقي المصدر كما هو.
+- نجحت مسارات الحزمة التي تحتوي مسافات، واكتشاف العوالم والألعاب داخل path_user ذي المسافات في اختبار C++.
+
+### Artifacts الخاصة بـRun #116
+| النظام | Artifact ID | الحجم | SHA-256 |
+|---|---:|---:|---|
+| Windows x64 | 14015073206 | 20,682,182 bytes | `66e58c0a28de9b99215fb348a70f80a77a7f186875b6b97646119e348bf32ecc` |
+| Linux x64 | 14014987601 | 22,731,184 bytes | `d9ee80d7af0a291bc83479870598634b530f68b301818c903efdd83e6c7428d9` |
+
+تم تنزيل Windows artifact والتحقق من الغلاف. داخله الحزمة الفعلية `luanti-arabic-windows-x64.zip` بحجم 20,792,245 bytes وSHA-256 `b14c92260b6c9a315f63594d71c5008df24a95a229f8bf4d6b7bd33d65bd146f`. الأرشيف الداخلي سليم (533 entries)، ويحوي `bin/luanti.exe` وbuiltin وخط Noto Sans Arabic وترخيصه. هذا هو الملف المباشر المرفق للمستخدم؛ أما SHA أعلاه فيخص غلاف GitHub Artifact.
+
+### حدود التحقق والمرحلة التالية
+- **اكتمل:** Phase 1 فصل ملفات التطبيق عن البيانات، Phase 2 الترحيل والعزل، Phase 3 اختبارات الحزمة والتوثيق، والاختبارات الآلية الأربع في Phase 4.
+- **متبقٍ:** اختبار الملف الكامل على Windows 10 لدى المستخدم: تشغيل القائمة وواجهة GUI، تنزيل لعبة من Content tab، إنشاء عالم، حفظ config، وفحص logs/screenshots/texture packs/cache، التأكد من عدم إنشاء/تعديل بيانات جديدة في AppData، وتشغيل الحزمة من قرص غير النظام إن أمكن.
+- لا نعتبر قابلية النقل مكتملة واقعياً قبل نجاح هذه الاستخدامات على جهاز Windows. أصلح الخطوط/UI بعد إكمال هذه الجولة حسب ترتيب المشروع.

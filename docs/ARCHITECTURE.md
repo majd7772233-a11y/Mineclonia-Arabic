@@ -87,3 +87,10 @@ First-launch migration keeps its staging folder next to the final profile for a 
 ### Run #115: trace before production migration changes
 
 The latest package smoke (Run #115) showed an apparent discrepancy: two valid world-list launches printed a world beneath the portable profile, but the subsequent recursive file check found no portable files although four synthetic AppData source files were confirmed. The next workflow invocation adds `--trace` before path initialization so its stderr includes info/verbose/trace events from migration and CopyFileEx. The FileSys CopyDir regression now pre-creates the destination root to match the production staging setup. PowerShell and .NET inventories are reported independently. Do not change production copy logic until these observations identify the actual failure.
+
+
+### Run #116 — migration and staging recovery verified
+
+The successful Windows CI trace shows the production migration copying each seeded profile file with CopyFileEx into a process-specific staging sibling, then activating it as the package-root `Minetest` profile. This is tested from a package path containing spaces. A second launch reuses the portable profile; an injected stale `Minetest.migration-tmp` directory remains untouched while the PID-specific stage is cleaned. Legacy AppData files are hash-identical before/after migration. A second package scenario with an existing portable profile confirms that legacy AppData is neither merged nor allowed to overwrite existing portable files.
+
+Run #116 also passed direct C++ world/game discovery and CopyDir regression checks under paths with spaces, TestFileSys 16/16, and Arabic layout 17/17 on both Windows and Linux. Real GUI behavior and all user-data routes still require Phase 4 tests on the user's Windows installation.

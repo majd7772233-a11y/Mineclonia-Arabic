@@ -473,3 +473,54 @@ The work is still in **Phase 3 — Package regression coverage and documentation
 
 ### Validation boundary
 The new source/workflow changes still require a new complete CI run. Require 16/16 FileSys on both platforms, inspect every trace line in the Windows smoke, pass first-run/second-run and existing-profile/no-merge assertions, and upload the Windows artifact. Phase 3 remains open. Real-device Phase 4 and UI/font work remain deferred.
+
+
+## 2026-11-13 — Run #116: complete portable-profile CI acceptance
+
+**Starting/tested HEAD:** b0c486db3a0960c7779c2f341198fe267356f61b  
+**Branch:** work/arabic-engine-support  
+**Protected main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged)  
+**Run:** #116 — 43376273868 — completed / success  
+**Purpose:** close Windows first-launch migration, staging recovery and package regression gates, then begin real-device Phase 4.
+
+### Actual CI evidence
+All four jobs succeeded:
+- Scheduling — Job 131723388273.
+- Catalog/source validation — Job 131723410331.
+- Windows x64 MSVC — Job 131723573694.
+- Linux x64 — Job 131723573700.
+
+Both platforms configured and built successfully. Both passed TestArabicTextLayout 17/17 and TestFileSys 16/16. Install/package checks and both artifact uploads passed.
+
+### Windows trace and integration results
+The first package launch used a package path containing spaces and a synthetic AppData profile. The trace recorded successful CopyFileEx operations for:
+- cache/legacy-cache.marker
+- games/portable-game-probe/game.conf
+- minetest.conf
+- worlds/portable-world-probe/world.mt
+
+All four files were copied under a process-specific staging path, and the engine logged successful activation of the portable `Minetest` directory while retaining the AppData source. A second launch logged that the portable profile already existed and that AppData would not be merged.
+
+The Windows smoke assertions passed:
+- exact contents of migrated config, world, game and cache files;
+- CACHEDIR.TAG signature and portable cache location;
+- AppData file inventory and SHA-256 hashes unchanged;
+- stale legacy staging marker preserved;
+- no process-specific staging directory left behind;
+- package copied/launched under a path with spaces;
+- pre-existing portable profile unchanged, with legacy-only AppData files not merged and the old source retained.
+The trace showed world discovery beneath the portable Minetest/worlds folder on both first and second launch.
+
+### Artifacts
+- Windows: Artifact 14015073206, 20,682,182 bytes, SHA-256 `66e58c0a28de9b99215fb348a70f80a77a7f186875b6b97646119e348bf32ecc`.
+- Linux: Artifact 14014987601, 22,731,184 bytes, SHA-256 `d9ee80d7af0a291bc83479870598634b530f68b301818c903efdd83e6c7428d9`.
+- The GitHub Windows artifact wrapper was downloaded and validated. Its inner portable ZIP is `luanti-arabic-windows-x64.zip`, 20,792,245 bytes, SHA-256 `b14c92260b6c9a315f63594d71c5008df24a95a229f8bf4d6b7bd33d65bd146f`; ZIP integrity passed with 533 entries, including bin/luanti.exe, builtin, Noto Sans Arabic and its OFL license.
+
+### Four-phase portable implementation status
+- Phase 1 — application/share files separated from writable Minetest profile: complete.
+- Phase 2 — first-launch AppData copy, cache/config isolation, no automatic merge: complete.
+- Phase 3 — C++ and packaged regression coverage, documentation, Linux/Windows artifact evidence: complete.
+- Phase 4 automated portion — path-with-spaces, repeat launch, stale staging, AppData immutability, existing-profile/no-merge and world/game discovery: complete.
+
+### Not yet user-tested
+Run #116 is CI/package evidence, not GUI usage on the user's laptop. The complete Windows ZIP still needs local verification: opening the application and menu, Content tab download, creating a world, config/log/screenshot/texture/cache output paths, no new AppData writes, and launch from a non-system/removable drive if available. Do not claim real-world portability until these steps are confirmed. Font/UI and later Arabic interaction checks remain subsequent work.
