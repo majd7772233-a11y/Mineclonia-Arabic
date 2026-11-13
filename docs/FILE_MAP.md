@@ -114,3 +114,10 @@ Run #118 is required to validate the new branch head again.
 - Windows artifact: `14018204334`; inner ZIP integrity passed with 533 entries.
 - Directories and key payload: `bin/luanti.exe`, builtin, Noto Sans Arabic and its OFL license.
 - Remaining manual acceptance and test steps: `docs/ROADMAP.md`, `docs/PROJECT_STATE.md`, and `docs/ARABIC_ENGINE_HANDOFF.md`.
+
+## Mixed-script vertical layout
+
+- `luanti/code/src/irrlicht_changes/font_text_layout.h`: shared fallback-chain ascender/descender/height calculation.
+- `luanti/code/src/irrlicht_changes/CGUITTFont.h/.cpp`: common baseline, fallback-aware line height, raster placement and FreeType metric sizing.
+- `luanti/code/src/unittest/test_arabic_text_layout.cpp`: Arimo + Noto mixed Latin/Arabic/digit raster-bound regression.
+- `.github/workflows/build-luanti-arabic-engine.yml`: 18/18 Arabic regression gates on Linux and Windows.

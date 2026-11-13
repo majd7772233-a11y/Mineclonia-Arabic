@@ -259,3 +259,21 @@ Now perform the actual user-side Phase 4 acceptance:
 5. Verify the old AppData profile remains intact; test a non-system/removable drive if available.
 
 Record screenshots, exact file paths, and any logs. Diagnose any actual runtime issue before starting font/UI improvements. Do not merge the branch into main without explicit instruction.
+
+## Continuation — mixed Arabic/Latin baseline and clipping
+
+Repository: `majd7772233-a11y/Mineclonia-Arabic`. Work only on `work/arabic-engine-support`. Never modify `main`, create branches, or force-push. Previous HEAD before this change: `bc446c40f7d4f37625052fed7dec4cbdc21421a1`. Protected main: `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+
+The user's Windows GUI runs Arabic but shows vertical mismatch: Arabic sits lower than English/digits and short labels/progress/inventory text are clipped at the bottom.
+
+Diagnosis: the default UI font chain uses Arimo for Latin/digits and Noto Sans Arabic as its fallback. CGUITTFont previously positioned glyphs using each face's independent ascender; line height used only the primary face. This creates inconsistent baselines and can under-measure fallback descenders.
+
+The source/doc batch:
+- calculates one baseline from the maximum ascender across the full fallback chain;
+- calculates line height from maximum face height plus the greatest ascender/deepest descender, with one pixel of clearance;
+- initializes font metrics using FreeType width=0,height=size like the shaping/rasterization paths;
+- uses symmetric rounding for signed Raqm y offsets;
+- adds TestArabicTextLayout testMixedFontBaselineAndLineBox using Arimo, Noto Sans Arabic and "Luanti مرحبا 123";
+- updates both CI summary gates to require 18 tests.
+
+Review all files in the new commit. Run the source validator and one full Linux/Windows CI. Require configure/build and Arabic 18/18 on both systems; inspect package and artifact uploads. Do not claim the visual issue fixed until the user retests small labels, inventory components, loading/progress text and mixed Arabic/English/digit lines in a fresh Windows build. If a widget still clips, inspect its fixed element bounds and clipping owner before a further change.

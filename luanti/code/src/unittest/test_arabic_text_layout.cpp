@@ -161,6 +161,7 @@ public:
 	void testCombiningMarkCluster();
 	void testExplicitParagraphDirection();
 	void testFallbackFontRange();
+	void testMixedFontBaselineAndLineBox();
 	void testEditBoxTextReplacementLimits();
 	void testBuiltinFileSha256Manifest();
 };
@@ -184,6 +185,7 @@ void TestArabicTextLayout::runTests(IGameDef *gamedef)
 	TEST(testCombiningMarkCluster);
 	TEST(testExplicitParagraphDirection);
 	TEST(testFallbackFontRange);
+	TEST(testMixedFontBaselineAndLineBox);
 	TEST(testEditBoxTextReplacementLimits);
 	TEST(testBuiltinFileSha256Manifest);
 }
@@ -965,6 +967,90 @@ void TestArabicTextLayout::testFallbackFontRange()
 	UASSERT(found_fallback);
 }
 
+
+
+void TestArabicTextLayout::testMixedFontBaselineAndLineBox()
+{
+	FreeTypeFont latin_font;
+	FreeTypeFont arabic_font;
+	initializeFont(latin_font, "fonts/Arimo-Regular.ttf");
+	initializeFont(arabic_font, "fonts/NotoSansArabic-Regular.ttf");
+
+	const auto get_vertical_metrics = [](FT_Face face) {
+		const FT_Size_Metrics &metrics = face->size->metrics;
+		return gui::text_layout::FontVerticalMetrics{
+				static_cast<int>(metrics.ascender),
+				static_cast<int>(metrics.descender),
+				static_cast<int>(metrics.height),
+		};
+	};
+
+	const auto synthetic = gui::text_layout::getSharedFontLineMetrics({
+			{10 * 64, -2 * 64, 13 * 64},
+			{14 * 64, -5 * 64, 18 * 64},
+	});
+	UASSERTEQ(int, synthetic.baseline, 14);
+	UASSERTEQ(int, synthetic.height, 20);
+
+	const auto line_metrics = gui::text_layout::getSharedFontLineMetrics({
+			get_vertical_metrics(latin_font.face),
+			get_vertical_metrics(arabic_font.face),
+	});
+	const auto ceil_pixels = [](FT_Pos value) {
+		return value > 0 ? static_cast<int>((value + 63) / 64) : 0;
+	};
+	const int expected_baseline = std::max(
+			ceil_pixels(latin_font.face->size->metrics.ascender),
+			ceil_pixels(arabic_font.face->size->metrics.ascender));
+	const int expected_descender = std::max(
+			ceil_pixels(-latin_font.face->size->metrics.descender),
+			ceil_pixels(-arabic_font.face->size->metrics.descender));
+	UASSERTEQ(int, line_metrics.baseline, expected_baseline);
+	UASSERT(line_metrics.height >= expected_baseline + expected_descender + 1);
+
+	// Mirror the default UI chain: Arimo supplies Latin/digits and Noto Arabic.
+	const std::u32string text = U"Luanti مرحبا 123";
+	constexpr size_t arabic_start = 7;
+	constexpr size_t arabic_length = 5;
+	RaqmLayout layout;
+	setRaqmText(layout, latin_font.face, text);
+	UASSERT(raqm_set_freetype_face_range(layout.value, arabic_font.face,
+			arabic_start, arabic_length));
+	UASSERT(raqm_set_freetype_load_flags_range(layout.value, FT_LOAD_DEFAULT,
+			arabic_start, arabic_length));
+	UASSERT(raqm_set_language(layout.value, "ar", arabic_start, arabic_length));
+	UASSERT(raqm_set_par_direction(layout.value, RAQM_DIRECTION_DEFAULT));
+	UASSERT(raqm_layout(layout.value));
+
+	size_t glyph_count = 0;
+	raqm_glyph_t *glyphs = raqm_get_glyphs(layout.value, &glyph_count);
+	UASSERT(glyphs != nullptr);
+	UASSERT(glyph_count > 0);
+	bool found_latin = false;
+	bool found_arabic = false;
+	for (size_t i = 0; i < glyph_count; ++i) {
+		const raqm_glyph_t &shaped = glyphs[i];
+		FT_Face face = shaped.ftface;
+		UASSERT(face == latin_font.face || face == arabic_font.face);
+		found_latin = found_latin || face == latin_font.face;
+		found_arabic = found_arabic || face == arabic_font.face;
+		UASSERT(FT_Set_Pixel_Sizes(face, 0, 32) == 0);
+		UASSERT(FT_Load_Glyph(face, shaped.index,
+				FT_LOAD_DEFAULT | FT_LOAD_RENDER) == 0);
+		const FT_GlyphSlot slot = face->glyph;
+		if (slot->bitmap.width == 0 || slot->bitmap.rows == 0)
+			continue;
+		const int y_offset = shaped.y_offset >= 0
+				? (shaped.y_offset + 32) / 64
+				: -((-shaped.y_offset + 32) / 64);
+		const int glyph_top = line_metrics.baseline - y_offset - slot->bitmap_top;
+		const int glyph_bottom = glyph_top + static_cast<int>(slot->bitmap.rows);
+		UASSERT(glyph_top >= 0);
+		UASSERT(glyph_bottom <= line_metrics.height);
+	}
+	UASSERT(found_latin);
+	UASSERT(found_arabic);
+}
 
 
 void TestArabicTextLayout::testEditBoxTextReplacementLimits()

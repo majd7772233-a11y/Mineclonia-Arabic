@@ -82,3 +82,7 @@ Run #117 tested a later HEAD and failed only in the Windows package test because
 The current correction restores the exact source, tests and trace-based package workflow from the successful Run #116 tree. It restores absolute share-path normalization, process-specific staging with collision recovery, 16 TestFileSys cases, and on-disk/trace checks instead of stdout matching. A new complete CI run is required before using a package from the current branch head.
 
 See [ROADMAP](docs/ROADMAP.md), [PROJECT_STATE](docs/PROJECT_STATE.md), and [HANDOFF](docs/ARABIC_ENGINE_HANDOFF.md). Real Windows 10 acceptance is still required after the corrected CI produces a Windows ZIP: GUI launch, Content tab download, new world, saved settings, logs/screenshots/texture/cache paths, no new AppData writes, and a non-system/removable-drive launch if available. Do not start font/UI work until those checks are recorded.
+
+## Mixed Arabic/Latin text rendering — 2026-11-13
+
+The user confirmed that the portable Windows application launches and Arabic glyphs appear, then reported vertical mismatch between Arabic and adjacent English/digits plus bottom clipping in small labels, progress/loading text and inventory components. The source correction now uses one baseline across Arimo and Noto Sans Arabic and measures line height across the complete fallback chain. A mixed-font regression raises the Arabic layout suite to 18 tests. The change is awaiting a fresh Linux/Windows CI run and visual confirmation from the user; it is not yet declared fixed.

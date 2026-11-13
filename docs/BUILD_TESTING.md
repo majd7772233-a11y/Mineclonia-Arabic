@@ -205,3 +205,14 @@ Run #118 (43385926666) tested `8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192` and com
 Windows artifact 14018204334: 20,682,129 bytes; SHA-256 `88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571`. Inner Windows ZIP: 20,792,171 bytes; SHA-256 `36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39`; ZIP integrity passed with 533 entries. Linux artifact 14018973226: 22,731,333 bytes; SHA-256 `9072268c9b3a87bb75a5a01bd0c09fd713733e637c2ad01e9a12575ce7f38c6f`.
 
 The remaining Phase 4 acceptance is manual Windows 10 GUI and storage use: launch the ZIP, Content tab download, new world, saved settings, logs/screenshots/texture/cache, no new AppData writes, and a non-system/removable drive if practical.
+
+## Mixed-font baseline and line-height regression — pending CI
+
+TestArabicTextLayout now contains 18 cases. The added mixed-font test loads the real Arimo primary face and Noto Sans Arabic fallback, shapes the line "Luanti مرحبا 123", verifies that both faces supplied glyphs and checks the rasterized glyph bounds against the shared line box. A separate synthetic-metrics case verifies the maximum-ascender/deepest-descender calculation.
+
+Both Linux and Windows workflow summaries now require:
+`Module TestArabicTextLayout passed (0 failures / 18 tests)`.
+
+The production draw path and getDimension use one baseline for every face in the fallback chain. Line height covers the greatest nominal font height and the combined maximum ascender/deepest descender, plus one pixel of clearance. This avoids the old per-face y placement and reduces bottom clipping caused by measuring only the primary Latin face.
+
+These checks are pending the next full Linux/Windows build and package CI. The actual client must still be visually retested for short labels, inventory text, loading/progress messages and mixed Arabic/English/digit lines.

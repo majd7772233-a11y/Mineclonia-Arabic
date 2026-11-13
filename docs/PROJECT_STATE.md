@@ -408,3 +408,31 @@ Run #116 (ID 43376273868) نجح على الرأس `b0c486db3a0960c7779c2f341198
 
 ### ما تبقى
 كل اختبارات portability الآلية اكتملت. لم يجرِ بعد قبول GUI الفعلي على جهاز Windows 10: تشغيل الواجهة، تنزيل لعبة من Content tab، إنشاء عالم، حفظ الإعدادات، وفحص logs/screenshots/texture packs/cache، والتأكد من عدم إنشاء بيانات جديدة تحت AppData، وتجربة قرص غير النظام إذا أمكن. لا نعلن اكتمال القابلية الواقعية للنقل حتى تسجل نتائج هذه الخطوة. تبقى الخطوط/UI مؤجلة إلى ما بعد قبول تخزين بيانات المستخدم.
+
+## 2026-11-13 — Mixed-script baseline and fallback-aware line box
+
+**Starting HEAD:** bc446c40f7d4f37625052fed7dec4cbdc21421a1  
+**Branch:** `work/arabic-engine-support`  
+**Protected main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged)  
+**User report:** Arabic words and mixed Arabic/English/digits appeared vertically staggered; the lower parts of small labels, progress text and inventory elements were clipped.
+
+### Source diagnosis
+- The default UI chain uses Arimo for Latin/digits and Noto Sans Arabic as the primary Arabic fallback.
+- CGUITTFont previously computed glyph y positions using the ascender of each glyph owner's face. A line mixing Arimo and Noto therefore had more than one baseline.
+- getLineHeight/getDimension used only the primary face's metrics, leaving the fallback's deeper descender outside the measured line box.
+- Font initialization requested vertical metrics with width=size and height=0, while shaping and glyph rasterization use width=0 and height=size.
+
+### Corrective implementation in this batch
+- Collect ascender, descender and nominal height for the complete fallback chain in signed 26.6 units.
+- Establish one baseline from the maximum ascender and use it for all glyphs in the line, regardless of the face that supplied the glyph.
+- Compute line height to cover the maximum nominal height and the combined maximum ascender/deepest descender, plus one pixel of clearance.
+- Initialize the font's stored FreeType metrics using the same pixel-height sizing as shaping and rasterization.
+- Convert signed Raqm y offsets symmetrically.
+- Add an 18th Arabic layout test using Arimo + Noto Sans Arabic and a mixed Latin/Arabic/digit line; assert the rasterized glyphs fit the shared line box.
+- Update both Linux and Windows CI gates to require the exact 18-test success summary.
+
+### Validation boundary
+This batch is committed with its supporting documentation. The next full Linux/Windows workflow must prove compilation, Arabic 18/18, package integrity and artifact upload. Real Windows GUI acceptance must then confirm that short labels, loading/progress text, inventory components and mixed lines no longer clip or appear staggered. The issue is not declared resolved before those checks.
+
+### Immediate next step
+Run one full CI after commit. Require TestArabicTextLayout 18/18 on both platforms. Then have the user retest short labels, loading/progress text, inventory elements and mixed Arabic/English/digit strings. If any clipping remains, trace the specific widget bounds and clipping rectangle before changing layout geometry.

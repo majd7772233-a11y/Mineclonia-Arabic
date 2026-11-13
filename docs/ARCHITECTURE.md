@@ -106,3 +106,11 @@ The corrective batch restores the exact Run #116 source and workflow files. The 
 ## Run #118 — portable migration restored and CI-verified
 
 The restored source/workflow baseline passed Run #118 on Linux and Windows. Both hosts passed Arabic layout 17/17 and FileSys 16/16. The Windows trace records four successful CopyFileEx calls to a PID-specific stage and activation of the portable Minetest profile. Repeated startup, AppData immutability, stale staging preservation, PID-stage cleanup and existing-profile/no-merge all passed. This is automated package evidence; GUI feature/storage use still requires actual Windows acceptance.
+
+## Mixed-script vertical alignment and fallback-aware line boxes
+
+The default GUI font chain uses Arimo for Latin/digits and Noto Sans Arabic as the Arabic fallback. Raqm assigns glyphs from both faces within one shaped line. The glyphs must use one shared baseline calculated from the maximum ascender across the full fallback chain; using each face's own ascender made Arabic glyphs sit below adjacent Latin and numeric glyphs.
+
+CGUITTFont now uses fallback-aware line metrics for both drawing and getDimension. The line box covers the maximum nominal face height and the combined maximum ascender/deepest descender, with one pixel of clearance. Font metric initialization also uses the same width=0,height=size FreeType request as shaping and glyph rasterization. The signed vertical Raqm offset is rounded symmetrically.
+
+The 18th Arabic layout regression uses Arimo + Noto and a line mixing Latin, Arabic and digits, then checks actual raster bounds against the shared line box. It does not alter logical source ordering, advances, clusters or BiDi resolution. Widget-specific clipping may still require inspection if a fixed-size formspec element supplies a smaller clip rectangle than its measured text.

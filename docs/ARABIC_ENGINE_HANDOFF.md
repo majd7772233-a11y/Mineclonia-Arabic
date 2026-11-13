@@ -222,3 +222,20 @@ The Windows trace proves CopyFileEx copied all four synthetic AppData files into
 **Current downloadable file:** the actual inner Windows ZIP from Artifact 14018204334 is 20,792,171 bytes, SHA-256 `36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39`; its 533-entry ZIP integrity check passed. Artifact wrapper SHA-256 is `88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571`.
 
 Next is real Windows 10 acceptance, not another engine phase: extract to a new empty directory (preferably a path with spaces, outside the existing installation), launch `bin/luanti.exe`, allow first-run migration without deleting or renaming `%APPDATA%/Minetest`, and verify the package-root `Minetest` folder. Check Content tab download, create a world, save settings, inspect logs/screenshots/texture/cache paths, confirm no new writes into AppData, and try a non-system/removable drive if practical. Ask for the observed outcome and any screenshot/log when the user finishes. Keep font/UI work deferred. Do not merge this branch into main.
+
+## Handoff — mixed-script baseline and Arabic descender clipping
+
+Starting HEAD before the fix: bc446c40f7d4f37625052fed7dec4cbdc21421a1. Work only on `work/arabic-engine-support`; protected main remains a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d.
+
+The user confirmed Arabic appears in the Windows portable application, then reported that Arabic text sat lower than Latin/digits in the same line and that small labels, progress text and inventory elements were clipped at the bottom.
+
+Source review found that the primary UI face is Arimo and Arabic glyphs are supplied by Noto Sans Arabic through the fallback chain. CGUITTFont used each glyph owner's own ascender when placing glyphs, creating two baselines in one shaped line. Its line height also measured only the primary face, ignoring the fallback's deeper descender.
+
+The current atomic batch replaces per-face baselines with a shared maximum-ascender baseline, sizes the line box from the entire fallback chain, uses matching FreeType pixel-height metrics, adds an Arimo/Noto mixed-text raster-bound test and changes both CI test gates to 18.
+
+Next steps:
+1. Inspect the pushed HEAD and complete diff; verify all required Markdown files are in the same source commit.
+2. Run the Arabic test-source validator and one full Linux/Windows CI.
+3. Require configure/build success and TestArabicTextLayout 18/18 on both platforms, with package checks and uploads.
+4. Ask the user to repeat the short-label, inventory, progress-bar and mixed-string GUI checks using the fresh Windows package.
+5. If clipping remains in specific fixed-size controls, inspect the owner widget's sizing and clipping rectangle instead of adding arbitrary global offsets or padding.

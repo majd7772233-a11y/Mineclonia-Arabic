@@ -282,8 +282,9 @@ namespace gui
 					load_flags |= FT_LOAD_TARGET_NORMAL;
 			}
 
-			/// Gets the overall font height, including a line gap of 1 px
-			inline u32 getLineHeight() const { return font_metrics.height / 64 + 1; }
+			/// Shared baseline and line height for this font and its fallback chain.
+			std::pair<s32, u32> getLineMetrics() const;
+			inline u32 getLineHeight() const { return getLineMetrics().second; }
 			u32 getWidthFromCharacter(char32_t c) const;
 			u32 getHeightFromCharacter(char32_t c) const;
 			/// Returns (index + 1) of `this->Glyphs`

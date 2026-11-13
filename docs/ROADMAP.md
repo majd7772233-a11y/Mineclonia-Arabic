@@ -215,3 +215,15 @@ The Run #117 stdout regression is therefore corrected by restoration of the Run 
 
 ### Phase status
 The current tested code/workflow commit is CI-accepted on both operating systems. Phases 1–3 and the automated Phase 4 coverage remain complete. The only remaining acceptance is on the user's Windows 10 installation: launch the complete ZIP, use the GUI and Content tab, create a world, save settings, inspect logs/screenshots/texture packs/cache, confirm no new AppData writes, and optionally launch from a non-system/removable drive. Real-world portability must not be declared complete before those checks. Keep font/UI work deferred until the user-side storage tests are recorded.
+
+## Rendering follow-up — mixed-script vertical alignment and clipping
+
+- [x] Trace the default font chain: Arimo primary, Noto Sans Arabic fallback.
+- [x] Replace per-face glyph baselines with a shared baseline from the maximum ascender across the fallback chain.
+- [x] Size line height to include the deepest fallback descender and largest nominal face height.
+- [x] Add a mixed Arimo/Noto Arabic/Latin/digit regression test and require 18 Arabic tests in CI.
+- [ ] Pass full Linux and Windows configure/build/package CI with TestArabicTextLayout 18/18.
+- [ ] Recheck short labels, inventory contents, loading/progress text and mixed lines on the user's Windows GUI.
+- [ ] If any fixed-size control still clips, trace that widget's rectangle and clipping owner before changing its geometry.
+
+Do not call the display issue resolved until the fresh Windows build passes CI and the user confirms the GUI result.

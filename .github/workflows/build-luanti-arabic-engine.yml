@@ -183,7 +183,7 @@ jobs:
           if [ "$status" -ne 0 ]; then
             exit "$status"
           fi
-          grep -Fq 'Module TestArabicTextLayout passed (0 failures / 17 tests)' "$log"
+          grep -Fq 'Module TestArabicTextLayout passed (0 failures / 18 tests)' "$log"
       - name: Run filesystem path regression module
         working-directory: luanti/code
         shell: bash
@@ -337,7 +337,7 @@ jobs:
           $testExitCode = $LASTEXITCODE
           $testOutput | Tee-Object -FilePath $log
           if ($testExitCode -ne 0) { exit $testExitCode }
-          $expectedSummary = "Module TestArabicTextLayout passed (0 failures / 17 tests)"
+          $expectedSummary = "Module TestArabicTextLayout passed (0 failures / 18 tests)"
           if (-not (Select-String -Path $log -SimpleMatch -Pattern $expectedSummary -Quiet)) {
             Get-Content $log
             throw "Arabic text-layout tests did not report the expected 17-test zero-failure summary."

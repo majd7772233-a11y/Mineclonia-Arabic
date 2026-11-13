@@ -611,8 +611,9 @@ bool CGUITTFont::load(SGUITTFace *face, const u32 size, const bool antialias,
 	m_face.grab(face);
 	tt_face = face->face;
 
-	// Store font metrics.
-	FT_Set_Pixel_Sizes(tt_face, size, 0);
+	// Store metrics at the same pixel height used for shaping and rasterization.
+	if (FT_Set_Pixel_Sizes(tt_face, 0, size) != 0)
+		return false;
 	font_metrics = tt_face->size->metrics;
 
 	verbosestream << tt_face->num_glyphs << " glyphs, ascender=" << font_metrics.ascender
@@ -631,6 +632,23 @@ bool CGUITTFont::load(SGUITTFace *face, const u32 size, const bool antialias,
 	}
 
 	return true;
+}
+
+std::pair<s32, u32> CGUITTFont::getLineMetrics() const
+{
+	std::vector<text_layout::FontVerticalMetrics> fallback_metrics;
+	for (const CGUITTFont *font = this; font;) {
+		fallback_metrics.push_back({
+				static_cast<int>(font->font_metrics.ascender),
+				static_cast<int>(font->font_metrics.descender),
+				static_cast<int>(font->font_metrics.height),
+		});
+		font = font->fallback
+				? static_cast<const CGUITTFont *>(font->fallback.get()) : nullptr;
+	}
+
+	const auto metrics = text_layout::getSharedFontLineMetrics(fallback_metrics);
+	return {metrics.baseline, metrics.height};
 }
 
 CGUITTFont::~CGUITTFont()
@@ -767,7 +785,8 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 	const std::vector<video::SColor> &colors = text.getColors();
 	const std::vector<size_t> u32_to_wide = makeU32ToWideIndexMap(wide_text);
 	const std::u32string utext = convertWCharToU32String(wide_text.c_str());
-	const u32 line_height = getLineHeight();
+	const auto line_metrics = getLineMetrics();
+	const u32 line_height = line_metrics.second;
 
 	core::position2d<s32> base = position.UpperLeftCorner;
 	if (vcenter) {
@@ -802,7 +821,9 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 							? base.X + (position.getWidth() - line_width) / 2
 							: base.X;
 					int pen_x = line_x * 64 - min_pen;
-					const s32 baseline = base.Y + font_metrics.ascender / 64;
+					// All faces in a mixed line use one visual baseline; the line
+					// box includes the fallback chain's deepest descender.
+					const s32 baseline = base.Y + line_metrics.first;
 
 					for (size_t i = 0; i < glyph_count; ++i) {
 						const raqm_glyph_t &shaped = glyphs[i];
@@ -823,9 +844,8 @@ void CGUITTFont::draw(const EnrichedString &text, const core::rect<s32>& positio
 
 						const s32 glyph_x = static_cast<s32>((glyph_pen_x + shaped.x_offset + 32) / 64)
 								+ glyph->offset.X;
-						const s32 owner_baseline = base.Y + owner->font_metrics.ascender / 64;
-						const s32 glyph_y = owner_baseline - static_cast<s32>((shaped.y_offset + 32) / 64)
-								- glyph->offset.Y;
+						const s32 glyph_y = baseline -
+								fixedToSignedPixels(shaped.y_offset) - glyph->offset.Y;
 						const core::recti glyph_rect(
 							core::position2di(glyph_x, glyph_y),
 							core::dimension2di(glyph->source_rect.getWidth(),

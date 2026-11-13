@@ -485,3 +485,30 @@ Run #118 (43385926666, tested commit 8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192) c
 The Windows artifact wrapper is ID 14018204334 (20,682,129 bytes; SHA-256 88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571). Its inner ZIP is 20,792,171 bytes with SHA-256 36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39 and passed ZIP integrity validation.
 
 Automated portable migration checks are complete. Real Windows GUI behavior and actual ContentDB/world/settings/log/screenshot/texture/cache routes remain user-side acceptance. Do not call the application completely portable in real use until those checks are recorded.
+
+## 2026-11-13 — Mixed-script baseline and fallback-aware line box
+
+**Starting HEAD:** bc446c40f7d4f37625052fed7dec4cbdc21421a1  
+**Branch:** `work/arabic-engine-support`  
+**Protected main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged)  
+**User report:** Arabic words and mixed Arabic/English/digits appeared vertically staggered; the lower parts of small labels, progress text and inventory elements were clipped.
+
+### Source diagnosis
+- The default UI chain uses Arimo for Latin/digits and Noto Sans Arabic as the primary Arabic fallback.
+- CGUITTFont previously computed glyph y positions using the ascender of each glyph owner's face. A line mixing Arimo and Noto therefore had more than one baseline.
+- getLineHeight/getDimension used only the primary face's metrics, leaving the fallback's deeper descender outside the measured line box.
+- Font initialization requested vertical metrics with width=size and height=0, while shaping and glyph rasterization use width=0 and height=size.
+
+### Corrective implementation in this batch
+- Collect ascender, descender and nominal height for the complete fallback chain in signed 26.6 units.
+- Establish one baseline from the maximum ascender and use it for all glyphs in the line, regardless of the face that supplied the glyph.
+- Compute line height to cover the maximum nominal height and the combined maximum ascender/deepest descender, plus one pixel of clearance.
+- Initialize the font's stored FreeType metrics using the same pixel-height sizing as shaping and rasterization.
+- Convert signed Raqm y offsets symmetrically.
+- Add an 18th Arabic layout test using Arimo + Noto Sans Arabic and a mixed Latin/Arabic/digit line; assert the rasterized glyphs fit the shared line box.
+- Update both Linux and Windows CI gates to require the exact 18-test success summary.
+
+### Validation boundary
+This batch is committed with its supporting documentation. The next full Linux/Windows workflow must prove compilation, Arabic 18/18, package integrity and artifact upload. Real Windows GUI acceptance must then confirm that short labels, loading/progress text, inventory components and mixed lines no longer clip or appear staggered. The issue is not declared resolved before those checks.
+
+The change preserves Raqm shaping, logical text order, cluster boundaries and BiDi run ordering. Only the vertical baseline and line-box metrics are shared across the fallback chain. The new regression test does not replace manual rendering checks in the actual client.

@@ -21,6 +21,46 @@
 namespace gui {
 namespace text_layout {
 
+// FreeType reports these values in signed 26.6 pixel units. A mixed-script
+// line can use several faces, so all fallback faces share one baseline/line box.
+struct FontVerticalMetrics
+{
+	int ascender = 0;
+	int descender = 0;
+	int height = 0;
+};
+
+struct SharedFontLineMetrics
+{
+	int baseline = 0;
+	int height = 1;
+};
+
+inline int ceilFixed26Dot6ToPixels(int value)
+{
+	return value > 0 ? (value + 63) / 64 : 0;
+}
+
+inline SharedFontLineMetrics getSharedFontLineMetrics(
+		const std::vector<FontVerticalMetrics> &fonts)
+{
+	int max_ascender = 0;
+	int min_descender = 0;
+	int max_height = 0;
+	for (const FontVerticalMetrics &font : fonts) {
+		max_ascender = std::max(max_ascender, font.ascender);
+		min_descender = std::min(min_descender, font.descender);
+		max_height = std::max(max_height, font.height);
+	}
+
+	const int baseline = ceilFixed26Dot6ToPixels(max_ascender);
+	const int descender = ceilFixed26Dot6ToPixels(-min_descender);
+	const int metrics_height = ceilFixed26Dot6ToPixels(
+			std::max(max_height, max_ascender - min_descender));
+	const int ink_height = baseline + descender;
+	return {baseline, std::max(metrics_height, ink_height) + 1};
+}
+
 struct ShapingClusterBoundaries
 {
 	bool available = false;
