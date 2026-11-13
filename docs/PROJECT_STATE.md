@@ -366,3 +366,45 @@ Run #116 (ID 43376273868) نجح على الرأس `b0c486db3a0960c7779c2f341198
 **التصحيح الجاري:** استعادة `porting.cpp` و`porting.h` و`test_filesys.cpp` وWorkflow حرفياً من الرأس المختبر `b0c486db3a0960c7779c2f341198fe267356f61b`. ستبقى بقية هذه الحالة موثقة كما هي، ولا نعلن عودة القبول حتى يجتاز Run #118 الجديد.
 
 **المرحلة التالية بعد CI:** استلام ZIP Windows من Run #118، ثم اختبار GUI وContent tab وإنشاء عالم وحفظ الإعدادات وفحص logs/screenshots/texture/cache وعدم وجود كتابات جديدة إلى AppData؛ ثم اختبار قرص غير النظام إن أمكن. لا تبدأ الخطوط/UI قبل تسجيل نتائج ذلك.
+
+
+## الحالة الحالية بعد Run #118 — CI مستعاد وناجح بالكامل (2026-11-13)
+
+**المستودع:** `majd7772233-a11y/Mineclonia-Arabic`  
+**الفرع:** `work/arabic-engine-support`  
+**الرأس البرمجي المختبر:** `8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192`  
+**main:** `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d` — لم يتغير.  
+**Run #118:** [43385926666](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43385926666) — completed / success.
+
+### وظائف CI
+| Job | Job ID | النتيجة |
+|---|---:|---|
+| Verify GitHub Actions job scheduling | 131754268500 | success |
+| Validate Arabic engine catalogs and sources | 131754303790 | success |
+| Windows x64 MSVC build, tests, and install package | 131754595207 | success |
+| Linux x64 build, tests, and install package | 131754594968 | success |
+
+نجح configure/build على المنصتين، واختبار العربية **17/17**، واختبار الملفات **16/16**، وتثبيت الحزمة ورفع Artifact لكل منصة.
+
+### دليل Windows migration
+أثبت trace نسخ ملفات cache marker وgame.conf وminetest.conf وworld.mt بواسطة CopyFileEx إلى staging خاص بالعملية، ثم تفعيل مجلد `Minetest` المحمول. التشغيل الثاني استخدم الملف المحمول ولم يدمج AppData مجدداً. نجحت أيضاً:
+- مقارنة محتويات الملفات المنقولة وCACHEDIR.TAG.
+- الحفاظ على AppData الأصلي دون تغيير.
+- الحفاظ على staging قديم ذي علامة، وتنظيف staging الجديد الخاص بالعملية.
+- التشغيل من مسار يحوي مسافات.
+- وجود مجلد Minetest مسبقاً دون دمج أو استبدال محتواه.
+
+### Artifacts
+| النظام | Artifact ID | الحجم | SHA-256 |
+|---|---:|---:|---|
+| Windows x64 | 14018204334 | 20,682,129 bytes | `88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571` |
+| Linux x64 | 14018973226 | 22,731,333 bytes | `9072268c9b3a87bb75a5a01bd0c09fd713733e637c2ad01e9a12575ce7f38c6f` |
+
+تم تنزيل Artifact Windows وفك غلافه والتحقق من ZIP الداخلي:
+- الاسم: `luanti-arabic-windows-x64.zip`
+- الحجم: 20,792,171 bytes
+- SHA-256: `36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39`
+- اختبار سلامة ZIP: ناجح؛ 533 مدخلاً، مع `bin/luanti.exe` وخط Noto Sans Arabic وترخيص OFL.
+
+### ما تبقى
+كل اختبارات portability الآلية اكتملت. لم يجرِ بعد قبول GUI الفعلي على جهاز Windows 10: تشغيل الواجهة، تنزيل لعبة من Content tab، إنشاء عالم، حفظ الإعدادات، وفحص logs/screenshots/texture packs/cache، والتأكد من عدم إنشاء بيانات جديدة تحت AppData، وتجربة قرص غير النظام إذا أمكن. لا نعلن اكتمال القابلية الواقعية للنقل حتى تسجل نتائج هذه الخطوة. تبقى الخطوط/UI مؤجلة إلى ما بعد قبول تخزين بيانات المستخدم.

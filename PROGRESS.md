@@ -1,15 +1,15 @@
 # تقدم التعريب
 
-> ## نقطة حالة محرك Luanti — 2026-11-13 · Run #117 تعثر؛ استعادة نسخة Run #116
+> ## نقطة حالة محرك Luanti — 2026-11-13 · Run #118 ناجح؛ قبول Windows الفعلي هو التالي
 >
-> Branch: `work/arabic-engine-support`; HEAD قبل التصحيح: `efbf5dc3b1d73b99df3ec1a14a30666540d729ca`; `main`: `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+> Branch: `work/arabic-engine-support`; tested source commit: `8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192`; protected `main`: `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d` (unchanged).
 >
-> Run #116 (ID 43376273868) نجح على Linux وWindows: بناء، TestArabicTextLayout 17/17، TestFileSys 16/16، اختبار الحزمة ورفع Artifactين. أثبت trace Windows ترحيل AppData، تفعيل Minetest، التشغيل الثاني، عدم تغيير المصدر، استعادة staging، وعدم الدمج فوق ملف محمول موجود.
+> Run #118 (ID 43385926666) اجتاز Jobs الأربعة: scheduling، catalog validation، Windows x64، Linux x64. اجتاز Windows وLinux configure/build وTestArabicTextLayout 17/17 وTestFileSys 16/16 وinstall/package/upload.
 >
-> Run #117 (ID 43382276907) على HEAD أحدث نجح في Linux بالكامل، وفي Windows نجح البناء واختبار العربية 17/17 وTestFileSys 14/14، ثم فشل اختبار الحزمة عند مطابقة stdout الفارغ من تطبيق GUI. توقف قبل فحص ملفات القرص، فلا يثبت فشل CopyDir. لا يوجد Windows Artifact من هذا التشغيل. Linux Artifact 14017277623، 22,717,242 bytes، SHA-256 `0f6e51221dbf526c6898d4897f4bf729e7569a5540bf1c8d1f6e75e874a2fc8c`.
+> أثبت سجل Windows نسخ ملفات AppData الأربعة بواسطة CopyFileEx إلى staging خاص بالعملية، وتفعيل مجلد `Minetest`، واستخدامه في التشغيل الثاني. نجحت فحوص المحتوى وCACHEDIR.TAG، تطابق SHA-256 لمصدر AppData قبل/بعد، الحفاظ على staging القديم، تنظيف staging الجديد، مسارات المسافات، وعدم الدمج فوق مجلد محمول موجود.
 >
-> مقارنة HEAD بـRun #116 كشفت إزالة تطبيع `bin/..`، وإرجاع staging ثابت، وحذف اختبارات CopyDir/path (16 إلى 14)، وإرجاع stdout assertion. التصحيح الحالي يستعيد الملفات الأربعة من رأس Run #116 الناجح؛ Run #118 مطلوب لإعادة القبول.
+> Windows Artifact: 14018204334، الحجم 20,682,129 bytes، SHA-256 `88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571`. ZIP الداخلي: 20,792,171 bytes، SHA-256 `36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39`، سلامة ZIP مؤكدة (533 entries). Linux Artifact: 14018973226، 22,731,333 bytes، SHA-256 `9072268c9b3a87bb75a5a01bd0c09fd713733e637c2ad01e9a12575ce7f38c6f`.
 >
-> لا تبدأ Phase 4 الفعلية أو الخطوط/UI قبل نجاح Run #118 وإنتاج Windows Artifact مطابق للرأس الحالي. بعده اختبر GUI وContent tab والعوالم والإعدادات ومسارات التخزين وAppData على Windows 10.
+> اكتملت Phases 1–3 والاختبارات الآلية في Phase 4. بقي قبول Windows 10 الفعلي: GUI، تنزيل Content tab، إنشاء عالم، حفظ config، فحص logs/screenshots/texture/cache، عدم الكتابة الجديدة إلى AppData، وتجربة قرص غير النظام إن أمكن. لا تبدأ الخطوط/UI قبل تسجيل ذلك.
 >
 > التفاصيل في [خارطة الطريق](docs/ROADMAP.md)، [حالة المشروع](docs/PROJECT_STATE.md)، [سجل العمل](docs/ARABIC_ENGINE_WORKLOG.md)، و[رسالة الاستئناف](docs/NEXT_SESSION_PROMPT.md).

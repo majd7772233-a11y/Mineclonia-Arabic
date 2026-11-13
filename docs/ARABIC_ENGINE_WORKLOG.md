@@ -561,3 +561,39 @@ Restore the exact four source/workflow files from the successful Run #116 tested
 - `.github/workflows/build-luanti-arabic-engine.yml`: استعادة --trace وملفات القرص وAppData hashes وstale-stage/no-merge بدلاً من الاعتماد على stdout.
 
 هذا إصلاح استرجاعي لنسخة مثبت نجاحها في Run #116. يجب إعادة بناء واختبار المنصتين في Run #118 قبل اعتبار HEAD الحالي مقبولاً.
+
+
+## 2026-11-13 — Run #118: restored Windows portable profile acceptance
+
+**Starting HEAD:** efbf5dc3b1d73b99df3ec1a14a30666540d729ca  
+**Tested commit:** 8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192  
+**Branch:** work/arabic-engine-support  
+**Protected main:** a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d (unchanged)  
+**Run:** #118 — 43385926666 — completed / success.
+
+### What was restored
+The four code/workflow files were restored to their exact Run #116-tested versions:
+- normalized `getPortableUserPath()` using `fs::AbsolutePath()`;
+- process-specific staging with collision suffixes, retaining any stale fixed-name directory;
+- TestFileSys 16 cases, including path normalization and direct CopyDir root/nested-file tests;
+- Windows smoke uses `--trace --worldlist path` and filesystem assertions, never a stdout match from the GUI executable.
+
+### Actual CI results
+All four Jobs passed:
+- Scheduling 131754268500.
+- Catalog/source validation 131754303790.
+- Windows x64 131754595207.
+- Linux x64 131754594968.
+
+Both platforms passed configure/build, TestArabicTextLayout 17/17, TestFileSys 16/16, package installation and upload.
+
+### Windows integration trace
+The synthetic AppData profile was verified to contain all four files. CopyFileEx traces confirm each was copied to `Minetest.migration-tmp-3616`; activation then logged the package-root portable `Minetest` folder. The second launch logged that the portable profile already existed and the old profile would not be merged. The smoke completed exact file/content checks, cache tag, AppData preservation, stale staging marker, PID-stage cleanup, path-with-spaces, and existing-profile/no-merge assertions.
+
+### Artifacts
+- Windows 14018204334 — 20,682,129 bytes — SHA-256 88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571.
+- Inner Windows ZIP — 20,792,171 bytes — SHA-256 36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39 — ZIP integrity passed, 533 entries.
+- Linux 14018973226 — 22,731,333 bytes — SHA-256 9072268c9b3a87bb75a5a01bd0c09fd713733e637c2ad01e9a12575ce7f38c6f.
+
+### Remaining work
+Automated phases are complete. Await the actual Windows 10 GUI/data-storage acceptance from the user before any font/UI changes. The ZIP should be extracted to a new empty folder; do not delete the AppData source profile; check Content tab download, world creation, config, logs, screenshots, texture packs/cache, AppData immutability, and a non-system drive if possible.

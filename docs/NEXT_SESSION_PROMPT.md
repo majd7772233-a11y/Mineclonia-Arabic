@@ -238,3 +238,24 @@ The current corrective commit restores these exact four files from the Run #116 
 - `.github/workflows/build-luanti-arabic-engine.yml`
 
 Next step: inspect this commit's diff and refs, run one full CI (Run #118), and inspect all jobs. Required: Linux and Windows build; TestArabicTextLayout 17/17; TestFileSys 16/16; Windows `--trace --worldlist path` migration and file-content checks; AppData SHA-256 immutability; stale staging preservation; PID-stage cleanup; existing-profile/no-merge; both artifact uploads. Do not infer migration failure from stdout. After a successful Run #118, deliver the Windows artifact and continue Phase 4 actual Windows 10 GUI acceptance. Keep fonts/UI deferred until the user's storage workflows have been tested.
+
+
+## Continue after Run #118 — real Windows 10 acceptance is the next task
+
+Repository: `majd7772233-a11y/Mineclonia-Arabic`. Work only on `work/arabic-engine-support`; do not touch main, create branches or force-push. Tested source/workflow commit: `8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192`. Protected main remains `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+
+Run #118 (43385926666) completed successfully. Scheduling and catalog validation passed. Linux Job 131754594968 and Windows Job 131754595207 passed configure/build, TestArabicTextLayout 17/17, TestFileSys 16/16, install/package and upload. The Windows trace verified four CopyFileEx migrations into a PID-specific staging path, portable-profile activation, second-launch reuse, exact content/cache-tag checks, AppData preservation, stale staging preservation, new-stage cleanup, paths with spaces, and existing-profile/no-merge.
+
+Artifacts:
+- Windows wrapper ID 14018204334, 20,682,129 bytes, SHA-256 `88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571`.
+- Inner portable ZIP `luanti-arabic-windows-x64.zip`, 20,792,171 bytes, SHA-256 `36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39`, ZIP integrity passed, 533 entries.
+- Linux artifact 14018973226, 22,731,333 bytes, SHA-256 `9072268c9b3a87bb75a5a01bd0c09fd713733e637c2ad01e9a12575ce7f38c6f`.
+
+Now perform the actual user-side Phase 4 acceptance:
+1. Extract the full ZIP into a new empty directory, ideally a path with spaces and outside the existing installation. Keep the old `%APPDATA%/Minetest` intact.
+2. Run `bin/luanti.exe` and confirm the adjacent package-root `Minetest` folder appears and contains the migrated profile.
+3. Use Content tab to download a game, create a world, change/save a setting, and close normally.
+4. Inspect `Minetest/worlds`, `games`, `minetest.conf`, logs/debug output, screenshots, texture packs, and cache. Confirm these new writes go under the package's `Minetest` folder, not AppData.
+5. Verify the old AppData profile remains intact; test a non-system/removable drive if available.
+
+Record screenshots, exact file paths, and any logs. Diagnose any actual runtime issue before starting font/UI improvements. Do not merge the branch into main without explicit instruction.

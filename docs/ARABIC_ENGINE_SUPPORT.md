@@ -476,3 +476,12 @@ This closes all automated tests in Phases 1–3 and the four automated Phase 4 c
 Run #117 (43382276907) passed Windows configure/build and both C++ modules in that commit (Arabic layout 17/17; FileSys 14/14), but failed at the first world-list stdout match. The captured output from the Windows GUI-subsystem executable was empty; the test stopped before examining the package profile. Linux package/upload succeeded (Artifact 14017277623; 22,717,242 bytes; SHA-256 `0f6e51221dbf526c6898d4897f4bf729e7569a5540bf1c8d1f6e75e874a2fc8c`). No Windows artifact was uploaded.
 
 The HEAD compared with the successful Run #116 version had also dropped absolute share-path normalization, PID-specific staging collision recovery, and the direct CopyDir/path tests. The corrective batch restores the entire previously passing source/workflow set rather than trying to make stdout available. Run #118 must prove it on both platforms again.
+
+
+## Run #118 — Windows portable profile CI acceptance restored
+
+Run #118 (43385926666, tested commit 8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192) completed successfully on both Windows and Linux. TestArabicTextLayout passed 17/17 and TestFileSys 16/16 on both. Windows package smoke trace confirms CopyFileEx copied the cache marker, downloaded-game metadata, root config and world metadata into the PID-specific stage, followed by successful portable-profile activation. A second launch reused the profile. Exact contents, cache tag, AppData immutability, stale-stage preservation, PID-stage cleanup, path-with-spaces and existing-profile/no-merge checks passed. Both platform artifacts were uploaded.
+
+The Windows artifact wrapper is ID 14018204334 (20,682,129 bytes; SHA-256 88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571). Its inner ZIP is 20,792,171 bytes with SHA-256 36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39 and passed ZIP integrity validation.
+
+Automated portable migration checks are complete. Real Windows GUI behavior and actual ContentDB/world/settings/log/screenshot/texture/cache routes remain user-side acceptance. Do not call the application completely portable in real use until those checks are recorded.

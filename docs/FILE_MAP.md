@@ -105,3 +105,12 @@ The Windows portable-path implementation, 16-case TestFileSys suite, and trace-b
 - `.github/workflows/build-luanti-arabic-engine.yml`
 
 Run #118 is required to validate the new branch head again.
+
+
+## Run #118 verified Windows package
+
+- Tested source/workflow commit: `8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192`.
+- CI Run: `43385926666` (all jobs passed).
+- Windows artifact: `14018204334`; inner ZIP integrity passed with 533 entries.
+- Directories and key payload: `bin/luanti.exe`, builtin, Noto Sans Arabic and its OFL license.
+- Remaining manual acceptance and test steps: `docs/ROADMAP.md`, `docs/PROJECT_STATE.md`, and `docs/ARABIC_ENGINE_HANDOFF.md`.

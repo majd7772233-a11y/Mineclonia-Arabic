@@ -209,3 +209,16 @@ The current corrective commit restores exactly these four files from the Run #11
 - `.github/workflows/build-luanti-arabic-engine.yml`
 
 Next: run one complete Run #118 against the restored commit. Require both Linux and Windows configure/build, Arabic 17/17, FileSys 16/16, Windows trace/file-content/AppData/staging/no-merge checks, and both artifact uploads. If the run passes, provide that Windows artifact and resume real Windows 10 acceptance. Do not modify `main`, create branches, or start UI/font work before the user's filesystem workflow is tested.
+
+
+## Handoff after Run #118 — automated portability accepted; real Windows use next
+
+Tested source/workflow commit: `8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192` on `work/arabic-engine-support`. Protected `main` remains `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d`.
+
+Run #118 (43385926666) completed successfully. All four Jobs passed. Linux Job 131754594968 and Windows Job 131754595207 passed CMake configure/build, TestArabicTextLayout 17/17, TestFileSys 16/16, package install and upload. Catalog validation Job 131754303790 and scheduling Job 131754268500 also passed.
+
+The Windows trace proves CopyFileEx copied all four synthetic AppData files into a PID-specific staging sibling, then activated the portable `Minetest` profile. A second launch reused the profile and skipped merging AppData. Exact content/cache-tag assertions, AppData immutability, stale staging preservation, PID-stage cleanup, path-with-spaces and existing-profile/no-merge all passed.
+
+**Current downloadable file:** the actual inner Windows ZIP from Artifact 14018204334 is 20,792,171 bytes, SHA-256 `36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39`; its 533-entry ZIP integrity check passed. Artifact wrapper SHA-256 is `88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571`.
+
+Next is real Windows 10 acceptance, not another engine phase: extract to a new empty directory (preferably a path with spaces, outside the existing installation), launch `bin/luanti.exe`, allow first-run migration without deleting or renaming `%APPDATA%/Minetest`, and verify the package-root `Minetest` folder. Check Content tab download, create a world, save settings, inspect logs/screenshots/texture/cache paths, confirm no new writes into AppData, and try a non-system/removable drive if practical. Ask for the observed outcome and any screenshot/log when the user finishes. Keep font/UI work deferred. Do not merge this branch into main.

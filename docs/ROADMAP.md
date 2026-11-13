@@ -180,3 +180,38 @@ The latest commit changed four validated files relative to `b0c486db3a0960c7779c
 Restore the exact four source/workflow files from the successful Run #116 tested commit. That version passed both platform builds and suites (Arabic layout 17/17; FileSys 16/16), and the Windows trace proved first/second launch, file copying, activation, staging collision recovery, AppData immutability and no-merge. This is a restoration of already-tested code, not a new production rewrite.
 
 **Current validation boundary:** Run #116 remains valid evidence for its own HEAD, but Run #117 tested a later, regressed HEAD. The restored batch must pass a fresh full Run #118 before the current branch is treated as CI-accepted again. Keep the Windows real-device acceptance and font/UI work deferred until that run succeeds.
+
+
+## Run #118 — restored portable migration baseline passed on Windows and Linux
+
+**Tested source commit:** `8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192`  
+**Branch:** `work/arabic-engine-support`  
+**Protected main:** `a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d` (unchanged)  
+**Run:** [#118 / 43385926666](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43385926666) — completed / success.
+
+### All jobs
+- Scheduling — Job 131754268500: success.
+- Arabic catalog/source validation — Job 131754303790: success.
+- Windows x64 MSVC build, tests and package — Job 131754595207: success.
+- Linux x64 build, tests and package — Job 131754594968: success.
+
+Both platforms completed configure/build, TestArabicTextLayout **17/17**, TestFileSys **16/16**, package installation and artifact upload.
+
+### Windows trace and portable migration
+The synthetic AppData source was confirmed to contain the four expected files. The Windows trace explicitly records CopyFileEx copying:
+- `cache/legacy-cache.marker`
+- `games/portable-game-probe/game.conf`
+- `minetest.conf`
+- `worlds/portable-world-probe/world.mt`
+
+The copy landed under a process-specific `Minetest.migration-tmp-3616` staging directory; the application then activated the package-root `Minetest` profile and retained the original AppData source. A second launch logged that the portable profile already existed and AppData would not be merged again. The package smoke passed exact content assertions, cache-tag signature/location, AppData immutability, stale fixed-name staging preservation, cleanup of the PID-specific stage, launch from paths containing spaces, and the existing-profile/no-merge scenario.
+
+The Run #117 stdout regression is therefore corrected by restoration of the Run #116-tested workflow/source set. The Windows smoke relies on trace plus on-disk assertions; it does not parse GUI-subsystem stdout.
+
+### Artifacts from Run #118
+- Windows Artifact **14018204334** — 20,682,129 bytes — wrapper SHA-256 `88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571`.
+- Inner portable ZIP: `luanti-arabic-windows-x64.zip` — 20,792,171 bytes — SHA-256 `36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39`; ZIP integrity passed with 533 entries, including `bin/luanti.exe`, builtin, Noto Sans Arabic and its OFL license.
+- Linux Artifact **14018973226** — 22,731,333 bytes — SHA-256 `9072268c9b3a87bb75a5a01bd0c09fd713733e637c2ad01e9a12575ce7f38c6f`.
+
+### Phase status
+The current tested code/workflow commit is CI-accepted on both operating systems. Phases 1–3 and the automated Phase 4 coverage remain complete. The only remaining acceptance is on the user's Windows 10 installation: launch the complete ZIP, use the GUI and Content tab, create a world, save settings, inspect logs/screenshots/texture packs/cache, confirm no new AppData writes, and optionally launch from a non-system/removable drive. Real-world portability must not be declared complete before those checks. Keep font/UI work deferred until the user-side storage tests are recorded.

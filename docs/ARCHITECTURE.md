@@ -101,3 +101,8 @@ Run #116 also passed direct C++ world/game discovery and CopyDir regression chec
 The tested Run #116 implementation normalized the Windows executable-derived share path with `fs::AbsolutePath()` before forming the writable profile. This removes the non-canonical `bin/..` component before filesystem operations such as directory activation. Its migration helper used a unique `Minetest.migration-tmp-<pid>` sibling (adding a suffix on collision), preserving stale directories and avoiding a fixed-name conflict. Run #117's later HEAD dropped both safeguards and the package test reverted to parsing GUI-subsystem stdout.
 
 The corrective batch restores the exact Run #116 source and workflow files. The test gate again verifies the normalization and CopyDir behavior directly; the package test uses trace and file-system evidence instead of captured stdout. Require successful Run #118 before treating the restored HEAD as validated.
+
+
+## Run #118 — portable migration restored and CI-verified
+
+The restored source/workflow baseline passed Run #118 on Linux and Windows. Both hosts passed Arabic layout 17/17 and FileSys 16/16. The Windows trace records four successful CopyFileEx calls to a PID-specific stage and activation of the portable Minetest profile. Repeated startup, AppData immutability, stale staging preservation, PID-stage cleanup and existing-profile/no-merge all passed. This is automated package evidence; GUI feature/storage use still requires actual Windows acceptance.

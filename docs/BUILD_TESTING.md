@@ -195,3 +195,13 @@ The latest change is restoring the Run #116 tested versions of `porting.cpp`, `p
 - The Windows package job uses `--trace --worldlist path`, inspects on-disk files and file contents, compares AppData hashes, and tests stale staging and existing-profile/no-merge.
 
 This is the exact file set from successful Run #116. Run #118 must rebuild/test both systems and repeat the Windows integration before this branch head is accepted.
+
+
+
+## Run #118 — restored source and package gates passed
+
+Run #118 (43385926666) tested `8896f0f3eaa7ca19a97bd0cfcfcfac5a05bf7192` and completed successfully. Both Linux and Windows passed configure/build, TestArabicTextLayout 17/17, TestFileSys 16/16, package installation and upload. The Windows trace confirmed first-run CopyFileEx migration into a process-specific stage, profile activation, second-launch reuse, AppData content preservation, stale-stage preservation, PID-stage cleanup, and existing-profile/no-merge. The package also passed path-with-spaces checks.
+
+Windows artifact 14018204334: 20,682,129 bytes; SHA-256 `88277ca613a04ffa255bedbc538229a260f32b94bc5bcb3558cc2402d45f8571`. Inner Windows ZIP: 20,792,171 bytes; SHA-256 `36062ddb228fa9fec9bb864036012d4ac6a93e75c7e50f031b26a462baeebb39`; ZIP integrity passed with 533 entries. Linux artifact 14018973226: 22,731,333 bytes; SHA-256 `9072268c9b3a87bb75a5a01bd0c09fd713733e637c2ad01e9a12575ce7f38c6f`.
+
+The remaining Phase 4 acceptance is manual Windows 10 GUI and storage use: launch the ZIP, Content tab download, new world, saved settings, logs/screenshots/texture/cache, no new AppData writes, and a non-system/removable drive if practical.
