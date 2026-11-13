@@ -512,3 +512,11 @@ Automated portable migration checks are complete. Real Windows GUI behavior and 
 This batch is committed with its supporting documentation. The next full Linux/Windows workflow must prove compilation, Arabic 18/18, package integrity and artifact upload. Real Windows GUI acceptance must then confirm that short labels, loading/progress text, inventory components and mixed lines no longer clip or appear staggered. The issue is not declared resolved before those checks.
 
 The change preserves Raqm shaping, logical text order, cluster boundaries and BiDi run ordering. Only the vertical baseline and line-box metrics are shared across the fallback chain. The new regression test does not replace manual rendering checks in the actual client.
+
+## Run #119 — shared baseline and fallback-aware line box verified
+
+Run #119 (43428203852, source commit d2f2803d56943b5489837209d365a85308e99d7b) completed successfully on Linux and Windows. Both platforms built the client, passed the Arabic layout suite at 18/18 and FileSys at 16/16, installed their packages and uploaded artifacts. Windows also passed the first-launch migration, second-launch, spaces, AppData immutability, stale-stage and no-merge package checks.
+
+Windows Artifact 14039541061 (20,685,467 bytes; SHA-256 c8400dc4340a1390328a03eb93213f8fd22268b8ae00b11ee5567432bad5944e). Linux Artifact 14037439127 (22,739,780 bytes; SHA-256 546ff3ccd3a4e2bd65dece1e1793ef9412745f0e18d7ffb1451b55a16aa4dc4f).
+
+The new regression verifies a mixed Arimo/Noto line and its actual raster bounds. This is automated evidence for consistent baseline metrics and a fallback-aware line box. A fresh Windows GUI run remains necessary to check fixed-size widget clipping and the user's real inventory/loading/progress surfaces.

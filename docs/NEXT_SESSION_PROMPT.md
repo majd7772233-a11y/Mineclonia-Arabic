@@ -277,3 +277,13 @@ The source/doc batch:
 - updates both CI summary gates to require 18 tests.
 
 Review all files in the new commit. Run the source validator and one full Linux/Windows CI. Require configure/build and Arabic 18/18 on both systems; inspect package and artifact uploads. Do not claim the visual issue fixed until the user retests small labels, inventory components, loading/progress text and mixed Arabic/English/digit lines in a fresh Windows build. If a widget still clips, inspect its fixed element bounds and clipping owner before a further change.
+
+## Resume after Run #119 — Windows visual acceptance
+
+Repository: majd7772233-a11y/Mineclonia-Arabic. Continue only on work/arabic-engine-support. Protected main must remain a738a6bddbc0a75fc882ef68d3ffb3b00592aa0d.
+
+The source commit d2f2803d56943b5489837209d365a85308e99d7b passed Run #119 (43428203852), all four jobs successful. Both Linux and Windows compiled and passed TestArabicTextLayout 18/18 and TestFileSys 16/16; Windows portable package smoke and upload succeeded.
+
+The fix replaces per-face baselines with one maximum-ascender baseline across Arimo and Noto Sans Arabic fallback, and calculates line height across all fallback faces including the deepest descender. Linux log explicitly shows 18/18; Windows PowerShell matched the exact 18/18 summary and completed successfully. Windows artifact 14039541061; Linux artifact 14037439127. SHA-256 and exact size are in PROJECT_STATE.md and WORKLOG.md.
+
+Next: user visual acceptance from the new Windows artifact. Check small labels, inventory contents, loading/progress text and mixed Arabic+English+digits on one line. Do not claim the GUI problem is resolved until the user confirms the result. If a particular element clips, trace that element's size and clip rectangle. Avoid additional global font changes without a reproduced case.

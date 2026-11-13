@@ -239,3 +239,13 @@ Next steps:
 3. Require configure/build success and TestArabicTextLayout 18/18 on both platforms, with package checks and uploads.
 4. Ask the user to repeat the short-label, inventory, progress-bar and mixed-string GUI checks using the fresh Windows package.
 5. If clipping remains in specific fixed-size controls, inspect the owner widget's sizing and clipping rectangle instead of adding arbitrary global offsets or padding.
+
+## Handoff after Run #119 — shared baseline CI accepted
+
+The source commit d2f2803d56943b5489837209d365a85308e99d7b passed [Run #119 / 43428203852](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43428203852). Both Windows and Linux configured and built successfully. Both passed the Arabic regression gate at 18/18 and FileSys at 16/16; Windows additionally passed the portable migration smoke test and uploaded its package.
+
+Windows Artifact 14039541061 (20,685,467 bytes, SHA-256 c8400dc4340a1390328a03eb93213f8fd22268b8ae00b11ee5567432bad5944e). Linux Artifact 14037439127 (22,739,780 bytes, SHA-256 546ff3ccd3a4e2bd65dece1e1793ef9412745f0e18d7ffb1451b55a16aa4dc4f).
+
+Run #119 verifies first-launch migration, second startup, world discovery beneath the portable profile, spaces in package paths, AppData immutability, stale staging preservation and no-merge behavior when a portable profile already exists.
+
+**Next exact task:** user-side visual acceptance of the fresh Windows ZIP. Inspect short labels, inventory text, loading/progress text and mixed Arabic/English/digit lines. Confirm the baseline is shared and no glyph bottoms are clipped. If an individual fixed-size widget still clips, trace its element height and clipping rectangle. Do not start general font restyling before these observations.

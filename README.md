@@ -86,3 +86,9 @@ See [ROADMAP](docs/ROADMAP.md), [PROJECT_STATE](docs/PROJECT_STATE.md), and [HAN
 ## Mixed Arabic/Latin text rendering — 2026-11-13
 
 The user confirmed that the portable Windows application launches and Arabic glyphs appear, then reported vertical mismatch between Arabic and adjacent English/digits plus bottom clipping in small labels, progress/loading text and inventory components. The source correction now uses one baseline across Arimo and Noto Sans Arabic and measures line height across the complete fallback chain. A mixed-font regression raises the Arabic layout suite to 18 tests. The change is awaiting a fresh Linux/Windows CI run and visual confirmation from the user; it is not yet declared fixed.
+
+## Mixed Arabic/Latin rendering — CI result (2026-11-13)
+
+The shared-baseline and fallback-aware line-height correction passed Run #119 on both Windows and Linux. The Arabic layout regression is 18/18 on each platform, and the Windows package smoke and Artifact upload succeeded. The fresh Windows Artifact is 14039541061 (SHA-256 c8400dc4340a1390328a03eb93213f8fd22268b8ae00b11ee5567432bad5944e).
+
+The remaining step is visual retesting of short labels, inventory components, progress/loading text, and mixed Arabic/English/digit lines in the actual Windows GUI. CI success alone does not prove that every fixed-size widget has sufficient clipping bounds.

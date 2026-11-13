@@ -227,3 +227,14 @@ The current tested code/workflow commit is CI-accepted on both operating systems
 - [ ] If any fixed-size control still clips, trace that widget's rectangle and clipping owner before changing its geometry.
 
 Do not call the display issue resolved until the fresh Windows build passes CI and the user confirms the GUI result.
+
+## Run #119 — shared mixed-script baseline passed on Linux and Windows
+
+- Tested source commit: d2f2803d56943b5489837209d365a85308e99d7b.
+- Run: [43428203852](https://github.com/majd7772233-a11y/Mineclonia-Arabic/actions/runs/43428203852), completed / success; four of four jobs passed.
+- Linux and Windows both passed configure/build, TestArabicTextLayout 18/18 and TestFileSys 16/16, package install and upload. Linux log explicitly contains the 18/18 and 16/16 summaries; the Windows PowerShell gates successfully matched those exact summaries.
+- Windows package smoke passed migration, second startup, portable world discovery, a package path containing spaces, stale staging preservation, AppData immutability and the existing-profile/no-merge scenario.
+- Windows Artifact 14039541061: 20,685,467 bytes; SHA-256 c8400dc4340a1390328a03eb93213f8fd22268b8ae00b11ee5567432bad5944e.
+- Linux Artifact 14037439127: 22,739,780 bytes; SHA-256 546ff3ccd3a4e2bd65dece1e1793ef9412745f0e18d7ffb1451b55a16aa4dc4f.
+
+The shared-baseline correction is CI-verified. Actual Windows GUI acceptance remains: short labels, inventory components, progress/loading text, and mixed Arabic/English/digits on the same line. If any fixed-size widget still clips, investigate its rectangle and clipping owner before any further global metric change.

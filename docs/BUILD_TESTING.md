@@ -216,3 +216,9 @@ Both Linux and Windows workflow summaries now require:
 The production draw path and getDimension use one baseline for every face in the fallback chain. Line height covers the greatest nominal font height and the combined maximum ascender/deepest descender, plus one pixel of clearance. This avoids the old per-face y placement and reduces bottom clipping caused by measuring only the primary Latin face.
 
 These checks are pending the next full Linux/Windows build and package CI. The actual client must still be visually retested for short labels, inventory text, loading/progress messages and mixed Arabic/English/digit lines.
+
+## Run #119 — mixed-font baseline CI accepted
+
+Both platform jobs passed. TestArabicTextLayout is now 18/18 and TestFileSys remains 16/16 on Windows and Linux. The Windows package smoke also passed migration and profile preservation checks. Artifact IDs, sizes and SHA-256 digests are recorded in the Run #119 section of PROJECT_STATE.md.
+
+Visual acceptance remains pending on the user's Windows installation: recheck small one-line labels, inventory text, progress/loading messages and mixed Arabic/English/digit strings using the fresh ZIP. CI verifies the metrics contract and package, not every fixed-size GUI clipping rectangle.

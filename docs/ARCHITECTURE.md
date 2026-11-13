@@ -114,3 +114,9 @@ The default GUI font chain uses Arimo for Latin/digits and Noto Sans Arabic as t
 CGUITTFont now uses fallback-aware line metrics for both drawing and getDimension. The line box covers the maximum nominal face height and the combined maximum ascender/deepest descender, with one pixel of clearance. Font metric initialization also uses the same width=0,height=size FreeType request as shaping and glyph rasterization. The signed vertical Raqm offset is rounded symmetrically.
 
 The 18th Arabic layout regression uses Arimo + Noto and a line mixing Latin, Arabic and digits, then checks actual raster bounds against the shared line box. It does not alter logical source ordering, advances, clusters or BiDi resolution. Widget-specific clipping may still require inspection if a fixed-size formspec element supplies a smaller clip rectangle than its measured text.
+
+## Run #119 — shared fallback metrics compiled and tested
+
+The shared baseline and fallback-aware line-box implementation in CGUITTFont passed the full Linux and Windows builds. TestArabicTextLayout passed 18/18 and TestFileSys 16/16 on both platforms. Windows package verification and artifact upload also succeeded.
+
+The mixed-font regression combines Arimo Latin/digits with Noto Sans Arabic and checks raster bounds against the shared line box. This is a source-level/render-metrics regression; it does not replace visual confirmation of every fixed-size widget in the actual UI. User retest of inventory labels, progress/loading text and mixed-script lines remains required.
